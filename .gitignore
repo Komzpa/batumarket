@@ -3,3 +3,5 @@ __pycache__/
 data/
 notes/
 Intermediate/
+.venv/
+.pytest_cache/
