@@ -1,21 +1,12 @@
-# Central configuration for tokens and service URLs
+# Configuration constants for Batumarket services.
+# Secrets must be kept outside the repository.
 
-# OpenAI API key for chat completion and embeddings
-OPENAI_API_KEY = "sk-.."
+TG_TOKEN = "123:ABC"
+CHATS    = [12345, 67890]
 
-# Models preferred for chat completions
-AVAILABLE_MODELS = [
-    #{"model": "gpt-4.1"},
-    #{"model": "gpt-4.1-mini"},
-    #{"model": "o1"},
-    #{"model": "o3", "reasoning_effort": "high", "service_tier": "flex"},
-    #{"model": "o4-mini", "reasoning_effort": "high", "service_tier": "flex"},
-]
+OPENAI_KEY = "sk-..."
 
-# Models used for intermediate place reviews
-SMALL_REVIEW_MODELS = [
-    {"model": "gpt-4o", "service_tier": "flex"},
-    {"model": "o4-mini", "reasoning_effort": "high", "service_tier": "flex"},
-    {"model": "o4-mini", "service_tier": "flex"},
-    {"model": "o3", "service_tier": "flex"},
-]
+DB_DSN = "postgresql:///bazaar"
+
+# Target languages for translations
+LANGS = ["ru", "en"]
