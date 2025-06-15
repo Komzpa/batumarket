@@ -1,7 +1,8 @@
 # Service Overview
 
 This repository powers a small Telegram marketplace.  Each Python script in
-`src/` acts as a stand‑alone service invoked from the Makefile.
+`src/` acts as a stand‑alone service invoked from the Makefile.  See
+[`setup.md`](setup.md) for installation instructions.
 
 ## tg_bot.py
 Listens to the configured chats and stores every incoming message as Markdown in
@@ -28,8 +29,9 @@ Translates the English description of every lot into the languages specified in
 `description_ru`.
 
 ## build_site.py
-Uses Jinja templates to render the static HTML version of the marketplace into
-`data/views`.  The resulting files can be served as is.
+Uses Jinja templates from the `templates/` directory to render the static HTML
+version of the marketplace into `data/views`.  The resulting files can be served
+as is.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
