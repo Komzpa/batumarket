@@ -3,4 +3,3 @@ python-telegram-bot
 psycopg[binary]
 jinja2
 structlog
-slack_sdk

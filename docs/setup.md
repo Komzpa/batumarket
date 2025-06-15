@@ -1,10 +1,21 @@
 # Setup and Usage
 
-This project uses Python 3.12. Install dependencies and run the services via the Makefile.
+This project uses Python 3.12.  On Debian based distributions the required
+modules are available as packages:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
+sudo apt install python3-openai \
+    python3-python-telegram-bot \
+    python3-psycopg2 python3-jinja2 \
+    python3-structlog
+```
+
+If you prefer isolated dependencies create a virtual environment and use the
+`requirements.txt` file instead:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
 pip install -r requirements.txt
 ```
 

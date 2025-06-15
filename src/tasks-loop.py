@@ -119,23 +119,6 @@ if message_text:
     logfile.write(message_text)
     logfile.close()
 
-# Send to Slack
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
-
-slack_token = config.SLACK_TOKEN
-user_id = config.SLACK_USER_ID
-
-client = WebClient(token=slack_token)
-
-try:
-    response = client.conversations_open(users=user_id)
-    channel_id = response['channel']['id']
-    if message_text:
-        client.chat_postMessage(channel=channel_id, text=message_text, mrkdwn=True, parse="full")
-        log.info("Sent Slack message", channel=channel_id)
-except SlackApiError as e:
-    log.error("Slack error", error=str(e))
 
 # Send to Telegram
 telegram_token = config.TELEGRAM_TOKEN
