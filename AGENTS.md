@@ -19,3 +19,4 @@ Fix everything in docs/ folder to match reality
 Use `make precommit` to run the checks. This sorts files, verifies Makefile tabs and compiles all Python code via `scripts/check_python.sh`.
 To run the pipeline in testing offline mode, launch `TEST_MODE=1 PYTHONPATH=. make -B -j compose` and check if everything works as intended.
 To smoke-check Makefile, `make --trace compose` helps see dependency chain.
+For any fix you are implementing try to add test so that it won't repeat in the future.
