@@ -9,7 +9,7 @@ except Exception:
     structlog = None
     _has_structlog = False
 
-LOGFILE = "Intermediate/errors.log"
+LOGFILE = "errors.log"
 _logger_initialized = False
 _logger = None
 
