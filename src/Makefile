@@ -2,8 +2,8 @@ PYTHON=python
 
 update: pull chop caption embed translate build
 
-pull: src/tg_bot.py
-	$(PYTHON) src/tg_bot.py
+pull: src/tg_client.py
+	$(PYTHON) src/tg_client.py
 
 caption: src/caption.py
 	$(PYTHON) src/caption.py
