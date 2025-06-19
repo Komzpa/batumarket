@@ -40,7 +40,7 @@ Use the Makefile in `src/` to run the pipeline:
 make -f src/Makefile update
 ```
 
-This pulls messages, captions images, chops lots, generates embeddings, translates them and finally builds the static site.
+This pulls messages, captions images, chops lots, generates embeddings and finally builds the static site.
 
 Run the test suite and linter before committing:
 

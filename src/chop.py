@@ -5,7 +5,7 @@ from pathlib import Path
 
 import openai
 
-from config import OPENAI_KEY
+from config import OPENAI_KEY, LANGS
 from log_utils import get_logger, install_excepthook
 from notes_utils import read_md
 from token_utils import estimate_tokens
@@ -21,7 +21,8 @@ LOTS_DIR = Path("data/lots")
 
 SYSTEM_PROMPT = (
     "You will receive a raw marketplace post with optional image captions.\n"
-    "Return a JSON list of separate lots with their titles, description_en and media SHA references."
+    "Return a JSON list of separate lots with media SHA references.\n"
+    "For each of these languages: {langs}, produce title_<lang> and description_<lang> fields."
 )
 
 
@@ -31,11 +32,12 @@ def process_message(msg_path: Path) -> None:
     for sha_path in MEDIA_DESC.glob("*.md"):
         captions.append(read_md(sha_path))
     prompt = text + "\n" + "\n".join(captions)
+    system_prompt = SYSTEM_PROMPT.format(langs=", ".join(LANGS))
     messages = [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": system_prompt},
         {"role": "user", "content": prompt},
     ]
-    log.debug("Prompt tokens", count=estimate_tokens(prompt))
+    log.debug("Prompt tokens", count=estimate_tokens(prompt), langs=LANGS)
     try:
         resp = openai.chat.completions.create(model="gpt-4o", messages=messages)
         lots = json.loads(resp.choices[0].message.content)

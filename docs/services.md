@@ -24,10 +24,8 @@ processing.
 Generates `text-embedding-4o` vectors for each lot.  Vectors are stored both in
 `data/vectors.jsonl` and in the `lot_vec` table using pgvector.
 
-## translate.py
-Translates the English description of every lot into the languages specified in
-`config.LANGS`.  The file is updated in place with extra fields such as
-`description_ru`.
+Translations are now produced by `chop.py` itself.  Fields like
+`title_ru` or `description_ka` are included in the lot JSON directly.
 
 ## build_site.py
 Uses Jinja templates from the `templates/` directory to render the static HTML
@@ -40,5 +38,5 @@ to all subscribers when new lots are detected.
 
 ## Makefile
 `src/Makefile` wires these scripts together.  Running `make -f src/Makefile
-update` performs a full refresh: pulling messages, captioning images, chopping,
-embedding, translating and rebuilding the static site.
+update` performs a full refresh: pulling messages, captioning images,
+chopping, embedding and rebuilding the static site.
