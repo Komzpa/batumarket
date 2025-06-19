@@ -1,0 +1,32 @@
+"""Example configuration for Batumarket services.
+
+Copy this file to ``config.py`` and replace the placeholder values with your
+own credentials.  Secrets should never be committed to the repository.
+"""
+
+# Telegram bot token used by ``alert_bot.py``.  Create a bot with BotFather and
+# paste the token here.
+TG_TOKEN = "123:ABC"
+
+# Telethon client credentials.  ``TG_API_ID`` and ``TG_API_HASH`` identify the
+# application, while ``TG_SESSION`` is a filename where the user session will be
+# saved after the first login.
+TG_API_ID = 123456
+TG_API_HASH = "0123456789abcdef0123456789abcdef"
+TG_SESSION = "session"
+
+# List of Telegram chat usernames to mirror.  Keep them as strings to avoid
+# confusion with numeric IDs.  Example values below follow popular Georgian
+# flea-market groups.
+CHATS = ["baraholka_ge", "baraholka_avito_batumi"]
+
+# OpenAI API key used for captioning, chopping and translating.
+OPENAI_KEY = "sk-..."
+
+# PostgreSQL DSN where the embedding vectors are stored.  The ``lot_vec`` table
+# is expected to use the ``pgvector`` extension.
+DB_DSN = "postgresql:///bazaar"
+
+# Target languages for translations produced by ``translate.py``.  The English
+# description is always present; add more languages as needed.
+LANGS = ["ru", "en"]

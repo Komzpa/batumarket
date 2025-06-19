@@ -19,7 +19,14 @@ python3 -m venv .venv
 pip install -r requirements.txt
 ```
 
-Set up the required environment variables in `config.py` or export them before running any script:
+Copy the example configuration and edit it with your credentials:
+
+```bash
+cp config.example.py config.py
+```
+
+Copy `config.example.py` to `config.py` and fill in the secrets or export the
+variables before running any script:
 - `TG_TOKEN` – Telegram bot token used by the alert bot
 - `TG_API_ID` / `TG_API_HASH` – credentials for the Telethon client
 - `TG_SESSION` – filename where the logged in user session will be stored
