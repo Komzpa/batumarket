@@ -1,6 +1,6 @@
 PYTHON=python
 
-update: pull chop caption embed translate build
+update: pull chop caption embed build
 
 pull: src/tg_client.py
 	$(PYTHON) src/tg_client.py
@@ -14,8 +14,6 @@ chop: src/chop.py
 embed: src/embed.py
 	$(PYTHON) src/embed.py
 
-translate: src/translate.py
-	$(PYTHON) src/translate.py
 
 build: src/build_site.py
 	$(PYTHON) src/build_site.py

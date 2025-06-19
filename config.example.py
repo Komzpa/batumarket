@@ -27,6 +27,6 @@ OPENAI_KEY = "sk-..."
 # is expected to use the ``pgvector`` extension.
 DB_DSN = "postgresql:///bazaar"
 
-# Target languages for translations produced by ``translate.py``.  The English
-# description is always present; add more languages as needed.
-LANGS = ["ru", "en"]
+# Languages used when parsing lots.  ``chop.py`` will generate title and
+# description fields for each entry in this list.
+LANGS = ["en", "ru", "ka"]
