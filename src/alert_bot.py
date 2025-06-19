@@ -6,7 +6,10 @@ from pathlib import Path
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 
-from config import TG_TOKEN
+from config_utils import load_config
+
+cfg = load_config()
+TG_TOKEN = cfg.TG_TOKEN
 from log_utils import get_logger, install_excepthook
 
 log = get_logger().bind(script=__file__)

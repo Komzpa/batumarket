@@ -6,7 +6,13 @@ from pathlib import Path
 
 from telethon import TelegramClient, events
 
-from config import TG_API_ID, TG_API_HASH, TG_SESSION, CHATS
+from config_utils import load_config
+
+cfg = load_config()
+TG_API_ID = cfg.TG_API_ID
+TG_API_HASH = cfg.TG_API_HASH
+TG_SESSION = cfg.TG_SESSION
+CHATS = cfg.CHATS
 from log_utils import get_logger, install_excepthook
 from notes_utils import write_md
 
