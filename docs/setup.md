@@ -7,7 +7,7 @@ modules are available as packages:
 sudo apt install python3-openai \
     python3-python-telegram-bot \
     python3-psycopg2 python3-jinja2 \
-    python3-structlog
+    python3-structlog python3-telethon
 ```
 
 If you prefer isolated dependencies create a virtual environment and use the
@@ -20,8 +20,10 @@ pip install -r requirements.txt
 ```
 
 Set up the required environment variables in `config.py` or export them before running any script:
-- `TG_TOKEN` – Telegram bot token
-- `CHATS` – list of chat IDs to mirror
+- `TG_TOKEN` – Telegram bot token used by the alert bot
+- `TG_API_ID` / `TG_API_HASH` – credentials for the Telethon client
+- `TG_SESSION` – filename where the logged in user session will be stored
+- `CHATS` – list of chat usernames to mirror
 - `OPENAI_KEY` – API key for OpenAI models
 - `DB_DSN` – PostgreSQL DSN used by embedding storage
 

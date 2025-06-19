@@ -3,3 +3,4 @@ python-telegram-bot
 psycopg[binary]
 jinja2
 structlog
+telethon

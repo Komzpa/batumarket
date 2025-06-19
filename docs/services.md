@@ -4,10 +4,11 @@ This repository powers a small Telegram marketplace.  Each Python script in
 `src/` acts as a stand‑alone service invoked from the Makefile.  See
 [`setup.md`](setup.md) for installation instructions.
 
-## tg_bot.py
-Listens to the configured chats and stores every incoming message as Markdown in
-`data/raw`.  Media files are downloaded to `data/media` under their SHA‑256
-names.  Nothing is deleted; edits simply overwrite the Markdown.
+## tg_client.py
+Uses Telethon to mirror the target chats as a normal user account.  Incoming
+messages are stored as Markdown under `data/raw` while any media files are saved
+to `data/media` using their SHA‑256 hashes.  Nothing is deleted; edits simply
+overwrite the Markdown.
 
 ## caption.py
 Calls GPT‑4o Vision to caption the images in `data/media`.  The result is stored
