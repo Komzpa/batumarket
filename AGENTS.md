@@ -16,6 +16,6 @@ Update docs every time you update someting significant across files
 Prefer storing notes and documentation as markdown (``.md``). If in doubt,
 Default to ``.md`` over ``.txt`` so links and headers work consistently.
 Fix everything in docs/ folder to match reality
-Use `make -f src/Makefile precommit` to run the checks. This sorts files, verifies Makefile tabs and compiles all Python code via `scripts/check_python.sh`.
-To run the pipeline in testing offline mode, launch `TEST_MODE=1 PYTHONPATH=. make -B -j -f src/Makefile compose` and check if everything works as intended.
-To smoke-check Makefile, `make --trace -f src/Makefile compose` helps see dependency chain.
+Use `make precommit` to run the checks. This sorts files, verifies Makefile tabs and compiles all Python code via `scripts/check_python.sh`.
+To run the pipeline in testing offline mode, launch `TEST_MODE=1 PYTHONPATH=. make -B -j compose` and check if everything works as intended.
+To smoke-check Makefile, `make --trace compose` helps see dependency chain.

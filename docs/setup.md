@@ -34,10 +34,10 @@ variables before running any script:
 - `OPENAI_KEY` – API key for OpenAI models
 - `DB_DSN` – PostgreSQL DSN used by embedding storage
 
-Use the Makefile in `src/` to run the pipeline:
+Use the Makefile in the repository root to run the pipeline:
 
 ```bash
-make -f src/Makefile update
+make update
 ```
 
 This pulls messages, captions images, chops lots, generates embeddings and finally builds the static site.
@@ -45,12 +45,12 @@ This pulls messages, captions images, chops lots, generates embeddings and final
 Run the test suite and linter before committing:
 
 ```bash
-make -f src/Makefile precommit
+make precommit
 pytest
 ```
 
 For offline smoke tests you can enable testing mode:
 
 ```bash
-TEST_MODE=1 PYTHONPATH=. make -B -j -f src/Makefile compose
+TEST_MODE=1 PYTHONPATH=. make -B -j compose
 ```
