@@ -5,7 +5,11 @@ from pathlib import Path
 
 import openai
 
-from config import OPENAI_KEY, LANGS
+from config_utils import load_config
+
+cfg = load_config()
+OPENAI_KEY = cfg.OPENAI_KEY
+LANGS = cfg.LANGS
 from log_utils import get_logger, install_excepthook
 from notes_utils import read_md
 from token_utils import estimate_tokens

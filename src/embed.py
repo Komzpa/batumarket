@@ -6,7 +6,11 @@ from pathlib import Path
 import openai
 import psycopg
 
-from config import OPENAI_KEY, DB_DSN
+from config_utils import load_config
+
+cfg = load_config()
+OPENAI_KEY = cfg.OPENAI_KEY
+DB_DSN = cfg.DB_DSN
 from log_utils import get_logger, install_excepthook
 from token_utils import estimate_tokens
 
