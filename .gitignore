@@ -6,3 +6,4 @@ Intermediate/
 .venv/
 .pytest_cache/
 session*
+config.py
