@@ -37,6 +37,6 @@ Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
 to all subscribers when new lots are detected.
 
 ## Makefile
-`src/Makefile` wires these scripts together.  Running `make -f src/Makefile
-update` performs a full refresh: pulling messages, captioning images,
+The `Makefile` in the repository root wires these scripts together.  Running
+`make update` performs a full refresh: pulling messages, captioning images,
 chopping, embedding and rebuilding the static site.
