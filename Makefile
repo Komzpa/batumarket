@@ -18,32 +18,32 @@ caption: pull
 	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
 	| sort -z -nr \
 	| cut -z -d' ' -f2- \
-	| parallel -0 python src/caption.py
+	| parallel -j16 -0 python src/caption.py
 
 # Split messages into lots using captions and message text.
 chop: pull
 	python scripts/pending_chop.py \
-	| parallel -0 python src/chop.py
+	| parallel -j16 -0 python src/chop.py
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
-embed: chop
+embed: chop caption
 	python scripts/pending_embed.py \
-	| parallel -0 python src/embed.py
+	| parallel -j16 -0 python src/embed.py
 
 # Render HTML pages from lots and templates.
 build: embed ontology
+	rm -rf data/views/*
 	python src/build_site.py
 
 # Telegram alert bot for new lots.
-alert:
+alert: embed
 	python src/alert_bot.py
 
-ontology:
+ontology: chop
 	python src/scan_ontology.py
 
 clean:
 	python src/clean_data.py
-	rm -rf data/views/*
 
 precommit:
 	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
