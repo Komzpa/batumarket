@@ -110,7 +110,7 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
     tg_client = importlib.reload(importlib.import_module("tg_client"))
     monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path / "raw")
 
-    now = datetime.datetime.utcnow()
+    now = datetime.datetime.now(datetime.timezone.utc)
     start = now - datetime.timedelta(days=31)
     msgs = [
         _DummyMessage(1, start + datetime.timedelta(hours=1)),
