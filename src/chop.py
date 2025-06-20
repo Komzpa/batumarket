@@ -135,6 +135,11 @@ def process_message(msg_path: Path) -> None:
         lot.setdefault("source:chat", meta.get("chat"))
         lot.setdefault("source:message_id", str(meta.get("id")))
         lot.setdefault("source:path", source_path)
+        # Always override the timestamp with the actual message date so the
+        # LLM does not hallucinate this field.  ``chop.py`` may receive
+        # existing timestamps from the model but they are unreliable.
+        if meta.get("date"):
+            lot["timestamp"] = meta["date"]
         if files:
             lot.setdefault("files", files)
         for lang in LANGS:

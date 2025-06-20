@@ -32,6 +32,7 @@ VIEWS_DIR = Path("data/views")
 TEMPLATES = Path("templates")
 VEC_DIR = Path("data/vectors")
 ONTOLOGY = Path("data/ontology.json")
+RAW_DIR = Path("data/raw")
 
 
 def _lot_id_for(path: Path) -> str:
@@ -80,6 +81,23 @@ def _load_ontology() -> list[str]:
     return fields
 
 
+def _parse_md(path: Path) -> tuple[dict, str]:
+    """Return metadata dict and message text from ``path``."""
+    text = path.read_text(encoding="utf-8") if path.exists() else ""
+    lines = text.splitlines()
+    meta: dict[str, str] = {}
+    body_start = 0
+    for i, line in enumerate(lines):
+        if not line.strip():
+            body_start = i + 1
+            break
+        if ":" in line:
+            k, v = line.split(":", 1)
+            meta[k.strip()] = v.strip()
+    body = "\n".join(lines[body_start:])
+    return meta, body
+
+
 def _iter_lots() -> list[dict]:
     """Yield lots with helper metadata."""
     lots = []
@@ -110,15 +128,26 @@ def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[st
             caption = cap.read_text(encoding="utf-8") if cap.exists() else ""
             images.append({"path": rel, "caption": caption})
 
+        # Drop internal helper fields that are meaningless to end users.
         attrs = {
             k: v
             for k, v in lot.items()
-            if k not in {"files"} and not k.startswith("title_") and not k.startswith("description_")
+            if k not in {"files"}
+            and not k.startswith("title_")
+            and not k.startswith("description_")
+            and not k.startswith("source:")
+            and not k.startswith("_")
         }
         sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
         for k in attrs:
             if k not in sorted_attrs:
                 sorted_attrs[k] = attrs[k]
+
+        # Show the original message text for context if available.
+        orig_text = ""
+        src = lot.get("source:path")
+        if src:
+            _, orig_text = _parse_md(RAW_DIR / src)
 
         chat = lot.get("source:chat")
         mid = lot.get("source:message_id")
@@ -141,6 +170,8 @@ def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[st
                 lot=lot,
                 images=images,
                 attrs=sorted_attrs,
+                orig_text=orig_text,
+                description=lot.get(f"description_{lang}", ""),
                 tg_link=tg_link,
                 similar=page_similar,
                 langs=langs,
@@ -232,17 +263,24 @@ def main() -> None:
         except Exception:
             continue
         if dt >= recent_cutoff:
-            titles = {
-                lang: lot.get(f"title_{lang}")
-                for lang in langs
-            }
-            recent.append({
-                "id": lot["_id"],
-                "titles": titles,
-                "dt": dt,
-                "price": lot.get("price"),
-                "seller": lot.get("seller"),
-            })
+            titles = {lang: lot.get(f"title_{lang}") for lang in langs}
+            seller = (
+                lot.get("contact:phone")
+                or lot.get("contact:telegram")
+                or lot.get("contact:instagram")
+                or lot.get("contact:viber")
+                or lot.get("contact:whatsapp")
+                or lot.get("seller")
+            )
+            recent.append(
+                {
+                    "id": lot["_id"],
+                    "titles": titles,
+                    "dt": dt,
+                    "price": lot.get("price"),
+                    "seller": seller,
+                }
+            )
 
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])

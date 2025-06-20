@@ -14,8 +14,8 @@
   {% for lot in items %}
     <tr>
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
-      <td>{{ lot.price }}</td>
-      <td>{{ lot.seller }}</td>
+      <td>{{ lot.price or '' }}</td>
+      <td>{{ lot.seller or '' }}</td>
       <td data-raw="{{ lot.dt.isoformat() }}">{{ lot.dt.strftime('%Y-%m-%d %H:%M') }}</td>
     </tr>
   {% endfor %}

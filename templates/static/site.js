@@ -31,4 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
       th.classList.add(asc ? 'asc' : 'desc');
     });
   });
+
+  const mainCarousel = document.querySelector('.carousel.main');
+  if (mainCarousel) {
+    const images = Array.from(mainCarousel.querySelectorAll('img'));
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = '<span class="prev">\u2039</span><img><span class="next">\u203A</span>';
+    document.body.appendChild(lightbox);
+    const lbImg = lightbox.querySelector('img');
+    const prev = lightbox.querySelector('.prev');
+    const next = lightbox.querySelector('.next');
+    let idx = 0;
+    function show(i) {
+      idx = (i + images.length) % images.length;
+      lbImg.src = images[idx].src;
+      lightbox.style.display = 'flex';
+    }
+    images.forEach((img, i) => {
+      img.addEventListener('click', () => show(i));
+    });
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) lightbox.style.display = 'none';
+    });
+    prev.addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
+    next.addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+  }
 });
