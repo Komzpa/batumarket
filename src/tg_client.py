@@ -107,6 +107,18 @@ def _write_md(path: Path, meta: dict, body: str) -> None:
 _GROUPS: dict[int, Path] = {}
 
 
+def _find_group_path(chat: str, group_id: int) -> Path | None:
+    """Search stored messages for ``group_id`` to keep albums together."""
+    for p in (RAW_DIR / chat).rglob("*.md"):
+        meta, _ = _parse_md(p)
+        try:
+            if int(meta.get("group_id", 0)) == group_id:
+                return p
+        except (ValueError, TypeError):
+            continue
+    return None
+
+
 def _should_skip_media(msg: Message) -> str | None:
     """Return reason string if ``msg`` media should be skipped."""
     file = getattr(msg, "file", None)
@@ -277,11 +289,8 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     text = (msg.message or "").replace("View original post", "").strip()
     group_path = None
     if msg.grouped_id:
-        group_path = _GROUPS.get(msg.grouped_id)
-        if not group_path:
-            group_path = subdir / f"{msg.id}.md"
-            _GROUPS[msg.grouped_id] = group_path
-        else:
+        group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
+        if group_path:
             meta_prev, body_prev = _parse_md(group_path)
             files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
             files = files_prev + files
@@ -289,6 +298,9 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
             meta_prev["files"] = files
             meta = meta_prev
             text = body_prev or text
+        else:
+            group_path = subdir / f"{msg.id}.md"
+        _GROUPS[msg.grouped_id] = group_path
     path = group_path or subdir / f"{msg.id}.md"
     _write_md(path, meta, text)
     log.info("Wrote message", path=str(path), id=msg.id)
@@ -393,6 +405,49 @@ async def fetch_missing(client: TelegramClient) -> None:
                 _save_progress(chat, end_date)
 
 
+async def remove_deleted(client: TelegramClient) -> None:
+    """Delete locally stored messages removed from Telegram in the last week."""
+
+    cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    for chat in CHATS:
+        count = 0
+        for path in (RAW_DIR / chat).rglob("*.md"):
+            meta, _ = _parse_md(path)
+            date_str = meta.get("date")
+            try:
+                ts = datetime.fromisoformat(date_str) if date_str else None
+            except ValueError:
+                ts = None
+            if not ts or ts < cutoff:
+                continue
+            try:
+                msg_id = int(meta.get("id", 0))
+            except (ValueError, TypeError):
+                continue
+            try:
+                msg = await client.get_messages(chat, ids=msg_id)
+            except Exception:
+                log.exception("Failed to fetch message", chat=chat, id=msg_id)
+                continue
+            if not msg or (not getattr(msg, "message", None) and not getattr(msg, "media", None)):
+                files = []
+                try:
+                    files = ast.literal_eval(meta.get("files", "[]"))
+                except Exception:
+                    log.warning("Invalid file list", path=str(path))
+                for f in files:
+                    fpath = MEDIA_DIR / f
+                    for extra in [fpath, fpath.with_suffix(".caption.md"), fpath.with_suffix(".md")]:
+                        if extra.exists():
+                            extra.unlink()
+                            log.info("Deleted media", file=str(extra))
+                path.unlink()
+                count += 1
+                log.info("Deleted message", chat=chat, id=msg_id)
+        if count:
+            log.info("Removed deleted", chat=chat, count=count)
+
+
 async def main() -> None:
     client = TelegramClient(
         TG_SESSION,
@@ -407,6 +462,7 @@ async def main() -> None:
     await ensure_chat_access(client)
 
     await fetch_missing(client)
+    await remove_deleted(client)
     log.info("Initial sync complete; listening for updates")
     asyncio.create_task(_heartbeat())
 
