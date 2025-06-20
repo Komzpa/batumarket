@@ -37,7 +37,7 @@ Metadata fields include at least:
 
 - `id`, `chat`, `date`, `reply_to`, `is_admin`
 - `sender` (numeric), `sender_name`, `sender_username`, `sender_phone`,
-  `tg_link`
+  `post_author`, `tg_link`
 - `group_id` if part of an album
 - `files` – list of stored media paths
 
@@ -94,7 +94,9 @@ all recognised fields and a link back to the Telegram post.  Pages are
 generated separately for every language configured in `config.py`.  The
 navigation bar links to the same page in other languages instead of toggling via
 JavaScript.  The index page shows a sortable table listing items from the last
-week together with posting time, price and seller details.
+week together with posting time, price and seller details.  If a lot has a
+timestamp that lies in the future it is ignored during rendering so the website
+never displays misleading dates.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent

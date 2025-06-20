@@ -250,13 +250,19 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
         log.debug("Failed to fetch permissions", chat=chat, user=msg.sender_id)
 
     sender = await msg.get_sender()
+    post_author = getattr(msg, "post_author", None)
+    sender_name = " ".join(
+        p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
+    ) or None
+    if not sender_name:
+        sender_name = post_author
+
     meta = {
         "id": msg.id,
         "chat": chat,
         "sender": msg.sender_id,
-        "sender_name": " ".join(
-            p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
-        ) or None,
+        "sender_name": sender_name,
+        "post_author": post_author,
         "sender_username": getattr(sender, "username", None),
         "sender_phone": format_georgian(getattr(sender, "phone", "") or ""),
         "tg_link": f"https://t.me/{sender.username}" if getattr(sender, "username", None) else None,
