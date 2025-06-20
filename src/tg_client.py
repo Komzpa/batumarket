@@ -367,6 +367,12 @@ async def fetch_missing(client: TelegramClient) -> None:
     now = datetime.now(timezone.utc)
     for chat in CHATS:
         progress = _load_progress(chat)
+        # When KEEP_DAYS gets lowered old state files may point to timestamps
+        # far in the past.  Dropping those prevents re-fetching messages that
+        # were intentionally cleaned up.
+        if progress and progress < cutoff:
+            log.info("Ignoring stale progress", chat=chat, date=progress.isoformat())
+            progress = None
         last_id = get_last_id(chat)
         first_id = get_first_id(chat)
         last_date = _get_id_date(chat, last_id) if last_id else None
