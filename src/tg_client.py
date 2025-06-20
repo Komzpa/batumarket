@@ -288,7 +288,12 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     if files:
         meta["files"] = files
 
-    text = (msg.message or "").replace("View original post", "").strip()
+    text = (
+        getattr(msg, "text", None)
+        or getattr(getattr(msg, "media", None), "caption", None)
+        or getattr(msg, "message", "")
+    )
+    text = str(text).replace("View original post", "").strip()
     group_path = None
     if msg.grouped_id:
         group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
@@ -362,7 +367,7 @@ async def ensure_chat_access(client: TelegramClient) -> None:
 
 
 async def fetch_missing(client: TelegramClient) -> None:
-    """Pull new messages and back-fill history in one-day increments."""
+    """Pull new messages and back-fill history until fully synced."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     now = datetime.now(timezone.utc)
     for chat in CHATS:
@@ -380,8 +385,8 @@ async def fetch_missing(client: TelegramClient) -> None:
 
         # Decide whether to fetch newer or older messages.
         if first_date is None or first_date > cutoff:
-            start_date = progress or (cutoff if first_date is None else max(cutoff, first_date - timedelta(days=1)))
-            end_date = min(first_date or now, start_date + timedelta(days=1))
+            start_date = progress or cutoff
+            end_date = first_date or now
             count = 0
             async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
                 if msg.date >= end_date:
@@ -394,23 +399,25 @@ async def fetch_missing(client: TelegramClient) -> None:
             log.info("Backfilled chat", chat=chat, new_messages=count)
             if end_date > start_date:
                 _save_progress(chat, end_date)
-        else:
-            start_date = progress or last_date or cutoff
-            end_date = min(now, start_date + timedelta(days=1))
-            count = 0
-            async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
-                if msg.date < start_date:
-                    continue
-                if msg.date >= end_date:
-                    break
-                path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
-                if path.exists():
-                    continue
-                await _save_message(client, chat, msg)
-                count += 1
-            log.info("Synced chat", chat=chat, new_messages=count)
-            if end_date > start_date:
-                _save_progress(chat, end_date)
+            progress = end_date
+            last_id = get_last_id(chat)
+            last_date = _get_id_date(chat, last_id) if last_id else None
+        start_date = progress or last_date or cutoff
+        end_date = now
+        count = 0
+        async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
+            if msg.date < start_date:
+                continue
+            if msg.date >= end_date:
+                break
+            path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+            if path.exists():
+                continue
+            await _save_message(client, chat, msg)
+            count += 1
+        log.info("Synced chat", chat=chat, new_messages=count)
+        if end_date > start_date:
+            _save_progress(chat, end_date)
 
 
 async def remove_deleted(client: TelegramClient, keep_days: int) -> None:

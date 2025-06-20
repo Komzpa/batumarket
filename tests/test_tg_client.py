@@ -143,7 +143,7 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
     asyncio.run(tg_client.fetch_missing(client))
 
-    assert saved == [1, 2]
+    assert saved == [1, 2, 3]
 
 
 def test_fetch_missing_skips_old(tmp_path, monkeypatch):
@@ -584,6 +584,41 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
         md_file = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}" / "1.md"
         assert md_file.exists()
         assert "files" not in md_file.read_text()
+
+    asyncio.run(run())
+
+
+def test_save_message_text_attr(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+
+        date = datetime.datetime(2024, 5, 1)
+
+        class Txt(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date)
+                self.message = ""
+                self.text = "caption text"
+
+        msg = Txt(1, date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert md_file.exists()
+        assert "caption text" in md_file.read_text()
 
     asyncio.run(run())
 
