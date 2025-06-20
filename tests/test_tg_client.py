@@ -349,6 +349,69 @@ def test_save_message_skip_missing_media(tmp_path, monkeypatch):
     asyncio.run(run())
 
 
+def test_should_skip_media(monkeypatch):
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = []
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.import_module("tg_client")
+
+    file1 = types.SimpleNamespace(ext=".mp4", mime_type="video/mp4", size=100)
+    assert tg_client._should_skip_media(types.SimpleNamespace(file=file1)) == "video"
+
+    file2 = types.SimpleNamespace(ext=".mp3", mime_type="audio/mpeg", size=100)
+    assert tg_client._should_skip_media(types.SimpleNamespace(file=file2)) == "audio"
+
+    big = 11 * 1024 * 1024
+    file3 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=big)
+    assert tg_client._should_skip_media(types.SimpleNamespace(file=file3)) == "image-too-large"
+
+    file4 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=1024)
+    assert tg_client._should_skip_media(types.SimpleNamespace(file=file4)) is None
+
+
+def test_save_message_respects_skip(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        called = {"d": False}
+
+        class Skip(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date, media=True)
+                self.file = types.SimpleNamespace(ext=".mp4", mime_type="video/mp4", size=100)
+
+            async def download_media(self, *_, **__):
+                called["d"] = True
+                return b"data"
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+        date = datetime.datetime(2024, 5, 1)
+        msg = Skip(1, date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        assert called["d"] is False
+        md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert md_file.exists()
+        assert "files" not in md_file.read_text()
+
+    asyncio.run(run())
+
+
 def test_main_sequential_updates(monkeypatch):
     """Ensure TelegramClient is created with sequential_updates=True."""
     _install_telethon_stub(monkeypatch)
