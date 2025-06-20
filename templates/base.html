@@ -8,10 +8,14 @@
 </head>
 <body>
 <nav class="top">
-    <a href="index.html">Home</a>
+    <a href="{{ home_link }}">Home</a>
     <div class="lang-switch">
     {% for l in langs %}
-        <button data-set-lang="{{ l }}">{{ l }}</button>
+        {% if l == current_lang %}
+        <span class="current-lang">{{ l }}</span>
+        {% else %}
+        <a data-set-lang="{{ l }}" href="{{ page_basename }}_{{ l }}.html">{{ l }}</a>
+        {% endif %}
     {% endfor %}
     </div>
 </nav>

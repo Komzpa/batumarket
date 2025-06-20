@@ -36,10 +36,9 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
 
     build_site.main()
 
-    assert (tmp_path / "views" / "1-0.html").exists()
-    index = tmp_path / "views" / "index.html"
+    assert (tmp_path / "views" / "1-0_en.html").exists()
+    index = tmp_path / "views" / "index_en.html"
     assert index.exists()
     idx_html = index.read_text()
-    day = now.split("T")[0]
-    assert f"<h2>{day}</h2>" in idx_html
-    assert "1-0.html" in idx_html
+    assert "hello" in idx_html
+    assert "1-0_en.html" in idx_html

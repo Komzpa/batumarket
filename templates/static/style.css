@@ -1,8 +1,6 @@
 body { font-family: sans-serif; margin: 0; padding: 1em; }
 nav.top { display: flex; justify-content: space-between; margin-bottom: 1em; }
-.lang-switch button { margin-left: 0.5em; }
-.lang { display: none; }
-.lang.active { display: block; }
+.lang-switch a { margin-left: 0.5em; }
 .carousel { display: flex; gap: 0.5em; overflow-x: auto; }
 .carousel img { max-height: 200px; }
 table.attrs { border-collapse: collapse; margin-top: 1em; }
@@ -10,3 +8,6 @@ table.attrs td, table.attrs th { border: 1px solid #ddd; padding: 0.25em 0.5em; 
 .similar { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: 1em; }
 .similar a { text-decoration: none; border: 1px solid #ddd; padding: 0.25em; }
 .similar img { max-height: 80px; display: block; }
+table#index-table { border-collapse: collapse; width: 100%; }
+table#index-table th, table#index-table td { border: 1px solid #ddd; padding: 0.25em 0.5em; }
+table#index-table th { cursor: pointer; }

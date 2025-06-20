@@ -101,40 +101,55 @@ def _iter_lots() -> list[dict]:
 
 
 def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[str], langs: list[str]) -> None:
-    images = []
-    for rel in lot.get("files", []):
-        p = Path("data/media") / rel
-        cap = p.with_suffix(".caption.md")
-        captions = {}
-        for lang in langs:
-            captions[lang] = cap.read_text(encoding="utf-8") if cap.exists() else ""
-        images.append({"path": rel, "caption": captions})
+    """Render ``lot`` into separate HTML files for every language."""
+    for lang in langs:
+        images = []
+        for rel in lot.get("files", []):
+            p = Path("data/media") / rel
+            cap = p.with_suffix(".caption.md")
+            caption = cap.read_text(encoding="utf-8") if cap.exists() else ""
+            images.append({"path": rel, "caption": caption})
 
-    attrs = {k: v for k, v in lot.items() if k not in {"files"} and not k.startswith("title_") and not k.startswith("description_")}
-    sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
-    for k in attrs:
-        if k not in sorted_attrs:
-            sorted_attrs[k] = attrs[k]
+        attrs = {
+            k: v
+            for k, v in lot.items()
+            if k not in {"files"} and not k.startswith("title_") and not k.startswith("description_")
+        }
+        sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
+        for k in attrs:
+            if k not in sorted_attrs:
+                sorted_attrs[k] = attrs[k]
 
-    chat = lot.get("source:chat")
-    mid = lot.get("source:message_id")
-    tg_link = f"https://t.me/{chat}/{mid}" if chat and mid else ""
+        chat = lot.get("source:chat")
+        mid = lot.get("source:message_id")
+        tg_link = f"https://t.me/{chat}/{mid}" if chat and mid else ""
 
-    template = env.get_template("lot.html")
-    out = VIEWS_DIR / f"{lot['_id']}.html"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(
-        template.render(
-            title=lot.get("title_en", "Lot"),
-            lot=lot,
-            images=images,
-            attrs=sorted_attrs,
-            tg_link=tg_link,
-            similar=similar,
-            langs=langs,
+        template = env.get_template("lot.html")
+        out = VIEWS_DIR / f"{lot['_id']}_{lang}.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        page_similar = [
+            {
+                "link": f"{item['id']}_{lang}.html",
+                "title": item["title"],
+                "thumb": item["thumb"],
+            }
+            for item in similar
+        ]
+        out.write_text(
+            template.render(
+                title=lot.get(f"title_{lang}", "Lot"),
+                lot=lot,
+                images=images,
+                attrs=sorted_attrs,
+                tg_link=tg_link,
+                similar=page_similar,
+                langs=langs,
+                current_lang=lang,
+                page_basename=lot["_id"],
+                home_link=f"index_{lang}.html",
+            )
         )
-    )
-    log.debug("Wrote", path=str(out))
+        log.debug("Wrote", path=str(out))
 
 
 def main() -> None:
@@ -174,7 +189,7 @@ def main() -> None:
                 )
                 files = other.get("files") or []
                 thumb = files[0] if files else ""
-                items.append({"link": f"{other['_id']}.html", "title": title, "thumb": thumb})
+                items.append({"id": other["_id"], "title": title, "thumb": thumb})
             sim_map[lot_id] = items
     else:
         for lot in lots:
@@ -199,7 +214,7 @@ def main() -> None:
                 )
                 files = other.get("files") or []
                 thumb = files[0] if files else ""
-                items.append({"link": f"{other['_id']}.html", "title": title, "thumb": thumb})
+                items.append({"id": other["_id"], "title": title, "thumb": thumb})
             sim_map[lot["_id"]] = items
 
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
@@ -217,11 +232,17 @@ def main() -> None:
         except Exception:
             continue
         if dt >= recent_cutoff:
-            title = lot.get("title_en") or next(
-                (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
-                lot.get("_id"),
-            )
-            recent.append({"link": f"{lot['_id']}.html", "title": title, "dt": dt})
+            titles = {
+                lang: lot.get(f"title_{lang}")
+                for lang in langs
+            }
+            recent.append({
+                "id": lot["_id"],
+                "titles": titles,
+                "dt": dt,
+                "price": lot.get("price"),
+                "seller": lot.get("seller"),
+            })
 
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
@@ -229,25 +250,41 @@ def main() -> None:
 
     recent.sort(key=lambda x: x["dt"], reverse=True)
 
-    groups: list[tuple[str, list[dict]]] = []
-    current_day = None
-    items: list[dict] = []
-    for item in recent:
-        day = item["dt"].date().isoformat()
-        if day != current_day:
-            if current_day is not None:
-                groups.append((current_day, items))
-            current_day = day
-            items = []
-        items.append(item)
-    if current_day is not None:
-        groups.append((current_day, items))
-
-    log.debug("Writing index")
+    log.debug("Writing index pages")
     index_tpl = env.get_template("index.html")
-    (VIEWS_DIR / "index.html").write_text(
-        index_tpl.render(groups=groups, langs=langs, title="Index")
-    )
+    for lang in langs:
+        items_lang = []
+        for item in recent:
+            title = item["titles"].get(lang) or next(
+                (item["titles"].get(l) for l in langs if item["titles"].get(l)),
+                item["id"],
+            )
+            items_lang.append(
+                {
+                    "link": f"{item['id']}_{lang}.html",
+                    "title": title,
+                    "dt": item["dt"],
+                    "price": item.get("price"),
+                    "seller": item.get("seller"),
+                }
+            )
+        out = VIEWS_DIR / f"index_{lang}.html"
+        out.write_text(
+            index_tpl.render(
+                items=items_lang,
+                langs=langs,
+                current_lang=lang,
+                page_basename="index",
+                title="Index",
+                home_link=f"index_{lang}.html",
+            )
+        )
+        log.debug("Wrote", path=str(out))
+    if langs:
+        default = VIEWS_DIR / "index.html"
+        src = VIEWS_DIR / f"index_{langs[0]}.html"
+        default.write_text(src.read_text())
+        log.debug("Wrote", path=str(default))
     log.info("Site build complete")
 
 
