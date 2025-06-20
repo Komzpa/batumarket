@@ -42,9 +42,10 @@ Metadata fields include at least:
 - `files` – list of stored media paths
 
 ## caption.py
-Calls GPT-4o Vision to caption the images in `data/media`.  The result is stored
-under `data/media_desc/<sha>.md`.  Captions are later included in the lot
-chopper prompt.
+Calls GPT-4o Vision using the instructions in
+[`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe each photo in
+`data/media`.  Every image gets a companion `*.caption.md` file stored beside the
+original.  Captions are later included in the lot chopper prompt.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper.
