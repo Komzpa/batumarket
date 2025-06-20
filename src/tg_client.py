@@ -7,6 +7,8 @@ from pathlib import Path
 
 from telethon import TelegramClient, events
 from telethon.tl.custom import Message
+from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.errors import UserAlreadyParticipantError
 
 from config_utils import load_config
 
@@ -147,6 +149,18 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     return str(rel)
 
 
+async def ensure_chat_access(client: TelegramClient) -> None:
+    """Join chats listed in ``CHATS`` if not already joined."""
+    for chat in CHATS:
+        try:
+            await client(JoinChannelRequest(chat))
+            log.info("Joined chat", chat=chat)
+        except UserAlreadyParticipantError:
+            log.debug("Already joined", chat=chat)
+        except Exception:
+            log.exception("Failed to join chat", chat=chat)
+
+
 async def fetch_missing(client: TelegramClient) -> None:
     """Pull any messages newer than the last saved one."""
     for chat in CHATS:
@@ -162,6 +176,8 @@ async def main() -> None:
     client = TelegramClient(TG_SESSION, TG_API_ID, TG_API_HASH)
     await client.start()
     log.info("Logged in")
+
+    await ensure_chat_access(client)
 
     await fetch_missing(client)
     log.info("Initial sync complete; listening for updates")

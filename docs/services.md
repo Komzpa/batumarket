@@ -6,7 +6,8 @@ This repository powers a small Telegram marketplace.  Each Python script in
 
 ## tg_client.py
 Uses Telethon to mirror the target chats as a normal user account.  On start it
-fetches all messages newer than the last saved ID for each chat before
+ensures every entry in `CHATS` is joined so private channels are accessible.
+It then fetches all messages newer than the last saved ID for each chat before
 listening for real‑time updates.  Incoming messages are stored as Markdown under
 `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.  Media
 files are placed next to a `.md` description under
