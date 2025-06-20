@@ -37,6 +37,7 @@ TG_API_HASH = cfg.TG_API_HASH
 TG_SESSION = cfg.TG_SESSION
 CHATS = cfg.CHATS
 from log_utils import get_logger, install_excepthook
+from phone_utils import format_georgian
 from notes_utils import write_md
 
 log = get_logger().bind(script=__file__)
@@ -246,7 +247,7 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
             p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
         ) or None,
         "sender_username": getattr(sender, "username", None),
-        "sender_phone": getattr(sender, "phone", None),
+        "sender_phone": format_georgian(getattr(sender, "phone", "") or ""),
         "tg_link": f"https://t.me/{sender.username}" if getattr(sender, "username", None) else None,
         "date": msg.date.isoformat(),
         "reply_to": msg.reply_to_msg_id,

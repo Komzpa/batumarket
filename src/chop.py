@@ -57,7 +57,7 @@ def _parse_md(path: Path) -> tuple[dict, str]:
 SYSTEM_PROMPT = (
     BLUEPRINT
     + "\n\nYou will receive a raw marketplace post with optional image captions.\n"
-    "Return a JSON list of separate lots with media SHA references.\n"
+    "Return a JSON array of separate lots with media references.\n"
     "For each of these languages: {langs}, produce title_<lang> and description_<lang> fields.\n"
     "Respond with JSON only."
 )
@@ -85,6 +85,8 @@ def process_message(msg_path: Path) -> None:
                 log.info("Skipping message", path=str(msg_path), reason="missing-caption", file=str(p))
                 return
             captions.append(read_md(cap))
+    # Combine the original message text with image captions. This ensures GPT
+    # has full context rather than captions alone.
     prompt = text + ("\n" + "\n".join(captions) if captions else "")
     system_prompt = SYSTEM_PROMPT.replace("{langs}", ", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))
@@ -94,19 +96,34 @@ def process_message(msg_path: Path) -> None:
         {"role": "user", "content": prompt},
     ]
     log.debug("Prompt tokens", count=estimate_tokens(prompt), langs=LANGS)
+    log.info("OpenAI request", messages=messages)
     try:
-        # ``response_format`` ensures GPT-4o emits a valid JSON object with no
-        # extra text.  ``temperature`` 0 keeps the output deterministic.
         resp = openai.chat.completions.create(
             model="gpt-4o",
             messages=messages,
-            response_format={"type": "json_object"},
             temperature=0,
         )
-        lots = json.loads(resp.choices[0].message.content)
+        raw = resp.choices[0].message.content
+        log.info("OpenAI response", text=raw)
+        text_json = raw.strip()
+        if text_json.startswith("```"):
+            text_json = text_json.strip("`\n")
+        lots = json.loads(text_json)
     except Exception:
         log.exception("Failed to chop", file=str(msg_path))
         return
+    if isinstance(lots, dict):
+        lots = [lots]
+    source_path = str(msg_path.relative_to(RAW_DIR))
+    for lot in lots:
+        lot.setdefault("source:chat", meta.get("chat"))
+        lot.setdefault("source:message_id", str(meta.get("id")))
+        lot.setdefault("source:path", source_path)
+        if files:
+            lot.setdefault("files", files)
+        for lang in LANGS:
+            lot.setdefault(f"title_{lang}", "")
+            lot.setdefault(f"description_{lang}", "")
     out.write_text(json.dumps(lots, ensure_ascii=False, indent=2))
     log.debug("Wrote", path=str(out))
 
