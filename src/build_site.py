@@ -11,7 +11,7 @@ columns in a stable order.
 import json
 import math
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -202,12 +202,18 @@ def main() -> None:
                 items.append({"link": f"{other['_id']}.html", "title": title, "thumb": thumb})
             sim_map[lot["_id"]] = items
 
-    recent_cutoff = datetime.utcnow() - timedelta(days=7)
+    # ``datetime.utcnow`` returns a naive object which breaks comparisons with
+    # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
+    recent_cutoff = datetime.now(timezone.utc) - timedelta(days=7)
     recent = []
     for lot in lots:
         ts = lot.get("timestamp")
         try:
             dt = datetime.fromisoformat(ts)
+            if dt.tzinfo is None:
+                # Older data might have naive timestamps. Assume UTC for
+                # backwards compatibility so comparisons work.
+                dt = dt.replace(tzinfo=timezone.utc)
         except Exception:
             continue
         if dt >= recent_cutoff:
