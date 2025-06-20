@@ -12,7 +12,16 @@ listening for real‑time updates.  Incoming messages are stored as Markdown und
 `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.  Media
 files are placed next to a `.md` description under
 `data/media/<chat>/<year>/<month>/` using their SHA‑256 hash plus extension.
-Nothing is deleted; edits simply overwrite the Markdown.
+Nothing is deleted; edits simply overwrite the Markdown.  Messages sent as
+albums are merged into a single file so that all attachments appear together.
+
+Metadata fields include at least:
+
+- `id`, `chat`, `date`, `reply_to`, `is_admin`
+- `sender` (numeric), `sender_name`, `sender_username`, `sender_phone`,
+  `tg_link`
+- `group_id` if part of an album
+- `files` – list of stored media paths
 
 ## caption.py
 Calls GPT‑4o Vision to caption the images in `data/media`.  The result is stored
