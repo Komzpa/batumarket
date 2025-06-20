@@ -8,8 +8,10 @@ This repository powers a small Telegram marketplace.  Each Python script in
 Uses Telethon to mirror the target chats as a normal user account.  On start it
 fetches all messages newer than the last saved ID for each chat before
 listening for real‑time updates.  Incoming messages are stored as Markdown under
-`data/raw` while any media files are saved to `data/media` using their SHA‑256
-hashes.  Nothing is deleted; edits simply overwrite the Markdown.
+`data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.  Media
+files are placed next to a `.md` description under
+`data/media/<chat>/<year>/<month>/` using their SHA‑256 hash plus extension.
+Nothing is deleted; edits simply overwrite the Markdown.
 
 ## caption.py
 Calls GPT‑4o Vision to caption the images in `data/media`.  The result is stored

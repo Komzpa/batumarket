@@ -17,8 +17,8 @@ def test_get_last_id(tmp_path, monkeypatch):
 
     monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
     chat = "chat1"
-    chat_dir = tmp_path / chat
-    chat_dir.mkdir()
+    chat_dir = tmp_path / chat / "2024" / "05"
+    chat_dir.mkdir(parents=True)
     (chat_dir / "1.md").write_text("msg1")
     (chat_dir / "3.md").write_text("msg3")
     assert tg_client.get_last_id(chat) == 3
