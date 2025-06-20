@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Recent items</h1>
+<ul>
+{% for lot in lots %}
+  <li><a href="{{ lot.link }}">{{ lot.title }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
