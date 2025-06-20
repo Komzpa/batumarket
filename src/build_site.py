@@ -10,6 +10,7 @@ columns in a stable order.
 
 import json
 import math
+import os
 from pathlib import Path
 import shutil
 from datetime import datetime, timedelta, timezone
@@ -95,6 +96,9 @@ def _parse_md(path: Path) -> tuple[dict, str]:
         if ":" in line:
             k, v = line.split(":", 1)
             meta[k.strip()] = v.strip()
+        else:
+            body_start = i
+            break
     body = "\n".join(lines[body_start:])
     return meta, body
 
@@ -110,16 +114,25 @@ def _iter_lots() -> list[dict]:
             continue
         if isinstance(data, dict):
             data = [data]
-        base = path.stem
+        rel = path.relative_to(LOTS_DIR).with_suffix("")
+        base = rel.name
+        prefix = rel.parent
         for i, lot in enumerate(data):
             lot["_file"] = path
-            lot["_id"] = f"{base}-{i}"
+            lot["_id"] = str(prefix / f"{base}-{i}") if prefix.parts else f"{base}-{i}"
             lots.append(lot)
     log.info("Loaded lots", count=len(lots))
     return lots
 
 
-def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[str], langs: list[str]) -> None:
+def build_page(
+    env: Environment,
+    lot: dict,
+    similar: list[dict],
+    more_user: list[dict],
+    fields: list[str],
+    langs: list[str],
+) -> None:
     """Render ``lot`` into separate HTML files for every language."""
     for lang in langs:
         images = []
@@ -170,14 +183,27 @@ def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[st
         template = env.get_template("lot.html")
         out = VIEWS_DIR / f"{lot['_id']}_{lang}.html"
         out.parent.mkdir(parents=True, exist_ok=True)
+
         page_similar = [
             {
-                "link": f"{item['id']}_{lang}.html",
+                "link": os.path.relpath(VIEWS_DIR / f"{item['id']}_{lang}.html", out.parent),
                 "title": item["title"],
                 "thumb": item["thumb"],
             }
             for item in similar
         ]
+        page_user = [
+            {
+                "link": os.path.relpath(VIEWS_DIR / f"{item['id']}_{lang}.html", out.parent),
+                "title": item["title"],
+                "thumb": item["thumb"],
+            }
+            for item in more_user
+        ]
+        static_prefix = os.path.relpath(VIEWS_DIR / "static", out.parent)
+        media_prefix = os.path.relpath(VIEWS_DIR.parent / "media", out.parent)
+        home_link = os.path.relpath(VIEWS_DIR / f"index_{lang}.html", out.parent)
+        page_basename = Path(lot['_id']).name
         out.write_text(
             template.render(
                 title=lot.get(f"title_{lang}", "Lot"),
@@ -188,10 +214,13 @@ def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[st
                 description=lot.get(f"description_{lang}", ""),
                 tg_link=tg_link,
                 similar=page_similar,
+                more_user=page_user,
                 langs=langs,
                 current_lang=lang,
-                page_basename=lot["_id"],
-                home_link=f"index_{lang}.html",
+                page_basename=page_basename,
+                static_prefix=static_prefix,
+                media_prefix=media_prefix,
+                home_link=home_link,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -220,6 +249,7 @@ def main() -> None:
     log.debug("Loading lots")
     lots = _iter_lots()
 
+    # Map each lot id to its embedding vector if available.
     id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
 
     log.info("Computing similar lots", count=len(lots))
@@ -271,11 +301,44 @@ def main() -> None:
                 items.append({"id": other["_id"], "title": title, "thumb": thumb})
             sim_map[lot["_id"]] = items
 
+    # Collect lots by Telegram user for "more by this user" section.
+    user_map: dict[str, list[dict]] = {}
+    for lot in lots:
+        user = lot.get("contact:telegram")
+        if user:
+            user_map.setdefault(user, []).append(lot)
+
+    more_user_map: dict[str, list[dict]] = {}
+    for user, user_lots in user_map.items():
+        for lot in user_lots:
+            others = [o for o in user_lots if o is not lot]
+            scores = []
+            vec = id_to_vec.get(lot["_id"])
+            for other in others:
+                ov = id_to_vec.get(other["_id"])
+                if vec and ov:
+                    scores.append((_cos_sim(vec, ov), other))
+                else:
+                    scores.append((0.0, other))
+            scores.sort(key=lambda x: x[0], reverse=True)
+            items = []
+            for score, other in scores[:20]:
+                title = other.get("title_en") or next(
+                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
+                    other.get("_id"),
+                )
+                files = other.get("files") or []
+                thumb = files[0] if files else ""
+                items.append({"id": other["_id"], "title": title, "thumb": thumb})
+            more_user_map[lot["_id"]] = items
+
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
     # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
     now = datetime.now(timezone.utc)
     recent_cutoff = now - timedelta(days=7)
     recent = []
+    categories: dict[str, list[dict]] = {}
+    category_stats: dict[str, dict] = {}
     for lot in lots:
         ts = lot.get("timestamp")
         dt = None
@@ -291,6 +354,12 @@ def main() -> None:
                     dt = None
             except Exception:
                 dt = None
+        deal = lot.get("market:deal", "misc")
+        categories.setdefault(deal, []).append(lot)
+        stat = category_stats.setdefault(deal, {"recent": 0, "users": set()})
+        user = lot.get("contact:telegram")
+        if user:
+            stat["users"].add(user)
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
             seller = (
@@ -301,6 +370,7 @@ def main() -> None:
                 or lot.get("contact:whatsapp")
                 or lot.get("seller")
             )
+            stat["recent"] += 1
             recent.append(
                 {
                     "id": lot["_id"],
@@ -313,36 +383,98 @@ def main() -> None:
 
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
-        build_page(env, lot, sim_map.get(lot["_id"], []), fields, langs)
+        build_page(
+            env,
+            lot,
+            sim_map.get(lot["_id"], []),
+            more_user_map.get(lot["_id"], []),
+            fields,
+            langs,
+        )
+
+    log.debug("Writing category pages")
+    cat_tpl = env.get_template("category.html")
+    cat_dir = VIEWS_DIR / "deal"
+    cat_dir.mkdir(parents=True, exist_ok=True)
+    for deal, lot_list in categories.items():
+        lot_list_sorted = sorted(
+            lot_list,
+            key=lambda x: x.get("timestamp") or "",
+            reverse=True,
+        )
+        for lang in langs:
+            items_lang = []
+            for lot in lot_list_sorted:
+                title = lot.get(f"title_{lang}") or next(
+                    (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
+                    lot.get("_id"),
+                )
+                seller = (
+                    lot.get("contact:phone")
+                    or lot.get("contact:telegram")
+                    or lot.get("contact:instagram")
+                    or lot.get("contact:viber")
+                    or lot.get("contact:whatsapp")
+                    or lot.get("seller")
+                )
+                dt = None
+                ts = lot.get("timestamp")
+                if ts:
+                    try:
+                        dt = datetime.fromisoformat(ts)
+                    except Exception:
+                        dt = None
+                items_lang.append(
+                    {
+                        "link": os.path.relpath(
+                            VIEWS_DIR / f"{lot['_id']}_{lang}.html",
+                            cat_dir,
+                        ),
+                        "title": title,
+                        "dt": dt,
+                        "price": lot.get("price"),
+                        "seller": seller,
+                    }
+                )
+            out = cat_dir / f"{deal}_{lang}.html"
+            out.write_text(
+                cat_tpl.render(
+                    deal=deal,
+                    items=items_lang,
+                    langs=langs,
+                    current_lang=lang,
+                    page_basename=deal,
+                    title=deal,
+                    static_prefix=os.path.relpath(VIEWS_DIR / "static", cat_dir),
+                    home_link=os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir),
+                )
+            )
+            log.debug("Wrote", path=str(out))
 
     recent.sort(key=lambda x: x.get("dt") or now, reverse=True)
 
     log.debug("Writing index pages")
     index_tpl = env.get_template("index.html")
     for lang in langs:
-        items_lang = []
-        for item in recent:
-            title = item["titles"].get(lang) or next(
-                (item["titles"].get(l) for l in langs if item["titles"].get(l)),
-                item["id"],
-            )
-            items_lang.append(
+        cats_lang = []
+        for deal, stat in category_stats.items():
+            cats_lang.append(
                 {
-                    "link": f"{item['id']}_{lang}.html",
-                    "title": title,
-                    "dt": item["dt"],
-                    "price": item.get("price"),
-                    "seller": item.get("seller"),
+                    "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),
+                    "deal": deal,
+                    "recent": stat["recent"],
+                    "users": len(stat["users"]),
                 }
             )
         out = VIEWS_DIR / f"index_{lang}.html"
         out.write_text(
             index_tpl.render(
-                items=items_lang,
+                categories=cats_lang,
                 langs=langs,
                 current_lang=lang,
                 page_basename="index",
                 title="Index",
+                static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
                 home_link=f"index_{lang}.html",
             )
         )

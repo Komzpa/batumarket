@@ -30,7 +30,9 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "hello",
-            "files": []
+            "files": [],
+            "market:deal": "sell_item",
+            "contact:telegram": "@user",
         }
     ]))
 
@@ -40,7 +42,11 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     index = tmp_path / "views" / "index_en.html"
     assert index.exists()
     idx_html = index.read_text()
-    assert "hello" in idx_html
-    assert "1-0_en.html" in idx_html
+    assert "sell_item" in idx_html
+    cat_page = tmp_path / "views" / "deal" / "sell_item_en.html"
+    assert cat_page.exists()
+    cat_html = cat_page.read_text()
+    assert "hello" in cat_html
+    assert "1-0_en.html" in cat_html
     assert (tmp_path / "views" / "static" / "site.js").exists()
     assert (tmp_path / "views" / "static" / "style.css").exists()
