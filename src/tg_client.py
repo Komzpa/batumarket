@@ -134,7 +134,10 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     files = []
     if msg.media:
         data = await msg.download_media(bytes)
-        files.append(await _save_media(chat, msg, data))
+        if isinstance(data, (bytes, bytearray)):
+            files.append(await _save_media(chat, msg, data))
+        else:
+            log.warning("Cannot download media", chat=chat, id=msg.id)
 
     permissions = None
     try:

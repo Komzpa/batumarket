@@ -7,3 +7,4 @@ Intermediate/
 .pytest_cache/
 session*
 config.py
+errors.log

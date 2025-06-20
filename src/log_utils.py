@@ -75,6 +75,9 @@ def init_logger(truncate=False):
             def debug(self, msg, **kw):
                 self._logger.debug(self._format(msg, **kw))
 
+            def warning(self, msg, **kw):
+                self._logger.warning(self._format(msg, **kw))
+
         logger = _Wrapper(logging.getLogger(__name__))
     _logger = logger
     _logger_initialized = True
