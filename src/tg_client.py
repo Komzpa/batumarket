@@ -3,6 +3,7 @@
 import asyncio
 import hashlib
 from pathlib import Path
+from datetime import datetime, timedelta
 
 from telethon import TelegramClient, events
 from telethon.tl.custom import Message
@@ -103,11 +104,35 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
 
 
 async def fetch_missing(client: TelegramClient) -> None:
-    """Pull any messages newer than the last saved one."""
+    """Pull new messages advancing at most one day per run."""
+    cutoff = datetime.utcnow() - timedelta(days=31)
     for chat in CHATS:
         last_id = get_last_id(chat)
+        start_date = cutoff
+        if last_id:
+            # Try to read the date of the last saved message from disk
+            last_path = None
+            for p in (RAW_DIR / chat).rglob(f"{last_id}.md"):
+                last_path = p
+                break
+            if last_path:
+                for line in last_path.read_text().splitlines():
+                    if line.startswith("date: "):
+                        try:
+                            start_date = datetime.fromisoformat(line[6:])
+                        except ValueError:
+                            pass
+                        break
+        end_date = min(datetime.utcnow(), start_date + timedelta(days=1))
         count = 0
         async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
+            if msg.date < start_date:
+                continue
+            if msg.date >= end_date:
+                break
+            path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+            if path.exists():
+                continue
             await _save_message(client, chat, msg)
             count += 1
         log.info("Synced chat", chat=chat, new_messages=count)

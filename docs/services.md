@@ -5,9 +5,11 @@ This repository powers a small Telegram marketplace.  Each Python script in
 [`setup.md`](setup.md) for installation instructions.
 
 ## tg_client.py
-Uses Telethon to mirror the target chats as a normal user account.  On start it
-fetches all messages newer than the last saved ID for each chat before
-listening for real‑time updates.  Incoming messages are stored as Markdown under
+Uses Telethon to mirror the target chats as a normal user account.  The client
+advances the history gradually: on each run it fetches at most one additional
+day of messages and never goes further than 31 days into the past.  After the
+initial catch‑up it listens for real‑time updates.  Incoming messages are stored
+as Markdown under
 `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.  Media
 files are placed next to a `.md` description under
 `data/media/<chat>/<year>/<month>/` using their SHA‑256 hash plus extension.
