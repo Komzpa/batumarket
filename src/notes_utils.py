@@ -2,6 +2,10 @@
 
 from pathlib import Path
 
+from log_utils import get_logger
+
+log = get_logger().bind(module=__name__)
+
 
 def read_text(path: str) -> str:
     p = Path(path)
@@ -18,6 +22,7 @@ def write_md(path: str, text: str) -> None:
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text.rstrip() + "\n", encoding="utf-8")
+    log.debug("Wrote file", path=str(p))
 
 
 def collect_notes() -> str:

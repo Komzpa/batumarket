@@ -122,6 +122,7 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
 
     tg_client = importlib.reload(importlib.import_module("tg_client"))
     monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
 
     now = datetime.datetime.now(datetime.timezone.utc)
     start = now - datetime.timedelta(days=31)
@@ -156,6 +157,11 @@ def test_fetch_missing_naive_timestamp(tmp_path, monkeypatch):
     tg_client = importlib.reload(importlib.import_module("tg_client"))
     raw_dir = tmp_path / "raw"
     monkeypatch.setattr(tg_client, "RAW_DIR", raw_dir)
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
 
     # create a previous message with a naive timestamp
     msg_dir = raw_dir / "chat" / "2024" / "05"
@@ -189,6 +195,7 @@ def test_fetch_missing_backfill(tmp_path, monkeypatch):
 
     tg_client = importlib.reload(importlib.import_module("tg_client"))
     raw_dir = tmp_path / "raw"
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
     monkeypatch.setattr(tg_client, "RAW_DIR", raw_dir)
 
     now = datetime.datetime.now(datetime.timezone.utc)

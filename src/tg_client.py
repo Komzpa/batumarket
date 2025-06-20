@@ -56,6 +56,7 @@ async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
 # data/media/<chat>/<YYYY>/<MM>/ using their SHA-256 hash plus extension.
 RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
+STATE_DIR = Path("data/state")
 
 
 def _progress_logger(chat: str, msg_id: int):
@@ -117,6 +118,29 @@ def _get_id_date(chat: str, msg_id: int) -> datetime | None:
             except ValueError:
                 return None
     return None
+
+
+def _load_progress(chat: str) -> datetime | None:
+    """Return saved resume timestamp for ``chat`` if available."""
+    path = STATE_DIR / f"{chat}.txt"
+    if not path.exists():
+        return None
+    try:
+        ts = datetime.fromisoformat(path.read_text().strip())
+    except ValueError:
+        log.warning("Invalid progress file", path=str(path))
+        return None
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=timezone.utc)
+    return ts
+
+
+def _save_progress(chat: str, ts: datetime) -> None:
+    """Persist resume timestamp for ``chat`` to ``STATE_DIR``."""
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    path = STATE_DIR / f"{chat}.txt"
+    path.write_text(ts.isoformat(), encoding="utf-8")
+    log.info("Saved progress", chat=chat, date=ts.isoformat(), path=str(path))
 
 
 def get_first_id(chat: str) -> int:
@@ -262,6 +286,7 @@ async def fetch_missing(client: TelegramClient) -> None:
     cutoff = datetime.now(timezone.utc) - timedelta(days=31)
     now = datetime.now(timezone.utc)
     for chat in CHATS:
+        progress = _load_progress(chat)
         last_id = get_last_id(chat)
         first_id = get_first_id(chat)
         last_date = _get_id_date(chat, last_id) if last_id else None
@@ -269,7 +294,7 @@ async def fetch_missing(client: TelegramClient) -> None:
 
         # Decide whether to fetch newer or older messages.
         if first_date is None or first_date > cutoff:
-            start_date = cutoff if first_date is None else max(cutoff, first_date - timedelta(days=1))
+            start_date = progress or (cutoff if first_date is None else max(cutoff, first_date - timedelta(days=1)))
             end_date = min(first_date or now, start_date + timedelta(days=1))
             count = 0
             async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
@@ -281,8 +306,10 @@ async def fetch_missing(client: TelegramClient) -> None:
                 await _save_message(client, chat, msg)
                 count += 1
             log.info("Backfilled chat", chat=chat, new_messages=count)
+            if end_date > start_date:
+                _save_progress(chat, end_date)
         else:
-            start_date = last_date or cutoff
+            start_date = progress or last_date or cutoff
             end_date = min(now, start_date + timedelta(days=1))
             count = 0
             async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
@@ -296,6 +323,8 @@ async def fetch_missing(client: TelegramClient) -> None:
                 await _save_message(client, chat, msg)
                 count += 1
             log.info("Synced chat", chat=chat, new_messages=count)
+            if end_date > start_date:
+                _save_progress(chat, end_date)
 
 
 async def main() -> None:
