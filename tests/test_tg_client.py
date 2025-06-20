@@ -8,7 +8,10 @@ import datetime
 # ── dummy Telethon shims ────────────────────────────────────────────────────────
 dummy_telethon = types.ModuleType("telethon")
 dummy_telethon.TelegramClient = object
-dummy_telethon.events = types.SimpleNamespace()
+dummy_telethon.events = types.SimpleNamespace(
+    NewMessage=lambda *a, **k: object,
+    MessageEdited=lambda *a, **k: object,
+)
 
 dummy_custom = types.ModuleType("telethon.tl.custom")
 dummy_custom.Message = object
@@ -41,7 +44,10 @@ def _install_telethon_stub(monkeypatch):
     tl_custom.Message = object
     telethon = types.ModuleType("telethon")
     telethon.TelegramClient = object
-    telethon.events = types.SimpleNamespace(NewMessage=object, MessageEdited=object)
+    telethon.events = types.SimpleNamespace(
+        NewMessage=lambda *a, **k: object,
+        MessageEdited=lambda *a, **k: object,
+    )
     monkeypatch.setitem(sys.modules, "telethon", telethon)
     monkeypatch.setitem(sys.modules, "telethon.tl.custom", tl_custom)
 
@@ -253,3 +259,43 @@ def test_grouped_message(tmp_path, monkeypatch):
         assert "files" in files[0].read_text()
 
     asyncio.run(run())
+
+
+def test_main_sequential_updates(monkeypatch):
+    """Ensure TelegramClient is created with sequential_updates=True."""
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = []
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    called = {}
+
+    class DummyClient:
+        def __init__(self, *args, **kwargs):
+            called.update(kwargs)
+
+        async def start(self):
+            pass
+
+        def on(self, *args, **kwargs):
+            def decorator(fn):
+                return fn
+            return decorator
+
+        async def run_until_disconnected(self):
+            return
+
+    telethon = sys.modules["telethon"]
+    monkeypatch.setattr(telethon, "TelegramClient", DummyClient)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "ensure_chat_access", lambda c: asyncio.sleep(0))
+    monkeypatch.setattr(tg_client, "fetch_missing", lambda c: asyncio.sleep(0))
+
+    asyncio.run(tg_client.main())
+
+    assert called.get("sequential_updates") is True
