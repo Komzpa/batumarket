@@ -373,6 +373,11 @@ def test_should_skip_media(monkeypatch):
     file4 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=1024)
     assert tg_client._should_skip_media(types.SimpleNamespace(file=file4)) is None
 
+    old = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3)
+    file5 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=100)
+    msg = types.SimpleNamespace(date=old, file=file5)
+    assert tg_client._should_skip_media(msg) == "old"
+
 
 def test_save_message_respects_skip(tmp_path, monkeypatch):
     async def run():
@@ -407,6 +412,45 @@ def test_save_message_respects_skip(tmp_path, monkeypatch):
 
         assert called["d"] is False
         md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert md_file.exists()
+        assert "files" not in md_file.read_text()
+
+    asyncio.run(run())
+
+
+def test_save_message_skip_old_media(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        called = {"d": False}
+
+        class Old(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date, media=True)
+                self.file = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=100)
+
+            async def download_media(self, *_, **__):
+                called["d"] = True
+                return b"data"
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+        old_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3)
+        msg = Old(1, old_date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        assert called["d"] is False
+        md_file = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}" / "1.md"
         assert md_file.exists()
         assert "files" not in md_file.read_text()
 
