@@ -179,6 +179,10 @@ async def fetch_missing(client: TelegramClient) -> None:
                     if line.startswith("date: "):
                         try:
                             start_date = datetime.fromisoformat(line[6:])
+                            # Old messages might be stored without timezone.  Make
+                            # sure comparisons work by assuming UTC in that case.
+                            if start_date.tzinfo is None:
+                                start_date = start_date.replace(tzinfo=timezone.utc)
                         except ValueError:
                             pass
                         break
