@@ -10,6 +10,7 @@ from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
 from telethon import TelegramClient, events
+import progressbar
 from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
@@ -366,6 +367,40 @@ async def _save_bounded(client: TelegramClient, chat: str, msg: Message) -> None
         await _save_message(client, chat, msg)
 
 
+async def _download_messages(
+    client: TelegramClient,
+    chat: str,
+    messages: list[Message],
+    label: str,
+) -> int:
+    """Save ``messages`` with a progress bar and return count saved."""
+    if not messages:
+        return 0
+    widgets = [
+        f"{label} ",
+        progressbar.Bar(marker="#", left="[", right="]"),
+        " ",
+        progressbar.ETA(),
+    ]
+    bar = progressbar.ProgressBar(max_value=len(messages), widgets=widgets)
+    done = 0
+    tasks: list[asyncio.Task[None]] = []
+    bar.start()
+    for msg in messages:
+        tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
+        if len(tasks) >= DOWNLOAD_WORKERS:
+            await asyncio.gather(*tasks)
+            done += len(tasks)
+            bar.update(done)
+            tasks.clear()
+    if tasks:
+        await asyncio.gather(*tasks)
+        done += len(tasks)
+        bar.update(done)
+    bar.finish()
+    return done
+
+
 async def ensure_chat_access(client: TelegramClient) -> None:
     """Join chats listed in ``CHATS`` if not already joined."""
     for chat in CHATS:
@@ -399,21 +434,15 @@ async def fetch_missing(client: TelegramClient) -> None:
         if first_date is None or first_date > cutoff:
             start_date = progress or cutoff
             end_date = first_date or now
-            count = 0
-            tasks: list[asyncio.Task[None]] = []
+            backfill: list[Message] = []
             async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
                 if msg.date >= end_date:
                     break
                 path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
                 if path.exists():
                     continue
-                tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
-                count += 1
-                if len(tasks) >= DOWNLOAD_WORKERS:
-                    await asyncio.gather(*tasks)
-                    tasks.clear()
-            if tasks:
-                await asyncio.gather(*tasks)
+                backfill.append(msg)
+            count = await _download_messages(client, chat, backfill, f"{chat} backfill")
             log.info("Backfilled chat", chat=chat, new_messages=count)
             if end_date > start_date:
                 _save_progress(chat, end_date)
@@ -422,8 +451,7 @@ async def fetch_missing(client: TelegramClient) -> None:
             last_date = _get_id_date(chat, last_id) if last_id else None
         start_date = progress or last_date or cutoff
         end_date = now
-        count = 0
-        tasks = []
+        to_fetch: list[Message] = []
         async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
             if msg.date < start_date:
                 continue
@@ -432,13 +460,8 @@ async def fetch_missing(client: TelegramClient) -> None:
             path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
             if path.exists():
                 continue
-            tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
-            count += 1
-            if len(tasks) >= DOWNLOAD_WORKERS:
-                await asyncio.gather(*tasks)
-                tasks.clear()
-        if tasks:
-            await asyncio.gather(*tasks)
+            to_fetch.append(msg)
+        count = await _download_messages(client, chat, to_fetch, f"{chat} new")
         log.info("Synced chat", chat=chat, new_messages=count)
         if end_date > start_date:
             _save_progress(chat, end_date)

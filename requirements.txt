@@ -4,3 +4,4 @@ jinja2
 structlog
 telethon
 scikit-learn
+progressbar2

@@ -25,6 +25,8 @@ Uses Telethon to mirror the target chats as a normal user account.
   warns if no updates arrive for more than five minutes.
 * **Parallel fetch.** Set ``DOWNLOAD_WORKERS`` in `config.py` to download several
   messages at once when filling gaps in history.
+* **Progress bar.** The client counts pending messages per chat and shows a
+  progress bar with an estimated time remaining while downloads are running.
 * **Storage layout.** Incoming messages are saved as Markdown under
   `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.
   Media files live beside a `.md` description in
