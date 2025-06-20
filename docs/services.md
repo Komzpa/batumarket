@@ -44,9 +44,9 @@ Metadata fields include at least:
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
-`data/media`. ``tg_client.py`` schedules ``caption.py`` right after each image
-is stored so downloads continue in parallel. Before sending to the API every
-picture is scaled so the shorter side
+`data/media`. ``tg_client.py`` schedules ``caption.py`` right after an image
+is stored, or if a stored file is missing its caption, so downloads continue in
+parallel. Before sending to the API every picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
 ``512x512`` without cropping.
 Each processed image gets a companion `*.caption.md` file stored beside the
