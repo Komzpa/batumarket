@@ -93,6 +93,12 @@ as is.
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
 to all subscribers when new lots are detected.
 
+## scan_ontology.py
+Walks through `data/lots` and collects a list of every key used across all
+stored lots.  For each key the script counts how many times each value appears
+and writes the result to `data/ontology.json`.  Run `make ontology` to
+generate the file for manual inspection.
+
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
 `make compose` performs a full refresh: pulling messages (images are captioned on

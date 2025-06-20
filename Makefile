@@ -2,7 +2,7 @@ PYTHON=python
 
 # Define pipeline stages explicitly so ``make -j compose`` executes them in the
 # correct order.  Each stage runs only after its dependency completes.
-.PHONY: compose update pull caption chop embed build alert clean precommit
+.PHONY: compose update pull caption chop embed build alert ontology clean precommit
 
 # ``compose`` is the main entry point used by documentation and tests.  ``update``
 # remains as a backwards compatible alias.
@@ -35,6 +35,9 @@ build: embed
 # Telegram alert bot for new lots.
 alert:
 	$(PYTHON) src/alert_bot.py
+
+ontology:
+	$(PYTHON) src/scan_ontology.py
 
 clean:
 	rm -rf data/views/*
