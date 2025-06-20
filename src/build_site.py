@@ -11,6 +11,7 @@ columns in a stable order.
 import json
 import math
 from pathlib import Path
+import shutil
 from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
@@ -202,6 +203,15 @@ def main() -> None:
     cfg = load_config()
     langs = getattr(cfg, "LANGS", ["en"])
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Copy CSS and JS so the generated pages are standalone
+    static_src = TEMPLATES / "static"
+    static_dst = VIEWS_DIR / "static"
+    if static_src.exists():
+        if static_dst.exists():
+            shutil.rmtree(static_dst)
+        shutil.copytree(static_src, static_dst)
+        log.debug("Copied static assets", src=str(static_src), dst=str(static_dst))
 
     log.debug("Loading ontology")
     fields = _load_ontology()

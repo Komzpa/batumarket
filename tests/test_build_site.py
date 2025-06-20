@@ -42,3 +42,5 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     idx_html = index.read_text()
     assert "hello" in idx_html
     assert "1-0_en.html" in idx_html
+    assert (tmp_path / "views" / "static" / "site.js").exists()
+    assert (tmp_path / "views" / "static" / "style.css").exists()
