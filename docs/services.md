@@ -46,6 +46,9 @@ Calls GPT-4o Vision to caption the images in `data/media`.  The result is stored
 under `data/media_desc/<sha>.md`.  Captions are later included in the lot
 chopper prompt.
 
+See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
+lot chopper.
+
 ## chop.py
 Feeds the message text plus any media captions to GPT-4o to extract individual
 lots.  Output is a JSON file per message in `data/lots` ready for further
