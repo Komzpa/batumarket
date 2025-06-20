@@ -23,6 +23,8 @@ Uses Telethon to mirror the target chats as a normal user account.
   so several sessions can use the same account without missing events.
 * **Heartbeat.** A background task logs a ``Heartbeat`` message every minute and
   warns if no updates arrive for more than five minutes.
+* **Parallel fetch.** Set ``DOWNLOAD_WORKERS`` in `config.py` to download several
+  messages at once when filling gaps in history.
 * **Storage layout.** Incoming messages are saved as Markdown under
   `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.
   Media files live beside a `.md` description in
