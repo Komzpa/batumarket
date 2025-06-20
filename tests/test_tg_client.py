@@ -90,10 +90,15 @@ class _DummyClient:
     def __init__(self, msgs):
         self._msgs = msgs
 
-    def iter_messages(self, chat, min_id=None, reverse=True):
+    def iter_messages(self, chat, min_id=None, max_id=None, reverse=True):
         async def gen():
-            for m in self._msgs:
-                if min_id and m.id <= min_id:
+            msgs = sorted(self._msgs, key=lambda m: m.date)
+            if not reverse:
+                msgs = list(reversed(msgs))
+            for m in msgs:
+                if min_id is not None and m.id <= min_id:
+                    continue
+                if max_id is not None and m.id >= max_id:
                     continue
                 yield m
 
@@ -168,6 +173,47 @@ def test_fetch_missing_naive_timestamp(tmp_path, monkeypatch):
     asyncio.run(tg_client.fetch_missing(client))
 
     assert saved == [6]
+
+
+def test_fetch_missing_backfill(tmp_path, monkeypatch):
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = ["chat"]
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    raw_dir = tmp_path / "raw"
+    monkeypatch.setattr(tg_client, "RAW_DIR", raw_dir)
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    first = now - datetime.timedelta(days=5)
+
+    # existing message five days old
+    msg_dir = raw_dir / "chat" / f"{first:%Y}" / f"{first:%m}"
+    msg_dir.mkdir(parents=True)
+    (msg_dir / "5.md").write_text(f"date: {first.isoformat()}\n\n")
+
+    old_day = first - datetime.timedelta(days=1)
+    msgs = [
+        _DummyMessage(1, old_day + datetime.timedelta(hours=1)),
+        _DummyMessage(2, old_day + datetime.timedelta(hours=20)),
+        _DummyMessage(3, old_day + datetime.timedelta(hours=25)),
+    ]
+    client = _DummyClient(msgs)
+
+    saved = []
+
+    async def save_stub(_c, _chat, msg):
+        saved.append(msg.id)
+
+    monkeypatch.setattr(tg_client, "_save_message", save_stub)
+    asyncio.run(tg_client.fetch_missing(client))
+
+    assert saved == [1, 2]
 
 
 # ---- ensure-access tests ------------------------------------------------------

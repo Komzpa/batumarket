@@ -78,6 +78,40 @@ def _write_md(path: Path, meta: dict, body: str) -> None:
 _GROUPS: dict[int, Path] = {}
 
 
+def _get_id_date(chat: str, msg_id: int) -> datetime | None:
+    """Return the stored date for ``msg_id`` in ``chat`` if available."""
+    path = None
+    for p in (RAW_DIR / chat).rglob(f"{msg_id}.md"):
+        path = p
+        break
+    if not path:
+        return None
+    for line in path.read_text().splitlines():
+        if line.startswith("date: "):
+            try:
+                ts = datetime.fromisoformat(line[6:])
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=timezone.utc)
+                return ts
+            except ValueError:
+                return None
+    return None
+
+
+def get_first_id(chat: str) -> int:
+    """Return the smallest saved message id for ``chat``."""
+    chat_dir = RAW_DIR / chat
+    if not chat_dir.exists():
+        return 0
+    ids = []
+    for p in chat_dir.rglob("*.md"):
+        try:
+            ids.append(int(p.stem))
+        except ValueError:
+            log.debug("Ignoring file", file=str(p))
+    return min(ids) if ids else 0
+
+
 def get_last_id(chat: str) -> int:
     """Return the highest saved message id for ``chat``."""
     chat_dir = RAW_DIR / chat
@@ -186,42 +220,46 @@ async def ensure_chat_access(client: TelegramClient) -> None:
 
 
 async def fetch_missing(client: TelegramClient) -> None:
-    """Pull new messages advancing at most one day per run."""
+    """Pull new messages and back-fill history in one-day increments."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=31)
+    now = datetime.now(timezone.utc)
     for chat in CHATS:
         last_id = get_last_id(chat)
-        start_date = cutoff
-        if last_id:
-            # Try to read the date of the last saved message from disk
-            last_path = None
-            for p in (RAW_DIR / chat).rglob(f"{last_id}.md"):
-                last_path = p
-                break
-            if last_path:
-                for line in last_path.read_text().splitlines():
-                    if line.startswith("date: "):
-                        try:
-                            start_date = datetime.fromisoformat(line[6:])
-                            # Old messages might be stored without timezone.  Make
-                            # sure comparisons work by assuming UTC in that case.
-                            if start_date.tzinfo is None:
-                                start_date = start_date.replace(tzinfo=timezone.utc)
-                        except ValueError:
-                            pass
-                        break
-        end_date = min(datetime.now(timezone.utc), start_date + timedelta(days=1))
-        count = 0
-        async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
-            if msg.date < start_date:
-                continue
-            if msg.date >= end_date:
-                break
-            path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
-            if path.exists():
-                continue
-            await _save_message(client, chat, msg)
-            count += 1
-        log.info("Synced chat", chat=chat, new_messages=count)
+        first_id = get_first_id(chat)
+        last_date = _get_id_date(chat, last_id) if last_id else None
+        first_date = _get_id_date(chat, first_id) if first_id else None
+
+        # Decide whether to fetch newer or older messages.
+        if first_date is None or first_date > cutoff:
+            start_date = cutoff if first_date is None else max(cutoff, first_date - timedelta(days=1))
+            end_date = min(first_date or now, start_date + timedelta(days=1))
+            count = 0
+            async for msg in client.iter_messages(chat, max_id=(first_id or None), reverse=True):
+                if msg.date < start_date:
+                    continue
+                if msg.date >= end_date:
+                    break
+                path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+                if path.exists():
+                    continue
+                await _save_message(client, chat, msg)
+                count += 1
+            log.info("Backfilled chat", chat=chat, new_messages=count)
+        else:
+            start_date = last_date or cutoff
+            end_date = min(now, start_date + timedelta(days=1))
+            count = 0
+            async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
+                if msg.date < start_date:
+                    continue
+                if msg.date >= end_date:
+                    break
+                path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+                if path.exists():
+                    continue
+                await _save_message(client, chat, msg)
+                count += 1
+            log.info("Synced chat", chat=chat, new_messages=count)
 
 
 async def main() -> None:
