@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="static/style.css">
+    <script src="static/site.js" defer></script>
+</head>
+<body>
+<nav class="top">
+    <a href="index.html">Home</a>
+    <div class="lang-switch">
+    {% for l in langs %}
+        <button data-set-lang="{{ l }}">{{ l }}</button>
+    {% endfor %}
+    </div>
+</nav>
+{{ body }}
+</body>
+</html>
