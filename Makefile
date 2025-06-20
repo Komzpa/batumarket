@@ -1,24 +1,36 @@
 PYTHON=python
 
-update: pull chop caption embed build
+# Define pipeline stages explicitly so ``make -j compose`` executes them in the
+# correct order.  Each stage runs only after its dependency completes.
+.PHONY: compose update pull caption chop embed build alert clean precommit
 
-pull: src/tg_client.py
+# ``compose`` is the main entry point used by documentation and tests.  ``update``
+# remains as a backwards compatible alias.
+compose: build
+update: compose
+
+# Pull Telegram messages and media to ``data/``.
+pull:
 	$(PYTHON) src/tg_client.py
 
-caption: src/caption.py
+# Generate image captions after pulling media.
+caption: pull
 	$(PYTHON) src/caption.py
 
-chop: src/chop.py
+# Split messages into lots using captions and message text.
+chop: caption
 	$(PYTHON) src/chop.py
 
-embed: src/embed.py
+# Store embeddings for each lot in Postgres and JSONL.
+embed: chop
 	$(PYTHON) src/embed.py
 
-
-build: src/build_site.py
+# Render HTML pages from lots and templates.
+build: embed
 	$(PYTHON) src/build_site.py
 
-alert: src/alert_bot.py
+# Telegram alert bot for new lots.
+alert:
 	$(PYTHON) src/alert_bot.py
 
 clean:

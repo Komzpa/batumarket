@@ -73,5 +73,6 @@ to all subscribers when new lots are detected.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
-`make update` performs a full refresh: pulling messages, captioning images,
-chopping, embedding and rebuilding the static site.
+`make compose` performs a full refresh: pulling messages, captioning images,
+chopping, embedding and rebuilding the static site.  `make update` is kept as a
+compatibility alias for older instructions.
