@@ -4,7 +4,7 @@ import asyncio
 import hashlib
 import ast
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from telethon import TelegramClient, events
 from telethon.tl.custom import Message
@@ -164,7 +164,7 @@ async def ensure_chat_access(client: TelegramClient) -> None:
 
 async def fetch_missing(client: TelegramClient) -> None:
     """Pull new messages advancing at most one day per run."""
-    cutoff = datetime.utcnow() - timedelta(days=31)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=31)
     for chat in CHATS:
         last_id = get_last_id(chat)
         start_date = cutoff
@@ -182,7 +182,7 @@ async def fetch_missing(client: TelegramClient) -> None:
                         except ValueError:
                             pass
                         break
-        end_date = min(datetime.utcnow(), start_date + timedelta(days=1))
+        end_date = min(datetime.now(timezone.utc), start_date + timedelta(days=1))
         count = 0
         async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
             if msg.date < start_date:
