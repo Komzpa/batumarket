@@ -228,9 +228,26 @@ def main() -> None:
         build_page(env, lot, sim_map.get(lot["_id"], []), fields, langs)
 
     recent.sort(key=lambda x: x["dt"], reverse=True)
+
+    groups: list[tuple[str, list[dict]]] = []
+    current_day = None
+    items: list[dict] = []
+    for item in recent:
+        day = item["dt"].date().isoformat()
+        if day != current_day:
+            if current_day is not None:
+                groups.append((current_day, items))
+            current_day = day
+            items = []
+        items.append(item)
+    if current_day is not None:
+        groups.append((current_day, items))
+
     log.debug("Writing index")
     index_tpl = env.get_template("index.html")
-    (VIEWS_DIR / "index.html").write_text(index_tpl.render(lots=recent, langs=langs, title="Index"))
+    (VIEWS_DIR / "index.html").write_text(
+        index_tpl.render(groups=groups, langs=langs, title="Index")
+    )
     log.info("Site build complete")
 
 

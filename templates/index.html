@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>Recent items</h1>
+{% for day, items in groups %}
+<h2>{{ day }}</h2>
 <ul>
-{% for lot in lots %}
+  {% for lot in items %}
   <li><a href="{{ lot.link }}">{{ lot.title }}</a></li>
-{% endfor %}
+  {% endfor %}
 </ul>
+{% endfor %}
 {% endblock %}

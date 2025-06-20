@@ -24,9 +24,11 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
 
     lots_dir = tmp_path / "lots"
     lots_dir.mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
         {
-            "timestamp": "2024-05-20T00:00:00",
+            "timestamp": now,
             "title_en": "hello",
             "files": []
         }
@@ -35,4 +37,9 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     build_site.main()
 
     assert (tmp_path / "views" / "1-0.html").exists()
-    assert (tmp_path / "views" / "index.html").exists()
+    index = tmp_path / "views" / "index.html"
+    assert index.exists()
+    idx_html = index.read_text()
+    day = now.split("T")[0]
+    assert f"<h2>{day}</h2>" in idx_html
+    assert "1-0.html" in idx_html
