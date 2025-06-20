@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>{{ lot['title_' + current_lang] }}</h1>
-<div class="carousel">
+<div class="carousel main">
 {% for img in images %}
   <figure>
     <img src="../media/{{ img.path }}" alt="" />
@@ -9,13 +9,21 @@
   </figure>
 {% endfor %}
 </div>
+
+<p class="description">{{ description }}</p>
+{% if orig_text %}
+<details class="orig-text"><summary>Original post</summary>
+<pre>{{ orig_text }}</pre>
+</details>
+{% endif %}
+
 <table class="attrs">
 {% for key, val in attrs.items() %}
   <tr><th>{{ key }}</th><td>{{ val }}</td></tr>
 {% endfor %}
 </table>
 <p><a href="{{ tg_link }}" target="_blank">Telegram post</a></p>
-<div class="similar">
+<div class="similar carousel">
 {% for item in similar %}
   <a href="{{ item.link }}"><img src="../media/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>
 {% endfor %}
