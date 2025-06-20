@@ -15,8 +15,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   from the very first message.  If less than 31 days are stored each run
   back-fills **at most one additional day**; once a full month is present only
   newer messages are pulled.
-* **Realtime updates.** Once the historical backlog is caught up the client
-  switches to listening for live events.
+* **Realtime updates.** Pass ``--listen`` to `tg_client.py` to keep running after
+  the initial sync.  Without this flag the client exits once everything is
+  synced so the Makefile can continue.
 * **Multiple sessions.** The Telegram client runs with ``sequential_updates=True``
   so several sessions can use the same account without missing events.
 * **Heartbeat.** A background task logs a ``Heartbeat`` message every minute and
@@ -26,7 +27,7 @@ Uses Telethon to mirror the target chats as a normal user account.
   Media files live beside a `.md` description in
   `data/media/<chat>/<year>/<month>/`, named by their SHA-256 hash plus
   extension.  Albums are merged into a single file so every attachment appears
-  together.  Messages that disappear from Telegram during the last week are
+  together.  Messages that disappear from Telegram during the last ``KEEP_DAYS`` days are
   removed from disk while edits overwrite the Markdown in place.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
@@ -98,7 +99,7 @@ navigation bar links to the same page in other languages instead of toggling via
 JavaScript. Static files from `templates/static` are copied to
 `data/views/static` so the site works without extra assets.
 The index page now lists all `market:deal` categories with the number of
-posts seen in the last week and how many unique posters were involved.
+posts seen in the last ``KEEP_DAYS`` days and how many unique posters were involved.
 Each category links to a separate page listing every lot of that type.
 Lot pages include a "more by this user" section which shows other lots from the
 same Telegram account ordered by vector similarity.  If a lot has a

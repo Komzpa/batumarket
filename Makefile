@@ -42,6 +42,7 @@ ontology:
 	python src/scan_ontology.py
 
 clean:
+	python src/clean_data.py
 	rm -rf data/views/*
 
 precommit:

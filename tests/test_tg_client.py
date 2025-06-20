@@ -62,6 +62,7 @@ def test_get_last_id(tmp_path, monkeypatch):
     cfg.TG_API_HASH = ""
     cfg.TG_SESSION = ""
     cfg.CHATS = []
+    cfg.KEEP_DAYS = 7
     monkeypatch.setitem(sys.modules, "config", cfg)
 
     tg_client = importlib.import_module("tg_client")
@@ -357,6 +358,7 @@ def test_remove_deleted_recent(tmp_path, monkeypatch):
         cfg.TG_API_HASH = ""
         cfg.TG_SESSION = ""
         cfg.CHATS = ["chat"]
+        cfg.KEEP_DAYS = 7
         monkeypatch.setitem(sys.modules, "config", cfg)
 
         tg_client = importlib.reload(importlib.import_module("tg_client"))
@@ -374,7 +376,7 @@ def test_remove_deleted_recent(tmp_path, monkeypatch):
             async def get_messages(self, chat, ids):
                 return None
 
-        await tg_client.remove_deleted(DummyClient())
+        await tg_client.remove_deleted(DummyClient(), cfg.KEEP_DAYS)
 
         assert not md.exists()
 
@@ -556,7 +558,7 @@ def test_main_sequential_updates(monkeypatch):
     monkeypatch.setattr(tg_client, "ensure_chat_access", lambda c: asyncio.sleep(0))
     monkeypatch.setattr(tg_client, "fetch_missing", lambda c: asyncio.sleep(0))
 
-    asyncio.run(tg_client.main())
+    asyncio.run(tg_client.main([]))
 
     assert called.get("sequential_updates") is True
 
