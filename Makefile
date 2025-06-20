@@ -1,4 +1,4 @@
-PYTHON=python
+# Commands use "python" directly so they can be copy/pasted
 
 # Define pipeline stages explicitly so ``make -j compose`` executes them in the
 # correct order.  Each stage runs only after its dependency completes.
@@ -11,35 +11,35 @@ update: compose
 
 # Pull Telegram messages and media to ``data/``.
 pull:
-	$(PYTHON) src/tg_client.py
+	python src/tg_client.py
 
 # Generate image captions for files missing ``*.caption.md``.
 caption: pull
 	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
 	| sort -z -nr \
 	| cut -z -d' ' -f2- \
-	| parallel -0 $(PYTHON) src/caption.py
+	| parallel -0 python src/caption.py
 
 # Split messages into lots using captions and message text.
 chop: pull
-	$(PYTHON) scripts/pending_chop.py \
-	| parallel -0 $(PYTHON) src/chop.py
+	python scripts/pending_chop.py \
+	| parallel -0 python src/chop.py
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop
-	$(PYTHON) scripts/pending_embed.py \
-	| parallel -0 $(PYTHON) src/embed.py
+	python scripts/pending_embed.py \
+	| parallel -0 python src/embed.py
 
 # Render HTML pages from lots and templates.
 build: embed
-	$(PYTHON) src/build_site.py
+	python src/build_site.py
 
 # Telegram alert bot for new lots.
 alert:
-	$(PYTHON) src/alert_bot.py
+	python src/alert_bot.py
 
 ontology:
-	$(PYTHON) src/scan_ontology.py
+	python src/scan_ontology.py
 
 clean:
 	rm -rf data/views/*
