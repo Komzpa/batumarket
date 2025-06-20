@@ -42,6 +42,7 @@ def caption_file(path: Path) -> str:
     sha = hashlib.sha256(data).hexdigest()
     out = path.with_suffix(".caption.md")
     if out.exists():
+        log.debug("Caption exists", file=str(path))
         return sha
 
     chat = _guess_chat(path)
@@ -59,7 +60,7 @@ def caption_file(path: Path) -> str:
             ],
         },
     ]
-    log.debug("Captioning", sha=sha, chat=chat)
+    log.debug("Captioning", sha=sha, chat=chat, file=str(path))
     try:
         resp = openai.chat.completions.create(model="gpt-4o", messages=message)
         text = resp.choices[0].message.content.strip()
@@ -68,6 +69,7 @@ def caption_file(path: Path) -> str:
         return sha
 
     write_md(out, text)
+    log.info("Caption", file=str(path), text=text)
     return sha
 
 
