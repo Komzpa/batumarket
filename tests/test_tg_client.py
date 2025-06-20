@@ -127,7 +127,7 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
     monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
 
     now = datetime.datetime.now(datetime.timezone.utc)
-    start = now - datetime.timedelta(days=31)
+    start = now - datetime.timedelta(days=7)
     msgs = [
         _DummyMessage(1, start + datetime.timedelta(hours=1)),
         _DummyMessage(2, start + datetime.timedelta(hours=20)),
@@ -144,6 +144,36 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
     asyncio.run(tg_client.fetch_missing(client))
 
     assert saved == [1, 2]
+
+
+def test_fetch_missing_skips_old(tmp_path, monkeypatch):
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = ["chat"]
+    cfg.KEEP_DAYS = 7
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(tg_client, "STATE_DIR", tmp_path / "state")
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    old = now - datetime.timedelta(days=cfg.KEEP_DAYS + 1)
+    client = _DummyClient([_DummyMessage(1, old)])
+
+    saved = []
+
+    async def save_stub(_c, _chat, msg):
+        saved.append(msg.id)
+
+    monkeypatch.setattr(tg_client, "_save_message", save_stub)
+    asyncio.run(tg_client.fetch_missing(client))
+
+    assert saved == []
 
 
 def test_fetch_missing_naive_timestamp(tmp_path, monkeypatch):

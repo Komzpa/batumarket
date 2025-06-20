@@ -363,7 +363,7 @@ async def ensure_chat_access(client: TelegramClient) -> None:
 
 async def fetch_missing(client: TelegramClient) -> None:
     """Pull new messages and back-fill history in one-day increments."""
-    cutoff = datetime.now(timezone.utc) - timedelta(days=31)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     now = datetime.now(timezone.utc)
     for chat in CHATS:
         progress = _load_progress(chat)
