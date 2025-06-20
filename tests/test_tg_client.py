@@ -90,7 +90,7 @@ class _DummyClient:
     def __init__(self, msgs):
         self._msgs = msgs
 
-    def iter_messages(self, chat, min_id=None, max_id=None, reverse=True):
+    def iter_messages(self, chat, min_id=None, max_id=None, reverse=True, offset_date=None):
         async def gen():
             msgs = sorted(self._msgs, key=lambda m: m.date)
             if not reverse:
@@ -99,6 +99,8 @@ class _DummyClient:
                 if min_id is not None and m.id <= min_id:
                     continue
                 if max_id is not None and m.id >= max_id:
+                    continue
+                if offset_date is not None and m.date <= offset_date:
                     continue
                 yield m
 
