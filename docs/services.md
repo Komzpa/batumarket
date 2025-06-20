@@ -44,7 +44,9 @@ Metadata fields include at least:
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
-`data/media`. ``tg_client.py`` schedules ``caption.py`` right after an image
+`data/media`. The prompt now highlights the overall vibe of the interior – for
+example old Soviet, hotel-room style, modern, unfinished or antique. ``tg_client.py``
+schedules ``caption.py`` right after an image
 is stored, or if a stored file is missing its caption, so downloads continue in
 parallel. Before sending to the API every picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
