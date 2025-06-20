@@ -21,7 +21,11 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
         choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="[]"))]
     )
-    monkeypatch.setattr(chop.openai.chat.completions, "create", lambda *a, **k: dummy_resp)
+    called = {}
+    def fake_create(*a, **k):
+        called.update(k)
+        return dummy_resp
+    monkeypatch.setattr(chop.openai.chat.completions, "create", fake_create)
     monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
@@ -33,6 +37,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     chop.main()
 
     assert (tmp_path / "lots" / "1.json").exists()
+    assert called.get("response_format") == {"type": "json_object"}
 
 
 def test_build_prompt():

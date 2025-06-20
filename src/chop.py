@@ -69,7 +69,7 @@ SYSTEM_PROMPT = (
     + "\n\nYou will receive a raw marketplace post with optional image captions.\n"
     "Return a JSON array of separate lots with media references.\n"
     "For each of these languages: {langs}, produce title_<lang> and description_<lang> fields.\n"
-    "Respond with JSON only."
+    "Respond with JSON only. Do not use code fences or any extra text."
 )
 
 
@@ -114,6 +114,7 @@ def process_message(msg_path: Path) -> None:
             model="gpt-4o",
             messages=messages,
             temperature=0,
+            response_format={"type": "json_object"},
         )
         raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw)

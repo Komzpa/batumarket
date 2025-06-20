@@ -3,7 +3,8 @@
 The lot chopper uses GPT-4o to transform raw posts into structured JSON. Replies
 **must** contain nothing but valid JSON. A single message can describe several
 lots so the model should return a JSON array. Even when only one lot is found
-the output must still be wrapped in an array.
+the output must still be wrapped in an array. **Never wrap the JSON in Markdown
+code fences or add any surrounding text.**
 
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:
