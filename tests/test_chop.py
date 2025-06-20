@@ -33,3 +33,13 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     chop.main()
 
     assert (tmp_path / "lots" / "1.json").exists()
+
+
+def test_build_prompt():
+    msg = "hello"
+    files = ["a.jpg", "b.jpg"]
+    caps = ["cap a", "cap b"]
+    prompt = chop._build_prompt(msg, files, caps)
+    assert "Message text:" in prompt
+    assert "Image a.jpg" in prompt
+    assert "cap a" in prompt

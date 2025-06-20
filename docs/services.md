@@ -52,9 +52,11 @@ parallel. Before sending to the API every picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
 ``512x512`` without cropping.
 Each processed image gets a companion `*.caption.md` file stored beside the
-original. Captions are later included in the lot chopper prompt. When
-`LOG_LEVEL` is set to `INFO`, the script logs each processed filename along with
-the generated caption.
+original. Captions are later included in the lot chopper prompt where the
+`chop.py` script lists every `Image <filename>` before its caption. This makes
+it crystal clear which picture the text belongs to. When `LOG_LEVEL` is set to
+`INFO`, the script logs each processed filename along with the generated
+caption.
 If some captions are missing you can run `make caption` to retry processing
 all images.
 
@@ -63,9 +65,11 @@ lot chopper.
 
 ## chop.py
 Feeds the message text plus any media captions to GPT-4o to extract individual
-lots.  The script walks `data/raw/<chat>/<year>/<month>` recursively and logs
-how many posts were processed.  Output is a JSON file per message in
-`data/lots` ready for further processing.
+lots. `chop.py` marks the start of the original message with `Message text:` so
+the LLM does not confuse it with captions. Each caption is preceded by its
+filename. The script walks `data/raw/<chat>/<year>/<month>` recursively and logs
+how many posts were processed. Output is a JSON file per message in `data/lots`
+ready for further processing.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
