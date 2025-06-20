@@ -92,7 +92,7 @@ similar lots.  Similarity search now uses `scikit-learn` to find nearest
 neighbours efficiently. Each lot page shows images in a small carousel, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
 generated in all languages listed in `config.py` with a simple JavaScript
-switcher.  An index page lists items published during the last week.
+switcher.  An index page lists items from the last week grouped by day.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
