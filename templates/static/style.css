@@ -2,7 +2,12 @@ body { font-family: sans-serif; margin: 0; padding: 1em; }
 nav.top { display: flex; justify-content: space-between; margin-bottom: 1em; }
 .lang-switch a { margin-left: 0.5em; }
 .carousel { display: flex; gap: 0.5em; overflow-x: auto; }
-.carousel.main img { cursor: pointer; max-height: 200px; }
+.carousel.main img {
+  cursor: pointer;
+  max-height: 40vh;
+  height: auto;
+  width: auto;
+}
 .carousel.similar img { max-height: 80px; }
 table.attrs { border-collapse: collapse; margin-top: 1em; }
 table.attrs td, table.attrs th { border: 1px solid #ddd; padding: 0.25em 0.5em; }

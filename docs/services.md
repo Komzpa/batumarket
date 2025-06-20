@@ -89,11 +89,13 @@ Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
 `ontology.json` to order attribute tables and embeddings from `data/vectors` to suggest
 similar lots.  Similarity search now uses `scikit-learn` to find nearest
-neighbours efficiently. Each lot page shows images in a small carousel, a table of
+neighbours efficiently. Each lot page shows images in a small carousel,
+scaled to at most 40% of the viewport height, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
 generated separately for every language configured in `config.py`.  The
 navigation bar links to the same page in other languages instead of toggling via
-JavaScript.  The index page shows a sortable table listing items from the last
+JavaScript.  Static files from `templates/static` are copied to
+`data/views/static` so the site works without extra assets. The index page shows a sortable table listing items from the last
 week together with posting time, price and seller details.
 
 ## alert_bot.py
