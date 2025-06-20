@@ -23,9 +23,6 @@ CHATS = ["baraholka_ge", "baraholka_avito_batumi"]
 # OpenAI API key used for captioning, chopping and translating.
 OPENAI_KEY = "sk-..."
 
-# PostgreSQL DSN where the embedding vectors are stored.  The ``lot_vec`` table
-# is expected to use the ``pgvector`` extension.
-DB_DSN = "postgresql:///bazaar"
 
 # Languages used when parsing lots.  ``chop.py`` will generate title and
 # description fields for each entry in this list.

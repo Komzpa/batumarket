@@ -75,10 +75,9 @@ processed at once. The API call specifies `response_format={"type":
 "json_object"}` so GPT-4o returns plain JSON without Markdown wrappers.
 
 ## embed.py
-Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
-`data/vectors.jsonl` and in the `lot_vec` table using pgvector. The script
-recursively scans `data/lots` for `*.json` files, matching the nested layout
-produced by `chop.py`.
+Generates `text-embedding-3-large` vectors for each message file.  The output is
+stored under `data/vectors/` mirroring the layout of `data/lots`.  GNU Parallel
+processes the newest files first so search results are quickly refreshed.
 
 Translations are now produced by `chop.py` itself.  Fields like
 `title_ru` or `description_ka` are included in the lot JSON directly. Titles
@@ -88,7 +87,7 @@ applicable so that every language has a meaningful summary.
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
-`ontology.json` to order attribute tables and `vectors.jsonl` to suggest
+`ontology.json` to order attribute tables and embeddings from `data/vectors` to suggest
 similar lots.  Each lot page shows images in a small carousel, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
 generated in all languages listed in `config.py` with a simple JavaScript

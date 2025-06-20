@@ -18,7 +18,7 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "VEC_FILE", tmp_path / "vec.jsonl")
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
     monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 

@@ -1,6 +1,5 @@
 openai
 python-telegram-bot
-psycopg2-binary
 jinja2
 structlog
 telethon

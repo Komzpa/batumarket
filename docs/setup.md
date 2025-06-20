@@ -6,7 +6,7 @@ modules are available as packages:
 ```bash
 sudo apt install python3-openai \
     python3-python-telegram-bot \
-    python3-psycopg2 python3-jinja2 \
+    python3-jinja2 \
     python3-structlog python3-telethon
 ```
 
@@ -33,7 +33,6 @@ variables before running any script:
 - `CHATS` – list of chat or channel usernames to mirror.  The client will join
   them automatically if needed.
 - `OPENAI_KEY` – API key for OpenAI models
-- `DB_DSN` – PostgreSQL DSN used by embedding storage
 
 Use the Makefile in the repository root to run the pipeline:
 
