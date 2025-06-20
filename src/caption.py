@@ -1,5 +1,6 @@
-"""Generate captions for media files using GPT-4o Vision."""
+"""Generate captions for a single image using GPT-4o Vision."""
 
+import argparse
 import base64
 import hashlib
 import subprocess
@@ -44,24 +45,28 @@ def _identify_size(path: Path) -> Tuple[int, int]:
 
 def _prepare_image(path: Path) -> bytes:
     """Resize ``path`` and return the processed JPEG bytes."""
-    width, height = _identify_size(path)
-    short = min(width, height)
-    scale = 512 / short
-    new_w = int(round(width * scale))
-    new_h = int(round(height * scale))
-    cmd = [
-        "convert",
-        str(path),
-        "-resize",
-        f"{new_w}x{new_h}!",
-        "-liquid-rescale",
-        "512x512!",
-        "jpeg:-",
-    ]
-    log.debug("Resize", width=width, height=height, scaled=f"{new_w}x{new_h}")
-    result = subprocess.run(cmd, capture_output=True, check=True)
-    log.debug("Seam carved", bytes=len(result.stdout))
-    return result.stdout
+    try:
+        width, height = _identify_size(path)
+        short = min(width, height)
+        scale = 512 / short
+        new_w = int(round(width * scale))
+        new_h = int(round(height * scale))
+        cmd = [
+            "convert",
+            str(path),
+            "-resize",
+            f"{new_w}x{new_h}!",
+            "-liquid-rescale",
+            "512x512!",
+            "jpeg:-",
+        ]
+        log.debug("Resize", width=width, height=height, scaled=f"{new_w}x{new_h}")
+        result = subprocess.run(cmd, capture_output=True, check=True)
+        log.debug("Seam carved", bytes=len(result.stdout))
+        return result.stdout
+    except Exception:
+        log.exception("Image preprocessing failed", file=str(path))
+        return path.read_bytes()
 
 
 def _guess_chat(path: Path) -> str:
@@ -111,16 +116,17 @@ def caption_file(path: Path) -> str:
 
 
 def main() -> None:
-    log.info("Captioning media")
-    paths = [
-        p
-        for p in MEDIA_DIR.rglob("*")
-        if p.is_file() and not p.name.endswith(".md")
-    ]
-    paths.sort(key=lambda p: p.stat().st_mtime, reverse=True)
-    for path in paths:
-        caption_file(path)
-    log.info("Captioning done")
+    parser = argparse.ArgumentParser(description="Caption an image")
+    parser.add_argument("image", help="Path to the image file")
+    args = parser.parse_args()
+
+    path = Path(args.image)
+    if not path.exists():
+        parser.error(f"File not found: {path}")
+
+    log.info("Captioning single file", file=str(path))
+    caption_file(path)
+    log.info("Done")
 
 
 if __name__ == "__main__":

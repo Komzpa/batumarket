@@ -9,5 +9,5 @@ Approximate OpenAI expenses are outlined in [docs/costs.md](docs/costs.md).
 
 Logs are written to `errors.log` in JSON format. Set the `LOG_LEVEL`
 environment variable to `DEBUG`, `INFO` or `ERROR` to adjust verbosity.
-Running `caption.py` with `LOG_LEVEL=INFO` records the processed filename and
-the generated caption for easier debugging.
+Running `make caption` with `LOG_LEVEL=INFO` records each processed file and the
+generated caption for easier debugging.

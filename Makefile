@@ -15,7 +15,10 @@ pull:
 
 # Generate image captions after pulling media.
 caption: pull
-	$(PYTHON) src/caption.py
+	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
+	        | sort -z -nr \
+	        | cut -z -d' ' -f2- \
+	        | parallel -0 $(PYTHON) src/caption.py
 
 # Split messages into lots using captions and message text.
 chop: caption
