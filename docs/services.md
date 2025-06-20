@@ -45,7 +45,9 @@ Metadata fields include at least:
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe each photo in
 `data/media`.  Every image gets a companion `*.caption.md` file stored beside the
-original.  Captions are later included in the lot chopper prompt.
+original.  Captions are later included in the lot chopper prompt. When
+`LOG_LEVEL` is set to `INFO`, the script logs each processed filename along with
+the generated caption.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper.

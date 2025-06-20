@@ -33,7 +33,7 @@ def init_logger(truncate=False):
     ).upper()
     level = getattr(logging, level_name, logging.INFO)
     handlers = [logging.FileHandler(LOGFILE, mode=mode), logging.StreamHandler()]
-    logging.basicConfig(handlers=handlers, level=level, format="%(message)s")
+    logging.basicConfig(handlers=handlers, level=level, format="%(message)s", force=True)
     # Use the standard library logging as the backend so all log messages end
     # up in ``LOGFILE`` instead of the default stderr output.  Without this
     # ``logger_factory`` structlog prints directly to stdout which polluted the

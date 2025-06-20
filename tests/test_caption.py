@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import sys
 import types
 
@@ -12,9 +13,13 @@ dummy_cfg = types.ModuleType("config")
 dummy_cfg.OPENAI_KEY = ""
 sys.modules["config"] = dummy_cfg
 
+# Ensure info level logs for tests
+os.environ["LOG_LEVEL"] = "INFO"
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import caption
+from log_utils import LOGFILE
 
 
 def test_caption_file_writes(tmp_path, monkeypatch):
@@ -34,3 +39,26 @@ def test_caption_file_writes(tmp_path, monkeypatch):
     out = img.with_suffix(".caption.md")
     assert out.exists()
     assert out.read_text().strip() == "desc"
+
+
+def test_caption_logs(tmp_path, monkeypatch):
+    log_path = Path(LOGFILE)
+    log_path.write_text("")
+
+    dummy_resp = types.SimpleNamespace(
+        choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="desc"))]
+    )
+    monkeypatch.setattr(
+        caption.openai.chat.completions, "create", lambda *a, **k: dummy_resp
+    )
+    monkeypatch.setattr(caption, "MEDIA_DIR", tmp_path)
+
+    img = tmp_path / "chat" / "2024" / "05" / "img.jpg"
+    img.parent.mkdir(parents=True)
+    img.write_bytes(b"data")
+
+    caption.caption_file(img)
+
+    data = log_path.read_text()
+    assert "img.jpg" in data
+    assert "desc" in data
