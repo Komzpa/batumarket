@@ -95,8 +95,10 @@ to all subscribers when new lots are detected.
 ## scan_ontology.py
 Walks through `data/lots` and collects a list of every key used across all
 stored lots.  For each key the script counts how many times each value appears
-and writes the result to `data/ontology.json`.  Run `make ontology` to
-generate the file for manual inspection.
+and writes the result to `data/ontology.json`.  After collecting the counts the
+script removes a few noisy fields like timestamps and language specific
+duplicates so the output focuses on meaningful attributes.  Run `make
+ontology` to generate the file for manual inspection.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
