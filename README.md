@@ -8,6 +8,7 @@ The project goals are described in [docs/vision.md](docs/vision.md).
 Approximate OpenAI expenses are outlined in [docs/costs.md](docs/costs.md).
 
 Logs are written to `errors.log` in JSON format. Set the `LOG_LEVEL`
-environment variable to `DEBUG`, `INFO` or `ERROR` to adjust verbosity.
-Running `make caption` with `LOG_LEVEL=INFO` records each processed file and the
-generated caption for easier debugging.
+environment variable to `DEBUG`, `INFO` or `ERROR` to adjust verbosity. When
+`LOG_LEVEL` is `INFO`, `tg_client.py` logs each captioned file along with the
+generated text. Run `make caption` to (re)process any images that might have
+missed automatic captioning.

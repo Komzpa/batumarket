@@ -44,14 +44,17 @@ Metadata fields include at least:
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
-`data/media`. The Makefile lists files and runs ``caption.py`` on them using GNU
-Parallel. Before sending to the API every picture is scaled so the shorter side
+`data/media`. ``tg_client.py`` schedules ``caption.py`` right after each image
+is stored so downloads continue in parallel. Before sending to the API every
+picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
 ``512x512`` without cropping.
 Each processed image gets a companion `*.caption.md` file stored beside the
 original. Captions are later included in the lot chopper prompt. When
 `LOG_LEVEL` is set to `INFO`, the script logs each processed filename along with
 the generated caption.
+If some captions are missing you can run `make caption` to retry processing
+all images.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper.
@@ -79,6 +82,6 @@ to all subscribers when new lots are detected.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
-`make compose` performs a full refresh: pulling messages, captioning images,
-chopping, embedding and rebuilding the static site.  `make update` is kept as a
+`make compose` performs a full refresh: pulling messages (images are captioned on
+the fly), chopping, embedding and rebuilding the static site.  `make update` is kept as a
 compatibility alias for older instructions.

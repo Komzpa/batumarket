@@ -43,7 +43,8 @@ make compose
 
 `make update` continues to work as an alias for this pipeline.
 
-This pulls messages, captions images, chops lots, generates embeddings and finally builds the static site.
+This pulls messages (images are captioned immediately), chops lots, generates embeddings and finally builds the static site.
+Run `make caption` separately if you need to reprocess failed images.
 
 Run the test suite and linter before committing:
 
