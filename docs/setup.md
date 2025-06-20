@@ -30,7 +30,8 @@ variables before running any script:
 - `TG_TOKEN` – Telegram bot token used by the alert bot
 - `TG_API_ID` / `TG_API_HASH` – credentials for the Telethon client
 - `TG_SESSION` – filename where the logged in user session will be stored
-- `CHATS` – list of chat usernames to mirror
+- `CHATS` – list of chat or channel usernames to mirror.  The client will join
+  them automatically if needed.
 - `OPENAI_KEY` – API key for OpenAI models
 - `DB_DSN` – PostgreSQL DSN used by embedding storage
 

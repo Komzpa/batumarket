@@ -2,11 +2,14 @@
 
 import asyncio
 import hashlib
+import ast
 from pathlib import Path
 from datetime import datetime, timedelta
 
 from telethon import TelegramClient, events
 from telethon.tl.custom import Message
+from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.errors import UserAlreadyParticipantError
 
 from config_utils import load_config
 
@@ -26,6 +29,31 @@ install_excepthook(log)
 # data/media/<chat>/<YYYY>/<MM>/ using their SHA-256 hash plus extension.
 RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
+
+
+def _parse_md(path: Path) -> tuple[dict, str]:
+    """Return metadata dict and message text from ``path``."""
+    text = path.read_text(encoding="utf-8") if path.exists() else ""
+    lines = text.splitlines()
+    meta = {}
+    body_start = 0
+    for i, line in enumerate(lines):
+        if not line.strip():
+            body_start = i + 1
+            break
+        if ":" in line:
+            k, v = line.split(":", 1)
+            meta[k.strip()] = v.strip()
+    body = "\n".join(lines[body_start:])
+    return meta, body
+
+
+def _write_md(path: Path, meta: dict, body: str) -> None:
+    meta_lines = [f"{k}: {v}" for k, v in meta.items() if v is not None]
+    write_md(path, "\n".join(meta_lines) + "\n\n" + body.strip())
+
+
+_GROUPS: dict[int, Path] = {}
 
 
 def get_last_id(chat: str) -> int:
@@ -57,23 +85,42 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     except Exception:
         log.debug("Failed to fetch permissions", chat=chat, user=msg.sender_id)
 
+    sender = await msg.get_sender()
     meta = {
         "id": msg.id,
         "chat": chat,
         "sender": msg.sender_id,
+        "sender_name": " ".join(
+            p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
+        ) or None,
+        "sender_username": getattr(sender, "username", None),
+        "sender_phone": getattr(sender, "phone", None),
+        "tg_link": f"https://t.me/{sender.username}" if getattr(sender, "username", None) else None,
         "date": msg.date.isoformat(),
         "reply_to": msg.reply_to_msg_id,
+        "group_id": msg.grouped_id,
         "is_admin": getattr(permissions, "is_admin", False),
     }
     if files:
         meta["files"] = files
 
-    # Metadata is stored as simple "key: value" pairs followed by the original
-    # message text so other scripts can easily parse it.
-    meta_lines = [f"{k}: {v}" for k, v in meta.items() if v is not None]
-    path = subdir / f"{msg.id}.md"
-    text = msg.message or ""
-    write_md(path, "\n".join(meta_lines) + "\n\n" + text)
+    text = (msg.message or "").replace("View original post", "").strip()
+    group_path = None
+    if msg.grouped_id:
+        group_path = _GROUPS.get(msg.grouped_id)
+        if not group_path:
+            group_path = subdir / f"{msg.id}.md"
+            _GROUPS[msg.grouped_id] = group_path
+        else:
+            meta_prev, body_prev = _parse_md(group_path)
+            files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
+            files = files_prev + files
+            meta_prev.update(meta)
+            meta_prev["files"] = files
+            meta = meta_prev
+            text = body_prev or text
+    path = group_path or subdir / f"{msg.id}.md"
+    _write_md(path, meta, text)
     log.debug("Wrote message", path=str(path))
 
 
@@ -101,6 +148,18 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     write_md(md, "\n".join(meta_lines))
     rel = Path(chat) / f"{msg.date:%Y}" / f"{msg.date:%m}" / filename
     return str(rel)
+
+
+async def ensure_chat_access(client: TelegramClient) -> None:
+    """Join chats listed in ``CHATS`` if not already joined."""
+    for chat in CHATS:
+        try:
+            await client(JoinChannelRequest(chat))
+            log.info("Joined chat", chat=chat)
+        except UserAlreadyParticipantError:
+            log.debug("Already joined", chat=chat)
+        except Exception:
+            log.exception("Failed to join chat", chat=chat)
 
 
 async def fetch_missing(client: TelegramClient) -> None:
@@ -142,6 +201,8 @@ async def main() -> None:
     client = TelegramClient(TG_SESSION, TG_API_ID, TG_API_HASH)
     await client.start()
     log.info("Logged in")
+
+    await ensure_chat_access(client)
 
     await fetch_missing(client)
     log.info("Initial sync complete; listening for updates")

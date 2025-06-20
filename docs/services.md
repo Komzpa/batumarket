@@ -1,27 +1,43 @@
 # Service Overview
 
 This repository powers a small Telegram marketplace.  Each Python script in
-`src/` acts as a stand‑alone service invoked from the Makefile.  See
+`src/` acts as a stand-alone service invoked from the Makefile.  See
 [`setup.md`](setup.md) for installation instructions.
 
 ## tg_client.py
-Uses Telethon to mirror the target chats as a normal user account.  The client
-advances the history gradually: on each run it fetches at most one additional
-day of messages and never goes further than 31 days into the past.  After the
-initial catch‑up it listens for real‑time updates.  Incoming messages are stored
-as Markdown under
-`data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.  Media
-files are placed next to a `.md` description under
-`data/media/<chat>/<year>/<month>/` using their SHA‑256 hash plus extension.
-Nothing is deleted; edits simply overwrite the Markdown.
+Uses Telethon to mirror the target chats as a normal user account.
+
+* **Chat access.** At startup the client checks that the account has already
+  joined every chat listed in `CHATS`, joining any missing private channels so
+  their history is accessible.
+* **Back-fill strategy.** If a chat still has less than 31 days of history on
+  disk, each run back-fills **at most one additional day** to avoid hitting
+  Telegram limits.  Otherwise it simply fetches all messages newer than the
+  last stored ID.
+* **Realtime updates.** Once the historical backlog is caught up the client
+  switches to listening for live events.
+* **Storage layout.** Incoming messages are saved as Markdown under
+  `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.
+  Media files live beside a `.md` description in
+  `data/media/<chat>/<year>/<month>/`, named by their SHA-256 hash plus
+  extension.  Albums are merged into a single file so every attachment appears
+  together.  Nothing is deleted; edits overwrite the Markdown in place.
+
+Metadata fields include at least:
+
+- `id`, `chat`, `date`, `reply_to`, `is_admin`
+- `sender` (numeric), `sender_name`, `sender_username`, `sender_phone`,
+  `tg_link`
+- `group_id` if part of an album
+- `files` – list of stored media paths
 
 ## caption.py
-Calls GPT‑4o Vision to caption the images in `data/media`.  The result is stored
+Calls GPT-4o Vision to caption the images in `data/media`.  The result is stored
 under `data/media_desc/<sha>.md`.  Captions are later included in the lot
 chopper prompt.
 
 ## chop.py
-Feeds the message text plus any media captions to GPT‑4o to extract individual
+Feeds the message text plus any media captions to GPT-4o to extract individual
 lots.  Output is a JSON file per message in `data/lots` ready for further
 processing.
 
