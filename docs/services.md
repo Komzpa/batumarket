@@ -95,9 +95,12 @@ all recognised fields and a link back to the Telegram post.  Pages are
 generated separately for every language configured in `config.py`.  The
 navigation bar links to the same page in other languages instead of toggling via
 JavaScript. Static files from `templates/static` are copied to
-`data/views/static` so the site works without extra assets. 
-The index page shows a sortable table listing items from the last
-week together with posting time, price and seller details.  If a lot has a
+`data/views/static` so the site works without extra assets.
+The index page now lists all `market:deal` categories with the number of
+posts seen in the last week and how many unique posters were involved.
+Each category links to a separate page listing every lot of that type.
+Lot pages include a "more by this user" section which shows other lots from the
+same Telegram account ordered by vector similarity.  If a lot has a
 timestamp that lies in the future it is ignored during rendering so the website
 never displays misleading dates.
 

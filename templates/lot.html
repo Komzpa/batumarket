@@ -4,7 +4,7 @@
 <div class="carousel main">
 {% for img in images %}
   <figure>
-    <img src="../media/{{ img.path }}" alt="" />
+    <img src="{{ media_prefix }}/{{ img.path }}" alt="" />
     <figcaption>{{ img.caption }}</figcaption>
   </figure>
 {% endfor %}
@@ -25,7 +25,15 @@
 <p><a href="{{ tg_link }}" target="_blank">Telegram post</a></p>
 <div class="similar carousel">
 {% for item in similar %}
-  <a href="{{ item.link }}"><img src="../media/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>
+  <a href="{{ item.link }}"><img src="{{ media_prefix }}/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>
 {% endfor %}
 </div>
+{% if more_user %}
+<h2>More by this user</h2>
+<div class="more-user carousel">
+{% for item in more_user %}
+  <a href="{{ item.link }}"><img src="{{ media_prefix }}/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>
+{% endfor %}
+</div>
+{% endif %}
 {% endblock %}

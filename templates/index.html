@@ -1,22 +1,20 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Recent items</h1>
+<h1>Categories</h1>
 <table id="index-table">
   <thead>
     <tr>
-      <th data-sort="string">Title</th>
-      <th data-sort="number">Price</th>
-      <th data-sort="string">Seller</th>
-      <th data-sort="time">Time</th>
+      <th data-sort="string">Category</th>
+      <th data-sort="number">Posts last week</th>
+      <th data-sort="number">Unique posters</th>
     </tr>
   </thead>
   <tbody>
-  {% for lot in items %}
+  {% for cat in categories %}
     <tr>
-      <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
-      <td>{{ lot.price or '' }}</td>
-      <td>{{ lot.seller or '' }}</td>
-      <td{% if lot.dt %} data-raw="{{ lot.dt.isoformat() }}"{% endif %}>{{ lot.dt.strftime('%Y-%m-%d %H:%M') if lot.dt else '' }}</td>
+      <td><a href="{{ cat.link }}">{{ cat.deal }}</a></td>
+      <td>{{ cat.recent }}</td>
+      <td>{{ cat.users }}</td>
     </tr>
   {% endfor %}
   </tbody>
