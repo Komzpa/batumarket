@@ -61,8 +61,9 @@ lot chopper.
 
 ## chop.py
 Feeds the message text plus any media captions to GPT-4o to extract individual
-lots.  Output is a JSON file per message in `data/lots` ready for further
-processing.
+lots.  The script walks `data/raw/<chat>/<year>/<month>` recursively and logs
+how many posts were processed.  Output is a JSON file per message in
+`data/lots` ready for further processing.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
