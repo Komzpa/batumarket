@@ -31,9 +31,16 @@ CREATE TABLE IF NOT EXISTS lot_vec(
 
 
 def embed_text(lot_id: str, text: str, cur) -> None:
+    cur.execute("SELECT 1 FROM lot_vec WHERE lot_id = %s", [lot_id])
+    if cur.fetchone():
+        log.debug("Vector already stored", id=lot_id)
+        return
+
     log.debug("Embedding", id=lot_id, tokens=estimate_tokens(text))
     try:
-        resp = openai.embeddings.create(model="text-embedding-4o", input=text)
+        resp = openai.embeddings.create(
+            model="text-embedding-3-large", input=text
+        )
         vec = resp.data[0].embedding
     except Exception:
         log.exception("Embed failed", id=lot_id)
