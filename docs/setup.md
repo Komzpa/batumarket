@@ -34,6 +34,7 @@ variables before running any script:
 - `CHATS` – list of chat or channel usernames to mirror.  The client will join
   them automatically if needed.
 - `OPENAI_KEY` – API key for OpenAI models
+- `DOWNLOAD_WORKERS` – how many messages to fetch in parallel during the initial sync
 
 Use the Makefile in the repository root to run the pipeline:
 

@@ -34,4 +34,8 @@ KEEP_DAYS = 7
 # Default log verbosity. Use "DEBUG", "INFO" or "ERROR".
 LOG_LEVEL = "INFO"
 
+# Number of messages to process in parallel when fetching history.  Higher
+# values speed up downloads at the risk of hitting Telegram rate limits.
+DOWNLOAD_WORKERS = 4
+
 

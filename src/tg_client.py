@@ -27,6 +27,9 @@ MEDIA_MAX_AGE = timedelta(days=2)
 # the heartbeat coroutine to detect hangs.
 _last_event = datetime.now(timezone.utc)
 
+# Semaphore limiting concurrent downloads.
+_sem: asyncio.Semaphore
+
 
 def _mark_activity() -> None:
     """Update ``_last_event`` to the current time."""
@@ -42,6 +45,8 @@ TG_API_HASH = cfg.TG_API_HASH
 TG_SESSION = cfg.TG_SESSION
 CHATS = cfg.CHATS
 KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
+DOWNLOAD_WORKERS = getattr(cfg, "DOWNLOAD_WORKERS", 4)
+_sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
 from notes_utils import write_md
@@ -354,6 +359,13 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     return str(rel)
 
 
+async def _save_bounded(client: TelegramClient, chat: str, msg: Message) -> None:
+    """Run ``_save_message`` under the global semaphore."""
+    assert _sem is not None
+    async with _sem:
+        await _save_message(client, chat, msg)
+
+
 async def ensure_chat_access(client: TelegramClient) -> None:
     """Join chats listed in ``CHATS`` if not already joined."""
     for chat in CHATS:
@@ -388,14 +400,20 @@ async def fetch_missing(client: TelegramClient) -> None:
             start_date = progress or cutoff
             end_date = first_date or now
             count = 0
+            tasks: list[asyncio.Task[None]] = []
             async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
                 if msg.date >= end_date:
                     break
                 path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
                 if path.exists():
                     continue
-                await _save_message(client, chat, msg)
+                tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
                 count += 1
+                if len(tasks) >= DOWNLOAD_WORKERS:
+                    await asyncio.gather(*tasks)
+                    tasks.clear()
+            if tasks:
+                await asyncio.gather(*tasks)
             log.info("Backfilled chat", chat=chat, new_messages=count)
             if end_date > start_date:
                 _save_progress(chat, end_date)
@@ -405,6 +423,7 @@ async def fetch_missing(client: TelegramClient) -> None:
         start_date = progress or last_date or cutoff
         end_date = now
         count = 0
+        tasks = []
         async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
             if msg.date < start_date:
                 continue
@@ -413,8 +432,13 @@ async def fetch_missing(client: TelegramClient) -> None:
             path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
             if path.exists():
                 continue
-            await _save_message(client, chat, msg)
+            tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
             count += 1
+            if len(tasks) >= DOWNLOAD_WORKERS:
+                await asyncio.gather(*tasks)
+                tasks.clear()
+        if tasks:
+            await asyncio.gather(*tasks)
         log.info("Synced chat", chat=chat, new_messages=count)
         if end_date > start_date:
             _save_progress(chat, end_date)
@@ -480,6 +504,8 @@ async def main(argv: list[str] | None = None) -> None:
     )
     await client.start()
     log.info("Logged in")
+    global _sem
+    _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
     _mark_activity()
 
     await ensure_chat_access(client)
@@ -495,13 +521,13 @@ async def main(argv: list[str] | None = None) -> None:
     @client.on(events.NewMessage(chats=CHATS))
     async def handler(event):
         chat = event.chat.username or str(event.chat_id)
-        await _save_message(client, chat, event.message)
+        await _save_bounded(client, chat, event.message)
         _mark_activity()
 
     @client.on(events.MessageEdited(chats=CHATS))
     async def edit_handler(event):
         chat = event.chat.username or str(event.chat_id)
-        await _save_message(client, chat, event.message)
+        await _save_bounded(client, chat, event.message)
         _mark_activity()
         log.debug("Saved edit", chat=chat, id=event.message.id)
 
