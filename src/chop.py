@@ -146,8 +146,13 @@ def process_message(msg_path: Path) -> None:
 def main() -> None:
     log.info("Chopping lots")
     LOTS_DIR.mkdir(parents=True, exist_ok=True)
-    files = sorted(RAW_DIR.glob("*/*/*/*.md"))
-    log.info("Found messages", count=len(files))
+    # Sort newest first so freshly scraped messages are chopped right away.
+    files = sorted(
+        RAW_DIR.glob("*/*/*/*.md"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True,
+    )
+    log.info("Found messages", count=len(files), order="mtime-desc")
     if not files:
         log.warning("No raw messages", path=str(RAW_DIR))
     for p in files:
