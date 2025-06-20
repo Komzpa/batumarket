@@ -69,7 +69,9 @@ lots. `chop.py` marks the start of the original message with `Message text:` so
 the LLM does not confuse it with captions. Each caption is preceded by its
 filename. The script walks `data/raw/<chat>/<year>/<month>` recursively and logs
 how many posts were processed. Output is a JSON file per message in `data/lots`
-ready for further processing.
+ready for further processing. The API call now specifies
+`response_format={"type": "json_object"}` so GPT-4o returns plain JSON without
+Markdown wrappers.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in

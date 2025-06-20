@@ -11,4 +11,5 @@ Logs are written to `errors.log` in JSON format. Set the `LOG_LEVEL`
 environment variable to `DEBUG`, `INFO` or `ERROR` to adjust verbosity. When
 `LOG_LEVEL` is `INFO`, `tg_client.py` logs each captioned file along with the
 generated text. Run `make caption` to (re)process any images that might have
-missed automatic captioning.
+missed automatic captioning. Unicode characters, including Cyrillic, are stored
+verbatim so logs remain easy to read.
