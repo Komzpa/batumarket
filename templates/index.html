@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>Recent items</h1>
-{% for day, items in groups %}
-<h2>{{ day }}</h2>
-<ul>
+<table id="index-table">
+  <thead>
+    <tr>
+      <th data-sort="string">Title</th>
+      <th data-sort="number">Price</th>
+      <th data-sort="string">Seller</th>
+      <th data-sort="time">Time</th>
+    </tr>
+  </thead>
+  <tbody>
   {% for lot in items %}
-  <li><a href="{{ lot.link }}">{{ lot.title }}</a></li>
+    <tr>
+      <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
+      <td>{{ lot.price }}</td>
+      <td>{{ lot.seller }}</td>
+      <td data-raw="{{ lot.dt.isoformat() }}">{{ lot.dt.strftime('%Y-%m-%d %H:%M') }}</td>
+    </tr>
   {% endfor %}
-</ul>
-{% endfor %}
+  </tbody>
+</table>
 {% endblock %}
