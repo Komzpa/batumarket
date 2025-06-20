@@ -52,7 +52,7 @@ lots.  Output is a JSON file per message in `data/lots` ready for further
 processing.
 
 ## embed.py
-Generates `text-embedding-4o` vectors for each lot.  Vectors are stored both in
+Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
 `data/vectors.jsonl` and in the `lot_vec` table using pgvector.
 
 Translations are now produced by `chop.py` itself.  Fields like

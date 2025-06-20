@@ -31,6 +31,11 @@ SYSTEM_PROMPT = (
 
 
 def process_message(msg_path: Path) -> None:
+    out = LOTS_DIR / msg_path.name.replace(".md", ".json")
+    if out.exists():
+        log.debug("Skipping existing lot file", path=str(out))
+        return
+
     text = read_md(msg_path)
     captions = []
     for sha_path in MEDIA_DESC.glob("*.md"):
@@ -48,7 +53,6 @@ def process_message(msg_path: Path) -> None:
     except Exception:
         log.exception("Failed to chop", file=str(msg_path))
         return
-    out = LOTS_DIR / msg_path.name.replace(".md", ".json")
     out.write_text(json.dumps(lots, ensure_ascii=False, indent=2))
     log.debug("Wrote", path=str(out))
 
