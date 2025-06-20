@@ -11,9 +11,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   joined every chat listed in `CHATS`, joining any missing private channels so
   their history is accessible.
 * **Back-fill strategy.** If a chat still has less than 31 days of history on
-  disk, each run back-fills **at most one additional day** to avoid hitting
-  Telegram limits.  Otherwise it simply fetches all messages newer than the
-  last stored ID.
+  disk, each run back-fills **at most one additional day** by requesting
+  messages older than the earliest stored ID.  Once a full month is present on
+  disk the client only fetches messages newer than the last stored ID.
 * **Realtime updates.** Once the historical backlog is caught up the client
   switches to listening for live events.
 * **Multiple sessions.** The Telegram client runs with ``sequential_updates=True``
