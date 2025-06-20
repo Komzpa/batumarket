@@ -35,7 +35,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     msg.parent.mkdir(parents=True)
     msg.write_text("id: 1\n\nhello", encoding="utf-8")
 
-    chop.main()
+    chop.main([str(msg)])
 
     assert (tmp_path / "lots" / "chat" / "2024" / "05" / "1.json").exists()
     assert called.get("response_format") == {"type": "json_object"}
@@ -51,21 +51,18 @@ def test_build_prompt():
     assert "cap a" in prompt
 
 
-def test_main_sorts_by_mtime(tmp_path, monkeypatch):
+def test_main_cli_argument(tmp_path, monkeypatch):
     monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
 
-    newer = tmp_path / "raw" / "chat" / "2024" / "05" / "2.md"
-    older = tmp_path / "raw" / "chat" / "2024" / "05" / "1.md"
-    for p in (newer, older):
-        p.parent.mkdir(parents=True, exist_ok=True)
-        p.write_text("id: x", encoding="utf-8")
-    os.utime(older, (1, 1))
-    os.utime(newer, (2, 2))
+    msg = tmp_path / "raw" / "chat" / "2024" / "05" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("id: x", encoding="utf-8")
 
     processed = []
     monkeypatch.setattr(chop, "process_message", lambda p: processed.append(p))
 
-    chop.main()
-    assert processed == [newer, older]
+    chop.main([str(msg)])
+    assert processed == [msg]
+

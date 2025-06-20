@@ -67,13 +67,12 @@ lot chopper.
 Feeds the message text plus any media captions to GPT-4o to extract individual
 lots. `chop.py` marks the start of the original message with `Message text:` so
 the LLM does not confuse it with captions. Each caption is preceded by its
-filename. The script walks `data/raw/<chat>/<year>/<month>` recursively and logs
-how many posts were processed. Files are processed from newest to oldest using
-modification timestamps so freshly scraped messages are chopped first. Output is
-a JSON file per message mirroring the same chat/year/month layout under
-`data/lots`. The API call now specifies
-`response_format={"type": "json_object"}` so GPT-4o returns plain JSON without
-Markdown wrappers.
+filename. The script now processes a single Markdown file path provided on the
+command line and writes a matching JSON file under `data/lots`. The Makefile
+collects all message files sorted by modification time and runs `chop.py` for
+each one using GNU Parallel so several messages are processed at once. The API
+call specifies `response_format={"type": "json_object"}` so GPT-4o returns
+plain JSON without Markdown wrappers.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
