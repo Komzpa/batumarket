@@ -5,6 +5,7 @@ expected JSON schema and message taxonomy.  Any change to that file immediately
 affects the extraction logic.
 """
 
+import argparse
 import json
 import ast
 from pathlib import Path
@@ -143,21 +144,19 @@ def process_message(msg_path: Path) -> None:
     log.debug("Wrote", path=str(out))
 
 
-def main() -> None:
-    log.info("Chopping lots")
+def main(argv: list[str] | None = None) -> None:
+    """Process a single message file passed on the command line."""
+    parser = argparse.ArgumentParser(description="Chop a Telegram message into lots")
+    parser.add_argument("message", help="Path to the message .md file")
+    args = parser.parse_args(argv)
+
     LOTS_DIR.mkdir(parents=True, exist_ok=True)
-    # Sort newest first so freshly scraped messages are chopped right away.
-    files = sorted(
-        RAW_DIR.glob("*/*/*/*.md"),
-        key=lambda p: p.stat().st_mtime,
-        reverse=True,
-    )
-    log.info("Found messages", count=len(files), order="mtime-desc")
-    if not files:
-        log.warning("No raw messages", path=str(RAW_DIR))
-    for p in files:
-        process_message(p)
-    log.info("Chopping complete", processed=len(files))
+    msg_path = Path(args.message)
+    if not msg_path.exists():
+        parser.error(f"Message file not found: {msg_path}")
+
+    log.info("Chopping message", file=str(msg_path))
+    process_message(msg_path)
 
 
 if __name__ == "__main__":

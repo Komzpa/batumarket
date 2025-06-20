@@ -22,7 +22,10 @@ caption: pull
 
 # Split messages into lots using captions and message text.
 chop: pull
-	$(PYTHON) src/chop.py
+	find data/raw -name '*.md' -printf '%T@ %p\0' \
+	| sort -z -nr \
+	| cut -z -d' ' -f2- \
+	| parallel -0 $(PYTHON) src/chop.py
 
 # Store embeddings for each lot in Postgres and JSONL.
 embed: chop
