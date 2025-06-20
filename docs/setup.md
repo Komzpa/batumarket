@@ -38,8 +38,10 @@ variables before running any script:
 Use the Makefile in the repository root to run the pipeline:
 
 ```bash
-make update
+make compose
 ```
+
+`make update` continues to work as an alias for this pipeline.
 
 This pulls messages, captions images, chops lots, generates embeddings and finally builds the static site.
 
