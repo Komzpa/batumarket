@@ -22,6 +22,9 @@ install_excepthook(log)
 
 openai.api_key = OPENAI_KEY
 
+# ``chop.py`` mirrors the directory layout of the source messages so lot files
+# can be nested several levels deep. ``rglob`` is used to scan everything under
+# the root ``data/lots`` directory.
 LOTS_DIR = Path("data/lots")
 VEC_FILE = Path("data/vectors.jsonl")
 
@@ -59,10 +62,12 @@ def embed_text(lot_id: str, text: str, cur) -> None:
 def main() -> None:
     log.info("Embedding lots")
     log.debug("Connecting to Postgres")
+    lot_paths = list(LOTS_DIR.rglob("*.json"))
+    log.info("Found lot files", count=len(lot_paths))
     with psycopg2.connect(DB_DSN) as conn:
         with conn.cursor() as cur:
             cur.execute(CREATE_SQL)
-            for path in LOTS_DIR.glob("*.json"):
+            for path in lot_paths:
                 lot_id = path.stem
                 text = path.read_text()
                 embed_text(lot_id, text, cur)

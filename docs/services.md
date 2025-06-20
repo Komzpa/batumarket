@@ -76,7 +76,9 @@ plain JSON without Markdown wrappers.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  Vectors are stored both in
-`data/vectors.jsonl` and in the `lot_vec` table using pgvector.
+`data/vectors.jsonl` and in the `lot_vec` table using pgvector. The script
+recursively scans `data/lots` for `*.json` files, matching the nested layout
+produced by `chop.py`.
 
 Translations are now produced by `chop.py` itself.  Fields like
 `title_ru` or `description_ka` are included in the lot JSON directly. Titles
