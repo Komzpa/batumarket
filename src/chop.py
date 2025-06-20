@@ -35,6 +35,16 @@ LOTS_DIR = Path("data/lots")
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
 
 
+def _build_prompt(text: str, files: list[str], captions: list[str]) -> str:
+    """Return prompt combining message text with captioned file names."""
+    parts = []
+    if text.strip():
+        parts.append(f"Message text:\n{text.strip()}")
+    for file, caption in zip(files, captions):
+        parts.append(f"Image {file}:\n{caption.strip()}")
+    return "\n\n".join(parts)
+
+
 def _parse_md(path: Path) -> tuple[dict, str]:
     """Return metadata dict and message text."""
     text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -84,10 +94,12 @@ def process_message(msg_path: Path) -> None:
             if not cap.exists():
                 log.info("Skipping message", path=str(msg_path), reason="missing-caption", file=str(p))
                 return
-            captions.append(read_md(cap))
+            caption_text = read_md(cap)
+            log.debug("Found caption", file=str(p), text=caption_text)
+            captions.append(caption_text)
     # Combine the original message text with image captions. This ensures GPT
     # has full context rather than captions alone.
-    prompt = text + ("\n" + "\n".join(captions) if captions else "")
+    prompt = _build_prompt(text, files, captions)
     system_prompt = SYSTEM_PROMPT.replace("{langs}", ", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))
     log.debug("System prompt tokens", count=estimate_tokens(system_prompt))
