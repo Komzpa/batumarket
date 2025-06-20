@@ -15,6 +15,12 @@ from datetime import datetime, timedelta
 
 from jinja2 import Environment, FileSystemLoader
 
+try:
+    from sklearn.neighbors import NearestNeighbors
+    _has_sklearn = True
+except Exception:
+    _has_sklearn = False
+
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 
@@ -69,7 +75,9 @@ def _load_ontology() -> list[str]:
     except Exception:
         log.exception("Bad ontology", path=str(ONTOLOGY))
         return []
-    return sorted(data.keys())
+    fields = sorted(data.keys())
+    log.info("Loaded ontology", count=len(fields))
+    return fields
 
 
 def _iter_lots() -> list[dict]:
@@ -136,44 +144,63 @@ def main() -> None:
     langs = getattr(cfg, "LANGS", ["en"])
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
+    log.debug("Loading ontology")
     fields = _load_ontology()
+    log.debug("Loading vectors")
     vectors = _load_vectors()
+    log.debug("Loading lots")
     lots = _iter_lots()
 
     id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
 
-    # Precompute similar lots
+    log.info("Computing similar lots", count=len(lots))
     sim_map: dict[str, list[dict]] = {}
-    for lot in lots:
-        vec = id_to_vec.get(lot["_id"]) 
-        if not vec:
-            sim_map[lot["_id"]] = []
-            continue
-        scores = []
-        for other in lots:
-            if other is lot:
+
+    vec_ids = [lot["_id"] for lot in lots if id_to_vec.get(lot["_id"])]
+    if _has_sklearn and vec_ids:
+        matrix = [id_to_vec[i] for i in vec_ids]
+        nn = NearestNeighbors(n_neighbors=7, metric="cosine")
+        nn.fit(matrix)
+        dists, idxs = nn.kneighbors(matrix)
+        idx_to_id = {i: vec_ids[i] for i in range(len(vec_ids))}
+        lookup = {lot["_id"]: lot for lot in lots}
+        for i, lot_id in enumerate(vec_ids):
+            items = []
+            for dist, other_idx in zip(dists[i][1:], idxs[i][1:]):
+                other = lookup[idx_to_id[other_idx]]
+                title = other.get("title_en") or next(
+                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
+                    other.get("_id"),
+                )
+                files = other.get("files") or []
+                thumb = files[0] if files else ""
+                items.append({"link": f"{other['_id']}.html", "title": title, "thumb": thumb})
+            sim_map[lot_id] = items
+    else:
+        for lot in lots:
+            vec = id_to_vec.get(lot["_id"])
+            if not vec:
+                sim_map[lot["_id"]] = []
                 continue
-            ov = id_to_vec.get(other["_id"]) 
-            if not ov:
-                continue
-            scores.append((
-                _cos_sim(vec, ov),
-                other,
-            ))
-        scores.sort(key=lambda x: x[0], reverse=True)
-        items = []
-        for score, other in scores[:6]:
-            title = other.get("title_en") or next(
-                (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
-                other.get("_id"),
-            )
-            thumb = other.get("files", [""])[0]
-            items.append({
-                "link": f"{other['_id']}.html",
-                "title": title,
-                "thumb": thumb,
-            })
-        sim_map[lot["_id"]] = items
+            scores = []
+            for other in lots:
+                if other is lot:
+                    continue
+                ov = id_to_vec.get(other["_id"])
+                if not ov:
+                    continue
+                scores.append((_cos_sim(vec, ov), other))
+            scores.sort(key=lambda x: x[0], reverse=True)
+            items = []
+            for score, other in scores[:6]:
+                title = other.get("title_en") or next(
+                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
+                    other.get("_id"),
+                )
+                files = other.get("files") or []
+                thumb = files[0] if files else ""
+                items.append({"link": f"{other['_id']}.html", "title": title, "thumb": thumb})
+            sim_map[lot["_id"]] = items
 
     recent_cutoff = datetime.utcnow() - timedelta(days=7)
     recent = []
@@ -191,9 +218,11 @@ def main() -> None:
             recent.append({"link": f"{lot['_id']}.html", "title": title, "dt": dt})
 
     for lot in lots:
+        log.debug("Rendering", id=lot["_id"])
         build_page(env, lot, sim_map.get(lot["_id"], []), fields, langs)
 
     recent.sort(key=lambda x: x["dt"], reverse=True)
+    log.debug("Writing index")
     index_tpl = env.get_template("index.html")
     (VIEWS_DIR / "index.html").write_text(index_tpl.render(lots=recent, langs=langs, title="Index"))
     log.info("Site build complete")

@@ -88,7 +88,8 @@ applicable so that every language has a meaningful summary.
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
 `ontology.json` to order attribute tables and embeddings from `data/vectors` to suggest
-similar lots.  Each lot page shows images in a small carousel, a table of
+similar lots.  Similarity search now uses `scikit-learn` to find nearest
+neighbours efficiently. Each lot page shows images in a small carousel, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
 generated in all languages listed in `config.py` with a simple JavaScript
 switcher.  An index page lists items published during the last week.
