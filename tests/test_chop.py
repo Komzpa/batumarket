@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 import types
+import os
 
 # Provide stubs before importing the module
 dummy_openai = types.ModuleType("openai")
@@ -48,3 +49,23 @@ def test_build_prompt():
     assert "Message text:" in prompt
     assert "Image a.jpg" in prompt
     assert "cap a" in prompt
+
+
+def test_main_sorts_by_mtime(tmp_path, monkeypatch):
+    monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
+
+    newer = tmp_path / "raw" / "chat" / "2024" / "05" / "2.md"
+    older = tmp_path / "raw" / "chat" / "2024" / "05" / "1.md"
+    for p in (newer, older):
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text("id: x", encoding="utf-8")
+    os.utime(older, (1, 1))
+    os.utime(newer, (2, 2))
+
+    processed = []
+    monkeypatch.setattr(chop, "process_message", lambda p: processed.append(p))
+
+    chop.main()
+    assert processed == [newer, older]
