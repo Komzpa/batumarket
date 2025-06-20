@@ -11,6 +11,17 @@ from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
 
+# Timestamp of the last successfully processed update or message.  Used by
+# the heartbeat coroutine to detect hangs.
+_last_event = datetime.now(timezone.utc)
+
+
+def _mark_activity() -> None:
+    """Update ``_last_event`` to the current time."""
+    global _last_event
+    _last_event = datetime.now(timezone.utc)
+
+
 from config_utils import load_config
 
 cfg = load_config()
@@ -23,6 +34,17 @@ from notes_utils import write_md
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+
+
+async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
+    """Periodically log a heartbeat and warn if idle for too long."""
+    while True:
+        await asyncio.sleep(interval)
+        idle = (datetime.now(timezone.utc) - _last_event).total_seconds()
+        if idle >= warn_after:
+            log.warning("No updates received recently", idle=int(idle))
+        else:
+            log.debug("Heartbeat", idle=int(idle))
 
 # Messages are stored as Markdown with metadata under
 # data/raw/<chat>/<YYYY>/<MM>/<id>.md.  Media files live under
@@ -72,6 +94,7 @@ def get_last_id(chat: str) -> int:
 
 async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None:
     """Write ``msg`` to disk with metadata and any media references."""
+    _mark_activity()
     subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
     subdir.mkdir(parents=True, exist_ok=True)
     files = []
@@ -202,24 +225,33 @@ async def fetch_missing(client: TelegramClient) -> None:
 
 
 async def main() -> None:
-    client = TelegramClient(TG_SESSION, TG_API_ID, TG_API_HASH)
+    client = TelegramClient(
+        TG_SESSION,
+        TG_API_ID,
+        TG_API_HASH,
+        sequential_updates=True,
+    )
     await client.start()
     log.info("Logged in")
+    _mark_activity()
 
     await ensure_chat_access(client)
 
     await fetch_missing(client)
     log.info("Initial sync complete; listening for updates")
+    asyncio.create_task(_heartbeat())
 
     @client.on(events.NewMessage(chats=CHATS))
     async def handler(event):
         chat = event.chat.username or str(event.chat_id)
         await _save_message(client, chat, event.message)
+        _mark_activity()
 
     @client.on(events.MessageEdited(chats=CHATS))
     async def edit_handler(event):
         chat = event.chat.username or str(event.chat_id)
         await _save_message(client, chat, event.message)
+        _mark_activity()
         log.debug("Saved edit", chat=chat, id=event.message.id)
 
     log.info("Client started")

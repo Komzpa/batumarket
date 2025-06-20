@@ -16,6 +16,10 @@ Uses Telethon to mirror the target chats as a normal user account.
   last stored ID.
 * **Realtime updates.** Once the historical backlog is caught up the client
   switches to listening for live events.
+* **Multiple sessions.** The Telegram client runs with ``sequential_updates=True``
+  so several sessions can use the same account without missing events.
+* **Heartbeat.** A background task logs a ``Heartbeat`` message every minute and
+  warns if no updates arrive for more than five minutes.
 * **Storage layout.** Incoming messages are saved as Markdown under
   `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.
   Media files live beside a `.md` description in
