@@ -33,6 +33,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     subs = load_subscribers()
     subs.add(update.effective_user.id)
     save_subscribers(subs)
+    log.info("New subscriber", user=update.effective_user.id)
     await update.message.reply_text("Subscribed to alerts")
 
 
@@ -40,6 +41,7 @@ async def send_alert(text: str) -> None:
     subs = load_subscribers()
     if not subs:
         return
+    log.info("Sending alert", count=len(subs))
     application = ApplicationBuilder().token(TG_TOKEN).build()
     for uid in subs:
         try:

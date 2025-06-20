@@ -5,3 +5,6 @@ Tools for mirroring Telegram "Барахолка" style chats and building a sma
 See [docs/services.md](docs/services.md) for an overview of the scripts.
 For installation instructions see [docs/setup.md](docs/setup.md).
 The project goals are described in [docs/vision.md](docs/vision.md).
+
+Logs are written to `errors.log` in JSON format. Set the `LOG_LEVEL`
+environment variable to `DEBUG`, `INFO` or `ERROR` to adjust verbosity.

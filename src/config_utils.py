@@ -19,7 +19,9 @@ def load_config():
     """
 
     try:
-        return import_module("config")
+        cfg = import_module("config")
+        log.info("Configuration loaded")
+        return cfg
     except ModuleNotFoundError:
         repo_root = Path(__file__).resolve().parent.parent
         if str(repo_root) not in sys.path:

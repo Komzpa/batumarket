@@ -61,10 +61,12 @@ def caption_file(path: Path) -> str:
 
 
 def main() -> None:
+    log.info("Captioning media")
     DESC_DIR.mkdir(parents=True, exist_ok=True)
     for path in MEDIA_DIR.glob("*"):
         if path.is_file():
             caption_file(path)
+    log.info("Captioning done")
 
 
 if __name__ == "__main__":

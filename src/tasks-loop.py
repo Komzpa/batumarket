@@ -17,6 +17,8 @@ from notes_utils import collect_notes, read_md, write_md
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
+log.info("Tasks loop started")
+
 # Set OpenAI API key
 openai.api_key = config.OPENAI_API_KEY
 
@@ -157,3 +159,4 @@ if error_log_to_send:
     send_telegram_message(error_log_to_send)
     raise RuntimeError("All models failed. Please check the errors above.")
 send_telegram_message(message_text)
+log.info("Tasks loop finished")
