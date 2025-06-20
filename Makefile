@@ -31,7 +31,7 @@ embed: chop
 	| parallel -0 python src/embed.py
 
 # Render HTML pages from lots and templates.
-build: embed
+build: embed ontology
 	python src/build_site.py
 
 # Telegram alert bot for new lots.
