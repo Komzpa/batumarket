@@ -2,7 +2,9 @@
 
 import base64
 import hashlib
+import subprocess
 from pathlib import Path
+from typing import Tuple
 
 import openai
 
@@ -28,6 +30,40 @@ log.debug("Prompt tokens", count=estimate_tokens(CAPTION_PROMPT))
 MEDIA_DIR = Path("data/media")
 
 
+def _identify_size(path: Path) -> Tuple[int, int]:
+    """Return ``(width, height)`` for ``path`` using ImageMagick."""
+    result = subprocess.run(
+        ["identify", "-format", "%w %h", str(path)],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    w, h = result.stdout.strip().split()
+    return int(w), int(h)
+
+
+def _prepare_image(path: Path) -> bytes:
+    """Resize ``path`` and return the processed JPEG bytes."""
+    width, height = _identify_size(path)
+    short = min(width, height)
+    scale = 512 / short
+    new_w = int(round(width * scale))
+    new_h = int(round(height * scale))
+    cmd = [
+        "convert",
+        str(path),
+        "-resize",
+        f"{new_w}x{new_h}!",
+        "-liquid-rescale",
+        "512x512!",
+        "jpeg:-",
+    ]
+    log.debug("Resize", width=width, height=height, scaled=f"{new_w}x{new_h}")
+    result = subprocess.run(cmd, capture_output=True, check=True)
+    log.debug("Seam carved", bytes=len(result.stdout))
+    return result.stdout
+
+
 def _guess_chat(path: Path) -> str:
     """Return chat name for ``path`` relative to ``MEDIA_DIR``."""
     try:
@@ -38,15 +74,16 @@ def _guess_chat(path: Path) -> str:
 
 def caption_file(path: Path) -> str:
     """Caption ``path`` with GPT-4o and save ``.caption.md`` beside it."""
-    data = path.read_bytes()
-    sha = hashlib.sha256(data).hexdigest()
+    orig = path.read_bytes()
+    sha = hashlib.sha256(orig).hexdigest()
     out = path.with_suffix(".caption.md")
     if out.exists():
         log.debug("Caption exists", file=str(path))
         return sha
 
     chat = _guess_chat(path)
-    image_b64 = base64.b64encode(data).decode()
+    processed = _prepare_image(path)
+    image_b64 = base64.b64encode(processed).decode()
     prompt = CAPTION_PROMPT.format(chat=chat)
     message = [
         {"role": "system", "content": prompt},
@@ -75,9 +112,14 @@ def caption_file(path: Path) -> str:
 
 def main() -> None:
     log.info("Captioning media")
-    for path in MEDIA_DIR.rglob("*"):
-        if path.is_file() and not path.name.endswith(".md"):
-            caption_file(path)
+    paths = [
+        p
+        for p in MEDIA_DIR.rglob("*")
+        if p.is_file() and not p.name.endswith(".md")
+    ]
+    paths.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    for path in paths:
+        caption_file(path)
     log.info("Captioning done")
 
 
