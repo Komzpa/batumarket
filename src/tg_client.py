@@ -287,6 +287,7 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     subdir.mkdir(parents=True, exist_ok=True)
     filename = f"{sha}{ext}"
     path = subdir / filename
+    caption = path.with_suffix(".caption.md")
     if not path.exists():
         path.write_bytes(data)
         log.info(
@@ -295,9 +296,15 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
             bytes=len(data),
             path=str(path),
         )
-        mime = (getattr(msg.file, "mime_type", "") or "").lower()
-        if mime.startswith("image/"):
+    else:
+        log.debug("Media exists", sha=sha, path=str(path))
+
+    mime = (getattr(msg.file, "mime_type", "") or "").lower()
+    if mime.startswith("image/"):
+        if not caption.exists():
             _schedule_caption(path)
+        else:
+            log.debug("Caption exists", file=str(caption))
     md = subdir / f"{filename}.md"
     meta = {
         "message_id": msg.id,

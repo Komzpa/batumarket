@@ -4,6 +4,7 @@ import types
 import importlib
 import asyncio
 import datetime
+import hashlib
 
 # ── dummy Telethon shims ────────────────────────────────────────────────────────
 dummy_telethon = types.ModuleType("telethon")
@@ -450,3 +451,40 @@ def test_main_sequential_updates(monkeypatch):
     asyncio.run(tg_client.main())
 
     assert called.get("sequential_updates") is True
+
+
+def test_save_media_reschedules_caption(tmp_path, monkeypatch):
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = []
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+    data = b"img"
+    sha = hashlib.sha256(data).hexdigest()
+    date = datetime.datetime(2024, 5, 1, tzinfo=datetime.timezone.utc)
+    subdir = tg_client.MEDIA_DIR / "chat" / f"{date:%Y}" / f"{date:%m}"
+    subdir.mkdir(parents=True)
+    existing = subdir / f"{sha}.jpg"
+    existing.write_bytes(data)
+
+    called = {"c": False}
+
+    def cap(path):
+        called["c"] = True
+
+    monkeypatch.setattr(tg_client, "_schedule_caption", cap)
+
+    msg = types.SimpleNamespace(
+        id=1,
+        date=date,
+        file=types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", name="img.jpg"),
+    )
+
+    asyncio.run(tg_client._save_media("chat", msg, data))
+
+    assert called["c"] is True
