@@ -28,7 +28,7 @@ install_excepthook(log)
 openai.api_key = OPENAI_KEY
 
 RAW_DIR = Path("data/raw")
-MEDIA_DESC = Path("data/media_desc")
+MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
 # System prompt appended to the blueprint.  Explicitly instruct the model to
@@ -51,8 +51,8 @@ def process_message(msg_path: Path) -> None:
 
     text = read_md(msg_path)
     captions = []
-    for sha_path in MEDIA_DESC.glob("*.md"):
-        captions.append(read_md(sha_path))
+    for cap_path in MEDIA_DIR.rglob("*.caption.md"):
+        captions.append(read_md(cap_path))
     prompt = text + "\n" + "\n".join(captions)
     system_prompt = SYSTEM_PROMPT.format(langs=", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))

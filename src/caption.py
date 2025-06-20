@@ -12,32 +12,43 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
 from notes_utils import write_md
+from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
 openai.api_key = OPENAI_KEY
 
-PROMPT = (
-    "You see one product.\n"
-    "Describe fully: object type, style, color, brand, notable defects, rough size.\n"
-    "Output 80-150 words, English."
-)
+# Detailed prompt stored separately so it is easy to tweak without touching the
+# code.  ``{chat}`` placeholder gives the model some context about the source
+# chat.  Keep an eye on the token count since vision prompts can get pricey.
+CAPTION_PROMPT = Path("prompts/captioner_prompt.md").read_text(encoding="utf-8")
+log.debug("Prompt tokens", count=estimate_tokens(CAPTION_PROMPT))
 
 MEDIA_DIR = Path("data/media")
-DESC_DIR = Path("data/media_desc")
+
+
+def _guess_chat(path: Path) -> str:
+    """Return chat name for ``path`` relative to ``MEDIA_DIR``."""
+    try:
+        return path.relative_to(MEDIA_DIR).parts[0]
+    except Exception:
+        return ""
 
 
 def caption_file(path: Path) -> str:
+    """Caption ``path`` with GPT-4o and save ``.caption.md`` beside it."""
     data = path.read_bytes()
     sha = hashlib.sha256(data).hexdigest()
-    out = DESC_DIR / f"{sha}.md"
+    out = path.with_suffix(".caption.md")
     if out.exists():
         return sha
 
+    chat = _guess_chat(path)
     image_b64 = base64.b64encode(data).decode()
+    prompt = CAPTION_PROMPT.format(chat=chat)
     message = [
-        {"role": "system", "content": PROMPT},
+        {"role": "system", "content": prompt},
         {
             "role": "user",
             "content": [
@@ -48,7 +59,7 @@ def caption_file(path: Path) -> str:
             ],
         },
     ]
-    log.debug("Captioning", sha=sha)
+    log.debug("Captioning", sha=sha, chat=chat)
     try:
         resp = openai.chat.completions.create(model="gpt-4o", messages=message)
         text = resp.choices[0].message.content.strip()
@@ -62,9 +73,8 @@ def caption_file(path: Path) -> str:
 
 def main() -> None:
     log.info("Captioning media")
-    DESC_DIR.mkdir(parents=True, exist_ok=True)
-    for path in MEDIA_DIR.glob("*"):
-        if path.is_file():
+    for path in MEDIA_DIR.rglob("*"):
+        if path.is_file() and not path.name.endswith(".md"):
             caption_file(path)
     log.info("Captioning done")
 
