@@ -144,6 +144,19 @@ def build_page(env: Environment, lot: dict, similar: list[dict], fields: list[st
             if k not in sorted_attrs:
                 sorted_attrs[k] = attrs[k]
 
+        ts = sorted_attrs.get("timestamp")
+        if ts:
+            try:
+                dt = datetime.fromisoformat(ts)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                if dt > datetime.now(timezone.utc):
+                    del sorted_attrs["timestamp"]
+                    log.debug("Dropped future timestamp", id=lot.get("_id"))
+            except Exception:
+                del sorted_attrs["timestamp"]
+                log.debug("Bad timestamp", id=lot.get("_id"), value=ts)
+
         # Show the original message text for context if available.
         orig_text = ""
         src = lot.get("source:path")
@@ -260,19 +273,25 @@ def main() -> None:
 
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
     # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
-    recent_cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    now = datetime.now(timezone.utc)
+    recent_cutoff = now - timedelta(days=7)
     recent = []
     for lot in lots:
         ts = lot.get("timestamp")
-        try:
-            dt = datetime.fromisoformat(ts)
-            if dt.tzinfo is None:
-                # Older data might have naive timestamps. Assume UTC for
-                # backwards compatibility so comparisons work.
-                dt = dt.replace(tzinfo=timezone.utc)
-        except Exception:
-            continue
-        if dt >= recent_cutoff:
+        dt = None
+        if ts:
+            try:
+                dt = datetime.fromisoformat(ts)
+                if dt.tzinfo is None:
+                    # Older data might have naive timestamps. Assume UTC for
+                    # backwards compatibility so comparisons work.
+                    dt = dt.replace(tzinfo=timezone.utc)
+                if dt > now:
+                    log.debug("Ignoring future timestamp", id=lot.get("_id"))
+                    dt = None
+            except Exception:
+                dt = None
+        if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
             seller = (
                 lot.get("contact:phone")
@@ -296,7 +315,7 @@ def main() -> None:
         log.debug("Rendering", id=lot["_id"])
         build_page(env, lot, sim_map.get(lot["_id"], []), fields, langs)
 
-    recent.sort(key=lambda x: x["dt"], reverse=True)
+    recent.sort(key=lambda x: x.get("dt") or now, reverse=True)
 
     log.debug("Writing index pages")
     index_tpl = env.get_template("index.html")

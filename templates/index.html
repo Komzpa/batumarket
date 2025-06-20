@@ -16,7 +16,7 @@
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
       <td>{{ lot.price or '' }}</td>
       <td>{{ lot.seller or '' }}</td>
-      <td data-raw="{{ lot.dt.isoformat() }}">{{ lot.dt.strftime('%Y-%m-%d %H:%M') }}</td>
+      <td{% if lot.dt %} data-raw="{{ lot.dt.isoformat() }}"{% endif %}>{{ lot.dt.strftime('%Y-%m-%d %H:%M') if lot.dt else '' }}</td>
     </tr>
   {% endfor %}
   </tbody>
