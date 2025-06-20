@@ -47,6 +47,7 @@ def embed_text(lot_id: str, text: str, cur) -> None:
 
 
 def main() -> None:
+    log.info("Embedding lots")
     with psycopg.connect(DB_DSN) as conn:
         with conn.cursor() as cur:
             cur.execute(CREATE_SQL)
@@ -55,6 +56,7 @@ def main() -> None:
                 text = path.read_text()
                 embed_text(lot_id, text, cur)
             conn.commit()
+    log.info("Embedding complete")
 
 
 if __name__ == "__main__":

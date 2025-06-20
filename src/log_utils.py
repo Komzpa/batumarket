@@ -10,26 +10,30 @@ except Exception:
     _has_structlog = False
 
 LOGFILE = "errors.log"
+# Keep a module-level flag so we don't reconfigure logging on repeated calls.
 _logger_initialized = False
 _logger = None
 
 def init_logger(truncate=False):
     """Initialize logger writing to ``LOGFILE``.
 
-    Falls back to the standard logging module if ``structlog`` isn't
-    available so the scripts can still run in minimal environments.
+    Set ``LOG_LEVEL`` to ``DEBUG``, ``INFO`` or ``ERROR`` to control
+    verbosity.  The function falls back to the standard ``logging``
+    module if ``structlog`` isn't available so the scripts can still run
+    in minimal environments.
     """
     global _logger_initialized, _logger
     if _logger_initialized:
         return _logger
 
     mode = "w" if truncate else "a"
-    level = logging.INFO if os.getenv("TEST_MODE") == "1" else logging.ERROR
-    logging.basicConfig(
-        handlers=[logging.FileHandler(LOGFILE, mode=mode)],
-        level=level,
-        format="%(message)s",
-    )
+    level_name = os.getenv(
+        "LOG_LEVEL",
+        "INFO" if os.getenv("TEST_MODE") == "1" else "ERROR",
+    ).upper()
+    level = getattr(logging, level_name, logging.INFO)
+    handlers = [logging.FileHandler(LOGFILE, mode=mode), logging.StreamHandler()]
+    logging.basicConfig(handlers=handlers, level=level, format="%(message)s")
     # Use the standard library logging as the backend so all log messages end
     # up in ``LOGFILE`` instead of the default stderr output.  Without this
     # ``logger_factory`` structlog prints directly to stdout which polluted the
@@ -77,10 +81,11 @@ def init_logger(truncate=False):
     return _logger
 
 def get_logger():
+    """Return the singleton logger instance."""
     return init_logger()
 
 def install_excepthook(logger):
-    """Log uncaught exceptions with provided logger."""
+    """Redirect uncaught exceptions to ``logger.exception``."""
     def handle_exception(exc_type, exc_value, exc_traceback):
         if issubclass(exc_type, KeyboardInterrupt):
             sys.__excepthook__(exc_type, exc_value, exc_traceback)

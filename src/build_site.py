@@ -23,10 +23,12 @@ def build_page(env: Environment, lot_path: Path) -> None:
 
 
 def main() -> None:
+    log.info("Building site")
     env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
     for p in LOTS_DIR.glob("*.json"):
         build_page(env, p)
+    log.info("Site build complete")
 
 
 if __name__ == "__main__":

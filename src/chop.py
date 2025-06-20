@@ -54,9 +54,11 @@ def process_message(msg_path: Path) -> None:
 
 
 def main() -> None:
+    log.info("Chopping lots")
     LOTS_DIR.mkdir(parents=True, exist_ok=True)
     for p in RAW_DIR.glob("*/*.md"):
         process_message(p)
+    log.info("Chopping complete")
 
 
 if __name__ == "__main__":

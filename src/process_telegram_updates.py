@@ -10,6 +10,8 @@ testing_mode.apply_testing_mode()
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
+log.info("Processing Telegram updates")
+
 RAW_LOG = 'Intermediate/Telegram Log.md'
 SENT_LOG = 'Intermediate/Sent Messages.md'
 OUTPUT = 'Intermediate/Telegram Notes.md'
