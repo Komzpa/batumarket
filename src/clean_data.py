@@ -86,11 +86,28 @@ def _clean_lots() -> None:
         log.info("Removed stale lots", count=count)
 
 
+def _remove_empty_dirs(root: Path) -> None:
+    """Recursively remove empty folders under ``root``."""
+    count = 0
+    if not root.exists():
+        return
+    # walk bottom up so parent dirs are removed after their children
+    for path in sorted(root.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+        if path.is_dir() and not any(path.iterdir()):
+            path.rmdir()
+            log.debug("Removed empty dir", path=str(path))
+            count += 1
+    if count:
+        log.info("Removed empty dirs", count=count)
+
+
 def main() -> None:
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     _clean_raw(cutoff)
     _clean_media(cutoff)
     _clean_lots()
+    for root in [RAW_DIR, MEDIA_DIR, LOTS_DIR]:
+        _remove_empty_dirs(root)
 
 
 if __name__ == "__main__":
