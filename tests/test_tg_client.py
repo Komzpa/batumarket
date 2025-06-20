@@ -130,6 +130,40 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
     assert saved == [1, 2]
 
 
+def test_fetch_missing_naive_timestamp(tmp_path, monkeypatch):
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = ["chat"]
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    raw_dir = tmp_path / "raw"
+    monkeypatch.setattr(tg_client, "RAW_DIR", raw_dir)
+
+    # create a previous message with a naive timestamp
+    msg_dir = raw_dir / "chat" / "2024" / "05"
+    msg_dir.mkdir(parents=True)
+    (msg_dir / "5.md").write_text("date: 2024-05-20T10:00:00\n\n")
+
+    # place the next message within the one-day fetch window
+    next_time = datetime.datetime(2024, 5, 20, 12, tzinfo=datetime.timezone.utc)
+    client = _DummyClient([_DummyMessage(6, next_time)])
+
+    saved = []
+
+    async def save_stub(_c, _chat, msg):
+        saved.append(msg.id)
+
+    monkeypatch.setattr(tg_client, "_save_message", save_stub)
+    asyncio.run(tg_client.fetch_missing(client))
+
+    assert saved == [6]
+
+
 # ---- ensure-access tests ------------------------------------------------------
 def test_ensure_chat_access(monkeypatch):
     cfg = types.ModuleType("config")
