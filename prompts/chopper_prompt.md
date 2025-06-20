@@ -21,8 +21,8 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `building:name` – named apartment blocks.
 - `floor`, `building:levels` – floor number and total floors.
 - `furnishing` – `furnished`, `part`, `none`.
-- `contact:phone`, `contact:telegram` – stripped to digits or `@username`.
-- `source:path` – relative path of the original post under `data/raw`.
+- `washing_machine`, `dishwasher`, `computer_table`, `stove`, `oven`, `bath`, `shower`, `sofa`, `wifi` ... – `yes`, `no`, null/skip.
+- `contact:phone`, `contact:telegram` – stripped to digits in full international format or `@username`.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
 
@@ -34,7 +34,7 @@ Additional nuggets like parking, balcony or urgency can be added as they appear.
 - **Jobs / Services** – `job_offer`, `job_seek`, `services_offer`, `services_seek`.
   Keys: `occupation`, `salary`, `currency`, `schedule`, `remote`, `contact:*`.
   If the description does not explain the actual work, mark the lot with
-  `fraud:sketchy_job=yes`.
+  `fraud=sketchy_job`.
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
 - Anything outside these groups should be placed under `misc` until patterns emerge.
@@ -43,9 +43,6 @@ Additional nuggets like parking, balcony or urgency can be added as they appear.
 ```json
 [
   {
-    "source:chat": "domikibatumi",
-    "source:message_id": "540471",
-    "source:path": "domikibatumi/2025/05/540471.md",
     "timestamp": "2025-05-20T11:41:34+00:00",
     "market:deal": "rent_out",
     "property:type": "apartment",
@@ -57,7 +54,10 @@ Additional nuggets like parking, balcony or urgency can be added as they appear.
     "addr:housenumber": "8а",
     "building:name": "Orbi City",
     "heating": "central",
-    "view": "sea"
+    "view": "sea",
+    "media": [
+      "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg"
+    ]
   }
 ]
 ```
