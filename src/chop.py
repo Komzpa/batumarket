@@ -6,6 +6,7 @@ affects the extraction logic.
 """
 
 import json
+import ast
 from pathlib import Path
 
 import openai
@@ -31,6 +32,25 @@ RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
+IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+
+
+def _parse_md(path: Path) -> tuple[dict, str]:
+    """Return metadata dict and message text."""
+    text = path.read_text(encoding="utf-8") if path.exists() else ""
+    lines = text.splitlines()
+    meta = {}
+    body_start = 0
+    for i, line in enumerate(lines):
+        if not line.strip():
+            body_start = i + 1
+            break
+        if ":" in line:
+            k, v = line.split(":", 1)
+            meta[k.strip()] = v.strip()
+    body = "\n".join(lines[body_start:])
+    return meta, body
+
 # System prompt appended to the blueprint.  Explicitly instruct the model to
 # respond with *only* JSON, no code fences or extra text.  The API request will
 # also enforce this via ``response_format``.
@@ -49,11 +69,23 @@ def process_message(msg_path: Path) -> None:
         log.debug("Skipping existing lot file", path=str(out))
         return
 
-    text = read_md(msg_path)
+    log.info("Processing message", path=str(msg_path))
+
+    meta, text = _parse_md(msg_path)
+    files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
     captions = []
-    for cap_path in MEDIA_DIR.rglob("*.caption.md"):
-        captions.append(read_md(cap_path))
-    prompt = text + "\n" + "\n".join(captions)
+    for rel in files:
+        p = MEDIA_DIR / rel
+        if not p.exists():
+            log.info("Skipping message", path=str(msg_path), reason="missing-media", file=str(p))
+            return
+        if p.suffix.lower() in IMAGE_EXTS:
+            cap = p.with_suffix(".caption.md")
+            if not cap.exists():
+                log.info("Skipping message", path=str(msg_path), reason="missing-caption", file=str(p))
+                return
+            captions.append(read_md(cap))
+    prompt = text + ("\n" + "\n".join(captions) if captions else "")
     system_prompt = SYSTEM_PROMPT.format(langs=", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))
     log.debug("System prompt tokens", count=estimate_tokens(system_prompt))

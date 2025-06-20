@@ -13,15 +13,15 @@ update: compose
 pull:
 	$(PYTHON) src/tg_client.py
 
-# Generate image captions after pulling media.
+# Generate image captions for files missing ``*.caption.md``.
 caption: pull
 	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
-	        | sort -z -nr \
-	        | cut -z -d' ' -f2- \
-	        | parallel -0 $(PYTHON) src/caption.py
+	| sort -z -nr \
+	| cut -z -d' ' -f2- \
+	| parallel -0 $(PYTHON) src/caption.py
 
 # Split messages into lots using captions and message text.
-chop: caption
+chop: pull
 	$(PYTHON) src/chop.py
 
 # Store embeddings for each lot in Postgres and JSONL.

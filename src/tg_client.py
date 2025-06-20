@@ -3,6 +3,8 @@
 import asyncio
 import hashlib
 import ast
+import subprocess
+import sys
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
@@ -121,6 +123,15 @@ def _should_skip_media(msg: Message) -> str | None:
     if mtype.startswith("image/") and size > 10 * 1024 * 1024:
         return "image-too-large"
     return None
+
+
+def _schedule_caption(path: Path) -> None:
+    """Run captioning in a separate process so downloads continue."""
+    try:
+        subprocess.Popen([sys.executable, "src/caption.py", str(path)])
+        log.debug("Caption scheduled", file=str(path))
+    except Exception:
+        log.exception("Failed to schedule caption", file=str(path))
 
 
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
@@ -284,6 +295,9 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
             bytes=len(data),
             path=str(path),
         )
+        mime = (getattr(msg.file, "mime_type", "") or "").lower()
+        if mime.startswith("image/"):
+            _schedule_caption(path)
     md = subdir / f"{filename}.md"
     meta = {
         "message_id": msg.id,
