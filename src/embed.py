@@ -4,7 +4,10 @@ import json
 from pathlib import Path
 
 import openai
-import psycopg
+import psycopg2
+
+# ``psycopg2`` is packaged for most distributions so the project sticks to the
+# older driver even though the code only relies on basic features.
 
 from config_utils import load_config
 
@@ -55,7 +58,8 @@ def embed_text(lot_id: str, text: str, cur) -> None:
 
 def main() -> None:
     log.info("Embedding lots")
-    with psycopg.connect(DB_DSN) as conn:
+    log.debug("Connecting to Postgres")
+    with psycopg2.connect(DB_DSN) as conn:
         with conn.cursor() as cur:
             cur.execute(CREATE_SQL)
             for path in LOTS_DIR.glob("*.json"):
