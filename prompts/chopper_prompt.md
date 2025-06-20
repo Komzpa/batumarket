@@ -24,8 +24,11 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `furnishing` – `furnished`, `part`, `none`.
 - `washing_machine`, `dishwasher`, `computer_table`, `stove`, `oven`, `bath`, `shower`, `sofa`, `wifi` ... – `yes`, `no`, null/skip.
 - `contact:phone`, `contact:telegram` – stripped to digits in full international format or `@username`.
+- `files` – list of stored media paths for the lot.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
+
+Craft `title_<lang>` and `description_<lang>` for every lot using both the original text and image captions. Use the street name along with the number of rooms, floor level and view to form concise titles for real-estate posts. Ensure these fields are filled for all languages requested in the prompt.
 
 ## Taxonomy
 - **Real-estate** – `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_property`, `buy_property`, `exchange`.
@@ -56,7 +59,7 @@ Additional nuggets like parking, balcony or urgency can be added as they appear.
     "building:name": "Orbi City",
     "heating": "central",
     "view": "sea",
-    "media": [
+    "files": [
       "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg"
     ]
   }
