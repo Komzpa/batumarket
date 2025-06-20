@@ -1,6 +1,8 @@
 import logging
 import sys
 import os
+from importlib import import_module
+from pathlib import Path
 
 try:
     import structlog
@@ -17,20 +19,36 @@ _logger = None
 def init_logger(truncate=False):
     """Initialize logger writing to ``LOGFILE``.
 
-    Set ``LOG_LEVEL`` to ``DEBUG``, ``INFO`` or ``ERROR`` to control
-    verbosity.  The function falls back to the standard ``logging``
-    module if ``structlog`` isn't available so the scripts can still run
-    in minimal environments.
+    ``LOG_LEVEL`` may be set in ``config.py`` or via an environment
+    variable.  The level accepts ``DEBUG``, ``INFO`` or ``ERROR`` and
+    defaults to ``INFO``.  The function falls back to the standard
+    ``logging`` module if ``structlog`` isn't available so the scripts
+    can still run in minimal environments.
     """
     global _logger_initialized, _logger
     if _logger_initialized:
         return _logger
 
     mode = "w" if truncate else "a"
-    level_name = os.getenv(
-        "LOG_LEVEL",
-        "INFO" if os.getenv("TEST_MODE") == "1" else "ERROR",
-    ).upper()
+    level_name = os.getenv("LOG_LEVEL")
+    if not level_name:
+        try:
+            cfg = import_module("config")
+        except ModuleNotFoundError:
+            repo_root = Path(__file__).resolve().parent.parent
+            if (repo_root / "config.py").exists():
+                sys.path.insert(0, str(repo_root))
+                try:
+                    cfg = import_module("config")
+                except ModuleNotFoundError:
+                    cfg = None
+            else:
+                cfg = None
+        if cfg is not None:
+            level_name = getattr(cfg, "LOG_LEVEL", None)
+    if not level_name:
+        level_name = "INFO"
+    level_name = level_name.upper()
     level = getattr(logging, level_name, logging.INFO)
     handlers = [logging.FileHandler(LOGFILE, mode=mode), logging.StreamHandler()]
     logging.basicConfig(handlers=handlers, level=level, format="%(message)s", force=True)
