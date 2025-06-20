@@ -26,7 +26,8 @@ Uses Telethon to mirror the target chats as a normal user account.
   Media files live beside a `.md` description in
   `data/media/<chat>/<year>/<month>/`, named by their SHA-256 hash plus
   extension.  Albums are merged into a single file so every attachment appears
-  together.  Nothing is deleted; edits overwrite the Markdown in place.
+  together.  Messages that disappear from Telegram during the last week are
+  removed from disk while edits overwrite the Markdown in place.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
   Attachments that fail to download are skipped with a warning.  The client
