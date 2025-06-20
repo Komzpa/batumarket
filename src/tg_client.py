@@ -100,6 +100,29 @@ def _write_md(path: Path, meta: dict, body: str) -> None:
 _GROUPS: dict[int, Path] = {}
 
 
+def _should_skip_media(msg: Message) -> str | None:
+    """Return reason string if ``msg`` media should be skipped."""
+    file = getattr(msg, "file", None)
+    if not file:
+        return None
+
+    ext = (getattr(file, "ext", "") or "").lower()
+    mtype = (getattr(file, "mime_type", "") or "").lower()
+    size = getattr(file, "size", 0) or 0
+
+    if ext == ".mp4" or mtype.startswith("video/"):
+        return "video"
+    if (
+        ext in {".mp3", ".wav", ".ogg", ".m4a"}
+        or mtype.startswith("audio/")
+        or getattr(msg, "voice", False)
+    ):
+        return "audio"
+    if mtype.startswith("image/") and size > 10 * 1024 * 1024:
+        return "image-too-large"
+    return None
+
+
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
     """Return the stored date for ``msg_id`` in ``chat`` if available."""
     path = None
@@ -179,19 +202,23 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     subdir.mkdir(parents=True, exist_ok=True)
     files = []
     if msg.media:
-        log.debug("Downloading media", chat=chat, id=msg.id)
-        try:
-            data = await asyncio.wait_for(
-                msg.download_media(bytes, progress_callback=_progress_logger(chat, msg.id)),
-                timeout=DOWNLOAD_TIMEOUT,
-            )
-        except asyncio.TimeoutError:
-            log.error("Media download timed out", chat=chat, id=msg.id)
-            data = None
-        if isinstance(data, (bytes, bytearray)):
-            files.append(await _save_media(chat, msg, data))
+        reason = _should_skip_media(msg)
+        if reason:
+            log.info("Skipping media", chat=chat, id=msg.id, reason=reason)
         else:
-            log.warning("Cannot download media", chat=chat, id=msg.id)
+            log.debug("Downloading media", chat=chat, id=msg.id)
+            try:
+                data = await asyncio.wait_for(
+                    msg.download_media(bytes, progress_callback=_progress_logger(chat, msg.id)),
+                    timeout=DOWNLOAD_TIMEOUT,
+                )
+            except asyncio.TimeoutError:
+                log.error("Media download timed out", chat=chat, id=msg.id)
+                data = None
+            if isinstance(data, (bytes, bytearray)):
+                files.append(await _save_media(chat, msg, data))
+            else:
+                log.warning("Cannot download media", chat=chat, id=msg.id)
 
     permissions = None
     try:
