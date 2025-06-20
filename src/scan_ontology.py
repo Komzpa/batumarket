@@ -12,6 +12,22 @@ install_excepthook(log)
 LOTS_DIR = Path("data/lots")
 OUTPUT_FILE = Path("data/ontology.json")
 
+# Fields that carry volatile per-message metadata or language specific
+# duplicates.  Dropping them keeps ``ontology.json`` focused on the
+# reusable attributes of each lot.
+SKIP_FIELDS = {
+    "timestamp",
+    "contact:telegram",
+    "source:path",
+    "source:message_id",
+    "source:chat",
+    "description_ka",
+    "title_ka",
+    "description_en",
+    "title_en",
+    "files",
+}
+
 
 def collect_ontology() -> dict[str, dict[str, int]]:
     """Return dictionary mapping field names to value counts."""
@@ -43,6 +59,11 @@ def collect_ontology() -> dict[str, dict[str, int]]:
 def main() -> None:
     log.info("Scanning ontology", path=str(LOTS_DIR))
     data = collect_ontology()
+    removed = [f for f in SKIP_FIELDS if f in data]
+    for field in removed:
+        data.pop(field, None)
+    if removed:
+        log.debug("Dropped fields", fields=removed)
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
     log.info("Wrote ontology", path=str(OUTPUT_FILE))

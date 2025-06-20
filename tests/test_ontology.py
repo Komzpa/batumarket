@@ -24,3 +24,23 @@ def test_collect_ontology(tmp_path, monkeypatch):
     assert data["a"] == {"1": 1, "2": 1}
     assert data["b"] == {"x": 2, "y": 1}
     assert data["c"] == {"[1, 2]": 1}
+
+
+def test_skip_fields_are_removed(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "OUTPUT_FILE", tmp_path / "out.json")
+
+    (tmp_path / "a.json").write_text(json.dumps({
+        "timestamp": "now",
+        "contact:telegram": "@user",
+        "files": ["a.jpg"],
+        "other": 5,
+    }))
+
+    scan_ontology.main()
+
+    data = json.loads((tmp_path / "out.json").read_text())
+    assert "timestamp" not in data
+    assert "contact:telegram" not in data
+    assert "files" not in data
+    assert data["other"] == {"5": 1}
