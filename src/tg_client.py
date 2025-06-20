@@ -234,9 +234,7 @@ async def fetch_missing(client: TelegramClient) -> None:
             start_date = cutoff if first_date is None else max(cutoff, first_date - timedelta(days=1))
             end_date = min(first_date or now, start_date + timedelta(days=1))
             count = 0
-            async for msg in client.iter_messages(chat, max_id=(first_id or None), reverse=True):
-                if msg.date < start_date:
-                    continue
+            async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
                 if msg.date >= end_date:
                     break
                 path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
