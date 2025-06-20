@@ -31,9 +31,11 @@ Uses Telethon to mirror the target chats as a normal user account.
   removed from disk while edits overwrite the Markdown in place.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
-  Attachments that fail to download are skipped with a warning.  The client
-  ignores videos (`.mp4`), audio files, images larger than ten megabytes and
-  any media attached to messages more than two days old.
+  Progress older than the current `KEEP_DAYS` window is ignored so lowering the
+  threshold does not re-fetch deleted history. Attachments that fail to download
+  are skipped with a warning.  The client ignores videos (`.mp4`), audio files,
+  images larger than ten megabytes and any media attached to messages more than
+  two days old.
 
 Metadata fields include at least:
 

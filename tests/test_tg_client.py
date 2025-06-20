@@ -257,6 +257,41 @@ def test_fetch_missing_backfill(tmp_path, monkeypatch):
     assert saved == [1, 2]
 
 
+def test_fetch_missing_ignores_stale_progress(tmp_path, monkeypatch):
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = ["chat"]
+    cfg.KEEP_DAYS = 7
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path / "raw")
+    state_dir = tmp_path / "state"
+    monkeypatch.setattr(tg_client, "STATE_DIR", state_dir)
+
+    now = datetime.datetime.now(datetime.timezone.utc)
+    stale = now - datetime.timedelta(days=cfg.KEEP_DAYS + 20)
+    state_dir.mkdir(parents=True)
+    (state_dir / "chat.txt").write_text(stale.isoformat())
+
+    old_msg_time = now - datetime.timedelta(days=cfg.KEEP_DAYS + 15)
+    client = _DummyClient([_DummyMessage(1, old_msg_time)])
+
+    saved = []
+
+    async def save_stub(_c, _chat, msg):
+        saved.append(msg.id)
+
+    monkeypatch.setattr(tg_client, "_save_message", save_stub)
+    asyncio.run(tg_client.fetch_missing(client))
+
+    assert saved == []
+
+
 # ---- ensure-access tests ------------------------------------------------------
 def test_ensure_chat_access(monkeypatch):
     cfg = types.ModuleType("config")
