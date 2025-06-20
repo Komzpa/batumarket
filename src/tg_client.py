@@ -1,5 +1,6 @@
 """Mirror Telegram chats using a user account via Telethon."""
 
+import argparse
 import asyncio
 import hashlib
 import ast
@@ -40,6 +41,7 @@ TG_API_ID = cfg.TG_API_ID
 TG_API_HASH = cfg.TG_API_HASH
 TG_SESSION = cfg.TG_SESSION
 CHATS = cfg.CHATS
+KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
 from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
 from notes_utils import write_md
@@ -405,10 +407,10 @@ async def fetch_missing(client: TelegramClient) -> None:
                 _save_progress(chat, end_date)
 
 
-async def remove_deleted(client: TelegramClient) -> None:
-    """Delete locally stored messages removed from Telegram in the last week."""
+async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
+    """Delete locally stored messages removed from Telegram recently."""
 
-    cutoff = datetime.now(timezone.utc) - timedelta(days=7)
+    cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)
     for chat in CHATS:
         count = 0
         for path in (RAW_DIR / chat).rglob("*.md"):
@@ -448,7 +450,15 @@ async def remove_deleted(client: TelegramClient) -> None:
             log.info("Removed deleted", chat=chat, count=count)
 
 
-async def main() -> None:
+async def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description="Sync Telegram chats")
+    parser.add_argument(
+        "--listen",
+        action="store_true",
+        help="stay running and process new updates",
+    )
+    args = parser.parse_args(argv)
+
     client = TelegramClient(
         TG_SESSION,
         TG_API_ID,
@@ -462,7 +472,10 @@ async def main() -> None:
     await ensure_chat_access(client)
 
     await fetch_missing(client)
-    await remove_deleted(client)
+    await remove_deleted(client, KEEP_DAYS)
+    if not args.listen:
+        log.info("Sync complete")
+        return
     log.info("Initial sync complete; listening for updates")
     asyncio.create_task(_heartbeat())
 

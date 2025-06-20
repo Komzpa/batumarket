@@ -231,6 +231,7 @@ def main() -> None:
     env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
     cfg = load_config()
     langs = getattr(cfg, "LANGS", ["en"])
+    keep_days = getattr(cfg, "KEEP_DAYS", 7)
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Copy CSS and JS so the generated pages are standalone
@@ -335,7 +336,7 @@ def main() -> None:
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
     # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
     now = datetime.now(timezone.utc)
-    recent_cutoff = now - timedelta(days=7)
+    recent_cutoff = now - timedelta(days=keep_days)
     recent = []
     categories: dict[str, list[dict]] = {}
     category_stats: dict[str, dict] = {}
@@ -476,6 +477,7 @@ def main() -> None:
                 title="Index",
                 static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
                 home_link=f"index_{lang}.html",
+                keep_days=keep_days,
             )
         )
         log.debug("Wrote", path=str(out))

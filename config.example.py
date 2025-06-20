@@ -27,3 +27,8 @@ OPENAI_KEY = "sk-..."
 # Languages used when parsing lots.  ``chop.py`` will generate title and
 # description fields for each entry in this list.
 LANGS = ["en", "ru", "ka"]
+
+# How many days of history to keep on disk
+KEEP_DAYS = 7
+
+

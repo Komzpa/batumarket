@@ -12,6 +12,7 @@ import build_site
 
 class DummyCfg:
     LANGS = ["en"]
+    KEEP_DAYS = 7
 
 
 def test_build_site_creates_pages(tmp_path, monkeypatch):
