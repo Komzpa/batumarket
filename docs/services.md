@@ -30,8 +30,8 @@ Uses Telethon to mirror the target chats as a normal user account.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
   Attachments that fail to download are skipped with a warning.  The client
-  ignores videos (`.mp4`), audio files and images larger than ten megabytes
-  entirely.
+  ignores videos (`.mp4`), audio files, images larger than ten megabytes and
+  any media attached to messages more than two days old.
 
 Metadata fields include at least:
 

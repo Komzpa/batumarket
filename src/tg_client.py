@@ -18,6 +18,10 @@ from telethon.errors import UserAlreadyParticipantError
 PROGRESS_INTERVAL = 5  # seconds between progress messages
 DOWNLOAD_TIMEOUT = 300  # maximum seconds to spend downloading a file
 
+# Media older than this won't be downloaded.  Skipping saves bandwidth while
+# allowing the text of old posts to be archived.
+MEDIA_MAX_AGE = timedelta(days=2)
+
 # Timestamp of the last successfully processed update or message.  Used by
 # the heartbeat coroutine to detect hangs.
 _last_event = datetime.now(timezone.utc)
@@ -108,6 +112,13 @@ def _should_skip_media(msg: Message) -> str | None:
     file = getattr(msg, "file", None)
     if not file:
         return None
+
+    msg_date = getattr(msg, "date", None)
+    if isinstance(msg_date, datetime):
+        if msg_date.tzinfo is None:
+            msg_date = msg_date.replace(tzinfo=timezone.utc)
+        if datetime.now(timezone.utc) - msg_date > MEDIA_MAX_AGE:
+            return "old"
 
     ext = (getattr(file, "ext", "") or "").lower()
     mtype = (getattr(file, "mime_type", "") or "").lower()
