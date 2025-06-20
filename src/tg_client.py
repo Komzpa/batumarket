@@ -382,7 +382,16 @@ async def _download_messages(
         " ",
         progressbar.ETA(),
     ]
-    bar = progressbar.ProgressBar(max_value=len(messages), widgets=widgets)
+    # progressbar2 uses ``max_value`` while the older ``progressbar`` package
+    # expects ``maxval``.  The fallback keeps compatibility when only the legacy
+    # module is installed.
+    try:
+        bar = progressbar.ProgressBar(max_value=len(messages), widgets=widgets)
+    except TypeError as exc:
+        if "max_value" in str(exc) and "maxval" in str(exc):
+            bar = progressbar.ProgressBar(maxval=len(messages), widgets=widgets)
+        else:
+            raise
     done = 0
     tasks: list[asyncio.Task[None]] = []
     bar.start()
