@@ -86,7 +86,7 @@ def process_message(msg_path: Path) -> None:
                 return
             captions.append(read_md(cap))
     prompt = text + ("\n" + "\n".join(captions) if captions else "")
-    system_prompt = SYSTEM_PROMPT.format(langs=", ".join(LANGS))
+    system_prompt = SYSTEM_PROMPT.replace("{langs}", ", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))
     log.debug("System prompt tokens", count=estimate_tokens(system_prompt))
     messages = [
@@ -114,9 +114,13 @@ def process_message(msg_path: Path) -> None:
 def main() -> None:
     log.info("Chopping lots")
     LOTS_DIR.mkdir(parents=True, exist_ok=True)
-    for p in RAW_DIR.glob("*/*.md"):
+    files = sorted(RAW_DIR.glob("*/*/*/*.md"))
+    log.info("Found messages", count=len(files))
+    if not files:
+        log.warning("No raw messages", path=str(RAW_DIR))
+    for p in files:
         process_message(p)
-    log.info("Chopping complete")
+    log.info("Chopping complete", processed=len(files))
 
 
 if __name__ == "__main__":

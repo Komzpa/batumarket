@@ -1,0 +1,35 @@
+from pathlib import Path
+import sys
+import types
+
+# Provide stubs before importing the module
+dummy_openai = types.ModuleType("openai")
+dummy_openai.chat = types.SimpleNamespace(completions=types.SimpleNamespace(create=lambda *a, **k: None))
+sys.modules["openai"] = dummy_openai
+
+dummy_cfg = types.ModuleType("config")
+dummy_cfg.OPENAI_KEY = ""
+dummy_cfg.LANGS = ["en"]
+sys.modules["config"] = dummy_cfg
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
+import chop
+
+
+def test_chop_processes_nested(tmp_path, monkeypatch):
+    dummy_resp = types.SimpleNamespace(
+        choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="[]"))]
+    )
+    monkeypatch.setattr(chop.openai.chat.completions, "create", lambda *a, **k: dummy_resp)
+    monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
+
+    msg = tmp_path / "raw" / "chat" / "2024" / "05" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("id: 1\n\nhello", encoding="utf-8")
+
+    chop.main()
+
+    assert (tmp_path / "lots" / "1.json").exists()
