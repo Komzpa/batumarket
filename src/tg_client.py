@@ -11,6 +11,11 @@ from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
 
+# Log progress on long downloads every few seconds and abort if they
+# run for too long.
+PROGRESS_INTERVAL = 5  # seconds between progress messages
+DOWNLOAD_TIMEOUT = 300  # maximum seconds to spend downloading a file
+
 # Timestamp of the last successfully processed update or message.  Used by
 # the heartbeat coroutine to detect hangs.
 _last_event = datetime.now(timezone.utc)
@@ -51,6 +56,22 @@ async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
 # data/media/<chat>/<YYYY>/<MM>/ using their SHA-256 hash plus extension.
 RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
+
+
+def _progress_logger(chat: str, msg_id: int):
+    """Return a progress callback that logs received bytes."""
+    last = 0.0
+
+    def cb(received: int, total: int) -> None:
+        nonlocal last
+        now = asyncio.get_event_loop().time()
+        if now - last >= PROGRESS_INTERVAL:
+            last = now
+            log.info(
+                "Downloading", chat=chat, id=msg_id, received=received, total=total
+            )
+
+    return cb
 
 
 def _parse_md(path: Path) -> tuple[dict, str]:
@@ -129,11 +150,20 @@ def get_last_id(chat: str) -> int:
 async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None:
     """Write ``msg`` to disk with metadata and any media references."""
     _mark_activity()
+    log.debug("Processing message", chat=chat, id=msg.id)
     subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
     subdir.mkdir(parents=True, exist_ok=True)
     files = []
     if msg.media:
-        data = await msg.download_media(bytes)
+        log.debug("Downloading media", chat=chat, id=msg.id)
+        try:
+            data = await asyncio.wait_for(
+                msg.download_media(bytes, progress_callback=_progress_logger(chat, msg.id)),
+                timeout=DOWNLOAD_TIMEOUT,
+            )
+        except asyncio.TimeoutError:
+            log.error("Media download timed out", chat=chat, id=msg.id)
+            data = None
         if isinstance(data, (bytes, bytearray)):
             files.append(await _save_media(chat, msg, data))
         else:
@@ -181,7 +211,7 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
             text = body_prev or text
     path = group_path or subdir / f"{msg.id}.md"
     _write_md(path, meta, text)
-    log.debug("Wrote message", path=str(path))
+    log.info("Wrote message", path=str(path), id=msg.id)
 
 
 async def _save_media(chat: str, msg: Message, data: bytes) -> str:
@@ -197,7 +227,12 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     path = subdir / filename
     if not path.exists():
         path.write_bytes(data)
-        log.debug("Stored media", sha=sha)
+        log.info(
+            "Stored media",
+            sha=sha,
+            bytes=len(data),
+            path=str(path),
+        )
     md = subdir / f"{filename}.md"
     meta = {
         "message_id": msg.id,

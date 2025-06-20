@@ -262,7 +262,7 @@ class DummyMessage:
         else:
             self.file = None
 
-    async def download_media(self, *_):
+    async def download_media(self, *_, **__):
         return b"data"
 
     async def get_sender(self):
@@ -324,7 +324,7 @@ def test_save_message_skip_missing_media(tmp_path, monkeypatch):
         monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
 
         class NoData(DummyMessage):
-            async def download_media(self, *_):
+            async def download_media(self, *_, **__):
                 return None
 
         client = types.SimpleNamespace(get_permissions=fake_get_permissions)
