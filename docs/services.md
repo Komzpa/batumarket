@@ -10,11 +10,11 @@ Uses Telethon to mirror the target chats as a normal user account.
 * **Chat access.** At startup the client checks that the account has already
   joined every chat listed in `CHATS`, joining any missing private channels so
   their history is accessible.
-* **Back-fill strategy.** The client keeps only the last month on disk.  When
-  fetching history it jumps straight to the cut-off date instead of scrolling
-  from the very first message.  If less than 31 days are stored each run
-  back-fills **at most one additional day**; once a full month is present only
-  newer messages are pulled.
+* **Back-fill strategy.** The client keeps only the last ``KEEP_DAYS`` days on
+  disk.  When fetching history it jumps straight to the cut-off date instead of
+  scrolling from the very first message.  If less than ``KEEP_DAYS`` days are
+  stored each run back-fills **at most one additional day**; once the full
+  threshold is present only newer messages are pulled.
 * **Realtime updates.** Pass ``--listen`` to `tg_client.py` to keep running after
   the initial sync.  Without this flag the client exits once everything is
   synced so the Makefile can continue.
