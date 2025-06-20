@@ -36,7 +36,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
 
     chop.main()
 
-    assert (tmp_path / "lots" / "1.json").exists()
+    assert (tmp_path / "lots" / "chat" / "2024" / "05" / "1.json").exists()
     assert called.get("response_format") == {"type": "json_object"}
 
 

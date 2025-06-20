@@ -67,14 +67,16 @@ def _parse_md(path: Path) -> tuple[dict, str]:
 SYSTEM_PROMPT = (
     BLUEPRINT
     + "\n\nYou will receive a raw marketplace post with optional image captions.\n"
-    "Return a JSON array of separate lots with media references.\n"
+    "Return a JSON array of separate lots with file references.\n"
     "For each of these languages: {langs}, produce title_<lang> and description_<lang> fields.\n"
     "Respond with JSON only. Do not use code fences or any extra text."
 )
 
 
 def process_message(msg_path: Path) -> None:
-    out = LOTS_DIR / msg_path.name.replace(".md", ".json")
+    rel = msg_path.relative_to(RAW_DIR)
+    out = LOTS_DIR / rel.with_suffix(".json")
+    out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():
         log.debug("Skipping existing lot file", path=str(out))
         return
