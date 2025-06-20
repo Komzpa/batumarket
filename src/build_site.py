@@ -24,22 +24,29 @@ install_excepthook(log)
 LOTS_DIR = Path("data/lots")
 VIEWS_DIR = Path("data/views")
 TEMPLATES = Path("templates")
-VEC_FILE = Path("data/vectors.jsonl")
+VEC_DIR = Path("data/vectors")
 ONTOLOGY = Path("data/ontology.json")
+
+
+def _lot_id_for(path: Path) -> str:
+    """Return unique id ``chat/msg_id`` for ``path``."""
+    rel = path.relative_to(LOTS_DIR)
+    chat = rel.parts[0]
+    return f"{chat}/{path.stem}"
 
 
 def _load_vectors() -> dict[str, list[float]]:
     """Return mapping of lot id to embedding vector."""
-    if not VEC_FILE.exists():
-        log.info("Vector file missing", path=str(VEC_FILE))
+    if not VEC_DIR.exists():
+        log.info("Vector directory missing", path=str(VEC_DIR))
         return {}
-    data = {}
-    for line in VEC_FILE.read_text().splitlines():
+    data: dict[str, list[float]] = {}
+    for path in VEC_DIR.rglob("*.json"):
         try:
-            obj = json.loads(line)
+            obj = json.loads(path.read_text())
             data[obj["id"]] = obj["vec"]
         except Exception:
-            log.exception("Failed to parse vector line", line=line)
+            log.exception("Failed to parse vector file", file=str(path))
     log.info("Loaded vectors", count=len(data))
     return data
 
@@ -133,12 +140,12 @@ def main() -> None:
     vectors = _load_vectors()
     lots = _iter_lots()
 
-    id_to_vec = {lot["_id"].split("-")[0]: vectors.get(lot["_id"].split("-")[0]) for lot in lots}
+    id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
 
     # Precompute similar lots
     sim_map: dict[str, list[dict]] = {}
     for lot in lots:
-        vec = id_to_vec.get(lot["_id"].split("-")[0])
+        vec = id_to_vec.get(lot["_id"]) 
         if not vec:
             sim_map[lot["_id"]] = []
             continue
@@ -146,7 +153,7 @@ def main() -> None:
         for other in lots:
             if other is lot:
                 continue
-            ov = id_to_vec.get(other["_id"].split("-")[0])
+            ov = id_to_vec.get(other["_id"]) 
             if not ov:
                 continue
             scores.append((

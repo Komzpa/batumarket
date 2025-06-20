@@ -25,9 +25,10 @@ chop: pull
 	$(PYTHON) scripts/pending_chop.py \
 	| parallel -0 $(PYTHON) src/chop.py
 
-# Store embeddings for each lot in Postgres and JSONL.
+# Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop
-	$(PYTHON) src/embed.py
+	$(PYTHON) scripts/pending_embed.py \
+	| parallel -0 $(PYTHON) src/embed.py
 
 # Render HTML pages from lots and templates.
 build: embed
