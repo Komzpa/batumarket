@@ -25,5 +25,9 @@ Run all checks with:
 python scripts/validate_outputs.py
 ```
 
+The script updates ``sys.path`` itself so it can locate modules in ``src`` when
+executed directly.  This means it works out of the box with the provided
+``Makefile`` commands.
+
 Individual stages pass `captions`, `lots` or `vectors` to only run relevant
 checks during the pipeline.
