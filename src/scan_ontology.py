@@ -22,7 +22,6 @@ MEDIA_DIR = Path("data/media")
 # inspected or removed without touching the raw lots.
 OUTPUT_DIR = Path("data/ontology")
 FIELDS_FILE = OUTPUT_DIR / "fields.json"
-MISSING_FILE = OUTPUT_DIR / "missing.json"
 MISPARSED_FILE = OUTPUT_DIR / "misparsed.json"
 BROKEN_META_FILE = OUTPUT_DIR / "broken_meta.json"
 
@@ -62,14 +61,12 @@ def _is_misparsed(lot: dict) -> bool:
 
 def collect_ontology() -> tuple[
     dict[str, dict[str, int]],
-    list[dict],
     dict[str, Counter[str]],
     list[dict],
     list[dict],
 ]:
-    """Return counts per field, lists of missing and misparsed lots, value counters and broken metadata."""
+    """Return counts per field, value counters, misparsed lots and broken metadata."""
     ontology: defaultdict[str, Counter[str]] = defaultdict(Counter)
-    missing: list[dict] = []
     values: dict[str, Counter[str]] = {f: Counter() for f in REVIEW_FIELDS}
     misparsed: list[dict] = []
     broken: list[dict] = []
@@ -87,10 +84,8 @@ def collect_ontology() -> tuple[
             for k in list(lot):
                 if lot[k] == "" or lot[k] is None:
                     del lot[k]
-            if any(not lot.get(f) for f in REVIEW_FIELDS):
-                missing.append(lot)
             src = lot.get("source:path")
-            if _is_misparsed(lot):
+            if any(not lot.get(f) for f in REVIEW_FIELDS) or _is_misparsed(lot):
                 prompt = ""
                 if src:
                     try:
@@ -119,12 +114,12 @@ def collect_ontology() -> tuple[
     result: dict[str, dict[str, int]] = {}
     for key, counter in ontology.items():
         result[key] = dict(sorted(counter.items(), key=lambda x: (-x[1], x[0])))
-    return result, missing, values, misparsed, broken
+    return result, values, misparsed, broken
 
 
 def main() -> None:
     log.info("Scanning ontology", path=str(LOTS_DIR))
-    data, missing, values, misparsed, broken = collect_ontology()
+    data, values, misparsed, broken = collect_ontology()
     removed = [k for k in list(data) if k in SKIP_FIELDS or k.startswith(SKIP_PREFIXES)]
     for field in removed:
         data.pop(field, None)
@@ -134,9 +129,6 @@ def main() -> None:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     FIELDS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
     log.info("Wrote field counts", path=str(FIELDS_FILE))
-
-    MISSING_FILE.write_text(json.dumps(missing, ensure_ascii=False, indent=2))
-    log.info("Wrote lots missing translations", path=str(MISSING_FILE))
 
     MISPARSED_FILE.write_text(json.dumps(misparsed, ensure_ascii=False, indent=2))
     log.info("Wrote mis-parsed lots", path=str(MISPARSED_FILE))
