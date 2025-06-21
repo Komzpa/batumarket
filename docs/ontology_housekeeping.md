@@ -11,6 +11,10 @@ Run the ontology scanner after chopping lots:
 make ontology
 ```
 
+Do not run this command if you only have the repository without the original
+`data/raw` posts. The script would overwrite the tracked JSON files with empty
+data. In that case simply inspect the existing files under `data/ontology`.
+
 The command writes several JSON files under `data/ontology`:
 
 - `fields.json` – all keys with value counts.

@@ -81,6 +81,9 @@ def collect_ontology() -> tuple[
     values: dict[str, Counter[str]] = {f: Counter() for f in REVIEW_FIELDS}
     misparsed: list[dict] = []
     broken: list[dict] = []
+    has_raw = RAW_DIR.exists()
+    if not has_raw:
+        log.debug("RAW_DIR missing", path=str(RAW_DIR))
     for path in LOTS_DIR.rglob("*.json"):
         lots = read_lots(path)
         if not lots:
@@ -91,13 +94,13 @@ def collect_ontology() -> tuple[
             src = lot.get("source:path")
             if _is_misparsed(lot):
                 prompt = ""
-                if src:
+                if src and has_raw:
                     try:
                         prompt = gather_chop_input(RAW_DIR / src, MEDIA_DIR)
                     except Exception:
                         log.exception("Failed to build parser input", source=src)
                 misparsed.append({"lot": lot, "input": prompt})
-            if src:
+            if src and has_raw:
                 meta, _ = read_post(RAW_DIR / src)
                 if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
                     chat = lot.get("source:chat") or meta.get("chat")
@@ -123,6 +126,9 @@ def collect_ontology() -> tuple[
 
 def main() -> None:
     log.info("Scanning ontology", path=str(LOTS_DIR))
+    if not LOTS_DIR.exists() or not any(LOTS_DIR.rglob("*.json")):
+        log.warning("Lots directory missing or empty", path=str(LOTS_DIR))
+        return
     data, values, misparsed, broken = collect_ontology()
     removed = [k for k in list(data) if k in SKIP_FIELDS or k.startswith(SKIP_PREFIXES)]
     for field in removed:
