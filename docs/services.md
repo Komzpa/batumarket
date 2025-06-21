@@ -112,7 +112,8 @@ applicable so that every language has a meaningful summary.
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
 `ontology/fields.json` to order attribute tables and embeddings from `data/vectors` to suggest
-similar lots.  Similarity search now uses `scikit-learn` to find nearest
+similar lots.  Vector files without a matching lot are dropped before computing
+similarity so stale data never bloats memory. Similarity search now uses `scikit-learn` to find nearest
 neighbours efficiently. Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
 all recognised fields and a link back to the Telegram post.  Pages are

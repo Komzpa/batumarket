@@ -315,6 +315,18 @@ def main() -> None:
     lots = _iter_lots()
     _copy_images(lots)
 
+    # Clean up mismatched data before working on vectors.
+    lot_keys = {_lot_id_for(lot["_file"]) for lot in lots}
+    vec_keys = set(vectors)
+    extra_vecs = vec_keys - lot_keys
+    if extra_vecs:
+        for key in extra_vecs:
+            vectors.pop(key, None)
+        log.debug("Dropped vectors without lots", count=len(extra_vecs))
+    missing_vecs = lot_keys - vec_keys
+    if missing_vecs:
+        log.debug("Lots missing vectors", count=len(missing_vecs))
+
     # Map each lot id to its embedding vector if available.
     id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
 
