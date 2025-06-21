@@ -18,3 +18,8 @@ captioned file along with the generated text. Run `make caption` to
 (re)process any images that might have missed automatic captioning. Unicode
 characters, including Cyrillic, are stored verbatim so logs remain easy to
 read.
+
+Domain specific helpers like `src/post_io.py`, `src/lot_io.py` and
+`src/caption_io.py` provide validated loading and saving of posts,
+lots and captions.  They build on `src/serde_utils.py` so every stage
+creates directories automatically and logs parsing errors once.

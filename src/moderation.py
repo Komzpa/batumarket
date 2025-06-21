@@ -6,8 +6,9 @@ import json
 from pathlib import Path
 
 from log_utils import get_logger
-from message_utils import parse_md
+from post_io import read_post
 from scan_ontology import REVIEW_FIELDS
+from lot_io import read_lots
 
 log = get_logger().bind(module=__name__)
 
@@ -56,17 +57,14 @@ def apply_to_history() -> None:
     """Remove processed lots now failing moderation."""
     removed = 0
     for path in LOTS_DIR.rglob("*.json"):
-        try:
-            data = json.loads(path.read_text())
-        except Exception:
-            log.exception("Failed to parse lot file", file=str(path))
+        items = read_lots(path)
+        if not items:
             continue
-        items = data if isinstance(data, list) else [data]
         src = items[0].get("source:path")
         raw = RAW_DIR / src if src else None
         if not raw or not raw.exists():
             continue
-        _, text = parse_md(raw)
+        _, text = read_post(raw)
         skip = should_skip_message(items[0], text) or any(
             should_skip_lot(l) for l in items
         )

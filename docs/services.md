@@ -144,6 +144,12 @@ phrases. The checks also run inside `chop.py` and `build_site.py` so unwanted
 posts never reach the website. Update the library with new rules and rerun the
 script to clean past data.
 
+## File I/O helpers
+`post_io.py`, `lot_io.py`, `caption_io.py` and `image_io.py` handle posts,
+lots, captions and media metadata. They use `serde_utils.py` for the low-level
+JSON or Markdown handling so each script works with cleaned data and missing
+directories are created automatically.
+
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
 `make compose` performs a full refresh: pulling messages (images are captioned on

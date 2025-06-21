@@ -9,6 +9,7 @@ from datetime import datetime, timedelta, timezone
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
+from lot_io import read_lots
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -71,12 +72,10 @@ def _clean_lots() -> None:
     if not LOTS_DIR.exists():
         return
     for path in LOTS_DIR.rglob("*.json"):
-        try:
-            data = json.loads(path.read_text())
-        except Exception:
+        items = read_lots(path)
+        if not items:
             log.warning("Bad lot file", file=str(path))
             continue
-        items = data if isinstance(data, list) else [data]
         src = items[0].get("source:path")
         if src and not (RAW_DIR / src).exists():
             path.unlink()

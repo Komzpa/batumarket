@@ -9,7 +9,10 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
-from message_utils import gather_chop_input, parse_md
+from message_utils import gather_chop_input
+from post_io import read_post
+from serde_utils import write_json
+from lot_io import read_lots
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -79,19 +82,12 @@ def collect_ontology() -> tuple[
     misparsed: list[dict] = []
     broken: list[dict] = []
     for path in LOTS_DIR.rglob("*.json"):
-        try:
-            lots = json.loads(path.read_text())
-        except Exception:
-            log.exception("Failed to parse", file=str(path))
+        lots = read_lots(path)
+        if not lots:
             continue
-        if isinstance(lots, dict):
-            lots = [lots]
         for lot in lots:
             if not isinstance(lot, dict):
                 continue
-            for k in list(lot):
-                if lot[k] == "" or lot[k] is None:
-                    del lot[k]
             src = lot.get("source:path")
             if _is_misparsed(lot):
                 prompt = ""
@@ -102,7 +98,7 @@ def collect_ontology() -> tuple[
                         log.exception("Failed to build parser input", source=src)
                 misparsed.append({"lot": lot, "input": prompt})
             if src:
-                meta, _ = parse_md(RAW_DIR / src)
+                meta, _ = read_post(RAW_DIR / src)
                 if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
                     chat = lot.get("source:chat") or meta.get("chat")
                     mid = lot.get("source:message_id") or meta.get("id")
@@ -135,19 +131,23 @@ def main() -> None:
         log.debug("Dropped fields", fields=removed)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    FIELDS_FILE.write_text(json.dumps(data, ensure_ascii=False, indent=2))
+    write_json(FIELDS_FILE, data)
     log.info("Wrote field counts", path=str(FIELDS_FILE))
 
-    MISPARSED_FILE.write_text(json.dumps(misparsed, ensure_ascii=False, indent=2))
+    write_json(MISPARSED_FILE, misparsed)
     log.info("Wrote mis-parsed lots", path=str(MISPARSED_FILE))
 
-    BROKEN_META_FILE.write_text(json.dumps(broken, ensure_ascii=False, indent=2))
+    write_json(BROKEN_META_FILE, broken)
     if broken:
-        log.info("Wrote broken metadata list", path=str(BROKEN_META_FILE), count=len(broken))
+        log.info(
+            "Wrote broken metadata list",
+            path=str(BROKEN_META_FILE),
+            count=len(broken),
+        )
 
     for field, path in REVIEW_FILES.items():
         counter = dict(sorted(values[field].items(), key=lambda x: (-x[1], x[0])))
-        path.write_text(json.dumps(counter, ensure_ascii=False, indent=2))
+        write_json(path, counter)
         log.debug("Wrote values", field=field, path=str(path))
 
 

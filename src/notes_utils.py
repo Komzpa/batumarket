@@ -1,28 +1,13 @@
 """Small helper functions to read and write markdown files."""
 
+"""Compatibility wrappers around :mod:`serde_utils` for notes."""
+
 from pathlib import Path
 
 from log_utils import get_logger
+from serde_utils import read_md, read_text, write_md
 
 log = get_logger().bind(module=__name__)
-
-
-def read_text(path: str) -> str:
-    p = Path(path)
-    if not p.exists():
-        return ""
-    return p.read_text(encoding="utf-8")
-
-
-def read_md(path: str) -> str:
-    return read_text(path)
-
-
-def write_md(path: str, text: str) -> None:
-    p = Path(path)
-    p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(text.rstrip() + "\n", encoding="utf-8")
-    log.debug("Wrote file", path=str(p))
 
 
 def collect_notes() -> str:
@@ -32,5 +17,5 @@ def collect_notes() -> str:
         return ""
     parts = []
     for f in sorted(notes_dir.glob("*.md")):
-        parts.append(f.read_text(encoding="utf-8"))
+        parts.append(read_md(f))
     return "\n\n".join(parts)

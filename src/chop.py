@@ -18,8 +18,9 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = cfg.LANGS
 from log_utils import get_logger, install_excepthook
-from notes_utils import read_md
-from message_utils import parse_md, build_prompt
+from caption_io import read_caption
+from post_io import read_post
+from message_utils import build_prompt
 
 # Blueprint describing expected fields and message taxonomy used by the model.
 BLUEPRINT = Path("prompts/chopper_prompt.md").read_text(encoding="utf-8")
@@ -59,7 +60,7 @@ def process_message(msg_path: Path) -> None:
 
     log.info("Processing message", path=str(msg_path))
 
-    meta, text = parse_md(msg_path)
+    meta, text = read_post(msg_path)
     if should_skip_message(meta, text):
         log.info("Skipping message", path=str(msg_path), reason="moderation")
         return
@@ -75,7 +76,7 @@ def process_message(msg_path: Path) -> None:
             if not cap.exists():
                 log.info("Skipping message", path=str(msg_path), reason="missing-caption", file=str(p))
                 return
-            caption_text = read_md(cap)
+            caption_text = read_caption(cap)
             log.debug("Found caption", file=str(p), text=caption_text)
             captions.append(caption_text)
     # Combine the original message text with image captions. This ensures GPT

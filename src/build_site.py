@@ -8,7 +8,6 @@ on cosine similarity.  ``data/ontology/fields.json`` is consulted to display tab
 columns in a stable order.
 """
 
-import json
 import math
 import os
 from pathlib import Path
@@ -18,6 +17,8 @@ from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
 import gettext
+from serde_utils import load_json
+from lot_io import read_lots
 
 try:
     from sklearn.neighbors import NearestNeighbors
@@ -28,7 +29,7 @@ except Exception:
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
-from message_utils import parse_md
+from post_io import read_post
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -57,11 +58,11 @@ def _load_vectors() -> dict[str, list[float]]:
         return {}
     data: dict[str, list[float]] = {}
     for path in VEC_DIR.rglob("*.json"):
-        try:
-            obj = json.loads(path.read_text())
+        obj = load_json(path)
+        if isinstance(obj, dict) and "id" in obj and "vec" in obj:
             data[obj["id"]] = obj["vec"]
-        except Exception:
-            log.exception("Failed to parse vector file", file=str(path))
+        else:
+            log.error("Failed to parse vector file", file=str(path))
     log.info("Loaded vectors", count=len(data))
     return data
 
@@ -79,10 +80,9 @@ def _cos_sim(a: list[float], b: list[float]) -> float:
 def _load_ontology() -> list[str]:
     if not ONTOLOGY.exists():
         return []
-    try:
-        data = json.loads(ONTOLOGY.read_text())
-    except Exception:
-        log.exception("Bad ontology", path=str(ONTOLOGY))
+    data = load_json(ONTOLOGY)
+    if not isinstance(data, dict):
+        log.error("Bad ontology", path=str(ONTOLOGY))
         return []
     fields = sorted(data.keys())
     log.info("Loaded ontology", count=len(fields))
@@ -127,26 +127,19 @@ def _iter_lots() -> list[dict]:
     """Yield lots with helper metadata."""
     lots = []
     for path in LOTS_DIR.rglob("*.json"):
-        try:
-            data = json.loads(path.read_text())
-        except Exception:
-            log.exception("Failed to parse lot file", file=str(path))
+        data = read_lots(path)
+        if not data:
             continue
-        if isinstance(data, dict):
-            data = [data]
         rel = path.relative_to(LOTS_DIR).with_suffix("")
         base = rel.name
         prefix = rel.parent
         for i, lot in enumerate(data):
-            for k in list(lot):
-                if lot[k] == "" or lot[k] is None:
-                    del lot[k]
             src = lot.get("source:path")
             meta: dict[str, str] | None = None
             text = ""
             if src:
                 raw_path = RAW_DIR / src
-                meta, text = parse_md(raw_path)
+                meta, text = read_post(raw_path)
                 if should_skip_message(meta, text):
                     log.info(
                         "Skipping lot",
@@ -234,7 +227,7 @@ def build_page(
         orig_text = ""
         src = lot.get("source:path")
         if src:
-            _, orig_text = parse_md(RAW_DIR / src)
+            _, orig_text = read_post(RAW_DIR / src)
 
         chat = lot.get("source:chat")
         mid = lot.get("source:message_id")
