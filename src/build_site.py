@@ -13,9 +13,11 @@ import math
 import os
 from pathlib import Path
 import shutil
+import subprocess
 from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
+import gettext
 
 try:
     from sklearn.neighbors import NearestNeighbors
@@ -36,6 +38,8 @@ TEMPLATES = Path("templates")
 VEC_DIR = Path("data/vectors")
 ONTOLOGY = Path("data/ontology/fields.json")
 RAW_DIR = Path("data/raw")
+LOCALE_DIR = Path("locale")
+MEDIA_DIR = Path("data/media")
 
 
 def _lot_id_for(path: Path) -> str:
@@ -84,6 +88,34 @@ def _load_ontology() -> list[str]:
     return fields
 
 
+def _compile_locale(lang: str) -> None:
+    po = LOCALE_DIR / lang / 'LC_MESSAGES' / 'messages.po'
+    mo = po.with_suffix('.mo')
+    if not po.exists():
+        return
+    if not mo.exists() or po.stat().st_mtime > mo.stat().st_mtime:
+        try:
+            subprocess.run(['msgfmt', str(po), '-o', str(mo)], check=True)
+            log.debug('Compiled translation', lang=lang)
+        except Exception:
+            log.exception('Failed to compile translation', lang=lang)
+
+
+def _env_for_lang(lang: str) -> Environment:
+    _compile_locale(lang)
+    env = Environment(
+        loader=FileSystemLoader(str(TEMPLATES)),
+        extensions=['jinja2.ext.i18n'],
+    )
+    mo = LOCALE_DIR / lang / 'LC_MESSAGES' / 'messages.mo'
+    try:
+        trans = gettext.GNUTranslations(mo.open('rb'))
+    except Exception:
+        trans = gettext.NullTranslations()
+    env.install_gettext_translations(trans, newstyle=True)
+    return env
+
+
 def _parse_md(path: Path) -> tuple[dict, str]:
     """Return metadata dict and message text from ``path``."""
     text = path.read_text(encoding="utf-8") if path.exists() else ""
@@ -119,6 +151,9 @@ def _iter_lots() -> list[dict]:
         base = rel.name
         prefix = rel.parent
         for i, lot in enumerate(data):
+            for k in list(lot):
+                if lot[k] == "" or lot[k] is None:
+                    del lot[k]
             src = lot.get("source:path")
             meta: dict[str, str] | None = None
             text = ""
@@ -148,8 +183,21 @@ def _iter_lots() -> list[dict]:
     return lots
 
 
+def _copy_images(lots: list[dict]) -> None:
+    media_dst = VIEWS_DIR / "media"
+    if media_dst.exists():
+        shutil.rmtree(media_dst)
+    for lot in lots:
+        for rel in lot.get("files", []):
+            src = MEDIA_DIR / rel
+            if not src.exists():
+                continue
+            dst = media_dst / rel
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+
+
 def build_page(
-    env: Environment,
     lot: dict,
     similar: list[dict],
     more_user: list[dict],
@@ -158,9 +206,10 @@ def build_page(
 ) -> None:
     """Render ``lot`` into separate HTML files for every language."""
     for lang in langs:
+        env = _env_for_lang(lang)
         images = []
         for rel in lot.get("files", []):
-            p = Path("data/media") / rel
+            p = MEDIA_DIR / rel
             cap = p.with_suffix(".caption.md")
             caption = cap.read_text(encoding="utf-8") if cap.exists() else ""
             images.append({"path": rel, "caption": caption})
@@ -174,6 +223,7 @@ def build_page(
             and not k.startswith("description_")
             and not k.startswith("source:")
             and not k.startswith("_")
+            and v not in ("", None)
         }
         sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
         for k in attrs:
@@ -224,9 +274,20 @@ def build_page(
             for item in more_user
         ]
         static_prefix = os.path.relpath(VIEWS_DIR / "static", out.parent)
-        media_prefix = os.path.relpath(VIEWS_DIR.parent / "media", out.parent)
+        media_prefix = os.path.relpath(VIEWS_DIR / "media", out.parent)
         home_link = os.path.relpath(VIEWS_DIR / f"index_{lang}.html", out.parent)
         page_basename = Path(lot['_id']).name
+        breadcrumbs = [{"title": "Home", "link": home_link}]
+        deal = lot.get("market:deal")
+        if isinstance(deal, list):
+            deal = deal[0] if deal else None
+        if deal:
+            cat_link = os.path.relpath(
+                VIEWS_DIR / "deal" / f"{deal}_{lang}.html",
+                out.parent,
+            )
+            breadcrumbs.append({"title": deal, "link": cat_link})
+        breadcrumbs.append({"title": lot.get(f"title_{lang}") or lot['_id'], "link": None})
         out.write_text(
             template.render(
                 title=lot.get(f"title_{lang}", "Lot"),
@@ -243,7 +304,7 @@ def build_page(
                 page_basename=page_basename,
                 static_prefix=static_prefix,
                 media_prefix=media_prefix,
-                home_link=home_link,
+                breadcrumbs=breadcrumbs,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -251,10 +312,10 @@ def build_page(
 
 def main() -> None:
     log.info("Building site")
-    env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
     cfg = load_config()
     langs = getattr(cfg, "LANGS", ["en"])
     keep_days = getattr(cfg, "KEEP_DAYS", 7)
+    envs = {lang: _env_for_lang(lang) for lang in langs}
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
     # Copy CSS and JS so the generated pages are standalone
@@ -272,6 +333,7 @@ def main() -> None:
     vectors = _load_vectors()
     log.debug("Loading lots")
     lots = _iter_lots()
+    _copy_images(lots)
 
     # Map each lot id to its embedding vector if available.
     id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
@@ -420,7 +482,6 @@ def main() -> None:
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
         build_page(
-            env,
             lot,
             sim_map.get(lot["_id"], []),
             more_user_map.get(lot["_id"], []),
@@ -429,7 +490,7 @@ def main() -> None:
         )
 
     log.debug("Writing category pages")
-    cat_tpl = env.get_template("category.html")
+    cat_tpls = {lang: envs[lang].get_template("category.html") for lang in langs}
     cat_dir = VIEWS_DIR / "deal"
     cat_dir.mkdir(parents=True, exist_ok=True)
     for deal, lot_list in categories.items():
@@ -473,8 +534,12 @@ def main() -> None:
                     }
                 )
             out = cat_dir / f"{deal}_{lang}.html"
+            breadcrumbs = [
+                {"title": "Home", "link": os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir)},
+                {"title": deal, "link": None},
+            ]
             out.write_text(
-                cat_tpl.render(
+                cat_tpls[lang].render(
                     deal=deal,
                     items=items_lang,
                     langs=langs,
@@ -482,7 +547,7 @@ def main() -> None:
                     page_basename=deal,
                     title=deal,
                     static_prefix=os.path.relpath(VIEWS_DIR / "static", cat_dir),
-                    home_link=os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir),
+                    breadcrumbs=breadcrumbs,
                 )
             )
             log.debug("Wrote", path=str(out))
@@ -490,7 +555,7 @@ def main() -> None:
     recent.sort(key=lambda x: x.get("dt") or now, reverse=True)
 
     log.debug("Writing index pages")
-    index_tpl = env.get_template("index.html")
+    index_tpls = {lang: envs[lang].get_template("index.html") for lang in langs}
     for lang in langs:
         cats_lang = []
         for deal, stat in category_stats.items():
@@ -503,15 +568,16 @@ def main() -> None:
                 }
             )
         out = VIEWS_DIR / f"index_{lang}.html"
+        breadcrumbs = [{"title": "Home", "link": f"index_{lang}.html"}]
         out.write_text(
-            index_tpl.render(
+            index_tpls[lang].render(
                 categories=cats_lang,
                 langs=langs,
                 current_lang=lang,
                 page_basename="index",
                 title="Index",
                 static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
-                home_link=f"index_{lang}.html",
+                breadcrumbs=breadcrumbs,
                 keep_days=keep_days,
             )
         )

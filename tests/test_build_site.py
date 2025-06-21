@@ -21,10 +21,12 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
     monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 
     lots_dir = tmp_path / "lots"
     lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
@@ -59,10 +61,12 @@ def test_handles_list_fields(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
     monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 
     lots_dir = tmp_path / "lots"
     lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
@@ -86,6 +90,7 @@ def test_build_site_skips_moderated(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
     monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 
     lots_dir = tmp_path / "lots"
@@ -93,6 +98,7 @@ def test_build_site_skips_moderated(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "RAW_DIR", raw_dir)
     lots_dir.mkdir()
     raw_dir.mkdir(parents=True, exist_ok=True)
+    (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (raw_dir / "1.md").write_text("id: 1\n\nspam", encoding="utf-8")
@@ -119,10 +125,12 @@ def test_build_site_skips_misparsed(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
     monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 
     lots_dir = tmp_path / "lots"
     lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
@@ -138,3 +146,39 @@ def test_build_site_skips_misparsed(tmp_path, monkeypatch):
     build_site.main()
 
     assert not (tmp_path / "views" / "1-0_en.html").exists()
+
+
+def test_images_and_empty_values(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    media_dir = tmp_path / "media"
+    media_dir.mkdir()
+    img = media_dir / "a.jpg"
+    img.write_bytes(b"img")
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "x",
+            "files": ["a.jpg"],
+            "market:deal": "sell_item",
+            "extra": "",
+            "other": None,
+        }
+    ]))
+
+    build_site.main()
+
+    assert (tmp_path / "views" / "media" / "a.jpg").exists()
+    html = (tmp_path / "views" / "1-0_en.html").read_text()
+    assert "extra" not in html
+    assert "other" not in html

@@ -47,3 +47,4 @@ clean:
 
 precommit:
 	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
+	python scripts/check_translations.py

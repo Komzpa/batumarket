@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ru\n"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Categories"
+msgstr "Категории"
+
+msgid "Category"
+msgstr "Категория"
+
+msgid "Posts last %(days)s days"
+msgstr "За последние %(days)s дней"
+
+msgid "Unique posters"
+msgstr "Уникальные авторы"
+
+msgid "Title"
+msgstr "Заголовок"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Seller"
+msgstr "Продавец"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Original post"
+msgstr "Оригинальное сообщение"
+
+msgid "More by this user"
+msgstr "Другие объявления автора"
+
+msgid "Telegram post"
+msgstr "Сообщение в Telegram"
+
+msgid "Lot"
+msgstr "Лот"
+
+msgid "Index"
+msgstr "Главная страница"
