@@ -79,6 +79,10 @@ def process_message(msg_path: Path) -> None:
             caption_text = read_caption(cap)
             log.debug("Found caption", file=str(p), text=caption_text)
             captions.append(caption_text)
+
+    if not text.strip() and not captions:
+        log.info("Skipping message", path=str(msg_path), reason="empty")
+        return
     # Combine the original message text with image captions. This ensures GPT
     # has full context rather than captions alone.
     prompt = build_prompt(text, files, captions)
