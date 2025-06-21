@@ -301,10 +301,14 @@ async def _save_message(
     if not sender_name:
         sender_name = post_author
 
+    sender_id = msg.sender_id if msg.sender_id is not None else getattr(sender, "id", None)
+    if sender_id is None:
+        log.warning("Message sender missing", chat=chat, id=msg.id)
+
     meta = {
         "id": msg.id,
         "chat": chat,
-        "sender": msg.sender_id,
+        "sender": sender_id,
         "sender_name": sender_name,
         "post_author": post_author,
         "sender_username": getattr(sender, "username", None),
@@ -357,8 +361,10 @@ async def _save_message(
             log.info("Dropped lots after refetch", file=str(lot_old))
     if replace and path.exists():
         path.unlink()
-    for key in ["id", "chat", "date", "sender"]:
+    for key in ["id", "chat", "date"]:
         assert meta.get(key) not in (None, ""), f"missing {key}"
+    if meta.get("sender") in (None, ""):
+        log.debug("Sender id unavailable", chat=chat, id=msg.id)
     _write_md(path, meta, text)
     if replace:
         lot_path = LOTS_DIR / path.relative_to(RAW_DIR).with_suffix(".json")

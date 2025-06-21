@@ -629,6 +629,42 @@ def test_save_message_text_attr(tmp_path, monkeypatch):
     asyncio.run(run())
 
 
+def test_save_message_missing_sender(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+
+        date = datetime.datetime(2024, 5, 1)
+
+        class NoSender(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date)
+                self.sender_id = None
+
+            async def get_sender(self):
+                return types.SimpleNamespace(first_name="Ann")
+
+        msg = NoSender(1, date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert md_file.exists()
+
+    asyncio.run(run())
+
+
 def test_main_sequential_updates(monkeypatch):
     """Ensure TelegramClient is created with sequential_updates=True."""
     _install_telethon_stub(monkeypatch)
