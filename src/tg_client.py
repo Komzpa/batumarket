@@ -295,7 +295,17 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> Path
     group_path = None
     if msg.grouped_id:
         group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
-        if group_path:
+        if group_path is None:
+            try:
+                start = max(1, msg.id - 9)
+                others = await client.get_messages(chat, ids=list(range(start, msg.id)))
+                for other in others:
+                    if getattr(other, "grouped_id", None) == msg.grouped_id:
+                        await _save_message(client, chat, other)
+            except Exception:
+                log.exception("Failed to fetch album", chat=chat, id=msg.id)
+            group_path = _GROUPS.get(msg.grouped_id) or subdir / f"{msg.id}.md"
+        else:
             meta_prev, body_prev = read_post(group_path)
             files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
             files = files_prev + files
@@ -303,8 +313,6 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> Path
             meta_prev["files"] = files
             meta = meta_prev
             text = body_prev or text
-        else:
-            group_path = subdir / f"{msg.id}.md"
         _GROUPS[msg.grouped_id] = group_path
     path = group_path or subdir / f"{msg.id}.md"
     for key in ["id", "chat", "date", "sender"]:
