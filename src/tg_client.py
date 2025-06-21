@@ -54,6 +54,7 @@ from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
 from post_io import write_post, read_post
 from image_io import write_image_meta
+from moderation import should_skip_user
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -229,10 +230,24 @@ def get_last_id(chat: str) -> int:
     return max(ids) if ids else 0
 
 
-async def _save_message(client: TelegramClient, chat: str, msg: Message) -> Path:
-    """Write ``msg`` to disk with metadata and any media references."""
+async def _save_message(
+    client: TelegramClient, chat: str, msg: Message
+) -> Path | None:
+    """Write ``msg`` to disk with metadata and any media references.
+
+    Returns the path of the stored message or ``None`` when skipped."""
     _mark_activity()
     log.debug("Processing message", chat=chat, id=msg.id)
+    sender = msg.sender or await msg.get_sender()
+    username = getattr(sender, "username", None)
+    if should_skip_user(username):
+        log.debug(
+            "Skipping blacklisted user",
+            chat=chat,
+            id=msg.id,
+            user=username,
+        )
+        return None
     subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
     subdir.mkdir(parents=True, exist_ok=True)
     files = []
@@ -261,7 +276,6 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> Path
     except Exception:
         log.debug("Failed to fetch permissions", chat=chat, user=msg.sender_id)
 
-    sender = await msg.get_sender()
     post_author = getattr(msg, "post_author", None)
     sender_name = " ".join(
         p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
@@ -361,7 +375,9 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     return str(rel)
 
 
-async def _save_bounded(client: TelegramClient, chat: str, msg: Message) -> Path:
+async def _save_bounded(
+    client: TelegramClient, chat: str, msg: Message
+) -> Path | None:
     """Run ``_save_message`` under the global semaphore and return path."""
     assert _sem is not None
     async with _sem:
@@ -394,7 +410,7 @@ async def _download_messages(
         else:
             raise
     done = 0
-    tasks: list[asyncio.Task[Path]] = []
+    tasks: list[asyncio.Task[Path | None]] = []
     bar.start()
     for msg in messages:
         tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
@@ -479,6 +495,8 @@ async def refetch_misparsed(client: TelegramClient) -> None:
         if not msg:
             continue
         new_path = await _save_bounded(client, chat, msg)
+        if new_path is None:
+            continue
         if old_text is None:
             continue
         try:
@@ -515,6 +533,8 @@ async def refetch_empty(client: TelegramClient) -> None:
         if not msg:
             continue
         new_path = await _save_bounded(client, chat, msg)
+        if new_path is None:
+            continue
         try:
             new_text = new_path.read_text()
         except Exception:

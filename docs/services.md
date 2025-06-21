@@ -161,6 +161,11 @@ Recent filters catch offers of illegal narcotics and vague job ads like
 Loan promises or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов") are treated as scams.
 Job offers quoting salary in Russian roubles are considered sketchy for Georgia where wages are usually in GEL or USD.
 
+Some chats are cluttered with housekeeping bots. ``tg_client.py`` consults
+``moderation.BLACKLISTED_USERS`` and drops their updates without downloading
+media. The initial blacklist contains ``M_S_Help_bot``, ``ChatKeeperBot``,
+``DosviduliBot`` and ``Batumi_Batumi_bot``.
+
 ## File I/O helpers
 `post_io.py`, `lot_io.py`, `caption_io.py` and `image_io.py` handle posts,
 lots, captions and media metadata. They use `serde_utils.py` for the low-level
