@@ -108,6 +108,49 @@ def test_empty_values_dropped(tmp_path, monkeypatch):
     assert "b" not in data
 
 
+def test_missing_timestamp_or_contact(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
+    )
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (tmp_path / "a.json").write_text(
+        json.dumps([
+            {
+                "title_en": "x",
+                "description_en": "d",
+                "title_ru": "x",
+                "description_ru": "d",
+                "title_ka": "x",
+                "description_ka": "d"
+            },
+            {
+                "timestamp": now,
+                "title_en": "x",
+                "description_en": "d",
+                "title_ru": "x",
+                "description_ru": "d",
+                "title_ka": "x",
+                "description_ka": "d"
+            }
+        ])
+    )
+
+    scan_ontology.main()
+
+    mis = json.loads((tmp_path / "misparsed.json").read_text())
+    assert len(mis) == 2
+
+
 def test_broken_meta_list(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
