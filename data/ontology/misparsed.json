@@ -67,15 +67,6 @@
   {
     "lot": {
       "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778761",
-      "source:path": "batumi_arendaaaa/2025/06/3778756.md",
-      "timestamp": "2025-06-14T17:25:26+00:00"
-    },
-    "input": "Message text:\nid: 3778756\nchat: batumi_arendaaaa\nsender: 8027997305\nsender_name: Elena Batumi Rent\nsender_username: youragentbatumi\nsender_phone: \ntg_link: https://t.me/youragentbatumi\ndate: 2025-06-14T17:25:25+00:00\ngroup_id: 13999375406358850\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
       "source:message_id": "3795159",
       "source:path": "batumi_arendaaaa/2025/06/3795153.md",
       "timestamp": "2025-06-18T11:25:57+00:00"
@@ -611,15 +602,6 @@
       "timestamp": "2025-06-18T08:43:22+00:00"
     },
     "input": "Message text:\nid: 3794206\nchat: batumi_arendaaaa\nsender: 6886893688\nsender_name: Ina\nsender_username: Inamom\nsender_phone: \ntg_link: https://t.me/Inamom\ndate: 2025-06-18T08:43:22+00:00\ngroup_id: 14001889618971898\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778916",
-      "source:path": "batumi_arendaaaa/2025/06/3778914.md",
-      "timestamp": "2025-06-14T18:05:27+00:00"
-    },
-    "input": "Message text:\nid: 3778914\nchat: batumi_arendaaaa\nsender: 8027997305\nsender_name: Elena Batumi Rent\nsender_username: youragentbatumi\nsender_phone: \ntg_link: https://t.me/youragentbatumi\ndate: 2025-06-14T18:05:26+00:00\ngroup_id: 13999394614108970\nis_admin: False"
   },
   {
     "lot": {
@@ -1498,15 +1480,6 @@
       "timestamp": "2025-06-18T08:21:14+00:00"
     },
     "input": "Message text:\nid: 3794027\nchat: batumi_arendaaaa\nsender: 1577080385\nsender_name: Taso\nsender_username: Taso88\nsender_phone: \ntg_link: https://t.me/Taso88\ndate: 2025-06-18T08:21:14+00:00\ngroup_id: 14001878977142178\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778789",
-      "source:path": "batumi_arendaaaa/2025/06/3778784.md",
-      "timestamp": "2025-06-14T17:31:14+00:00"
-    },
-    "input": "Message text:\nid: 3778784\nchat: batumi_arendaaaa\nsender: 7899422755\nsender_name: Аренда квартир в Батуми\nsender_username: batumi_flats_rent\nsender_phone: \ntg_link: https://t.me/batumi_flats_rent\ndate: 2025-06-14T17:31:14+00:00\ngroup_id: 13999378196930402\nis_admin: False"
   },
   {
     "lot": {
@@ -2663,15 +2636,6 @@
   {
     "lot": {
       "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778818",
-      "source:path": "batumi_arendaaaa/2025/06/3778812.md",
-      "timestamp": "2025-06-14T17:40:26+00:00"
-    },
-    "input": "Message text:\nid: 3778812\nchat: batumi_arendaaaa\nsender: 8027997305\nsender_name: Elena Batumi Rent\nsender_username: youragentbatumi\nsender_phone: \ntg_link: https://t.me/youragentbatumi\ndate: 2025-06-14T17:40:26+00:00\ngroup_id: 13999382608838858\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
       "source:message_id": "3780581",
       "source:path": "batumi_arendaaaa/2025/06/3780575.md",
       "timestamp": "2025-06-15T08:25:53+00:00"
@@ -3215,15 +3179,6 @@
       "timestamp": "2025-06-18T08:40:51+00:00"
     },
     "input": "Message text:\nid: 3794179\nchat: batumi_arendaaaa\nsender: 6886893688\nsender_name: Ina\nsender_username: Inamom\nsender_phone: \ntg_link: https://t.me/Inamom\ndate: 2025-06-18T08:40:51+00:00\ngroup_id: 14001888408564314\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778809",
-      "source:path": "batumi_arendaaaa/2025/06/3778802.md",
-      "timestamp": "2025-06-14T17:36:15+00:00"
-    },
-    "input": "Message text:\nid: 3778802\nchat: batumi_arendaaaa\nsender: 7899422755\nsender_name: Аренда квартир в Батуми\nsender_username: batumi_flats_rent\nsender_phone: \ntg_link: https://t.me/batumi_flats_rent\ndate: 2025-06-14T17:36:15+00:00\ngroup_id: 13999380599429234\nis_admin: False"
   },
   {
     "lot": {
@@ -4045,17 +4000,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-14T17:51:15+00:00",
-      "market:deal": "announcement",
-      "contact:telegram": "@batumi_flats_rent",
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778870",
-      "source:path": "batumi_arendaaaa/2025/06/3778867.md"
-    },
-    "input": "Message text:\nid: 3778867\nchat: batumi_arendaaaa\nsender: 7899422755\nsender_name: Аренда квартир в Батуми\nsender_username: batumi_flats_rent\nsender_phone: \ntg_link: https://t.me/batumi_flats_rent\ndate: 2025-06-14T17:51:15+00:00\ngroup_id: 13999387806145794\nis_admin: False"
-  },
-  {
-    "lot": {
       "source:chat": "batumi_arendaaaa",
       "source:message_id": "3787127",
       "source:path": "batumi_arendaaaa/2025/06/3787127.md",
@@ -4622,15 +4566,6 @@
   },
   {
     "lot": {
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778769",
-      "source:path": "batumi_arendaaaa/2025/06/3778764.md",
-      "timestamp": "2025-06-14T17:26:14+00:00"
-    },
-    "input": "Message text:\nid: 3778764\nchat: batumi_arendaaaa\nsender: 7899422755\nsender_name: Аренда квартир в Батуми\nsender_username: batumi_flats_rent\nsender_phone: \ntg_link: https://t.me/batumi_flats_rent\ndate: 2025-06-14T17:26:14+00:00\ngroup_id: 13999375797147962\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-18T08:41:22+00:00",
       "market:deal": "misc",
       "contact:telegram": "@Inamom",
@@ -4711,15 +4646,6 @@
       "timestamp": "2025-06-15T14:02:53+00:00"
     },
     "input": "Message text:\nid: 3782453\nchat: batumi_arendaaaa\nsender: 8027997305\nsender_name: Elena Batumi Rent\nsender_username: youragentbatumi\nsender_phone: \ntg_link: https://t.me/youragentbatumi\ndate: 2025-06-15T14:02:53+00:00\ngroup_id: 13999969385468354\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumi_arendaaaa",
-      "source:message_id": "3778846",
-      "source:path": "batumi_arendaaaa/2025/06/3778839.md",
-      "timestamp": "2025-06-14T17:45:26+00:00"
-    },
-    "input": "Message text:\nid: 3778839\nchat: batumi_arendaaaa\nsender: 8027997305\nsender_name: Elena Batumi Rent\nsender_username: youragentbatumi\nsender_phone: \ntg_link: https://t.me/youragentbatumi\ndate: 2025-06-14T17:45:26+00:00\ngroup_id: 13999385009837586\nis_admin: False"
   },
   {
     "lot": {
@@ -9285,15 +9211,6 @@
   {
     "lot": {
       "source:chat": "batumiarendachat",
-      "source:message_id": "751216",
-      "source:path": "batumiarendachat/2025/06/751212.md",
-      "timestamp": "2025-06-14T17:52:59+00:00"
-    },
-    "input": "Message text:\nid: 751212\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T17:52:59+00:00\ngroup_id: 13999388636978458\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
       "source:message_id": "752565",
       "source:path": "batumiarendachat/2025/06/752562.md",
       "timestamp": "2025-06-16T06:49:49+00:00"
@@ -9329,15 +9246,6 @@
       "timestamp": "2025-06-18T18:32:27+00:00"
     },
     "input": "Message text:\nid: 756925\nchat: batumiarendachat\nsender: 5658056501\nsender_name: Юляна Анатольевна\nsender_phone: \ndate: 2025-06-18T18:32:26+00:00\ngroup_id: 14002172371133762\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751173",
-      "source:path": "batumiarendachat/2025/06/751172.md",
-      "timestamp": "2025-06-14T17:48:00+00:00"
-    },
-    "input": "Message text:\nid: 751172\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T17:48:00+00:00\ngroup_id: 13999386242335890\nis_admin: False"
   },
   {
     "lot": {
@@ -9718,15 +9626,6 @@
   {
     "lot": {
       "source:chat": "batumiarendachat",
-      "source:message_id": "751149",
-      "source:path": "batumiarendachat/2025/06/751147.md",
-      "timestamp": "2025-06-14T17:42:16+00:00"
-    },
-    "input": "Message text:\nid: 751147\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T17:42:16+00:00\ngroup_id: 13999383491999578\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
       "source:message_id": "752320",
       "source:path": "batumiarendachat/2025/06/752317.md",
       "timestamp": "2025-06-15T21:04:31+00:00"
@@ -10041,15 +9940,6 @@
       "timestamp": "2025-06-17T11:30:55+00:00"
     },
     "input": "Message text:\nid: 754284\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-17T11:30:55+00:00\ngroup_id: 14001278845073962\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751289",
-      "source:path": "batumiarendachat/2025/06/751283.md",
-      "timestamp": "2025-06-14T18:10:49+00:00"
-    },
-    "input": "Message text:\nid: 751283\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T18:10:48+00:00\ngroup_id: 13999397190412626\nis_admin: False"
   },
   {
     "lot": {
@@ -10449,15 +10339,6 @@
   {
     "lot": {
       "source:chat": "batumiarendachat",
-      "source:message_id": "751235",
-      "source:path": "batumiarendachat/2025/06/751231.md",
-      "timestamp": "2025-06-14T17:54:57+00:00"
-    },
-    "input": "Message text:\nid: 751231\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T17:54:57+00:00\ngroup_id: 13999389576662474\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
       "source:message_id": "753490",
       "source:path": "batumiarendachat/2025/06/753490.md",
       "timestamp": "2025-06-16T19:33:11+00:00"
@@ -10577,15 +10458,6 @@
   {
     "lot": {
       "source:chat": "batumiarendachat",
-      "source:message_id": "751194",
-      "source:path": "batumiarendachat/2025/06/751186.md",
-      "timestamp": "2025-06-14T17:49:08+00:00"
-    },
-    "input": "Message text:\nid: 751186\nchat: batumiarendachat\nsender: 5895456371\nsender_name: Broker RD\nsender_username: rusagent5\nsender_phone: \ntg_link: https://t.me/rusagent5\ndate: 2025-06-14T17:49:07+00:00\ngroup_id: 13999386782228826\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
       "source:message_id": "751749",
       "source:path": "batumiarendachat/2025/06/751744.md",
       "timestamp": "2025-06-15T08:30:30+00:00"
@@ -10668,15 +10540,6 @@
       "source:path": "batumiarendachat/2025/06/753252.md"
     },
     "input": "Message text:\nid: 753252\nchat: batumiarendachat\nsender: 6006660656\nsender_name: Roma Ssaas Batumirooms\nsender_username: RomaSsaas\nsender_phone: +995557313114\ntg_link: https://t.me/RomaSsaas\ndate: 2025-06-16T18:49:03+00:00\ngroup_id: 14000797943767218\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751272",
-      "source:path": "batumiarendachat/2025/06/751266.md",
-      "timestamp": "2025-06-14T18:09:55+00:00"
-    },
-    "input": "Message text:\nid: 751266\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T18:09:55+00:00\ngroup_id: 13999396765042786\nis_admin: False"
   },
   {
     "lot": {
@@ -10807,15 +10670,6 @@
       "timestamp": "2025-06-18T13:27:23+00:00"
     },
     "input": "Message text:\nid: 756367\nchat: batumiarendachat\nsender: 5895456371\nsender_name: Broker RD\nsender_username: rusagent5\nsender_phone: \ntg_link: https://t.me/rusagent5\ndate: 2025-06-18T13:27:23+00:00\ngroup_id: 14002025937807922\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751263",
-      "source:path": "batumiarendachat/2025/06/751259.md",
-      "timestamp": "2025-06-14T18:09:45+00:00"
-    },
-    "input": "Message text:\nid: 751259\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T18:09:45+00:00\ngroup_id: 13999396681288250\nis_admin: False"
   },
   {
     "lot": {
@@ -12046,15 +11900,6 @@
   {
     "lot": {
       "source:chat": "batumiarendachat",
-      "source:message_id": "751222",
-      "source:path": "batumiarendachat/2025/06/751218.md",
-      "timestamp": "2025-06-14T17:53:17+00:00"
-    },
-    "input": "Message text:\nid: 751218\nchat: batumiarendachat\nsender: 7688506244\nsender_name: Vladyslava\nsender_username: Vl_ArendaBatumi\nsender_phone: \ntg_link: https://t.me/Vl_ArendaBatumi\ndate: 2025-06-14T17:53:17+00:00\ngroup_id: 13999388775350090\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "batumiarendachat",
       "source:message_id": "753943",
       "source:path": "batumiarendachat/2025/06/753938.md",
       "timestamp": "2025-06-17T07:33:31+00:00"
@@ -12976,15 +12821,6 @@
   },
   {
     "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078475",
-      "source:path": "arenda_batumi/2025/06/2078468.md",
-      "timestamp": "2025-06-14T18:01:21+00:00"
-    },
-    "input": "Message text:\nid: 2078468\nchat: arenda_batumi\nsender: 7579980335\nsender_name: Батуми Аренда Квартир\nsender_username: rent_apartments_batumi_real\nsender_phone: \ntg_link: https://t.me/rent_apartments_batumi_real\ndate: 2025-06-14T18:01:21+00:00\ngroup_id: 13999392648627698\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-17T09:03:33+00:00",
       "contact:telegram": "@kate_batumi",
       "contact:phone": "+995555920858",
@@ -13532,17 +13368,6 @@
       "timestamp": "2025-06-16T13:14:24+00:00"
     },
     "input": "Message text:\nid: 2087073\nchat: arenda_batumi\nsender: 7271668339\nsender_name: Galina Batumi\nsender_username: galina_batumii\nsender_phone: \ntg_link: https://t.me/galina_batumii\ndate: 2025-06-16T13:14:24+00:00\ngroup_id: 14000637315465858\nis_admin: False"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-14T17:39:56+00:00",
-      "market:deal": "announcement",
-      "contact:telegram": "@cappuccino_estate_manager_1",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078368",
-      "source:path": "arenda_batumi/2025/06/2078364.md"
-    },
-    "input": "Message text:\nid: 2078364\nchat: arenda_batumi\nsender: 5676186526\nsender_name: Cappuccino Estate\nsender_username: cappuccino_estate_manager_1\nsender_phone: \ntg_link: https://t.me/cappuccino_estate_manager_1\ndate: 2025-06-14T17:39:56+00:00\ngroup_id: 13999382370390522\nis_admin: False"
   },
   {
     "lot": {
@@ -14259,17 +14084,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-14T18:04:12+00:00",
-      "market:deal": "misc",
-      "contact:telegram": "@vika5471995",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078492",
-      "source:path": "arenda_batumi/2025/06/2078485.md"
-    },
-    "input": "Message text:\nid: 2078485\nchat: arenda_batumi\nsender: 7839370613\nsender_name: Виктория\nsender_username: vika5471995\nsender_phone: \ntg_link: https://t.me/vika5471995\ndate: 2025-06-14T18:04:11+00:00\ngroup_id: 13999394012985378\nis_admin: False"
-  },
-  {
-    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2079483",
       "source:path": "arenda_batumi/2025/06/2079479.md",
@@ -14584,15 +14398,6 @@
       "source:path": "arenda_batumi/2025/06/2090436.md"
     },
     "input": "Message text:\nid: 2090436\nchat: arenda_batumi\nsender: 6356934654\nsender_name: Katerina\nsender_username: Karerina_globex\nsender_phone: +995558986561\ntg_link: https://t.me/Karerina_globex\ndate: 2025-06-17T07:37:06+00:00\ngroup_id: 14001166611287530\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078354",
-      "source:path": "arenda_batumi/2025/06/2078348.md",
-      "timestamp": "2025-06-14T17:31:22+00:00"
-    },
-    "input": "Message text:\nid: 2078348\nchat: arenda_batumi\nsender: 7318242617\nsender_name: Anton\nsender_username: KireevBatumi2\nsender_phone: \ntg_link: https://t.me/KireevBatumi2\ndate: 2025-06-14T17:31:21+00:00\ngroup_id: 13999378255123402\nis_admin: False"
   },
   {
     "lot": {
@@ -15677,15 +15482,6 @@
       "timestamp": "2025-06-15T17:29:45+00:00"
     },
     "input": "Message text:\nid: 2083466\nchat: arenda_batumi\nsender: 7692932369\nsender_name: Vitaliy Pauliucovich G1\nsender_username: Vitpaug1\nsender_phone: \ntg_link: https://t.me/Vitpaug1\ndate: 2025-06-15T17:29:44+00:00\ngroup_id: 14000068678770266\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078419",
-      "source:path": "arenda_batumi/2025/06/2078417.md",
-      "timestamp": "2025-06-14T17:51:05+00:00"
-    },
-    "input": "Message text:\nid: 2078417\nchat: arenda_batumi\nsender: 5575634196\nsender_name: Cappuccino Estate\nsender_username: cappuccino_estate_manager_3\nsender_phone: \ntg_link: https://t.me/cappuccino_estate_manager_3\ndate: 2025-06-14T17:51:04+00:00\ngroup_id: 13999387718023626\nis_admin: False"
   },
   {
     "lot": {
@@ -17379,15 +17175,6 @@
   },
   {
     "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078409",
-      "source:path": "arenda_batumi/2025/06/2078400.md",
-      "timestamp": "2025-06-14T17:45:56+00:00"
-    },
-    "input": "Message text:\nid: 2078400\nchat: arenda_batumi\nsender: 6343590265\nsender_name: Александр Агент\nsender_phone: \ndate: 2025-06-14T17:45:55+00:00\ngroup_id: 13999385241032466\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-18T07:11:01+00:00",
       "market:deal": "announcement",
       "contact:telegram": "@tonirent",
@@ -18238,17 +18025,6 @@
       "timestamp": "2025-06-18T05:00:45+00:00"
     },
     "input": "Message text:\nid: 2095331\nchat: arenda_batumi\nsender: 851481904\nsender_name: Анастасия Таратынова\nsender_username: ataratynova\nsender_phone: \ntg_link: https://t.me/ataratynova\ndate: 2025-06-18T05:00:44+00:00\ngroup_id: 14001782758262042\nis_admin: False"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-14T18:01:13+00:00",
-      "market:deal": "misc",
-      "contact:telegram": "@ataratynova",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078463",
-      "source:path": "arenda_batumi/2025/06/2078460.md"
-    },
-    "input": "Message text:\nid: 2078460\nchat: arenda_batumi\nsender: 851481904\nsender_name: Анастасия Таратынова\nsender_username: ataratynova\nsender_phone: \ntg_link: https://t.me/ataratynova\ndate: 2025-06-14T18:01:13+00:00\ngroup_id: 13999392589412834\nis_admin: False"
   },
   {
     "lot": {
@@ -20497,15 +20273,6 @@
   },
   {
     "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078375",
-      "source:path": "arenda_batumi/2025/06/2078373.md",
-      "timestamp": "2025-06-14T17:41:12+00:00"
-    },
-    "input": "Message text:\nid: 2078373\nchat: arenda_batumi\nsender: 456070212\nsender_name: Александр\nsender_username: Larhek\nsender_phone: \ntg_link: https://t.me/Larhek\ndate: 2025-06-14T17:41:12+00:00\ngroup_id: 13999382973002650\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-16T13:01:09+00:00",
       "contact:telegram": "@ataratynova",
       "source:chat": "arenda_batumi",
@@ -20798,15 +20565,6 @@
       "timestamp": "2025-06-17T09:22:47+00:00"
     },
     "input": "Message text:\nПρедлагаю временную ρабοту, οплата достοйная."
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078384",
-      "source:path": "arenda_batumi/2025/06/2078377.md",
-      "timestamp": "2025-06-14T17:42:26+00:00"
-    },
-    "input": "Message text:\nid: 2078377\nchat: arenda_batumi\nsender: 457180287\nsender_name: Mari\nsender_username: MariaBitkina\nsender_phone: \ntg_link: https://t.me/MariaBitkina\ndate: 2025-06-14T17:42:25+00:00\ngroup_id: 13999383567386114\nis_admin: False"
   },
   {
     "lot": {
@@ -22146,16 +21904,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-14T17:30:06+00:00",
-      "contact:telegram": "@Viktorika8402",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078346",
-      "source:path": "arenda_batumi/2025/06/2078339.md"
-    },
-    "input": "Message text:\nid: 2078339\nchat: arenda_batumi\nsender: 7557082575\nsender_name: Виктория\nsender_username: Viktorika8402\nsender_phone: \ntg_link: https://t.me/Viktorika8402\ndate: 2025-06-14T17:30:05+00:00\ngroup_id: 13999377641155002\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-17T18:58:05+00:00",
       "market:deal": "announcement",
       "contact:telegram": "@best_friend_batumi_rent",
@@ -23359,17 +23107,6 @@
       "source:path": "arenda_batumi/2025/06/2096289.md"
     },
     "input": "Message text:\nid: 2096289\nchat: arenda_batumi\nsender: 984340382\nsender_name: Антонина\nsender_username: tonirent\nsender_phone: \ntg_link: https://t.me/tonirent\ndate: 2025-06-18T08:15:58+00:00\ngroup_id: 14001876469948338\nis_admin: False"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-14T17:44:36+00:00",
-      "market:deal": "misc",
-      "contact:telegram": "@AleksandrLarichev",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2078394",
-      "source:path": "arenda_batumi/2025/06/2078385.md"
-    },
-    "input": "Message text:\nid: 2078385\nchat: arenda_batumi\nsender: 5583329298\nsender_name: Aleksandr\nsender_username: AleksandrLarichev\nsender_phone: \ntg_link: https://t.me/AleksandrLarichev\ndate: 2025-06-14T17:44:36+00:00\ngroup_id: 13999384609547714\nis_admin: False"
   },
   {
     "lot": {
@@ -25855,15 +25592,6 @@
   {
     "lot": {
       "source:chat": "domikibatumi",
-      "source:message_id": "596707",
-      "source:path": "domikibatumi/2025/06/596705.md",
-      "timestamp": "2025-06-14T18:02:54+00:00"
-    },
-    "input": "Message text:\nid: 596705\nchat: domikibatumi\nsender: 1577080385\nsender_name: Taso\nsender_username: Taso88\nsender_phone: \ntg_link: https://t.me/Taso88\ndate: 2025-06-14T18:02:54+00:00\ngroup_id: 13999393393945450\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "domikibatumi",
       "source:message_id": "606055",
       "source:path": "domikibatumi/2025/06/606048.md",
       "timestamp": "2025-06-18T14:12:03+00:00"
@@ -26471,15 +26199,6 @@
       "timestamp": "2025-06-17T09:49:26+00:00"
     },
     "input": "Message text:\nid: 602719\nchat: domikibatumi\nsender: 7461677783\nsender_name: Татьяна\nsender_phone: \ndate: 2025-06-17T09:49:26+00:00\ngroup_id: 14001230128459106\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "domikibatumi",
-      "source:message_id": "596679",
-      "source:path": "domikibatumi/2025/06/596673.md",
-      "timestamp": "2025-06-14T17:32:07+00:00"
-    },
-    "input": "Message text:\nid: 596673\nchat: domikibatumi\nsender: 7557082575\nsender_name: Виктория\nsender_username: Viktorika8402\nsender_phone: \ntg_link: https://t.me/Viktorika8402\ndate: 2025-06-14T17:32:07+00:00\ngroup_id: 13999378616363674\nis_admin: False"
   },
   {
     "lot": {
@@ -27394,15 +27113,6 @@
   {
     "lot": {
       "source:chat": "domikibatumi",
-      "source:message_id": "596659",
-      "source:path": "domikibatumi/2025/06/596654.md",
-      "timestamp": "2025-06-14T17:26:32+00:00"
-    },
-    "input": "Message text:\nid: 596654\nchat: domikibatumi\nsender: 7760890472\nsender_name: Михаил\nsender_username: mikhail_potosky\nsender_phone: \ntg_link: https://t.me/mikhail_potosky\ndate: 2025-06-14T17:26:32+00:00\ngroup_id: 13999375938108058\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "domikibatumi",
       "source:message_id": "600002",
       "source:path": "domikibatumi/2025/06/599996.md",
       "timestamp": "2025-06-16T08:25:49+00:00"
@@ -27417,15 +27127,6 @@
       "timestamp": "2025-06-15T11:57:53+00:00"
     },
     "input": "Message text:\nid: 598278\nchat: domikibatumi\nsender: 6808231842\nsender_name: Viktoria\nsender_username: torrrrrry\nsender_phone: \ntg_link: https://t.me/torrrrrry\ndate: 2025-06-15T11:57:53+00:00\ngroup_id: 13999909386384642\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "domikibatumi",
-      "source:message_id": "596701",
-      "source:path": "domikibatumi/2025/06/596699.md",
-      "timestamp": "2025-06-14T17:49:40+00:00"
-    },
-    "input": "Message text:\nid: 596699\nchat: domikibatumi\nsender: 8090329462\nsender_name: Vitali Pauliukovich G3\nsender_username: Vitrealtg3\nsender_phone: \ntg_link: https://t.me/Vitrealtg3\ndate: 2025-06-14T17:49:40+00:00\ngroup_id: 13999387042759106\nis_admin: False"
   },
   {
     "lot": {
