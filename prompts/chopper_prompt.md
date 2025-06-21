@@ -11,9 +11,9 @@ Fix spelling mistakes when sure about it.
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:
 
-- `market:deal` – main intent such as `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_item`, `buy_item`, `sell_property`, `buy_property`, `exchange`, `giveaway`, `job_offer`, `job_seek`, `services_offer`, `services_seek`, `pets`,`announcement`, `event_invite`, `event_seek`, `cryptocurrency`.
+- `market:deal` – main intent such as `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_item`, `buy_item`, `sell_property`, `buy_property`, `exchange`, `giveaway`, `job_offer`, `job_seek`, `services_offer`, `services_seek`, `pets`,`announcement`, `event_invite`, `event_seek`, `cryptocurrency`, `pet_adopt_out`, `pet_adopt_seek`, `fundraise`.
 - `property:type` – e.g. `apartment`, `studio`, `apartment_studio`, `house`, `room`, `duplex`, `villa`, `bungalow`, `land`, `commercial`, `hotel_room`, ...
-- `item:type` - `smartphone`, `medicine`, `monitor`, `led_bulb`, `cryptocurrency`, `kids_kick_scooter`, `hoverboard`, `baby_crib`, `bluetooth_speaker`, `jacket`, `potted_plant`, `board_game`, `shoe`, `smartwatch`, `charger`, `smart_speaker`, `action_camera`, `drone`, `grow_light`, `laptop`, `recliner`, `bedspread`, `mini_fridge`, `cat`, `dog`, ... (lower-case, singular, underscores_for_spaces)
+- `item:type` - `smartphone`, `medicine`, `monitor`, `led_bulb`, `cryptocurrency`, `kids_kick_scooter`, `hoverboard`, `baby_crib`, `bluetooth_speaker`, `jacket`, `potted_plant`, `board_game`, `shoe`, `smartwatch`, `charger`, `smart_speaker`, `action_camera`, `drone`, `grow_light`, `laptop`, `recliner`, `bedspread`, `mini_fridge`, `cat`, `dog`, `kitten`, `puppy`, `fox`... (lower-case, singular, underscores_for_spaces)
 - `item:audience` – `men`, `women`, `kids` – use for clothing or other gendered items.
 - `condition` - `new`, `open_box`, `unused`, `like_new`, `very_good`, `good`, `fair`, `used`, `needs_repair`, `for_parts`, `refurbished`, `shop_display`, `obsolete`, `handmade` ... 
 - `rooms` – "studio" or integer as a string.
@@ -109,6 +109,7 @@ Good summaries clearly describe the specific offer:
 - Смартфон Samsung S23 FE 256GB
 - Дрон DJI Air 2S Fly More Combo
 - MacBook Air M4 13" 16/256Gb цвета Midnight
+- Rот Васька, серый короткошёрстный, 2 года
 
 Avoid generic headlines and summarise the actual offering instead:
 
