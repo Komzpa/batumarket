@@ -138,7 +138,7 @@ def test_fetch_missing_day_limit(tmp_path, monkeypatch):
 
     saved = []
 
-    async def save_stub(_c, _chat, msg):
+    async def save_stub(_c, _chat, msg, **_):
         saved.append(msg.id)
 
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
@@ -168,7 +168,7 @@ def test_fetch_missing_skips_old(tmp_path, monkeypatch):
 
     saved = []
 
-    async def save_stub(_c, _chat, msg):
+    async def save_stub(_c, _chat, msg, **_):
         saved.append(msg.id)
 
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
@@ -207,7 +207,7 @@ def test_fetch_missing_naive_timestamp(tmp_path, monkeypatch):
 
     saved = []
 
-    async def save_stub(_c, _chat, msg):
+    async def save_stub(_c, _chat, msg, **_):
         saved.append(msg.id)
 
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
@@ -249,7 +249,7 @@ def test_fetch_missing_backfill(tmp_path, monkeypatch):
 
     saved = []
 
-    async def save_stub(_c, _chat, msg):
+    async def save_stub(_c, _chat, msg, **_):
         saved.append(msg.id)
 
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
@@ -284,7 +284,7 @@ def test_fetch_missing_ignores_stale_progress(tmp_path, monkeypatch):
 
     saved = []
 
-    async def save_stub(_c, _chat, msg):
+    async def save_stub(_c, _chat, msg, **_):
         saved.append(msg.id)
 
     monkeypatch.setattr(tg_client, "_save_message", save_stub)
@@ -640,7 +640,7 @@ def test_main_sequential_updates(monkeypatch):
     cfg.CHATS = []
     monkeypatch.setitem(sys.modules, "config", cfg)
 
-    called = {}
+    called = {"fetched": [], "saved": []}
 
     class DummyClient:
         def __init__(self, *args, **kwargs):
@@ -706,7 +706,7 @@ def test_save_media_reschedules_caption(tmp_path, monkeypatch):
     assert called["c"] is True
 
 
-def test_refetch_broken(tmp_path, monkeypatch):
+def test_refetch_messages(tmp_path, monkeypatch):
     _install_telethon_stub(monkeypatch)
     cfg = types.ModuleType("config")
     cfg.TG_API_ID = 0
@@ -720,22 +720,22 @@ def test_refetch_broken(tmp_path, monkeypatch):
 
     (tmp_path / "broken.json").write_text(json.dumps([{"chat": "chat", "id": 1}]))
 
-    called = {}
+    called = {"fetched": [], "saved": []}
 
     class DummyClient:
         async def get_messages(self, chat, ids):
-            called["fetched"] = (chat, ids)
+            called["fetched"].append((chat, ids))
             return types.SimpleNamespace(id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="")
 
-    async def save_stub(c, chat, msg):
-        called["saved"] = (chat, msg.id)
+    async def save_stub(c, chat, msg, **_):
+        called["saved"].append((chat, msg.id))
 
     monkeypatch.setattr(tg_client, "_save_bounded", save_stub)
 
-    asyncio.run(tg_client.refetch_broken(DummyClient()))
+    asyncio.run(tg_client.refetch_messages(DummyClient()))
 
-    assert called.get("fetched") == ("chat", 1)
-    assert called.get("saved") == ("chat", 1)
+    assert ("chat", 1) in called["fetched"]
+    assert ("chat", 1) in called["saved"]
     assert not (tmp_path / "broken.json").exists()
 
 
@@ -767,7 +767,11 @@ def test_main_fetch_single(monkeypatch):
     monkeypatch.setattr(telethon, "TelegramClient", DummyClient)
 
     tg_client = importlib.reload(importlib.import_module("tg_client"))
-    monkeypatch.setattr(tg_client, "_save_bounded", lambda c, chat, msg: asyncio.sleep(0))
+    monkeypatch.setattr(
+        tg_client,
+        "_save_bounded",
+        lambda c, chat, msg, **_: asyncio.sleep(0),
+    )
 
     asyncio.run(tg_client.main(["--fetch", "chat", "5"]))
 
