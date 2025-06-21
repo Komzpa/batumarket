@@ -8,6 +8,7 @@ See [docs/services.md](docs/services.md) for an overview of the scripts.
 For installation instructions see [docs/setup.md](docs/setup.md).
 The project goals are described in [docs/vision.md](docs/vision.md).
 Approximate OpenAI expenses are outlined in [docs/costs.md](docs/costs.md).
+[Maintenance instructions](docs/maintenance.md) cover how to keep translations up to date.
 
 Logs are written to `errors.log` in JSON format. Set `LOG_LEVEL` in
 `config.py` or as an environment variable to `DEBUG`, `INFO` or `ERROR` to

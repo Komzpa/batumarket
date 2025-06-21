@@ -66,3 +66,24 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
 
     mis = json.loads((tmp_path / "misparsed.json").read_text())
     assert mis[0]["contact:telegram"] == "@username"
+
+
+def test_empty_values_dropped(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
+    )
+
+    (tmp_path / "a.json").write_text(json.dumps({"a": "", "b": None, "title_en": "x"}))
+
+    scan_ontology.main()
+
+    data = json.loads((tmp_path / "fields.json").read_text())
+    assert "a" not in data
+    assert "b" not in data

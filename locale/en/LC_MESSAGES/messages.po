@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en\n"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "Categories"
+msgstr "Categories"
+
+msgid "Category"
+msgstr "Category"
+
+msgid "Posts last %(days)s days"
+msgstr "Posts last %(days)s days"
+
+msgid "Unique posters"
+msgstr "Unique posters"
+
+msgid "Title"
+msgstr "Title"
+
+msgid "Price"
+msgstr "Price"
+
+msgid "Seller"
+msgstr "Seller"
+
+msgid "Time"
+msgstr "Time"
+
+msgid "Original post"
+msgstr "Original post"
+
+msgid "More by this user"
+msgstr "More by this user"
+
+msgid "Telegram post"
+msgstr "Telegram post"
+
+msgid "Lot"
+msgstr "Lot"
+
+msgid "Index"
+msgstr "Index"

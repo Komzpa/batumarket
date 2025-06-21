@@ -12,7 +12,7 @@
 
 <p class="description">{{ description }}</p>
 {% if orig_text %}
-<details class="orig-text"><summary>Original post</summary>
+<details class="orig-text"><summary>{{ _('Original post') }}</summary>
 <pre>{{ orig_text }}</pre>
 </details>
 {% endif %}
@@ -22,14 +22,14 @@
   <tr><th>{{ key }}</th><td>{{ val }}</td></tr>
 {% endfor %}
 </table>
-<p><a href="{{ tg_link }}" target="_blank">Telegram post</a></p>
+<p><a href="{{ tg_link }}" target="_blank">{{ _('Telegram post') }}</a></p>
 <div class="similar carousel">
 {% for item in similar %}
   <a href="{{ item.link }}"><img src="{{ media_prefix }}/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>
 {% endfor %}
 </div>
 {% if more_user %}
-<h2>More by this user</h2>
+<h2>{{ _('More by this user') }}</h2>
 <div class="more-user carousel">
 {% for item in more_user %}
   <a href="{{ item.link }}"><img src="{{ media_prefix }}/{{ item.thumb }}" alt="" /><br>{{ item.title }}</a>

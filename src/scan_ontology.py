@@ -78,6 +78,9 @@ def collect_ontology() -> tuple[
         for lot in lots:
             if not isinstance(lot, dict):
                 continue
+            for k in list(lot):
+                if lot[k] == "" or lot[k] is None:
+                    del lot[k]
             if any(not lot.get(f) for f in REVIEW_FIELDS):
                 missing.append(lot)
             if _is_misparsed(lot):

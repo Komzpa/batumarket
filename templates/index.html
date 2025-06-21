@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1>Categories</h1>
+<h1>{{ _('Categories') }}</h1>
 <table id="index-table">
   <thead>
     <tr>
-      <th data-sort="string">Category</th>
-      <th data-sort="number">Posts last {{ keep_days }} days</th>
-      <th data-sort="number">Unique posters</th>
+      <th data-sort="string">{{ _('Category') }}</th>
+      <th data-sort="number">{% trans days=keep_days %}Posts last {{ days }} days{% endtrans %}</th>
+      <th data-sort="number">{{ _('Unique posters') }}</th>
     </tr>
   </thead>
   <tbody>

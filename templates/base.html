@@ -8,15 +8,24 @@
 </head>
 <body>
 <nav class="top">
-    <a href="{{ home_link }}">Home</a>
-    <div class="lang-switch">
-    {% for l in langs %}
-        {% if l == current_lang %}
-        <span class="current-lang">{{ l }}</span>
+    <span class="breadcrumbs">
+    {% for crumb in breadcrumbs %}
+        {% if loop.index > 1 %} &gt; {% endif %}
+        {% if crumb.link %}
+        <a href="{{ crumb.link }}">{{ _(crumb.title) }}</a>
         {% else %}
-        <a data-set-lang="{{ l }}" href="{{ page_basename }}_{{ l }}.html">{{ l }}</a>
+        <span>{{ _(crumb.title) }}</span>
         {% endif %}
     {% endfor %}
+    </span>
+    <div class="lang-switch">
+        {% for l in langs %}
+            {% if l == current_lang %}
+            <span class="current-lang">{{ l }}</span>
+            {% else %}
+            <a data-set-lang="{{ l }}" href="{{ page_basename }}_{{ l }}.html">{{ l }}</a>
+            {% endif %}
+        {% endfor %}
     </div>
 </nav>
 {% block body %}{% endblock %}

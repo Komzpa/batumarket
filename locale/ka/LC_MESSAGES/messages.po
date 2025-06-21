@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ka\n"
+
+msgid "Home"
+msgstr "მთავარი"
+
+msgid "Categories"
+msgstr "კატეგორიები"
+
+msgid "Category"
+msgstr "კატეგორია"
+
+msgid "Posts last %(days)s days"
+msgstr "პოსტები უკანასკნელი %(days)s დღის განმავლობაში"
+
+msgid "Unique posters"
+msgstr "უნიკალური მომხმარებლები"
+
+msgid "Title"
+msgstr "სათაური"
+
+msgid "Price"
+msgstr "ფასი"
+
+msgid "Seller"
+msgstr "გამყიდველი"
+
+msgid "Time"
+msgstr "დრო"
+
+msgid "Original post"
+msgstr "საწყისი პოსტი"
+
+msgid "More by this user"
+msgstr "მეტი ამ მომხმარებლისგან"
+
+msgid "Telegram post"
+msgstr "Telegram პოსტი"
+
+msgid "Lot"
+msgstr "ლოტი"
+
+msgid "Index"
+msgstr "მთავარი გვერდი"

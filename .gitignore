@@ -8,3 +8,4 @@ Intermediate/
 session*
 config.py
 errors.log
+*.mo
