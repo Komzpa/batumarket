@@ -57,19 +57,19 @@ Craft `title_<lang>` and `description_<lang>` for every lot using both the origi
 - **Goods** – `sell_item`, `buy_item`.
   Keys: `item:type`, `brand`, `model`, `condition`, `price`, `price:currency`, `urgency`.
 - **Jobs / Services** – `job_offer`, `job_seek`, `services_offer`, `services_seek`.
-  Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.
-  If the description does not explain the actual work, mark the lot with
-  `fraud=sketchy_job`. Leaflet distribution or other ad-hoc explained ones are not to be marked as fraud.
-  Posts offering illegal narcotics or other prohibited drugs should be flagged with `fraud=drugs`.
-  Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
-  Salaries quoted in Russian roubles for work in Georgia are suspicious – mark such lots with `fraud=sketchy_job`.
-  Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов") must be flagged with `fraud=scam`.
-  If the chat topic does not match the advertised category
-  (for example a job post sent to a real-estate channel) mark the lot with
-  `fraud=spam` even if it looks legitimate otherwise.
+  Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.  
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
 - Anything outside these groups should be placed under `misc` until patterns emerge.
+
+## Antifraud
+- `fraud=sketchy_job` - if the description does not explain the actual work.
+- `fraud=drugs` - posts offering illegal narcotics or other prohibited drugs.
+- `fraud=sketchy_job` - Salaries quoted in Russian roubles for work in Georgia are suspicious.
+- `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов").
+- `fraud=spam` - If the chat topic does not match the advertised category (for example a job post sent to a real-estate channel) mark the lot as spam even if it looks legitimate otherwise.
+- Ad-hoc explained ones are not to be marked as fraud. Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
+
 
 ## Example
 ```json
@@ -101,6 +101,9 @@ Good summaries clearly describe the specific offer:
 - 1+1 квартира на Шартава 16, 22 этаж с видом на город
 - 2+1 двухэтажный коттедж с бассейном и террасами
 - Сменные лезвия Philips OneBlade
+- Смартфон Samsung S23 FE 256GB
+- Дрон DJI Air 2S Fly More Combo
+- MacBook Air M4 13" 16/256Gb цвета Midnight
 
 Avoid generic headlines and summarise the actual offering instead:
 
@@ -113,7 +116,8 @@ Avoid generic headlines and summarise the actual offering instead:
 - Вакансия удалённой работы
 - Товары на продажу
 
-Skip the lot entirely when it is no longer relevant:
+
+Skip the lot entirely when it is no longer relevant (empty array is ok):
 
 - Запрос на верификацию
 - Объявление о правилах группы и услугах
