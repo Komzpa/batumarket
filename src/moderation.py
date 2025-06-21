@@ -3,8 +3,10 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
+from pathlib import Path
 
 from log_utils import get_logger
+from message_utils import parse_md
 
 log = get_logger().bind(module=__name__)
 
@@ -19,23 +21,6 @@ BANNED_SUBSTRINGS = [
 RAW_DIR = Path("data/raw")
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
-
-
-def _parse_md(path: Path) -> tuple[dict, str]:
-    """Return metadata dictionary and body text from ``path``."""
-    text = path.read_text(encoding="utf-8") if path.exists() else ""
-    lines = text.splitlines()
-    meta: dict[str, str] = {}
-    body_start = 0
-    for i, line in enumerate(lines):
-        if not line.strip():
-            body_start = i + 1
-            break
-        if ":" in line:
-            k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
-    body = "\n".join(lines[body_start:])
-    return meta, body
 
 
 def should_skip_text(text: str) -> bool:
@@ -77,7 +62,7 @@ def apply_to_history() -> None:
         raw = RAW_DIR / src if src else None
         if not raw or not raw.exists():
             continue
-        _, text = _parse_md(raw)
+        _, text = parse_md(raw)
         skip = should_skip_message(items[0], text) or any(
             should_skip_lot(l) for l in items
         )

@@ -16,6 +16,7 @@ sys.modules["config"] = dummy_cfg
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import chop
+from message_utils import build_prompt
 
 
 def test_chop_processes_nested(tmp_path, monkeypatch):
@@ -45,7 +46,7 @@ def test_build_prompt():
     msg = "hello"
     files = ["a.jpg", "b.jpg"]
     caps = ["cap a", "cap b"]
-    prompt = chop._build_prompt(msg, files, caps)
+    prompt = build_prompt(msg, files, caps)
     assert "Message text:" in prompt
     assert "Image a.jpg" in prompt
     assert "cap a" in prompt

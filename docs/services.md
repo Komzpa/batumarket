@@ -125,7 +125,8 @@ and writes the result to `data/ontology/fields.json`. Titles and descriptions
 are stored separately in JSON files with counts sorted by frequency. Any lot
 missing translated text is written to `missing.json` while obviously mis-parsed
 lots (for example those containing `contact:telegram` equal to `@username`)
-go into `misparsed.json`. After collecting the counts the script removes a few
+go into `misparsed.json`. Each entry now includes the exact text passed to the
+lot parser under the `input` key so issues can be reproduced. After collecting the counts the script removes a few
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
 manual inspection.

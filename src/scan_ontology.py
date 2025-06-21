@@ -9,11 +9,14 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
+from message_utils import gather_chop_input
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
 LOTS_DIR = Path("data/lots")
+RAW_DIR = Path("data/raw")
+MEDIA_DIR = Path("data/media")
 
 # All generated files live in ``data/ontology`` so the folder can be
 # inspected or removed without touching the raw lots.
@@ -84,7 +87,14 @@ def collect_ontology() -> tuple[
             if any(not lot.get(f) for f in REVIEW_FIELDS):
                 missing.append(lot)
             if _is_misparsed(lot):
-                misparsed.append(lot)
+                src = lot.get("source:path")
+                prompt = ""
+                if src:
+                    try:
+                        prompt = gather_chop_input(RAW_DIR / src, MEDIA_DIR)
+                    except Exception:
+                        log.exception("Failed to build parser input", source=src)
+                misparsed.append({"lot": lot, "input": prompt})
             for f in REVIEW_FIELDS:
                 val = lot.get(f)
                 if isinstance(val, str):

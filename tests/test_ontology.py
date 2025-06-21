@@ -13,6 +13,8 @@ def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
@@ -43,6 +45,8 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
@@ -54,7 +58,9 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
         "contact:telegram": "@username",
         "files": ["a.jpg"],
         "other": 5,
+        "source:path": "msg.md",
     }))
+    (tmp_path / "msg.md").write_text("id: 1\n\nhello", encoding="utf-8")
 
     scan_ontology.main()
 
@@ -65,7 +71,8 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
     assert data["other"] == {"5": 1}
 
     mis = json.loads((tmp_path / "misparsed.json").read_text())
-    assert mis[0]["contact:telegram"] == "@username"
+    assert mis[0]["lot"]["contact:telegram"] == "@username"
+    assert "Message text:" in mis[0]["input"]
 
 
 def test_empty_values_dropped(tmp_path, monkeypatch):

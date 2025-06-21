@@ -28,6 +28,7 @@ except Exception:
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
+from message_utils import parse_md
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -116,24 +117,6 @@ def _env_for_lang(lang: str) -> Environment:
     return env
 
 
-def _parse_md(path: Path) -> tuple[dict, str]:
-    """Return metadata dict and message text from ``path``."""
-    text = path.read_text(encoding="utf-8") if path.exists() else ""
-    lines = text.splitlines()
-    meta: dict[str, str] = {}
-    body_start = 0
-    for i, line in enumerate(lines):
-        if not line.strip():
-            body_start = i + 1
-            break
-        if ":" in line:
-            k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
-        else:
-            body_start = i
-            break
-    body = "\n".join(lines[body_start:])
-    return meta, body
 
 
 def _iter_lots() -> list[dict]:
@@ -159,7 +142,7 @@ def _iter_lots() -> list[dict]:
             text = ""
             if src:
                 raw_path = RAW_DIR / src
-                meta, text = _parse_md(raw_path)
+                meta, text = parse_md(raw_path)
                 if should_skip_message(meta, text):
                     log.info(
                         "Skipping lot",
@@ -247,7 +230,7 @@ def build_page(
         orig_text = ""
         src = lot.get("source:path")
         if src:
-            _, orig_text = _parse_md(RAW_DIR / src)
+            _, orig_text = parse_md(RAW_DIR / src)
 
         chat = lot.get("source:chat")
         mid = lot.get("source:message_id")
