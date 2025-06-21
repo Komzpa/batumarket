@@ -33,6 +33,11 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "hello",
+            "description_en": "d",
+            "title_ru": "hello",
+            "description_ru": "d",
+            "title_ka": "hello",
+            "description_ka": "d",
             "files": [],
             "market:deal": "sell_item",
             "contact:telegram": "@user",
@@ -73,6 +78,11 @@ def test_handles_list_fields(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "hello",
+            "description_en": "d",
+            "title_ru": "hello",
+            "description_ru": "d",
+            "title_ka": "hello",
+            "description_ka": "d",
             "files": [],
             "market:deal": ["sell_item", "other"],
             "contact:telegram": ["@user", "@other"],
@@ -102,6 +112,11 @@ def test_author_fallback(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "hello",
+            "description_en": "d",
+            "title_ru": "hello",
+            "description_ru": "d",
+            "title_ka": "hello",
+            "description_ka": "d",
             "files": [],
             "market:deal": "sell_item",
             "source:author:telegram": "@poster",
@@ -137,6 +152,11 @@ def test_build_site_skips_moderated(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "hello",
+            "description_en": "d",
+            "title_ru": "hello",
+            "description_ru": "d",
+            "title_ka": "hello",
+            "description_ka": "d",
             "files": [],
             "market:deal": "sell_item",
             "source:path": "1.md",
@@ -168,9 +188,42 @@ def test_build_site_skips_misparsed(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "bad",
+            "description_en": "d",
+            "title_ru": "bad",
+            "description_ru": "d",
+            "title_ka": "bad",
+            "description_ka": "d",
             "files": [],
             "market:deal": "sell_item",
             "contact:telegram": "@username",
+        }
+    ]))
+
+    build_site.main()
+
+    assert not (tmp_path / "views" / "1-0_en.html").exists()
+
+
+def test_build_site_skips_missing_titles(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "files": [],
+            "market:deal": "sell_item",
+            "contact:telegram": "@real"
         }
     ]))
 
@@ -200,6 +253,11 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
         {
             "timestamp": now,
             "title_en": "x",
+            "description_en": "d",
+            "title_ru": "x",
+            "description_ru": "d",
+            "title_ka": "x",
+            "description_ka": "d",
             "files": ["a.jpg"],
             "market:deal": "sell_item",
             "extra": "",
