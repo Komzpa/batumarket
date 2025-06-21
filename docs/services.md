@@ -96,7 +96,7 @@ applicable so that every language has a meaningful summary.
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
-`ontology.json` to order attribute tables and embeddings from `data/vectors` to suggest
+`ontology/fields.json` to order attribute tables and embeddings from `data/vectors` to suggest
 similar lots.  Similarity search now uses `scikit-learn` to find nearest
 neighbours efficiently. Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
@@ -120,8 +120,8 @@ to all subscribers when new lots are detected.
 ## scan_ontology.py
 Walks through `data/lots` and collects a list of every key used across all
 stored lots.  For each key the script counts how many times each value appears
-and writes the result to `data/ontology.json`.  After collecting the counts the
-script removes a few noisy fields like timestamps and language specific
+and writes the result to `data/ontology/fields.json` along with helper files.
+After collecting the counts the script removes a few noisy fields like timestamps and language specific
 duplicates so the output focuses on meaningful attributes.  Run `make
 ontology` to generate the file for manual inspection.
 
