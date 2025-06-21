@@ -377,7 +377,11 @@ def main() -> None:
     # Collect lots by Telegram user for "more by this user" section.
     user_map: dict[str, list[dict]] = {}
     for lot in lots:
-        user = lot.get("contact:telegram")
+        user = (
+            lot.get("contact:telegram")
+            or lot.get("source:author:telegram")
+            or lot.get("source:author:name")
+        )
         if isinstance(user, list):
             log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
             user = user[0] if user else None
@@ -453,6 +457,8 @@ def main() -> None:
                 or lot.get("contact:instagram")
                 or lot.get("contact:viber")
                 or lot.get("contact:whatsapp")
+                or lot.get("source:author:telegram")
+                or lot.get("source:author:name")
                 or lot.get("seller")
             )
             stat["recent"] += 1
@@ -499,6 +505,8 @@ def main() -> None:
                     or lot.get("contact:instagram")
                     or lot.get("contact:viber")
                     or lot.get("contact:whatsapp")
+                    or lot.get("source:author:telegram")
+                    or lot.get("source:author:name")
                     or lot.get("seller")
                 )
                 dt = None

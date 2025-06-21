@@ -39,7 +39,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `smoking` - `yes`, `no`.
 - `washing_machine`, `dishwasher`, `computer_table`, `stove`, `oven`, `bath`, `shower`, `sofa`, `wifi`, `air_conditioning`, `tv`, `fridge`, `microwave`, `balcony`, `pool`, `elevator`, `parking`, `gym`, `spa`, `playground` ... – `yes`, `no`, `on_request`, null/skip.
 - `parking:type` - `underground`, `yard`, `street`, ..
-- `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp` – stripped to digits in full international format or `@username`.
+- `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
 - `files` – list of stored media paths for the lot.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
