@@ -157,6 +157,64 @@ def _should_skip_media(msg: Message) -> str | None:
     return None
 
 
+async def _extract_author(msg: Message, client: TelegramClient) -> dict:
+    """Return a metadata dictionary describing the message author."""
+    meta: dict[str, object] = {}
+
+    try:
+        sender = await msg.get_sender()
+    except Exception:
+        sender = None
+        log.debug("Failed to hydrate sender", id=msg.id)
+
+    name = " ".join(
+        p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
+    ) or None
+    meta["sender"] = getattr(sender, "id", None)
+    meta["sender_username"] = getattr(sender, "username", None)
+    meta["sender_phone"] = format_georgian(getattr(sender, "phone", "") or "")
+    meta["tg_link"] = (
+        f"https://t.me/{sender.username}" if getattr(sender, "username", None) else None
+    )
+    meta["sender_name"] = name or getattr(msg, "post_author", None)
+    meta["post_author"] = getattr(msg, "post_author", None)
+
+    if getattr(sender, "id", None):
+        meta["author_type"] = "user"
+    elif getattr(msg, "sender_chat", None):
+        chat_ent = getattr(msg, "sender_chat")
+        if not getattr(chat_ent, "title", None):
+            try:
+                chat_ent = await client.get_entity(chat_ent)
+            except Exception:
+                chat_ent = None
+                log.debug("Failed to hydrate sender_chat", id=msg.id)
+        meta["sender"] = None
+        meta["sender_chat"] = getattr(chat_ent, "id", None)
+        meta["sender_chat_title"] = getattr(chat_ent, "title", None)
+        meta["post_author"] = getattr(msg, "post_author", None)
+        meta["author_type"] = "channel"
+        if meta.get("sender_name") is None:
+            meta["sender_name"] = getattr(msg, "post_author", None)
+    elif getattr(msg, "fwd_from", None):
+        fwd = msg.fwd_from
+        meta["author_type"] = "forward"
+        meta["fwd_from_id"] = getattr(getattr(fwd, "from_id", None), "user_id", None)
+        meta["fwd_from_name"] = getattr(fwd, "from_name", None)
+        meta["sender"] = None
+        if meta.get("sender_name") is None:
+            meta["sender_name"] = getattr(msg, "post_author", None)
+        meta["post_author"] = getattr(msg, "post_author", None)
+    else:
+        meta["author_type"] = "service"
+        meta["sender"] = None
+        if meta.get("sender_name") is None:
+            meta["sender_name"] = getattr(msg, "post_author", None)
+        meta["post_author"] = getattr(msg, "post_author", None)
+
+    return meta
+
+
 def _schedule_caption(path: Path) -> None:
     """Run captioning in a separate process so downloads continue."""
     try:
@@ -250,8 +308,8 @@ async def _save_message(
     Returns the path of the stored message or ``None`` when skipped."""
     _mark_activity()
     log.debug("Processing message", chat=chat, id=msg.id)
-    sender = getattr(msg, "sender", None) or await msg.get_sender()
-    username = getattr(sender, "username", None)
+    author = await _extract_author(msg, client)
+    username = author.get("sender_username")
     if should_skip_user(username):
         log.debug(
             "Skipping blacklisted user",
@@ -294,26 +352,17 @@ async def _save_message(
     except Exception:
         log.debug("Failed to fetch permissions", chat=chat, user=msg.sender_id)
 
-    post_author = getattr(msg, "post_author", None)
-    sender_name = " ".join(
-        p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
-    ) or None
-    if not sender_name:
-        sender_name = post_author
-
-    sender_id = msg.sender_id if msg.sender_id is not None else getattr(sender, "id", None)
-    if sender_id is None:
+    sender_id = author.get("sender")
+    sender_name = author.get("sender_name")
+    if sender_id is None and "sender_chat" not in author:
         log.warning("Message sender missing", chat=chat, id=msg.id)
 
     meta = {
         "id": msg.id,
         "chat": chat,
+        **author,
         "sender": sender_id,
         "sender_name": sender_name,
-        "post_author": post_author,
-        "sender_username": getattr(sender, "username", None),
-        "sender_phone": format_georgian(getattr(sender, "phone", "") or ""),
-        "tg_link": f"https://t.me/{sender.username}" if getattr(sender, "username", None) else None,
         "date": msg.date.isoformat(),
         "reply_to": msg.reply_to_msg_id,
         "group_id": msg.grouped_id,

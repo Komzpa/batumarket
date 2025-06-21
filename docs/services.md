@@ -55,7 +55,8 @@ Metadata fields include at least:
 
 - `id`, `chat`, `date`, `reply_to`, `is_admin`
 - `sender` (numeric when available), `sender_name`, `sender_username`,
-  `sender_phone`, `post_author`, `tg_link`
+  `sender_phone`, `post_author`, `tg_link`, `author_type`
+- `sender_chat` when the post comes from a channel or anonymous admin
 - `source:author:telegram`, `source:author:name` – copied into every lot for
   fallback when contact details are missing
 - `group_id` if part of an album
