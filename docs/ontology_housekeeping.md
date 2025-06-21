@@ -46,8 +46,9 @@ removing it from the prompt to save tokens.
 Misparsed lots include the exact text that produced them under the `input`
 key. Inspect a few entries to see why the model struggled. Posts without a
 timestamp or any seller information also end up here so they can be refetched.
-The helper functions in `lot_io.py` determine the seller and validate the
-timestamp so both the ontology scan and website stay in agreement.
+Raw posts missing contact details or a timestamp are treated the same.  The
+helper functions in `lot_io.py` and `post_io.py` determine the seller and
+validate timestamps so both the ontology scan and website stay in agreement.
 Tweak the prompts or parsing code to handle those cases. Once the issues are
 resolved remove the entries and regenerate the file.
 

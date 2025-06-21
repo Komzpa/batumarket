@@ -26,7 +26,9 @@ def test_estimate_tokens():
 
 def test_post_roundtrip(tmp_path: Path):
     path = tmp_path / "post.md"
-    write_post(path, {"id": 1, "chat": "test"}, "body")
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    meta = {"id": 1, "chat": "test", "date": now, "sender_name": "user"}
+    write_post(path, meta, "body")
     meta, text = read_post(path)
     assert meta["id"] == 1
     assert text == "body"

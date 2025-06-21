@@ -11,7 +11,7 @@ from pathlib import Path
 from log_utils import get_logger, install_excepthook
 from lot_io import get_seller, get_timestamp
 from message_utils import gather_chop_input
-from post_io import read_post
+from post_io import read_post, get_contact as get_post_contact, get_timestamp as get_post_timestamp
 from serde_utils import write_json
 from lot_io import read_lots
 
@@ -60,12 +60,8 @@ SKIP_PREFIXES = ("title_", "description_")
 
 
 
-def _is_misparsed(lot: dict) -> bool:
-    """Return ``True`` for obviously invalid lots.
-
-    Lots missing translated titles or descriptions are considered misparsed
-    together with posts that still contain example values from the README.
-    """
+def _is_misparsed(lot: dict, meta: dict | None = None) -> bool:
+    """Return ``True`` for obviously invalid lots or source posts."""
     if lot.get("contact:telegram") == "@username":
         log.debug("Example contact", id=lot.get("_id"))
         return True
@@ -75,6 +71,13 @@ def _is_misparsed(lot: dict) -> bool:
     if get_seller(lot) is None:
         log.debug("Missing seller info", id=lot.get("_id"))
         return True
+    if meta is not None:
+        if get_post_timestamp(meta) is None:
+            log.debug("Missing raw timestamp", id=lot.get("_id"))
+            return True
+        if get_post_contact(meta) is None:
+            log.debug("Missing raw contact", id=lot.get("_id"))
+            return True
     if any(not lot.get(f) for f in REVIEW_FIELDS):
         log.debug("Missing translations", id=lot.get("_id"))
         return True
@@ -105,7 +108,10 @@ def collect_ontology() -> tuple[
             if not isinstance(lot, dict):
                 continue
             src = lot.get("source:path")
-            if _is_misparsed(lot):
+            meta = None
+            if src and has_raw:
+                meta, _ = read_post(RAW_DIR / src)
+            if _is_misparsed(lot, meta):
                 prompt = ""
                 if src and has_raw:
                     try:
@@ -122,7 +128,8 @@ def collect_ontology() -> tuple[
                         log.exception("Failed to build parser input", source=src)
                 fraud.append({"lot": lot, "input": prompt})
             if src and has_raw:
-                meta, _ = read_post(RAW_DIR / src)
+                if meta is None:
+                    meta, _ = read_post(RAW_DIR / src)
                 if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
                     chat = lot.get("source:chat") or meta.get("chat")
                     mid = lot.get("source:message_id") or meta.get("id")
