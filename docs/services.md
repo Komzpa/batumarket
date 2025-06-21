@@ -125,6 +125,13 @@ After collecting the counts the script removes a few noisy fields like timestamp
 duplicates so the output focuses on meaningful attributes.  Run `make
 ontology` to generate the file for manual inspection.
 
+## moderation.py
+Reusable library for spam filtering. `moderation.apply_to_history()` walks
+through `data/lots` and removes any entries whose raw post text matches banned
+phrases. The checks also run inside `chop.py` and `build_site.py` so unwanted
+posts never reach the website. Update the library with new rules and rerun the
+script to clean past data.
+
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running
 `make compose` performs a full refresh: pulling messages (images are captioned on

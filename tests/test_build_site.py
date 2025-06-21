@@ -78,3 +78,36 @@ def test_handles_list_fields(tmp_path, monkeypatch):
     build_site.main()
 
     assert (tmp_path / "views" / "1-0_en.html").exists()
+
+
+def test_build_site_skips_moderated(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    raw_dir = tmp_path / "raw"
+    monkeypatch.setattr(build_site, "RAW_DIR", raw_dir)
+    lots_dir.mkdir()
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (raw_dir / "1.md").write_text("id: 1\n\nspam", encoding="utf-8")
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "hello",
+            "files": [],
+            "market:deal": "sell_item",
+            "source:path": "1.md",
+        }
+    ]))
+
+    monkeypatch.setattr(build_site, "should_skip_message", lambda m, t: True)
+
+    build_site.main()
+
+    assert not (tmp_path / "views" / "1-0_en.html").exists()
