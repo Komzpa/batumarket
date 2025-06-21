@@ -149,6 +149,8 @@ posts never reach the website. Update the library with new rules and rerun the
 script to clean past data.
 Recent filters catch offers of illegal narcotics and vague job ads like
 "ищу людей на неполный рабочий день" so they never reach the website.
+Loan promises or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов") are treated as scams.
+Job offers quoting salary in Russian roubles are considered sketchy for Georgia where wages are usually in GEL or USD.
 
 ## File I/O helpers
 `post_io.py`, `lot_io.py`, `caption_io.py` and `image_io.py` handle posts,
