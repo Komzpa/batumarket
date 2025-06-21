@@ -132,6 +132,7 @@ lot parser under the `input` key so issues can be reproduced. After collecting t
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
 manual inspection.
+Lots containing a `fraud` field are listed separately in `fraud.json` with the text that produced them.
 If `data/raw` is not present the script will exit early to avoid overwriting the
 tracked JSON files. In that case simply review what is already under
 `data/ontology`.

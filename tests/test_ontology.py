@@ -13,6 +13,7 @@ def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(
@@ -24,7 +25,7 @@ def test_collect_ontology(tmp_path, monkeypatch):
     (tmp_path / "sub").mkdir()
     (tmp_path / "a.json").write_text(json.dumps([
         {"a": 1, "b": "x", "title_en": "foo"},
-        {"a": 2, "b": "x", "title_en": "bar"}
+        {"a": 2, "b": "x", "title_en": "bar", "fraud": "drugs"}
     ]))
     (tmp_path / "sub" / "b.json").write_text(json.dumps({"b": "y", "c": [1, 2], "title_en": "foo"}))
 
@@ -43,6 +44,10 @@ def test_collect_ontology(tmp_path, monkeypatch):
     # all lots lack translated descriptions so they end up misparsed
     assert mis[0]["lot"]["a"] == 1
 
+    fraud = json.loads((tmp_path / "fraud.json").read_text())
+    assert len(fraud) == 1
+    assert fraud[0]["lot"]["fraud"] == "drugs"
+
 
 def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
@@ -52,6 +57,7 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
@@ -91,6 +97,7 @@ def test_empty_values_dropped(tmp_path, monkeypatch):
         "REVIEW_FILES",
         {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
     )
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
 
     (tmp_path / "a.json").write_text(json.dumps({"a": "", "b": None, "title_en": "x"}))
 
@@ -109,6 +116,7 @@ def test_broken_meta_list(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
@@ -147,3 +155,4 @@ def test_no_lots_no_output(tmp_path, monkeypatch):
     scan_ontology.main()
 
     assert not (tmp_path / "fields.json").exists()
+    assert not (tmp_path / "fraud.json").exists()
