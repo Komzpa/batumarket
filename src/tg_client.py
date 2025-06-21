@@ -422,6 +422,30 @@ async def _save_bounded(
         return await _save_message(client, chat, msg, replace=replace, old_path=old_path)
 
 
+def _remove_local_message(path: Path | None) -> None:
+    """Delete ``path`` and related media if the post no longer exists."""
+    if not path or not path.exists():
+        return
+    meta, _ = read_post(path)
+    files: list[str] = []
+    try:
+        files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
+    except Exception:
+        log.warning("Invalid file list", path=str(path))
+    for f in files:
+        fpath = MEDIA_DIR / f
+        for extra in [fpath, fpath.with_suffix(".caption.md"), fpath.with_suffix(".md")]:
+            if extra.exists():
+                extra.unlink()
+                log.info("Deleted media", file=str(extra))
+    lot = LOTS_DIR / path.relative_to(RAW_DIR).with_suffix(".json")
+    if lot.exists():
+        lot.unlink()
+        log.info("Dropped lots", file=str(lot))
+    path.unlink()
+    log.info("Deleted raw post", file=str(path))
+
+
 async def _download_messages(
     client: TelegramClient,
     chat: str,
@@ -536,10 +560,11 @@ async def refetch_messages(client: TelegramClient) -> None:
                 remaining_broken.append({"chat": chat, "id": mid})
             continue
         if not msg:
-            if {"chat": chat, "id": mid} in broken_list:
-                remaining_broken.append({"chat": chat, "id": mid})
+            _remove_local_message(old)
             continue
-        await _save_bounded(client, chat, msg, replace=True, old_path=old)
+        new_path = await _save_bounded(client, chat, msg, replace=True, old_path=old)
+        if new_path is None:
+            _remove_local_message(old)
 
     if remaining_broken:
         write_json(BROKEN_META_FILE, remaining_broken)
