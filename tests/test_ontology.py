@@ -127,3 +127,23 @@ def test_broken_meta_list(tmp_path, monkeypatch):
 
     broken = json.loads((tmp_path / "broken.json").read_text())
     assert broken == [{"chat": "chat", "id": 1}]
+
+
+def test_no_lots_no_output(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
+    monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
+    )
+
+    # LOTS_DIR intentionally left empty
+    scan_ontology.main()
+
+    assert not (tmp_path / "fields.json").exists()
