@@ -199,3 +199,48 @@ def test_no_lots_no_output(tmp_path, monkeypatch):
 
     assert not (tmp_path / "fields.json").exists()
     assert not (tmp_path / "fraud.json").exists()
+
+def test_misparsed_due_to_raw_meta(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
+    monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(scan_ontology, "FRAUD_FILE", tmp_path / "fraud.json")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
+    )
+
+    lot_dir = tmp_path / "lots" / "chat" / "2024" / "05"
+    lot_dir.mkdir(parents=True)
+    import datetime
+
+    now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat()
+    lot = {
+        "timestamp": now,
+        "contact:phone": "+123",
+        "title_en": "x",
+        "description_en": "d",
+        "title_ru": "x",
+        "description_ru": "d",
+        "title_ka": "x",
+        "description_ka": "d",
+        "source:path": "chat/2024/05/1.md",
+    }
+    (lot_dir / "1.json").write_text(json.dumps([lot]))
+
+    raw_dir = tmp_path / "raw" / "chat" / "2024" / "05"
+    raw_dir.mkdir(parents=True)
+    (raw_dir / "1.md").write_text("id: 1\nchat: chat\n\ntext")
+
+    scan_ontology.main()
+
+    mis = json.loads((tmp_path / "misparsed.json").read_text())
+    assert len(mis) == 1
+    assert mis[0]["lot"]["source:path"] == "chat/2024/05/1.md"
+
+

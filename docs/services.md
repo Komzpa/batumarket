@@ -142,8 +142,9 @@ Lots missing translated text or a timestamp, as well as posts without any seller
 information, are treated the same as obviously mis-parsed ones (for example
 those containing `contact:telegram` equal to `@username`) and all go into
 `misparsed.json`. Each entry includes the exact text passed to the lot parser
-under the `input` key so issues can be reproduced. Both this script and
-`build_site.py` rely on helper functions in `lot_io.py` to pick the seller and
+under the `input` key so issues can be reproduced. Raw posts missing contact
+details or a timestamp are flagged too. Both this script and `build_site.py`
+rely on helper functions in `lot_io.py` and `post_io.py` to pick the seller and
 validate timestamps. After collecting the counts the script removes a few
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
