@@ -51,3 +51,30 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     assert "1-0_en.html" in cat_html
     assert (tmp_path / "views" / "static" / "site.js").exists()
     assert (tmp_path / "views" / "static" / "style.css").exists()
+
+
+def test_handles_list_fields(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "hello",
+            "files": [],
+            "market:deal": ["sell_item", "other"],
+            "contact:telegram": ["@user", "@other"],
+        }
+    ]))
+
+    build_site.main()
+
+    assert (tmp_path / "views" / "1-0_en.html").exists()

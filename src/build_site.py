@@ -306,8 +306,11 @@ def main() -> None:
     user_map: dict[str, list[dict]] = {}
     for lot in lots:
         user = lot.get("contact:telegram")
-        if user:
-            user_map.setdefault(user, []).append(lot)
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
+        if user is not None:
+            user_map.setdefault(str(user), []).append(lot)
 
     more_user_map: dict[str, list[dict]] = {}
     for user, user_lots in user_map.items():
@@ -356,11 +359,20 @@ def main() -> None:
             except Exception:
                 dt = None
         deal = lot.get("market:deal", "misc")
+        if not isinstance(deal, str):
+            log.debug("Non-string deal", id=lot.get("_id"), value=deal)
+            if isinstance(deal, list) and deal:
+                deal = deal[0]
+            else:
+                deal = str(deal)
         categories.setdefault(deal, []).append(lot)
         stat = category_stats.setdefault(deal, {"recent": 0, "users": set()})
         user = lot.get("contact:telegram")
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
         if user:
-            stat["users"].add(user)
+            stat["users"].add(str(user))
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
             seller = (
