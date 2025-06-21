@@ -17,6 +17,11 @@ import argparse
 import sys
 from pathlib import Path
 
+# Make ``log_utils`` importable when executing this script directly from the
+# repository root.  The tests set ``PYTHONPATH`` manually, but ``Makefile``
+# calls the script without adjusting the environment.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from log_utils import get_logger, install_excepthook
 
 log = get_logger().bind(script=__file__)
