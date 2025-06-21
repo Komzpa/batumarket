@@ -19,6 +19,8 @@ Uses Telethon to mirror the target chats as a normal user account.
 * **Realtime updates.** Pass ``--listen`` to `tg_client.py` to keep running after
   the initial sync.  Without this flag the client exits once everything is
   synced so the Makefile can continue.
+* **Manual debug.** ``--fetch <chat> <id>`` downloads one message for
+  inspection and exits after printing its text to the logs.
 * **Multiple sessions.** The Telegram client runs with ``sequential_updates=True``
   so several sessions can use the same account without missing events.
 * **Heartbeat.** A background task logs a ``Heartbeat`` message every minute and
