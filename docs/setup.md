@@ -8,7 +8,8 @@ sudo apt install python3-openai \
     python3-python-telegram-bot \
     python3-jinja2 \
     python3-structlog python3-telethon \
-    python3-sklearn python3-progressbar2
+    python3-sklearn python3-progressbar2 \
+    gettext  # provides msgfmt used to compile translations
 ```
 
 If you prefer isolated dependencies create a virtual environment and use the
