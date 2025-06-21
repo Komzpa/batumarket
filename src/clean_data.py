@@ -20,6 +20,7 @@ KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
 RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
+VEC_DIR = Path("data/vectors")
 
 
 def _parse_date(md: Path) -> datetime | None:
@@ -85,6 +86,21 @@ def _clean_lots() -> None:
         log.info("Removed stale lots", count=count)
 
 
+def _clean_vectors() -> None:
+    """Delete vector files when the matching lot JSON is absent."""
+    count = 0
+    if not VEC_DIR.exists():
+        return
+    for path in VEC_DIR.rglob("*.json"):
+        lot = LOTS_DIR / path.relative_to(VEC_DIR)
+        if not lot.exists():
+            path.unlink()
+            log.info("Deleted vector", file=str(path))
+            count += 1
+    if count:
+        log.info("Removed orphan vectors", count=count)
+
+
 def _remove_empty_dirs(root: Path) -> None:
     """Recursively remove empty folders under ``root``."""
     count = 0
@@ -105,7 +121,8 @@ def main() -> None:
     _clean_raw(cutoff)
     _clean_media(cutoff)
     _clean_lots()
-    for root in [RAW_DIR, MEDIA_DIR, LOTS_DIR]:
+    _clean_vectors()
+    for root in [RAW_DIR, MEDIA_DIR, LOTS_DIR, VEC_DIR]:
         _remove_empty_dirs(root)
 
 

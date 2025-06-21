@@ -18,6 +18,7 @@ def test_clean_data(tmp_path, monkeypatch):
     monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
     monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=DummyCfg.KEEP_DAYS + 1)
@@ -65,6 +66,17 @@ def test_clean_data(tmp_path, monkeypatch):
     empty_lot = lot_empty_dir / "3.json"
     empty_lot.write_text(json.dumps([{"_id": "3", "source:path": "oldchat/2024/05/1.md"}]))
 
+    vec_dir = clean_data.VEC_DIR / "chat" / "2024" / "05"
+    vec_dir.mkdir(parents=True)
+    v_old = vec_dir / "1.json"
+    v_old.write_text("oldvec")
+    v_new = vec_dir / "2.json"
+    v_new.write_text("newvec")
+    orphan_dir = clean_data.VEC_DIR / "orphan" / "2024" / "05"
+    orphan_dir.mkdir(parents=True)
+    v_orphan = orphan_dir / "3.json"
+    v_orphan.write_text("orphan")
+
     clean_data.main()
 
     assert not raw_old.exists()
@@ -77,3 +89,7 @@ def test_clean_data(tmp_path, monkeypatch):
     assert not old_lot.exists()
     assert new_lot.exists()
     assert not lot_empty_dir.exists()
+    assert not v_old.exists()
+    assert v_new.exists()
+    assert not v_orphan.exists()
+    assert not orphan_dir.exists()
