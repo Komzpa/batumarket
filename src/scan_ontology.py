@@ -20,6 +20,7 @@ LOTS_DIR = Path("data/lots")
 OUTPUT_DIR = Path("data/ontology")
 FIELDS_FILE = OUTPUT_DIR / "fields.json"
 MISSING_FILE = OUTPUT_DIR / "missing.json"
+MISPARSED_FILE = OUTPUT_DIR / "misparsed.json"
 
 REVIEW_FIELDS = [
     "title_en",
@@ -32,7 +33,7 @@ REVIEW_FIELDS = [
 
 # Mapping from field name to file path where unique values are stored for
 # manual review.
-REVIEW_FILES = {f: OUTPUT_DIR / f"{f}.txt" for f in REVIEW_FIELDS}
+REVIEW_FILES = {f: OUTPUT_DIR / f"{f}.json" for f in REVIEW_FIELDS}
 
 # Fields that carry volatile per-message metadata or language specific
 # duplicates.  Dropping them keeps ``ontology.json`` focused on the
@@ -50,11 +51,22 @@ SKIP_FIELDS = {
 SKIP_PREFIXES = ("title_", "description_")
 
 
-def collect_ontology() -> tuple[dict[str, dict[str, int]], list[dict], dict[str, set[str]]]:
-    """Return counts per field, lots missing translations and values."""
+def _is_misparsed(lot: dict) -> bool:
+    """Return ``True`` when the lot clearly comes from the example prompt."""
+    return lot.get("contact:telegram") == "@username"
+
+
+def collect_ontology() -> tuple[
+    dict[str, dict[str, int]],
+    list[dict],
+    dict[str, Counter[str]],
+    list[dict],
+]:
+    """Return counts per field, lots missing translations and value counters."""
     ontology: defaultdict[str, Counter[str]] = defaultdict(Counter)
     missing: list[dict] = []
-    values: dict[str, set[str]] = {f: set() for f in REVIEW_FIELDS}
+    values: dict[str, Counter[str]] = {f: Counter() for f in REVIEW_FIELDS}
+    misparsed: list[dict] = []
     for path in LOTS_DIR.rglob("*.json"):
         try:
             lots = json.loads(path.read_text())
@@ -68,10 +80,12 @@ def collect_ontology() -> tuple[dict[str, dict[str, int]], list[dict], dict[str,
                 continue
             if any(not lot.get(f) for f in REVIEW_FIELDS):
                 missing.append(lot)
+            if _is_misparsed(lot):
+                misparsed.append(lot)
             for f in REVIEW_FIELDS:
                 val = lot.get(f)
                 if isinstance(val, str):
-                    values[f].add(val)
+                    values[f][val] += 1
             for key, value in lot.items():
                 if isinstance(value, (dict, list)):
                     val = json.dumps(value, ensure_ascii=False, sort_keys=True)
@@ -82,12 +96,12 @@ def collect_ontology() -> tuple[dict[str, dict[str, int]], list[dict], dict[str,
     result: dict[str, dict[str, int]] = {}
     for key, counter in ontology.items():
         result[key] = dict(sorted(counter.items(), key=lambda x: (-x[1], x[0])))
-    return result, missing, values
+    return result, missing, values, misparsed
 
 
 def main() -> None:
     log.info("Scanning ontology", path=str(LOTS_DIR))
-    data, missing, values = collect_ontology()
+    data, missing, values, misparsed = collect_ontology()
     removed = [k for k in list(data) if k in SKIP_FIELDS or k.startswith(SKIP_PREFIXES)]
     for field in removed:
         data.pop(field, None)
@@ -101,8 +115,12 @@ def main() -> None:
     MISSING_FILE.write_text(json.dumps(missing, ensure_ascii=False, indent=2))
     log.info("Wrote lots missing translations", path=str(MISSING_FILE))
 
+    MISPARSED_FILE.write_text(json.dumps(misparsed, ensure_ascii=False, indent=2))
+    log.info("Wrote mis-parsed lots", path=str(MISPARSED_FILE))
+
     for field, path in REVIEW_FILES.items():
-        path.write_text("\n".join(sorted(values[field])))
+        counter = dict(sorted(values[field].items(), key=lambda x: (-x[1], x[0])))
+        path.write_text(json.dumps(counter, ensure_ascii=False, indent=2))
         log.debug("Wrote values", field=field, path=str(path))
 
 

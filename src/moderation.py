@@ -55,7 +55,10 @@ def should_skip_message(meta: dict, text: str) -> bool:
 
 
 def should_skip_lot(lot: dict) -> bool:
-    """Placeholder hook for future lot-level checks."""
+    """Return ``True`` when the lot fails additional checks."""
+    if lot.get("contact:telegram") == "@username":
+        log.debug("Lot rejected", reason="example contact")
+        return True
     return False
 
 
@@ -74,7 +77,10 @@ def apply_to_history() -> None:
         if not raw or not raw.exists():
             continue
         _, text = _parse_md(raw)
-        if should_skip_message(items[0], text):
+        skip = should_skip_message(items[0], text) or any(
+            should_skip_lot(l) for l in items
+        )
+        if skip:
             path.unlink()
             vec = (VEC_DIR / path.relative_to(LOTS_DIR)).with_suffix(".json")
             if vec.exists():

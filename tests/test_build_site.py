@@ -111,3 +111,30 @@ def test_build_site_skips_moderated(tmp_path, monkeypatch):
     build_site.main()
 
     assert not (tmp_path / "views" / "1-0_en.html").exists()
+
+
+def test_build_site_skips_misparsed(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "bad",
+            "files": [],
+            "market:deal": "sell_item",
+            "contact:telegram": "@username",
+        }
+    ]))
+
+    build_site.main()
+
+    assert not (tmp_path / "views" / "1-0_en.html").exists()
