@@ -1,6 +1,8 @@
 __pycache__/
 *.pyc
-data/
+data/*
+!data/ontology/
+!data/ontology/**
 notes/
 Intermediate/
 .venv/
