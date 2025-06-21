@@ -9,6 +9,9 @@ overwrite the existing files with empty data.
 The directory contains:
 
 - `fields.json` – all keys and values with usage counts.
+- `fields.approved.json` – curated list of canonical fields. Each entry is an
+  object with a tag `key`, its English description and a list of example
+  `values`.
 - `misparsed.json` – lots that failed validation together with the text fed
   into the parser.
 - `fraud.json` – lots flagged with a `fraud` field and the matching input.

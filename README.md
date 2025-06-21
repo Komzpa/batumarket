@@ -18,6 +18,9 @@ JSONs instead.
 The ontology files include `broken_meta.json` which lists messages missing
 metadata. `tg_client.py` tries to refetch everything in that list at the start
 of each run.
+`fields.approved.json` in the same folder lists popular fields with short
+English explanations and example values. Each entry contains the tag `key`, a
+`description_en` value and optional `values` describing common options.
 
 Logs are written to `errors.log` in JSON format. Set `LOG_LEVEL` in
 `config.py` or as an environment variable to `DEBUG`, `INFO` or `ERROR` to

@@ -1,0 +1,746 @@
+[
+  {
+    "key": "market:deal",
+    "description_en": "Main intent such as rent_out_long, sell_item or services_offer",
+    "values": [
+      {
+        "value": "rent_out_long",
+        "description": "Long term rent"
+      },
+      {
+        "value": "sell_item",
+        "description": "Selling goods"
+      },
+      {
+        "value": "services_offer",
+        "description": "Offer services"
+      }
+    ]
+  },
+  {
+    "key": "price:currency",
+    "description_en": "Currency code like GEL or USD",
+    "values": [
+      {
+        "value": "GEL",
+        "description": "Georgian Lari"
+      },
+      {
+        "value": "USD",
+        "description": "US Dollar"
+      }
+    ]
+  },
+  {
+    "key": "price",
+    "description_en": "Numeric price value",
+    "values": []
+  },
+  {
+    "key": "property:type",
+    "description_en": "Real estate type e.g. apartment or house",
+    "values": [
+      {
+        "value": "apartment",
+        "description": "Apartment"
+      },
+      {
+        "value": "house",
+        "description": "House"
+      },
+      {
+        "value": "land",
+        "description": "Land plot"
+      }
+    ]
+  },
+  {
+    "key": "rooms",
+    "description_en": "Number of rooms or \"studio\"",
+    "values": [
+      {
+        "value": "studio",
+        "description": "Studio"
+      },
+      {
+        "value": "2",
+        "description": "Two rooms"
+      }
+    ]
+  },
+  {
+    "key": "addr:street",
+    "description_en": "Street name",
+    "values": []
+  },
+  {
+    "key": "addr:housenumber",
+    "description_en": "House or building number",
+    "values": []
+  },
+  {
+    "key": "area",
+    "description_en": "Floor area in square metres",
+    "values": []
+  },
+  {
+    "key": "heating",
+    "description_en": "Heating type like gas or electric",
+    "values": [
+      {
+        "value": "gas",
+        "description": "Gas heating"
+      },
+      {
+        "value": "electric",
+        "description": "Electric heating"
+      },
+      {
+        "value": "central",
+        "description": "Central system"
+      }
+    ]
+  },
+  {
+    "key": "price:period",
+    "description_en": "Billing period such as month or day",
+    "values": [
+      {
+        "value": "month",
+        "description": "Per month"
+      },
+      {
+        "value": "day",
+        "description": "Per day"
+      }
+    ]
+  },
+  {
+    "key": "air_conditioning",
+    "description_en": "Whether air conditioning is available",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has AC"
+      },
+      {
+        "value": "no",
+        "description": "No AC"
+      }
+    ]
+  },
+  {
+    "key": "payment_terms",
+    "description_en": "Payment details like first and last month",
+    "values": []
+  },
+  {
+    "key": "floor",
+    "description_en": "Floor number",
+    "values": []
+  },
+  {
+    "key": "balcony",
+    "description_en": "Balcony availability",
+    "values": []
+  },
+  {
+    "key": "oven",
+    "description_en": "Oven availability",
+    "values": []
+  },
+  {
+    "key": "view",
+    "description_en": "View like sea or mountain",
+    "values": []
+  },
+  {
+    "key": "furnishing",
+    "description_en": "Level of furnishing",
+    "values": [
+      {
+        "value": "furnished",
+        "description": "Fully furnished"
+      },
+      {
+        "value": "none",
+        "description": "Unfurnished"
+      }
+    ]
+  },
+  {
+    "key": "contact:phone",
+    "description_en": "Seller phone number",
+    "values": []
+  },
+  {
+    "key": "pets",
+    "description_en": "Pet policy like yes or no",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Pets allowed"
+      },
+      {
+        "value": "no",
+        "description": "No pets"
+      }
+    ]
+  },
+  {
+    "key": "dishwasher",
+    "description_en": "Dishwasher availability",
+    "values": []
+  },
+  {
+    "key": "tv",
+    "description_en": "Television availability",
+    "values": []
+  },
+  {
+    "key": "microwave",
+    "description_en": "Microwave availability",
+    "values": []
+  },
+  {
+    "key": "commission",
+    "description_en": "Broker commission indicator",
+    "values": []
+  },
+  {
+    "key": "building:levels",
+    "description_en": "Total floors in the building",
+    "values": []
+  },
+  {
+    "key": "addr:city",
+    "description_en": "City name",
+    "values": []
+  },
+  {
+    "key": "washing_machine",
+    "description_en": "Washing machine availability",
+    "values": []
+  },
+  {
+    "key": "building:name",
+    "description_en": "Named building or complex",
+    "values": []
+  },
+  {
+    "key": "fridge",
+    "description_en": "Fridge availability",
+    "values": []
+  },
+  {
+    "key": "wifi",
+    "description_en": "Wireless internet availability",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Wi-Fi available"
+      },
+      {
+        "value": "no",
+        "description": "No Wi-Fi"
+      }
+    ]
+  },
+  {
+    "key": "item:type",
+    "description_en": "Type of item for goods listings",
+    "values": [
+      {
+        "value": "smartphone",
+        "description": "Phone"
+      },
+      {
+        "value": "laptop",
+        "description": "Laptop"
+      }
+    ]
+  },
+  {
+    "key": "condition",
+    "description_en": "Item condition like new or used",
+    "values": [
+      {
+        "value": "new",
+        "description": "Brand new"
+      },
+      {
+        "value": "used",
+        "description": "Used"
+      }
+    ]
+  },
+  {
+    "key": "elevator",
+    "description_en": "Elevator availability",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has elevator"
+      },
+      {
+        "value": "no",
+        "description": "No elevator"
+      }
+    ]
+  },
+  {
+    "key": "addr:floor",
+    "description_en": "Unit or apartment floor",
+    "values": []
+  },
+  {
+    "key": "stove",
+    "description_en": "Stove or cooktop",
+    "values": []
+  },
+  {
+    "key": "parking",
+    "description_en": "Parking availability",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Parking available"
+      },
+      {
+        "value": "no",
+        "description": "No parking"
+      }
+    ]
+  },
+  {
+    "key": "addr:suburb",
+    "description_en": "City district or suburb",
+    "values": []
+  },
+  {
+    "key": "shower",
+    "description_en": "Shower availability",
+    "values": []
+  },
+  {
+    "key": "distance:sea",
+    "description_en": "Distance to the sea in metres",
+    "values": []
+  },
+  {
+    "key": "contact:whatsapp",
+    "description_en": "WhatsApp contact",
+    "values": []
+  },
+  {
+    "key": "addr:neighbourhood",
+    "description_en": "Local neighbourhood hint",
+    "values": []
+  },
+  {
+    "key": "bath",
+    "description_en": "Bath availability",
+    "values": []
+  },
+  {
+    "key": "sofa",
+    "description_en": "Presence of a sofa",
+    "values": []
+  },
+  {
+    "key": "gas",
+    "description_en": "Gas connection availability",
+    "values": []
+  },
+  {
+    "key": "brand",
+    "description_en": "Brand name of the item",
+    "values": []
+  },
+  {
+    "key": "addr:full",
+    "description_en": "Full address text",
+    "values": []
+  },
+  {
+    "key": "pool",
+    "description_en": "Swimming pool availability",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has pool"
+      },
+      {
+        "value": "no",
+        "description": "No pool"
+      }
+    ]
+  },
+  {
+    "key": "underfloor_heating",
+    "description_en": "Whether floors are heated",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Heated floors"
+      },
+      {
+        "value": "no",
+        "description": "No heated floors"
+      }
+    ]
+  },
+  {
+    "key": "start_date",
+    "description_en": "Start date for rentals or events",
+    "values": []
+  },
+  {
+    "key": "model",
+    "description_en": "Item model designation",
+    "values": []
+  },
+  {
+    "key": "urgency",
+    "description_en": "Whether the listing is marked urgent",
+    "values": [
+      {
+        "value": "urgent",
+        "description": "Urgent sale"
+      },
+      {
+        "value": "none",
+        "description": "Normal"
+      }
+    ]
+  },
+  {
+    "key": "security",
+    "description_en": "Security features like guard or cctv",
+    "values": [
+      {
+        "value": "guard",
+        "description": "Guard"
+      },
+      {
+        "value": "cctv",
+        "description": "CCTV"
+      }
+    ]
+  },
+  {
+    "key": "parking:type",
+    "description_en": "Underground, yard or street parking",
+    "values": [
+      {
+        "value": "underground",
+        "description": "Underground"
+      },
+      {
+        "value": "yard",
+        "description": "Yard"
+      },
+      {
+        "value": "street",
+        "description": "Street"
+      }
+    ]
+  },
+  {
+    "key": "price:deposit",
+    "description_en": "Required security deposit",
+    "values": []
+  },
+  {
+    "key": "price:deposit:pets",
+    "description_en": "Extra pet deposit",
+    "values": []
+  },
+  {
+    "key": "land_area",
+    "description_en": "Land plot size in square metres",
+    "values": []
+  },
+  {
+    "key": "panorama",
+    "description_en": "Panoramic view mentioned",
+    "values": []
+  },
+  {
+    "key": "ventilation",
+    "description_en": "Mechanical ventilation available",
+    "values": []
+  },
+  {
+    "key": "laundry",
+    "description_en": "Dedicated laundry room",
+    "values": []
+  },
+  {
+    "key": "elevator:fee",
+    "description_en": "Extra fee for elevator use",
+    "values": []
+  },
+  {
+    "key": "contact:telegram",
+    "description_en": "Telegram contact username",
+    "values": []
+  },
+  {
+    "key": "contact:instagram",
+    "description_en": "Instagram contact",
+    "values": []
+  },
+  {
+    "key": "contact:viber",
+    "description_en": "Viber contact",
+    "values": []
+  },
+  {
+    "key": "contact:website",
+    "description_en": "Website URL",
+    "values": []
+  },
+  {
+    "key": "files",
+    "description_en": "List of stored media paths",
+    "values": []
+  },
+  {
+    "key": "item:audience",
+    "description_en": "Target audience for items",
+    "values": [
+      {
+        "value": "men",
+        "description": "For men"
+      },
+      {
+        "value": "women",
+        "description": "For women"
+      },
+      {
+        "value": "kids",
+        "description": "For children"
+      }
+    ]
+  },
+  {
+    "key": "end_date",
+    "description_en": "End date for rentals or events",
+    "values": []
+  },
+  {
+    "key": "price:deposit:currency",
+    "description_en": "Currency of the deposit",
+    "values": [
+      {
+        "value": "GEL",
+        "description": "Georgian Lari"
+      },
+      {
+        "value": "USD",
+        "description": "US Dollar"
+      }
+    ]
+  },
+  {
+    "key": "addr:door",
+    "description_en": "Door or apartment number",
+    "values": []
+  },
+  {
+    "key": "addr:unit",
+    "description_en": "Block or unit identifier",
+    "values": []
+  },
+  {
+    "key": "bathrooms",
+    "description_en": "Number of bathrooms",
+    "values": [
+      {
+        "value": "1",
+        "description": "One bathroom"
+      },
+      {
+        "value": "2",
+        "description": "Two bathrooms"
+      },
+      {
+        "value": "2+",
+        "description": "Two or more"
+      }
+    ]
+  },
+  {
+    "key": "computer_table",
+    "description_en": "Computer table availability",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has table"
+      },
+      {
+        "value": "no",
+        "description": "No table"
+      },
+      {
+        "value": "on_request",
+        "description": "Available on request"
+      }
+    ]
+  },
+  {
+    "key": "gym",
+    "description_en": "Gym facility available",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has gym"
+      },
+      {
+        "value": "no",
+        "description": "No gym"
+      }
+    ]
+  },
+  {
+    "key": "spa",
+    "description_en": "Spa facility available",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has spa"
+      },
+      {
+        "value": "no",
+        "description": "No spa"
+      }
+    ]
+  },
+  {
+    "key": "playground",
+    "description_en": "Playground available",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Has playground"
+      },
+      {
+        "value": "no",
+        "description": "No playground"
+      }
+    ]
+  },
+  {
+    "key": "event:type",
+    "description_en": "Type of event such as concert or party",
+    "values": [
+      {
+        "value": "concert",
+        "description": "Concert"
+      },
+      {
+        "value": "tour",
+        "description": "Tour"
+      },
+      {
+        "value": "party",
+        "description": "Party"
+      }
+    ]
+  },
+  {
+    "key": "date",
+    "description_en": "Event date in ISO8601",
+    "values": []
+  },
+  {
+    "key": "location",
+    "description_en": "Event location description",
+    "values": []
+  },
+  {
+    "key": "fee",
+    "description_en": "Entry fee or donation",
+    "values": [
+      {
+        "value": "free",
+        "description": "No charge"
+      },
+      {
+        "value": "donation",
+        "description": "Donation based"
+      }
+    ]
+  },
+  {
+    "key": "occupation",
+    "description_en": "Job title or occupation",
+    "values": []
+  },
+  {
+    "key": "salary",
+    "description_en": "Salary amount offered",
+    "values": []
+  },
+  {
+    "key": "salary:currency",
+    "description_en": "Salary currency",
+    "values": [
+      {
+        "value": "GEL",
+        "description": "Georgian Lari"
+      },
+      {
+        "value": "USD",
+        "description": "US Dollar"
+      }
+    ]
+  },
+  {
+    "key": "schedule",
+    "description_en": "Work schedule",
+    "values": [
+      {
+        "value": "full_time",
+        "description": "Full time"
+      },
+      {
+        "value": "part_time",
+        "description": "Part time"
+      },
+      {
+        "value": "flexible",
+        "description": "Flexible"
+      }
+    ]
+  },
+  {
+    "key": "remote",
+    "description_en": "Whether remote work is possible",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Remote allowed"
+      },
+      {
+        "value": "no",
+        "description": "On-site"
+      }
+    ]
+  },
+  {
+    "key": "smoking",
+    "description_en": "Smoking allowed",
+    "values": [
+      {
+        "value": "yes",
+        "description": "Smoking allowed"
+      },
+      {
+        "value": "no",
+        "description": "No smoking"
+      }
+    ]
+  }
+]
