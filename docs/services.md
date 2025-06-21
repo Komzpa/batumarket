@@ -137,11 +137,14 @@ to all subscribers when new lots are detected.
 Walks through `data/lots` and collects a list of every key used across all
 stored lots. For each key the script counts how many times each value appears
 and writes the result to `data/ontology/fields.json`. Titles and descriptions
-are stored separately in JSON files with counts sorted by frequency. Lots
-missing translated text are now treated the same as obviously mis-parsed ones
-(for example those containing `contact:telegram` equal to `@username`) and all
-go into `misparsed.json`. Each entry includes the exact text passed to the
-lot parser under the `input` key so issues can be reproduced. After collecting the counts the script removes a few
+are stored separately in JSON files with counts sorted by frequency.
+Lots missing translated text or a timestamp, as well as posts without any seller
+information, are treated the same as obviously mis-parsed ones (for example
+those containing `contact:telegram` equal to `@username`) and all go into
+`misparsed.json`. Each entry includes the exact text passed to the lot parser
+under the `input` key so issues can be reproduced. Both this script and
+`build_site.py` rely on helper functions in `lot_io.py` to pick the seller and
+validate timestamps. After collecting the counts the script removes a few
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
 manual inspection.
@@ -175,6 +178,9 @@ media. The initial blacklist contains ``M_S_Help_bot``, ``ChatKeeperBot``,
 lots, captions and media metadata. They use `serde_utils.py` for the low-level
 JSON or Markdown handling so each script works with cleaned data and missing
 directories are created automatically.
+`lot_io.py` provides helper functions like `get_seller()` and
+`get_timestamp()` which both the ontology scanner and site builder use to stay
+in sync.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together.  Running

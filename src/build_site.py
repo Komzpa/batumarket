@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader
 import gettext
 from serde_utils import load_json
-from lot_io import read_lots
+from lot_io import read_lots, get_seller, get_timestamp
 
 try:
     from sklearn.neighbors import NearestNeighbors
@@ -211,17 +211,9 @@ def build_page(
                 sorted_attrs[k] = attrs[k]
 
         ts = sorted_attrs.get("timestamp")
-        if ts:
-            try:
-                dt = datetime.fromisoformat(ts)
-                if dt.tzinfo is None:
-                    dt = dt.replace(tzinfo=timezone.utc)
-                if dt > datetime.now(timezone.utc):
-                    del sorted_attrs["timestamp"]
-                    log.debug("Dropped future timestamp", id=lot.get("_id"))
-            except Exception:
-                del sorted_attrs["timestamp"]
-                log.debug("Bad timestamp", id=lot.get("_id"), value=ts)
+        dt = get_timestamp(lot)
+        if ts and dt is None:
+            del sorted_attrs["timestamp"]
 
         # Show the original message text for context if available.
         orig_text = ""
@@ -425,20 +417,7 @@ def main() -> None:
     categories: dict[str, list[dict]] = {}
     category_stats: dict[str, dict] = {}
     for lot in lots:
-        ts = lot.get("timestamp")
-        dt = None
-        if ts:
-            try:
-                dt = datetime.fromisoformat(ts)
-                if dt.tzinfo is None:
-                    # Older data might have naive timestamps. Assume UTC for
-                    # backwards compatibility so comparisons work.
-                    dt = dt.replace(tzinfo=timezone.utc)
-                if dt > now:
-                    log.debug("Ignoring future timestamp", id=lot.get("_id"))
-                    dt = None
-            except Exception:
-                dt = None
+        dt = get_timestamp(lot)
         deal = lot.get("market:deal", "misc")
         if not isinstance(deal, str):
             log.debug("Non-string deal", id=lot.get("_id"), value=deal)
@@ -456,16 +435,7 @@ def main() -> None:
             stat["users"].add(str(user))
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
-            seller = (
-                lot.get("contact:phone")
-                or lot.get("contact:telegram")
-                or lot.get("contact:instagram")
-                or lot.get("contact:viber")
-                or lot.get("contact:whatsapp")
-                or lot.get("source:author:telegram")
-                or lot.get("source:author:name")
-                or lot.get("seller")
-            )
+            seller = get_seller(lot)
             stat["recent"] += 1
             recent.append(
                 {
@@ -494,7 +464,7 @@ def main() -> None:
     for deal, lot_list in categories.items():
         lot_list_sorted = sorted(
             lot_list,
-            key=lambda x: x.get("timestamp") or "",
+            key=lambda x: get_timestamp(x) or datetime.min,
             reverse=True,
         )
         for lang in langs:
@@ -504,23 +474,8 @@ def main() -> None:
                     (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
                     lot.get("_id"),
                 )
-                seller = (
-                    lot.get("contact:phone")
-                    or lot.get("contact:telegram")
-                    or lot.get("contact:instagram")
-                    or lot.get("contact:viber")
-                    or lot.get("contact:whatsapp")
-                    or lot.get("source:author:telegram")
-                    or lot.get("source:author:name")
-                    or lot.get("seller")
-                )
-                dt = None
-                ts = lot.get("timestamp")
-                if ts:
-                    try:
-                        dt = datetime.fromisoformat(ts)
-                    except Exception:
-                        dt = None
+                seller = get_seller(lot)
+                dt = get_timestamp(lot)
                 items_lang.append(
                     {
                         "link": os.path.relpath(

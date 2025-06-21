@@ -50,7 +50,12 @@ def init_logger(truncate=False):
         level_name = "INFO"
     level_name = level_name.upper()
     level = getattr(logging, level_name, logging.INFO)
-    handlers = [logging.FileHandler(LOGFILE, mode=mode), logging.StreamHandler()]
+    file_handler = logging.FileHandler(LOGFILE, mode=mode)
+    # Only record warnings and errors in the log file to keep noise low.
+    file_handler.setLevel(max(logging.WARNING, level))
+    stream_handler = logging.StreamHandler()
+    stream_handler.setLevel(level)
+    handlers = [file_handler, stream_handler]
     logging.basicConfig(handlers=handlers, level=level, format="%(message)s", force=True)
     # Use the standard library logging as the backend so all log messages end
     # up in ``LOGFILE`` instead of the default stderr output.  Without this

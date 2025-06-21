@@ -1,5 +1,6 @@
 from pathlib import Path
 import sys
+from datetime import datetime, timezone
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -39,8 +40,9 @@ def test_caption_roundtrip(tmp_path: Path):
 
 def test_lot_roundtrip(tmp_path: Path):
     path = tmp_path / "lot.json"
-    lots = [{"a": 1, "b": "x", "c": ""}]
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    lots = [{"a": 1, "b": "x", "c": "", "timestamp": now, "contact:phone": "1"}]
     write_lots(path, lots)
     data = read_lots(path)
-    assert data == [{"a": 1, "b": "x"}]
+    assert data == [{"a": 1, "b": "x", "timestamp": now, "contact:phone": "1"}]
 
