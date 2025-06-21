@@ -64,6 +64,9 @@ Craft `title_<lang>` and `description_<lang>` for every lot using both the origi
   Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
   Salaries quoted in Russian roubles for work in Georgia are suspicious – mark such lots with `fraud=sketchy_job`.
   Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов") must be flagged with `fraud=scam`.
+  If the chat topic does not match the advertised category
+  (for example a job post sent to a real-estate channel) mark the lot with
+  `fraud=spam` even if it looks legitimate otherwise.
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
 - Anything outside these groups should be placed under `misc` until patterns emerge.

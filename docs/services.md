@@ -73,7 +73,9 @@ all images.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper. The prompt now includes short title examples and an `item:audience` field to mark
-items for men, women or kids.
+items for men, women or kids. Ads posted to the wrong chat
+(like a job offer in a real-estate group) are marked with
+`fraud=spam` even when they look legitimate.
 
 ## chop.py
 Feeds the message text plus any media captions to GPT-4o to extract individual
