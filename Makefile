@@ -2,7 +2,7 @@
 
 # Define pipeline stages explicitly so ``make -j compose`` executes them in the
 # correct order.  Each stage runs only after its dependency completes.
-.PHONY: compose update pull caption chop embed build alert ontology clean precommit
+.PHONY: compose update pull caption chop embed build alert ontology clean precommit validate
 
 # ``compose`` is the main entry point used by documentation and tests.  ``update``
 # remains as a backwards compatible alias.
@@ -19,16 +19,19 @@ caption: pull
 	| sort -z -nr \
 	| cut -z -d' ' -f2- \
 	| parallel -j16 -0 python src/caption.py
+	python scripts/validate_outputs.py captions
 
 # Split messages into lots using captions and message text.
 chop: pull
 	python scripts/pending_chop.py \
 	| parallel -j16 -0 python src/chop.py
+	python scripts/validate_outputs.py lots
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop caption
 	python scripts/pending_embed.py \
 	| parallel -j16 -0 python src/embed.py
+	python scripts/validate_outputs.py vectors
 
 # Render HTML pages from lots and templates.
 build: embed ontology
@@ -38,6 +41,9 @@ build: embed ontology
 # Telegram alert bot for new lots.
 alert: embed
 	python src/alert_bot.py
+
+validate:
+	python scripts/validate_outputs.py
 
 ontology: chop
 	python src/scan_ontology.py
