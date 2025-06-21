@@ -61,6 +61,9 @@ def should_skip_user(username: str | None) -> bool:
 
 def should_skip_message(meta: dict, text: str) -> bool:
     """Return ``True`` when the raw Telegram message should be ignored."""
+    if meta.get("skipped_media"):
+        log.debug("Message rejected", reason="skipped-media", id=meta.get("id"))
+        return True
     if should_skip_user(meta.get("sender_username")):
         log.debug("Message rejected", reason="blacklisted-user", user=meta.get("sender_username"))
         return True

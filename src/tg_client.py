@@ -251,10 +251,12 @@ async def _save_message(
     subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
     subdir.mkdir(parents=True, exist_ok=True)
     files = []
+    skipped_reason = None
     if msg.media:
         reason = _should_skip_media(msg)
         if reason:
             log.info("Skipping media", chat=chat, id=msg.id, reason=reason)
+            skipped_reason = reason
         else:
             log.debug("Downloading media", chat=chat, id=msg.id)
             try:
@@ -265,10 +267,14 @@ async def _save_message(
             except asyncio.TimeoutError:
                 log.error("Media download timed out", chat=chat, id=msg.id)
                 data = None
+                skipped_reason = "timeout"
             if isinstance(data, (bytes, bytearray)):
                 files.append(await _save_media(chat, msg, data))
             else:
-                log.warning("Cannot download media", chat=chat, id=msg.id)
+                if data is not None:
+                    log.warning("Cannot download media", chat=chat, id=msg.id)
+                if skipped_reason is None:
+                    skipped_reason = "download"
 
     permissions = None
     try:
@@ -299,6 +305,8 @@ async def _save_message(
     }
     if files:
         meta["files"] = files
+    if skipped_reason:
+        meta["skipped_media"] = skipped_reason
 
     text = (
         getattr(msg, "text", None)

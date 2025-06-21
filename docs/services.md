@@ -41,9 +41,11 @@ Uses Telethon to mirror the target chats as a normal user account.
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
   Progress older than the current `KEEP_DAYS` window is ignored so lowering the
   threshold does not re-fetch deleted history. Attachments that fail to download
-  are skipped with a warning.  The client ignores videos (`.mp4`), audio files,
-  images larger than ten megabytes and any media attached to messages more than
-  two days old.
+  are skipped with a warning and the reason is stored under `skipped_media` in
+  the message metadata. The client ignores videos (`.mp4`), audio files, images
+  larger than ten megabytes and any media attached to messages more than two
+  days old. Messages marked this way are ignored by `chop.py` so only complete
+  posts are parsed.
 * **Automatic refetch.** Messages listed in `misparsed.json` are reloaded at
   startup. If the content changed their corresponding lot files are removed so
   the parser runs again. Posts that saved neither text nor images are also
@@ -58,6 +60,7 @@ Metadata fields include at least:
   fallback when contact details are missing
 - `group_id` if part of an album
 - `files` – list of stored media paths
+- `skipped_media` – reason string when attachments were not downloaded
 
 ## caption.py
 Calls GPT-4o Vision using the instructions in
