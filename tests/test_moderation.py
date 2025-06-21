@@ -15,4 +15,6 @@ def test_should_skip_text():
 def test_should_skip_lot():
     lot = {"contact:telegram": "@username"}
     assert moderation.should_skip_lot(lot)
-    assert not moderation.should_skip_lot({"contact:telegram": "@real"})
+    assert not moderation.should_skip_lot({"contact:telegram": "@real", "title_en": "x", "description_en": "d", "title_ru": "x", "description_ru": "d", "title_ka": "x", "description_ka": "d"})
+    incomplete = {"contact:telegram": "@real", "title_en": "x"}
+    assert moderation.should_skip_lot(incomplete)

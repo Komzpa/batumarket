@@ -7,6 +7,7 @@ from pathlib import Path
 
 from log_utils import get_logger
 from message_utils import parse_md
+from scan_ontology import REVIEW_FIELDS
 
 log = get_logger().bind(module=__name__)
 
@@ -44,6 +45,9 @@ def should_skip_lot(lot: dict) -> bool:
     """Return ``True`` when the lot fails additional checks."""
     if lot.get("contact:telegram") == "@username":
         log.debug("Lot rejected", reason="example contact")
+        return True
+    if any(not lot.get(f) for f in REVIEW_FIELDS):
+        log.debug("Lot rejected", reason="missing translation", id=lot.get("_id"))
         return True
     return False
 
