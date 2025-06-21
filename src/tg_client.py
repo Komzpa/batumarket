@@ -630,6 +630,12 @@ async def main(argv: list[str] | None = None) -> None:
         action="store_true",
         help="stay running and process new updates",
     )
+    parser.add_argument(
+        "--fetch",
+        nargs=2,
+        metavar=("CHAT", "ID"),
+        help="download a single message for investigation and exit",
+    )
     args = parser.parse_args(argv)
 
     client = TelegramClient(
@@ -643,6 +649,33 @@ async def main(argv: list[str] | None = None) -> None:
     global _sem
     _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
     _mark_activity()
+
+    if args.fetch:
+        chat, mid_str = args.fetch
+        try:
+            mid = int(mid_str)
+        except ValueError:
+            log.error("Invalid id", input=mid_str)
+            return
+        try:
+            msg = await client.get_messages(chat, ids=mid)
+        except Exception:
+            log.exception("Failed to fetch message", chat=chat, id=mid)
+            return
+        if msg:
+            await _save_bounded(client, chat, msg)
+            text = (
+                getattr(msg, "text", None)
+                or getattr(msg, "message", "")
+            )
+            text_short = text.strip().replace("\n", " ")[:200]
+            if text_short:
+                log.info(
+                    "Fetched message", chat=chat, id=mid, text=text_short
+                )
+        else:
+            log.error("Message not found", chat=chat, id=mid)
+        return
 
     await ensure_chat_access(client)
 

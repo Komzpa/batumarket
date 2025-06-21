@@ -732,3 +732,38 @@ def test_refetch_broken(tmp_path, monkeypatch):
     assert called.get("fetched") == ("chat", 1)
     assert called.get("saved") == ("chat", 1)
     assert not (tmp_path / "broken.json").exists()
+
+
+def test_main_fetch_single(monkeypatch):
+    """Verify ``--fetch`` downloads the requested message and exits."""
+    _install_telethon_stub(monkeypatch)
+
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = []
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    fetched = {}
+
+    class DummyClient:
+        def __init__(self, *a, **kw):
+            pass
+
+        async def start(self):
+            pass
+
+        async def get_messages(self, chat, ids):
+            fetched["msg"] = (chat, ids)
+            return types.SimpleNamespace(id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="t")
+
+    telethon = sys.modules["telethon"]
+    monkeypatch.setattr(telethon, "TelegramClient", DummyClient)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "_save_bounded", lambda c, chat, msg: asyncio.sleep(0))
+
+    asyncio.run(tg_client.main(["--fetch", "chat", "5"]))
+
+    assert fetched.get("msg") == ("chat", 5)
