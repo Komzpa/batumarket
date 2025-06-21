@@ -26,7 +26,7 @@ BANNED_SUBSTRINGS = [
     "героин",
     "спайс",
     "mdma",
-    "cтоимость рекламного пакета в нашей группе по тематике'
+    "cтоимость рекламного пакета в нашей группе по тематике"
 ]
 
 # Telegram usernames that only post housekeeping messages.  Their updates are
