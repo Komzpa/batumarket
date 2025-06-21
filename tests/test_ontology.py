@@ -13,6 +13,7 @@ def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(
@@ -45,6 +46,7 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(
@@ -81,6 +83,7 @@ def test_empty_values_dropped(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
@@ -94,3 +97,32 @@ def test_empty_values_dropped(tmp_path, monkeypatch):
     data = json.loads((tmp_path / "fields.json").read_text())
     assert "a" not in data
     assert "b" not in data
+
+
+def test_broken_meta_list(tmp_path, monkeypatch):
+    monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
+    monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
+    monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(scan_ontology, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
+    )
+
+    raw = tmp_path / "raw" / "chat" / "2024" / "05"
+    raw.mkdir(parents=True)
+    (raw / "1.md").write_text("id: 1\nchat: chat\n\ntext")
+
+    lots_dir = tmp_path / "lots" / "chat" / "2024" / "05"
+    lots_dir.mkdir(parents=True)
+    (lots_dir / "1.json").write_text(json.dumps([{"source:path": "chat/2024/05/1.md"}]))
+
+    scan_ontology.main()
+
+    broken = json.loads((tmp_path / "broken.json").read_text())
+    assert broken == [{"chat": "chat", "id": 1}]

@@ -5,6 +5,7 @@ import importlib
 import asyncio
 import datetime
 import hashlib
+import json
 
 # ── dummy Telethon shims ────────────────────────────────────────────────────────
 dummy_telethon = types.ModuleType("telethon")
@@ -698,3 +699,36 @@ def test_save_media_reschedules_caption(tmp_path, monkeypatch):
     asyncio.run(tg_client._save_media("chat", msg, data))
 
     assert called["c"] is True
+
+
+def test_refetch_broken(tmp_path, monkeypatch):
+    _install_telethon_stub(monkeypatch)
+    cfg = types.ModuleType("config")
+    cfg.TG_API_ID = 0
+    cfg.TG_API_HASH = ""
+    cfg.TG_SESSION = ""
+    cfg.CHATS = []
+    monkeypatch.setitem(sys.modules, "config", cfg)
+
+    tg_client = importlib.reload(importlib.import_module("tg_client"))
+    monkeypatch.setattr(tg_client, "BROKEN_META_FILE", tmp_path / "broken.json")
+
+    (tmp_path / "broken.json").write_text(json.dumps([{"chat": "chat", "id": 1}]))
+
+    called = {}
+
+    class DummyClient:
+        async def get_messages(self, chat, ids):
+            called["fetched"] = (chat, ids)
+            return types.SimpleNamespace(id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="")
+
+    async def save_stub(c, chat, msg):
+        called["saved"] = (chat, msg.id)
+
+    monkeypatch.setattr(tg_client, "_save_bounded", save_stub)
+
+    asyncio.run(tg_client.refetch_broken(DummyClient()))
+
+    assert called.get("fetched") == ("chat", 1)
+    assert called.get("saved") == ("chat", 1)
+    assert not (tmp_path / "broken.json").exists()

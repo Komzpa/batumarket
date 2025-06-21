@@ -84,6 +84,37 @@ def test_handles_list_fields(tmp_path, monkeypatch):
     assert (tmp_path / "views" / "1-0_en.html").exists()
 
 
+def test_author_fallback(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "hello",
+            "files": [],
+            "market:deal": "sell_item",
+            "source:author:telegram": "@poster",
+            "source:author:name": "Poster",
+        }
+    ]))
+
+    build_site.main()
+
+    cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
+    assert "@poster" in cat_html
+
+
 def test_build_site_skips_moderated(tmp_path, monkeypatch):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")

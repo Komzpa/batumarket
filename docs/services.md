@@ -47,6 +47,8 @@ Metadata fields include at least:
 - `id`, `chat`, `date`, `reply_to`, `is_admin`
 - `sender` (numeric), `sender_name`, `sender_username`, `sender_phone`,
   `post_author`, `tg_link`
+- `source:author:telegram`, `source:author:name` – copied into every lot for
+  fallback when contact details are missing
 - `group_id` if part of an album
 - `files` – list of stored media paths
 
@@ -130,6 +132,8 @@ lot parser under the `input` key so issues can be reproduced. After collecting t
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
 manual inspection.
+Any raw post lacking mandatory metadata is added to `broken_meta.json` so
+`tg_client.py` can refetch it during the next run.
 
 ## moderation.py
 Reusable library for spam filtering. `moderation.apply_to_history()` walks

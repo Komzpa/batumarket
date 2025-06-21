@@ -6,6 +6,7 @@ import hashlib
 import ast
 import subprocess
 import sys
+import json
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
@@ -73,6 +74,8 @@ async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
 RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 STATE_DIR = Path("data/state")
+# List of message ids that should be re-fetched due to missing metadata.
+BROKEN_META_FILE = Path("data/ontology/broken_meta.json")
 
 
 def _progress_logger(chat: str, msg_id: int):
@@ -301,6 +304,8 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
             group_path = subdir / f"{msg.id}.md"
         _GROUPS[msg.grouped_id] = group_path
     path = group_path or subdir / f"{msg.id}.md"
+    for key in ["id", "chat", "date", "sender"]:
+        assert meta.get(key) not in (None, ""), f"missing {key}"
     _write_md(path, meta, text)
     log.info("Wrote message", path=str(path), id=msg.id)
 
@@ -406,6 +411,39 @@ async def ensure_chat_access(client: TelegramClient) -> None:
             log.debug("Already joined", chat=chat)
         except Exception:
             log.exception("Failed to join chat", chat=chat)
+
+
+async def refetch_broken(client: TelegramClient) -> None:
+    """Re-fetch messages listed in ``BROKEN_META_FILE``."""
+    if not BROKEN_META_FILE.exists():
+        return
+    try:
+        broken = json.loads(BROKEN_META_FILE.read_text())
+    except Exception:
+        log.exception("Failed to parse broken metadata file")
+        return
+    if not isinstance(broken, list):
+        return
+    remaining = []
+    for item in broken:
+        chat = item.get("chat")
+        mid = item.get("id")
+        if not chat or not mid:
+            continue
+        try:
+            msg = await client.get_messages(chat, ids=int(mid))
+            if msg:
+                await _save_bounded(client, chat, msg)
+                log.info("Refetched message", chat=chat, id=mid)
+            else:
+                remaining.append(item)
+        except Exception:
+            log.exception("Failed to refetch", chat=chat, id=mid)
+            remaining.append(item)
+    if remaining:
+        BROKEN_META_FILE.write_text(json.dumps(remaining, ensure_ascii=False, indent=2))
+    else:
+        BROKEN_META_FILE.unlink()
 
 
 async def fetch_missing(client: TelegramClient) -> None:
@@ -527,6 +565,8 @@ async def main(argv: list[str] | None = None) -> None:
     _mark_activity()
 
     await ensure_chat_access(client)
+
+    await refetch_broken(client)
 
     await fetch_missing(client)
     await remove_deleted(client, KEEP_DAYS)
