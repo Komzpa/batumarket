@@ -52,7 +52,7 @@ DOWNLOAD_WORKERS = getattr(cfg, "DOWNLOAD_WORKERS", 4)
 _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
-from post_io import write_post, read_post
+from post_io import write_post, read_post, get_contact
 from image_io import write_image_meta
 from moderation import should_skip_user
 
@@ -352,6 +352,17 @@ async def _save_message(
             meta = meta_prev
             text = body_prev or text
         _GROUPS[msg.grouped_id] = group_path
+
+    if get_contact(meta) is None:
+        preview = text.replace("\n", " ")[:120]
+        log.warning(
+            "Missing contact",
+            chat=chat,
+            id=msg.id,
+            preview=preview,
+            meta=json.dumps(meta, ensure_ascii=False),
+        )
+        return None
     path = old_path or group_path or subdir / f"{msg.id}.md"
     if replace and old_path and old_path != path and old_path.exists():
         old_path.unlink()

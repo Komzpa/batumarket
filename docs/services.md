@@ -62,6 +62,9 @@ Metadata fields include at least:
 - `files` – list of stored media paths
 - `skipped_media` – reason string when attachments were not downloaded
 
+When contact information is missing `tg_client.py` logs a single warning with
+the full message metadata and skips the post so issues can be investigated.
+
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
