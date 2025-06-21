@@ -18,6 +18,8 @@ data. In that case simply inspect the existing files under `data/ontology`.
 The command writes several JSON files under `data/ontology`:
 
 - `fields.json` – all keys with value counts.
+- `fields.approved.json` – curated field descriptions with sample values.
+  Each entry includes a `key`, `description_en` and a list of common `values`.
 - `misparsed.json` – lots that failed validation together with the input
   text passed to the parser.
 - `fraud.json` – lots explicitly flagged with a `fraud` tag and the text
