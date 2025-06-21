@@ -66,3 +66,19 @@ def test_main_cli_argument(tmp_path, monkeypatch):
     chop.main([str(msg)])
     assert processed == [msg]
 
+
+def test_chop_skips_moderated(tmp_path, monkeypatch):
+    monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
+
+    msg = tmp_path / "raw" / "chat" / "2024" / "05" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("id: 1\n\nspam", encoding="utf-8")
+
+    monkeypatch.setattr(chop, "should_skip_message", lambda m, t: True)
+
+    chop.main([str(msg)])
+
+    assert not (tmp_path / "lots" / "chat" / "2024" / "05" / "1.json").exists()
+

@@ -23,6 +23,7 @@ from notes_utils import read_md
 # Blueprint describing expected fields and message taxonomy used by the model.
 BLUEPRINT = Path("prompts/chopper_prompt.md").read_text(encoding="utf-8")
 from token_utils import estimate_tokens
+from moderation import should_skip_message
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -85,6 +86,9 @@ def process_message(msg_path: Path) -> None:
     log.info("Processing message", path=str(msg_path))
 
     meta, text = _parse_md(msg_path)
+    if should_skip_message(meta, text):
+        log.info("Skipping message", path=str(msg_path), reason="moderation")
+        return
     files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
     captions = []
     for rel in files:

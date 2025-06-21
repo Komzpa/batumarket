@@ -25,6 +25,7 @@ except Exception:
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
+from moderation import should_skip_message, should_skip_lot
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -118,6 +119,18 @@ def _iter_lots() -> list[dict]:
         base = rel.name
         prefix = rel.parent
         for i, lot in enumerate(data):
+            src = lot.get("source:path")
+            if src:
+                raw_path = RAW_DIR / src
+                meta, text = _parse_md(raw_path)
+                if should_skip_message(meta, text) or should_skip_lot(lot):
+                    log.info(
+                        "Skipping lot",
+                        file=str(path),
+                        reason="moderation",
+                        source=str(src),
+                    )
+                    continue
             lot["_file"] = path
             lot["_id"] = str(prefix / f"{base}-{i}") if prefix.parts else f"{base}-{i}"
             lots.append(lot)
