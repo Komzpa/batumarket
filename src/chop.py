@@ -19,6 +19,7 @@ OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = cfg.LANGS
 from log_utils import get_logger, install_excepthook
 from notes_utils import read_md
+from message_utils import parse_md, build_prompt
 
 # Blueprint describing expected fields and message taxonomy used by the model.
 BLUEPRINT = Path("prompts/chopper_prompt.md").read_text(encoding="utf-8")
@@ -35,33 +36,6 @@ MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
-
-
-def _build_prompt(text: str, files: list[str], captions: list[str]) -> str:
-    """Return prompt combining message text with captioned file names."""
-    parts = []
-    if text.strip():
-        parts.append(f"Message text:\n{text.strip()}")
-    for file, caption in zip(files, captions):
-        parts.append(f"Image {file}:\n{caption.strip()}")
-    return "\n\n".join(parts)
-
-
-def _parse_md(path: Path) -> tuple[dict, str]:
-    """Return metadata dict and message text."""
-    text = path.read_text(encoding="utf-8") if path.exists() else ""
-    lines = text.splitlines()
-    meta = {}
-    body_start = 0
-    for i, line in enumerate(lines):
-        if not line.strip():
-            body_start = i + 1
-            break
-        if ":" in line:
-            k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
-    body = "\n".join(lines[body_start:])
-    return meta, body
 
 # System prompt appended to the blueprint.  Explicitly instruct the model to
 # respond with *only* JSON, no code fences or extra text.  The API request will
@@ -85,7 +59,7 @@ def process_message(msg_path: Path) -> None:
 
     log.info("Processing message", path=str(msg_path))
 
-    meta, text = _parse_md(msg_path)
+    meta, text = parse_md(msg_path)
     if should_skip_message(meta, text):
         log.info("Skipping message", path=str(msg_path), reason="moderation")
         return
@@ -106,7 +80,7 @@ def process_message(msg_path: Path) -> None:
             captions.append(caption_text)
     # Combine the original message text with image captions. This ensures GPT
     # has full context rather than captions alone.
-    prompt = _build_prompt(text, files, captions)
+    prompt = build_prompt(text, files, captions)
     system_prompt = SYSTEM_PROMPT.replace("{langs}", ", ".join(LANGS))
     log.debug("Blueprint tokens", count=estimate_tokens(BLUEPRINT))
     log.debug("System prompt tokens", count=estimate_tokens(system_prompt))

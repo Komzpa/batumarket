@@ -51,6 +51,7 @@ _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
 from notes_utils import write_md
+from message_utils import parse_md
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -90,21 +91,6 @@ def _progress_logger(chat: str, msg_id: int):
     return cb
 
 
-def _parse_md(path: Path) -> tuple[dict, str]:
-    """Return metadata dict and message text from ``path``."""
-    text = path.read_text(encoding="utf-8") if path.exists() else ""
-    lines = text.splitlines()
-    meta = {}
-    body_start = 0
-    for i, line in enumerate(lines):
-        if not line.strip():
-            body_start = i + 1
-            break
-        if ":" in line:
-            k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
-    body = "\n".join(lines[body_start:])
-    return meta, body
 
 
 def _write_md(path: Path, meta: dict, body: str) -> None:
@@ -118,7 +104,7 @@ _GROUPS: dict[int, Path] = {}
 def _find_group_path(chat: str, group_id: int) -> Path | None:
     """Search stored messages for ``group_id`` to keep albums together."""
     for p in (RAW_DIR / chat).rglob("*.md"):
-        meta, _ = _parse_md(p)
+        meta, _ = parse_md(p)
         try:
             if int(meta.get("group_id", 0)) == group_id:
                 return p
@@ -304,7 +290,7 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     if msg.grouped_id:
         group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
         if group_path:
-            meta_prev, body_prev = _parse_md(group_path)
+            meta_prev, body_prev = parse_md(group_path)
             files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
             files = files_prev + files
             meta_prev.update(meta)
@@ -483,7 +469,7 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
     for chat in CHATS:
         count = 0
         for path in (RAW_DIR / chat).rglob("*.md"):
-            meta, _ = _parse_md(path)
+            meta, _ = parse_md(path)
             date_str = meta.get("date")
             try:
                 ts = datetime.fromisoformat(date_str) if date_str else None
