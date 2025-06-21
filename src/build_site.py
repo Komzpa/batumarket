@@ -4,7 +4,7 @@ Each ``*.json`` file under ``data/lots`` may contain several lots so we assign
 a unique ``_page_id`` to every entry.  Templates live in ``templates/`` and the
 output is written to ``data/views`` keeping the directory layout intact.  The
 script also loads ``data/vectors.jsonl`` if present to find similar lots based
-on cosine similarity.  ``data/ontology.json`` is consulted to display table
+on cosine similarity.  ``data/ontology/fields.json`` is consulted to display table
 columns in a stable order.
 """
 
@@ -33,7 +33,7 @@ LOTS_DIR = Path("data/lots")
 VIEWS_DIR = Path("data/views")
 TEMPLATES = Path("templates")
 VEC_DIR = Path("data/vectors")
-ONTOLOGY = Path("data/ontology.json")
+ONTOLOGY = Path("data/ontology/fields.json")
 RAW_DIR = Path("data/raw")
 
 

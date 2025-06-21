@@ -9,7 +9,14 @@ import scan_ontology
 
 def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
-    monkeypatch.setattr(scan_ontology, "OUTPUT_FILE", tmp_path / "out.json")
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.txt" for f in scan_ontology.REVIEW_FIELDS},
+    )
 
     (tmp_path / "sub").mkdir()
     (tmp_path / "a.json").write_text(json.dumps([
@@ -20,7 +27,7 @@ def test_collect_ontology(tmp_path, monkeypatch):
 
     scan_ontology.main()
 
-    data = json.loads((tmp_path / "out.json").read_text())
+    data = json.loads((tmp_path / "fields.json").read_text())
     assert data["a"] == {"1": 1, "2": 1}
     assert data["b"] == {"x": 2, "y": 1}
     assert data["c"] == {"[1, 2]": 1}
@@ -28,7 +35,14 @@ def test_collect_ontology(tmp_path, monkeypatch):
 
 def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
-    monkeypatch.setattr(scan_ontology, "OUTPUT_FILE", tmp_path / "out.json")
+    monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
+    monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
+    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(
+        scan_ontology,
+        "REVIEW_FILES",
+        {f: tmp_path / f"{f}.txt" for f in scan_ontology.REVIEW_FIELDS},
+    )
 
     (tmp_path / "a.json").write_text(json.dumps({
         "timestamp": "now",
@@ -39,7 +53,7 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
 
     scan_ontology.main()
 
-    data = json.loads((tmp_path / "out.json").read_text())
+    data = json.loads((tmp_path / "fields.json").read_text())
     assert "timestamp" not in data
     assert "contact:telegram" not in data
     assert "files" not in data
