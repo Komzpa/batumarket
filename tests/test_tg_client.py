@@ -478,6 +478,7 @@ def test_save_message_skip_missing_media(tmp_path, monkeypatch):
         assert md_file.exists()
         text = md_file.read_text()
         assert "files" not in text
+        assert "skipped_media" in text
 
     asyncio.run(run())
 
@@ -545,7 +546,9 @@ def test_save_message_respects_skip(tmp_path, monkeypatch):
         assert called["d"] is False
         md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
         assert md_file.exists()
-        assert "files" not in md_file.read_text()
+        text = md_file.read_text()
+        assert "files" not in text
+        assert "skipped_media" in text
 
     asyncio.run(run())
 
@@ -584,7 +587,9 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
         assert called["d"] is False
         md_file = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}" / "1.md"
         assert md_file.exists()
-        assert "files" not in md_file.read_text()
+        text = md_file.read_text()
+        assert "files" not in text
+        assert "skipped_media" in text
 
     asyncio.run(run())
 

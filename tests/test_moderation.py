@@ -12,6 +12,11 @@ def test_should_skip_text():
     assert not moderation.should_skip_text("normal text")
 
 
+def test_skip_due_to_media_flag():
+    meta = {"skipped_media": "timeout", "sender_username": "u"}
+    assert moderation.should_skip_message(meta, "text")
+
+
 def test_should_skip_lot():
     lot = {"contact:telegram": "@username"}
     assert moderation.should_skip_lot(lot)
