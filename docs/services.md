@@ -146,6 +146,8 @@ through `data/lots` and removes any entries whose raw post text matches banned
 phrases. The checks also run inside `chop.py` and `build_site.py` so unwanted
 posts never reach the website. Update the library with new rules and rerun the
 script to clean past data.
+Recent filters catch offers of illegal narcotics and vague job ads like
+"ищу людей на неполный рабочий день" so they never reach the website.
 
 ## File I/O helpers
 `post_io.py`, `lot_io.py`, `caption_io.py` and `image_io.py` handle posts,
