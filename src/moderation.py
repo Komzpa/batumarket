@@ -28,6 +28,16 @@ BANNED_SUBSTRINGS = [
     "mdma"
 ]
 
+# Telegram usernames that only post housekeeping messages.  Their updates are
+# ignored entirely so we do not waste time downloading captcha images or other
+# irrelevant content.  All names must be lower case for easy comparison.
+BLACKLISTED_USERS = [
+    "m_s_help_bot",
+    "chatkeeperbot",
+    "dosvidulibot",
+    "batumi_batumi_bot",
+]
+
 RAW_DIR = Path("data/raw")
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
@@ -42,8 +52,18 @@ def should_skip_text(text: str) -> bool:
     return False
 
 
+def should_skip_user(username: str | None) -> bool:
+    """Return ``True`` if ``username`` is blacklisted."""
+    if not username:
+        return False
+    return username.lower() in BLACKLISTED_USERS
+
+
 def should_skip_message(meta: dict, text: str) -> bool:
     """Return ``True`` when the raw Telegram message should be ignored."""
+    if should_skip_user(meta.get("sender_username")):
+        log.debug("Message rejected", reason="blacklisted-user", user=meta.get("sender_username"))
+        return True
     if should_skip_text(text):
         log.debug("Message rejected", id=meta.get("id"))
         return True
