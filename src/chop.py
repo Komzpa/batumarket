@@ -97,7 +97,7 @@ def process_message(msg_path: Path) -> None:
     log.info("OpenAI request", messages=messages)
     try:
         resp = openai.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=messages,
             temperature=0,
             response_format={"type": "json_object"},
