@@ -11,7 +11,6 @@ def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
-    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
@@ -39,12 +38,16 @@ def test_collect_ontology(tmp_path, monkeypatch):
     titles = json.loads((tmp_path / "title_en.json").read_text())
     assert titles == {"foo": 2, "bar": 1}
 
+    mis = json.loads((tmp_path / "misparsed.json").read_text())
+    assert len(mis) == 3
+    # all lots lack translated descriptions so they end up misparsed
+    assert mis[0]["lot"]["a"] == 1
+
 
 def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
-    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path)
@@ -81,7 +84,6 @@ def test_empty_values_dropped(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
-    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(
@@ -103,7 +105,6 @@ def test_broken_meta_list(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
-    monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
     monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(scan_ontology, "BROKEN_META_FILE", tmp_path / "broken.json")
     monkeypatch.setattr(scan_ontology, "RAW_DIR", tmp_path / "raw")

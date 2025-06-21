@@ -124,10 +124,10 @@ to all subscribers when new lots are detected.
 Walks through `data/lots` and collects a list of every key used across all
 stored lots. For each key the script counts how many times each value appears
 and writes the result to `data/ontology/fields.json`. Titles and descriptions
-are stored separately in JSON files with counts sorted by frequency. Any lot
-missing translated text is written to `missing.json` while obviously mis-parsed
-lots (for example those containing `contact:telegram` equal to `@username`)
-go into `misparsed.json`. Each entry now includes the exact text passed to the
+are stored separately in JSON files with counts sorted by frequency. Lots
+missing translated text are now treated the same as obviously mis-parsed ones
+(for example those containing `contact:telegram` equal to `@username`) and all
+go into `misparsed.json`. Each entry includes the exact text passed to the
 lot parser under the `input` key so issues can be reproduced. After collecting the counts the script removes a few
 noisy fields like timestamps and language specific duplicates so the output
 focuses on meaningful attributes. Run `make ontology` to generate the files for
