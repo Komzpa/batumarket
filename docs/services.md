@@ -147,3 +147,9 @@ The `Makefile` in the repository root wires these scripts together.  Running
 `make compose` performs a full refresh: pulling messages (images are captioned on
 the fly), chopping, embedding and rebuilding the static site.  `make update` is kept as a
 compatibility alias for older instructions.
+
+## Validation
+Pipeline stages rely on the previous step's output. The Makefile runs
+`scripts/validate_outputs.py` after captions, chopping and embedding to ensure
+files are ready for the next phase. See [validation.md](validation.md) for the
+checks performed.
