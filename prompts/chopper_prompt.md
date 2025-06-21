@@ -44,7 +44,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `panorama` - `yes` when a wide view is explicitly mentioned.
 - `ventilation` - `yes` if mechanical airflow is advertised.
 - `laundry` - `yes` when a separate laundry room is available.
-- `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
+- `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp`, `contact:website` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
 - `files` – list of stored media paths for the lot.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
@@ -60,6 +60,8 @@ Craft `title_<lang>` and `description_<lang>` for every lot using both the origi
   Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.
   If the description does not explain the actual work, mark the lot with
   `fraud=sketchy_job`. Leaflet distribution or other ad-hoc explained ones are not to be marked as fraud.
+  Posts offering illegal narcotics or other prohibited drugs should be flagged with `fraud=drugs`.
+  Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
 - Anything outside these groups should be placed under `misc` until patterns emerge.
