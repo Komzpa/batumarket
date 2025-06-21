@@ -120,10 +120,12 @@ def _iter_lots() -> list[dict]:
         prefix = rel.parent
         for i, lot in enumerate(data):
             src = lot.get("source:path")
+            meta: dict[str, str] | None = None
+            text = ""
             if src:
                 raw_path = RAW_DIR / src
                 meta, text = _parse_md(raw_path)
-                if should_skip_message(meta, text) or should_skip_lot(lot):
+                if should_skip_message(meta, text):
                     log.info(
                         "Skipping lot",
                         file=str(path),
@@ -131,6 +133,14 @@ def _iter_lots() -> list[dict]:
                         source=str(src),
                     )
                     continue
+            if should_skip_lot(lot):
+                log.info(
+                    "Skipping lot",
+                    file=str(path),
+                    reason="moderation",
+                    source=str(src) if src else None,
+                )
+                continue
             lot["_file"] = path
             lot["_id"] = str(prefix / f"{base}-{i}") if prefix.parts else f"{base}-{i}"
             lots.append(lot)

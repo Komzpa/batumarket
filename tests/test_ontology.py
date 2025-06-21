@@ -12,18 +12,19 @@ def test_collect_ontology(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
-        {f: tmp_path / f"{f}.txt" for f in scan_ontology.REVIEW_FIELDS},
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
     )
 
     (tmp_path / "sub").mkdir()
     (tmp_path / "a.json").write_text(json.dumps([
-        {"a": 1, "b": "x"},
-        {"a": 2, "b": "x"}
+        {"a": 1, "b": "x", "title_en": "foo"},
+        {"a": 2, "b": "x", "title_en": "bar"}
     ]))
-    (tmp_path / "sub" / "b.json").write_text(json.dumps({"b": "y", "c": [1, 2]}))
+    (tmp_path / "sub" / "b.json").write_text(json.dumps({"b": "y", "c": [1, 2], "title_en": "foo"}))
 
     scan_ontology.main()
 
@@ -32,21 +33,25 @@ def test_collect_ontology(tmp_path, monkeypatch):
     assert data["b"] == {"x": 2, "y": 1}
     assert data["c"] == {"[1, 2]": 1}
 
+    titles = json.loads((tmp_path / "title_en.json").read_text())
+    assert titles == {"foo": 2, "bar": 1}
+
 
 def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "OUTPUT_DIR", tmp_path)
     monkeypatch.setattr(scan_ontology, "FIELDS_FILE", tmp_path / "fields.json")
     monkeypatch.setattr(scan_ontology, "MISSING_FILE", tmp_path / "missing.json")
+    monkeypatch.setattr(scan_ontology, "MISPARSED_FILE", tmp_path / "misparsed.json")
     monkeypatch.setattr(
         scan_ontology,
         "REVIEW_FILES",
-        {f: tmp_path / f"{f}.txt" for f in scan_ontology.REVIEW_FIELDS},
+        {f: tmp_path / f"{f}.json" for f in scan_ontology.REVIEW_FIELDS},
     )
 
     (tmp_path / "a.json").write_text(json.dumps({
         "timestamp": "now",
-        "contact:telegram": "@user",
+        "contact:telegram": "@username",
         "files": ["a.jpg"],
         "other": 5,
     }))
@@ -58,3 +63,6 @@ def test_skip_fields_are_removed(tmp_path, monkeypatch):
     assert "contact:telegram" not in data
     assert "files" not in data
     assert data["other"] == {"5": 1}
+
+    mis = json.loads((tmp_path / "misparsed.json").read_text())
+    assert mis[0]["contact:telegram"] == "@username"

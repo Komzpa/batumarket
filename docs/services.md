@@ -119,11 +119,15 @@ to all subscribers when new lots are detected.
 
 ## scan_ontology.py
 Walks through `data/lots` and collects a list of every key used across all
-stored lots.  For each key the script counts how many times each value appears
-and writes the result to `data/ontology/fields.json` along with helper files.
-After collecting the counts the script removes a few noisy fields like timestamps and language specific
-duplicates so the output focuses on meaningful attributes.  Run `make
-ontology` to generate the file for manual inspection.
+stored lots. For each key the script counts how many times each value appears
+and writes the result to `data/ontology/fields.json`. Titles and descriptions
+are stored separately in JSON files with counts sorted by frequency. Any lot
+missing translated text is written to `missing.json` while obviously mis-parsed
+lots (for example those containing `contact:telegram` equal to `@username`)
+go into `misparsed.json`. After collecting the counts the script removes a few
+noisy fields like timestamps and language specific duplicates so the output
+focuses on meaningful attributes. Run `make ontology` to generate the files for
+manual inspection.
 
 ## moderation.py
 Reusable library for spam filtering. `moderation.apply_to_history()` walks
