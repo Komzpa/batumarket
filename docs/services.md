@@ -70,7 +70,8 @@ If some captions are missing you can run `make caption` to retry processing
 all images.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
-lot chopper.
+lot chopper. The prompt now includes short title examples and an `item:audience` field to mark
+items for men, women or kids.
 
 ## chop.py
 Feeds the message text plus any media captions to GPT-4o to extract individual

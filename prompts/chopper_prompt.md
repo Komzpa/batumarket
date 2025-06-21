@@ -12,6 +12,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `market:deal` – main intent such as `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_item`, `buy_item`, `sell_property`, `buy_property`, `exchange`, `giveaway`, `job_offer`, `job_seek`, `services_offer`, `services_seek`, `pets`,`announcement`, `event_invite`, `event_seek`, `cryptocurrency`.
 - `property:type` – e.g. `apartment`, `studio`, `apartment_studio`, `house`, `room`, `duplex`, `land`, `commercial`, `hotel_room`, ...
 - `item:type` - `smartphone`, `medicine`, `monitor`, `led_bulb`, `cryptocurrency`, `kids_kick_scooter`, `hoverboard`, `baby_crib`, `bluetooth_speaker`, `jacket`, `potted_plant`, `board_game`, `shoe`, `smartwatch`, `charger`, `smart_speaker`, `action_camera`, `drone`, `grow_light`, `laptop`, `recliner`, `bedspread`, `mini_fridge`, `cat`, `dog`, ... (lower-case, singular, underscores_for_spaces)
+- `item:audience` – `men`, `women`, `kids` – use for clothing or other gendered items.
 - `condition` - `new`, `open_box`, `unused`, `like_new`, `very_good`, `good`, `fair`, `used`, `needs_repair`, `for_parts`, `refurbished`, `shop_display`, `obsolete`, `handmade` ... 
 - `rooms` – "studio" or integer as a string.
 - `start_date`, `end_date` - iso8601 date.`
@@ -80,3 +81,28 @@ Craft `title_<lang>` and `description_<lang>` for every lot using both the origi
   }
 ]
 ```
+
+## Title examples
+Good summaries clearly describe the specific offer:
+
+- 2-комнатная квартира в Batumi Plaza с видом на горы
+- 1+1 квартира на Шартава 16, 22 этаж с видом на город
+- 2+1 двухэтажный коттедж с бассейном и террасами
+- Сменные лезвия Philips OneBlade
+
+Avoid generic headlines and summarise the actual offering instead:
+
+- Объявление об аренде квартир
+- Разное сообщение
+- Предложение удалённой работы
+- Объявление о недвижимости
+- Разное объявление
+- Объявление от Ольги
+- Вакансия удалённой работы
+- Товары на продажу
+
+Skip the lot entirely when it is no longer relevant:
+
+- Запрос на верификацию
+- Объявление о правилах группы и услугах
+- Товар продан
