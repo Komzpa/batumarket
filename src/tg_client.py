@@ -77,6 +77,8 @@ MEDIA_DIR = Path("data/media")
 STATE_DIR = Path("data/state")
 # List of message ids that should be re-fetched due to missing metadata.
 BROKEN_META_FILE = Path("data/ontology/broken_meta.json")
+MISPARSED_FILE = Path("data/ontology/misparsed.json")
+LOTS_DIR = Path("data/lots")
 
 
 def _progress_logger(chat: str, msg_id: int):
@@ -227,7 +229,7 @@ def get_last_id(chat: str) -> int:
     return max(ids) if ids else 0
 
 
-async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None:
+async def _save_message(client: TelegramClient, chat: str, msg: Message) -> Path:
     """Write ``msg`` to disk with metadata and any media references."""
     _mark_activity()
     log.debug("Processing message", chat=chat, id=msg.id)
@@ -309,6 +311,7 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
         assert meta.get(key) not in (None, ""), f"missing {key}"
     _write_md(path, meta, text)
     log.info("Wrote message", path=str(path), id=msg.id)
+    return path
 
 
 async def _save_media(chat: str, msg: Message, data: bytes) -> str:
@@ -350,11 +353,11 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     return str(rel)
 
 
-async def _save_bounded(client: TelegramClient, chat: str, msg: Message) -> None:
-    """Run ``_save_message`` under the global semaphore."""
+async def _save_bounded(client: TelegramClient, chat: str, msg: Message) -> Path:
+    """Run ``_save_message`` under the global semaphore and return path."""
     assert _sem is not None
     async with _sem:
-        await _save_message(client, chat, msg)
+        return await _save_message(client, chat, msg)
 
 
 async def _download_messages(
@@ -383,7 +386,7 @@ async def _download_messages(
         else:
             raise
     done = 0
-    tasks: list[asyncio.Task[None]] = []
+    tasks: list[asyncio.Task[Path]] = []
     bar.start()
     for msg in messages:
         tasks.append(asyncio.create_task(_save_bounded(client, chat, msg)))
@@ -442,6 +445,77 @@ async def refetch_broken(client: TelegramClient) -> None:
         write_json(BROKEN_META_FILE, remaining)
     else:
         BROKEN_META_FILE.unlink()
+
+
+async def refetch_misparsed(client: TelegramClient) -> None:
+    """Re-fetch messages listed in ``MISPARSED_FILE`` and drop lots if they change."""
+    if not MISPARSED_FILE.exists():
+        return
+    items = load_json(MISPARSED_FILE)
+    if not isinstance(items, list):
+        return
+    for entry in items:
+        lot = entry.get("lot", {}) if isinstance(entry, dict) else {}
+        chat = lot.get("source:chat")
+        mid = lot.get("source:message_id")
+        path_rel = lot.get("source:path")
+        if not chat or not mid:
+            continue
+        old_path = RAW_DIR / path_rel if path_rel else None
+        old_text = old_path.read_text() if old_path and old_path.exists() else None
+        try:
+            msg = await client.get_messages(chat, ids=int(mid))
+        except Exception:
+            log.exception("Failed to refetch", chat=chat, id=mid)
+            continue
+        if not msg:
+            continue
+        new_path = await _save_bounded(client, chat, msg)
+        if old_text is None:
+            continue
+        try:
+            new_text = new_path.read_text()
+        except Exception:
+            continue
+        if new_text != old_text or new_path != old_path:
+            lot_path = LOTS_DIR / new_path.relative_to(RAW_DIR).with_suffix(".json")
+            if lot_path.exists():
+                lot_path.unlink()
+                log.info("Dropped lots after refetch", file=str(lot_path))
+
+
+async def refetch_empty(client: TelegramClient) -> None:
+    """Re-fetch posts missing both text and images."""
+    for path in RAW_DIR.rglob("*.md"):
+        meta, text = read_post(path)
+        try:
+            files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
+        except Exception:
+            files = []
+        if text.strip() or files:
+            continue
+        chat = meta.get("chat")
+        mid = meta.get("id")
+        if not chat or not mid:
+            continue
+        old_text = path.read_text()
+        try:
+            msg = await client.get_messages(chat, ids=int(mid))
+        except Exception:
+            log.exception("Failed to refetch", chat=chat, id=mid)
+            continue
+        if not msg:
+            continue
+        new_path = await _save_bounded(client, chat, msg)
+        try:
+            new_text = new_path.read_text()
+        except Exception:
+            continue
+        if new_text != old_text or new_path != path:
+            lot_path = LOTS_DIR / new_path.relative_to(RAW_DIR).with_suffix(".json")
+            if lot_path.exists():
+                lot_path.unlink()
+                log.info("Dropped lots after refetch", file=str(lot_path))
 
 
 async def fetch_missing(client: TelegramClient) -> None:
@@ -565,6 +639,8 @@ async def main(argv: list[str] | None = None) -> None:
     await ensure_chat_access(client)
 
     await refetch_broken(client)
+    await refetch_misparsed(client)
+    await refetch_empty(client)
 
     await fetch_missing(client)
     await remove_deleted(client, KEEP_DAYS)

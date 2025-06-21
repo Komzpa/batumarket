@@ -41,6 +41,10 @@ Uses Telethon to mirror the target chats as a normal user account.
   are skipped with a warning.  The client ignores videos (`.mp4`), audio files,
   images larger than ten megabytes and any media attached to messages more than
   two days old.
+* **Automatic refetch.** Messages listed in `misparsed.json` are reloaded at
+  startup. If the content changed their corresponding lot files are removed so
+  the parser runs again. Posts that saved neither text nor images are also
+  re-fetched in case Telegram failed to deliver them the first time.
 
 Metadata fields include at least:
 
