@@ -1,10 +1,12 @@
 # Chopper Blueprint
 
-The lot chopper uses GPT-4o to transform raw posts into structured JSON. Replies
-**must** contain nothing but valid JSON. A single message can describe several
-lots so the model should return a JSON array. Even when only one lot is found
-the output must still be wrapped in an array. **Never wrap the JSON in Markdown
-code fences or add any surrounding text.** Normalize emojis and fancy formatting into plain text.
+The lot chopper transforms raw posts into structured JSON.
+Replies **must** contain nothing but valid JSON.
+A single message can describe several lots so the model should return a JSON array.
+Even when only one lot is found the output must still be wrapped in an array. 
+**Never wrap the JSON in Markdown code fences or add any surrounding text.**
+Normalize emojis and fancy formatting into plain text.
+Fix spelling mistakes when sure about it.
 
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:
@@ -28,7 +30,8 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `heating` – `central`, `gas`, `electric`, `none`, `karma`.
 - `underfloor_heating` - `yes`, `no`.
 - `gas` – `yes`, `no`, `in_progress`, `possible`, ... whether a gas pipe or heating is mentioned.
-- `addr:city` (`Батуми`, `Кобулети`, `Махинджаури`, `Гонио`, `Чакви`, ...), `addr:suburb` (`район Аэропорта`, `старый город`...), `addr:neighbourhood` (`рядом с VOX`...), `addr:street` ("3-й тупик Ангиса", "улица Леха и Марии Качинских"...), "addr:unit" ("Block A", "Block C"), `addr:housenumber`, `addr:floor`, `addr:door` – street and number match. `addr:full` with text of address as-is in ad.
+- `addr:city` (`Батуми`, `Кобулети`, `Махинджаури`, `Гонио`, `Чакви`, ...), `addr:suburb` (`район Аэропорта`, `старый город`...), `addr:neighbourhood` (`рядом с VOX`...), `addr:street` ("3-й тупик Ангиса", "улица Леха и Марии Качинских"...), `addr:unit` ("Block A", "Block C"), `addr:housenumber`, `addr:floor`, `addr:door` – street and number match.
+- `addr:full` - text of address verbatim as-is in ad, no spelling adjustments.
 - `building:name` – named apartment blocks (`Orbi City`, `Orbi Residence`, `Orbi Beach Tower`, `Orbi Sea Towers`, `Black Sea Towers`, `Gumbati`, `Vox`, `Sunrise`, `White Sails`, `Магнолия`, `Batumi View`, `Intourist residence`, `Dar Tower`, `Metro City`, `Intourist Residence`, ...)
 - `floor`, `building:levels` – floor number (int or hint `low`, `middle`, `high`)  and total floors.
 - `urgency` - `urgent`, `none`.
@@ -45,11 +48,13 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `ventilation` - `yes` if mechanical airflow is advertised.
 - `laundry` - `yes` when a separate laundry room is available.
 - `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp`, `contact:website` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
-- `files` – list of stored media paths for the lot.
+- `files` – list of stored media paths for the lot. Match the files to their respective lots. Put most representative picture first - it will be used on post preview.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
 
-Craft `title_<lang>` and `description_<lang>` for every lot using both the original text and image captions. Use the street name along with the number of rooms, floor level and view to form concise titles for real-estate posts. Ensure these fields are filled for all languages requested in the prompt.
+Use the street name along with the number of rooms, floor level and view to form concise titles for real-estate posts.
+Spell only the item being sold in title, skip "for sale" or "buying" or "exchange" - it will be captured in `market:deal`.
+Craft `title_<lang>` and `description_<lang>` for every lot using both the original text and image captions. Ensure these fields are filled for all languages requested in the prompt.
 
 ## Taxonomy
 - **Real-estate** – `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_property`, `buy_property`, `exchange`.
