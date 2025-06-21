@@ -14,7 +14,7 @@ from config_utils import load_config
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
-from notes_utils import write_md
+from caption_io import write_caption
 from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
@@ -112,7 +112,7 @@ def caption_file(path: Path) -> str:
         log.exception("Caption failed", sha=sha)
         return sha
 
-    write_md(out, text)
+    write_caption(out, text)
     log.info("Caption", file=str(path), text=text)
     return sha
 

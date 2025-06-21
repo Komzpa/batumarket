@@ -1,6 +1,5 @@
 """Generate embeddings for lots and store them as JSON files."""
 
-import json
 from pathlib import Path
 
 import argparse
@@ -13,6 +12,7 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
 from token_utils import estimate_tokens
+from serde_utils import write_json
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -50,7 +50,7 @@ def embed_file(path: Path) -> None:
         log.exception("Embed failed", id=lot_id)
         return
 
-    out.write_text(json.dumps({"id": lot_id, "vec": vec}))
+    write_json(out, {"id": lot_id, "vec": vec})
     log.debug("Vector written", path=str(out))
 
 

@@ -15,6 +15,7 @@ import progressbar
 from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
+from serde_utils import load_json, write_json
 
 # Log progress on long downloads every few seconds and abort if they
 # run for too long.
@@ -51,8 +52,8 @@ DOWNLOAD_WORKERS = getattr(cfg, "DOWNLOAD_WORKERS", 4)
 _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
-from notes_utils import write_md
-from message_utils import parse_md
+from post_io import write_post, read_post
+from image_io import write_image_meta
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -97,8 +98,8 @@ def _progress_logger(chat: str, msg_id: int):
 
 
 def _write_md(path: Path, meta: dict, body: str) -> None:
-    meta_lines = [f"{k}: {v}" for k, v in meta.items() if v is not None]
-    write_md(path, "\n".join(meta_lines) + "\n\n" + body.strip())
+    """Helper to store a raw post in Markdown format."""
+    write_post(path, meta, body)
 
 
 _GROUPS: dict[int, Path] = {}
@@ -107,7 +108,7 @@ _GROUPS: dict[int, Path] = {}
 def _find_group_path(chat: str, group_id: int) -> Path | None:
     """Search stored messages for ``group_id`` to keep albums together."""
     for p in (RAW_DIR / chat).rglob("*.md"):
-        meta, _ = parse_md(p)
+        meta, _ = read_post(p)
         try:
             if int(meta.get("group_id", 0)) == group_id:
                 return p
@@ -293,7 +294,7 @@ async def _save_message(client: TelegramClient, chat: str, msg: Message) -> None
     if msg.grouped_id:
         group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
         if group_path:
-            meta_prev, body_prev = parse_md(group_path)
+            meta_prev, body_prev = read_post(group_path)
             files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
             files = files_prev + files
             meta_prev.update(meta)
@@ -339,14 +340,12 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
             _schedule_caption(path)
         else:
             log.debug("Caption exists", file=str(caption))
-    md = subdir / f"{filename}.md"
     meta = {
         "message_id": msg.id,
         "date": msg.date.isoformat(),
         "original": getattr(msg.file, "name", None),
     }
-    meta_lines = [f"{k}: {v}" for k, v in meta.items() if v]
-    write_md(md, "\n".join(meta_lines))
+    write_image_meta(path, meta)
     rel = Path(chat) / f"{msg.date:%Y}" / f"{msg.date:%m}" / filename
     return str(rel)
 
@@ -417,10 +416,9 @@ async def refetch_broken(client: TelegramClient) -> None:
     """Re-fetch messages listed in ``BROKEN_META_FILE``."""
     if not BROKEN_META_FILE.exists():
         return
-    try:
-        broken = json.loads(BROKEN_META_FILE.read_text())
-    except Exception:
-        log.exception("Failed to parse broken metadata file")
+    broken = load_json(BROKEN_META_FILE)
+    if broken is None:
+        log.error("Failed to parse broken metadata file")
         return
     if not isinstance(broken, list):
         return
@@ -441,7 +439,7 @@ async def refetch_broken(client: TelegramClient) -> None:
             log.exception("Failed to refetch", chat=chat, id=mid)
             remaining.append(item)
     if remaining:
-        BROKEN_META_FILE.write_text(json.dumps(remaining, ensure_ascii=False, indent=2))
+        write_json(BROKEN_META_FILE, remaining)
     else:
         BROKEN_META_FILE.unlink()
 
@@ -507,7 +505,7 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
     for chat in CHATS:
         count = 0
         for path in (RAW_DIR / chat).rglob("*.md"):
-            meta, _ = parse_md(path)
+            meta, _ = read_post(path)
             date_str = meta.get("date")
             try:
                 ts = datetime.fromisoformat(date_str) if date_str else None
