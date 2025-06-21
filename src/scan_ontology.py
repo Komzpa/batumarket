@@ -55,8 +55,16 @@ SKIP_PREFIXES = ("title_", "description_")
 
 
 def _is_misparsed(lot: dict) -> bool:
-    """Return ``True`` when the lot clearly comes from the example prompt."""
-    return lot.get("contact:telegram") == "@username"
+    """Return ``True`` for obviously invalid lots.
+
+    Lots missing translated titles or descriptions are considered misparsed
+    together with posts that still contain example values from the README.
+    """
+    if lot.get("contact:telegram") == "@username":
+        return True
+    if any(not lot.get(f) for f in REVIEW_FIELDS):
+        return True
+    return False
 
 
 def collect_ontology() -> tuple[
@@ -85,7 +93,7 @@ def collect_ontology() -> tuple[
                 if lot[k] == "" or lot[k] is None:
                     del lot[k]
             src = lot.get("source:path")
-            if any(not lot.get(f) for f in REVIEW_FIELDS) or _is_misparsed(lot):
+            if _is_misparsed(lot):
                 prompt = ""
                 if src:
                     try:

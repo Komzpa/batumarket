@@ -38,6 +38,11 @@ def test_collect_ontology(tmp_path, monkeypatch):
     titles = json.loads((tmp_path / "title_en.json").read_text())
     assert titles == {"foo": 2, "bar": 1}
 
+    mis = json.loads((tmp_path / "misparsed.json").read_text())
+    assert len(mis) == 3
+    # all lots lack translated descriptions so they end up misparsed
+    assert mis[0]["lot"]["a"] == 1
+
 
 def test_skip_fields_are_removed(tmp_path, monkeypatch):
     monkeypatch.setattr(scan_ontology, "LOTS_DIR", tmp_path)
