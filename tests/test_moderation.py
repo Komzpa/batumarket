@@ -17,6 +17,12 @@ def test_skip_due_to_media_flag():
     assert moderation.should_skip_message(meta, "text")
 
 
+def test_skip_due_to_empty_message():
+    assert moderation.should_skip_message({}, "")
+    meta = {"files": "['x.jpg']"}
+    assert not moderation.should_skip_message(meta, "")
+
+
 def test_should_skip_lot():
     lot = {"contact:telegram": "@username"}
     assert moderation.should_skip_lot(lot)

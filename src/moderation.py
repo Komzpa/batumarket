@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import json
-from pathlib import Path
+import ast
 
 from log_utils import get_logger
 from post_io import read_post
@@ -78,6 +78,15 @@ def should_skip_message(meta: dict, text: str) -> bool:
         return True
     if should_skip_text(text):
         log.debug("Message rejected", id=meta.get("id"))
+        return True
+    files: list[str] = []
+    if "files" in meta:
+        try:
+            files = ast.literal_eval(meta.get("files", "[]"))
+        except Exception:
+            log.debug("Bad file list", value=meta.get("files"), id=meta.get("id"))
+    if not text.strip() and not files:
+        log.debug("Message rejected", reason="empty", id=meta.get("id"))
         return True
     return False
 
