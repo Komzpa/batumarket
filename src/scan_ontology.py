@@ -27,6 +27,7 @@ OUTPUT_DIR = Path("data/ontology")
 FIELDS_FILE = OUTPUT_DIR / "fields.json"
 MISPARSED_FILE = OUTPUT_DIR / "misparsed.json"
 BROKEN_META_FILE = OUTPUT_DIR / "broken_meta.json"
+FRAUD_FILE = OUTPUT_DIR / "fraud.json"
 
 REVIEW_FIELDS = [
     "title_en",
@@ -75,12 +76,14 @@ def collect_ontology() -> tuple[
     dict[str, Counter[str]],
     list[dict],
     list[dict],
+    list[dict],
 ]:
     """Return counts per field, value counters, misparsed lots and broken metadata."""
     ontology: defaultdict[str, Counter[str]] = defaultdict(Counter)
     values: dict[str, Counter[str]] = {f: Counter() for f in REVIEW_FIELDS}
     misparsed: list[dict] = []
     broken: list[dict] = []
+    fraud: list[dict] = []
     has_raw = RAW_DIR.exists()
     if not has_raw:
         log.debug("RAW_DIR missing", path=str(RAW_DIR))
@@ -100,6 +103,14 @@ def collect_ontology() -> tuple[
                     except Exception:
                         log.exception("Failed to build parser input", source=src)
                 misparsed.append({"lot": lot, "input": prompt})
+            if lot.get("fraud") is not None:
+                prompt = ""
+                if src and has_raw:
+                    try:
+                        prompt = gather_chop_input(RAW_DIR / src, MEDIA_DIR)
+                    except Exception:
+                        log.exception("Failed to build parser input", source=src)
+                fraud.append({"lot": lot, "input": prompt})
             if src and has_raw:
                 meta, _ = read_post(RAW_DIR / src)
                 if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
@@ -121,7 +132,7 @@ def collect_ontology() -> tuple[
     result: dict[str, dict[str, int]] = {}
     for key, counter in ontology.items():
         result[key] = dict(sorted(counter.items(), key=lambda x: (-x[1], x[0])))
-    return result, values, misparsed, broken
+    return result, values, misparsed, broken, fraud
 
 
 def main() -> None:
@@ -129,7 +140,7 @@ def main() -> None:
     if not LOTS_DIR.exists() or not any(LOTS_DIR.rglob("*.json")):
         log.warning("Lots directory missing or empty", path=str(LOTS_DIR))
         return
-    data, values, misparsed, broken = collect_ontology()
+    data, values, misparsed, broken, fraud = collect_ontology()
     removed = [k for k in list(data) if k in SKIP_FIELDS or k.startswith(SKIP_PREFIXES)]
     for field in removed:
         data.pop(field, None)
@@ -142,6 +153,14 @@ def main() -> None:
 
     write_json(MISPARSED_FILE, misparsed)
     log.info("Wrote mis-parsed lots", path=str(MISPARSED_FILE))
+
+    write_json(FRAUD_FILE, fraud)
+    if fraud:
+        log.info(
+            "Wrote fraud list",
+            path=str(FRAUD_FILE),
+            count=len(fraud),
+        )
 
     write_json(BROKEN_META_FILE, broken)
     if broken:

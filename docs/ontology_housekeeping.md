@@ -20,6 +20,8 @@ The command writes several JSON files under `data/ontology`:
 - `fields.json` – all keys with value counts.
 - `misparsed.json` – lots that failed validation together with the input
   text passed to the parser.
+- `fraud.json` – lots explicitly flagged with a `fraud` tag and the text
+  that produced them.
 - `broken_meta.json` – references to messages that need refetching.
 - `title_*.json` and `description_*.json` – unique values per language for
   manual review.

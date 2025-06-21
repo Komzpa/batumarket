@@ -11,6 +11,7 @@ The directory contains:
 - `fields.json` – all keys and values with usage counts.
 - `misparsed.json` – lots that failed validation together with the text fed
   into the parser.
+- `fraud.json` – lots flagged with a `fraud` field and the matching input.
 - `broken_meta.json` – references to raw messages that need to be re-fetched
   due to missing metadata.
 - `title_*.json` and `description_*.json` – lists of unique text per language

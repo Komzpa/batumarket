@@ -52,6 +52,9 @@ def should_skip_message(meta: dict, text: str) -> bool:
 
 def should_skip_lot(lot: dict) -> bool:
     """Return ``True`` when the lot fails additional checks."""
+    if lot.get("fraud") is not None:
+        log.debug("Lot rejected", reason="fraud", id=lot.get("_id"))
+        return True
     if lot.get("contact:telegram") == "@username":
         log.debug("Lot rejected", reason="example contact")
         return True
