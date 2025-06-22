@@ -212,7 +212,6 @@ but when run with `-j` it proceeds in the background. `make update` remains as a
 compatibility alias for older instructions.
 
 ## Validation
-Pipeline stages rely on the previous step's output. The Makefile runs
-`scripts/validate_outputs.py` after captions, chopping and embedding to ensure
-files are ready for the next phase. See [validation.md](validation.md) for the
-checks performed.
+Pipeline stages rely on the previous step's output.
+Each stage now checks that required files are present so the pipeline fails early.
+See [validation.md](validation.md) for the checks performed.
