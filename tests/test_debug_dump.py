@@ -125,4 +125,11 @@ def test_moderation_summary(tmp_path, monkeypatch):
 
     summary = debug_dump.moderation_summary(lot_id)
     assert "banned phrase" in summary
+    assert "vectors: missing" in summary
+
+    vec_path = debug_dump.VEC_DIR / f"{lot_id}.json"
+    vec_path.parent.mkdir(parents=True, exist_ok=True)
+    vec_path.write_text('[{"id": "x", "vec": [1]}]')
+    summary = debug_dump.moderation_summary(lot_id)
+    assert "vectors: ok" in summary
 

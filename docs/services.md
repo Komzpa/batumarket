@@ -229,6 +229,7 @@ name and message ID are extracted from the page path so Telegram can
 still be queried.  Standard error from the Telegram client is also
 captured so dependency issues are visible.  Use ``--refresh`` to drop
 any cached files and refetch everything before dumping.
+The moderation summary reports vector status so missing embeddings are obvious.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running
