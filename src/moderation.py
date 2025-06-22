@@ -45,7 +45,9 @@ BLACKLISTED_USERS = [
     'ghclone5bot',
     'ghclone6bot',
     'ghclone7bot',
-    'chatassist_bot'
+    'chatassist_bot',
+    'verifuma_bot',
+    'razvitiekanala_bot'
 ]
 
 RAW_DIR = Path("data/raw")
