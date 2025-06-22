@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>{{ deal }}</h1>
+<p class="sort-control">{{ _('Sort by:') }}
+  <select id="sort-mode">
+    <option value="relevance">{{ _('Relevance') }}</option>
+    <option value="price_asc">{{ _('Cheapest first') }}</option>
+    <option value="price_desc">{{ _('Expensive first') }}</option>
+    <option value="unexplored">{{ _('Unexplored first') }}</option>
+  </select>
+</p>
 <table id="index-table">
   <thead>
     <tr>
@@ -12,7 +20,7 @@
   </thead>
   <tbody>
   {% for lot in items %}
-    <tr>
+    <tr data-id="{{ lot.id }}" data-vector='{{ lot.vec | tojson }}' data-price="{{ lot.price or '' }}">
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
       <td>{{ lot.price or '' }}</td>
       <td>{{ lot.seller or '' }}</td>

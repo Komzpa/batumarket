@@ -46,3 +46,24 @@ msgid "Index"
 msgstr "Главная страница"
 msgid "Similar items"
 msgstr "Похожие объявления"
+
+msgid "Like"
+msgstr "Нравится"
+
+msgid "Dislike"
+msgstr "Не нравится"
+
+msgid "Sort by:"
+msgstr "Сортировка:"
+
+msgid "Relevance"
+msgstr "По релевантности"
+
+msgid "Cheapest first"
+msgstr "Сначала дешевые"
+
+msgid "Expensive first"
+msgstr "Сначала дорогие"
+
+msgid "Unexplored first"
+msgstr "Новые сначала"

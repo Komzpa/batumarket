@@ -23,6 +23,16 @@
 {% endfor %}
 </table>
 <p><a href="{{ tg_link }}" target="_blank">{{ _('Telegram post') }}</a></p>
+<div class="vote">
+  <button id="like-btn">{{ _('Like') }}</button>
+  <button id="dislike-btn">{{ _('Dislike') }}</button>
+</div>
+<script>
+  window.currentLot = {
+    id: {{ lot['_id']|tojson }},
+    vector: {{ vector|tojson }}
+  };
+</script>
 <h2>{{ _('Similar items') }}</h2>
 <div class="similar carousel">
 {% for item in similar %}

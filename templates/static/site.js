@@ -1,3 +1,32 @@
+function loadList(name) {
+  try { return JSON.parse(localStorage.getItem(name) || '[]'); } catch (e) { return []; }
+}
+
+function saveList(name, arr) {
+  localStorage.setItem(name, JSON.stringify(arr));
+}
+
+function cosSim(a, b) {
+  let dot = 0, na = 0, nb = 0;
+  for (let i = 0; i < a.length && i < b.length; i++) {
+    dot += a[i] * b[i];
+    na += a[i] * a[i];
+    nb += b[i] * b[i];
+  }
+  if (na === 0 || nb === 0) return 0;
+  return dot / Math.sqrt(na * nb);
+}
+
+function bestSim(vec, arr) {
+  let best = 0;
+  for (const item of arr) {
+    if (!item.vec) continue;
+    const s = cosSim(vec, item.vec);
+    if (s > best) best = s;
+  }
+  return best;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-set-lang]').forEach(a => {
     a.addEventListener('click', () => {
@@ -56,5 +85,84 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     prev.addEventListener('click', e => { e.stopPropagation(); show(idx - 1); });
     next.addEventListener('click', e => { e.stopPropagation(); show(idx + 1); });
+  }
+
+  if (window.currentLot) {
+    const likeBtn = document.getElementById('like-btn');
+    const dislikeBtn = document.getElementById('dislike-btn');
+    function update() {
+      const likes = loadList('likes');
+      const dislikes = loadList('dislikes');
+      const liked = likes.some(i => i.id === window.currentLot.id);
+      const dis = dislikes.some(i => i.id === window.currentLot.id);
+      likeBtn.classList.toggle('active', liked);
+      dislikeBtn.classList.toggle('active', dis);
+    }
+    likeBtn.addEventListener('click', () => {
+      let likes = loadList('likes').filter(i => i.id !== window.currentLot.id);
+      likes.push({id: window.currentLot.id, vec: window.currentLot.vector});
+      saveList('likes', likes);
+      let dislikes = loadList('dislikes').filter(i => i.id !== window.currentLot.id);
+      saveList('dislikes', dislikes);
+      update();
+    });
+    dislikeBtn.addEventListener('click', () => {
+      let dislikes = loadList('dislikes').filter(i => i.id !== window.currentLot.id);
+      dislikes.push({id: window.currentLot.id, vec: window.currentLot.vector});
+      saveList('dislikes', dislikes);
+      let likes = loadList('likes').filter(i => i.id !== window.currentLot.id);
+      saveList('likes', likes);
+      update();
+    });
+    update();
+  }
+
+  const sortSelect = document.getElementById('sort-mode');
+  const indexTable = document.getElementById('index-table');
+  if (sortSelect && indexTable) {
+    function scoreRelevance(vec) {
+      if (!vec) return 0;
+      const likes = loadList('likes');
+      const dislikes = loadList('dislikes');
+      return bestSim(vec, likes) - bestSim(vec, dislikes);
+    }
+    function scoreUnexplored(vec) {
+      const base = loadList('likes').concat(loadList('dislikes'));
+      if (!vec || base.length === 0) return 0;
+      let best = 0;
+      for (const item of base) {
+        if (!item.vec) continue;
+        const s = cosSim(vec, item.vec);
+        if (s > best) best = s;
+      }
+      return -best;
+    }
+    function applySort() {
+      const mode = sortSelect.value;
+      localStorage.setItem('sort-mode', mode);
+      const tbody = indexTable.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => {
+        if (mode === 'price_asc' || mode === 'price_desc') {
+          const pa = parseFloat(a.dataset.price) || 0;
+          const pb = parseFloat(b.dataset.price) || 0;
+          return mode === 'price_asc' ? pa - pb : pb - pa;
+        }
+        const va = JSON.parse(a.dataset.vector || 'null');
+        const vb = JSON.parse(b.dataset.vector || 'null');
+        if (mode === 'relevance') {
+          return scoreRelevance(vb) - scoreRelevance(va);
+        }
+        if (mode === 'unexplored') {
+          return scoreUnexplored(vb) - scoreUnexplored(va);
+        }
+        return 0;
+      });
+      tbody.innerHTML = '';
+      rows.forEach(r => tbody.appendChild(r));
+    }
+    sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
+    sortSelect.addEventListener('change', applySort);
+    applySort();
   }
 });
