@@ -488,6 +488,7 @@ async def _save_message(
     *,
     replace: bool = False,
     old_path: Path | None = None,
+    force_media: bool = False,
 ) -> Path | None:
     """Write ``msg`` to disk with metadata and any media references.
 
@@ -533,7 +534,7 @@ async def _save_message(
     files = []
     skipped_reason = None
     if msg.media:
-        reason = _should_skip_media(msg)
+        reason = None if force_media else _should_skip_media(msg)
         if reason:
             log.info("Skipping media", chat=chat, id=msg.id, reason=reason)
         if reason and not files_prev:
@@ -583,7 +584,7 @@ async def _save_message(
     }
     if files:
         meta["files"] = files
-    if skipped_reason:
+    if skipped_reason and not force_media:
         meta["skipped_media"] = skipped_reason
 
     text = (
@@ -710,12 +711,18 @@ async def _save_bounded(
     *,
     replace: bool = False,
     old_path: Path | None = None,
+    force_media: bool = False,
 ) -> Path | None:
     """Run ``_save_message`` under the global semaphore and return path."""
     assert _sem is not None
     async with _sem:
         return await _save_message(
-            client, chat, msg, replace=replace, old_path=old_path
+            client,
+            chat,
+            msg,
+            replace=replace,
+            old_path=old_path,
+            force_media=force_media,
         )
 
 
@@ -1030,7 +1037,7 @@ async def main(argv: list[str] | None = None) -> None:
             log.exception("Failed to fetch message", chat=chat, id=mid)
             return
         if msg:
-            await _save_bounded(client, chat, msg)
+            await _save_bounded(client, chat, msg, force_media=True)
             await _flush_chop_queue()
             text = getattr(msg, "text", None) or getattr(msg, "message", "")
             text_short = text.strip().replace("\n", " ")[:200]
