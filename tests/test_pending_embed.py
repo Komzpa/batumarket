@@ -130,3 +130,35 @@ def test_skip_due_to_moderation(tmp_path, monkeypatch, capsys):
     pending_embed.main()
     out = capsys.readouterr().out
     assert out == ""
+
+
+def test_does_not_skip_on_raw_parse_error(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(pending_embed, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(pending_embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(pending_embed, "RAW_DIR", tmp_path / "raw")
+
+    lot_dir = pending_embed.LOTS_DIR
+    lot_dir.mkdir(parents=True)
+    now = "2024-05-01T00:00:00+00:00"
+    lot = {
+        "timestamp": now,
+        "title_en": "t",
+        "description_en": "d",
+        "title_ru": "t",
+        "description_ru": "d",
+        "title_ka": "t",
+        "description_ka": "d",
+        "contact:telegram": "@u",
+        "source:path": "chat/2024/05/1.md",
+    }
+    path = lot_dir / "1.json"
+    path.write_text(json.dumps([lot]))
+
+    raw = pending_embed.RAW_DIR / "chat" / "2024" / "05" / "1.md"
+    raw.parent.mkdir(parents=True)
+    # duplicate header key triggers an assertion in read_post
+    raw.write_text("id: 1\nid: 2\n\nbody")
+
+    pending_embed.main()
+    out = capsys.readouterr().out
+    assert out == str(path) + "\0"
