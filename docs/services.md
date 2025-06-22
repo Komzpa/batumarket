@@ -51,10 +51,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   larger than ten megabytes and any media attached to messages more than two
   days old. Messages marked this way are ignored by `chop.py` so only complete
   posts are parsed.
-* **Automatic refetch.** Messages listed in `misparsed.json` are reloaded at
-  startup. If the content changed their corresponding lot files are removed so
-  the parser runs again. Posts that saved neither text nor images are also
-  re-fetched in case Telegram failed to deliver them the first time.
+* **Automatic cleanup.** Messages listed in `broken_meta.json` or posts saved
+  without text or images are reloaded on startup. If the content changed their
+  corresponding lot files are removed so the parser runs again.
 
 Metadata fields include at least:
 

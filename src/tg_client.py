@@ -103,7 +103,6 @@ MEDIA_DIR = Path("data/media")
 STATE_DIR = Path("data/state")
 # List of message ids that should be re-fetched due to missing metadata.
 BROKEN_META_FILE = Path("data/ontology/broken_meta.json")
-MISPARSED_FILE = Path("data/ontology/misparsed.json")
 LOTS_DIR = Path("data/lots")
 
 # Seconds to wait before chopping a freshly saved message.  This gives
@@ -707,19 +706,6 @@ async def refetch_messages(client: TelegramClient) -> None:
                 targets.setdefault(key, _get_message_path(chat, int(mid)))
                 broken_list.append({"chat": chat, "id": mid})
 
-    if MISPARSED_FILE.exists():
-        items = load_json(MISPARSED_FILE)
-        if isinstance(items, list):
-            for entry in items:
-                lot = entry.get("lot", {}) if isinstance(entry, dict) else {}
-                chat = lot.get("source:chat")
-                mid = lot.get("source:message_id")
-                path_rel = lot.get("source:path")
-                if not chat or not mid:
-                    continue
-                path = RAW_DIR / path_rel if path_rel else _get_message_path(chat, int(mid))
-                key = (chat, int(mid))
-                targets.setdefault(key, path)
 
     for path in RAW_DIR.rglob("*.md"):
         meta, text = read_post(path)
@@ -879,7 +865,7 @@ async def main(argv: list[str] | None = None) -> None:
     parser.add_argument(
         "--refetch",
         action="store_true",
-        help="reload incomplete or misparsed messages and exit",
+        help="reload messages missing metadata or content and exit",
     )
     parser.add_argument(
         "--fetch-missing",
