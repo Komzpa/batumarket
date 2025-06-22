@@ -18,12 +18,11 @@ removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
 	$(MAKE) clean
 
 caption: pull ## Generate image captions for files missing ``*.caption.md``.
-	python scripts/pending_caption.py \
-	| parallel -j16 -0 python src/caption.py
+	python scripts/pending_caption.py | parallel --eta -j16 -0 python src/caption.py
 	python scripts/validate_outputs.py captions
 
 chop: pull caption ## Split messages into lots using captions and message text.
-	python scripts/pending_chop.py | parallel -j16 -0 python src/chop.py
+	python scripts/pending_chop.py | parallel --eta -j16 -0 python src/chop.py
 	python scripts/validate_outputs.py lots
 
 ontology: chop ## Summarize lots so it's easier see what exactly is there in the dataset.
@@ -31,9 +30,8 @@ ontology: chop ## Summarize lots so it's easier see what exactly is there in the
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop caption
-	python scripts/pending_embed.py | parallel -j16 -0 python src/embed.py
+	python scripts/pending_embed.py | parallel --eta -j16 -0 python src/embed.py
 	python scripts/validate_outputs.py vectors
-
 
 # Render HTML pages from lots and templates.
 build: embed ontology removed
