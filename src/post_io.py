@@ -70,7 +70,7 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
     text = read_md(path)
     meta_all: list[dict[str, str]] = []
     rest = text
-    while True:
+    while rest:
         meta, rest_body = _parse_block(rest)
         if not meta:
             break
