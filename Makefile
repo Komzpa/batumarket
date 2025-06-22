@@ -4,11 +4,7 @@
 # correct order.  Each stage runs only after its dependency completes.
 .PHONY: compose update pull removed caption chop embed build alert ontology clean precommit
 
-# ``compose`` is the main entry point used by documentation and tests.  ``update``
-# remains as a backwards compatible alias.
-compose: build
-update: compose
-
+all: clean build removed
 
 pull: # Pull Telegram messages and media to ``data/``.
 	python src/tg_client.py --ensure-access --fetch-missing
@@ -33,7 +29,7 @@ embed: chop caption
 	python scripts/pending_embed.py | parallel --eta -j16 -0 python src/embed.py
 
 # Render HTML pages from lots and templates.
-build: embed ontology removed
+build: embed ontology
 	rm -rf data/views/*
 	python src/build_site.py
 
