@@ -228,6 +228,26 @@ def moderation_summary(lot_id: str) -> str:
         lines.append(f"{prefix}: " + (reason or "ok"))
     if not lots:
         lines.append("lot: missing")
+
+    vec_path = VEC_DIR / f"{lot_id}.json"
+    if vec_path.exists():
+        data = load_json(vec_path)
+        if data is None:
+            lines.append("vectors: corrupted")
+        else:
+            if isinstance(data, dict) and "id" in data:
+                vec_count = 1
+            elif isinstance(data, list):
+                vec_count = len(data)
+            else:
+                vec_count = 0
+            if vec_count and lots and vec_count != len(lots):
+                lines.append(f"vectors: count mismatch {vec_count} vs {len(lots)}")
+            else:
+                lines.append("vectors: ok")
+    else:
+        lines.append("vectors: missing")
+
     return "\n".join(lines)
 
 
