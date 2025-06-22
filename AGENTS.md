@@ -30,7 +30,8 @@ Style:
  - Do not break indentation.
  - Do not mix tabs and spaces.
  - Format the code nicely and consistently.
- - Do not replace URLs with non-existing ones
+ - Do not replace URLs with non-existing ones.
+ - If a file with code grows longer than 500 lines, refactor it into two or move some parts into already created libraries.
 
 Java:
  - Write enough comments so that people proficient in Python, PostGIS can grasp the Java code.
