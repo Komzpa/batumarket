@@ -110,7 +110,9 @@ filename. The script processes a single Markdown file path provided on the
 command line and writes a matching JSON file under `data/lots`. The Makefile
 queues only messages that lack a JSON result, preserving modification order, and
 runs `chop.py` for each one using GNU Parallel so several messages are
-processed at once. The API call specifies `response_format={"type":
+processed at once. Posts flagged by `moderation.should_skip_message` are
+excluded from this list so the parser never wastes API calls on obvious spam.
+The API call specifies `response_format={"type":
 "json_object"}` so GPT-4o returns plain JSON without Markdown wrappers.
 
 ## embed.py

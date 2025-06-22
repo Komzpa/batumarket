@@ -6,18 +6,35 @@ Outputs NUL-separated paths sorted by modification time descending.
 from pathlib import Path
 import sys
 
+from log_utils import get_logger
+from post_io import read_post
+from moderation import should_skip_message
+
+log = get_logger().bind(script=__file__)
+
 RAW_DIR = Path("data/raw")
 LOTS_DIR = Path("data/lots")
 
 
 def main() -> None:
-    files = sorted(RAW_DIR.rglob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+    files = sorted(
+        RAW_DIR.rglob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True
+    )
     for msg in files:
         rel = msg.relative_to(RAW_DIR)
         out = LOTS_DIR / rel.with_suffix(".json")
-        if not out.exists():
-            sys.stdout.write(str(msg))
-            sys.stdout.write("\0")
+        if out.exists():
+            continue
+        try:
+            meta, text = read_post(msg)
+        except Exception:
+            log.exception("Failed to read post", path=str(msg))
+            continue
+        if should_skip_message(meta, text):
+            log.info("Skipping", path=str(msg), reason="moderation")
+            continue
+        sys.stdout.write(str(msg))
+        sys.stdout.write("\0")
 
 
 if __name__ == "__main__":
