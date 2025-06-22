@@ -1744,17 +1744,6 @@
   },
   {
     "lot": {
-      "source:chat": "batumi_360",
-      "source:message_id": "635388",
-      "source:path": "batumi_360/2025/06/635388.md",
-      "source:author:telegram": "forum360advert3_bot",
-      "source:author:name": "Рекламная пауза",
-      "timestamp": "2025-06-21T14:00:00+00:00"
-    },
-    "input": "Message text:\n**💬 Ваша реклама в чатах по всему миру! **\n\nХотите увеличить охват и привлечь внимание Клиентов или единомышленников? \n\nМы предлагаем **уникальную возможность** разместить рекламу __в чатах по всему миру!__\n\n✅  Доступная стоимость рекламы для бизнеса любого масштаба, __мы подберем оптимальное решение именно для Вас!__\n✅  > 60% Kлиентов обращаются за рекламой снова. \n✅  Удобная система отчетности и гибкая система оплаты.\n✅ Нам доверяют крупные компаний, такие как BestChange, PaySend, Skyeng, Сдек, Аквафор и др.\n\nРазвиваете ваш бизнес в новом масштабе!\n\nНапишите нам 👉 @emisale360"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-22T07:18:19+00:00",
       "market:deal": "sell_item",
       "item:type": "board_game",
@@ -2839,6 +2828,27 @@
   },
   {
     "lot": {
+      "timestamp": "2025-06-22T13:51:40+00:00",
+      "market:deal": "rent_seek",
+      "property:type": "studio",
+      "price": 320,
+      "price:currency": "USD",
+      "addr:neighbourhood": "район Химшиашвили",
+      "start_date": "2023-10-05",
+      "end_date": "2023-06-29",
+      "view": "sea",
+      "balcony": "yes",
+      "air_conditioning": "yes",
+      "source:chat": "arenda_batumiN1",
+      "source:message_id": "2052296",
+      "source:path": "arenda_batumiN1/2025/06/2052296.md",
+      "source:author:telegram": "imyavaleria",
+      "source:author:name": "Valeriia"
+    },
+    "input": "Message text:\nИщу студию/квартиру\nДолгий срок\nЖелательно район Химшиашвили \nБалкон(вид на море), кондиционер \n300-320$ \nЗаехать надо до 29 июня"
+  },
+  {
+    "lot": {
       "source:chat": "batumi_arendaaa",
       "source:message_id": "2244802",
       "source:path": "batumi_arendaaa/2025/06/2244802.md",
@@ -3302,6 +3312,76 @@
       "timestamp": "2025-06-22T10:46:24+00:00"
     },
     "input": "Message text:\nБлок C находится на 33-м этаже и располагает отдельной спальней."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:04:26+00:00",
+          "market:deal": "sell_item",
+          "item:type": "office_chair",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg"
+          ],
+          "title_en": "Used Black and White Office Chair",
+          "description_en": "This is a used black and white office chair with signs of wear and tear, particularly a noticeable tear in the fabric on the armrest. It features a modern design with a quilted pattern.",
+          "title_ru": "Б/У офисное кресло черно-белого цвета",
+          "description_ru": "Это б/у офисное кресло черно-белого цвета с признаками износа, особенно заметная дыра в ткани на подлокотнике. Оно имеет современный дизайн с квилтированным узором.",
+          "title_ka": "გამოყენებული შავი და თეთრი ოფისის სკამი",
+          "description_ka": "ეს არის გამოყენებული შავი და თეთრი ოფისის სკამი, რომელიც აცვიათ და აქვს დაზიანებები, განსაკუთრებით noticeable tear in the fabric on the armrest. აქვს თანამედროვე დიზაინი კვილტირებული ნიმუშით."
+        },
+        {
+          "timestamp": "2025-06-22T14:04:26+00:00",
+          "market:deal": "sell_item",
+          "item:type": "espresso_machine",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg"
+          ],
+          "title_en": "Used Stainless Steel Espresso Machine",
+          "description_en": "This is a used stainless steel espresso machine with multiple features, including buttons for different functions and a colorful logo that reads 'SINOSA'.",
+          "title_ru": "Б/У эспрессо-машина из нержавеющей стали",
+          "description_ru": "Это б/у эспрессо-машина из нержавеющей стали с несколькими функциями, включая кнопки для различных функций и красочный логотип 'SINOSA'.",
+          "title_ka": "გამოყენებული უჟანგავი ფოლადის ესპრესო მანქანა",
+          "description_ka": "ეს არის გამოყენებული უჟანგავი ფოლადის ესპრესო მანქანა მრავალი ფუნქციით, მათ შორის სხვადასხვა ფუნქციებისათვის ღილაკები და ფერადი ლოგო 'SINOSA'."
+        },
+        {
+          "timestamp": "2025-06-22T14:04:26+00:00",
+          "market:deal": "sell_item",
+          "item:type": "coffee_maker",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg"
+          ],
+          "title_en": "Used Coffee Maker Portafilter",
+          "description_en": "This is a used coffee maker's portafilter with a black plastic handle and two metal filter baskets. It is designed for espresso brewing.",
+          "title_ru": "Б/У портфильтр для кофемашины",
+          "description_ru": "Это б/у портфильтр для кофемашины с черной пластиковой ручкой и двумя металлическими фильтрами. Он предназначен для приготовления эспрессо.",
+          "title_ka": "გამოყენებული ყავის აპარატის პორტაფილტრი",
+          "description_ka": "ეს არის გამოყენებული ყავის აპარატის პორტაფილტრი შავი პლასტმასის სახელურით და ორი მეტალის ფილტრით. ის განკუთვნილია ესპრესო მომზადებისთვის."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482107",
+      "source:path": "baraholka_ge/2025/06/2482103.md",
+      "source:author:telegram": "dm_is94",
+      "source:author:name": "Дмитрий",
+      "timestamp": "2025-06-22T14:04:26+00:00",
+      "files": [
+        "baraholka_ge/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg",
+        "baraholka_ge/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg",
+        "baraholka_ge/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg",
+        "baraholka_ge/2025/06/6d43abaca4728d5e2bd10b4bbd9dbfc7f8f66911c4541eef4990e6e159983069.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482105\nchat: baraholka_ge\nsender: 6112182446\nsender_username: dm_is94\nsender_phone: \ntg_link: https://t.me/dm_is94\nsender_name: Дмитрий\nauthor_type: user\ndate: 2025-06-22T14:04:26+00:00\ngroup_id: 14004808527508922\nis_admin: False\nfiles: ['baraholka_ge/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg']\n\nImage baraholka_ge/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg:\nThe image shows a close-up of the armrest of a black and white office chair. The black part of the armrest is visible along with some signs of wear and tear. Specifically, there is a noticeable tear in the fabric on the edge, revealing some underlying material. The armrest has a modern design with a quilted pattern on the side, indicating it is likely intended for comfort and style. The floor beneath is tiled in a light color, and there’s a partial view of a round object, possibly a part of a chair or table, in the background.\n\nImage baraholka_ge/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg:\nThe image shows a coffee maker's portafilter resting on a flat surface. It has a black plastic handle with two metal filter baskets: a larger one with a mesh screen and a smaller filter. The surface beneath is dark and appears to be part of the coffee machine, indicating it is likely designed for espresso brewing. The background is slightly blurred but includes elements of home décor, such as colorful textiles. Overall, the setting looks functional and convenient for coffee preparation.\n\nImage baraholka_ge/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg:\nThe image shows a stainless steel espresso machine with multiple features. It has a colorful logo that reads \"SINOSA\" and is equipped with a series of buttons to control different functions. There are grooves on the top for holding pots or cups and three small, round containers placed on top. The machine sits on a vibrant, patterned countertop with a floral design. In the background, a dish drying rack is visible. The overall vibe suggests a home kitchen setting.\n\nImage baraholka_ge/2025/06/6d43abaca4728d5e2bd10b4bbd9dbfc7f8f66911c4541eef4990e6e159983069.jpg:\nThe image features an espresso machine positioned on a colorful, patterned table. The machine has a sleek, modern design with a black and silver exterior. It includes a portafilter and a steam wand, indicating its functionality for both brewing espresso and frothing milk. An electrical cord, plugged into a wall outlet, is visible on the left side. In the background, there are other kitchen items, suggesting a home setting. The overall vibe is casual and homey, with a vibrant decorative touch from the table design."
   },
   {
     "lot": {
@@ -4490,6 +4570,61 @@
       ]
     },
     "input": "Message text:\nid: 2481337\nchat: baraholka_ge\nsender: 590445770\nsender_username: murzik086\nsender_phone: \ntg_link: https://t.me/murzik086\nsender_name: Карина\nauthor_type: user\ndate: 2025-06-22T10:07:43+00:00\ngroup_id: 14004694908146234\nis_admin: False\nfiles: ['baraholka_ge/2025/06/32eb0dade58a068bcbad23254fd6fdc77362ab79f3be277101cb4e10abde758f.jpg']\n\nImage baraholka_ge/2025/06/32eb0dade58a068bcbad23254fd6fdc77362ab79f3be277101cb4e10abde758f.jpg:\nThe image features a cozy, padded baby snowsuit designed with colorful rainbow patterns, alongside a matching hat. The snowsuit has a hood with a lined interior, providing extra warmth. It has a zip closure and is designed with long sleeves and legs. The hat is adorned with ears, making it playful and suitable for infants. The overall color scheme includes soft pastels and earthy tones, giving it a charming appearance. The background appears dark green, likely a cupboard or wall. The outfit seems very soft and warm, ideal for cold weather.\n\nImage baraholka_ge/2025/06/f6bc4b749f3dd7eb3913ece4f38ed39bc8a665fa83d67036d5e7001f65981eaa.jpg:\nThe image shows several bags stacked near a wooden surface. There are two main bags visible: \n\n1. A gray bag with the word \"banana\" printed on it, which is filled with assorted items and appears to be made of a durable plastic material.\n2. A black-and-white patterned bag containing some items, although the contents are not clearly visible.\n\nThe bags are placed on a tiled floor with a slight sheen, suggesting a well-polished surface. The background hints at an indoor space, potentially a retail or storage environment, but no specific details about the room or its decor are provided.\n\nImage baraholka_ge/2025/06/1a23210324b782ec4dc3509ba82696ba3b3ce9a0d45b3620f053bb8585105149.jpg:\nThe image shows a collection of children's toys. On the left, there is a colorful toy with a clear dome containing a small, white animal, likely a cat or bear, surrounded by a turquoise base with an orange trim. On the right is a white, rectangular activity toy with various colorful buttons, wheels, and musical elements featuring a yellow giraffe.\n\nIn front of these toys, there is a transparent bag filled with multiple smaller toys including assorted animal figures in bright colors. Some toys have soft textures, while others are harder material. These items seem suitable for infants or toddlers, designed for play and sensory development. The background appears to be a soft, dark fabric, likely a blanket."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:26:13+00:00",
+          "market:deal": "sell_item",
+          "item:type": "light_studio_kit",
+          "brand": "XZZOMEI",
+          "condition": "new",
+          "price": 45.95,
+          "price:currency": "USD",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg"
+          ],
+          "title_en": "Light Studio Kit - ZOMEI 9-inch LED",
+          "description_en": "New ZOMEI 9-inch LED studio light kit, black color, 2 units available for $45.95 each.",
+          "title_ru": "Световой студийный комплект - ZOMEI 9-дюймовый LED",
+          "description_ru": "Новый комплект светового студийного освещения ZOMEI 9-дюймовый LED, черного цвета, 2 единицы по цене 45.95 долларов каждая.",
+          "title_ka": "სათვალთვალო სტუდიური კომპლექტი - ZOMEI 9-დюйმიანი LED",
+          "description_ka": "ახალი ZOMEI 9-დюйმიანი LED სტუდიური განათების კომპლექტი, შავი ფერის, 2 ერთეული 45.95 დოლარად თითოეული."
+        },
+        {
+          "timestamp": "2025-06-22T14:26:13+00:00",
+          "market:deal": "sell_item",
+          "item:type": "colored_transparent_sheets",
+          "brand": "GoodChoices",
+          "condition": "new",
+          "price": 11.56,
+          "price:currency": "USD",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg"
+          ],
+          "title_en": "Colored Transparent Sheets - 8 pieces",
+          "description_en": "8 pieces of colored transparent sheets available for $11.56.",
+          "title_ru": "Цветные прозрачные листы - 8 штук",
+          "description_ru": "8 штук цветных прозрачных листов по цене 11.56 долларов.",
+          "title_ka": "ფერადი გამჭვირვალე ფურცლები - 8 ცალი",
+          "description_ka": "8 ცალი ფერადი გამჭვირვალე ფურცლები 11.56 დოლარად."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482146",
+      "source:path": "baraholka_ge/2025/06/2482144.md",
+      "source:author:telegram": "voloshynaAlina",
+      "source:author:name": "Alina",
+      "timestamp": "2025-06-22T14:26:13+00:00",
+      "files": [
+        "baraholka_ge/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg",
+        "baraholka_ge/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482145\nchat: baraholka_ge\nsender: 619052342\nsender_username: voloshynaAlina\nsender_phone: \ntg_link: https://t.me/voloshynaAlina\nsender_name: Alina\nauthor_type: user\ndate: 2025-06-22T14:26:13+00:00\ngroup_id: 14004818987068154\nis_admin: False\nfiles: ['baraholka_ge/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg']\n\nImage baraholka_ge/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg:\nThe image features a portable studio light setup with two lights on adjustable tripods, positioned on a simple, light-colored table. The lamps have a modern design, with softboxes that can diffuse light. The color temperature options displayed are warm and cool beige. The background has a smooth, neutral-toned wall, enhancing the contemporary vibe. There is a cord visible for power connection. The interface shows a shopping app with options for adding the items to the cart and indicates free delivery. Overall, the image conveys a sleek, modern aesthetic suitable for photography or video settings.\n\nImage baraholka_ge/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg:\nThe image lists two products:\n\n1. **Colored Transparent Sheets**: \n   - Quantity: 8 pieces\n   - Price: $11.56 \n   - Brand: GoodChoices\n\n2. **Light Studio Kit**:\n   - Type: ZOMEI 9-inch LED studio light \n   - Color: Black \n   - Quantity: 2 units \n   - Price: $45.95 each\n   - Brand: XZZOMEI\n\nThe layout appears simple and functional, likely intended for a marketplace setting. No additional decorative elements are visible."
   },
   {
     "lot": {
@@ -5813,6 +5948,75 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T14:09:07+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "brand": "Seed",
+          "condition": "used",
+          "price": 10,
+          "price:currency": "GEL",
+          "item:audience": "women",
+          "files": [
+            "baraholka_ge/2025/06/62ed31228ce70c3b82531b22a8bc3dc76cb5d8a5d15c3ba40ad070559dc6afc8.jpg"
+          ],
+          "title_en": "Short Floral Dress Size S",
+          "description_en": "A short, off-the-shoulder dress with a floral design in orange and green on a white background. Size S from the brand 'Seed'.",
+          "title_ru": "Короткое цветочное платье размер S",
+          "description_ru": "Короткое платье с открытыми плечами и цветочным дизайном в оранжевых и зеленых тонах на белом фоне. Размер S от бренда 'Seed'.",
+          "title_ka": "კороткое ყვავილოვანი კაბა ზომა S",
+          "description_ka": "კороткое კაბა ყვავილოვანი დიზაინით, ზომა S, ბრენდი 'Seed'."
+        },
+        {
+          "timestamp": "2025-06-22T14:09:07+00:00",
+          "market:deal": "sell_item",
+          "item:type": "book",
+          "condition": "used",
+          "files": [
+            "baraholka_ge/2025/06/837d450c3fb13793fb65ef9bbb95e869f94144e03034ddca76dc2f6084c0b27a.jpg"
+          ],
+          "title_en": "Book: Unnatural History by Jonathan Kellerman",
+          "description_en": "Paperback edition of 'Unnatural History' by Jonathan Kellerman. Used condition with visible wear.",
+          "title_ru": "Книга: Ненормальная история Джонатана Келлермана",
+          "description_ru": "Печатное издание 'Ненормальная история' Джонатана Келлермана. Использованное состояние с видимыми следами износа.",
+          "title_ka": "წიგნი: არაბუნებრივი ისტორია ჯონათან კელერმანის მიერ",
+          "description_ka": "პუბლიკაციის 'არაბუნებრივი ისტორია' ჯონათან კელერმანის მიერ. გამოყენებული მდგომარეობა."
+        },
+        {
+          "timestamp": "2025-06-22T14:09:07+00:00",
+          "market:deal": "sell_item",
+          "item:type": "handbag",
+          "condition": "used",
+          "price": 10,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/005f4b06c9e8d55db796cf3460ef91dd2a01d445120adbffd547869d49749a31.jpg"
+          ],
+          "title_en": "Colorful Handbag with Animal Design",
+          "description_en": "A small handbag featuring a colorful design with animals and tropical foliage. Price: 10 GEL.",
+          "title_ru": "Цветная сумка с дизайном животных",
+          "description_ru": "Маленькая сумка с ярким дизайном животных и тропической растительностью. Цена: 10 GEL.",
+          "title_ka": "ფერადი ჩანთა ცხოველების დიზაინით",
+          "description_ka": "პატარა ჩანთა ცხოველების და ტროპიკული მცენარეების ფერადი დიზაინით. ფასი: 10 GEL."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482121",
+      "source:path": "baraholka_ge/2025/06/2482118.md",
+      "source:author:telegram": "nadyadzen",
+      "source:author:name": "Nadzeya",
+      "timestamp": "2025-06-22T14:09:07+00:00",
+      "files": [
+        "baraholka_ge/2025/06/62ed31228ce70c3b82531b22a8bc3dc76cb5d8a5d15c3ba40ad070559dc6afc8.jpg",
+        "baraholka_ge/2025/06/837d450c3fb13793fb65ef9bbb95e869f94144e03034ddca76dc2f6084c0b27a.jpg",
+        "baraholka_ge/2025/06/005f4b06c9e8d55db796cf3460ef91dd2a01d445120adbffd547869d49749a31.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482119\nchat: baraholka_ge\nsender: 505813370\nsender_username: nadyadzen\nsender_phone: \ntg_link: https://t.me/nadyadzen\nsender_name: Nadzeya\nauthor_type: user\ndate: 2025-06-22T14:09:07+00:00\ngroup_id: 14004810775842002\nis_admin: False\nfiles: ['baraholka_ge/2025/06/62ed31228ce70c3b82531b22a8bc3dc76cb5d8a5d15c3ba40ad070559dc6afc8.jpg']\n\nImage baraholka_ge/2025/06/62ed31228ce70c3b82531b22a8bc3dc76cb5d8a5d15c3ba40ad070559dc6afc8.jpg:\nThe image features a short, off-the-shoulder dress with a floral design in orange and green on a white background. The dress has a smocked bodice and puffed sleeves, giving it a relaxed and feminine look. It's labeled as size S and is from the brand \"Seed.\" \n\nIn the background, there's a white radiator and a light-colored wall, suggesting a modern or contemporary interior. A portion of the dress is also shown in the lower left corner, emphasizing its print. The visible tags indicate a price or other information, but the exact details aren't clear. Overall, the vibe is fresh and casual, suitable for warm weather.\n\nImage baraholka_ge/2025/06/837d450c3fb13793fb65ef9bbb95e869f94144e03034ddca76dc2f6084c0b27a.jpg:\nThe image features a book titled \"Unnatural History\" by Jonathan Kellerman. The front cover depicts a nighttime city scene with a figure walking along a street with tall buildings and bright lights in the background. The text on the cover includes the author's name and the tagline \"You can never escape your past.\" \n\nOn the back cover, it mentions a tagline, \"A murderer is always closer than you think,\" along with a brief description of the plot and possibly a review. The pages visible in the side image show printed text, indicating it’s a paperback edition. The condition of the book appears used, with visible wear on the edges.\n\nImage baraholka_ge/2025/06/005f4b06c9e8d55db796cf3460ef91dd2a01d445120adbffd547869d49749a31.jpg:\nThe image shows a small handbag with a colorful design featuring animals and tropical foliage. The background is black, highlighted with illustrations of lemurs among vibrant plants and flowers. The bag has a zipper closure and a long strap, indicating it can be worn crossbody or as a clutch. \n\nIn the top right corner, there is a price label indicating \"10 gel.\" The second image depicts the bag being held by a hand, showcasing its size and style. The overall vibe is playful and trendy, appealing to a casual fashion sense. The surface appears smooth, likely made of faux leather or a similar material."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "timestamp": "2025-06-22T06:17:07+00:00",
           "market:deal": "sell_item",
           "item:type": "clothing",
@@ -6806,7 +7010,7 @@
         "baraholka_ge/2025/06/4e2ef758046eb0c32d09ec3ea8b4e8491379709d607ea415f3580b0f39328b83.jpg"
       ]
     },
-    "input": "Message text:\nid: 2482071\nchat: baraholka_ge\nsender: 363934927\nsender_username: sv_rykun\nsender_phone: \ntg_link: https://t.me/sv_rykun\nsender_name: Svetlana Rykun\nauthor_type: user\ndate: 2025-06-22T13:40:02+00:00\ngroup_id: 14004796816506114\nis_admin: False\nfiles: ['baraholka_ge/2025/06/7f87bafcc3f8d2f8e12410e06f43b6246676f6da382d3bd37ea4f2a96e33cb31.jpg']\n\nImage baraholka_ge/2025/06/7f87bafcc3f8d2f8e12410e06f43b6246676f6da382d3bd37ea4f2a96e33cb31.jpg:\nThe image features a pair of blue denim shorts. They have a frayed hemline, giving them a distressed look. The shorts have a high-waisted design with two back pockets that are shaped like triangles, each with a visible seam. The fabric appears to be lightweight and casual. The background shows a light-colored, textured surface, possibly a sofa or upholstered seat. There are no visible tags, brands, or markings on the shorts. Overall, the vibe is relaxed and trendy, suitable for casual wear.\n\nImage baraholka_ge/2025/06/4e2ef758046eb0c32d09ec3ea8b4e8491379709d607ea415f3580b0f39328b83.jpg:\nThe image shows the waistband of a pair of denim jeans from Zara. The label indicates the size as EUR 36, USA 4, and MEX 26, with the jeans made in Bangladesh. The denim appears to be lightly distressed with a worn-in look. There is a silver button with the brand's logo visible, along with stitching details. The fabric suggests a casual style, suitable for everyday wear. The background is plain and does not provide additional context."
+    "input": "Message text:\nid: 2482071\nchat: baraholka_ge\nsender: 363934927\nsender_username: sv_rykun\nsender_phone: \ntg_link: https://t.me/sv_rykun\nsender_name: Svetlana Rykun\nauthor_type: user\ndate: 2025-06-22T13:40:02+00:00\ngroup_id: 14004796816506114\nis_admin: False\nfiles: ['baraholka_ge/2025/06/7f87bafcc3f8d2f8e12410e06f43b6246676f6da382d3bd37ea4f2a96e33cb31.jpg']\n\nImage baraholka_ge/2025/06/7f87bafcc3f8d2f8e12410e06f43b6246676f6da382d3bd37ea4f2a96e33cb31.jpg:\nThe image features a pair of blue denim shorts. They have a frayed hemline, giving them a distressed look. The shorts have a high-waisted design with two back pockets that are shaped like triangles, each with a visible seam. The fabric appears to be lightweight and casual. The background shows a light-colored, textured surface, possibly a sofa or upholstered seat. There are no visible tags, brands, or markings on the shorts. Overall, the vibe is relaxed and trendy, suitable for casual wear.\n\nImage baraholka_ge/2025/06/4e2ef758046eb0c32d09ec3ea8b4e8491379709d607ea415f3580b0f39328b83.jpg:\n"
   },
   {
     "lot": {
@@ -11120,6 +11324,124 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "plastic_tube",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/7327fe751003404e68c6bd693224825c7b47aafdd571e3eb1509cef925ba6e17.jpg"
+          ],
+          "title_en": "Bright Yellow Plastic Tube",
+          "description_en": "A single, elongated bright yellow plastic tube with a smooth, rounded end and a slightly curled top.",
+          "title_ru": "Яркая желтая пластиковая труба",
+          "description_ru": "Один длинный ярко-желтый пластиковый трубка с гладким закругленным концом и слегка закрученным верхом.",
+          "title_ka": "ბრტყელი ყვითელი პლასტმასის მილი",
+          "description_ka": "ერთი გრძელი, ნათელი ყვითელი პლასტმასის მილი, გლუვი, მრგვალი ბოლო და ოდნავ მოხრილი ზედა ნაწილით."
+        },
+        {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "clip_holder",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/f9176a61f56fea7709918081756b5c1ee868662baf8a0d8a3bf71dcc45be27b5.jpg"
+          ],
+          "title_en": "Black Clip Holder",
+          "description_en": "A black plastic clip or holder packaged in a transparent plastic bag, featuring a rectangular shape with vertical side supports.",
+          "title_ru": "Черный зажим для держателя",
+          "description_ru": "Черная пластиковая деталь, вероятно, зажим или держатель, упакованная в прозрачный пакет.",
+          "title_ka": "შავი კლიპი ან მფლობელი",
+          "description_ka": "შავი პლასტმასის ნაწილი, სავარაუდოდ, კლიპი ან მფლობელი, შეფუთული გამჭვირვალე პლასტმასის ჩანთაში."
+        },
+        {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "camera_lens",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/701e9212ea59c6f817cb4e7dddb8037b6fbba28ee279d804ea3cc2a9dbb70fc2.jpg"
+          ],
+          "title_en": "Camera Lens with Carrying Case",
+          "description_en": "A black camera lens housed within a padded black carrying case, providing protection for the lens.",
+          "title_ru": "Объектив камеры с чехлом",
+          "description_ru": "Черный объектив камеры в мягком черном чехле, обеспечивающем защиту объектива.",
+          "title_ka": "კამერის ობიექტივი და სატარებელი ჩანთა",
+          "description_ka": "შავი კამერის ობიექტივი, მოთავსებული რბილ შავ სატარებელ ჩანთაში."
+        },
+        {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "zippered_case",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/4516d7dda2988902ad0c006c6b638817d44cb918702a4d01e1e61c8460240204.jpg"
+          ],
+          "title_en": "JVC Zippered Carrying Case",
+          "description_en": "A compact black zippered carrying case with a white logo and text reading 'JVC' and 'EURO 2008'.",
+          "title_ru": "Чехол с молнией JVC",
+          "description_ru": "Компактный черный чехол с молнией с белым логотипом и текстом 'JVC' и 'EURO 2008'.",
+          "title_ka": "JVC-ის მჭიდრო ჩანთა",
+          "description_ka": "კომპაქტური შავი მჭიდრო ჩანთა, რომელიც აღჭურვილია თეთრი ლოგოთი და ტექსტით 'JVC' და 'EURO 2008'."
+        },
+        {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "zippered_case",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/bbef5404195377d83be3b2a56544bd00abbf5c10188c1bdf57e4399e03e08f74.jpg"
+          ],
+          "title_en": "UEFA EURO 2008 Zippered Case",
+          "description_en": "A small black zippered case featuring a logo that reads 'UEFA EURO 2008 Austria-Switzerland' along with the JVC branding.",
+          "title_ru": "Чехол UEFA EURO 2008 с молнией",
+          "description_ru": "Небольшой черный чехол с молнией, на котором написано 'UEFA EURO 2008 Austria-Switzerland' вместе с брендингом JVC.",
+          "title_ka": "UEFA EURO 2008-ის მჭიდრო ჩანთა",
+          "description_ka": "პატარა შავი მჭიდრო ჩანთა, რომელზეც წერია 'UEFA EURO 2008 Austria-Switzerland' და JVC-ის ბრენდი."
+        },
+        {
+          "timestamp": "2025-06-22T13:57:05+00:00",
+          "market:deal": "sell_item",
+          "item:type": "adapter_ring",
+          "condition": "new",
+          "price": null,
+          "files": [
+            "baraholka_ge/2025/06/b8cda94883d1a6cdaf174e74743a67de22b2ed460305dd9fa45aaaf02def1f26.jpg"
+          ],
+          "title_en": "Photography Adapter Rings and Lens",
+          "description_en": "Includes three black adapter rings and a black lens with numerical markings.",
+          "title_ru": "Адаптерные кольца и объектив для фотографии",
+          "description_ru": "Включает три черных адаптерных кольца и черный объектив с числовыми отметками.",
+          "title_ka": "ფოტოგრაფიის ადაპტერების რგოლები და ობიექტივი",
+          "description_ka": "შეიცავს სამი შავი ადაპტერის რგოლი და შავი ობიექტივი ნომრებით."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482100",
+      "source:path": "baraholka_ge/2025/06/2482095.md",
+      "source:author:telegram": "deniz_yeli",
+      "source:author:name": "Deniz 🏰Tower",
+      "timestamp": "2025-06-22T13:57:06+00:00",
+      "files": [
+        "baraholka_ge/2025/06/7327fe751003404e68c6bd693224825c7b47aafdd571e3eb1509cef925ba6e17.jpg",
+        "baraholka_ge/2025/06/f9176a61f56fea7709918081756b5c1ee868662baf8a0d8a3bf71dcc45be27b5.jpg",
+        "baraholka_ge/2025/06/701e9212ea59c6f817cb4e7dddb8037b6fbba28ee279d804ea3cc2a9dbb70fc2.jpg",
+        "baraholka_ge/2025/06/4516d7dda2988902ad0c006c6b638817d44cb918702a4d01e1e61c8460240204.jpg",
+        "baraholka_ge/2025/06/bbef5404195377d83be3b2a56544bd00abbf5c10188c1bdf57e4399e03e08f74.jpg",
+        "baraholka_ge/2025/06/b8cda94883d1a6cdaf174e74743a67de22b2ed460305dd9fa45aaaf02def1f26.jpg",
+        "baraholka_ge/2025/06/b78884dfdd5b665780eb2264053b633b07df8f6a5bde36e3d3fdd76d2935695e.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482096\nchat: baraholka_ge\nsender: 6179936817\nsender_username: deniz_yeli\nsender_phone: \ntg_link: https://t.me/deniz_yeli\nsender_name: Deniz 🏰Tower\nauthor_type: user\ndate: 2025-06-22T13:57:05+00:00\ngroup_id: 14004804998107660\nis_admin: False\nfiles: ['baraholka_ge/2025/06/7327fe751003404e68c6bd693224825c7b47aafdd571e3eb1509cef925ba6e17.jpg']\n\nImage baraholka_ge/2025/06/7327fe751003404e68c6bd693224825c7b47aafdd571e3eb1509cef925ba6e17.jpg:\nThe image features a single, elongated object that appears to be a bright yellow plastic tube. The tube has a smooth, rounded end and a slightly curled top, suggesting it may be a tool or accessory for a specific function. The background is dark and has a subtle patterned texture, which enhances the visual contrast with the yellow object. There are no additional items or identifiable markings visible in the image.\n\nImage baraholka_ge/2025/06/f9176a61f56fea7709918081756b5c1ee868662baf8a0d8a3bf71dcc45be27b5.jpg:\nThe image shows a black plastic part, likely a clip or holder, packaged in a transparent plastic bag. The item has a slightly rectangular shape with two vertical side supports, and a circular base with a central mounting point. There is also a metal hook attached at the top for securing it. The background is plain, providing a clear view of the product. Overall, it appears to be a hardware accessory, possibly for equipment or a device.\n\nImage baraholka_ge/2025/06/701e9212ea59c6f817cb4e7dddb8037b6fbba28ee279d804ea3cc2a9dbb70fc2.jpg:\nThe image shows a black camera lens housed within a padded black carrying case. The case has a zipper enclosure and appears to be made of durable material, providing protection for the lens inside. The lens itself has a sleek, professional appearance, though specific details and markings are not discernible due to blurring. The background is a vibrant yellow, which contrasts with the dark colors of the lens and case. There are no additional items or text visible in the image.\n\nImage baraholka_ge/2025/06/4516d7dda2988902ad0c006c6b638817d44cb918702a4d01e1e61c8460240204.jpg:\nThe image shows a compact, black zippered carrying case. The front features a white logo and text reading \"JVC\" and \"EURO 2008.\" The case appears to be padded, likely providing protection for its contents. The zipper is well-defined and accessible, indicating easy opening and closing. The background is a bright yellow, which creates a stark contrast with the black case, making it stand out. Overall, the vibe is modern and functional, suited for travel or storage of electronic devices or accessories.\n\nImage baraholka_ge/2025/06/bbef5404195377d83be3b2a56544bd00abbf5c10188c1bdf57e4399e03e08f74.jpg:\nThe image features a small, rectangular black zipper case. The case has a textured surface with a prominent vertical strap running across the front. There’s a loop at the top for easy handling or attachment. The background is a bright yellow, providing contrast to the black case. The overall vibe is simple and functional, likely intended for storage of small electronic devices or accessories.\n\nImage baraholka_ge/2025/06/b8cda94883d1a6cdaf174e74743a67de22b2ed460305dd9fa45aaaf02def1f26.jpg:\nThe image features photography equipment, specifically adapter rings and a lens. \n\n**Top Section**: There are three black adapter rings with numerical markings \"1\" and \"2\" on the outer side, arranged around a metal mount ring that is silver on the edge and black on the inner part. The mount ring likely connects to a camera body or another lens.\n\n**Bottom Section**: A black lens with a textured surface is shown, featuring a numerical count \"1,\" \"2,\" and \"3.\" The lens has contrasting ridged sections which may facilitate gripping during adjustment.\n\nThe background is a bright orange, enhancing the visibility of the products.\n\nImage baraholka_ge/2025/06/b78884dfdd5b665780eb2264053b633b07df8f6a5bde36e3d3fdd76d2935695e.jpg:\nThe image shows a small black zippered case featuring a logo that reads \"UEFA EURO 2008 Austria-Switzerland\" along with the JVC branding. The case has a rounded top and a smooth zip around the edges. The background is a bright yellow, lending a vibrant contrast to the black exterior of the case. There are no visible signs of wear or damage on the bag. This item likely functions as a protective travel case for electronic devices or accessories related to the UEFA Euro 2008 event. The vibe is modern and sporty, suitable for a fan of the tournament."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "market:deal": "sell_item",
           "item:type": "jacket",
           "brand": "RAINS",
@@ -12695,6 +13017,59 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:27:18+00:00",
+          "market:deal": "sell_item",
+          "item:type": "miscellaneous",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/56d38d5b5ec8e861c22a23c9794bb19383a54923384003bea217b07e45752eef.jpg"
+          ],
+          "title_en": "Miscellaneous items in a plastic bag",
+          "description_en": "A partially open plastic bag revealing various sheets of paper and a triangular ruler. The background features a colorful patchwork chair.",
+          "title_ru": "Разные предметы в пластиковом пакете",
+          "description_ru": "Частично открытый пластиковый пакет, в котором находятся различные листы бумаги и треугольная линейка. На заднем плане виден цветной кресло с паттерном.",
+          "title_ka": "სხვადასხვა ნივთები პლასტმასის ჩანთაში",
+          "description_ka": "პლასტმასის ჩანთა, რომელიც ნაწილობრივ ღიაა და შეიცავს სხვადასხვა ქაღალდებს და სამკუთხა მმართველს. ფონზე ჩანს მრავალფეროვანი სკამი."
+        },
+        {
+          "timestamp": "2025-06-22T14:27:18+00:00",
+          "market:deal": "sell_item",
+          "item:type": "electronic_components",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/9758694afcce9467d6a6575e1eb12709c218d744ded34fd2b7b79fbed510ed86.jpg"
+          ],
+          "title_en": "Electronic components in a plastic bag",
+          "description_en": "A partially open white plastic bag containing electronic components, including a small device and tangled wires. The setting is casual and domestic.",
+          "title_ru": "Электронные компоненты в пластиковом пакете",
+          "description_ru": "Частично открытый белый пластиковый пакет с электронными компонентами, включая небольшое устройство и запутанные провода. Обстановка неформальная и домашняя.",
+          "title_ka": "ელექტრონული კომპონენტები პლასტმასის ჩანთაში",
+          "description_ka": "პლასტმასის ჩანთა, რომელიც ნაწილობრივ ღიაა და შეიცავს ელექტრონულ კომპონენტებს, მათ შორის პატარა მოწყობილობას და გაბმულ კაბელებს."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482149",
+      "source:path": "baraholka_ge/2025/06/2482147.md",
+      "source:author:telegram": "LonnieBeliever",
+      "source:author:name": "Лена",
+      "timestamp": "2025-06-22T14:27:18+00:00",
+      "files": [
+        "baraholka_ge/2025/06/56d38d5b5ec8e861c22a23c9794bb19383a54923384003bea217b07e45752eef.jpg",
+        "baraholka_ge/2025/06/9758694afcce9467d6a6575e1eb12709c218d744ded34fd2b7b79fbed510ed86.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482148\nchat: baraholka_ge\nsender: 151012975\nsender_username: LonnieBeliever\nsender_phone: \ntg_link: https://t.me/LonnieBeliever\nsender_name: Лена\nauthor_type: user\ndate: 2025-06-22T14:27:18+00:00\ngroup_id: 14004819510280794\nis_admin: False\nfiles: ['baraholka_ge/2025/06/56d38d5b5ec8e861c22a23c9794bb19383a54923384003bea217b07e45752eef.jpg']\n\nImage baraholka_ge/2025/06/56d38d5b5ec8e861c22a23c9794bb19383a54923384003bea217b07e45752eef.jpg:\nThe image shows a partially open plastic bag revealing some items inside. Among them are various sheets of paper and what appears to be a triangular ruler. The background features a colorful chair with a patchwork design, incorporating fabric patterns in shades of blue, tan, and black, as well as a bright orange detail. The chair's arm is visible, adding to its modern, unique vibe. The lighting is bright, suggesting an indoor setting, but further context of the room is not provided. There are no visible logos or watermarks in the image.\n\nImage baraholka_ge/2025/06/9758694afcce9467d6a6575e1eb12709c218d744ded34fd2b7b79fbed510ed86.jpg:\nThe image shows a partially open white plastic bag containing several items. In the bag, there are electronic components, including what appears to be a small device with a plug or connector, possibly for power or data. There are also several thin, flat items which could be documents or packaging, and a tangled collection of wires or cables. The background features a patterned fabric, indicating a casual setting. The hand in the foreground suggests someone is interacting with the contents of the bag. Overall, the atmosphere feels informal and domestic."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2478740",
       "source:path": "baraholka_ge/2025/06/2478740.md",
@@ -13545,6 +13920,60 @@
       "lots": [
         {
           "market:deal": "sell_item",
+          "item:type": "handbag",
+          "condition": "new",
+          "price": 100,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/90822d4f5d27602ed982facc1ee1f21d5443fae87fa1afdf01d153e4e9fb6a23.jpg"
+          ],
+          "title_en": "Leather Handbag from Italian Brand",
+          "description_en": "Condition: new. Price: 100 GEL.",
+          "title_ru": "Кожаная сумка итальянского бренда",
+          "description_ru": "Состояние: новая. Цена: 100 лари.",
+          "title_ka": "კანის ჩანთა იტალიური ბრენდის",
+          "description_ka": "მდგომარეობა: ახალი. ფასი: 100 ლარი."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "waist_pouch",
+          "condition": "new",
+          "price": 200,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/4aced01756b08fa6eac11bcc52abb5d46a5679fd7bc308d496a3beca9f394ff1.jpg"
+          ],
+          "title_en": "New Massimo Dutti Leather Waist Pouch",
+          "description_en": "Price: 200 GEL.",
+          "title_ru": "Новая бананка Massimo Dutti кожа",
+          "description_ru": "Цена: 200 лари.",
+          "title_ka": "ახალი მასიმო დუტის კანის ჩანთა",
+          "description_ka": "ფასი: 200 ლარი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482136",
+      "source:path": "baraholka_ge/2025/06/2482129.md",
+      "source:author:name": "Mari",
+      "timestamp": "2025-06-22T14:20:42+00:00",
+      "files": [
+        "baraholka_ge/2025/06/90822d4f5d27602ed982facc1ee1f21d5443fae87fa1afdf01d153e4e9fb6a23.jpg",
+        "baraholka_ge/2025/06/ee624fd2d3165c50118b36ed27d49f65853aed39f4cc559d01f56631def7c562.jpg",
+        "baraholka_ge/2025/06/891400cd7e055681892c2cdb6c341db8436fdb1c8e80cdf81535dffc15df4351.jpg",
+        "baraholka_ge/2025/06/28a2ceed9182fad9d955d21f1fa05d5e9ebac401fed2cb19f23e6faca5900179.jpg",
+        "baraholka_ge/2025/06/4aced01756b08fa6eac11bcc52abb5d46a5679fd7bc308d496a3beca9f394ff1.jpg",
+        "baraholka_ge/2025/06/80559f7480bd8686670ea3267f527aa2032579d042f3e20175c2518e72afa5ec.jpg",
+        "baraholka_ge/2025/06/f1b1ad876f6de219e630f450ea3798359c56b86ee8c3a1e8496c3e7921b095de.jpg",
+        "baraholka_ge/2025/06/d917678741610da7056e35568cb9326a3f78d178e8327a05bc79126777aff8da.jpg"
+      ]
+    },
+    "input": "Message text:\n1 . Кожаная сумка итальянского бренда \nСостояние новой \nЦена 100 лари \n2. Новая бананка Massimo Dutti кожа \nЦена 200 лари\n\nImage baraholka_ge/2025/06/90822d4f5d27602ed982facc1ee1f21d5443fae87fa1afdf01d153e4e9fb6a23.jpg:\nThe image features a pale beige handbag resting on a blue fabric surface. The bag has a structured design with a smooth, shiny finish. It features a short top handle for carrying and a flap closure with a round, metallic fastening. The stitching is neatly done in a contrasting color, adding to its aesthetic appeal. The overall vibe of the bag is elegant and sophisticated, suitable for various occasions. There are no visible prices or other details included in the image.\n\nImage baraholka_ge/2025/06/ee624fd2d3165c50118b36ed27d49f65853aed39f4cc559d01f56631def7c562.jpg:\nThe image features a stylish handbag in a light beige color with a structured design. It has a large flap closure with a metal clasp in the center, providing an elegant touch. The bag includes a short handle made from a clear material, enhancing its modern aesthetic. The handbag is placed on a blue couch, which contrasts nicely with its neutral tone. There's no visible text, watermark, or additional items in the picture. The overall vibe is chic and fashionable, suitable for various occasions.\n\nImage baraholka_ge/2025/06/891400cd7e055681892c2cdb6c341db8436fdb1c8e80cdf81535dffc15df4351.jpg:\nThe image shows a stylish handbag resting on a blue upholstered surface. The bag is a soft, light beige color with a structured shape. It features a sleek, handle made of metallic material, and has a zippered pocket on the front. The leather appears smooth, with clean stitching along the seams. The background includes a light-colored wall and a metallic chair, suggesting a modern, minimalistic vibe. The overall presentation gives the impression of a stylish accessory suitable for casual or sophisticated outings.\n\nImage baraholka_ge/2025/06/28a2ceed9182fad9d955d21f1fa05d5e9ebac401fed2cb19f23e6faca5900179.jpg:\nThe image shows a stylish handbag being held in a person's hand. The bag features a muted color palette, mainly in beige and light gray tones, with a suede-like texture on the front flap. The top has a zippered closure with a sleek design. An adjustable strap is attached, allowing it to be worn crossbody or over the shoulder. There appears to be a shiny, flat object, possibly a phone, visible through an opening in the bag, which adds to its functionality. The background features a textured, blue seating area, emphasizing a modern, minimalistic vibe.\n\nImage baraholka_ge/2025/06/4aced01756b08fa6eac11bcc52abb5d46a5679fd7bc308d496a3beca9f394ff1.jpg:\nThe image shows a black leather pouch with a distinct logo embossed on the front. The interior is lined with a smooth black fabric and features a zipper closure. The zipper is golden, adding a touch of contrast to the design. There is a small label visible inside, presumably indicating the brand. The pouch appears to be in good condition, though the leather has a slight sheen, suggesting it may be well-used or of high quality. The background is a textured blue surface, likely a piece of furniture or fabric, providing a neutral backdrop.\n\nImage baraholka_ge/2025/06/80559f7480bd8686670ea3267f527aa2032579d042f3e20175c2518e72afa5ec.jpg:\nThe image shows a small black handbag or waist pouch resting on a blue fabric surface. The bag has a smooth texture, a zipper along the top, and a circular logo or emblem on its front. A hand is positioned on the bag, indicating its size. The handbag features a strap, suggesting it can be worn around the waist or shoulder. The overall vibe of the image is casual and functional.\n\nImage baraholka_ge/2025/06/f1b1ad876f6de219e630f450ea3798359c56b86ee8c3a1e8496c3e7921b095de.jpg:\nThe image shows a small black leather bag positioned on a gray sofa. The bag features a rounded shape with a zip closure and a detachable shoulder strap. The leather appears soft with subtle creases, indicating some wear. The strap is designed for easy carrying, with gold-colored hardware providing a stylish contrast against the black leather. The fabric of the sofa is textured and dark gray, creating a modern and minimalistic backdrop for the bag. No visible tags or brand markings are discernible in the photo.\n\nImage baraholka_ge/2025/06/d917678741610da7056e35568cb9326a3f78d178e8327a05bc79126777aff8da.jpg:\nThe image shows a small black leather bag with a sleek design. It features a single zipper at the top, revealing a compartment for storage. The bag has a strap that appears adjustable, with gold-toned hardware including two circular attachments where the strap connects to the bag. The leather has a slightly worn texture, indicating some use. The background consists of a soft, dark blue fabric, possibly a sofa or chair. Overall, the vibe is casual and stylish, suitable for everyday use."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
           "item:type": "book",
           "condition": "new",
           "price": 10,
@@ -13901,6 +14330,77 @@
       ]
     },
     "input": "Message text:\nПродам наш любимый рюкзак, состояние идеальное. Цена 115 Gel. Краткое описание: Каркасный рюкзак Kite K22-501S-4 (LED) – ортопедическая модель для детей 6-8 лет, выполненная из прочного полиэстера. Классический школьный рюкзак для первоклассников и учеников начальной школы, в котором традиционная форма безупречно сочетается с современным дизайном. Уникальная особенность модели – светящийся LED-элемент на переднем кармане, который работает в трех режимах: постоянное свечение, медленное и быстрое мигание.\n\nImage baraholka_ge/2025/06/8d134b8d538fd80f1fb25e0de20015f60a0e834bbc819afb1feed9910c3c6944.jpg:\nThe image features a black backpack adorned with colorful, small hearts and a large rainbow-colored heart design on the front flap. The bag has bright pink accents along the edges and features a zippered compartment with a yellow zipper pull. There are two small heart-shaped keychains in pink and yellow attached to a zipper on the front pocket. The brand name “KITEM” is visible on the front. The backpack is resting on a glossy surface, suggesting a clean, modern environment.\n\nImage baraholka_ge/2025/06/091599429c4a2f7a45fe314ab0a2f95e4e5e40912551521002b438ef6d86cd44.jpg:\nThe image shows a black backpack with a prominent pink and patterned flap. The flap is decorated with small hearts in various colors, including pink, blue, and yellow. The backpack features a bright pink zipper, adding a pop of color, and it has reflective elements. The straps are adjustable and there is a side view of the bag, hinting at its overall sturdy design. The surface beneath the backpack is light-colored marble, suggesting a modern or sleek interior space. There are no visible logos or additional features on the backpack itself.\n\nImage baraholka_ge/2025/06/b9dc6df9e90b08fbe816aad16da81f31add2da17b007a4c72c5a08bc68a4bb7b.jpg:\nThe image features a colorful backpack with a black background adorned with small, multicolored hearts. The flap has a large, vibrant heart design made up of concentric colored lines. The backpack includes pink zippers and accents, adding to its playful aesthetic. There are two small heart-shaped charms hanging from the zipper, one purple and one yellow. The brand name \"KITAM\" is visible on the front pocket. The overall vibe is youthful and fun, suitable for children or teens.\n\nImage baraholka_ge/2025/06/23840bd53b9d473dc785097e84e56afbda4acd46b30b72310b5880436992d17d.jpg:\nThe image features a black and pink backpack designed for children, labeled \"KITE ERGO KIDS\" with an \"Anatomic Air System\" tag. The backpack has padded back support and adjustable shoulder straps, ensuring comfort for young users. It includes multiple buckles and straps for secure fastening, likely aimed at providing proper weight distribution. The backpack has a sleek, modern design with a sporty aesthetic. The surrounding surface is a light-colored marble, likely reflecting a contemporary interior vibe.\n\nImage baraholka_ge/2025/06/5449fb153e24f88c0d013ff776ca0326462468f055715830fa55b62dae320fdf.jpg:\nThe image shows the interior of a brightly colored bag with a vibrant pink lining. It features multiple compartments, including a large central section and smaller pockets for organization. The bag's zippers are bright, adding to its playful appearance. There’s a label visible inside, which reads \"PAPER OXYD,\" and also mentions \"KITE N.\" The exterior appears to have a mix of dark and colorful designs. The floor is reflective and appears to be tiled. The image does not show any additional products or annotations.\n\nImage baraholka_ge/2025/06/0592989f64c17f16ecae3f173911983ecd769dd9f22f253b0da2b4b127105fcb.jpg:\nThe image shows a compact black bag with a colorful heart pattern on the top surface. It features a flat zipper closure and is attached to adjustable straps for carrying. The bottom part of the bag is plain black. The background appears to be a marble-like surface. There are no visible brands or logos on the bag, and the overall vibe suggests a casual accessory suitable for daily use. Additionally, the bag is being held by a person, though their hand and arm are not the focus of the image.\n\nImage baraholka_ge/2025/06/b9282cc816792360e60b0321e07b788592c3c68a95343fcb59ce5a62510daeb4.jpg:\nThe image features a colorful, black bag with a glossy, heart-shaped design at the front, decorated with small, multi-colored hearts throughout. The bag is likely made of durable fabric and includes a sturdy black handle for carrying. The design gives it a vibrant and playful vibe. There are no additional details visible, such as pricing or other items. The background is minimalistic, suggesting that the bag is being showcased on a light-colored surface, potentially a countertop or table."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:16:59+00:00",
+          "market:deal": "sell_item",
+          "item:type": "inflatable_paddleboard",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/324e2791bb47cf710500d0399a4ae98587edba708d1440e6d696a2ca3870ebd9.jpg"
+          ],
+          "title_en": "Inflatable Paddleboard with Accessories",
+          "description_en": "The image shows an inflatable paddleboard laid out on a wooden floor. The paddleboard features a blue and white design, with a textured surface for grip. There are accessories visible, including a collapsible paddle, a safety leash, and a storage compartment that appears to be unzipped. The compartment contains a blue bag or cover within it.",
+          "title_ru": "Надувная доска для серфинга с аксессуарами",
+          "description_ru": "На изображении показана надувная доска для серфинга, разложенная на деревянном полу. Доска имеет синий и белый дизайн с текстурированной поверхностью для сцепления. Видны аксессуары, включая складную весло, страховочный шнур и отделение для хранения, которое, похоже, не застегнуто. В отделении находится синяя сумка или чехол.",
+          "title_ka": "ნათელი ნავების დაფა აქსესუარებით",
+          "description_ka": "სურათზე ნაჩვენებია ნათელი ნავების დაფა, რომელიც გაშლილია ხის იატაკზე. დაფა აქვს ლურჯი და თეთრი დიზაინი, ტექსტურირებული ზედაპირით. ჩანს აქსესუარები, მათ შორის, დასაკეცი ნავი, უსაფრთხოების თოკი და შენახვის compartment, რომელიც, როგორც ჩანს, არ არის დახურული. compartment-ში არის ლურჯი ჩანთა ან საფარი."
+        },
+        {
+          "timestamp": "2025-06-22T14:16:59+00:00",
+          "market:deal": "sell_item",
+          "item:type": "foldable_bag",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/21a010ff57a97ba9d97e1e0597c0f8906cb1d4fec3129786420293b9c279094e.jpg"
+          ],
+          "title_en": "Large Foldable Bag for Laundry or Storage",
+          "description_en": "The image shows a large, foldable bag designed for laundry or storage. It features a vibrant turquoise body with black accents. The bag has a structured top opening and a zippered front pocket for additional storage.",
+          "title_ru": "Большая складная сумка для стирки или хранения",
+          "description_ru": "На изображении показана большая складная сумка, предназначенная для стирки или хранения. Она имеет яркое бирюзовое тело с черными акцентами. У сумки есть структурированный верхний открывающийся и застежка-молния на переднем кармане для дополнительного хранения.",
+          "title_ka": "დიდი დასაკეცი ჩანთა სარეცხისთვის ან შენახვისთვის",
+          "description_ka": "სურათზე ნაჩვენებია დიდი დასაკეცი ჩანთა, რომელიც განკუთვნილია სარეცხისთვის ან შენახვისთვის. მას აქვს ნათელი ცისფერი სხეული შავი აქსენტებით. ჩანთას აქვს სტრუქტურირებული ზედა გახსნის და წინასწარ დახურული ჯიბე დამატებითი შენახვისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T14:16:59+00:00",
+          "market:deal": "sell_item",
+          "item:type": "water_sports_gear",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/20582b973c9f91309624b37dab414359e22f5bc50ff77382f9b587587774fa91.jpg"
+          ],
+          "title_en": "Water Sports Gear Set",
+          "description_en": "The image features a set of products for water sports. In the center is a blue and white inflatable kayak or paddleboard bag, prominently displaying the brand 'kotsu.' Next to it, there is a blue hand pump used for inflating the kayak or paddleboard.",
+          "title_ru": "Комплект снаряжения для водных видов спорта",
+          "description_ru": "На изображении показан комплект товаров для водных видов спорта. В центре находится синий и белый надувной мешок для каяка или доски для серфинга, на котором ярко отображен бренд 'kotsu.' Рядом находится синий ручной насос, используемый для надувания каяка или доски для серфинга.",
+          "title_ka": "წყლის სპორტის აღჭურვილობის ნაკრები",
+          "description_ka": "სურათზე ნაჩვენებია წყლის სპორტის პროდუქტების ნაკრები. ცენტრში არის ლურჯი და თეთრი ნათელი კაიაკის ან ნავების ჩანთა, რომელიც აშკარად აჩვენებს ბრენდ 'kotsu.' მის გვერდით არის ლურჯი ხელის პომპა, რომელიც გამოიყენება კაიაკის ან ნავების გასაბერი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2482127",
+      "source:path": "baraholka_ge/2025/06/2482125.md",
+      "source:author:name": "Vlad",
+      "timestamp": "2025-06-22T14:17:00+00:00",
+      "files": [
+        "baraholka_ge/2025/06/324e2791bb47cf710500d0399a4ae98587edba708d1440e6d696a2ca3870ebd9.jpg",
+        "baraholka_ge/2025/06/21a010ff57a97ba9d97e1e0597c0f8906cb1d4fec3129786420293b9c279094e.jpg",
+        "baraholka_ge/2025/06/20582b973c9f91309624b37dab414359e22f5bc50ff77382f9b587587774fa91.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2482126\nchat: baraholka_ge\nsender: 834324948\nsender_phone: \nsender_name: Vlad\nauthor_type: user\ndate: 2025-06-22T14:16:59+00:00\ngroup_id: 14004814557267378\nis_admin: False\nfiles: ['baraholka_ge/2025/06/324e2791bb47cf710500d0399a4ae98587edba708d1440e6d696a2ca3870ebd9.jpg']\n\nImage baraholka_ge/2025/06/324e2791bb47cf710500d0399a4ae98587edba708d1440e6d696a2ca3870ebd9.jpg:\nThe image shows an inflatable paddleboard laid out on a wooden floor. The paddleboard features a blue and white design, with a textured surface for grip. There are accessories visible, including a collapsible paddle, a safety leash, and a storage compartment that appears to be unzipped. The compartment contains a blue bag or cover within it. The setting looks like an indoor space, likely a living area or storage room, with light walls in the background. No other furniture or significant details of the room are visible.\n\nImage baraholka_ge/2025/06/21a010ff57a97ba9d97e1e0597c0f8906cb1d4fec3129786420293b9c279094e.jpg:\nThe image shows a large, foldable bag designed for laundry or storage. It features a vibrant turquoise body with black accents. The bag has a structured top opening and a zippered front pocket for additional storage. The material appears durable, likely designed to withstand frequent use. The background shows a light-colored countertop and a wooden floor, suggesting a clean and modern interior. There are no visible markings or additional items around the bag.\n\nImage baraholka_ge/2025/06/20582b973c9f91309624b37dab414359e22f5bc50ff77382f9b587587774fa91.jpg:\nThe image features a set of products for water sports. In the center is a blue and white inflatable kayak or paddleboard bag, prominently displaying the brand \"kotsu.\" Next to it, there is a blue hand pump used for inflating the kayak or paddleboard. Two black paddles are laid out—one is a two-part paddle with a detachable blade, while the other is a single-bladed paddle. The floor appears to be made of wood laminate, contributing to a modern and clean aesthetic. The background suggests a casual storage area, possibly a vehicle or a garage, due to the visible walls and equipment."
   },
   {
     "lot": {
@@ -17259,6 +17759,17 @@
   },
   {
     "lot": {
+      "source:chat": "batumiarendachat",
+      "source:message_id": "762224",
+      "source:path": "batumiarendachat/2025/06/762224.md",
+      "source:author:telegram": "Illanoflighted",
+      "source:author:name": "Klara",
+      "timestamp": "2025-06-22T13:52:07+00:00"
+    },
+    "input": "Message text:\nыы"
+  },
+  {
+    "lot": {
       "timestamp": "2025-06-16T06:50:17+00:00",
       "market:deal": "job_offer",
       "occupation": "персонал для кафе",
@@ -19063,6 +19574,55 @@
       "source:author:name": "Alina Ganina"
     },
     "input": "Message text:\n🏡 #сниму ДОМ /ЧАСТЬ ДОМА (не агент, для себя)\nСемья с ребенком 9 лет, без вредных привычек, без животных, со стабильной оплатой, ищет в долгосрочную аренду дом или этаж дома 2+1. С парковочным местом, с центральным отоплением.\n\nДо 400-500$\nДо 20 минут на машине до центра Батуми (с учетом пробок).\nЗаезд до 1 июля."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T13:59:21+00:00",
+          "market:deal": "rent_out_short",
+          "property:type": "loft",
+          "rooms": "1",
+          "price": 0,
+          "price:currency": "USD",
+          "pets": "negotiable",
+          "addr:full": "гладиолус #ilovemybesties",
+          "files": [
+            "batumiarendachat/2025/06/6d818743a214df019ec8401219ba0ec0db32011bc221d5581223e28d183398aa.jpg",
+            "batumiarendachat/2025/06/17aacc245a36c7d2b24245b95a9002c17579b9195728a1efbaabba1c8b86898f.jpg",
+            "batumiarendachat/2025/06/73155f05cbe9f596e0ec71532bcc29162fabf79a2bfd390226eb10a559a69996.jpg",
+            "batumiarendachat/2025/06/48b05f6465cd54e8c2006bde281558d1a3afb356db1202293bad30a6bb85e95d.jpg",
+            "batumiarendachat/2025/06/881c794a6b07fe2b3758da07a06bb53a8e7e847b9b66840be49b90a21b9f6eb0.jpg",
+            "batumiarendachat/2025/06/443bfd5a148ff95c567e13cfed46bfd1b0e9e5eda87ba3d9fa19c7289b7b9c3f.jpg",
+            "batumiarendachat/2025/06/12576d1fe2faf5477eaa9dcb9811f616e19cdc85816584976ff01a1a7adeae8c.jpg",
+            "batumiarendachat/2025/06/0d0b3dc813542a7880d8f4c8f423ab27178627183dd206b92a6c5d592ee00efd.jpg"
+          ],
+          "title_en": "Modern Loft with Stylish Design",
+          "description_en": "This modern loft features a cozy living area, a compact kitchen, and a stylish bathroom. The design includes light wooden flooring, contemporary furnishings, and a bright ambiance. Perfect for short-term rentals.",
+          "title_ru": "Современный лофт с стильным дизайном",
+          "description_ru": "Этот современный лофт включает уютную гостиную, компактную кухню и стильную ванную комнату. Дизайн включает светлый деревянный пол, современные предметы мебели и яркую атмосферу. Идеально подходит для краткосрочной аренды.",
+          "title_ka": "მოდერნული ლოფტი სტილური დიზაინით",
+          "description_ka": "ეს მოდერნული ლოფტი მოიცავს კომფორტულ საცხოვრებელ ფართს, კომპაქტურ სამზარეულოს და სტილურ აბაზანას. დიზაინი მოიცავს მსუბუქ ხის იატაკს, თანამედროვე ავეჯს და ნათელ ატმოსფეროს. იდეალურია მოკლევადიანი გაქირავებისთვის."
+        }
+      ],
+      "source:chat": "batumiarendachat",
+      "source:message_id": "762318",
+      "source:path": "batumiarendachat/2025/06/762309.md",
+      "source:author:telegram": "anya_petuhova",
+      "source:author:name": "гладиолус #ilovemybesties🫶🏻",
+      "timestamp": "2025-06-22T13:59:21+00:00",
+      "files": [
+        "batumiarendachat/2025/06/6d818743a214df019ec8401219ba0ec0db32011bc221d5581223e28d183398aa.jpg",
+        "batumiarendachat/2025/06/17aacc245a36c7d2b24245b95a9002c17579b9195728a1efbaabba1c8b86898f.jpg",
+        "batumiarendachat/2025/06/73155f05cbe9f596e0ec71532bcc29162fabf79a2bfd390226eb10a559a69996.jpg",
+        "batumiarendachat/2025/06/48b05f6465cd54e8c2006bde281558d1a3afb356db1202293bad30a6bb85e95d.jpg",
+        "batumiarendachat/2025/06/881c794a6b07fe2b3758da07a06bb53a8e7e847b9b66840be49b90a21b9f6eb0.jpg",
+        "batumiarendachat/2025/06/443bfd5a148ff95c567e13cfed46bfd1b0e9e5eda87ba3d9fa19c7289b7b9c3f.jpg",
+        "batumiarendachat/2025/06/12576d1fe2faf5477eaa9dcb9811f616e19cdc85816584976ff01a1a7adeae8c.jpg",
+        "batumiarendachat/2025/06/0d0b3dc813542a7880d8f4c8f423ab27178627183dd206b92a6c5d592ee00efd.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 762311\nchat: batumiarendachat\nsender: 6707553801\nsender_username: anya_petuhova\nsender_phone: \ntg_link: https://t.me/anya_petuhova\nsender_name: гладиолус #ilovemybesties🫶🏻\nauthor_type: user\ndate: 2025-06-22T13:59:21+00:00\ngroup_id: 14004806091518698\nis_admin: False\nfiles: ['batumiarendachat/2025/06/6d818743a214df019ec8401219ba0ec0db32011bc221d5581223e28d183398aa.jpg']\n\nImage batumiarendachat/2025/06/6d818743a214df019ec8401219ba0ec0db32011bc221d5581223e28d183398aa.jpg:\nThe image shows a modern bathroom shower area with vertically striped black and white tiles on the left wall and a mosaic tile design on the right wall. The shower has a detachable handheld showerhead attached to a wall-mounted pole. Below the showerhead, there is a chrome water control fixture. A metal rack is mounted on the wall, holding various toiletries, including a purple bottle and a blue package. A small soap dish is also visible. The overall design is contemporary with a clean and organized appearance.\n\nImage batumiarendachat/2025/06/17aacc245a36c7d2b24245b95a9002c17579b9195728a1efbaabba1c8b86898f.jpg:\nThe image depicts an attic-style loft space with a sloped ceiling. The floor is covered with light brown wood-look laminate. To the left, there's a low platform bed with a blue mattress. A wall-mounted TV is positioned above the bed on the slanted wall. A small built-in shelving unit is visible at the far end, providing some storage space. The room has a modern appearance, and the railing on the right suggests it overlooks a lower level. An electrical outlet is visible on the wall, contributing to a clean, minimalistic design.\n\nImage batumiarendachat/2025/06/73155f05cbe9f596e0ec71532bcc29162fabf79a2bfd390226eb10a559a69996.jpg:\nThe image shows a modern, minimalist loft area with light wooden flooring. Along the wall, there's a low white dresser with several drawers, providing a clean, sleek look to the space. Next to it is a small white table or desk. Mounted on the wall above the dresser is an air conditioning unit. The area is open, bordered by a black metal railing with wire cable detailing, giving it a contemporary touch. The ceiling is slightly sloped, and there are two small, red-accented wall fixtures, possibly lights or safety devices. The overall atmosphere is modern and uncluttered.\n\nImage batumiarendachat/2025/06/48b05f6465cd54e8c2006bde281558d1a3afb356db1202293bad30a6bb85e95d.jpg:\nThe bathroom features a modern design with black and white striped wall tiles. There is a white sink with a chrome faucet and a stylish, rectangular mirror with a decorative black and white border. A shelf next to the mirror holds a bottle of liquid, and there's a toothbrush holder with toothbrushes on the sink. An outlet is visible beside the sink, and multiple hooks are installed on the wall for hanging towels or clothes. The lighting is bright with recessed ceiling lights, creating a clean and contemporary atmosphere.\n\nImage batumiarendachat/2025/06/881c794a6b07fe2b3758da07a06bb53a8e7e847b9b66840be49b90a21b9f6eb0.jpg:\nThis image depicts the entrance area of a modern apartment. The flooring is composed of dark wood-like tiles, providing a sleek appearance. To the left, a white washing machine with a laundry basket on top is visible, next to an open area with clothes hanging. There are simple yet stylish stairs on the right, leading upwards, equipped with a black metal railing. The walls are painted white, contributing to a bright and clean ambiance. Above the entrance door, which is dark and sleek in design, are several framed pictures with red borders, adding a splash of color and a personal touch to the space. The overall style is modern and functional.\n\nImage batumiarendachat/2025/06/443bfd5a148ff95c567e13cfed46bfd1b0e9e5eda87ba3d9fa19c7289b7b9c3f.jpg:\nThe image shows a cozy room with a modern feel. It features a corner gray sofa with large cushions, aligned against a white wall. In front of the sofa is a table covered with a pink and black checkered tablecloth. Above the sofa, decorative circular mirrors and wall-mounted lights add a stylish touch. To the right, there is a dark-colored chest of drawers with a mirror, possibly reflecting part of the room. The flooring is a wood-look tile. The lighting is soft, enhancing the room's inviting atmosphere.\n\nImage batumiarendachat/2025/06/12576d1fe2faf5477eaa9dcb9811f616e19cdc85816584976ff01a1a7adeae8c.jpg:\nThe image shows a compact kitchen and dining area with a wooden countertop and cabinets. The kitchen is equipped with a gas stove, a small sink, and a patterned backsplash. There's a white fridge beside the counter. A small dining table with two chairs is positioned near a window. The room features a light wood floor and large windows with beige curtains, allowing natural light to flood in. A washing machine is situated next to the window, covered with a dotted fabric. The interior has a quaint and practical vibe, with a view outside possibly showing greenery and a mid-level floor perspective.\n\nImage batumiarendachat/2025/06/0d0b3dc813542a7880d8f4c8f423ab27178627183dd206b92a6c5d592ee00efd.jpg:\nThe image shows a modern kitchen and living area with a loft-style design. The kitchen features wooden cabinets with a minimalist look, a sink, and a stove. The backsplash is made up of black and white mosaic tiles, adding a contemporary touch. A wooden stairway with metal railings leads to an upper level. The flooring is a light brown tile that extends throughout the space. A round table with matching chairs is visible on the right. The interior has a clean, functional aesthetic with a mix of modern and industrial elements. Red frames are displayed on the wall by the stairway. The space is well-lit, suggesting natural light sources."
   },
   {
     "lot": {
@@ -21923,6 +22483,92 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:21:28+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg"
+          ],
+          "title_en": "Black Zip-Up Hoodie",
+          "description_en": "The image shows a black hoodie laid flat against a light-colored surface. The hoodie features a full front zipper, a hood, and two zippered pockets on the front. The material appears soft and slightly stretchy, indicating it might be made from a fleece or a similar fabric. The design is simple and modern, suitable for casual wear. There are no visible logos or branding. Overall, the vibe of the garment suggests comfort and practicality.",
+          "title_ru": "Черная толстовка на молнии",
+          "description_ru": "На изображении черная толстовка, разложенная на светлом фоне. Толстовка имеет полный молнию спереди, капюшон и два кармана на молнии спереди. Материал кажется мягким и слегка эластичным, что указывает на то, что он может быть из флиса или подобной ткани. Дизайн простой и современный, подходит для повседневной носки. Логотипов или брендинга не видно. В целом, вещь создает ощущение комфорта и практичности.",
+          "title_ka": "შავი ჰუდი",
+          "description_ka": "სურათზე შავი ჰუდი არის გაწვდილი ღია ფონის წინააღმდეგ. ჰუდი აქვს სრული წინა ზიპი, კაპიუშონი და ორი ზიპის ჯიბე წინ. მასალა ჩანს რბილი და ოდნავ ელასტიური, რაც მიუთითებს, რომ ის შეიძლება იყოს ფლიზის ან მსგავსი ქსოვილისგან დამზადებული. დიზაინი მარტივია და თანამედროვე, რაც შესაფერისია ყოველდღიური ტარებისთვის. არ არის ხილული ლოგოები ან ბრენდინგი. მთლიანობაში, ნივთის ატმოსფერო კომფორტისა და პრაქტიკულობის შეგრძნებას ქმნის."
+        },
+        {
+          "timestamp": "2025-06-22T14:21:28+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/e51d35ee6f0461123cc042bbb321966f37f7ebcfc471acff0fa493963ce8cd19.jpg"
+          ],
+          "title_en": "Navy Blue Abercrombie & Fitch Zip-Up Hoodie",
+          "description_en": "The image features a dark navy blue zip-up hoodie from Abercrombie & Fitch. The hoodie has a kangaroo pocket and two embroidered patches on the front, one reading 'Fitch' in a large, stylized font. The fabric appears soft with some frayed edges, indicating it may be used or vintage. The overall vibe suggests a casual and relaxed style.",
+          "title_ru": "Темно-синяя толстовка Abercrombie & Fitch на молнии",
+          "description_ru": "На изображении темно-синяя толстовка на молнии от Abercrombie & Fitch. У толстовки есть кенгурушка и два вышитых патча спереди, один из которых гласит 'Fitch' крупным стилизованным шрифтом. Материал кажется мягким с некоторыми потертими краями, что указывает на то, что он может быть использован или винтажным. В целом, вещь создает ощущение повседневного и расслабленного стиля.",
+          "title_ka": "მუქი ლურჯი ჰუდი Abercrombie & Fitch",
+          "description_ka": "სურათზე მუქი ლურჯი ჰუდი Abercrombie & Fitch არის ზიპით. ჰუდი აქვს კენგურუს ჯიბე და ორი ამოწერილი პაჩი წინ, ერთი წარწერით 'Fitch' დიდი, სტილიზებული შრიფტით. მასალა ჩანს რბილი და აქვს რამდენიმე გახეხილი კიდე, რაც მიუთითებს, რომ ის შეიძლება იყოს გამოყენებული ან ვინტაჟური. მთლიანობაში, ნივთი ქმნის ყოველდღიური და მოდუნებული სტილის შეგრძნებას."
+        },
+        {
+          "timestamp": "2025-06-22T14:21:28+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/f77b8e2908b451004e56f773ea2abeb5b7712a71aec1dd5c0ce1938b6f7db22d.jpg"
+          ],
+          "title_en": "Black Adidas Zip-Up Hoodie",
+          "description_en": "This image shows a black Adidas zip-up hoodie. It features the signature three white stripes running down both sleeves and has a small Adidas logo on the left side of the chest. The hoodie has a full-length zipper, two side pockets with red zipper pulls, and a drawstring hood. The fabric appears to be fleece, giving it a cozy and casual appearance.",
+          "title_ru": "Черная толстовка Adidas на молнии",
+          "description_ru": "На изображении черная толстовка Adidas на молнии. У нее есть три характерные белые полосы, проходящие по обеим рукавам, и маленький логотип Adidas на левой стороне груди. Толстовка имеет полный молнию, два боковых кармана с красными молниями и капюшон на шнурке. Материал кажется флисовым, что придает ей уютный и повседневный вид.",
+          "title_ka": "შავი Adidas ჰუდი",
+          "description_ka": "სურათზე შავი Adidas ჰუდი არის ზიპით. მას აქვს სამი დამახასიათებელი თეთრი ზოლი, რომლებიც გადიან ორივე მკლავზე და პატარა Adidas ლოგო მარცხენა მხარეს. ჰუდი აქვს სრული ზიპი, ორი გვერდითი ჯიბე წითელი ზიპით და კაპიუშონი შნურით. მასალა ჩანს ფლიზი, რაც მას აძლევს კომფორტულ და ყოველდღიურ გარეგნობას."
+        },
+        {
+          "timestamp": "2025-06-22T14:21:28+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg"
+          ],
+          "title_en": "Gray Zip-Up Hoodie",
+          "description_en": "The image shows a gray zip-up hoodie laid flat. It features a hood and two front pockets. The inner lining appears to be a cream or light-colored fleece.",
+          "title_ru": "Серая толстовка на молнии",
+          "description_ru": "На изображении серая толстовка на молнии, разложенная на плоской поверхности. У нее есть капюшон и два передних кармана. Внутренняя подкладка кажется кремовой или светлой флисовой.",
+          "title_ka": "მუქი ნაცრისფერი ჰუდი",
+          "description_ka": "სურათზე ნაცრისფერი ჰუდი არის ზიპით, გაწვდილი. მას აქვს კაპიუშონი და ორი წინა ჯიბე. შიდა საფარი ჩანს კრემისფერი ან ღია ფერის ფლიზი."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644042",
+      "source:path": "baraholka_batumi_home/2025/06/1644040.md",
+      "source:author:name": "𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸",
+      "timestamp": "2025-06-22T14:21:28+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg",
+        "baraholka_batumi_home/2025/06/e51d35ee6f0461123cc042bbb321966f37f7ebcfc471acff0fa493963ce8cd19.jpg",
+        "baraholka_batumi_home/2025/06/f77b8e2908b451004e56f773ea2abeb5b7712a71aec1dd5c0ce1938b6f7db22d.jpg",
+        "baraholka_batumi_home/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1644041\nchat: baraholka_batumi_home\nsender: 8066362074\nsender_phone: \nsender_name: 𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸\nauthor_type: user\ndate: 2025-06-22T14:21:28+00:00\ngroup_id: 14004816706011442\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg']\n\nImage baraholka_batumi_home/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg:\nThe image shows a black hoodie laid flat against a light-colored surface. The hoodie features a full front zipper, a hood, and two zippered pockets on the front. The material appears soft and slightly stretchy, indicating it might be made from a fleece or a similar fabric. The design is simple and modern, suitable for casual wear. There are no visible logos or branding. Overall, the vibe of the garment suggests comfort and practicality.\n\nImage baraholka_batumi_home/2025/06/e51d35ee6f0461123cc042bbb321966f37f7ebcfc471acff0fa493963ce8cd19.jpg:\nThe image features a dark navy blue zip-up hoodie from Abercrombie & Fitch. The hoodie has a kangaroo pocket and two embroidered patches on the front, one reading \"Fitch\" in a large, stylized font. The fabric appears soft with some frayed edges, indicating it may be used or vintage. The overall vibe suggests a casual and relaxed style. The interior label is also visible, confirming the brand. There are no visible tags, stains, or damages shown in the image.\n\nImage baraholka_batumi_home/2025/06/f77b8e2908b451004e56f773ea2abeb5b7712a71aec1dd5c0ce1938b6f7db22d.jpg:\nThis image shows a black Adidas zip-up hoodie. It features the signature three white stripes running down both sleeves and has a small Adidas logo on the left side of the chest. The hoodie has a full-length zipper, two side pockets with red zipper pulls, and a drawstring hood. The fabric appears to be fleece, giving it a cozy and casual appearance. The background is a plain white surface, allowing the focus to remain on the hoodie. Overall, it presents a sporty vibe suitable for casual wear.\n\nImage baraholka_batumi_home/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg:\nThe image shows a gray zip-up hoodie laid flat. It features a hood and two front pockets. The inner lining appears to be a cream or light-colored fleece. \n\nA label is visible on the bottom left side of the hoodie, but the text on it is unclear. The material looks soft and casual, indicating it's suitable for both lounging and outdoor wear. The overall feel of the hoodie suggests comfort and warmth."
+  },
+  {
+    "lot": {
       "market:deal": "services_offer",
       "occupation": "кондиционерный сервис",
       "description_ru": "ЧИСТКА И РЕМОНТ КОНДИЦИОНЕРОВ — быстро, надёжно, профессионально! Чистим так, что дышится легко, а микробы плачут! Ремонтируем — и вот он снова холодит, как в первый день! Гарантия на всё, даже на ваше хорошее настроение! Не ждите, пока кондей «умрёт» — спасаем 24/7! Звоните +995593255412 — и дышите свободно!",
@@ -23805,6 +24451,58 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T14:00:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "handbag",
+          "condition": "new",
+          "price": 8250,
+          "price:currency": "RUB",
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/18694bb991bedc41ce1504769a12f8d83ce4a171273e8667d27c69604c43c691.jpg"
+          ],
+          "title_en": "Stylish Light Brown Handbag",
+          "description_en": "The handbag features a textured, light brown exterior with a darker interior lining that has 'New Grey Day' printed in a subtle pattern. It is spacious and made of leather or a similar material, offering a modern look.",
+          "title_ru": "Стильная светло-коричневая сумка",
+          "description_ru": "Сумка имеет текстурированный светло-коричневый внешний вид с темной внутренней подкладкой, на которой напечатана фраза 'New Grey Day'. Она просторная и выполнена из кожи или аналогичного материала, что придает ей современный вид.",
+          "title_ka": "სტილური ღია ყავისფერი ჩანთა",
+          "description_ka": "ჩანთა აქვს ტექსტურირებული ღია ყავისფერი გარეგნობა და მუქი შიდა საფარი, რომელზეც დაბალი წარწერით არის დატანილი 'New Grey Day'. ის ფართოა და დამზადებულია ტყავის ან მსგავსი მასალისგან, რაც მას თანამედროვე იერსახეს აძლევს."
+        },
+        {
+          "timestamp": "2025-06-22T14:00:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "backpack",
+          "condition": "new",
+          "price": 8250,
+          "price:currency": "RUB",
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/48b18d78db9a240496385da0a483a7f7ddcb2d42fae79b7b96d6e3d802521eeb.jpg"
+          ],
+          "title_en": "Modern Brown Leather Backpack",
+          "description_en": "This rounded leather backpack features a front zipper pocket and a main compartment with a top zipper closure. It has a sleek design and is currently offered at a discounted price.",
+          "title_ru": "Современный коричневый кожаный рюкзак",
+          "description_ru": "Этот округлый кожаный рюкзак имеет передний карман на молнии и основной отсек с верхней молнией. Он имеет стильный дизайн и в настоящее время предлагается по сниженной цене.",
+          "title_ka": "მოდერნული ყავისფერი ტყავის ზურგჩანთა",
+          "description_ka": "ეს მრგვალი ტყავის ზურგჩანთა აქვს წინა ჯიბე და მთავარი განყოფილება ზედა მოლინით. მას აქვს თანამედროვე დიზაინი და ამჟამად შეთავაზებულია ფასდაკლებით."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644007",
+      "source:path": "baraholka_batumi_home/2025/06/1644004.md",
+      "source:author:name": "Кристина Литвинова | SMM",
+      "timestamp": "2025-06-22T14:00:34+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/18694bb991bedc41ce1504769a12f8d83ce4a171273e8667d27c69604c43c691.jpg",
+        "baraholka_batumi_home/2025/06/48b18d78db9a240496385da0a483a7f7ddcb2d42fae79b7b96d6e3d802521eeb.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1644006\nchat: baraholka_batumi_home\nsender: 65169465\nsender_phone: \nsender_name: Кристина Литвинова | SMM\nauthor_type: user\ndate: 2025-06-22T14:00:34+00:00\ngroup_id: 14004806678026842\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/18694bb991bedc41ce1504769a12f8d83ce4a171273e8667d27c69604c43c691.jpg']\n\nImage baraholka_batumi_home/2025/06/18694bb991bedc41ce1504769a12f8d83ce4a171273e8667d27c69604c43c691.jpg:\nThe image shows an open handbag with a textured, light brown exterior. The interior has a darker shade, featuring a lining with the phrase \"New Grey Day\" printed in a subtle pattern. A hand is reaching inside the bag, indicating its spaciousness. The zipper is partially open, suggesting easy access to the contents inside. The bag appears to be made of leather or a similar material, giving it a stylish and modern look. The background shows a soft, striped surface, possibly indicating a cozy or home-like setting.\n\nImage baraholka_batumi_home/2025/06/48b18d78db9a240496385da0a483a7f7ddcb2d42fae79b7b96d6e3d802521eeb.jpg:\nThe image features a brown, rounded leather backpack. The bag has a front zipper pocket and a main compartment with a top zipper closure. The texture appears smooth, and the overall design is sleek and modern. On the bottom, the price is shown as 8,250 ₽, with a crossed-out original price of 12,900 ₽, indicating a discount. There is also a visual note suggesting a price reduction of 795 ₽. Additionally, there are smaller thumbnails of similar items displayed below the main image, indicating related products for sale. The overall vibe is contemporary and stylish."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "market:deal": "sell_item",
           "item:type": "gaming_console",
           "brand": "Microsoft",
@@ -24500,6 +25198,150 @@
       "timestamp": "2025-06-22T11:19:02+00:00"
     },
     "input": "Message text:\nЭкскурсии Туры Трансферы по всей Грузии +995551400068 WhatsApp"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:04:19+00:00",
+          "market:deal": "sell_item",
+          "item:type": "chair",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg"
+          ],
+          "title_en": "Used Chair with Wear and Tear",
+          "description_en": "This chair shows visible wear and tear, particularly on the armrest with a noticeable scuff mark. The upholstery is black and white, made of faux leather or synthetic material.",
+          "title_ru": "Используемый стул с износом",
+          "description_ru": "Этот стул показывает видимый износ, особенно на подлокотнике с заметным следом. Обивка черно-белая, сделана из искусственной кожи или синтетического материала.",
+          "title_ka": "გამოყენებული სკამი დაზიანებით",
+          "description_ka": "ეს სკამი აჩვენებს თვალსაჩინო დაზიანებას, განსაკუთრებით ხელის დასაყრდენზე, სადაც აშკარად ჩანს ნაკაწრი. საფარი შავი და თეთრია, გაკეთებულია ხელოვნური ტყავის ან სინთეტიკური მასალისგან."
+        },
+        {
+          "timestamp": "2025-06-22T14:04:19+00:00",
+          "market:deal": "sell_item",
+          "item:type": "coffee_portafilter",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg"
+          ],
+          "title_en": "Coffee Portafilter with Filter Baskets",
+          "description_en": "This coffee portafilter comes with two filter baskets, one deeper than the other. It features a black plastic handle and a shiny metal head, perfect for coffee enthusiasts.",
+          "title_ru": "Портфильтр для кофе с фильтрами",
+          "description_ru": "Этот портфильтр для кофе идет с двумя фильтрами, один из которых глубже другого. Он имеет черную пластиковую ручку и блестящую металлическую головку, идеально подходит для любителей кофе.",
+          "title_ka": "კოფეის პორტაფილტრი ფილტრების კალათებით",
+          "description_ka": "ეს კოფეის პორტაფილტრი მოდის ორი ფილტრით, ერთი უფრო ღრმა ვიდრე მეორე. აქვს შავი პლასტმასის სახელური და ბრჭყვიალა მეტალის თავი, იდეალურია კოფეის მოყვარულებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T14:04:19+00:00",
+          "market:deal": "sell_item",
+          "item:type": "espresso_machine",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/6d43abaca4728d5e2bd10b4bbd9dbfc7f8f66911c4541eef4990e6e159983069.jpg"
+          ],
+          "title_en": "Black and Silver Espresso Machine",
+          "description_en": "This espresso machine features a sleek black and silver design, perfect for any kitchen. It includes a metallic portafilter and a drip tray, ideal for coffee lovers.",
+          "title_ru": "Эспрессо-машина черного и серебристого цвета",
+          "description_ru": "Эта эспрессо-машина имеет стильный черный и серебристый дизайн, идеально подходит для любой кухни. Включает металлический портфильтр и поддон для капель, идеально для любителей кофе.",
+          "title_ka": "შავი და ვერცხლისფერი ესპრესო მანქანა",
+          "description_ka": "ეს ესპრესო მანქანა გამოირჩევა თანამედროვე შავი და ვერცხლისფერი დიზაინით, იდეალურია ნებისმიერი სამზარეულოსთვის. მოიცავს მეტალის პორტაფილტრს და წვეთების თაროს, იდეალურია კოფეის მოყვარულებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T14:04:19+00:00",
+          "market:deal": "sell_item",
+          "item:type": "espresso_machine",
+          "condition": "used",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg"
+          ],
+          "title_en": "SHUNSA Espresso Machine",
+          "description_en": "This SHUNSA espresso machine features a stainless steel exterior and multiple control buttons for various functions. It comes with three metal cups for brewing.",
+          "title_ru": "Эспрессо-машина SHUNSA",
+          "description_ru": "Эта эспрессо-машина SHUNSA имеет нержавеющую стальную оболочку и несколько кнопок управления для различных функций. В комплекте три металлические чашки для заваривания.",
+          "title_ka": "ესპრესო მანქანა SHUNSA",
+          "description_ka": "ეს ესპრესო მანქანა SHUNSA გამოირჩევა უჟანგავი ფოლადის გარეგნობით და მრავალრიცხოვანი მართვის ღილაკებით სხვადასხვა ფუნქციისთვის. მოდის სამი მეტალის ჭიქით დასადუღებლად."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644014",
+      "source:path": "baraholka_batumi_home/2025/06/1644011.md",
+      "source:author:name": "Дмитрий",
+      "timestamp": "2025-06-22T14:04:19+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg",
+        "baraholka_batumi_home/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg",
+        "baraholka_batumi_home/2025/06/6d43abaca4728d5e2bd10b4bbd9dbfc7f8f66911c4541eef4990e6e159983069.jpg",
+        "baraholka_batumi_home/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1644013\nchat: baraholka_batumi_home\nsender: 6112182446\nsender_phone: \nsender_name: Дмитрий\nauthor_type: user\ndate: 2025-06-22T14:04:19+00:00\ngroup_id: 14004808472910466\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg']\n\nImage baraholka_batumi_home/2025/06/9c17056ad68aaf7ddbe567f814e3e2acaedc823bd98f8e5fafe06ecf56c95fe3.jpg:\nThe image shows a close-up of a chair's armrest with visible wear and tear. The upholstery is black and white, and there's a noticeable scuff mark on the edge of the armrest, indicating damage. The fabric appears to be faux leather or synthetic material. The flooring beneath the chair is a light-colored tile, offering a neutral backdrop to the damaged area. The overall vibe suggests a modern setup, though the chair itself shows signs of use.\n\nImage baraholka_batumi_home/2025/06/2875f066981ad41d6a4319bc33a2e88d195c1ea2a35afd162ae14967eabd71d7.jpg:\nThe image shows a coffee portafilter with two filter baskets resting on a black countertop. The portafilter has a black plastic handle and a shiny metal head. One of the filter baskets appears to be deeper and has a mesh bottom, while the other is shallower and also has a mesh bottom. The countertop has a textured surface and seems to be part of a larger coffee-making setup. The background has some depth with a hint of decorative elements, possibly indicating a cozy kitchen setting.\n\nImage baraholka_batumi_home/2025/06/6d43abaca4728d5e2bd10b4bbd9dbfc7f8f66911c4541eef4990e6e159983069.jpg:\nThe image shows a black and silver espresso machine placed on a colorful, patterned countertop. The machine features a metallic portafilter, a drip tray, and has a sleek design. The counter has a vibrant mandala-like design, adding a lively touch to the setup. In the background, there's a glimpse of a dish rack and other kitchen items. A power cord is visible attached to the machine. Overall, the vibe of the interior is casual and homey, typical of a kitchen space.\n\nImage baraholka_batumi_home/2025/06/363e8dbde7b00f8d91e746a92e380211cd66010113130f716fbd0ae7caa5e789.jpg:\nThe image shows an espresso machine with a stainless steel exterior and colorful branding labeled \"SHUNSA.\" The machine has several control buttons on the front, suggesting multiple functions. On top, there are three metal cups that appear to be for brewing. The unit has a lever on the side, likely for espresso preparation. \n\nThe background features a vibrant, patterned table with floral designs, indicating a lively atmosphere. The machine is positioned near a kitchen area, possibly near a sink, as a dish rack is visible in the background. Overall, the setting gives off a casual, homey vibe suitable for coffee preparation."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:21:54+00:00",
+          "market:deal": "sell_item",
+          "item:type": "sweater",
+          "condition": "used",
+          "price": 25,
+          "price:currency": "GEL",
+          "urgency": "negotiable",
+          "files": [
+            "baraholka_batumi_home/2025/06/0b9c09a44ad342fd74e92700974f1fc7b21ecef8a954dd8bdcfdbc7190261beb.jpg",
+            "baraholka_batumi_home/2025/06/5c0c9ec6ab1622347b0feddb80887a8bc4c804fb7a24290324f1cf2ba3e4f72b.jpg"
+          ],
+          "title_en": "Cropped Cable Knit Sweater",
+          "description_en": "Light gray, cropped knitted sweater with a cable knit pattern, round neckline, and long sleeves. Size L. Price is negotiable.",
+          "title_ru": "Короткий свитер с косами",
+          "description_ru": "Светло-серый, короткий вязаный свитер с косами, круглый вырез и длинные рукава. Размер L. Цена обсуждаема.",
+          "title_ka": "მოკლე თხელი სვიტერი",
+          "description_ka": "სწრაფი ნაცრისფერი, მოკლე თხელი სვიტერი, კაბელის ქსოვილი, მრგვალი ყელი და გრძელი მკლავები. ზომა L. ფასი მოლაპარაკების საგანია."
+        },
+        {
+          "timestamp": "2025-06-22T14:21:54+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "used",
+          "price": 20,
+          "price:currency": "GEL",
+          "urgency": "negotiable",
+          "files": [
+            "baraholka_batumi_home/2025/06/6eb050ff4e072b100d51348765eec3fbf08838040fcc3b95eab15aaaf4e61bfd.jpg",
+            "baraholka_batumi_home/2025/06/b615a142b3a8e87d88b52ed95569f44788219658885b42c826a5a2d38b894f44.jpg",
+            "baraholka_batumi_home/2025/06/681ef2e8271c2ad2b9addb80bb29f8b635a65a842fd0588ceba085993947c1e8.jpg"
+          ],
+          "title_en": "Bright Blue Dress",
+          "description_en": "Bright blue dress with short puff sleeves, fitted bodice, and ruffled detail at the neckline. Size S. Price is negotiable.",
+          "title_ru": "Яркое синее платье",
+          "description_ru": "Яркое синее платье с короткими рукавами, облегающим лифом и рюшами на вырезе. Размер S. Цена обсуждаема.",
+          "title_ka": "ბრწყინვალე ლურჯი კაბა",
+          "description_ka": "ბრწყინვალე ლურჯი კაბა მოკლე მკლავებით, მჭიდრო ზედა ნაწილით და რიუშებით ყელზე. ზომა S. ფასი მოლაპარაკების საგანია."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644051",
+      "source:path": "baraholka_batumi_home/2025/06/1644045.md",
+      "source:author:name": "staycold",
+      "timestamp": "2025-06-22T14:21:54+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/0b9c09a44ad342fd74e92700974f1fc7b21ecef8a954dd8bdcfdbc7190261beb.jpg",
+        "baraholka_batumi_home/2025/06/6eb050ff4e072b100d51348765eec3fbf08838040fcc3b95eab15aaaf4e61bfd.jpg",
+        "baraholka_batumi_home/2025/06/b615a142b3a8e87d88b52ed95569f44788219658885b42c826a5a2d38b894f44.jpg",
+        "baraholka_batumi_home/2025/06/5c0c9ec6ab1622347b0feddb80887a8bc4c804fb7a24290324f1cf2ba3e4f72b.jpg",
+        "baraholka_batumi_home/2025/06/681ef2e8271c2ad2b9addb80bb29f8b635a65a842fd0588ceba085993947c1e8.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1644047\nchat: baraholka_batumi_home\nsender: 1106920874\nsender_phone: \nsender_name: staycold\nauthor_type: user\ndate: 2025-06-22T14:21:54+00:00\ngroup_id: 14004816914838954\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/0b9c09a44ad342fd74e92700974f1fc7b21ecef8a954dd8bdcfdbc7190261beb.jpg']\n\nImage baraholka_batumi_home/2025/06/0b9c09a44ad342fd74e92700974f1fc7b21ecef8a954dd8bdcfdbc7190261beb.jpg:\nThe image features a light gray, cropped knitted sweater with a cable knit pattern. It has a round neckline and long sleeves, showcasing a relaxed fit. The label indicates that it is a size L. Below the sweater, there is a price stated as \"25 лари\" with a note suggesting that the price is negotiable. The background is simple, highlighting the sweater clearly. No additional details or visible brands are provided in the image.\n\nImage baraholka_batumi_home/2025/06/6eb050ff4e072b100d51348765eec3fbf08838040fcc3b95eab15aaaf4e61bfd.jpg:\nThe image shows a bright blue dress made from a textured fabric. It features short puff sleeves and a fitted bodice with a ruffled detail at the neckline. The dress has a straight cut that falls to the knee with a small slit on one side. A zipper runs down the back for closure. The overall vibe gives a modern and playful look, suitable for various occasions.\n\nImage baraholka_batumi_home/2025/06/b615a142b3a8e87d88b52ed95569f44788219658885b42c826a5a2d38b894f44.jpg:\nThe image features a blue dress hanging on a hanger. The dress has a textured fabric with a puffed short sleeve design and a square neckline. It appears to have a front slit on the left side. The size of the dress is marked as \"Size S.\" There is a price label indicating \"20 лари (торг)\" suggesting it may be negotiable. The background is blurred but hints at an indoor setting.\n\nImage baraholka_batumi_home/2025/06/5c0c9ec6ab1622347b0feddb80887a8bc4c804fb7a24290324f1cf2ba3e4f72b.jpg:\nThe image features a woman wearing a light grey, cropped cable-knit sweater with long sleeves. The sweater has a textured pattern with cable details. She pairs it with grey high-waisted jeans that have a button-fly front, showcasing multiple buttons. The overall vibe is casual and stylish, perfect for a relaxed outfit. The background is a simple, light-colored setting, possibly a studio or showroom, focusing on the garments.\n\nImage baraholka_batumi_home/2025/06/681ef2e8271c2ad2b9addb80bb29f8b635a65a842fd0588ceba085993947c1e8.jpg:\nThe image features a woman wearing a vibrant blue midi dress with a square neckline and puffed short sleeves. The dress has a fitted bodice with a smocked waist and a daring thigh-high slit on one side. She pairs the dress with black heeled sandals and carries a small black and white checkered handbag. The backdrop appears to be a simple white wall, giving the outfit a clean and modern vibe. Her hair is styled in loose waves, and she wears a pearl necklace, adding a touch of elegance to the look."
   },
   {
     "lot": {
@@ -25648,6 +26490,16 @@
   {
     "lot": {
       "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644010",
+      "source:path": "baraholka_batumi_home/2025/06/1644010.md",
+      "source:author:name": "𝙆𝙚𝙣𝙩𝙞𝙠 #SMD",
+      "timestamp": "2025-06-22T14:01:07+00:00"
+    },
+    "input": "Message text:\nМеладзе?"
+  },
+  {
+    "lot": {
+      "source:chat": "baraholka_batumi_home",
       "source:message_id": "1640277",
       "source:path": "baraholka_batumi_home/2025/06/1640277.md",
       "source:author:telegram": "wiosmi407",
@@ -26184,6 +27036,60 @@
       "timestamp": "2025-06-20T12:37:11+00:00"
     },
     "input": "Message text:\nЗдравствуйте, продаёт ли кто лампу или гроубокс?"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T14:28:21+00:00",
+          "market:deal": "sell_item",
+          "item:type": "colored_transparent_sheet",
+          "brand": "GoodChoices",
+          "condition": "new",
+          "price": 11.56,
+          "price:currency": "USD",
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg"
+          ],
+          "title_en": "Colored Transparent Sheets",
+          "description_en": "8 pieces of colored transparent sheets from GoodChoices priced at $11.56.",
+          "title_ru": "Цветные прозрачные листы",
+          "description_ru": "8 штук цветных прозрачных листов от GoodChoices по цене 11,56 долларов.",
+          "title_ka": "ფერადი გამჭვირვალე ფურცლები",
+          "description_ka": "8 ცალი ფერადი გამჭვირვალე ფურცლები GoodChoices ბრენდისგან, ფასი 11.56 დოლარი."
+        },
+        {
+          "timestamp": "2025-06-22T14:28:21+00:00",
+          "market:deal": "sell_item",
+          "item:type": "photography_spot_light",
+          "brand": "XZOMEI",
+          "condition": "new",
+          "price": 45.95,
+          "price:currency": "USD",
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg"
+          ],
+          "title_en": "Photography Spot Lights",
+          "description_en": "Two 9-inch photography spot lights from XZOMEI priced at $45.95 each.",
+          "title_ru": "Фотографические софиты",
+          "description_ru": "Два 9-дюймовых фотографических софита от XZOMEI по цене 45,95 долларов каждый.",
+          "title_ka": "ფოტოგრაფიული ნათურები",
+          "description_ka": "ორი 9 დიუმიანი ფოტოგრაფიული ნათურა XZOMEI ბრენდისგან, ფასი 45.95 დოლარი თითოეული."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1644057",
+      "source:path": "baraholka_batumi_home/2025/06/1644055.md",
+      "source:author:name": "Alina",
+      "timestamp": "2025-06-22T14:28:21+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg",
+        "baraholka_batumi_home/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1644056\nchat: baraholka_batumi_home\nsender: 619052342\nsender_phone: \nsender_name: Alina\nauthor_type: user\ndate: 2025-06-22T14:28:21+00:00\ngroup_id: 14004820013662250\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg']\n\nImage baraholka_batumi_home/2025/06/cf77d68089e71e29a8635881bb718587da7143dfe7d52ab966c4fc24166deaa7.jpg:\nThe image displays a shopping list featuring two items. \n\n1. **Colored Transparent Sheets**: 8 pieces are shown, priced at $11.56, with the brand noted as \"GoodChoices.\"\n2. **Photography Spot Lights**: Two units from the brand \"XZOMEI,\" marked as 9-inch and in black, costing $45.95 each.\n\nThe list presents a clean layout with product titles and prices clearly legible, and there does not appear to be any additional design elements or watermarks. The vibe is organized and straightforward, typical of an online marketplace.\n\nImage baraholka_batumi_home/2025/06/f26a618acb0f515d715e78c130985c40972b46a74a0a50d78e91d7973814e51a.jpg:\nThe image features two adjustable studio lights on tripods, ideal for photography or videography. Both lights are set against a neutral background with soft drapery. The left light has a softbox design, while the right light is also on a tripod but stands taller. There’s a visible power cord hanging from one light. \n\nA label indicates the product name \"UGGOGO,\" and there's a note about \"2 Цвет,\" suggesting two color options for the lights. Additionally, there is an orange button at the bottom that appears to say “Add to cart,” and a green icon indicating free delivery. The overall vibe of the setting is modern and clean."
   },
   {
     "lot": {
@@ -29115,40 +30021,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-15T13:54:58+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "studio",
-      "rooms": "studio",
-      "area": 35,
-      "price": 400,
-      "price:currency": "USD",
-      "price:period": "month",
-      "view": "sea",
-      "pets": "no",
-      "addr:street": "Ш.Химшиашвили",
-      "addr:housenumber": "65",
-      "addr:unit": "корпус Б",
-      "floor": 25,
-      "building:levels": "high",
-      "furnishing": "furnished",
-      "balcony": "yes",
-      "wifi": "yes",
-      "air_conditioning": "yes",
-      "heating": "electric",
-      "washing_machine": "yes",
-      "fridge": "yes",
-      "contact:phone": "995574193692",
-      "contact:whatsapp": "380975753357",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082440",
-      "source:path": "arenda_batumi/2025/06/2082436.md",
-      "source:author:telegram": "galina_batumii",
-      "source:author:name": "Galina Batumi"
-    },
-    "input": "Message text:\n#Сдам студию на ул. Ш.Химшиашвили 65, корпус Б\n\n✔️35 кв.м\n✔️Море через дорогу  \n✔️25 этаж\n✔️Дополнительный раскладной диван \n✔️Рядом ТЦ Метро-Сити, парк\n✔️Паркинг во дворе\n✔️WI-FI с высокоскоростным интернетом \n✔️Smart TV\n✔️Большой балкон\n✔️В апартаментах есть холодильник, кондиционер, отопление керамо-кварцевые батареи, стиральная машина, чайник, утюг, сушилка, посуда, постельное белье, полотенца \n\n🔥400$/мес + к.у. \n\n📞Звоните +995 574193692\n🟢WhatsApp +38 0975753357"
-  },
-  {
-    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2084244",
       "source:path": "arenda_batumi/2025/06/2084240.md",
@@ -29869,17 +30741,6 @@
   {
     "lot": {
       "source:chat": "arenda_batumi",
-      "source:message_id": "2082628",
-      "source:path": "arenda_batumi/2025/06/2082621.md",
-      "source:author:telegram": "batumi_rental_property",
-      "source:author:name": "АРЕНДА/ПРОДАЖА БАТУМИ | RENT/SALE BATUMI",
-      "timestamp": "2025-06-15T14:30:59+00:00"
-    },
-    "input": "Message text:\nid: 2082621\nchat: arenda_batumi\nsender: 6185330933\nsender_name: АРЕНДА/ПРОДАЖА БАТУМИ | RENT/SALE BATUMI\nsender_username: batumi_rental_property\nsender_phone: +995593891000\ntg_link: https://t.me/batumi_rental_property\ndate: 2025-06-15T14:30:59+00:00\ngroup_id: 13999982873222554\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
       "source:message_id": "2100063",
       "source:path": "arenda_batumi/2025/06/2100060.md",
       "source:author:telegram": "best_friend_batumi_apartments",
@@ -30528,6 +31389,27 @@
   },
   {
     "lot": {
+      "market:deal": "services_offer",
+      "occupation": "locksmith",
+      "description_en": "Lock opening of any complexity, including doors, cars, safes, and suitcase locks. Also offering replacement and repair of door locks, installation/replacement of door handles and fittings, and installation of smart locks. Available 24/7. Fast, quality service without damage.",
+      "description_ru": "Вскрытие замков любой сложности, включая двери, автомобили, сейфы и чемоданные замки. Также предлагаем замену и ремонт дверных замков, установку/замену ручек дверей и фурнитуры, а также установку умных замков. Работаем 24/7. Быстро, качественно, без повреждений.",
+      "description_ka": "კარების, ავტომობილების, სეიფების და ჩანთების საკვების ნებისმიერი სირთულის გაღება. ასევე ვთავაზობთ კარების საკვების შეცვლას და შეკეთებას, კარების სახელურების და აქსესუარების მონტაჟს/შეცვლას და ჭკვიანი საკვების მონტაჟს. ვმუშაობთ 24/7. სწრაფად, ხარისხიანად, დაზიანების გარეშე.",
+      "contact:phone": "995557944630",
+      "contact:telegram": "995557944630",
+      "files": [
+        "arenda_batumi/2025/06/a22c003f863d65cc4ac0ea77ec5b52da209745785831170224f778a22e2a1685.jpg"
+      ],
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118741",
+      "source:path": "arenda_batumi/2025/06/2118741.md",
+      "source:author:telegram": "lockopen",
+      "source:author:name": "ВСКРЫТИЕ ЗАМКОВ БАТУМИ🔑",
+      "timestamp": "2025-06-22T14:08:26+00:00"
+    },
+    "input": "Message text:\n@lockopen \n- вскрытие дверных замков любой сложности \n- вскрытие автомобилей любой марки\n- вскрытие сейфов\n- вскрытие чемоданных замков \n\nТакже:\n- замена и ремонт дверных замков\n- установка / замена ручек дверей и фурнитуры \n- установка умных замков \n\nРаботаем 24 / 7\nБыстро, качественно, без повреждений \n\n+995 557 944 630 WhatsApp, Telegram Батуми\n\nImage arenda_batumi/2025/06/a22c003f863d65cc4ac0ea77ec5b52da209745785831170224f778a22e2a1685.jpg:\nThe image features a close-up of a hand wearing a blue disposable glove gripping a door handle. The door is metallic with a lock mechanism visible. Below the image, the text in blue reads \"Вскрытие замков любой сложности\" which translates to \"Lock opening of any complexity.\" Additional text states \"Быстро, качественно, без повреждений\" (Quickly, qualitatively, without damage). A phone number is displayed: \"+995 557 944 630.\" The layout suggests a professional service advertisement, and the design is clean and modern. The overall vibe is businesslike, highlighting expertise in locksmith services."
+  },
+  {
+    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2099526",
       "source:path": "arenda_batumi/2025/06/2099523.md",
@@ -30867,6 +31749,17 @@
       "source:author:name": "Elena Batumi Rent"
     },
     "input": "Message text:\nid: 2108658\nchat: arenda_batumi\nsender: 7650639900\nsender_username: ElenaBatumiArenda\nsender_phone: \ntg_link: https://t.me/ElenaBatumiArenda\nsender_name: Elena Batumi Rent\nauthor_type: user\ndate: 2025-06-20T12:34:11+00:00\ngroup_id: 14003382806600890\nis_admin: False\nfiles: ['arenda_batumi/2025/06/ba0839758b4579d4d0263dd959cf4566dac5b1159c2f8a0108c76a08e71f0520.jpg']\n\nImage arenda_batumi/2025/06/ba0839758b4579d4d0263dd959cf4566dac5b1159c2f8a0108c76a08e71f0520.jpg:\nThis image shows a small bathroom still under construction or renovation. The walls have a glossy white finish with a textured wave design. A PVC door, still wrapped in protective material, provides access. A white towel radiator is installed on the right wall. Below it, electrical wires are exposed, indicating ongoing work. A sink is visible in the bottom left, partially covered with protective material. Two round ceiling lights are installed, providing illumination. The floor is tiled in light gray. There is no visible gas boiler, and the overall vibe is modern and minimalistic."
+  },
+  {
+    "lot": {
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118685",
+      "source:path": "arenda_batumi/2025/06/2118685.md",
+      "source:author:telegram": "ThomasParker_Wb",
+      "source:author:name": "Thomas Parker",
+      "timestamp": "2025-06-22T13:48:18+00:00"
+    },
+    "input": "Message text:\n__**Мeчтаешь об успeхe в кapьерe и финaнсax?**🥶__"
   },
   {
     "lot": {
@@ -32307,17 +33200,6 @@
       "timestamp": "2025-06-19T12:20:27+00:00"
     },
     "input": "Message text:\nЕсть подработка. От 6 тыс за пару часов, можно без опыта"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082669",
-      "source:path": "arenda_batumi/2025/06/2082660.md",
-      "source:author:telegram": "Vitold_HouseKey",
-      "source:author:name": "Витольд HouseKey 🔑 Batumi🇬🇪",
-      "timestamp": "2025-06-15T14:35:01+00:00"
-    },
-    "input": "Message text:\nid: 2082660\nchat: arenda_batumi\nsender: 7971362696\nsender_name: Витольд HouseKey 🔑 Batumi🇬🇪\nsender_username: Vitold_HouseKey\nsender_phone: \ntg_link: https://t.me/Vitold_HouseKey\ndate: 2025-06-15T14:35:01+00:00\ngroup_id: 13999984809059994\nis_admin: False"
   },
   {
     "lot": {
@@ -36295,17 +37177,6 @@
   },
   {
     "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082581",
-      "source:path": "arenda_batumi/2025/06/2082575.md",
-      "source:author:telegram": "rent_apartments_batumi_real",
-      "source:author:name": "Батуми Аренда Квартир",
-      "timestamp": "2025-06-15T14:26:04+00:00"
-    },
-    "input": "Message text:\nid: 2082575\nchat: arenda_batumi\nsender: 7579980335\nsender_name: Батуми Аренда Квартир\nsender_username: rent_apartments_batumi_real\nsender_phone: \ntg_link: https://t.me/rent_apartments_batumi_real\ndate: 2025-06-15T14:26:03+00:00\ngroup_id: 13999980510597450\nis_admin: False"
-  },
-  {
-    "lot": {
       "fraud": "sketchy_job",
       "timestamp": "2025-06-17T10:33:48+00:00",
       "market:deal": "job_seek",
@@ -38420,6 +39291,25 @@
   },
   {
     "lot": {
+      "timestamp": "2025-06-22T14:06:02+00:00",
+      "market:deal": "job_offer",
+      "occupation": "удаленная работа на ByBit/Binance",
+      "salary": 260,
+      "salary:currency": "USD",
+      "schedule": "утренние смены: 6:30-11:30, вечерние смены: 17:30-22:30",
+      "contact:telegram": "+",
+      "contact:phone": "+",
+      "fraud": "sketchy_job",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118723",
+      "source:path": "arenda_batumi/2025/06/2118723.md",
+      "source:author:telegram": "Kris_crpto",
+      "source:author:name": "Кристина"
+    },
+    "input": "Message text:\n**Для тех, кто ищет возможность подзаработать, срочно требуется персонал для удаленной занятости на ByBit/Binance с высокой оплатой:\n • Утренние смены: 6:30-11:30 — $260 в день\n • Вечерние смены: 17:30-22:30 — $310 в день\nДля получения дополнительной информации напишите \"+\" в личные сообщения.**"
+  },
+  {
+    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2095474",
       "source:path": "arenda_batumi/2025/06/2095468.md",
@@ -40351,35 +41241,6 @@
       "source:author:name": "Taso"
     },
     "input": "Message text:\n#сдаётся #сдам \nПомещение в старом Батуми \n📍Ул. Кутаиси 3\n▫️Обшая Площадь 48кв.\n▫️Центральное отопление \nВсе вопросы в ЛС\n📽Видеообзор по запросу \n💵 700$ в месяц \n\n☎️ +995598371818 Taso"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T14:30:37+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "apartment",
-      "rooms": "1",
-      "area": 45,
-      "price": 450,
-      "price:currency": "USD",
-      "price:period": "year",
-      "pets": "no",
-      "addr:street": "Кобаладзе",
-      "addr:housenumber": "8а",
-      "building:name": "GrandMoll",
-      "floor": 20,
-      "heating": "central",
-      "gas": "yes",
-      "balcony": "yes",
-      "payment_terms": "first and last month",
-      "contact:phone": "995579261532",
-      "contact:telegram": "995579261532",
-      "source:chat": "domikibatumi",
-      "source:message_id": "598593",
-      "source:path": "domikibatumi/2025/06/598587.md",
-      "source:author:telegram": "Ira010485",
-      "source:author:name": "Ирина Бондаренко"
-    },
-    "input": "Message text:\n#Сдается квартира 1+1 по улице Кобаладзе,8а GrandMoll \n✅️ 45 кв.м\n✅ 20 этаж\n✅ Газ\n✅ Микроволновая печь\n✅ Кондиционер\n✅ Центарьное отопление\n✅ Балкон \nЦена 450$ на год без повышения на сезон.\n\n‼️Оплата по договору за первый и последний месяц.\n+995579261532 Ирина (WhatsUp, Telegram)"
   },
   {
     "lot": {
