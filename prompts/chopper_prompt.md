@@ -54,7 +54,7 @@ Additional nuggets like parking, balcony or urgency can be added as they appear.
 
 Use the street name along with the number of rooms, floor level and view to form concise titles for real-estate posts.
 Spell only the item being sold in title, skip "for sale" or "buying" or "exchange" - it will be captured in `market:deal`.
-Craft `title_<lang>` and `description_<lang>` for every lot using both the original text and image captions. Ensure these fields are filled for all languages requested in the prompt.
+Craft both `title_<lang>` and `description_<lang>` for every lot using both the original text and image captions. Ensure all these fields are filled for all languages requested in the prompt.
 
 ## Taxonomy
 - **Real-estate** – `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_property`, `buy_property`, `exchange`.
