@@ -23,6 +23,10 @@ from caption_io import read_caption
 from serde_utils import read_text, load_json
 from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
+from post_io import read_post
+import ast
+import moderation
+from scan_ontology import REVIEW_FIELDS
 
 log = get_logger().bind(script=__file__)
 
@@ -161,13 +165,84 @@ def delete_files(lot_id: str) -> None:
                 extra.unlink()
 
 
+def _message_reason(meta: dict, text: str) -> str | None:
+    """Return explanation why a message would be skipped."""
+    if meta.get("skipped_media"):
+        return "skipped-media"
+    if moderation.should_skip_user(meta.get("sender_username")):
+        return "blacklisted-user"
+    lower = text.lower()
+    for phrase in moderation.BANNED_SUBSTRINGS:
+        if phrase.lower() in lower:
+            return f"banned phrase: {phrase}"
+    files: list[str] = []
+    if "files" in meta:
+        val = meta.get("files")
+        try:
+            if isinstance(val, str):
+                files = ast.literal_eval(val)
+            elif isinstance(val, list):
+                files = val
+        except Exception:
+            return "bad files list"
+    if not text.strip() and not files:
+        return "empty"
+    return None
+
+
+def _lot_reason(lot: dict) -> str | None:
+    """Return explanation why ``lot`` would be skipped."""
+    if lot.get("fraud") is not None:
+        return "fraud"
+    if lot.get("contact:telegram") == "@username":
+        return "example contact"
+    missing = [f for f in REVIEW_FIELDS if not lot.get(f)]
+    if missing:
+        return "missing translation"
+    return None
+
+
+def moderation_summary(lot_id: str) -> str:
+    """Return a multi-line summary of moderation checks for ``lot_id``."""
+    lines: list[str] = []
+    lot_file = lot_json_path(lot_id, LOTS_DIR)
+    lot_data = load_json(lot_file) if lot_file.exists() else None
+    if lot_data:
+        lots = lot_data if isinstance(lot_data, list) else [lot_data]
+    else:
+        lots = []
+    raw_path = None
+    if lots:
+        raw_rel = lots[0].get("source:path")
+        if raw_rel:
+            raw_path = RAW_DIR / raw_rel
+    if raw_path and raw_path.exists():
+        meta, text = read_post(raw_path)
+        reason = _message_reason(meta, text)
+        lines.append("message: " + (reason or "ok"))
+    else:
+        lines.append("message: missing")
+    for i, lot in enumerate(lots):
+        reason = _lot_reason(lot)
+        prefix = f"lot {i}" if len(lots) > 1 else "lot"
+        lines.append(f"{prefix}: " + (reason or "ok"))
+    if not lots:
+        lines.append("lot: missing")
+    return "\n".join(lines)
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Dump debug info for a lot")
     parser.add_argument("url", help="link to the lot page")
     parser.add_argument(
         "--refresh",
         action="store_true",
-        help="drop existing files and reprocess before dumping",
+        help="drop existing files and refetch before dumping",
+    )
+    parser.add_argument(
+        "--refetch",
+        action="store_true",
+        help="refetch from Telegram even when cached files are present",
     )
     args = parser.parse_args(argv)
 
@@ -185,10 +260,22 @@ def main(argv: list[str] | None = None) -> None:
         print("Failed to determine chat or message id", file=sys.stderr)
         return
 
+    existing = collect_files(lot_id)
     if args.refresh:
         delete_files(lot_id)
-    logs = run_tg_fetch(chat, mid)
+        existing = []
+
+    need_fetch = args.refetch or args.refresh or not existing
+
+    if need_fetch:
+        log.debug("Fetching from Telegram", chat=chat, mid=mid)
+        logs = run_tg_fetch(chat, mid)
+    else:
+        log.debug("Using cached files", lot=lot_id)
+        logs = "tg_client skipped, use --refetch to force"
+
     parts = ["### tg_client log", logs.strip()]
+    parts.append("\n\n### moderation\n" + moderation_summary(lot_id))
     for name, content in collect_files(lot_id):
         parts.append(f"\n\n### {name}\n{content.strip()}")
     print("\n".join(parts))
