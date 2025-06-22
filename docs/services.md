@@ -125,7 +125,9 @@ Generates `text-embedding-3-large` vectors for each lot.  The output is stored
 under `data/vectors/` mirroring the layout of `data/lots`.  Each file contains a
 list of `{id, vec}` pairs so multiple lots share a single vector file.  GNU
 Parallel processes the newest files first so search results are quickly
-refreshed. `pending_embed.py` upgrades any leftover single-object files by
+refreshed. Both this step and `build_site.py` use `lot_io.iter_lot_files` to
+walk the directory so files are processed in the same order. `pending_embed.py`
+upgrades any leftover single-object files by
 wrapping them in a list and deletes mismatched ones so stale vectors never pollute
 the index. Files from moderated posts are skipped entirely so no vectors are
 stored for spam.

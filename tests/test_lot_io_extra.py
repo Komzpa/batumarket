@@ -1,11 +1,12 @@
 import sys
+import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from lot_io import get_seller, get_timestamp
-from lot_io import make_lot_id, parse_lot_id, embedding_path
+from lot_io import make_lot_id, parse_lot_id, embedding_path, iter_lot_files
 
 
 def test_get_seller_priority():
@@ -42,3 +43,20 @@ def test_embedding_path():
     lot_file = Path("data/lots/chat/2025/06/1.json")
     vec = embedding_path(lot_file, Path("v"), Path("data/lots"))
     assert vec == Path("v/chat/2025/06/1.json")
+
+
+def test_iter_lot_files_order(tmp_path):
+    root = tmp_path / "lots"
+    root.mkdir()
+    a = root / "a.json"
+    b = root / "b.json"
+    a.write_text("[]")
+    b.write_text("[]")
+    os.utime(a, (1, 1))
+    os.utime(b, (2, 2))
+
+    files = iter_lot_files(root, newest_first=True)
+    assert files == [b, a]
+
+    files_default = iter_lot_files(root)
+    assert files_default == [a, b]
