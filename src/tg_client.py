@@ -25,9 +25,6 @@ from log_utils import get_logger, install_excepthook
 PROGRESS_INTERVAL = 5  # seconds between progress messages
 DOWNLOAD_TIMEOUT = 300  # maximum seconds to spend downloading a file
 
-# Media older than this won't be downloaded.  Skipping saves bandwidth while
-# allowing the text of old posts to be archived.
-MEDIA_MAX_AGE = timedelta(days=2)
 
 # Timestamp of the last successfully processed update or message.  Used by
 # the heartbeat coroutine to detect hangs.
@@ -190,13 +187,6 @@ def _should_skip_media(msg: Message) -> str | None:
     file = getattr(msg, "file", None)
     if not file:
         return None
-
-    msg_date = getattr(msg, "date", None)
-    if isinstance(msg_date, datetime):
-        if msg_date.tzinfo is None:
-            msg_date = msg_date.replace(tzinfo=timezone.utc)
-        if datetime.now(timezone.utc) - msg_date > MEDIA_MAX_AGE:
-            return "old"
 
     ext = (getattr(file, "ext", "") or "").lower()
     mtype = (getattr(file, "mime_type", "") or "").lower()
@@ -542,25 +532,33 @@ async def _save_message(
         if reason and not files_prev:
             skipped_reason = reason
         if reason is None:
-            log.debug("Downloading media", chat=chat, id=msg.id)
-            try:
-                data = await asyncio.wait_for(
-                    msg.download_media(
-                        bytes, progress_callback=_progress_logger(chat, msg.id)
-                    ),
-                    timeout=DOWNLOAD_TIMEOUT,
+            if files_prev:
+                log.debug(
+                    "Keeping existing media",
+                    chat=chat,
+                    id=msg.id,
+                    files=len(files_prev),
                 )
-            except asyncio.TimeoutError:
-                log.error("Media download timed out", chat=chat, id=msg.id)
-                data = None
-                skipped_reason = "timeout"
-            if isinstance(data, (bytes, bytearray)):
-                files.append(await _save_media(chat, msg, data))
             else:
-                if data is not None:
-                    log.warning("Cannot download media", chat=chat, id=msg.id)
-                if skipped_reason is None:
-                    skipped_reason = "download"
+                log.debug("Downloading media", chat=chat, id=msg.id)
+                try:
+                    data = await asyncio.wait_for(
+                        msg.download_media(
+                            bytes, progress_callback=_progress_logger(chat, msg.id)
+                        ),
+                        timeout=DOWNLOAD_TIMEOUT,
+                    )
+                except asyncio.TimeoutError:
+                    log.error("Media download timed out", chat=chat, id=msg.id)
+                    data = None
+                    skipped_reason = "timeout"
+                if isinstance(data, (bytes, bytearray)):
+                    files.append(await _save_media(chat, msg, data))
+                else:
+                    if data is not None:
+                        log.warning("Cannot download media", chat=chat, id=msg.id)
+                    if skipped_reason is None:
+                        skipped_reason = "download"
 
     permissions = None
     try:
