@@ -21,6 +21,7 @@ from urllib.parse import urlparse
 
 from caption_io import read_caption
 from serde_utils import read_text, load_json
+from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
 
 log = get_logger().bind(script=__file__)
@@ -31,7 +32,7 @@ RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 
 
-def parse_lot_id(url: str) -> tuple[str, str | None]:
+def parse_url(url: str) -> tuple[str, str | None]:
     """Return ``(lot_id, lang)`` extracted from ``url``."""
     path = urlparse(url).path.lstrip("/")
     # Generated pages always end with ``.html`` so trim that off.
@@ -47,13 +48,10 @@ def parse_lot_id(url: str) -> tuple[str, str | None]:
 
 def guess_source_from_lot(lot_id: str) -> tuple[str | None, int | None]:
     """Guess ``(chat, message_id)`` directly from ``lot_id``."""
-    parts = Path(lot_id).parts
+    rel, _ = split_lot_id(lot_id)
+    parts = rel.parts
     chat = parts[0] if parts else None
-    # The final component of ``lot_id`` holds the message id with a possible
-    # ``-index`` suffix when multiple posts are combined into one lot.
-    last = parts[-1] if parts else ""
-    if "-" in last:
-        last = last.split("-", 1)[0]
+    last = rel.name
     try:
         mid = int(last)
     except ValueError:
@@ -63,7 +61,7 @@ def guess_source_from_lot(lot_id: str) -> tuple[str | None, int | None]:
 
 def load_source_info(lot_id: str) -> tuple[str | None, int | None]:
     """Return ``(chat, message_id)`` for ``lot_id`` if available."""
-    lot_path = LOTS_DIR / f"{lot_id}.json"
+    lot_path = lot_json_path(lot_id, LOTS_DIR)
     lot_data = load_json(lot_path)
     if not lot_data:
         log.warning("Lot file missing", lot=lot_id)
@@ -109,7 +107,7 @@ def run_tg_fetch(chat: str, mid: int) -> str:
 def collect_files(lot_id: str) -> list[tuple[str, str]]:
     """Return ``[(name, content), ...]`` for files related to ``lot_id``."""
     files: list[tuple[str, str]] = []
-    lot_file = LOTS_DIR / f"{lot_id}.json"
+    lot_file = lot_json_path(lot_id, LOTS_DIR)
     if lot_file.exists():
         files.append((str(lot_file), read_text(lot_file)))
         lot_data = load_json(lot_file)
@@ -142,7 +140,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("url", help="link to the lot page")
     args = parser.parse_args(argv)
 
-    lot_id, _lang = parse_lot_id(args.url)
+    lot_id, _lang = parse_url(args.url)
     chat, mid = load_source_info(lot_id)
     if not chat or not mid:
         # When the lot file is missing try to recover the source directly from

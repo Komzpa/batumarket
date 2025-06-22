@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable
 from datetime import datetime, timezone
+from pathlib import Path
 
 from log_utils import get_logger
 from serde_utils import load_json, write_json
@@ -85,4 +86,34 @@ def write_lots(path: Path, lots: Iterable[dict]) -> None:
         cleaned.append(_clean_lot(lot))
     write_json(path, cleaned)
     log.debug("Wrote lots", path=str(path))
+
+
+def make_lot_id(rel: Path, index: int) -> str:
+    """Return lot id string for ``rel`` and ``index``.
+
+    ``rel`` is the JSON file path relative to the ``data/lots`` directory
+    without the ``.json`` suffix.
+    """
+    return f"{rel.with_suffix('')}-{index}"
+
+
+def parse_lot_id(lot_id: str) -> tuple[Path, int]:
+    """Return ``(relative_path, index)`` extracted from ``lot_id``."""
+    p = Path(lot_id)
+    name = p.name
+    if '-' in name:
+        base, idx = name.rsplit('-', 1)
+    else:
+        base, idx = name, '0'
+    try:
+        index = int(idx)
+    except ValueError:
+        index = 0
+    return p.with_name(base), index
+
+
+def lot_json_path(lot_id: str, root: Path) -> Path:
+    """Return full JSON path for ``lot_id`` given ``root`` directory."""
+    rel, _ = parse_lot_id(lot_id)
+    return root / rel.with_suffix('.json')
 
