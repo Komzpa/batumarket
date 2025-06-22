@@ -95,6 +95,8 @@ the next `make chop` run and incomplete posts are avoided.
 If some captions are missing you can run `make caption` to retry processing
 any uncaptured images. The command skips files that already have captions so
 the API isn't called unnecessarily.
+Pictures from posts rejected by `moderation.should_skip_message` are ignored so
+spam never reaches the captioning stage.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper. The prompt now includes short title examples and an `item:audience` field to mark
@@ -122,7 +124,8 @@ list of `{id, vec}` pairs so multiple lots share a single vector file.  GNU
 Parallel processes the newest files first so search results are quickly
 refreshed. `pending_embed.py` upgrades any leftover single-object files by
 wrapping them in a list and deletes mismatched ones so stale vectors never pollute
-the index.
+the index. Files from moderated posts are skipped entirely so no vectors are
+stored for spam.
 
 Translations are now produced by `chop.py` itself.  Fields like
 `title_ru` or `description_ka` are included in the lot JSON directly. Titles
