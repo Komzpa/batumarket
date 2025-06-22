@@ -334,6 +334,12 @@ def _enqueue_chop(path: Path, meta: dict, text: str) -> None:
         entry["timestamp"] = time.monotonic()
     else:
         _CHOP_QUEUE[path] = {"timestamp": time.monotonic(), "pending": pending}
+    log.debug(
+        "Queued chop",
+        file=str(path),
+        pending=len(pending),
+        queue=len(_CHOP_QUEUE),
+    )
     _start_chop_worker()
 
 
@@ -341,6 +347,7 @@ def _start_chop_worker() -> None:
     """Ensure the chop queue worker task is running."""
     global _chop_task
     if _chop_task is None or _chop_task.done():
+        log.debug("Starting chop worker", queue=len(_CHOP_QUEUE))
         _chop_task = asyncio.create_task(_chop_worker())
 
 
@@ -348,9 +355,12 @@ def _process_chop_queue() -> None:
     """Check queued posts and chop cooled down ones."""
     now = time.monotonic()
     for path, item in list(_CHOP_QUEUE.items()):
-        pending = {p for p in item["pending"] if not p.with_suffix(".caption.md").exists()}
+        pending = {
+            p for p in item["pending"] if not p.with_suffix(".caption.md").exists()
+        }
         item["pending"] = pending
         if not pending and now - item["timestamp"] >= CHOP_COOLDOWN:
+            log.debug("Chop cooldown complete", file=str(path))
             _schedule_chop(path)
             del _CHOP_QUEUE[path]
 
@@ -358,10 +368,31 @@ def _process_chop_queue() -> None:
 async def _chop_worker() -> None:
     """Background task processing ``_CHOP_QUEUE``."""
     while _CHOP_QUEUE:
+        log.debug("Chop worker tick", queue=len(_CHOP_QUEUE))
         _process_chop_queue()
         if not _CHOP_QUEUE:
             break
         await asyncio.sleep(CHOP_CHECK_INTERVAL)
+
+
+async def _flush_chop_queue() -> None:
+    """Run the chop worker until the queue is empty and cancel it."""
+    global _chop_task
+    if _chop_task is None:
+        return
+    log.debug("Flushing chop queue", queue=len(_CHOP_QUEUE))
+    while _CHOP_QUEUE:
+        _process_chop_queue()
+        if not _CHOP_QUEUE:
+            break
+        await asyncio.sleep(CHOP_CHECK_INTERVAL)
+    if _chop_task:
+        _chop_task.cancel()
+        try:
+            await _chop_task
+        except asyncio.CancelledError:
+            pass
+        _chop_task = None
 
 
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
@@ -932,6 +963,7 @@ async def main(argv: list[str] | None = None) -> None:
             return
         if msg:
             await _save_bounded(client, chat, msg)
+            await _flush_chop_queue()
             text = (
                 getattr(msg, "text", None)
                 or getattr(msg, "message", "")
@@ -943,6 +975,7 @@ async def main(argv: list[str] | None = None) -> None:
                 )
         else:
             log.error("Message not found", chat=chat, id=mid)
+        await _flush_chop_queue()
         return
 
     if not any(
@@ -963,6 +996,7 @@ async def main(argv: list[str] | None = None) -> None:
         await remove_deleted(client, KEEP_DAYS)
     if not args.listen:
         log.info("Sync complete")
+        await _flush_chop_queue()
         return
     log.info("Initial sync complete; listening for updates")
     asyncio.create_task(_heartbeat())
