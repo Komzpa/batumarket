@@ -206,6 +206,14 @@ directories are created automatically.
 `get_timestamp()` which both the ontology scanner and site builder use to stay
 in sync.
 
+## debug_dump.py
+Collects everything related to a single lot into one text block.
+Pass a page URL and the script will trim the hostname, run
+`tg_client.py --fetch` on the underlying Telegram post and then append
+the resulting logs along with the lot JSON, vector file and raw post.
+Captions and image metadata are included when present so the entire
+pipeline state can be shared in one go.
+
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running
 `make compose` performs a full refresh: pulling messages (images are captioned on
