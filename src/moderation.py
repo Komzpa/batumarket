@@ -26,7 +26,8 @@ BANNED_SUBSTRINGS = [
     "героин",
     "спайс",
     "mdma",
-    "cтоимость рекламного пакета в нашей группе по тематике"
+    "cтоимость рекламного пакета в нашей группе по тематике",
+    "желающие снять квартиру в лучших, надежных и эффективных группах могут подписаться"
 ]
 
 # Telegram usernames that only post housekeeping messages.  Their updates are
@@ -47,7 +48,8 @@ BLACKLISTED_USERS = [
     'ghclone7bot',
     'chatassist_bot',
     'verifuma_bot',
-    'razvitiekanala_bot'
+    'razvitiekanala_bot',
+    'aboniment_admin1'
 ]
 
 RAW_DIR = Path("data/raw")

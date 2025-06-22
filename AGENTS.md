@@ -10,8 +10,7 @@ Documentation:
  - When moving around md files also fix the links in them and links to them across all others.
  - Prefer storing notes and documentation as markdown (``.md``).
  - When writing documentation, align sentence boundaries with new lines for easier git diffs.
- - Update docs every time you update something significant across files
-
+ - Update docs every time you update something significant across files.
 
 Debugging:
  - Add enough debug logs so you can find out what's wrong but not be overwhelmed when something does not work as expected.
