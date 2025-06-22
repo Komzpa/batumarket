@@ -212,7 +212,9 @@ Pass a page URL and the script will trim the hostname, run
 `tg_client.py --fetch` on the underlying Telegram post and then append
 the resulting logs along with the lot JSON, vector file and raw post.
 Captions and image metadata are included when present so the entire
-pipeline state can be shared in one go.
+pipeline state can be shared in one go. If the lot JSON is missing the
+chat name and message ID are extracted from the page path so Telegram
+can still be queried.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running

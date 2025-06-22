@@ -2,10 +2,12 @@
 """Collect debug info for a single lot.
 
 The script accepts a URL pointing to a generated HTML page and gathers
-all related files for that lot. The Telegram client is invoked with
-``--fetch`` so message metadata can be refreshed. Logs, lots, vectors and
-raw posts are concatenated into a single output suitable for copy/paste
-when troubleshooting the pipeline.
+all related files for that lot.  The Telegram client is invoked with
+``--fetch`` so message metadata can be refreshed.  Logs, lots, vectors
+and raw posts are concatenated into a single output suitable for
+copy/paste when troubleshooting the pipeline.  If the JSON describing
+the lot is missing, the chat name and message ID are derived from the
+URL path so Telegram can still be queried.
 """
 
 from __future__ import annotations
@@ -32,13 +34,31 @@ MEDIA_DIR = Path("data/media")
 def parse_lot_id(url: str) -> tuple[str, str | None]:
     """Return ``(lot_id, lang)`` extracted from ``url``."""
     path = urlparse(url).path.lstrip("/")
+    # Generated pages always end with ``.html`` so trim that off.
     if path.endswith(".html"):
         path = path[:-5]
+    # Language code, if any, sits after the last underscore in the page name.
     if "_" in path:
         lot_id, lang = path.rsplit("_", 1)
     else:
         lot_id, lang = path, None
     return lot_id, lang
+
+
+def guess_source_from_lot(lot_id: str) -> tuple[str | None, int | None]:
+    """Guess ``(chat, message_id)`` directly from ``lot_id``."""
+    parts = Path(lot_id).parts
+    chat = parts[0] if parts else None
+    # The final component of ``lot_id`` holds the message id with a possible
+    # ``-index`` suffix when multiple posts are combined into one lot.
+    last = parts[-1] if parts else ""
+    if "-" in last:
+        last = last.split("-", 1)[0]
+    try:
+        mid = int(last)
+    except ValueError:
+        mid = None
+    return chat, mid
 
 
 def load_source_info(lot_id: str) -> tuple[str | None, int | None]:
@@ -52,6 +72,8 @@ def load_source_info(lot_id: str) -> tuple[str | None, int | None]:
     chat = lot.get("source:chat")
     mid = lot.get("source:message_id")
     if (chat is None or mid is None) and lot.get("source:path"):
+        # In older pipeline versions the raw file path was the only link back
+        # to the source message. When present use it as a secondary lookup.
         parts = Path(str(lot["source:path"])).parts
         if len(parts) >= 4:
             chat = chat or parts[0]
@@ -122,6 +144,14 @@ def main(argv: list[str] | None = None) -> None:
 
     lot_id, _lang = parse_lot_id(args.url)
     chat, mid = load_source_info(lot_id)
+    if not chat or not mid:
+        # When the lot file is missing try to recover the source directly from
+        # the URL components. This allows fetching the Telegram post even when
+        # the pipeline failed to persist JSON metadata.
+        f_chat, f_mid = guess_source_from_lot(lot_id)
+        if f_chat and f_mid:
+            log.debug("Falling back to URL path", chat=f_chat, mid=f_mid)
+            chat, mid = chat or f_chat, mid or f_mid
     if not chat or not mid:
         print("Failed to determine chat or message id", file=sys.stderr)
         return
