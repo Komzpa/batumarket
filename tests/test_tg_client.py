@@ -545,7 +545,7 @@ def test_should_skip_media(monkeypatch):
     old = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3)
     file5 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=100)
     msg = types.SimpleNamespace(date=old, file=file5)
-    assert tg_client._should_skip_media(msg) == "old"
+    assert tg_client._should_skip_media(msg) is None
 
 
 def test_save_message_respects_skip(tmp_path, monkeypatch):
@@ -626,12 +626,12 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
 
         await tg_client._save_message(client, "chat", msg)
 
-        assert called["d"] is False
+        assert called["d"] is True
         md_file = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}" / "1.md"
         assert md_file.exists()
         text = md_file.read_text()
-        assert "files" not in text
-        assert "skipped_media" in text
+        assert "files" in text
+        assert "skipped_media" not in text
 
     asyncio.run(run())
 

@@ -48,10 +48,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   Progress older than the current `KEEP_DAYS` window is ignored so lowering the
   threshold does not re-fetch deleted history. Attachments that fail to download
   are skipped with a warning and the reason is stored under `skipped_media` in
-  the message metadata. The client ignores videos (`.mp4`), audio files, images
-  larger than ten megabytes and any media attached to messages more than two
-  days old. The `--fetch` option overrides the age check so individual posts can
-  be reprocessed with all their files. Messages marked this way are ignored by
+  the message metadata. The client ignores videos (`.mp4`), audio files or images
+  larger than ten megabytes. The `--fetch` option can reprocess individual posts
+  with all their files. Messages marked this way are ignored by
   `chop.py` so only complete
   posts are parsed. When the media was downloaded previously the field is left
   out so older posts keep their files intact.
