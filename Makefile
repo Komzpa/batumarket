@@ -4,7 +4,7 @@
 # correct order.  Each stage runs only after its dependency completes.
 .PHONY: compose update pull removed caption chop embed build alert ontology clean precommit debugdump
 
-all: clean build removed
+all: clean build deploy removed
 
 pull: # Pull Telegram messages and media to ``data/``.
 	python src/tg_client.py --ensure-access --fetch-missing
@@ -32,6 +32,9 @@ embed: chop caption
 build: embed ontology
 	rm -rf data/views/*
 	python src/build_site.py
+
+deploy: build ## Deploy built static website to the server
+	rsync --delete-after --size-only -zz --compress-choice=zstd --compress-level=3 --omit-dir-times --omit-link-times --info=stats2,progress2 -aH -e "ssh -T -c aes128-ctr -o Compression=no" data/views/ 178.62.209.164:/srv/www/batumarket/
 
 # Telegram alert bot for new lots.
 alert: embed
