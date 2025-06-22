@@ -35,6 +35,7 @@ def main() -> None:
             continue
         sys.stdout.write(str(msg))
         sys.stdout.write("\0")
+        sys.stdout.flush()
 
 
 if __name__ == "__main__":
