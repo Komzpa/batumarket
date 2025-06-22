@@ -82,7 +82,12 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         first = lines[0]
         key = first.split(":", 1)[0].strip() if ":" in first else ""
         if key and key in meta:
-            rest = rest_body.lstrip()
+            new_rest = rest_body.lstrip()
+            if new_rest == rest:
+                log.warning("Duplicate header loop", path=str(path))
+                rest = rest_body
+                break
+            rest = new_rest
             continue
         rest = rest_body
         break

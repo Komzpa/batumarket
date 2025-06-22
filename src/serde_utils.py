@@ -33,7 +33,9 @@ def write_md(path: str | Path, text: str) -> None:
     """Write ``text`` to ``path`` ensuring a trailing newline."""
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(text.rstrip() + "\n", encoding="utf-8")
+    if not text.endswith("\n"):
+        text += "\n"
+    p.write_text(text, encoding="utf-8")
     log.debug("Wrote markdown", path=str(p))
 
 
