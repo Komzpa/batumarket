@@ -85,7 +85,10 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
             new_rest = rest_body.lstrip()
             if new_rest == rest:
                 log.warning("Duplicate header loop", path=str(path))
-                rest = rest_body
+                if "\n" in rest_body:
+                    rest = ""
+                else:
+                    rest = rest_body
                 break
             rest = new_rest
             continue
