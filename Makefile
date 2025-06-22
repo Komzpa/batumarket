@@ -11,11 +11,13 @@ update: compose
 
 
 pull: # Pull Telegram messages and media to ``data/``.
-	python src/tg_client.py --ensure-access --refetch --fetch-missing
+	python src/tg_client.py --ensure-access --fetch-missing
 
 removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
-	python src/tg_client.py --check-deleted
-	$(MAKE) clean
+	$(MAKE) clean # remove previously half-cleaned leftovers
+	python src/scan_ontology.py # re-collect what still needs to be fetched
+	python src/tg_client.py --refetch --check-deleted
+	$(MAKE) clean # remove newly created leftovers
 
 caption: pull ## Generate image captions for files missing ``*.caption.md``.
 	python scripts/pending_caption.py | parallel --eta -j16 -0 python src/caption.py
