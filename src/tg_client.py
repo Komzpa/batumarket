@@ -530,6 +530,8 @@ async def _save_message(
             )
         except Exception:
             log.warning("Invalid file list", path=str(path))
+        if force_media:
+            meta_prev.pop("skipped_media", None)
 
     files = []
     skipped_reason = None
