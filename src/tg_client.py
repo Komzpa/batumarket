@@ -8,6 +8,7 @@ import subprocess
 import os
 import sys
 import json
+import time
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
@@ -81,7 +82,7 @@ _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from phone_utils import format_georgian
 from post_io import write_post, read_post, get_contact
 from image_io import write_image_meta
-from moderation import should_skip_user
+from moderation import should_skip_user, should_skip_message
 
 
 async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
@@ -104,6 +105,19 @@ STATE_DIR = Path("data/state")
 BROKEN_META_FILE = Path("data/ontology/broken_meta.json")
 MISPARSED_FILE = Path("data/ontology/misparsed.json")
 LOTS_DIR = Path("data/lots")
+
+# Seconds to wait before chopping a freshly saved message.  This gives
+# albums enough time to arrive in multiple updates and avoids chopping
+# partial posts.
+CHOP_COOLDOWN = int(os.getenv("CHOP_COOLDOWN", "20"))
+# How often to check the queue for cooled down messages.
+CHOP_CHECK_INTERVAL = 5
+
+# Queue of posts waiting for chopping.  Each entry maps the message path
+# to a dict with ``timestamp`` and ``pending`` fields tracking files that
+# still need captions.
+_CHOP_QUEUE: dict[Path, dict[str, object]] = {}
+_chop_task: asyncio.Task | None = None
 
 
 def _progress_logger(chat: str, msg_id: int):
@@ -279,6 +293,54 @@ def _schedule_chop(msg_path: Path) -> None:
         log.debug("Chop scheduled", file=str(msg_path))
     except Exception:
         log.exception("Failed to schedule chop", file=str(msg_path))
+
+
+def _enqueue_chop(path: Path, meta: dict, text: str) -> None:
+    """Queue ``path`` for chopping once captions are available."""
+    if should_skip_message(meta, text):
+        log.debug("Skipping chop due to moderation", path=str(path))
+        return
+    files = meta.get("files", [])
+    pending: set[Path] = set()
+    for rel in files:
+        p = MEDIA_DIR / rel
+        if p.suffix.lower().startswith(".jpg") or p.suffix.lower() in {".png", ".gif", ".webp"}:
+            if not p.with_suffix(".caption.md").exists():
+                pending.add(p)
+    entry = _CHOP_QUEUE.get(path)
+    if entry:
+        entry["pending"].update(pending)
+        entry["timestamp"] = time.monotonic()
+    else:
+        _CHOP_QUEUE[path] = {"timestamp": time.monotonic(), "pending": pending}
+    _start_chop_worker()
+
+
+def _start_chop_worker() -> None:
+    """Ensure the chop queue worker task is running."""
+    global _chop_task
+    if _chop_task is None or _chop_task.done():
+        _chop_task = asyncio.create_task(_chop_worker())
+
+
+def _process_chop_queue() -> None:
+    """Check queued posts and chop cooled down ones."""
+    now = time.monotonic()
+    for path, item in list(_CHOP_QUEUE.items()):
+        pending = {p for p in item["pending"] if not p.with_suffix(".caption.md").exists()}
+        item["pending"] = pending
+        if not pending and now - item["timestamp"] >= CHOP_COOLDOWN:
+            _schedule_chop(path)
+            del _CHOP_QUEUE[path]
+
+
+async def _chop_worker() -> None:
+    """Background task processing ``_CHOP_QUEUE``."""
+    while _CHOP_QUEUE:
+        _process_chop_queue()
+        if not _CHOP_QUEUE:
+            break
+        await asyncio.sleep(CHOP_CHECK_INTERVAL)
 
 
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
@@ -492,7 +554,7 @@ async def _save_message(
             lot_path.unlink()
             log.info("Dropped lots after refetch", file=str(lot_path))
     log.info("Wrote message", path=str(path), id=msg.id)
-    _schedule_chop(path)
+    _enqueue_chop(path, meta, text)
     return path
 
 

@@ -83,9 +83,12 @@ original. Captions are later included in the lot chopper prompt where the
 `chop.py` script lists every `Image <filename>` before its caption. This makes
 it crystal clear which picture the text belongs to. When `LOG_LEVEL` is set to
 `INFO`, the script logs each processed filename along with the generated
-caption. Once a message and all its captions are written, `tg_client.py`
-spawns `chop.py` in the background so lots appear without waiting for the
-next `make chop` run.
+caption. `tg_client.py` keeps a queue of freshly written posts together with
+any images still waiting for captions. Each queued item cools down for about
+twenty seconds so additional album messages can arrive. Once all captions are
+present (or there were no images) and the cooldown expires the client spawns
+`chop.py` in the background. This way lots appear quickly without waiting for
+the next `make chop` run and incomplete posts are avoided.
 If some captions are missing you can run `make caption` to retry processing
 all images.
 
