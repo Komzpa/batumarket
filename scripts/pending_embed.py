@@ -7,11 +7,11 @@ import sys
 # explicitly so this is only needed for manual runs.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lot_io import read_lots
+from lot_io import read_lots, embedding_path
 from serde_utils import load_json, write_json
 from log_utils import get_logger
 from moderation import should_skip_message, should_skip_lot
-from post_io import read_post
+from post_io import read_post, raw_post_path_from_lot
 
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
@@ -20,43 +20,45 @@ RAW_DIR = Path("data/raw")
 log = get_logger().bind(script=__file__)
 
 
-def _needs_embed(path: Path, vec: Path, lots: list[dict]) -> bool:
-    """Return ``True`` when ``vec`` is missing or out of date.
+def _needs_embedding(path: Path, emb: Path, lots: list[dict]) -> bool:
+    """Return ``True`` when ``emb`` is missing or out of date.
 
-    The function upgrades older vector files written as a single object and
+    The function upgrades older embedding files written as a single object and
     deletes mismatched files.
     """
-    if not vec.exists():
+    if not emb.exists():
         return True
-    if vec.stat().st_mtime < path.stat().st_mtime:
+    if emb.stat().st_mtime < path.stat().st_mtime:
         return True
-    data = load_json(vec)
+    data = load_json(emb)
     if data is None:
-        vec.unlink(missing_ok=True)
-        log.debug("Bad vector file", file=str(vec))
+        emb.unlink(missing_ok=True)
+        log.debug("Bad embedding file", file=str(emb))
         return True
     # Legacy format stored a single {id, vec} object per file
     if isinstance(data, dict) and "id" in data and "vec" in data:
         if len(lots) == 1:
-            write_json(vec, [data])
-            log.debug("Upgraded vector", file=str(vec))
+            write_json(emb, [data])
+            log.debug("Upgraded embedding", file=str(emb))
             return False
-        vec.unlink(missing_ok=True)
-        log.debug("Vector count mismatch", file=str(vec), lots=len(lots), vecs=1)
+        emb.unlink(missing_ok=True)
+        log.debug(
+            "Embedding count mismatch", file=str(emb), lots=len(lots), vecs=1
+        )
         return True
     if isinstance(data, list):
         if len(data) != len(lots):
-            vec.unlink(missing_ok=True)
+            emb.unlink(missing_ok=True)
             log.debug(
-                "Vector count mismatch",
-                file=str(vec),
+                "Embedding count mismatch",
+                file=str(emb),
                 lots=len(lots),
                 vecs=len(data),
             )
             return True
         return False
-    vec.unlink(missing_ok=True)
-    log.debug("Unknown vector format", file=str(vec))
+    emb.unlink(missing_ok=True)
+    log.debug("Unknown embedding format", file=str(emb))
     return True
 
 
@@ -73,11 +75,10 @@ def main() -> None:
         lots = read_lots(path) or []
         if not lots:
             continue
-        rel = path.relative_to(LOTS_DIR)
-        out = (VEC_DIR / rel).with_suffix(".json")
-        raw = RAW_DIR / lots[0].get("source:path", "")
+        out = embedding_path(path, VEC_DIR, LOTS_DIR)
+        raw = raw_post_path_from_lot(lots[0], RAW_DIR)
         skip = False
-        if raw.exists():
+        if raw and raw.exists():
             try:
                 meta, text = read_post(raw)
                 if should_skip_message(meta, text):
@@ -90,7 +91,7 @@ def main() -> None:
         if skip:
             log.info("Skipping", file=str(path), reason="moderation")
             continue
-        if _needs_embed(path, out, lots):
+        if _needs_embedding(path, out, lots):
             pending.append(path)
 
     for path in pending:

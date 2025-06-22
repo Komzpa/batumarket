@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 
 from log_utils import get_logger
 from serde_utils import write_md, read_md
+
+RAW_DIR = Path("data/raw")
 import ast
 
 
@@ -168,4 +170,17 @@ def write_post(path: Path, meta: dict[str, str], body: str) -> None:
             raise AssertionError("body contains duplicated headers")
     write_md(path, "\n".join(meta_lines) + "\n\n" + body.strip())
     log.debug("Wrote post", path=str(path))
+
+
+def raw_post_path(rel: str | Path, root: Path = RAW_DIR) -> Path:
+    """Return absolute message path for ``rel`` under ``root``."""
+    return root / Path(rel)
+
+
+def raw_post_path_from_lot(lot: dict, root: Path = RAW_DIR) -> Path | None:
+    """Return raw post path referenced by ``lot`` or ``None``."""
+    rel = lot.get("source:path")
+    if not rel:
+        return None
+    return raw_post_path(rel, root)
 

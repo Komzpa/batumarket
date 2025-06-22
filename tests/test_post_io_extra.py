@@ -4,7 +4,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from post_io import get_contact, get_timestamp, write_post, read_post
+from post_io import (
+    get_contact,
+    get_timestamp,
+    write_post,
+    read_post,
+    raw_post_path,
+    raw_post_path_from_lot,
+)
 import ast
 import pytest
 
@@ -64,4 +71,11 @@ def test_read_post_mismatch_raises(tmp_path: Path):
     path.write_text(content)
     with pytest.raises(AssertionError):
         read_post(path)
+
+
+def test_raw_post_path_helpers():
+    lot = {"source:path": "chat/2024/05/1.md"}
+    p = raw_post_path("chat/2024/05/1.md", Path("x"))
+    assert p == Path("x/chat/2024/05/1.md")
+    assert raw_post_path_from_lot(lot, Path("x")) == p
 
