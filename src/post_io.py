@@ -84,7 +84,8 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         if key and key in meta:
             new_rest = rest_body.lstrip()
             if new_rest == rest:
-                log.warning("Duplicate header loop", path=str(path))
+                if "\n" in rest:
+                    log.warning("Duplicate header loop", path=str(path))
                 if "\n" in rest_body:
                     rest = ""
                 else:
