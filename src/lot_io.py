@@ -5,10 +5,12 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable
 from datetime import datetime, timezone
-from pathlib import Path
 
 from log_utils import get_logger
 from serde_utils import load_json, write_json
+
+LOTS_DIR = Path("data/lots")
+VEC_DIR = Path("data/vectors")
 
 log = get_logger().bind(module=__name__)
 
@@ -116,4 +118,12 @@ def lot_json_path(lot_id: str, root: Path) -> Path:
     """Return full JSON path for ``lot_id`` given ``root`` directory."""
     rel, _ = parse_lot_id(lot_id)
     return root / rel.with_suffix('.json')
+
+
+def embedding_path(
+    lot_path: Path, vec_root: Path = VEC_DIR, lots_root: Path = LOTS_DIR
+) -> Path:
+    """Return embedding file path for ``lot_path``."""
+    rel = lot_path.relative_to(lots_root)
+    return (vec_root / rel).with_suffix(".json")
 
