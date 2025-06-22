@@ -2,10 +2,12 @@
 """Collect debug info for a single lot.
 
 The script accepts a URL pointing to a generated HTML page and gathers
-all related files for that lot. The Telegram client is invoked with
-``--fetch`` so message metadata can be refreshed. Logs, lots, vectors and
-raw posts are concatenated into a single output suitable for copy/paste
-when troubleshooting the pipeline.
+all related files for that lot.  The Telegram client is invoked with
+``--fetch`` so message metadata can be refreshed.  Logs, lots, vectors
+and raw posts are concatenated into a single output suitable for
+copy/paste when troubleshooting the pipeline.  If the JSON describing
+the lot is missing, the chat name and message ID are derived from the
+URL path so Telegram can still be queried.
 """
 
 from __future__ import annotations
@@ -39,6 +41,20 @@ def parse_lot_id(url: str) -> tuple[str, str | None]:
     else:
         lot_id, lang = path, None
     return lot_id, lang
+
+
+def guess_source_from_lot(lot_id: str) -> tuple[str | None, int | None]:
+    """Guess ``(chat, message_id)`` directly from ``lot_id``."""
+    parts = Path(lot_id).parts
+    chat = parts[0] if parts else None
+    last = parts[-1] if parts else ""
+    if "-" in last:
+        last = last.split("-", 1)[0]
+    try:
+        mid = int(last)
+    except ValueError:
+        mid = None
+    return chat, mid
 
 
 def load_source_info(lot_id: str) -> tuple[str | None, int | None]:
@@ -122,6 +138,11 @@ def main(argv: list[str] | None = None) -> None:
 
     lot_id, _lang = parse_lot_id(args.url)
     chat, mid = load_source_info(lot_id)
+    if not chat or not mid:
+        f_chat, f_mid = guess_source_from_lot(lot_id)
+        if f_chat and f_mid:
+            log.debug("Falling back to URL path", chat=f_chat, mid=f_mid)
+            chat, mid = chat or f_chat, mid or f_mid
     if not chat or not mid:
         print("Failed to determine chat or message id", file=sys.stderr)
         return

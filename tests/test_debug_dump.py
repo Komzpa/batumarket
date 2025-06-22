@@ -13,3 +13,9 @@ def test_parse_lot_id():
     assert lot == "chat/2025/06/1234-0"
     assert lang == "ru"
 
+
+def test_guess_source_from_lot():
+    chat, mid = debug_dump.guess_source_from_lot("chat/2025/06/1234-0")
+    assert chat == "chat"
+    assert mid == 1234
+
