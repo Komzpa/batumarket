@@ -9,7 +9,7 @@ For installation instructions see [docs/setup.md](docs/setup.md).
 The project goals are described in [docs/vision.md](docs/vision.md).
 Approximate OpenAI expenses are outlined in [docs/costs.md](docs/costs.md).
 [Maintenance instructions](docs/maintenance.md) cover how to keep translations up to date.
-[Output validation](docs/validation.md) explains the checks that run after every pipeline stage.
+[Output validation](docs/validation.md) lists the checks embedded into the pipeline.
 [Ontology housekeeping](docs/ontology_housekeeping.md) describes how to keep the
 generated field counts in sync and refine prompts. If `data/raw` is missing the
 scanner should not run as it would produce empty files – review the tracked
