@@ -326,7 +326,10 @@ def main() -> None:
     vec_ids = [lot["_id"] for lot in lots if id_to_vec.get(lot["_id"])]
     if _has_sklearn and vec_ids:
         matrix = [id_to_vec[i] for i in vec_ids]
-        nn = NearestNeighbors(n_neighbors=7, metric="cosine")
+        # ``kneighbors`` raises when ``n_neighbors`` exceeds the number of
+        # vectors, so keep the value within bounds.
+        k = min(7, len(matrix))
+        nn = NearestNeighbors(n_neighbors=k, metric="cosine")
         nn.fit(matrix)
         dists, idxs = nn.kneighbors(matrix)
         idx_to_id = {i: vec_ids[i] for i in range(len(vec_ids))}
