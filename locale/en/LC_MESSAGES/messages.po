@@ -44,3 +44,5 @@ msgstr "Lot"
 
 msgid "Index"
 msgstr "Index"
+msgid "Similar items"
+msgstr "Similar items"

@@ -44,3 +44,5 @@ msgstr "ლოტი"
 
 msgid "Index"
 msgstr "მთავარი გვერდი"
+msgid "Similar items"
+msgstr "მსგავსი განცხადებები"
