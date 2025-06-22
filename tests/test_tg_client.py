@@ -16,6 +16,7 @@ dummy_telethon = types.ModuleType("telethon")
 dummy_telethon.TelegramClient = object
 dummy_telethon.events = types.SimpleNamespace(
     NewMessage=lambda *a, **k: object,
+    Album=lambda *a, **k: object,
     MessageEdited=lambda *a, **k: object,
 )
 
@@ -73,6 +74,7 @@ def _install_telethon_stub(monkeypatch):
     telethon.TelegramClient = object
     telethon.events = types.SimpleNamespace(
         NewMessage=lambda *a, **k: object,
+        Album=lambda *a, **k: object,
         MessageEdited=lambda *a, **k: object,
     )
     monkeypatch.setitem(sys.modules, "telethon", telethon)
