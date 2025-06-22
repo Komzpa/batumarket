@@ -104,7 +104,7 @@ def caption_file(path: Path) -> str:
         },
     ]
     log.debug("Captioning", sha=sha, chat=chat, file=str(path))
-    log.info("OpenAI request", messages=message)
+    log.debug("OpenAI request", messages=message)
     try:
         resp = openai.chat.completions.create(model="gpt-4o-mini", messages=message)
         text = resp.choices[0].message.content.strip()
