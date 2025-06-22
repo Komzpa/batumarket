@@ -129,6 +129,10 @@ wrapping them in a list and deletes mismatched ones so stale vectors never pollu
 the index. Files from moderated posts are skipped entirely so no vectors are
 stored for spam.
 
+Vector ids are generated with `lot_io.make_lot_id` which keeps every
+subdirectory from `data/lots`.  This matches the ids used by
+`build_site.py` so "See also" suggestions work for nested lots.
+
 Translations are now produced by `chop.py` itself.  Fields like
 `title_ru` or `description_ka` are included in the lot JSON directly. Titles
 use the street name together with room count, floor level and view where

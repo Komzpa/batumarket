@@ -43,5 +43,5 @@ def test_embed_file(tmp_path, monkeypatch):
     data = json.loads(out.read_text())
     assert isinstance(data, list)
     assert len(data) == 2
-    assert data[0]["id"] == "chat/1-0"
+    assert data[0]["id"] == "chat/2024/05/1-0"
     assert data[0]["vec"] == [1, 2, 3]

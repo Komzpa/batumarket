@@ -13,7 +13,7 @@ OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
 from token_utils import estimate_tokens
 from serde_utils import write_json
-from lot_io import read_lots
+from lot_io import read_lots, make_lot_id
 import json
 
 log = get_logger().bind(script=__file__)
@@ -44,11 +44,10 @@ def embed_file(path: Path) -> None:
         log.error("Failed to read lot file", file=str(path))
         return
 
-    chat = rel.parts[0] if len(rel.parts) > 1 else ""
     texts = []
     lot_ids = []
     for idx, lot in enumerate(lots):
-        lot_id = f"{chat}/{path.stem}-{idx}" if chat else f"{path.stem}-{idx}"
+        lot_id = make_lot_id(rel, idx)
         lot_ids.append(lot_id)
         texts.append(json.dumps(lot, ensure_ascii=False, sort_keys=True))
 
