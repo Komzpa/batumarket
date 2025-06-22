@@ -271,3 +271,61 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
     html = (tmp_path / "views" / "1-0_en.html").read_text()
     assert "extra" not in html
     assert "other" not in html
+
+
+def test_vectors_generate_similar(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    vec_dir = tmp_path / "vecs"
+    vec_dir.mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "a",
+                "description_en": "d",
+                "title_ru": "a",
+                "description_ru": "d",
+                "title_ka": "a",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+            }
+        ])
+    )
+    (lots_dir / "2.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "b",
+                "description_en": "d",
+                "title_ru": "b",
+                "description_ru": "d",
+                "title_ka": "b",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+            }
+        ])
+    )
+
+    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
+    (vec_dir / "2.json").write_text(json.dumps([{"id": "2-0", "vec": [0.9, 0.1]}]))
+
+    build_site.main()
+
+    html = (tmp_path / "views" / "1-0_en.html").read_text()
+    assert "2-0_en.html" in html
