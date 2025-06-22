@@ -84,10 +84,16 @@ def should_skip_message(meta: dict, text: str) -> bool:
         return True
     files: list[str] = []
     if "files" in meta:
+        val = meta.get("files")
         try:
-            files = ast.literal_eval(meta.get("files", "[]"))
+            if isinstance(val, str):
+                files = ast.literal_eval(val)
+            elif isinstance(val, list):
+                files = val
+            else:
+                raise ValueError("bad files type")
         except Exception:
-            log.debug("Bad file list", value=meta.get("files"), id=meta.get("id"))
+            log.debug("Bad file list", value=val, id=meta.get("id"))
     if not text.strip() and not files:
         log.debug("Message rejected", reason="empty", id=meta.get("id"))
         return True

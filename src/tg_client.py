@@ -499,7 +499,10 @@ async def _save_message(
         or getattr(getattr(msg, "media", None), "caption", None)
         or getattr(msg, "message", "")
     )
+    log.debug("Raw message text", chat=chat, id=msg.id, preview=str(text)[:80])
     text = str(text).replace("View original post", "").strip()
+    log.debug("Processed message text", chat=chat, id=msg.id, preview=text[:80])
+    log.debug("Saving message", chat=chat, id=msg.id, files=len(files), preview=text[:80])
     group_path = None
     if msg.grouped_id and not replace:
         group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
