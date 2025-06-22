@@ -636,6 +636,51 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
     asyncio.run(run())
 
 
+def test_save_message_force_media(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        called = {"d": False}
+
+        class Old(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date, media=True)
+                self.file = types.SimpleNamespace(
+                    ext=".jpg", mime_type="image/jpeg", size=100
+                )
+
+            async def download_media(self, *_, **__):
+                called["d"] = True
+                return b"data"
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+        old_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
+            days=3
+        )
+        msg = Old(1, old_date)
+
+        await tg_client._save_message(client, "chat", msg, force_media=True)
+
+        assert called["d"] is True
+        md_file = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}" / "1.md"
+        assert md_file.exists()
+        text = md_file.read_text()
+        assert "files" in text
+        assert "skipped_media" not in text
+
+    asyncio.run(run())
+
+
 def test_save_message_keep_existing_media(tmp_path, monkeypatch):
     async def run():
         cfg = types.ModuleType("config")
