@@ -1,11 +1,15 @@
 from pathlib import Path
 import sys
 import types
+import os
 import importlib
 import asyncio
 import datetime
 import hashlib
 import json
+
+# Ensure helper functions skip external API calls during tests
+os.environ.setdefault("TEST_MODE", "1")
 
 # ── dummy Telethon shims ────────────────────────────────────────────────────────
 dummy_telethon = types.ModuleType("telethon")
@@ -366,6 +370,7 @@ def test_grouped_message(tmp_path, monkeypatch):
 
         monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
         monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+        monkeypatch.setattr(tg_client, "_schedule_chop", lambda p: None)
 
         client = types.SimpleNamespace(get_permissions=fake_get_permissions)
 
@@ -462,6 +467,7 @@ def test_save_message_skip_missing_media(tmp_path, monkeypatch):
 
         monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
         monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+        monkeypatch.setattr(tg_client, "_schedule_chop", lambda p: None)
 
         class NoData(DummyMessage):
             async def download_media(self, *_, **__):
@@ -704,6 +710,7 @@ def test_save_message_topic_filter(tmp_path, monkeypatch):
         tg_client = importlib.reload(importlib.import_module("tg_client"))
         monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
         monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+        monkeypatch.setattr(tg_client, "_schedule_chop", lambda p: None)
 
         msg2 = Topic(2, date)
         await tg_client._save_message(client, "chat", msg2)
@@ -789,6 +796,39 @@ def test_save_media_reschedules_caption(tmp_path, monkeypatch):
     asyncio.run(tg_client._save_media("chat", msg, data))
 
     assert called["c"] is True
+
+
+def test_save_message_schedules_chop(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.reload(importlib.import_module("tg_client"))
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+        monkeypatch.setattr(tg_client, "LOTS_DIR", tmp_path / "lots")
+
+        called = {}
+
+        def sched(path):
+            called["path"] = path
+
+        monkeypatch.setattr(tg_client, "_schedule_chop", sched)
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+        date = datetime.datetime(2024, 5, 1, tzinfo=datetime.timezone.utc)
+        msg = DummyMessage(1, date, text="hi")
+
+        await tg_client._save_message(client, "chat", msg)
+
+        expected = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert called.get("path") == expected
+
+    asyncio.run(run())
 
 
 def test_refetch_messages(tmp_path, monkeypatch):
