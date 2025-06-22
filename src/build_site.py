@@ -181,6 +181,7 @@ def build_page(
     more_user: list[dict],
     fields: list[str],
     langs: list[str],
+    vector: list[float] | None,
 ) -> None:
     """Render ``lot`` into separate HTML files for every language."""
     for lang in langs:
@@ -275,6 +276,7 @@ def build_page(
                 static_prefix=static_prefix,
                 media_prefix=media_prefix,
                 breadcrumbs=breadcrumbs,
+                vector=vector,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -456,6 +458,7 @@ def main() -> None:
             more_user_map.get(lot["_id"], []),
             fields,
             langs,
+            id_to_vec.get(lot["_id"]),
         )
 
     log.debug("Writing category pages")
@@ -487,6 +490,8 @@ def main() -> None:
                         "dt": dt,
                         "price": lot.get("price"),
                         "seller": seller,
+                        "id": lot["_id"],
+                        "vec": id_to_vec.get(lot["_id"]),
                     }
                 )
             out = cat_dir / f"{deal}_{lang}.html"

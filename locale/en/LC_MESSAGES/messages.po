@@ -46,3 +46,24 @@ msgid "Index"
 msgstr "Index"
 msgid "Similar items"
 msgstr "Similar items"
+
+msgid "Like"
+msgstr "Like"
+
+msgid "Dislike"
+msgstr "Dislike"
+
+msgid "Sort by:"
+msgstr "Sort by:"
+
+msgid "Relevance"
+msgstr "Relevance"
+
+msgid "Cheapest first"
+msgstr "Cheapest first"
+
+msgid "Expensive first"
+msgstr "Expensive first"
+
+msgid "Unexplored first"
+msgstr "Unexplored first"

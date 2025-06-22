@@ -46,3 +46,24 @@ msgid "Index"
 msgstr "მთავარი გვერდი"
 msgid "Similar items"
 msgstr "მსგავსი განცხადებები"
+
+msgid "Like"
+msgstr "მოწონება"
+
+msgid "Dislike"
+msgstr "არ მოწონს"
+
+msgid "Sort by:"
+msgstr "დახარისხება:"
+
+msgid "Relevance"
+msgstr "შესაბამისობით"
+
+msgid "Cheapest first"
+msgstr "პირველი იაფი"
+
+msgid "Expensive first"
+msgstr "პირველი ძვირი"
+
+msgid "Unexplored first"
+msgstr "ჯერ უცნობი"

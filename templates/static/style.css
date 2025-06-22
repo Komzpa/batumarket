@@ -22,6 +22,9 @@ table.attrs td, table.attrs th { border: 1px solid #ddd; padding: 0.25em 0.5em; 
 table#index-table { border-collapse: collapse; width: 100%; }
 table#index-table th, table#index-table td { border: 1px solid #ddd; padding: 0.25em 0.5em; }
 table#index-table th { cursor: pointer; }
+.sort-control { margin-bottom: 0.5em; }
+.vote { margin-top: 0.5em; }
+.vote button.active { font-weight: bold; }
 
 .lightbox {
   display: none;

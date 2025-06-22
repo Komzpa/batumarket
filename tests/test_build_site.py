@@ -56,8 +56,12 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     cat_html = cat_page.read_text()
     assert "hello" in cat_html
     assert "1-0_en.html" in cat_html
+    assert 'data-vector' in cat_html
     assert (tmp_path / "views" / "static" / "site.js").exists()
     assert (tmp_path / "views" / "static" / "style.css").exists()
+
+    lot_html = (tmp_path / "views" / "1-0_en.html").read_text()
+    assert 'window.currentLot' in lot_html
 
 
 def test_handles_list_fields(tmp_path, monkeypatch):

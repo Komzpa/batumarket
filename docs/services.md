@@ -159,6 +159,10 @@ Lot pages include a "more by this user" section which shows other lots from the
 same Telegram account ordered by vector similarity.  If a lot has a
 timestamp that lies in the future it is ignored during rendering so the website
 never displays misleading dates.
+Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the
+browser together with the lot embedding. Category pages offer a sorting switch
+that orders lots by price, by how similar they are to liked or disliked items or
+pushes unexplored offers to the top.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
