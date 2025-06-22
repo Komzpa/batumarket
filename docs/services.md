@@ -39,8 +39,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   Media files live beside a `.md` description in
   `data/media/<chat>/<year>/<month>/`, named by their SHA-256 hash plus
   extension.  Albums are merged into a single file so every attachment appears
-  together.  If a later segment arrives first, the earlier messages from the same
-  album are fetched automatically so the caption is not lost.  Messages that disappear from Telegram during the last ``KEEP_DAYS`` days are
+  together.  If a later segment arrives first, nearby messages before and after
+  the current one are fetched automatically so the caption is not lost and all
+  photos are stored.  Messages that disappear from Telegram during the last ``KEEP_DAYS`` days are
   removed from disk while edits overwrite the Markdown in place.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.
@@ -64,7 +65,7 @@ Metadata fields include at least:
 - `source:author:telegram`, `source:author:name` – copied into every lot for
   fallback when contact details are missing
 - `group_id` if part of an album
-- `files` – list of stored media paths
+- `files` – list of stored media paths without duplicates
 - `skipped_media` – reason string when attachments were not downloaded
 
 When contact information is missing `tg_client.py` logs a single warning with

@@ -113,6 +113,19 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         if isinstance(v, str) and v.isdigit():
             meta[k] = int(v)
 
+    if "files" in meta:
+        try:
+            files = ast.literal_eval(meta["files"]) if isinstance(meta["files"], str) else meta["files"]
+            if isinstance(files, list):
+                dedup = list(dict.fromkeys(files))
+                if len(dedup) != len(files):
+                    log.debug(
+                        "Deduplicated files", path=str(path), before=len(files), after=len(dedup)
+                    )
+                meta["files"] = str(dedup)
+        except Exception:
+            log.debug("Invalid files", path=str(path))
+
     return meta, rest.strip()
 
 
@@ -120,6 +133,17 @@ def write_post(path: Path, meta: dict[str, str], body: str) -> None:
     """Write metadata and body as a Markdown post."""
     assert get_timestamp(meta) is not None, "date required"
     assert get_contact(meta) is not None, "contact required"
+    if "files" in meta:
+        files = meta["files"]
+        if isinstance(files, list):
+            assert len(files) == len(set(files)), "duplicate files"
+        elif isinstance(files, str):
+            try:
+                parsed = ast.literal_eval(files)
+            except Exception:
+                parsed = []
+            if isinstance(parsed, list):
+                assert len(parsed) == len(set(parsed)), "duplicate files"
     meta_lines = [f"{k}: {v}" for k, v in meta.items() if v is not None]
     lines = body.strip().splitlines()
     if lines:

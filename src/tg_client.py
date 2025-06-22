@@ -562,8 +562,12 @@ async def _save_message(
         if group_path is None:
             try:
                 start = max(1, msg.id - 9)
-                others = await client.get_messages(chat, ids=list(range(start, msg.id)))
+                end = msg.id + 9
+                ids = list(range(start, end + 1))
+                others = await client.get_messages(chat, ids=ids)
                 for other in others:
+                    if other.id == msg.id:
+                        continue
                     if getattr(other, "grouped_id", None) == msg.grouped_id:
                         await _save_message(client, chat, other)
             except Exception:
@@ -572,7 +576,7 @@ async def _save_message(
         else:
             meta_prev, body_prev = read_post(group_path)
             files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
-            files = files_prev + files
+            files = list(dict.fromkeys(files_prev + files))
             meta_prev.update(meta)
             meta_prev["files"] = files
             meta = meta_prev
@@ -602,6 +606,9 @@ async def _save_message(
         assert meta.get(key) not in (None, ""), f"missing {key}"
     if meta.get("sender") in (None, ""):
         log.debug("Sender id unavailable", chat=chat, id=msg.id)
+    if "files" in meta:
+        meta["files"] = list(dict.fromkeys(meta["files"]))
+        assert len(meta["files"]) == len(set(meta["files"])), "duplicate files"
     _write_md(path, meta, text)
     if replace:
         lot_path = LOTS_DIR / path.relative_to(RAW_DIR).with_suffix(".json")
