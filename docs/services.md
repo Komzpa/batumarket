@@ -83,7 +83,9 @@ original. Captions are later included in the lot chopper prompt where the
 `chop.py` script lists every `Image <filename>` before its caption. This makes
 it crystal clear which picture the text belongs to. When `LOG_LEVEL` is set to
 `INFO`, the script logs each processed filename along with the generated
-caption.
+caption. Once a message and all its captions are written, `tg_client.py`
+spawns `chop.py` in the background so lots appear without waiting for the
+next `make chop` run.
 If some captions are missing you can run `make caption` to retry processing
 all images.
 

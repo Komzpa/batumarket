@@ -30,6 +30,8 @@ file is skipped because the caption already exists. Run `make caption` to
 (re)process any images that might have missed automatic captioning. Unicode
 characters, including Cyrillic, are stored verbatim so logs remain easy to
 read.
+Lots are parsed automatically once captions finish so new posts show up on the
+site without additional commands.
 
 Domain specific helpers like `src/post_io.py`, `src/lot_io.py` and
 `src/caption_io.py` provide validated loading and saving of posts,

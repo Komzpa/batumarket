@@ -5,6 +5,7 @@ import asyncio
 import hashlib
 import ast
 import subprocess
+import os
 import sys
 import json
 from pathlib import Path
@@ -268,6 +269,18 @@ def _schedule_caption(path: Path) -> None:
         log.exception("Failed to schedule caption", file=str(path))
 
 
+def _schedule_chop(msg_path: Path) -> None:
+    """Run lot extraction in a separate process."""
+    if os.getenv("TEST_MODE") == "1":
+        log.debug("Skip chop in test mode", file=str(msg_path))
+        return
+    try:
+        subprocess.Popen([sys.executable, "src/chop.py", str(msg_path)])
+        log.debug("Chop scheduled", file=str(msg_path))
+    except Exception:
+        log.exception("Failed to schedule chop", file=str(msg_path))
+
+
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
     """Return the stored date for ``msg_id`` in ``chat`` if available."""
     path = None
@@ -479,6 +492,7 @@ async def _save_message(
             lot_path.unlink()
             log.info("Dropped lots after refetch", file=str(lot_path))
     log.info("Wrote message", path=str(path), id=msg.id)
+    _schedule_chop(path)
     return path
 
 
