@@ -25,9 +25,8 @@ The command writes several JSON files under `data/ontology`:
 - `fraud.json` – lots explicitly flagged with a `fraud` tag and the text
   that produced them.
 - `broken_meta.json` – references to messages that need refetching.
-- `misparsed.json` – used by `tg_client.py` to refetch raw posts whose lots
-  looked suspicious. Updated content causes the existing JSON lots to be
-  dropped so they will be parsed again.
+- `misparsed.json` – lots that looked suspicious. Updating the file causes the
+  corresponding JSON lots to be dropped so they will be parsed again.
 - `title_*.json` and `description_*.json` – unique values per language for
   manual review.
 
@@ -45,7 +44,7 @@ removing it from the prompt to save tokens.
 
 Misparsed lots include the exact text that produced them under the `input`
 key. Inspect a few entries to see why the model struggled. Posts without a
-timestamp or any seller information also end up here so they can be refetched.
+timestamp or any seller information also end up here so they can be reviewed.
 Raw posts missing contact details or a timestamp are treated the same.  The
 helper functions in `lot_io.py` and `post_io.py` determine the seller and
 validate timestamps so both the ontology scan and website stay in agreement.
