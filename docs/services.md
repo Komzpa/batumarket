@@ -129,6 +129,7 @@ refreshed. `pending_embed.py` upgrades any leftover single-object files by
 wrapping them in a list and deletes mismatched ones so stale vectors never pollute
 the index. Files from moderated posts are skipped entirely so no vectors are
 stored for spam.
+The script now logs how many lots need embeddings which helps spot empty runs.
 
 Vector ids are generated with `lot_io.make_lot_id` which keeps every
 subdirectory from `data/lots`.  This matches the ids used by
