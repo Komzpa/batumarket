@@ -32,8 +32,9 @@ variables before running any script:
 - `TG_TOKEN` – Telegram bot token used by the alert bot
 - `TG_API_ID` / `TG_API_HASH` – credentials for the Telethon client
 - `TG_SESSION` – filename where the logged in user session will be stored
-- `CHATS` – list of chat or channel usernames to mirror.  The client will join
-  them automatically if needed.
+- `CHATS` – list of chat usernames to mirror.  A slash followed by a numeric
+  topic ID restricts syncing to that forum thread (e.g. `dogacat_batumi/136416`).
+  The client joins each chat automatically if needed.
 - `OPENAI_KEY` – API key for OpenAI models
 - `DOWNLOAD_WORKERS` – how many messages to fetch in parallel during the initial sync
 

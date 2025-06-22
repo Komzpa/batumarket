@@ -665,6 +665,55 @@ def test_save_message_missing_sender(tmp_path, monkeypatch):
     asyncio.run(run())
 
 
+def test_save_message_topic_filter(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = ["chat/101"]
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+
+        date = datetime.datetime(2024, 5, 1)
+        header = types.SimpleNamespace(
+            reply_to_msg_id=101,
+            reply_to_top_id=101,
+            forum_topic=True,
+        )
+
+        class Topic(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date)
+                self.reply_to = header
+
+        msg = Topic(1, date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        md_file = tmp_path / "chat" / "2024" / "05" / "1.md"
+        assert md_file.exists()
+
+        cfg.CHATS = ["chat/999"]
+        tg_client = importlib.reload(importlib.import_module("tg_client"))
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+
+        msg2 = Topic(2, date)
+        await tg_client._save_message(client, "chat", msg2)
+
+        md_file2 = tmp_path / "chat" / "2024" / "05" / "2.md"
+        assert not md_file2.exists()
+
+    asyncio.run(run())
+
+
 def test_main_sequential_updates(monkeypatch):
     """Ensure TelegramClient is created with sequential_updates=True."""
     _install_telethon_stub(monkeypatch)

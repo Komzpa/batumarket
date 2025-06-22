@@ -15,10 +15,16 @@ TG_API_ID = 123456
 TG_API_HASH = "0123456789abcdef0123456789abcdef"
 TG_SESSION = "session"
 
-# List of Telegram chat usernames to mirror.  Keep them as strings to avoid
-# confusion with numeric IDs.  Example values below follow popular Georgian
-# flea-market groups.
-CHATS = ["baraholka_ge", "baraholka_avito_batumi"]
+# List of Telegram chat usernames to mirror.  Each entry may optionally
+# include a forum topic ID after a slash to restrict the sync.  For example
+# ``"dogacat_batumi/136416"`` mirrors only that topic from the group while
+# ``"baraholka_ge"`` grabs the entire chat.  Duplicate chat names are ignored
+# and a bare chat entry overrides any topic filters listed earlier.
+CHATS = [
+    "baraholka_ge",
+    "baraholka_avito_batumi",
+    # "dogacat_batumi/136416",  # ищу дом
+]
 
 # OpenAI API key used for captioning, chopping and translating.
 OPENAI_KEY = "sk-..."
