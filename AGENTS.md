@@ -20,3 +20,4 @@
  - To run the pipeline in testing offline mode, launch `TEST_MODE=1 PYTHONPATH=. make -B -j compose` and check if everything works as intended.
  - To smoke-check Makefile, `make --trace compose` helps see dependency chain.
  - For any fix you are implementing try to add test so that it won't repeat in the future.
+ - When writing documentation, align sentence boundaries with new lines for easier git diffs.
