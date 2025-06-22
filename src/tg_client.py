@@ -143,18 +143,40 @@ def _write_md(path: Path, meta: dict, body: str) -> None:
 
 
 _GROUPS: dict[int, Path] = {}
+# Cache of group_id -> Path for previously stored messages, keyed by chat.
+_GROUP_CACHE: dict[str, dict[int, Path]] = {}
+
+
+def _scan_group_cache(chat: str) -> dict[int, Path]:
+    """Build group_id -> Path mapping for ``chat`` quickly."""
+    chat_dir = RAW_DIR / chat
+    groups: dict[int, Path] = {}
+    if not chat_dir.exists():
+        return groups
+    for p in chat_dir.rglob("*.md"):
+        try:
+            with p.open(encoding="utf-8") as fh:
+                for line in fh:
+                    if not line.strip():
+                        break
+                    if line.startswith("group_id:"):
+                        val = line.split(":", 1)[1].strip()
+                        if val.isdigit():
+                            groups[int(val)] = p
+                        break
+        except Exception:
+            log.debug("Failed to read group id", file=str(p))
+    log.debug("Scanned groups", chat=chat, groups=len(groups))
+    return groups
 
 
 def _find_group_path(chat: str, group_id: int) -> Path | None:
-    """Search stored messages for ``group_id`` to keep albums together."""
-    for p in (RAW_DIR / chat).rglob("*.md"):
-        meta, _ = read_post(p)
-        try:
-            if int(meta.get("group_id", 0)) == group_id:
-                return p
-        except (ValueError, TypeError):
-            continue
-    return None
+    """Return stored message path for ``group_id`` if known."""
+    groups = _GROUP_CACHE.get(chat)
+    if groups is None:
+        groups = _scan_group_cache(chat)
+        _GROUP_CACHE[chat] = groups
+    return groups.get(group_id)
 
 
 def _get_message_path(chat: str, msg_id: int) -> Path | None:
@@ -555,6 +577,8 @@ async def _save_message(
         if lot_path.exists():
             lot_path.unlink()
             log.info("Dropped lots after refetch", file=str(lot_path))
+    if msg.grouped_id:
+        _GROUP_CACHE.setdefault(chat, {})[msg.grouped_id] = path
     log.info("Wrote message", path=str(path), id=msg.id)
     _enqueue_chop(path, meta, text)
     return path
