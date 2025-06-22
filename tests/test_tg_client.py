@@ -43,6 +43,7 @@ sys.modules["telethon.errors"] = dummy_errors
 # Minimal progressbar stub
 dummy_progressbar = types.ModuleType("progressbar")
 
+
 class _DummyPB:
     def __init__(self, *a, **k):
         pass
@@ -55,6 +56,7 @@ class _DummyPB:
 
     def finish(self):
         return self
+
 
 dummy_progressbar.Bar = lambda *a, **k: None
 dummy_progressbar.ETA = lambda *a, **k: None
@@ -120,7 +122,9 @@ class _DummyClient:
     def __init__(self, msgs):
         self._msgs = msgs
 
-    def iter_messages(self, chat, min_id=None, max_id=None, reverse=True, offset_date=None):
+    def iter_messages(
+        self, chat, min_id=None, max_id=None, reverse=True, offset_date=None
+    ):
         async def gen():
             msgs = sorted(self._msgs, key=lambda m: m.date)
             if not reverse:
@@ -530,7 +534,10 @@ def test_should_skip_media(monkeypatch):
 
     big = 11 * 1024 * 1024
     file3 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=big)
-    assert tg_client._should_skip_media(types.SimpleNamespace(file=file3)) == "image-too-large"
+    assert (
+        tg_client._should_skip_media(types.SimpleNamespace(file=file3))
+        == "image-too-large"
+    )
 
     file4 = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=1024)
     assert tg_client._should_skip_media(types.SimpleNamespace(file=file4)) is None
@@ -560,7 +567,9 @@ def test_save_message_respects_skip(tmp_path, monkeypatch):
         class Skip(DummyMessage):
             def __init__(self, mid, date):
                 super().__init__(mid, date, media=True)
-                self.file = types.SimpleNamespace(ext=".mp4", mime_type="video/mp4", size=100)
+                self.file = types.SimpleNamespace(
+                    ext=".mp4", mime_type="video/mp4", size=100
+                )
 
             async def download_media(self, *_, **__):
                 called["d"] = True
@@ -601,14 +610,18 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
         class Old(DummyMessage):
             def __init__(self, mid, date):
                 super().__init__(mid, date, media=True)
-                self.file = types.SimpleNamespace(ext=".jpg", mime_type="image/jpeg", size=100)
+                self.file = types.SimpleNamespace(
+                    ext=".jpg", mime_type="image/jpeg", size=100
+                )
 
             async def download_media(self, *_, **__):
                 called["d"] = True
                 return b"data"
 
         client = types.SimpleNamespace(get_permissions=fake_get_permissions)
-        old_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3)
+        old_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
+            days=3
+        )
         msg = Old(1, old_date)
 
         await tg_client._save_message(client, "chat", msg)
@@ -619,6 +632,58 @@ def test_save_message_skip_old_media(tmp_path, monkeypatch):
         text = md_file.read_text()
         assert "files" not in text
         assert "skipped_media" in text
+
+    asyncio.run(run())
+
+
+def test_save_message_keep_existing_media(tmp_path, monkeypatch):
+    async def run():
+        cfg = types.ModuleType("config")
+        cfg.TG_API_ID = 0
+        cfg.TG_API_HASH = ""
+        cfg.TG_SESSION = ""
+        cfg.CHATS = []
+        monkeypatch.setitem(sys.modules, "config", cfg)
+
+        tg_client = importlib.import_module("tg_client")
+
+        monkeypatch.setattr(tg_client, "RAW_DIR", tmp_path)
+        monkeypatch.setattr(tg_client, "MEDIA_DIR", tmp_path / "media")
+        monkeypatch.setattr(tg_client, "_schedule_chop", lambda p: None)
+
+        client = types.SimpleNamespace(get_permissions=fake_get_permissions)
+
+        old_date = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(
+            days=3
+        )
+
+        subdir = tmp_path / "chat" / f"{old_date:%Y}" / f"{old_date:%m}"
+        subdir.mkdir(parents=True)
+        media_subdir = tmp_path / "media" / "chat" / f"{old_date:%Y}" / f"{old_date:%m}"
+        media_subdir.mkdir(parents=True)
+        (media_subdir / "img.jpg").write_bytes(b"data")
+
+        existing = subdir / "1.md"
+        existing.write_text(
+            f"id: 1\nchat: chat\ndate: {old_date.isoformat()}\nsender_username: u\nfiles: ['chat/{old_date:%Y}/{old_date:%m}/img.jpg']\n\nold"
+        )
+
+        class Old(DummyMessage):
+            def __init__(self, mid, date):
+                super().__init__(mid, date, media=True)
+                self.file = types.SimpleNamespace(
+                    ext=".jpg", mime_type="image/jpeg", size=100, name="img.jpg"
+                )
+
+            async def download_media(self, *_, **__):
+                raise AssertionError("no download")
+
+        msg = Old(1, old_date)
+
+        await tg_client._save_message(client, "chat", msg)
+
+        text = existing.read_text()
+        assert "skipped_media" not in text
 
     asyncio.run(run())
 
@@ -767,6 +832,7 @@ def test_main_sequential_updates(monkeypatch):
         def on(self, *args, **kwargs):
             def decorator(fn):
                 return fn
+
             return decorator
 
         async def run_until_disconnected(self):
@@ -875,7 +941,9 @@ def test_refetch_messages(tmp_path, monkeypatch):
     class DummyClient:
         async def get_messages(self, chat, ids):
             called["fetched"].append((chat, ids))
-            return types.SimpleNamespace(id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="")
+            return types.SimpleNamespace(
+                id=ids, date=datetime.datetime.now(datetime.timezone.utc), message=""
+            )
 
     async def save_stub(c, chat, msg, **_):
         called["saved"].append((chat, msg.id))
@@ -944,7 +1012,9 @@ def test_main_fetch_single(monkeypatch):
 
         async def get_messages(self, chat, ids):
             fetched["msg"] = (chat, ids)
-            return types.SimpleNamespace(id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="t")
+            return types.SimpleNamespace(
+                id=ids, date=datetime.datetime.now(datetime.timezone.utc), message="t"
+            )
 
     telethon = sys.modules["telethon"]
     monkeypatch.setattr(telethon, "TelegramClient", DummyClient)

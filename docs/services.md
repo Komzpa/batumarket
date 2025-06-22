@@ -51,7 +51,8 @@ Uses Telethon to mirror the target chats as a normal user account.
   the message metadata. The client ignores videos (`.mp4`), audio files, images
   larger than ten megabytes and any media attached to messages more than two
   days old. Messages marked this way are ignored by `chop.py` so only complete
-  posts are parsed.
+  posts are parsed. When the media was downloaded previously the field is left
+  out so older posts keep their files intact.
 * **Automatic cleanup.** Messages listed in `broken_meta.json` or posts saved
   without text or images are reloaded on startup. If the content changed their
   corresponding lot files are removed so the parser runs again.
@@ -66,7 +67,8 @@ Metadata fields include at least:
   fallback when contact details are missing
 - `group_id` if part of an album
 - `files` – list of stored media paths without duplicates
-- `skipped_media` – reason string when attachments were not downloaded
+- `skipped_media` – reason string when attachments were not downloaded; omitted
+  when the file was already stored
 
 When contact information is missing `tg_client.py` logs a single warning with
 the full message metadata and skips the post so issues can be investigated.

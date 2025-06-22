@@ -95,6 +95,7 @@ async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
         else:
             log.debug("Heartbeat", idle=int(idle))
 
+
 # Messages are stored as Markdown with metadata under
 # data/raw/<chat>/<YYYY>/<MM>/<id>.md.  Media files live under
 # data/media/<chat>/<YYYY>/<MM>/ using their SHA-256 hash plus extension.
@@ -133,8 +134,6 @@ def _progress_logger(chat: str, msg_id: int):
             )
 
     return cb
-
-
 
 
 def _write_md(path: Path, meta: dict, body: str) -> None:
@@ -226,7 +225,11 @@ def _allowed_topic(chat: str, msg: Message) -> bool:
     if rep and getattr(rep, "forum_topic", False):
         topic_id = getattr(rep, "reply_to_top_id", None)
     action = getattr(msg, "action", None)
-    if topic_id is None and action and type(action).__name__ == "MessageActionTopicCreate":
+    if (
+        topic_id is None
+        and action
+        and type(action).__name__ == "MessageActionTopicCreate"
+    ):
         topic_id = msg.id
     if topic_id is None:
         return False
@@ -247,9 +250,17 @@ async def _extract_author(msg: Message, client: TelegramClient) -> dict:
         sender = None
         log.debug("Failed to hydrate sender", id=msg.id)
 
-    name = " ".join(
-        p for p in [getattr(sender, "first_name", None), getattr(sender, "last_name", None)] if p
-    ) or None
+    name = (
+        " ".join(
+            p
+            for p in [
+                getattr(sender, "first_name", None),
+                getattr(sender, "last_name", None),
+            ]
+            if p
+        )
+        or None
+    )
     meta["sender"] = getattr(sender, "id", None)
     meta["sender_username"] = getattr(sender, "username", None)
     meta["sender_phone"] = format_georgian(getattr(sender, "phone", "") or "")
@@ -325,7 +336,11 @@ def _enqueue_chop(path: Path, meta: dict, text: str) -> None:
     pending: set[Path] = set()
     for rel in files:
         p = MEDIA_DIR / rel
-        if p.suffix.lower().startswith(".jpg") or p.suffix.lower() in {".png", ".gif", ".webp"}:
+        if p.suffix.lower().startswith(".jpg") or p.suffix.lower() in {
+            ".png",
+            ".gif",
+            ".webp",
+        }:
             if not p.with_suffix(".caption.md").exists():
                 pending.add(p)
     entry = _CHOP_QUEUE.get(path)
@@ -494,18 +509,42 @@ async def _save_message(
         return None
     subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
     subdir.mkdir(parents=True, exist_ok=True)
+    group_path = (
+        _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
+        if msg.grouped_id
+        else None
+    )
+    path = old_path or group_path or subdir / f"{msg.id}.md"
+
+    meta_prev: dict[str, object] = {}
+    body_prev = ""
+    files_prev: list[str] = []
+    if path.exists() and not replace:
+        meta_prev, body_prev = read_post(path)
+        try:
+            files_prev = (
+                ast.literal_eval(meta_prev.get("files", "[]"))
+                if "files" in meta_prev
+                else []
+            )
+        except Exception:
+            log.warning("Invalid file list", path=str(path))
+
     files = []
     skipped_reason = None
     if msg.media:
         reason = _should_skip_media(msg)
         if reason:
             log.info("Skipping media", chat=chat, id=msg.id, reason=reason)
+        if reason and not files_prev:
             skipped_reason = reason
-        else:
+        if reason is None:
             log.debug("Downloading media", chat=chat, id=msg.id)
             try:
                 data = await asyncio.wait_for(
-                    msg.download_media(bytes, progress_callback=_progress_logger(chat, msg.id)),
+                    msg.download_media(
+                        bytes, progress_callback=_progress_logger(chat, msg.id)
+                    ),
                     timeout=DOWNLOAD_TIMEOUT,
                 )
             except asyncio.TimeoutError:
@@ -555,18 +594,14 @@ async def _save_message(
     log.debug("Raw message text", chat=chat, id=msg.id, preview=str(text)[:80])
     text = str(text).replace("View original post", "").strip()
     log.debug("Processed message text", chat=chat, id=msg.id, preview=text[:80])
-    log.debug("Saving message", chat=chat, id=msg.id, files=len(files), preview=text[:80])
-    group_path = (
-        _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
-        if msg.grouped_id
-        else None
+    log.debug(
+        "Saving message",
+        chat=chat,
+        id=msg.id,
+        files=len(files_prev) + len(files),
+        preview=text[:80],
     )
-    path = old_path or group_path or subdir / f"{msg.id}.md"
-    if group_path and not replace:
-        meta_prev, body_prev = read_post(group_path)
-        files_prev = (
-            ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
-        )
+    if meta_prev and not replace:
         files = list(dict.fromkeys(files_prev + files))
         meta_prev.update(meta)
         meta_prev["files"] = files
@@ -679,7 +714,9 @@ async def _save_bounded(
     """Run ``_save_message`` under the global semaphore and return path."""
     assert _sem is not None
     async with _sem:
-        return await _save_message(client, chat, msg, replace=replace, old_path=old_path)
+        return await _save_message(
+            client, chat, msg, replace=replace, old_path=old_path
+        )
 
 
 def _remove_local_message(path: Path | None) -> None:
@@ -694,7 +731,11 @@ def _remove_local_message(path: Path | None) -> None:
         log.warning("Invalid file list", path=str(path))
     for f in files:
         fpath = MEDIA_DIR / f
-        for extra in [fpath, fpath.with_suffix(".caption.md"), fpath.with_suffix(".md")]:
+        for extra in [
+            fpath,
+            fpath.with_suffix(".caption.md"),
+            fpath.with_suffix(".md"),
+        ]:
             if extra.exists():
                 extra.unlink()
                 log.info("Deleted media", file=str(extra))
@@ -778,7 +819,6 @@ async def refetch_messages(client: TelegramClient) -> None:
                 targets.setdefault(key, _get_message_path(chat, int(mid)))
                 broken_list.append({"chat": chat, "id": mid})
 
-
     for path in RAW_DIR.rglob("*.md"):
         meta, text = read_post(path)
         try:
@@ -841,10 +881,18 @@ async def fetch_missing(client: TelegramClient) -> None:
             start_date = progress or cutoff
             end_date = first_date or now
             backfill: list[Message] = []
-            async for msg in client.iter_messages(chat, offset_date=start_date, reverse=True):
+            async for msg in client.iter_messages(
+                chat, offset_date=start_date, reverse=True
+            ):
                 if msg.date >= end_date:
                     break
-                path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+                path = (
+                    RAW_DIR
+                    / chat
+                    / f"{msg.date:%Y}"
+                    / f"{msg.date:%m}"
+                    / f"{msg.id}.md"
+                )
                 if path.exists():
                     continue
                 backfill.append(msg)
@@ -897,7 +945,9 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
             except Exception:
                 log.exception("Failed to fetch message", chat=chat, id=msg_id)
                 continue
-            if not msg or (not getattr(msg, "message", None) and not getattr(msg, "media", None)):
+            if not msg or (
+                not getattr(msg, "message", None) and not getattr(msg, "media", None)
+            ):
                 files = []
                 try:
                     files = ast.literal_eval(meta.get("files", "[]"))
@@ -905,7 +955,11 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
                     log.warning("Invalid file list", path=str(path))
                 for f in files:
                     fpath = MEDIA_DIR / f
-                    for extra in [fpath, fpath.with_suffix(".caption.md"), fpath.with_suffix(".md")]:
+                    for extra in [
+                        fpath,
+                        fpath.with_suffix(".caption.md"),
+                        fpath.with_suffix(".md"),
+                    ]:
                         if extra.exists():
                             extra.unlink()
                             log.info("Deleted media", file=str(extra))
@@ -978,15 +1032,10 @@ async def main(argv: list[str] | None = None) -> None:
         if msg:
             await _save_bounded(client, chat, msg)
             await _flush_chop_queue()
-            text = (
-                getattr(msg, "text", None)
-                or getattr(msg, "message", "")
-            )
+            text = getattr(msg, "text", None) or getattr(msg, "message", "")
             text_short = text.strip().replace("\n", " ")[:200]
             if text_short:
-                log.info(
-                    "Fetched message", chat=chat, id=mid, text=text_short
-                )
+                log.info("Fetched message", chat=chat, id=mid, text=text_short)
         else:
             log.error("Message not found", chat=chat, id=mid)
         await _flush_chop_queue()
@@ -1014,7 +1063,6 @@ async def main(argv: list[str] | None = None) -> None:
         return
     log.info("Initial sync complete; listening for updates")
     asyncio.create_task(_heartbeat())
-
 
     @client.on(events.Album(chats=CHATS))
     async def album_handler(event):
