@@ -3,9 +3,9 @@
 Each ``*.json`` file under ``data/lots`` may contain several lots so we assign
 a unique ``_page_id`` to every entry.  Templates live in ``templates/`` and the
 output is written to ``data/views`` keeping the directory layout intact.  The
-script also loads ``data/vectors.jsonl`` if present to find similar lots based
-on cosine similarity.  ``data/ontology/fields.json`` is consulted to display table
-columns in a stable order.
+script also loads embeddings from ``data/vectors`` if present to find similar
+lots based on cosine similarity.  ``data/ontology/fields.json`` is consulted to
+display table columns in a stable order.
 """
 
 import math
@@ -42,14 +42,6 @@ ONTOLOGY = Path("data/ontology/fields.json")
 RAW_DIR = Path("data/raw")
 LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
-
-
-def _lot_id_for(path: Path) -> str:
-    """Return unique id ``chat/msg_id`` for ``path``."""
-    rel = path.relative_to(LOTS_DIR)
-    chat = rel.parts[0]
-    return f"{chat}/{path.stem}"
-
 
 def _load_vectors() -> dict[str, list[float]]:
     """Return mapping of lot id to embedding vector."""
@@ -314,7 +306,7 @@ def main() -> None:
     _copy_images(lots)
 
     # Clean up mismatched data before working on vectors.
-    lot_keys = {_lot_id_for(lot["_file"]) for lot in lots}
+    lot_keys = {lot["_id"] for lot in lots}
     vec_keys = set(vectors)
     extra_vecs = vec_keys - lot_keys
     if extra_vecs:
@@ -326,7 +318,7 @@ def main() -> None:
         log.debug("Lots missing vectors", count=len(missing_vecs))
 
     # Map each lot id to its embedding vector if available.
-    id_to_vec = {lot["_id"]: vectors.get(_lot_id_for(lot["_file"])) for lot in lots}
+    id_to_vec = {lot["_id"]: vectors.get(lot["_id"]) for lot in lots}
 
     log.info("Computing similar lots", count=len(lots))
     sim_map: dict[str, list[dict]] = {}
