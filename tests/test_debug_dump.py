@@ -19,3 +19,20 @@ def test_guess_source_from_lot():
     assert chat == "chat"
     assert mid == 1234
 
+
+def test_run_tg_fetch_includes_stderr(tmp_path, monkeypatch):
+    monkeypatch.delenv("TEST_MODE", raising=False)
+
+    class DummyProc:
+        stdout = "out"
+        stderr = "err"
+
+    def dummy_run(*_a, **_k):
+        return DummyProc()
+
+    monkeypatch.setattr(debug_dump.subprocess, "run", dummy_run)
+    monkeypatch.chdir(tmp_path)
+    out = debug_dump.run_tg_fetch("chat", 1)
+    assert "out" in out
+    assert "err" in out
+

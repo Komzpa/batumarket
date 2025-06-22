@@ -215,6 +215,8 @@ Captions and image metadata are included when present so the entire
 pipeline state can be shared in one go. If the lot JSON is missing the
 chat name and message ID are extracted from the page path so Telegram
 can still be queried.
+Standard error from the Telegram client is also captured so dependency
+issues are visible.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running

@@ -98,6 +98,8 @@ def run_tg_fetch(chat: str, mid: int) -> str:
         text=True,
     )
     output = proc.stdout
+    if proc.stderr:
+        output += "\n" + proc.stderr
     if log_file.exists():
         output += "\n" + read_text(log_file)
         log_file.unlink()
