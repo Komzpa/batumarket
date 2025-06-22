@@ -61,9 +61,14 @@ def _needs_embed(path: Path, vec: Path, lots: list[dict]) -> bool:
 
 
 def main() -> None:
+    if not LOTS_DIR.exists():
+        log.error("LOTS_DIR missing", dir=str(LOTS_DIR))
+        return
+
     files = sorted(
         LOTS_DIR.rglob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True
     )
+    pending: list[Path] = []
     for path in files:
         lots = read_lots(path) or []
         if not lots:
@@ -86,8 +91,13 @@ def main() -> None:
             log.info("Skipping", file=str(path), reason="moderation")
             continue
         if _needs_embed(path, out, lots):
-            sys.stdout.write(str(path))
-            sys.stdout.write("\0")
+            pending.append(path)
+
+    for path in pending:
+        sys.stdout.write(str(path))
+        sys.stdout.write("\0")
+
+    log.info("Pending lots", count=len(pending))
 
 
 if __name__ == "__main__":
