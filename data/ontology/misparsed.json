@@ -911,85 +911,6 @@
   },
   {
     "lot": {
-      "lots": [
-        {
-          "market:deal": "sell_item",
-          "item:type": "vase",
-          "price": 12,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-          ],
-          "title_en": "Vase",
-          "description_en": "Selling a vase for 12 GEL.",
-          "title_ru": "Ваза",
-          "description_ru": "Продаю вазу за 12 лари.",
-          "title_ka": "ვაზა",
-          "description_ka": "ვაზის გაყიდვა 12 ლარად."
-        },
-        {
-          "market:deal": "sell_item",
-          "item:type": "whisk",
-          "price": 1,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-          ],
-          "title_en": "Whisk",
-          "description_en": "Selling a whisk for 1 GEL.",
-          "title_ru": "Венчик",
-          "description_ru": "Продаю венчик за 1 лари.",
-          "title_ka": "ვენчик",
-          "description_ka": "ვენჩიკის გაყიდვა 1 ლარად."
-        },
-        {
-          "market:deal": "sell_item",
-          "item:type": "grater",
-          "price": 2,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-          ],
-          "title_en": "Grater",
-          "description_en": "Selling a grater for 2 GEL.",
-          "title_ru": "Терка",
-          "description_ru": "Продаю терку за 2 лари.",
-          "title_ka": "ტერკა",
-          "description_ka": "ტერკის გაყიდვა 2 ლარად."
-        },
-        {
-          "market:deal": "sell_item",
-          "item:type": "spatula",
-          "price": 1,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-          ],
-          "title_en": "Metal Spatula",
-          "description_en": "Selling a metal spatula for 1 GEL.",
-          "title_ru": "Лопатка металлическая",
-          "description_ru": "Продаю металлическую лопатку за 1 лари.",
-          "title_ka": "მეტალური ლოპატка",
-          "description_ka": "მეტალური ლოპატკის გაყიდვა 1 ლარად."
-        }
-      ],
-      "source:chat": "batumi_360",
-      "source:message_id": "635365",
-      "source:path": "batumi_360/2025/06/635365.md",
-      "source:author:name": "Наталья",
-      "timestamp": "2025-06-21T12:23:05+00:00",
-      "files": [
-        "batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-      ]
-    },
-    "input": "Message text:\nПродам:\n 1. Ваза - 12 лари\n 2. Венчик  - 1 лари\n 3. Терка -2 лари\n 4. Лопатка металлическая - 1лари\n\nImage batumi_360/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg:\nThe image features four kitchen items arranged in a 2x2 grid on a textured surface. \n\n1. **Top Left**: A tall, cylindrical container with vertical stripes, possibly made of glass or plastic, set against a plain background.\n2. **Top Right**: A stainless steel whisk with a sleek handle and multiple wires for mixing.\n3. **Bottom Left**: A metallic box grater with a wooden handle, featuring multiple grating surfaces.\n4. **Bottom Right**: A shiny metal serving spoon with a reflective surface and a slightly curved tip, possibly with a built-in light source.\n\nThe overall vibe is modern and functional, suitable for a contemporary kitchen setting."
-  },
-  {
-    "lot": {
       "source:chat": "batumi_360",
       "source:message_id": "635169",
       "source:path": "batumi_360/2025/06/635169.md",
@@ -1001,6 +922,69 @@
       ]
     },
     "input": "Message text:\nid: 635169\nchat: batumi_360\nsender: 512898988\nsender_username: Vasilii_lis\nsender_phone: \ntg_link: https://t.me/Vasilii_lis\nsender_name: Василий Лис\nauthor_type: user\ndate: 2025-06-20T21:33:53+00:00\nis_admin: False\nfiles: ['batumi_360/2025/06/8d311279e45fc96d515ce3e0fc83d6a9379751a56d349fca26adc0842ba83f77.jpg']\n\nImage batumi_360/2025/06/8d311279e45fc96d515ce3e0fc83d6a9379751a56d349fca26adc0842ba83f77.jpg:\nThe image displays a screen with battery information in Russian. It shows the status of three battery cells: 3.88 V, 3.89 V, and 3.89 V. The total voltage is 11.66 V, and the temperature is 26.8°C. The serial number of the battery is 1Z3PJ3PEA301NC, and the cycle count is 21. A notification at the top left mentions limited visibility. The interface seems to be part of a power management or battery monitoring system."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "vase",
+          "price": 10,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "batumi_360/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
+          ],
+          "title_en": "Vase",
+          "description_en": "A tall, cylindrical vase with vertical stripes, made of glass or a similar transparent material. It appears to be modern and stylish, suitable for decorative purposes.",
+          "title_ru": "Ваза",
+          "description_ru": "Высокая цилиндрическая ваза с вертикальными полосами, сделанная из стекла или подобного прозрачного материала. Она выглядит современно и стильно, подходит для декоративных целей.",
+          "title_ka": "ვაზა",
+          "description_ka": "მაღალი ცილინდრული ვაზა ვერტიკალური ზოლებით, დამზადებული მინის ან მსგავსი გამჭვირვალე მასალისგან. ის გამოიყურება თანამედროვე და სტილური, შესაფერისია დეკორატიული მიზნებისთვის."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "grater",
+          "price": 2,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "batumi_360/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
+          ],
+          "title_en": "Stainless Steel Grater",
+          "description_en": "A stainless steel grater with a wooden handle. It features multiple grating surfaces, indicating versatility for different kitchen tasks.",
+          "title_ru": "Терка",
+          "description_ru": "Нержавеющая стальная терка с деревянной ручкой. Она имеет несколько терочных поверхностей, что указывает на универсальность для различных кухонных задач.",
+          "title_ka": "ტერка",
+          "description_ka": "ნერვისგან დამზადებული ტერка ხის სახელურით. მას აქვს რამდენიმე ტერების ზედაპირი, რაც მიუთითებს სხვადასხვა სამზარეულოს დავალებების მრავალფეროვნებაზე."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "spatula",
+          "price": 1,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "batumi_360/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
+          ],
+          "title_en": "Metal Spatula",
+          "description_en": "A metal spatula with a sleek design. It has a flat, wide head and a silver finish, likely made of stainless steel.",
+          "title_ru": "Лопатка металлическая",
+          "description_ru": "Металлическая лопатка с элегантным дизайном. У нее плоская широкая головка и серебристая отделка, вероятно, сделанная из нержавеющей стали.",
+          "title_ka": "ლopatka",
+          "description_ka": "მეტალური ლопатка ელეგანტური დიზაინით. მას აქვს ბრტყელი, ფართო თავი და ვერცხლისფერი დასრულება, სავარაუდოდ, დამზადებულია ნერვისგან."
+        }
+      ],
+      "source:chat": "batumi_360",
+      "source:message_id": "635539",
+      "source:path": "batumi_360/2025/06/635539.md",
+      "source:author:name": "Наталья",
+      "timestamp": "2025-06-22T07:58:46+00:00",
+      "files": [
+        "batumi_360/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
+      ]
+    },
+    "input": "Message text:\nПродам:\n 1. Ваза - 10 лари\n 2. Терка -2 лари\n 3. Лопатка металлическая - 1лари\n\nImage batumi_360/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg:\nThe image showcases three kitchen items arranged in a grid layout. \n\n1. **Left Side**: A tall, cylindrical vase with vertical stripes, made of glass or a similar transparent material. It appears to be modern and stylish, suitable for decorative purposes.\n\n2. **Top Right Corner**: A stainless steel grater with a wooden handle. It features multiple grating surfaces, indicating versatility for different kitchen tasks.\n\n3. **Bottom Right Corner**: A metal spatula with a sleek design. It has a flat, wide head and a silver finish, likely made of stainless steel.\n\nThe background is minimalistic, with a neutral-colored surface. The overall aesthetic is contemporary and refined, suitable for modern kitchen decor."
   },
   {
     "lot": {
@@ -1469,6 +1453,149 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:03:45+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "new",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_avito_batumi/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg"
+          ],
+          "title_en": "Black Zip-Up Hoodie",
+          "description_en": "This black hoodie features a zip-up front, spacious hood, and two zippered side pockets. It has a streamlined design with raglan sleeves, made from soft and slightly stretchy fabric, suitable for casual or athletic wear.",
+          "title_ru": "Черная толстовка на молнии",
+          "description_ru": "Эта черная толстовка имеет молнию спереди, просторный капюшон и два боковых кармана на молнии. Она имеет обтекаемый дизайн с регланами, выполнена из мягкой и слегка эластичной ткани, подходит для повседневной или спортивной одежды.",
+          "title_ka": "შავი ჰუდი ზიპით",
+          "description_ka": "ეს შავი ჰუდი აქვს ზიპი წინა მხარეს, ფართო კაპიუშონი და ორი გვერდითი ჯიბე ზიპით. მას აქვს ნაკაწრი დიზაინი რეგლანით, დამზადებულია რბილი და ოდნავ ელასტიური ქსოვილისგან, რაც შესაფერისია ყოველდღიური ან სპორტული ტანსაცმლისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:03:45+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "new",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_avito_batumi/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg"
+          ],
+          "title_en": "Gray Zip-Up Hoodie",
+          "description_en": "This gray zip-up hoodie is made from soft, stretchable fabric, perfect for casual wear or lounging. It features a full front zipper and two side pockets for functionality.",
+          "title_ru": "Серая толстовка на молнии",
+          "description_ru": "Эта серая толстовка на молнии выполнена из мягкой, эластичной ткани, идеально подходит для повседневной носки или отдыха. Она имеет полную молнию спереди и два боковых кармана для удобства.",
+          "title_ka": "灰色 ჰუდი ზიპით",
+          "description_ka": "ეს灰色 ჰუდი ზიპით დამზადებულია რბილი, ელასტიური ქსოვილისგან, რაც შესაფერისია ყოველდღიური ტანსაცმლისთვის ან დასვენებისთვის. მას აქვს სრული ზიპი წინა მხარეს და ორი გვერდითი ჯიბე ფუნქციონალურობისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:03:45+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hoodie",
+          "condition": "new",
+          "price": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_avito_batumi/2025/06/9c2e663e586d25893dea90085e6f83b2983b3de1f160cd0dbaacdb96ea3c5672.jpg"
+          ],
+          "title_en": "Tommy Jeans Gray Hoodie",
+          "description_en": "This gray hoodie from Tommy Jeans features a classic pullover design with a large front pocket and a drawstring hood. The brand name 'TOMMY' is printed in blue and 'JEANS' in red across the chest.",
+          "title_ru": "Серая толстовка Tommy Jeans",
+          "description_ru": "Эта серая толстовка от Tommy Jeans имеет классический дизайн с пуловером, большим передним карманом и капюшоном на шнурке. Название бренда 'TOMMY' напечатано синим цветом, а 'JEANS' красным на груди.",
+          "title_ka": "ტომი ჯინსის灰色 ჰუდი",
+          "description_ka": "ეს灰色 ჰუდი ტომი ჯინსისგან აქვს კლასიკური დიზაინი, დიდი წინა ჯიბით და კაპიუშონით შნურით. ბრენდის სახელი 'TOMMY' დაბეჭდილია ლურჯი ფერით, ხოლო 'JEANS' წითელი ფერით გულზე."
+        }
+      ],
+      "source:chat": "baraholka_avito_batumi",
+      "source:message_id": "366021",
+      "source:path": "baraholka_avito_batumi/2025/06/366018.md",
+      "source:author:telegram": "onemi1f",
+      "source:author:name": "𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸",
+      "timestamp": "2025-06-22T08:03:45+00:00",
+      "files": [
+        "baraholka_avito_batumi/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg",
+        "baraholka_avito_batumi/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg",
+        "baraholka_avito_batumi/2025/06/9c2e663e586d25893dea90085e6f83b2983b3de1f160cd0dbaacdb96ea3c5672.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 366020\nchat: baraholka_avito_batumi\nsender: 8066362074\nsender_username: onemi1f\nsender_phone: \ntg_link: https://t.me/onemi1f\nsender_name: 𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸\nauthor_type: user\ndate: 2025-06-22T08:03:45+00:00\ngroup_id: 14004635399471570\nis_admin: False\nfiles: ['baraholka_avito_batumi/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg']\n\nImage baraholka_avito_batumi/2025/06/5a92f21b28725078be0ea592153035805eb472dbb857096907fef61363b3bd09.jpg:\nThis image features a black hoodie laid flat on a light-colored surface. The hoodie has a zip-up front and a spacious hood. It includes two zippered side pockets and has a streamlined design with raglan sleeves. The fabric appears to be soft and slightly stretchy, suitable for casual or athletic wear. There are no visible logos or designs on the hoodie, giving it a minimalist look. The overall style suggests it could be worn for both comfort and practicality.\n\nImage baraholka_avito_batumi/2025/06/0731a45c002c89ac9947c128f67fce1c616657ef1bd950adf953870d8d478ffc.jpg:\nThe image features a gray zip-up hoodie with a hood. It appears to be made from a soft, stretchable fabric, suitable for casual wear or lounging. The interior of the hoodie is lined with a different material, suggesting warmth and comfort. On the front left side, there is a small label or tag, possibly indicating the brand. The hoodie has a full front zipper and two side pockets, providing functionality. The background is a plain, light-colored surface, emphasizing the garment. Overall, the vibe is casual and comfortable, suitable for everyday use.\n\nImage baraholka_avito_batumi/2025/06/9c2e663e586d25893dea90085e6f83b2983b3de1f160cd0dbaacdb96ea3c5672.jpg:\nThis image features a gray hoodie from Tommy Jeans. The hoodie has a classic pullover design with a large front pocket. The brand name \"TOMMY\" is printed in blue and \"JEANS\" in red across the chest, giving it a sporty look. The hoodie also has a drawstring hood for adjustability. The overall vibe is casual and stylish, suitable for everyday wear. The hoodie appears to be in good condition with no visible wear or damage."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-01T00:00:00+00:00",
+          "market:deal": "sell_item",
+          "item:type": "smartphone",
+          "condition": "very_good",
+          "price": 400,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_avito_batumi/2025/06/e7a560203c69a449d3a5e0a284d382f1515c6261833c66c246c0d3c56d2233a0.jpg",
+            "baraholka_avito_batumi/2025/06/cedb4b29191cf512e64ec1ca0be97fc5776a3b4e7f1dc92efaeb772b732a3136.jpg"
+          ],
+          "title_en": "iPhone XR 64GB in Excellent Condition",
+          "description_en": "For sale: iPhone XR, 64 GB, in excellent condition. All functions work flawlessly. Battery at 74%. Never opened, nothing has been replaced. Comes with the box. Price: 400 GEL.",
+          "title_ru": "iPhone XR 64GB в отличном состоянии",
+          "description_ru": "Продается iPhone XR, 64 ГБ, в отличном состоянии. Все функции работают без нареканий. Батарея 74%. Не вскрывался, ничего не заменялось. С коробкой. Цена: 400 лари.",
+          "title_ka": "iPhone XR 64GB შესანიშნავ მდგომარეობაში",
+          "description_ka": "იყიდება iPhone XR, 64 GB, შესანიშნავ მდგომარეობაში. ყველა ფუნქცია მუშაობს flawlessly. ბატარეა 74%. არასდროს გაწვდილი, არაფერი შეცვლილი. ყუთით. ფასი: 400 ლარი."
+        },
+        {
+          "timestamp": "2025-06-01T00:00:00+00:00",
+          "market:deal": "sell_item",
+          "item:type": "console",
+          "condition": "very_good",
+          "price": 650,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_avito_batumi/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg"
+          ],
+          "title_en": "Xbox Series S in Excellent Condition",
+          "description_en": "For sale: Xbox Series S in excellent condition with no issues. Includes the console, controller, and all necessary cables. Price: 650 GEL.",
+          "title_ru": "Xbox Series S в отличном состоянии",
+          "description_ru": "Продается Xbox Series S в отличном состоянии и без каких-либо проблем, в комплекте сам Xbox, джойстик и все нужные кабеля. Цена: 650 лари.",
+          "title_ka": "Xbox Series S შესანიშნავ მდგომარეობაში",
+          "description_ka": "იყიდება Xbox Series S შესანიშნავ მდგომარეობაში და პრობლემების გარეშე, კომპლექტში არის თვით Xbox, ჯოისტიკი და ყველა საჭირო კაბელი. ფასი: 650 ლარი."
+        },
+        {
+          "timestamp": "2025-06-01T00:00:00+00:00",
+          "market:deal": "sell_item",
+          "item:type": "earbuds",
+          "condition": "very_good",
+          "price": 320,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_avito_batumi/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg",
+            "baraholka_avito_batumi/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg"
+          ],
+          "title_en": "AirPods 4 in Excellent Condition",
+          "description_en": "For sale: AirPods 4 in excellent condition, all functions work perfectly. Comes with the box. Price: 320 GEL.",
+          "title_ru": "AirPods 4 в отличном состоянии",
+          "description_ru": "Продается AirPods 4 в отличном состоянии, все функции работают идеально. С коробкой. Цена: 320 лари.",
+          "title_ka": "AirPods 4 შესანიშნავ მდგომარეობაში",
+          "description_ka": "იყიდება AirPods 4 შესანიშნავ მდგომარეობაში, ყველა ფუნქცია მუშაობს იდეალურად. ყუთით. ფასი: 320 ლარი."
+        }
+      ],
+      "source:chat": "baraholka_avito_batumi",
+      "source:message_id": "366033",
+      "source:path": "baraholka_avito_batumi/2025/06/366029.md",
+      "source:author:telegram": "liiiiiiiiiiiiijj",
+      "source:author:name": "Liyaaaa",
+      "timestamp": "2025-06-22T08:26:18+00:00",
+      "files": [
+        "baraholka_avito_batumi/2025/06/cedb4b29191cf512e64ec1ca0be97fc5776a3b4e7f1dc92efaeb772b732a3136.jpg",
+        "baraholka_avito_batumi/2025/06/e7a560203c69a449d3a5e0a284d382f1515c6261833c66c246c0d3c56d2233a0.jpg",
+        "baraholka_avito_batumi/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg",
+        "baraholka_avito_batumi/2025/06/776fb48a4063c8864fb1163cfcabd48e6dc6cd3216b0444e3f5edc6c42c42ce1.jpg",
+        "baraholka_avito_batumi/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg",
+        "baraholka_avito_batumi/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg"
+      ]
+    },
+    "input": "Message text:\nПродается iPhone XR, 64 gb, в отличном состоянии.\nВсе функции работают без нареканий.\nБатарея🔋 74% \nНе вскрывался, ничего не заменялось.\nС коробкой. \nЦена 400 лари\n\nПродается XBOX SERIES S в отличном состоянии и без каких либо проблем, в комплекте сам XBOX , джойстик, и все нужные кабеля. Консоль в идеальном состоянии.\nЦена 650 лари\n\nПродается AirPods 4 в отличном состоянии, все функции работают идеально. \nС коробкой. \nЦена 320 лари\n\nбольше разной техники в шапке профиля\n\nImage baraholka_avito_batumi/2025/06/cedb4b29191cf512e64ec1ca0be97fc5776a3b4e7f1dc92efaeb772b732a3136.jpg:\nThe image shows a hand holding two smartphones stacked on a box. The phone on top has a colorful, vibrant screen displaying the time \"05:47.\" The smartphone below appears to be an older model, potentially an iPhone XR, evidenced by its casing design. The box is white with a black background image of the device. The background features a light-colored wooden floor and a blurred area suggestive of a modern interior space. There are soft, neutral tones throughout, lending a clean and contemporary feel to the scene.\n\nImage baraholka_avito_batumi/2025/06/e7a560203c69a449d3a5e0a284d382f1515c6261833c66c246c0d3c56d2233a0.jpg:\nThe image shows a hand holding an Apple iPhone XR. The back of the phone is black with the Apple logo prominently displayed at the center. The phone appears to be in good condition, with no visible scratches or damage. The background features a light-colored wall and a wooden floor, providing a modern and clean aesthetic. There are no watermarks visible in the image.\n\nImage baraholka_avito_batumi/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg:\nThe image features an Xbox console, specifically the Xbox Series S, with a blue controller positioned on top. The console has a white casing with a large circular black vent on one side. The surface beneath is a light wood texture. There are also cables plugged into the console, indicating that it is connected to a power source. The overall presentation conveys a modern gaming setup.\n\nImage baraholka_avito_batumi/2025/06/776fb48a4063c8864fb1163cfcabd48e6dc6cd3216b0444e3f5edc6c42c42ce1.jpg:\nThe image displays a gaming library interface on a screen. It shows a variety of game titles organized in a grid format. Top left features \"Assassin's Creed Valhalla,\" while \"GTA V\" and \"Battlefield\" titles are prominently displayed. There are also games like \"Brothers,\" \"Call of Duty,\" and \"Deus Ex.\" \n\nThe screen includes sections for \"All Games,\" \"Owned Games,\" \"Own Applications,\" \"Xbox Game Pass,\" and \"Subscriptions.\" Icons beneath each title indicate availability for download. The overall aesthetic is modern, fitting for a gaming console. Additionally, there are two options at the bottom mentioning controls or additional settings. The interface is sleek and user-friendly, typical of recent gaming services.\n\nImage baraholka_avito_batumi/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg:\nThe image shows a hand holding a pair of AirPods and their charging case. The charging case is white and is partially open, revealing the AirPods inside. In the background, there is a white wall socket with another AirPod hanging beside it, likely indicating it's charging. The flooring appears to be wooden, suggesting a modern interior. The overall vibe is contemporary and clean. The surrounding area is soft and minimalistic, with a hint of a blue fabric, possibly a couch or blanket, visible to the right.\n\nImage baraholka_avito_batumi/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg:\nThe image features a hand holding a pair of white wireless earbuds in their charging case. The case is open, showcasing the earbuds inside. The background reveals a wooden floor, with a white circular object that resembles a wireless charger or a small speaker partially visible. The overall atmosphere appears modern and clean, with neutral tones in the room."
+  },
+  {
+    "lot": {
       "fraud": "sketchy_job",
       "source:chat": "arenda_batumiN1",
       "source:message_id": "2047444",
@@ -1515,6 +1642,22 @@
       "source:author:name": "Taso"
     },
     "input": "Message text:\nid: 2046573\nchat: arenda_batumiN1\nsender: 1577080385\nsender_username: Taso88\nsender_phone: \ntg_link: https://t.me/Taso88\nsender_name: Taso\nauthor_type: user\ndate: 2025-06-20T10:55:40+00:00\ngroup_id: 14003335509263026\nis_admin: False\nfiles: ['arenda_batumiN1/2025/06/2933cf28cfd392cedf6b890d33ab744e3afe5c33e0afb45a0ffc377764a62e4b.jpg']\n\nImage arenda_batumiN1/2025/06/2933cf28cfd392cedf6b890d33ab744e3afe5c33e0afb45a0ffc377764a62e4b.jpg:\nThe image shows a compact, modern bathroom with a monochrome color scheme. There's a corner shower with a curved, black-framed glass enclosure and a geometric tile pattern. Next to the shower is a front-loading washing machine by Beko. The flooring is a light gray tile, complementing the checkered black and white wall tiles. A small, white and black vanity with a mirror, shelf, and white basin is located to the right. Above the sink, there's a hairdryer mounted on the wall. The bathroom also features a gray rubber mat on the floor and a slim cabinet for storage. A watermark with a logo is present in the center of the image. The overall style is contemporary."
+  },
+  {
+    "lot": {
+      "fraud": "sketchy_job",
+      "timestamp": "2025-06-22T08:28:29+00:00",
+      "market:deal": "job_seek",
+      "occupation": "помощь",
+      "salary": 4600,
+      "salary:currency": "GEL",
+      "source:chat": "arenda_batumiN1",
+      "source:message_id": "2051217",
+      "source:path": "arenda_batumiN1/2025/06/2051217.md",
+      "source:author:telegram": "wqdeff4",
+      "source:author:name": "Даша Мороз"
+    },
+    "input": "Message text:\nищу 3 человека на сегодня для помощи заплачу 4600"
   },
   {
     "lot": {
@@ -1649,6 +1792,16 @@
   },
   {
     "lot": {
+      "source:chat": "arenda_batumiN1",
+      "source:message_id": "2051180",
+      "source:path": "arenda_batumiN1/2025/06/2051180.md",
+      "source:author:name": "Marina",
+      "timestamp": "2025-06-22T07:48:50+00:00"
+    },
+    "input": "Message text:\nИщу для клиента квартиру 1+1 , район Метросити.  Бюджет: до 800 $"
+  },
+  {
+    "lot": {
       "timestamp": "2025-06-20T10:15:57+00:00",
       "market:deal": "services_offer",
       "description_en": "Modern bathroom with marble-patterned tiles, featuring a washing machine, sink, and shower area.",
@@ -1762,6 +1915,22 @@
       "source:chat": "arenda_batumiN1",
       "source:message_id": "2051014",
       "source:path": "arenda_batumiN1/2025/06/2051014.md",
+      "source:author:telegram": "wqdeff4",
+      "source:author:name": "Даша Мороз"
+    },
+    "input": "Message text:\nищу 3 человека на сегодня для помощи заплачу 4600"
+  },
+  {
+    "lot": {
+      "fraud": "sketchy_job",
+      "timestamp": "2025-06-22T07:56:23+00:00",
+      "market:deal": "job_seek",
+      "occupation": "помощь",
+      "salary": 4600,
+      "salary:currency": "GEL",
+      "source:chat": "arenda_batumiN1",
+      "source:message_id": "2051183",
+      "source:path": "arenda_batumiN1/2025/06/2051183.md",
       "source:author:telegram": "wqdeff4",
       "source:author:name": "Даша Мороз"
     },
@@ -2338,6 +2507,27 @@
   },
   {
     "lot": {
+      "timestamp": "2025-06-22T08:04:01+00:00",
+      "market:deal": "services_offer",
+      "occupation": "маникюрный мастер",
+      "price": 30,
+      "price:currency": "GEL",
+      "description_ru": "Я мастер маникюра со стажем 5 лет. Приглашаю вас на качественный маникюр со скидкой в Батуми. Мужской маникюр 30 лари, маникюр без покрытия 25 лари, маникюр с покрытием гель-лак 40 лари, маникюр с укреплением 45 лари, педикюр гигиенический 45 лари, педикюр с покрытием гель-лак 55 лари. Качественные материалы, отдельный кабинет, гарантия, большой выбор палитры цветов. Для подробной информации, фото работ и записи, пишите в директ.",
+      "description_en": "I am a manicure master with 5 years of experience. I invite you to quality manicure with a discount in Batumi. Men's manicure 30 lari, manicure without coating 25 lari, gel polish manicure 40 lari, strengthening manicure 45 lari, hygienic pedicure 45 lari, gel polish pedicure 55 lari. Quality materials, separate office, guarantee, large selection of color palette. For more information, photos of works, and appointments, write in direct.",
+      "description_ka": "მე ვარ მანიკურის მასტერ 5 წლიანი გამოცდილებით. გიწვევთ ხარისხიანი მანიკურისთვის ფასდაკლებით ბათუმში. მამაკაცური მანიკური 30 ლარი, მანიკური გარეშე საფარით 25 ლარი, გელის საფარით მანიკური 40 ლარი, გაძლიერებული მანიკური 45 ლარი, ჰიგიენური პედიკური 45 ლარი, გელის საფარით პედიკური 55 ლარი. ხარისხიანი მასალები, ცალკე კაბინეტი, გარანტია, დიდი არჩევანი ფერის პალიტრაში. დეტალური ინფორმაციისთვის, სამუშაოების ფოტოებისთვის და რეგისტრაციისთვის, დაწერეთ პირდაპირ.",
+      "files": [
+        "baraholka_ge/2025/06/aef1aceca75a8ea6d384b444457d6e479c93014d0f83503989344d325c5bed86.jpg"
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480787",
+      "source:path": "baraholka_ge/2025/06/2480787.md",
+      "source:author:telegram": "Anastasia_Z007",
+      "source:author:name": "Anastasia"
+    },
+    "input": "Message text:\nВсем привет! Меня зовут Анастасия . Я мастер маникюра со стажем 5 лет. 💓\nПриглашаю вас на качественный маникюр со скидкой . В Батуми\n\nСтоимость : \n\n🫳🏽Мужской маникюр 30 лари \n🫳🏻Маникюр без покрытия 25 лари \n💅🏼Маникюр с покрытием гель- лак 40 лари \n💅🏼Маникюр с укреплением 45 лари \n🦶🏼Педикюр гигиенический 45 лари \n🦶🏼Педикюр с покрытием гель-лак 55 лари \n\n✅ Качественные материалы \n✅ Отдельный кабинет \n✅ Время работы от 40 минут до 2 часов максимум ( в зависимости от сложности) \n✅ Гарантия \n✅ Большой выбор палитры цветов. \n✅Стерильность и аккуратность. \n✅ 3 этапа стерилизации \n✅ Носка от 3х недель \n✅ Чай, кофе \n✅ Разговоры обо всем 🙃\n\nДля подробной информации,фото работ и записи , пишите в директ .\n\nСогласованно с @ads_geo_bot\n\nImage baraholka_ge/2025/06/aef1aceca75a8ea6d384b444457d6e479c93014d0f83503989344d325c5bed86.jpg:\nThe image shows a collage of four different manicures. \n\n1. The top left features nails with a natural, glossy finish in a soft, nude shade.\n2. The top right displays nails in a shimmery, light green polish.\n3. The bottom left presents nails with a polished, pastel pink color with a glossy finish, featuring an almond shape.\n4. The bottom right shows a set of nails in a glossy pastel pink, also with an almond shape adorned with several gold rings.\n\nEach manicure emphasizes a neat and tidy appearance."
+  },
+  {
+    "lot": {
       "lots": [
         {
           "market:deal": "sell_item",
@@ -2579,6 +2769,97 @@
       "timestamp": "2025-06-21T14:17:38+00:00"
     },
     "input": "Message text:\nДрузья, дайте пожалуйста какой-нибудь хороший чат по недвижке в Батуми 🙏🏼"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:13:51+00:00",
+          "market:deal": "sell_item",
+          "item:type": "slides",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/daae988fbe4d4d99701597358a2f4576b2db285dccf175f13b81e7fc74917c1c.jpg"
+          ],
+          "title_en": "Black Nike Slides",
+          "description_en": "A pair of black Nike slides with a sporty design featuring a prominent white Nike swoosh logo. They have perforated detailing for breathability and a textured footbed for comfort.",
+          "title_ru": "Черные слайды Nike",
+          "description_ru": "Пара черных слайдов Nike со спортивным дизайном и заметным белым логотипом Nike. Они имеют перфорированную отделку для воздухопроницаемости и текстурированную стельку для комфорта.",
+          "title_ka": "შავი Nike სლაიდები",
+          "description_ka": "შავი Nike სლაიდების წყვილი სპორტული დიზაინით, რომელიც გამოირჩევა თვალშისაცემი თეთრი Nike-ის ლოგოთი. მათ აქვთ პერფორირებული დეტალები ჰაერის გამტარობისთვის და ტექსტურირებული ფეხსაცმელი კომფორტისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:13:51+00:00",
+          "market:deal": "sell_item",
+          "item:type": "sandals",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/ea2933ee08278413421dd33550fcd60af5d8f9e8788dad4164513d5e47e98015.jpg"
+          ],
+          "title_en": "Black Sandals",
+          "description_en": "A pair of black sandals with a simple design featuring a wide strap across the top of the foot and a smaller center strap for a comfortable slide-on style.",
+          "title_ru": "Черные сандалии",
+          "description_ru": "Пара черных сандалий с простым дизайном, имеющая широкую лямку по верхней части стопы и меньшую центральную лямку для удобного стиля слайдов.",
+          "title_ka": "შავი სანდლები",
+          "description_ka": "შავი სანდლების წყვილი მარტივი დიზაინით, რომელიც მოიცავს ფართო ლ Strap-ით ფეხის ზედა ნაწილზე და პატარა ცენტრალური ლ Strap-ით კომფორტული სლაიდური სტილისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:13:51+00:00",
+          "market:deal": "sell_item",
+          "item:type": "clogs",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/bae47b1c4188ba959dc10f7497bac29dfb55d0e0705b313bbb132928a63754f6.jpg"
+          ],
+          "title_en": "Bright Orange Clogs",
+          "description_en": "A pair of bright orange plastic clogs with ventilation holes and a textured interior, suitable for warm weather. They are in good condition with no visible wear.",
+          "title_ru": "Ярко-оранжевые кломпы",
+          "description_ru": "Пара ярко-оранжевых пластиковых кломпов с вентиляционными отверстиями и текстурированным интерьером, подходящими для теплой погоды. Они в хорошем состоянии без видимого износа.",
+          "title_ka": "ბრჭყვიალა ნარინჯისფერი კლოგები",
+          "description_ka": "ბრჭყვიალა ნარინჯისფერი პლასტმასის კლოგების წყვილი ვენტილაციის ხვრელებით და ტექსტურირებული ინტერიერით, რომლებიც შესაფერისია თბილი ამინდისთვის. ისინი კარგ მდგომარეობაში არიან და არ აქვთ ხილული ცვეთა."
+        },
+        {
+          "timestamp": "2025-06-22T08:13:51+00:00",
+          "market:deal": "sell_item",
+          "item:type": "clogs",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/7d86b4d53b83174f63cc895ca7b55c74ae45e3acab16800ead52c2a4ee6bd21b.jpg"
+          ],
+          "title_en": "Black Clogs",
+          "description_en": "A pair of black clogs made of flexible material with ventilation holes. They appear slightly wet, suggesting recent use.",
+          "title_ru": "Черные кломпы",
+          "description_ru": "Пара черных кломпов из гибкого материала с вентиляционными отверстиями. Они выглядят слегка влажными, что указывает на недавнее использование.",
+          "title_ka": "შავი კლოგები",
+          "description_ka": "შავი კლოგების წყვილი მოქნილი მასალისგან, ვენტილაციის ხვრელებით. ისინი ცოტათი სველად გამოიყურებიან, რაც მიუთითებს ახლახანს გამოყენებაზე."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480851",
+      "source:path": "baraholka_ge/2025/06/2480849.md",
+      "source:author:telegram": "Fatinia1",
+      "source:author:name": "Фатиния",
+      "timestamp": "2025-06-22T08:13:51+00:00",
+      "files": [
+        "baraholka_ge/2025/06/daae988fbe4d4d99701597358a2f4576b2db285dccf175f13b81e7fc74917c1c.jpg",
+        "baraholka_ge/2025/06/ea2933ee08278413421dd33550fcd60af5d8f9e8788dad4164513d5e47e98015.jpg",
+        "baraholka_ge/2025/06/bae47b1c4188ba959dc10f7497bac29dfb55d0e0705b313bbb132928a63754f6.jpg",
+        "baraholka_ge/2025/06/7d86b4d53b83174f63cc895ca7b55c74ae45e3acab16800ead52c2a4ee6bd21b.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480850\nchat: baraholka_ge\nsender: 788176659\nsender_username: Fatinia1\nsender_phone: \ntg_link: https://t.me/Fatinia1\nsender_name: Фатиния\nauthor_type: user\ndate: 2025-06-22T08:13:51+00:00\ngroup_id: 14004640251364722\nis_admin: False\nfiles: ['baraholka_ge/2025/06/daae988fbe4d4d99701597358a2f4576b2db285dccf175f13b81e7fc74917c1c.jpg']\n\nImage baraholka_ge/2025/06/daae988fbe4d4d99701597358a2f4576b2db285dccf175f13b81e7fc74917c1c.jpg:\nThe image features a pair of black Nike slides. The slides have a sporty design with a prominent white Nike swoosh logo on the outer side. They have perforated detailing on the upper for breathability and a textured footbed for comfort. The soles are flat and slightly raised, suitable for casual wear. The background shows a pale-colored surface, possibly a suitcase or bag, with a simple, clean texture. The overall vibe is casual and modern.\n\nImage baraholka_ge/2025/06/ea2933ee08278413421dd33550fcd60af5d8f9e8788dad4164513d5e47e98015.jpg:\nThe image features a pair of black sandals with a simple design. The sandals have a wide strap that runs across the top of the foot and a smaller strap that splits in the center, creating a comfortable slide-on style. The soles appear to be made of a light-colored material, possibly leather or synthetic, with some signs of wear. They are placed on a patterned gray carpet with floral and circular designs in muted colors, contributing to a cozy interior vibe.\n\nImage baraholka_ge/2025/06/bae47b1c4188ba959dc10f7497bac29dfb55d0e0705b313bbb132928a63754f6.jpg:\nThe image features a pair of bright orange plastic clogs, typically worn for comfort and casual use. The design includes ventilation holes on the sides and a textured interior, making them suitable for warm weather. The clogs appear to be in good condition, with no visible wear or damage. They are placed on a patterned gray rug, which showcases a floral or ornate design in muted colors. The surroundings suggest a cozy indoor environment, but no additional context or items are visible in the image.\n\nImage baraholka_ge/2025/06/7d86b4d53b83174f63cc895ca7b55c74ae45e3acab16800ead52c2a4ee6bd21b.jpg:\nThe image features a pair of black clogs or slides. They are made of a flexible material with multiple ventilation holes on the top and sides. The interior of each shoe shows a textured pattern, and there's a logo visible on the inside of the footbed. The clogs appear slightly wet, suggesting recent use. They are placed on a patterned gray rug that has floral designs in light colors. The overall vibe of the setting is casual and relaxed."
   },
   {
     "lot": {
@@ -4069,6 +4350,41 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T08:11:48+00:00",
+          "market:deal": "sell_item",
+          "item:type": "baby_crib",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/ffb081a5cb88d40dc6a4f67844b870f13ff865a3e8c42ff6a06cf4ac470a6c39.jpg"
+          ],
+          "title_en": "Portable Baby Crib in Beige",
+          "description_en": "This portable baby crib in a soft beige color features a mesh side panel for visibility and ventilation. It can be easily assembled in just five seconds and comes with various accessories including a storage organizer, a padded changing mat, a travel bag, and detachable sides.",
+          "title_ru": "Портативная детская кроватка бежевого цвета",
+          "description_ru": "Эта портативная детская кроватка бежевого цвета имеет сетчатую боковую панель для видимости и вентиляции. Она может быть легко собрана всего за пять секунд и поставляется с различными аксессуарами, включая органайзер для хранения, мягкий пеленальный матрас, сумку для путешествий и съемные боковые панели.",
+          "title_ka": "პორტატული ბავშვების საწოლი ბეჟის ფერში",
+          "description_ka": "ეს პორტატული ბავშვების საწოლი ბეჟის ფერში აქვს ქსოვილის გვერდითი პანელი ხილვადობისა და ვენტილაციისთვის. ის ადვილად იკრიბება მხოლოდ ხუთ წამში და მოიცავს სხვადასხვა აქსესუარებს, მათ შორის შენახვის ორგანიზატორს, რბილ პელენალურ მატრასს, მოგზაურობის ჩანთას და detachable გვერდებს."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480839",
+      "source:path": "baraholka_ge/2025/06/2480837.md",
+      "source:author:telegram": "NadyaKuzovova",
+      "source:author:name": "Надежда",
+      "timestamp": "2025-06-22T08:11:48+00:00",
+      "files": [
+        "baraholka_ge/2025/06/3a2ca1a54044b74a2466c32094d074f93494ead257d13338183f15dbf4a6b62d.jpg",
+        "baraholka_ge/2025/06/ffb081a5cb88d40dc6a4f67844b870f13ff865a3e8c42ff6a06cf4ac470a6c39.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480838\nchat: baraholka_ge\nsender: 316813298\nsender_username: NadyaKuzovova\nsender_phone: \ntg_link: https://t.me/NadyaKuzovova\nsender_name: Надежда\nauthor_type: user\ndate: 2025-06-22T08:11:48+00:00\ngroup_id: 14004639263761922\nis_admin: False\nfiles: ['baraholka_ge/2025/06/3a2ca1a54044b74a2466c32094d074f93494ead257d13338183f15dbf4a6b62d.jpg']\n\nImage baraholka_ge/2025/06/3a2ca1a54044b74a2466c32094d074f93494ead257d13338183f15dbf4a6b62d.jpg:\nThe image shows a woman seated on a pebbly beach, using a laptop. She is wearing a long, green-and-white floral dress with a relaxed fit. The setting sun casts warm colors across the sky and reflects on the water, creating a serene atmosphere. The scene exudes a calm and relaxed vibe. Next to her, there is a black bag with a textured surface, and a red object, possibly a phone, is partially visible beside her. The beach appears to be scenic, with gentle waves lapping at the shore.\n\nImage baraholka_ge/2025/06/ffb081a5cb88d40dc6a4f67844b870f13ff865a3e8c42ff6a06cf4ac470a6c39.jpg:\nThe image showcases a portable baby crib in a soft beige color. It features a mesh side panel for visibility and ventilation. The crib can be easily assembled in just five seconds, as highlighted in the text. \n\nThere are various accessories shown with the crib, including:\n\n1. A small storage organizer that attaches to the crib.\n2. A soft, padded changing mat or mattress.\n3. A travel bag for easy storage and transport.\n4. A set of detachable sides or panels.\n\nThe design appears modern and functional, suitable for parents looking for convenience. The vibe is clean and minimalistic, emphasizing ease of use."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "market:deal": "sell_item",
           "item:type": "table",
           "condition": "very_good",
@@ -4709,6 +5025,55 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "clothes_drying_rack",
+          "price": 15,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/4b7f038d5568f6cd710730dd079947aec984971a2257216fe69050ef86800aee.jpg"
+          ],
+          "title_en": "Clothes Drying Rack",
+          "description_en": "A collapsible clothes drying rack with multiple tiers for hanging clothes, priced at 15 Lari.",
+          "title_ru": "Сушилка для вещей",
+          "description_ru": "Складная сушилка для одежды с несколькими уровнями для развешивания вещей, цена 15 лари.",
+          "title_ka": "სარეცხი თარო",
+          "description_ka": "საკეცი სარეცხი თარო, რომელიც აქვს რამდენიმე დონე ტანსაცმლის გასაშრობად, ფასი 15 ლარი."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "shoe_drying_rack",
+          "price": 15,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/44d006c3be83f260b795c78ee03166e11b865b6ad25e70754910fe4f8926ab2f.jpg"
+          ],
+          "title_en": "Shoe Drying Rack",
+          "description_en": "A pair of blue oval-shaped electronic shoe drying devices, priced at 15 Lari.",
+          "title_ru": "Сушилка для обуви",
+          "description_ru": "Пара синих овальных электронных устройств для сушки обуви, цена 15 лари.",
+          "title_ka": "საშრობი ფეხსაცმლისთვის",
+          "description_ka": "ორი ლურჯი ოვალური ელექტრონული მოწყობილობა ფეხსაცმლის გასაშრობად, ფასი 15 ლარი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480823",
+      "source:path": "baraholka_ge/2025/06/2480822.md",
+      "source:author:telegram": "oleg_ruban",
+      "source:author:name": "Олег Рубан",
+      "timestamp": "2025-06-22T08:07:07+00:00",
+      "files": [
+        "baraholka_ge/2025/06/4b7f038d5568f6cd710730dd079947aec984971a2257216fe69050ef86800aee.jpg",
+        "baraholka_ge/2025/06/44d006c3be83f260b795c78ee03166e11b865b6ad25e70754910fe4f8926ab2f.jpg"
+      ]
+    },
+    "input": "Message text:\n1. Сушилка для вещей - 15 лари\n2. Сушилка для обуви - 15 лари\n\nImage baraholka_ge/2025/06/4b7f038d5568f6cd710730dd079947aec984971a2257216fe69050ef86800aee.jpg:\nThe image shows a grey and purple clothes drying rack set up in an indoor space. The drying rack is collapsible and has multiple tiers for hanging clothes. The floor is covered with brown laminate, and there is a white door partially visible in the background. To the right, there is a decorative piece that appears to be a blue ceramic item. The overall vibe of the interior looks modern and clean, with light-colored walls and a simple, functional design.\n\nImage baraholka_ge/2025/06/44d006c3be83f260b795c78ee03166e11b865b6ad25e70754910fe4f8926ab2f.jpg:\nThe image showcases two blue, oval-shaped electronic devices, potentially foot massagers or heat pads, connected by white wires. The glossy finish gives them a sleek appearance. The cords are thin, leading to a connector that appears to be a standard USB or power supply plug. The background features a wooden floor, enhancing the modern vibe of the setting. There are no apparent labels or additional items visible in the image."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2477181",
       "source:path": "baraholka_ge/2025/06/2477181.md",
@@ -5228,6 +5593,81 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:24:16+00:00",
+          "market:deal": "sell_item",
+          "item:type": "video_game_console",
+          "brand": "Xbox",
+          "model": "Series S",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg"
+          ],
+          "title_en": "Xbox Series S Console",
+          "description_en": "The image features an Xbox video game console, specifically the Xbox Series S, characterized by its sleek white design and a prominent circular black vent on the front. Resting beside the console is a blue Xbox controller, showcasing an ergonomic design with various buttons and a joystick.",
+          "title_ru": "Игровая консоль Xbox Series S",
+          "description_ru": "На изображении представлена игровая консоль Xbox, в частности, Xbox Series S, характеризующаяся своим стильным белым дизайном и заметным черным вентиляционным отверстием спереди. Рядом с консолью находится синий контроллер Xbox.",
+          "title_ka": "Xbox Series S კონსოლი",
+          "description_ka": "სურათზე წარმოდგენილია Xbox ვიდეო თამაშების კონსოლი, კერძოდ Xbox Series S, რომელიც გამოირჩევა თავისი ელეგანტური თეთრი დიზაინით და გამორჩეული წრიული შავი ვენტილატორით წინა მხარეს."
+        },
+        {
+          "timestamp": "2025-06-22T08:24:16+00:00",
+          "market:deal": "sell_item",
+          "item:type": "wireless_earbuds",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg"
+          ],
+          "title_en": "Wireless Earbuds with Charging Case",
+          "description_en": "The image shows a person's hand holding a set of white wireless earbuds and their charging case. The case is partially open, revealing the earbuds inside.",
+          "title_ru": "Беспроводные наушники с зарядным кейсом",
+          "description_ru": "На изображении показана рука человека, держащая комплект белых беспроводных наушников и их зарядный кейс. Кейс частично открыт, показывая наушники внутри.",
+          "title_ka": "ბеспроводული ყურსასმენები დამუხტვის ყუთით",
+          "description_ka": "სურათზე ჩანს ადამიანის ხელი, რომელიც უჭირავს თეთრი беспроводული ყურსასმენების კომპლექტს და მათი დამუხტვის ყუთს."
+        },
+        {
+          "timestamp": "2025-06-22T08:24:16+00:00",
+          "market:deal": "sell_item",
+          "item:type": "wireless_earbuds",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg"
+          ],
+          "title_en": "Wireless Earbuds in Charging Case",
+          "description_en": "The image shows a hand holding a pair of white wireless earbuds inside their charging case. The case is open, displaying the earbuds inside.",
+          "title_ru": "Беспроводные наушники в зарядном кейсе",
+          "description_ru": "На изображении показана рука, держащая пару белых беспроводных наушников внутри их зарядного кейса. Кейс открыт, показывая наушники внутри.",
+          "title_ka": "ბеспроводული ყურსასმენები დამუხტვის ყუთში",
+          "description_ka": "სურათზე ჩანს ხელი, რომელიც უჭირავს თეთრი беспроводული ყურსასმენების წყვილს მათი დამუხტვის ყუთში."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480874",
+      "source:path": "baraholka_ge/2025/06/2480871.md",
+      "source:author:telegram": "liiiiiiiiiiiiijj",
+      "source:author:name": "Liyaaaa",
+      "timestamp": "2025-06-22T08:24:16+00:00",
+      "files": [
+        "baraholka_ge/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg",
+        "baraholka_ge/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg",
+        "baraholka_ge/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg",
+        "baraholka_ge/2025/06/776fb48a4063c8864fb1163cfcabd48e6dc6cd3216b0444e3f5edc6c42c42ce1.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480873\nchat: baraholka_ge\nsender: 7141501387\nsender_username: liiiiiiiiiiiiijj\nsender_phone: \ntg_link: https://t.me/liiiiiiiiiiiiijj\nsender_name: Liyaaaa\nauthor_type: user\ndate: 2025-06-22T08:24:16+00:00\ngroup_id: 14004645252297674\nis_admin: False\nfiles: ['baraholka_ge/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg']\n\nImage baraholka_ge/2025/06/18392b9688f87714448013100de223a78001f6f2ad8f327b28436d18af67c88c.jpg:\nThe image features an Xbox video game console, specifically the Xbox Series S, characterized by its sleek white design and a prominent circular black vent on the front. Resting beside the console is a blue Xbox controller, showcasing an ergonomic design with various buttons and a joystick. The background has a wooden surface, giving a warm, modern feel to the setting. There are no visible cables or accessories beyond what is shown. The overall vibe is clean and contemporary, ideal for a gaming or entertainment environment.\n\nImage baraholka_ge/2025/06/ad0e1dc7274d41a503df59d03a3f6323185aab71685ed4f3431047b82f4237c7.jpg:\nThe image shows a person's hand holding a set of white wireless earbuds and their charging case. The case is partially open, revealing the earbuds inside. In the background, a white wall or surface is visible, along with a visible power outlet where the earbuds are being charged. The floor appears to be light wood, and there's a dark blue object or fabric in the bottom right corner, suggesting a couch or blanket. The overall vibe of the space seems casual and modern.\n\nImage baraholka_ge/2025/06/cd42d0126a19b4c5a73ef80f5d5a576e08019480f35bfa039d10dea1645df703.jpg:\nThe image shows a hand holding a pair of white wireless earbuds inside their charging case. The case is open, displaying the earbuds inside. The background features a wooden floor, and there is a white circular object that appears to be a wireless charger positioned on the left side. A portion of a blue rug is visible in the bottom right corner. The lighting suggests a modern and clean interior.\n\nImage baraholka_ge/2025/06/776fb48a4063c8864fb1163cfcabd48e6dc6cd3216b0444e3f5edc6c42c42ce1.jpg:\nThe image displays a digital game library interface on a screen, likely from a gaming console or PC. The title reads \"Полная библиотека,\" which translates to \"Full Library.\" The layout includes various game icons, featuring titles like \"Assassin's Creed Valhalla,\" \"GTA V,\" \"Battlefield,\" \"Call of Duty,\" and \"Deus Ex.\" \n\nEach game icon varies in style, some featuring high-action graphics, while others have a more artistic appearance. Notable is the presence of a \"Download\" option on several game icons. The interface suggests an organized collection where games are sorted by categories like “All Games,” “Owned Games,” and “Xbox Game Pass.” \n\nThe overall vibe is modern with a sleek digital look, typical for contemporary gaming platforms."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2467397",
       "source:path": "baraholka_ge/2025/06/2467397.md",
@@ -5343,82 +5783,106 @@
   },
   {
     "lot": {
-      "lots": [
+      "market:deal": "sell_item",
+      "items": [
         {
-          "market:deal": "sell_item",
           "item:type": "vase",
-          "price": 12,
+          "price": 10,
           "price:currency": "GEL",
-          "urgency": "none",
+          "condition": "used",
           "files": [
-            "baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
+            "baraholka_ge/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
           ],
           "title_en": "Vase",
-          "description_en": "A tall, cylindrical vase with vertical lines, likely made of glass or acrylic.",
+          "description_en": "A tall, cylindrical vase with vertical grooves, likely made of glass or a similar material. It has a sleek, modern design.",
           "title_ru": "Ваза",
-          "description_ru": "Высокая цилиндрическая ваза с вертикальными линиями, вероятно, из стекла или акрила.",
+          "description_ru": "Высокая цилиндрическая ваза с вертикальными бороздками, вероятно, сделанная из стекла или подобного материала. Имеет стильный, современный дизайн.",
           "title_ka": "ვაზა",
-          "description_ka": "მაღალი ცილინდრული ვაზა ვერტიკალური ხაზებით, სავარაუდოდ, მინის ან აკრილისგან."
+          "description_ka": "მაღალი, ცილინდრული ვაზა ვერტიკალური ღარები, სავარაუდოდ, დამზადებულია მინის ან მსგავსი მასალისგან. აქვს თანამედროვე დიზაინი."
         },
         {
-          "market:deal": "sell_item",
-          "item:type": "whisk",
-          "price": 1,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
-          ],
-          "title_en": "Whisk",
-          "description_en": "A stainless steel whisk with a long handle and a classic spiral design.",
-          "title_ru": "Венчик",
-          "description_ru": "Нержавеющий венчик с длинной ручкой и классическим спиральным дизайном.",
-          "title_ka": "ვენчик",
-          "description_ka": "ნერვისგან დამზადებული ვენჩიკი გრძელი სახელურით და კლასიკური სპირალური დიზაინით."
-        },
-        {
-          "market:deal": "sell_item",
           "item:type": "grater",
           "price": 2,
           "price:currency": "GEL",
-          "urgency": "none",
+          "condition": "used",
           "files": [
-            "baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
+            "baraholka_ge/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
           ],
           "title_en": "Grater",
-          "description_en": "A multi-sided grater with a wooden handle and different grating sizes.",
+          "description_en": "A metal kitchen grater with a wooden handle. It has a shiny surface with various grating options visible on the sides and a sturdy base.",
           "title_ru": "Терка",
-          "description_ru": "Многосторонняя терка с деревянной ручкой и различными размерами терки.",
-          "title_ka": "ტერка",
-          "description_ka": "მრავალმხრივი ტერка ხის სახელურით და სხვადასხვა ზომის გახეხვისთვის."
+          "description_ru": "Металлическая кухонная терка с деревянной ручкой. Имеет блестящую поверхность с различными вариантами терки, видимыми по бокам, и прочной основой.",
+          "title_ka": "ტერკა",
+          "description_ka": "მეტალური სამზარეულოს ტერკა ხის სახელურით. აქვს ბრჭყვიალა ზედაპირი სხვადასხვა სახის გახეხვის ვარიანტებით გვერდებზე და მყარი საფუძვლით."
         },
         {
-          "market:deal": "sell_item",
-          "item:type": "scoop",
+          "item:type": "spatula",
           "price": 1,
           "price:currency": "GEL",
-          "urgency": "none",
+          "condition": "used",
           "files": [
-            "baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
+            "baraholka_ge/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
           ],
-          "title_en": "Metal Scoop",
-          "description_en": "A sleek metal scoop or serving spoon with a flat scoop end.",
+          "title_en": "Spatula",
+          "description_en": "A metallic spatula with a flat head and a shiny finish. It seems to have a slight glow at the tip, indicating it might be a type of illuminated kitchen tool.",
           "title_ru": "Лопатка металлическая",
-          "description_ru": "Элегантная металлическая лопатка или ложка для сервировки с плоским концом.",
+          "description_ru": "Металлическая лопатка с плоской головкой и блестящей отделкой. Кажется, что кончик слегка светится, что может указывать на то, что это может быть тип освещенного кухонного инструмента.",
           "title_ka": "ლopatka",
-          "description_ka": "ელეგანტური მეტალის ლოპატკა ან სერვირების კოვზი ბრტყელი ბოლოებით."
+          "description_ka": "მეტალური ლოპატკა ბრტყელი თავით და ბრჭყვიალა საფარით. ჩანს, რომ წვერი ოდნავ ანათებს, რაც შეიძლება მიუთითებდეს, რომ ეს შეიძლება იყოს განათებული სამზარეულოს ინსტრუმენტი."
         }
       ],
       "source:chat": "baraholka_ge",
-      "source:message_id": "2479327",
-      "source:path": "baraholka_ge/2025/06/2479327.md",
+      "source:message_id": "2480762",
+      "source:path": "baraholka_ge/2025/06/2480762.md",
       "source:author:name": "Наталья",
-      "timestamp": "2025-06-21T12:22:40+00:00",
+      "timestamp": "2025-06-22T07:58:34+00:00",
       "files": [
-        "baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg"
+        "baraholka_ge/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg"
       ]
     },
-    "input": "Message text:\nПродам:\n 1. Ваза - 12 лари\n 2. Венчик  - 1 лари\n 3. Терка -2 лари\n 4. Лопатка металлическая - 1лари\n\nImage baraholka_ge/2025/06/e7daa68ffea8535b5b8a14c018ec9637198228f23b83b4c8359ddc48159f6d7d.jpg:\nThe image is divided into four quadrants showcasing kitchen tools. \n\n1. **Top Left**: A tall, cylindrical vase with vertical lines, likely made of glass or acrylic, set against a neutral background.\n2. **Top Right**: A stainless steel whisk with a long handle and a classic spiral design at the end, resting on a smooth surface.\n3. **Bottom Left**: A multi-sided grater with a wooden handle. The grater has different grating sizes on its sides and a shiny, metallic finish.\n4. **Bottom Right**: A sleek metal scoop or serving spoon with a reflective surface, featuring a flat scoop end.\n\nThe overall vibe is modern and minimalist, with clean lines and a functional aesthetic."
+    "input": "Message text:\nПродам:\n 1. Ваза - 10 лари\n 2. Терка -2 лари\n 3. Лопатка металлическая - 1лари\n\nImage baraholka_ge/2025/06/8395b64312d0803e72fc2cb666e11081874f851c6eb30b31fa6ceceed89b9bd7.jpg:\nThe image features three kitchen items displayed against a neutral background.\n\n1. **Vase:** A tall, cylindrical vase with vertical grooves, likely made of glass or a similar material. It has a sleek, modern design.\n\n2. **Grater:** A metal kitchen grater with a wooden handle. It has a shiny surface with various grating options visible on the sides and a sturdy base.\n\n3. **Spatula:** A metallic spatula with a flat head and a shiny finish. It seems to have a slight glow at the tip, indicating it might be a type of illuminated kitchen tool.\n\nThe overall vibe is contemporary, with a clean and minimalistic aesthetic."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:24:22+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hair_care_product",
+          "brand": "KEUNE",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/c633811de650acf26010bb99cb4ac0aca437c3962d20e1dcca7af09c4dd86932.jpg",
+            "baraholka_ge/2025/06/e3f18c33f734f86cc26b86caa42d1a5434406eec779defc8d4d41beb40db989b.jpg",
+            "baraholka_ge/2025/06/9c5c344e16746c79cf4d1c7013e1886a22b2fcfd4bc295d75265a9d8b6aac3fb.jpg",
+            "baraholka_ge/2025/06/572430c05e1ff0b868b75f4953cb38f0d84fae4e76333be9b8083febeede9ff1.jpg",
+            "baraholka_ge/2025/06/8afe83b87e97faba8b02a2d3af28519b3a1684dfbfb990e3d8faad90b9958144.jpg"
+          ],
+          "title_en": "KEUNE Hair Care Products",
+          "description_en": "A collection of hair care products from KEUNE including conditioners and shampoos, all in new condition.",
+          "title_ru": "Продукты по уходу за волосами KEUNE",
+          "description_ru": "Коллекция продуктов по уходу за волосами от KEUNE, включая кондиционеры и шампуни, все в новом состоянии.",
+          "title_ka": "KEUNE თმის მოვლის პროდუქტები",
+          "description_ka": "KEUNE-ის თმის მოვლის პროდუქტების კოლექცია, რომელიც მოიცავს კონდიციონერებს და შამპუნებს, ყველა ახალი მდგომარეობაში."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480883",
+      "source:path": "baraholka_ge/2025/06/2480877.md",
+      "source:author:name": "Aleksandr",
+      "timestamp": "2025-06-22T08:24:22+00:00",
+      "files": [
+        "baraholka_ge/2025/06/c633811de650acf26010bb99cb4ac0aca437c3962d20e1dcca7af09c4dd86932.jpg",
+        "baraholka_ge/2025/06/e3f18c33f734f86cc26b86caa42d1a5434406eec779defc8d4d41beb40db989b.jpg",
+        "baraholka_ge/2025/06/9c5c344e16746c79cf4d1c7013e1886a22b2fcfd4bc295d75265a9d8b6aac3fb.jpg",
+        "baraholka_ge/2025/06/572430c05e1ff0b868b75f4953cb38f0d84fae4e76333be9b8083febeede9ff1.jpg",
+        "baraholka_ge/2025/06/8afe83b87e97faba8b02a2d3af28519b3a1684dfbfb990e3d8faad90b9958144.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480879\nchat: baraholka_ge\nsender: 429147003\nsender_phone: \nsender_name: Aleksandr\nauthor_type: user\ndate: 2025-06-22T08:24:22+00:00\ngroup_id: 14004645297159202\nis_admin: False\nfiles: ['baraholka_ge/2025/06/c633811de650acf26010bb99cb4ac0aca437c3962d20e1dcca7af09c4dd86932.jpg']\n\nImage baraholka_ge/2025/06/c633811de650acf26010bb99cb4ac0aca437c3962d20e1dcca7af09c4dd86932.jpg:\nThe image features two hair care products from the brand KEUNE. \n\n1. **KEUNE CARE VITAL NUTRITION CONDITIONER** - This bottle is white with a light yellow label, holding 250 ml (8.5 fl. oz).\n2. **KEUNE CARE VITAL NUTRITION SHAMPOO** - This bottle is similar in design, also white with a matching label, containing 300 ml (10.1 fl. oz).\n\nBoth products are displayed on a black shelf, suggesting a modern retail setting. In the background, additional products from the same brand can be seen, creating a neat, organized look.\n\nImage baraholka_ge/2025/06/e3f18c33f734f86cc26b86caa42d1a5434406eec779defc8d4d41beb40db989b.jpg:\nThe image showcases a collection of hair care products neatly arranged on a shelf. There are four bottles and containers from the brand Davines:\n\n1. **MOMO/shampoo** - A green bottle (250ml) with a cap, labeled for dry hydration.\n2. **MELU/shampoo** - A blue bottle (250ml) beside the MOMO, aimed at long hair.\n3. **MOMO/conditioner** - A yellow container (250ml) intended for dry hair conditioning, positioned below the MOMO shampoo.\n4. **MINU/conditioner** - A white container (250ml) designed for color-treated hair, sitting next to the MOMO conditioner.\n\nAll products appear to be well-organized, and there are no visible prices or annotations in the image. The vibe is clean and modern, typical of a salon.\n\nImage baraholka_ge/2025/06/9c5c344e16746c79cf4d1c7013e1886a22b2fcfd4bc295d75265a9d8b6aac3fb.jpg:\nThe image features two hair care products from the brand Keune, displayed on a dark wooden shelf. \n\n1. **Shampoo**: \n   - Label: \"KEUNE CARE COLOR BRILLIANZ SHAMPOOING\"\n   - Size: 300 ml (10.1 fl. oz.)\n   - Design: A white bottle with a pink base.\n\n2. **Conditioner**:\n   - Label: \"KEUNE CARE COLOR BRILLIANZ CONDITIONER\"\n   - Size: 250 ml (8.5 fl. oz.)\n   - Design: Similar to the shampoo, a white bottle with a pink base.\n\nBoth bottles have a clean, modern aesthetic, and the labels highlight their focus on color protection for treated hair. There are additional products in the background, but they are not clearly visible.\n\nImage baraholka_ge/2025/06/572430c05e1ff0b868b75f4953cb38f0d84fae4e76333be9b8083febeede9ff1.jpg:\nThe image displays two hair care products from Davines on a shelf. \n\n1. **OI All in One Milk**: This is in a black bottle with a pump, holding 135 ml (4.56 fl. oz.). It emphasizes benefits for hair beauty and manageability.\n\n2. **OI Shampoo**: This comes in a light-colored bottle with a black lid, containing 290 ml (9.87 fl. oz.). \n\nIn the background, there are other hair care products visible in various containers. The shelf has a dark wooden finish, contributing to a modern, organized vibe.\n\nImage baraholka_ge/2025/06/8afe83b87e97faba8b02a2d3af28519b3a1684dfbfb990e3d8faad90b9958144.jpg:\nThe image shows five bottles of Keune hair care products arranged in a row. Each bottle is 250 ml (8.5 fl oz) in size. Two bottles are labeled as \"Care Color Brillianz Conditioner,\" and another two as \"Care Vital Nutrition Conditioner\" and \"Shampoo,\" respectively. The last bottle is \"Care Blonde Savior Shampoo.\" The bottles have a sleek design with a white base and distinctive labels in varying colors to differentiate the product types. They are placed on a dark, textured surface, possibly a shelf."
   },
   {
     "lot": {
@@ -5464,6 +5928,79 @@
       "timestamp": "2025-06-22T06:46:48+00:00"
     },
     "input": "Message text:\nЦена?"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:22:32+00:00",
+          "market:deal": "sell_item",
+          "item:type": "tool_case",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/869fdd2b8c2613a5d64400218db9431957c7fb96e6ae8812214f2700feeba36a.jpg"
+          ],
+          "title_en": "DEXTER POWER Tool Case",
+          "description_en": "A black hard case with a prominent label 'DEXTER POWER'. It features textured sides and two clips for securing it. Ideal for tools or equipment storage.",
+          "title_ru": "Чемодан для инструментов DEXTER POWER",
+          "description_ru": "Черный жесткий чемодан с заметной надписью 'DEXTER POWER'. Имеет текстурированные стороны и два зажима для крепления. Идеально подходит для хранения инструментов или оборудования.",
+          "title_ka": "DEXTER POWER ინსტრუმენტების ყუთი",
+          "description_ka": "შავი მყარი ყუთი გამორჩეული წარწერით 'DEXTER POWER'. აქვს ტექსტურირებული გვერდები და ორი კლიპი უსაფრთხოებისათვის. იდეალურია ინსტრუმენტების ან აღჭურვილობის შესანახად."
+        },
+        {
+          "timestamp": "2025-06-22T08:22:32+00:00",
+          "market:deal": "sell_item",
+          "item:type": "power_tool",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/00c16b2df19f9cc5bee9847647d09602150f774efe03f1e92ba8be382ca1c55a.jpg"
+          ],
+          "title_en": "CROWN Professional Power Tool CT10130C",
+          "description_en": "CROWN professional power tool packaging for model CT10130C with an output of 810 watts. Suitable for drilling.",
+          "title_ru": "Профессиональный электроинструмент CROWN CT10130C",
+          "description_ru": "Упаковка профессионального электроинструмента CROWN модели CT10130C с мощностью 810 ватт. Подходит для сверления.",
+          "title_ka": "CROWN პროფესიონალური ელექტრო ინსტრუმენტი CT10130C",
+          "description_ka": "CROWN პროფესიონალური ელექტრო ინსტრუმენტის შეფუთვა მოდელი CT10130C 810 ვატით. შესაფერისია ხვრელების გასაკეთებლად."
+        },
+        {
+          "timestamp": "2025-06-22T08:22:32+00:00",
+          "market:deal": "sell_item",
+          "item:type": "power_tool",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/45f6dbaeb41c98c23f25ee7dd5f7025b651f2fcd3ebc9ba08c432e5082c2fea7.jpg"
+          ],
+          "title_en": "Crown Power Drill with Wrenches",
+          "description_en": "A Crown brand power drill with a set of combination wrenches in a red holder. Items are in good condition.",
+          "title_ru": "Дрель Crown с набором ключей",
+          "description_ru": "Дрель марки Crown с набором комбинированных ключей в красном держателе. Предметы в хорошем состоянии.",
+          "title_ka": "Crown ელექტრო დრელი კომბინირებული გასაღებების ნაკრებით",
+          "description_ka": "Crown ბრენდის ელექტრო დრელი კომბინირებული გასაღებების ნაკრებით წითელ მფლობელობაში. ნივთები კარგ მდგომარეობაშია."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480862",
+      "source:path": "baraholka_ge/2025/06/2480859.md",
+      "source:author:telegram": "Dmitrii_STATION",
+      "source:author:name": "DMITRII",
+      "timestamp": "2025-06-22T08:22:32+00:00",
+      "files": [
+        "baraholka_ge/2025/06/869fdd2b8c2613a5d64400218db9431957c7fb96e6ae8812214f2700feeba36a.jpg",
+        "baraholka_ge/2025/06/cbff48c7b596dbc0f9e7c8a105bb5b89872cec0b7ef6624805aebb41f81a88ca.jpg",
+        "baraholka_ge/2025/06/00c16b2df19f9cc5bee9847647d09602150f774efe03f1e92ba8be382ca1c55a.jpg",
+        "baraholka_ge/2025/06/45f6dbaeb41c98c23f25ee7dd5f7025b651f2fcd3ebc9ba08c432e5082c2fea7.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480860\nchat: baraholka_ge\nsender: 834039640\nsender_username: Dmitrii_STATION\nsender_phone: \ntg_link: https://t.me/Dmitrii_STATION\nsender_name: DMITRII\nauthor_type: user\ndate: 2025-06-22T08:22:32+00:00\ngroup_id: 14004644418868234\nis_admin: False\nfiles: ['baraholka_ge/2025/06/869fdd2b8c2613a5d64400218db9431957c7fb96e6ae8812214f2700feeba36a.jpg']\n\nImage baraholka_ge/2025/06/869fdd2b8c2613a5d64400218db9431957c7fb96e6ae8812214f2700feeba36a.jpg:\nThe image shows a black hard case with a prominent label on the top that reads \"DEXTER POWER.\" The case features textured sides and has two clips for securing it. It's positioned on a wooden floor, which appears to be a light brown color. In the background, a small orange tool handle is visible, suggesting that it may be related to the contents of the case. The overall vibe is practical, likely intended for tools or equipment storage. There are no visible damages or wear on the case itself.\n\nImage baraholka_ge/2025/06/cbff48c7b596dbc0f9e7c8a105bb5b89872cec0b7ef6624805aebb41f81a88ca.jpg:\nThe image shows a workspace with various tools. There is an orange and black toolbox, partially open and filled with a mix of tools and materials, including tape, wire, and other items. Nearby, a hammer with an orange handle is prominently displayed. A smaller, black toolbox with a lid is partially open, revealing a few tools inside, including what appears to be screwdrivers and a small package labeled \"SIBAX.\" The floor is wooden, and the overall vibe is that of a functional workspace or workshop. The environment looks casual and unorganized.\n\nImage baraholka_ge/2025/06/00c16b2df19f9cc5bee9847647d09602150f774efe03f1e92ba8be382ca1c55a.jpg:\nThe image features a CROWN professional power tool packaging, specifically for a model CT10130C with an output of 810 watts. The box displays the brand prominently in red and includes several product features listed in multiple languages, emphasizing its functionalities for drilling. \n\nIn the background, there are some metallic tools, likely wrenches, organized neatly. The surface beneath is wood-colored, suggesting a warm, indoor environment. The overall vibe feels practical and utilitarian, likely suitable for a workshop or home improvement setting. The box shows signs of wear with some noticeable creases and a slightly open flap.\n\nImage baraholka_ge/2025/06/45f6dbaeb41c98c23f25ee7dd5f7025b651f2fcd3ebc9ba08c432e5082c2fea7.jpg:\nThe image features a power tool and a set of wrenches arranged in a box. A Crown brand power drill is shown, with an electrical cord attached. Next to it is a set of combination wrenches, displayed in a red holder, which indicates \"12 Pieces\" and lists the different sizes available. The box appears to be of standard packaging materials and the background has a light wooden floor. No other items, damages, or specific annotations are visible in the image. The overall presentation is neat, indicating the items are likely in good condition."
   },
   {
     "lot": {
@@ -5602,6 +6139,98 @@
       "timestamp": "2025-06-16T17:48:15+00:00"
     },
     "input": "Message text:\nВообще романтика"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T08:02:53+00:00",
+          "market:deal": "sell_item",
+          "item:type": "pressure_sprayer",
+          "brand": "FISKARS",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/22dd69959558651fe732f5d745d4d2d1d4491f868f584b1ef197cdfb58e39076.jpg"
+          ],
+          "title_en": "5L FISKARS Pressure Sprayer",
+          "description_en": "Bright orange pressure sprayer with a capacity of 5 liters, equipped with a long black hose and ergonomic trigger handle, suitable for gardening or spraying purposes.",
+          "title_ru": "5Л распылитель FISKARS",
+          "description_ru": "Ярко-оранжевый распылитель с емкостью 5 литров, оснащенный длинным черным шлангом и эргономичной ручкой, подходит для садоводства или распыления.",
+          "title_ka": "5ლ FISKARS წნევის სპრეი",
+          "description_ka": "ბრტყელი ნარინჯისფერი წნევის სპრეი 5 ლიტრიანი მოცულობით, აღჭურვილი გრძელი შავი მილი და ერგონომიული ტრიგერის სახელური, შესაფერისი ბაღის ან სპრეის მიზნებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:02:53+00:00",
+          "market:deal": "sell_item",
+          "item:type": "fan",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/bf211893e1b727750c2a3e833821c6258d28fccb84817dd7226b0e8f623fa998.jpg"
+          ],
+          "title_en": "Compact Black Fan",
+          "description_en": "Black fan with a rounded shape, designed for personal use or smaller spaces, connected to a standard electrical outlet.",
+          "title_ru": "Компактный черный вентилятор",
+          "description_ru": "Черный вентилятор округлой формы, предназначенный для личного использования или небольших помещений, подключается к стандартной электрической розетке.",
+          "title_ka": "კომპაქტური შავი ვენტილატორი",
+          "description_ka": "შავი ვენტილატორი მრგვალი ფორმით, განკუთვნილია პირადი გამოყენებისთვის ან მცირე სივრცეებისთვის, დაკავშირებულია სტანდარტულ ელექტრო ქსელთან."
+        },
+        {
+          "timestamp": "2025-06-22T08:02:53+00:00",
+          "market:deal": "sell_item",
+          "item:type": "storage_organizer",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/3b1bb15777202163724c9ba593800c64949cb1f1559e65143a47e4fe868d083b.jpg"
+          ],
+          "title_en": "Set of 5 Round Mesh Storage Organizers",
+          "description_en": "Stack of five round mesh storage organizers with black fabric body and orange trim, featuring zipper closures for easy access.",
+          "title_ru": "Набор из 5 круглых сетчатых органайзеров",
+          "description_ru": "Стек из пяти круглых сетчатых органайзеров с черным тканевым корпусом и оранжевыми вставками, с застежками-молниями для легкого доступа.",
+          "title_ka": "5 წრიული ქსოვილის ორგანიზატორი",
+          "description_ka": "ხუთი წრიული ქსოვილის ორგანიზატორის ნაკრები შავი ქსოვილის სხეულით და ნარინჯისფერი დეტალებით, რომელიც აღჭურვილია ზიპ-ხსნარებით მარტივი წვდომისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T08:02:53+00:00",
+          "market:deal": "sell_item",
+          "item:type": "desk_fan",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/e87bc9c5ccc6a7ad17b59b7d967380282b75811c26dbeafb5835902432111809.jpg"
+          ],
+          "title_en": "Set of 2 Small Desk Fans",
+          "description_en": "Two small white desk fans with protective mesh covers and adjustable arms for versatile positioning.",
+          "title_ru": "Набор из 2 маленьких настольных вентиляторов",
+          "description_ru": "Два маленьких белых настольных вентилятора с защитными сетчатыми крышками и регулируемыми руками для универсального позиционирования.",
+          "title_ka": "2 პატარა მაგიდის ვენტილატორი",
+          "description_ka": "ორი პატარა თეთრი მაგიდის ვენტილატორი დამცავი ქსოვილის საფარით და რეგულირებადი ხელებით მრავალმხრივი პოზიციონირებისთვის."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480782",
+      "source:path": "baraholka_ge/2025/06/2480779.md",
+      "source:author:telegram": "tommyCrosss",
+      "source:author:name": "Tommy Cross",
+      "timestamp": "2025-06-22T08:02:54+00:00",
+      "files": [
+        "baraholka_ge/2025/06/22dd69959558651fe732f5d745d4d2d1d4491f868f584b1ef197cdfb58e39076.jpg",
+        "baraholka_ge/2025/06/bf211893e1b727750c2a3e833821c6258d28fccb84817dd7226b0e8f623fa998.jpg",
+        "baraholka_ge/2025/06/3b1bb15777202163724c9ba593800c64949cb1f1559e65143a47e4fe868d083b.jpg",
+        "baraholka_ge/2025/06/e87bc9c5ccc6a7ad17b59b7d967380282b75811c26dbeafb5835902432111809.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2480779\nchat: baraholka_ge\nsender: 6277908920\nsender_username: tommyCrosss\nsender_phone: \ntg_link: https://t.me/tommyCrosss\nsender_name: Tommy Cross\nauthor_type: user\ndate: 2025-06-22T08:02:53+00:00\ngroup_id: 14004634509419521\nis_admin: False\nfiles: ['baraholka_ge/2025/06/22dd69959558651fe732f5d745d4d2d1d4491f868f584b1ef197cdfb58e39076.jpg']\n\nImage baraholka_ge/2025/06/22dd69959558651fe732f5d745d4d2d1d4491f868f584b1ef197cdfb58e39076.jpg:\nThe image features a bright orange pressure sprayer labeled \"FISKARS.\" It has a capacity of 5 liters. The sprayer is equipped with a long black hose connected to a spray nozzle. The nozzle features an ergonomic trigger handle for ease of use. The body of the sprayer shows a label with product information. The background appears to be a simple, plain wall with a bit of brown fabric visible underneath the sprayer, suggesting it’s placed on a soft surface. Overall, the item looks clean and well-maintained, suitable for gardening or spraying purposes.\n\nImage baraholka_ge/2025/06/bf211893e1b727750c2a3e833821c6258d28fccb84817dd7226b0e8f623fa998.jpg:\nThe image shows a black fan or ventilation device with a rounded shape and multiple blades visible inside. It is connected to an electrical cord with a standard plug at one end, which suggests it is designed for use with a standard electrical outlet. The fan appears to be compact, suitable for personal use or smaller spaces. The background is a neutral color, making the fan the focal point of the image. No other items or annotations are visible.\n\nImage baraholka_ge/2025/06/3b1bb15777202163724c9ba593800c64949cb1f1559e65143a47e4fe868d083b.jpg:\nThe image shows a stack of five round mesh storage organizers with a black fabric body and orange trim. Each organizer features a zipper closure and appears to be designed for easy access and visibility of contents. They are positioned vertically with the zippers aligned at the front. The background shows a grey shelving unit, suggesting a modern or utility vibe. There are some cords visible at the bottom of the image, but no additional details about them are clear. Overall, the scene is focused on storage solutions, highlighting organization and practicality.\n\nImage baraholka_ge/2025/06/e87bc9c5ccc6a7ad17b59b7d967380282b75811c26dbeafb5835902432111809.jpg:\nThe image features two small, white desk fans with protective mesh covers. Each fan has blue blades visible within the mesh. The base of the fans appears to have adjustable arms that allow for positioning, possibly indicating versatility in use. A single power cord is visible, suggesting the fans are electrically powered. The background seems to have a light-colored surface, possibly a table. The overall aesthetic is modern and functional."
   },
   {
     "lot": {
@@ -6164,6 +6793,87 @@
       "timestamp": "2025-06-21T08:58:17+00:00"
     },
     "input": "Message text:\nПривет! Не могу в лс написать. Сколько за саму поставку?"
+  },
+  {
+    "lot": {
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480745",
+      "source:path": "baraholka_ge/2025/06/2480745.md",
+      "source:author:telegram": "Anatolikotik",
+      "source:author:name": "Anatoli",
+      "timestamp": "2025-06-22T07:53:20+00:00"
+    },
+    "input": "Message text:\nhttps://temu.com/u/G2D5BjA5t71UvC"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "ceramic_plate",
+          "condition": "new",
+          "price": 40,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/0bf9da4f354569daae08b162caa740ec3eeec303ff2a5cce7797eec7bedbfad2.jpg"
+          ],
+          "title_en": "Set of Khinkali Plates",
+          "description_en": "New set including 1 large plate, 6 medium plates, and 2 salt shakers for 40 GEL.",
+          "title_ru": "Набор для хинкали",
+          "description_ru": "Новый набор, включающий 1 большую тарелку, 6 средних тарелок и 2 солницы за 40 лари.",
+          "title_ka": "ხინკლის ნაკრები",
+          "description_ka": "ახალი ნაკრები, რომელიც მოიცავს 1 დიდ თეფშს, 6 საშუალო თეფშს და 2 მარილის ქილას 40 ლარად."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "glassware_set",
+          "condition": "new",
+          "price": 40,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/e2668bfc6e1ef83f0807e94ce099f646b3e8aca5fba1aeebc2e21341fcba062f.jpg"
+          ],
+          "title_en": "Glassware Set",
+          "description_en": "New set of decanter and glasses for 40 GEL.",
+          "title_ru": "Комплект графини и стаканов",
+          "description_ru": "Новый комплект графини и стаканов за 40 лари.",
+          "title_ka": "გრაფინის და ჭიქების ნაკრები",
+          "description_ka": "ახალი გრაფინის და ჭიქების ნაკრები 40 ლარად."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "champagne_glass",
+          "condition": "new",
+          "price": 20,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/939bce1c1a26ff08175293ca121b23ed1d9092b695e729692ede16c0729a3548.jpg"
+          ],
+          "title_en": "Champagne Glass Set",
+          "description_en": "Set of 4 champagne glasses for 20 GEL.",
+          "title_ru": "Бокалы для шампанского",
+          "description_ru": "Набор из 4 бокалов для шампанского за 20 лари.",
+          "title_ka": "შამპანურის ჭიქების ნაკრები",
+          "description_ka": "4 შამპანურის ჭიქის ნაკრები 20 ლარად."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480806",
+      "source:path": "baraholka_ge/2025/06/2480799.md",
+      "source:author:telegram": "Jamlet_plumber",
+      "source:author:name": "Jamlet 🚰 🛠️",
+      "timestamp": "2025-06-22T08:05:56+00:00",
+      "files": [
+        "baraholka_ge/2025/06/0bf9da4f354569daae08b162caa740ec3eeec303ff2a5cce7797eec7bedbfad2.jpg",
+        "baraholka_ge/2025/06/e2668bfc6e1ef83f0807e94ce099f646b3e8aca5fba1aeebc2e21341fcba062f.jpg",
+        "baraholka_ge/2025/06/052ee891c20d7321509d05a213c9bf9f37afcfaee58ab6030ace93c80d17357b.jpg",
+        "baraholka_ge/2025/06/e4b4f17a107bc3ef46c797e852ff92dc7248bf66d48fa7746e5110d8ccdd613b.jpg",
+        "baraholka_ge/2025/06/d22e982e173e5cac0f705eaf5557863c4fe15ac1cbb07b03cfdf2d13a99cba05.jpg",
+        "baraholka_ge/2025/06/fa931a159bdc2beafe40938a1f914e5405367da4ba54db7c5e4618404f879712.jpg",
+        "baraholka_ge/2025/06/939bce1c1a26ff08175293ca121b23ed1d9092b695e729692ede16c0729a3548.jpg"
+      ]
+    },
+    "input": "Message text:\n1) Набор для хинкали новый \n1 болшая тарелка\n6 средних тарелки \n2 солницы \n 40лари\n\n2) Комплект графини и стаканов новый \n40лари \n\n3) бокалы для шампанского \n4 штуки 20лари\n\nImage baraholka_ge/2025/06/0bf9da4f354569daae08b162caa740ec3eeec303ff2a5cce7797eec7bedbfad2.jpg:\nThe image shows a set of three ceramic plates resting in a protective foam packaging. The plates have a delicate floral border design, likely in soft colors, with a glossy white center. The foam holds the plates securely in place, suggesting they are either a new or well-preserved vintage set. There are also small rectangular cutouts in the foam for additional protection. The background is a neutral-toned surface, possibly a table. Overall, the presentation indicates these are decorative or fine dining plates.\n\nImage baraholka_ge/2025/06/e2668bfc6e1ef83f0807e94ce099f646b3e8aca5fba1aeebc2e21341fcba062f.jpg:\nThe image shows a box labeled \"GLASSWARE,\" indicating a set of drinking vessels. The box design is predominantly black with a glossy finish, featuring a simple color scheme of white and blue accents. A carry handle is visible on top. \n\nInside, the set includes a decanter and several glasses, all displayed in a modern, angular design. The box indicates it contains a total of 7 pieces and is intended for serving drinks. The background around the box appears to be a light-colored table or surface. Overall, the packaging looks sturdy and clean, suggesting a contemporary style for the glassware set.\n\nImage baraholka_ge/2025/06/052ee891c20d7321509d05a213c9bf9f37afcfaee58ab6030ace93c80d17357b.jpg:\nThe image features a glass decanter set displayed on a surface beside its packaging. The decanter has a unique, geometric design with a light brown tint and comes topped with a round cork stopper. The box labeled \"GLASS WARE\" indicates that it is a 7-piece set. The background shows a somewhat informal environment with additional boxes and items. The vibe is modern and tidy, suggesting a neat organization.\n\nImage baraholka_ge/2025/06/e4b4f17a107bc3ef46c797e852ff92dc7248bf66d48fa7746e5110d8ccdd613b.jpg:\nThe image showcases a 7-piece glassware set prominently featuring a decanter and six tumblers. The glass pieces have a modern, geometric design and are colored in a soft pink hue, giving them an elegant appearance. The decanter is more prominent, shaped like a multi-faceted prism, while the tumblers are slightly varied in shape, adding visual interest. The background appears to be a marble surface, enhancing the overall aesthetic. The packaging prominently displays the text \"GLASSWARE\" at the top and \"7 PCS SET DECANTER SET\" at the bottom, making it clear that this is a complete set intended for serving beverages.\n\nImage baraholka_ge/2025/06/d22e982e173e5cac0f705eaf5557863c4fe15ac1cbb07b03cfdf2d13a99cba05.jpg:\nThe image shows a modern, geometric glass with a unique faceted design. The glass has a light amber color and is positioned in front of its packaging, which is a simple white box labeled \"DELI GLASSWARE\" with icons indicating it is dishwasher safe. The box also shows a visual of the glass and indicates a volume of 310ml. The setting appears bright and minimalist, with a smooth, light-colored surface beneath the glass. No other items are visible in the image.\n\nImage baraholka_ge/2025/06/fa931a159bdc2beafe40938a1f914e5405367da4ba54db7c5e4618404f879712.jpg:\nThe image shows a cardboard box containing six brown, hexagonal glasses. The glasses are arranged in two rows, with three in each row. They feature a clear glass bottom and a slightly darker, tinted upper section. The box appears to be well-structured, with the glasses securely placed inside. There are no visible markings on the box. The vibe is simple and functional, suggesting a modern or contemporary design suitable for everyday use or special occasions.\n\nImage baraholka_ge/2025/06/939bce1c1a26ff08175293ca121b23ed1d9092b695e729692ede16c0729a3548.jpg:\nThe image shows a single champagne glass positioned in front of a white cardboard box. The box is labeled \"PEPCO HOME\" with the text indicating it contains four glasses, each with a capacity of 215 ml. The glass itself has a slender stem and a wide bowl typical for champagne. In the background, there is a television screen and a white chair with a simple design. The setting appears modern and minimalistic. The surface is likely a table made of wood or a similar material."
   },
   {
     "lot": {
@@ -6772,6 +7482,145 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "grow_box",
+          "condition": "used",
+          "price": 300,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/8a31e826a364c4e688634014aa122a02701ce4383c38a1e06eef97507bb28f6b.jpg"
+          ],
+          "title_en": "Grow Box GG 120x120x200",
+          "description_en": "Used grow box GG 120x120x200 for indoor gardening.",
+          "title_ru": "Гровбокс GG 120х120х200",
+          "description_ru": "Использованный гровбокс GG 120х120х200 для домашнего садоводства.",
+          "title_ka": "გროვბოქსი GG 120x120x200",
+          "description_ka": "გამოყენებული გროვბოქსი GG 120x120x200 შინაური ბაღისათვის."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "led_lamp",
+          "condition": "used",
+          "price": 350,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/7b41e3230a6a0a28b2e6da6f8c8298e7955c2a9f4eed0912cdcba95c033dbba3.jpg"
+          ],
+          "title_en": "240W LED Lamp Samsung",
+          "description_en": "Used 240W LED lamp from Samsung.",
+          "title_ru": "Лампа 240w, Led samsung",
+          "description_ru": "Использованная лампа 240w от Samsung.",
+          "title_ka": "ლამპა 240w, Led samsung",
+          "description_ka": "გამოყენებული 240w ლამპა Samsung-დან."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "led_lamp",
+          "condition": "used",
+          "price": 250,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/e86037798278c2bf2cfca6b6eeeeda9da47572024d2ed14c7781159c96acecc1.jpg"
+          ],
+          "title_en": "150W LED Lamp Samsung with Dimmer",
+          "description_en": "Used 150W LED lamp from Samsung with dimmer.",
+          "title_ru": "Лампа 150w, Led samsung с димером",
+          "description_ru": "Использованная лампа 150w от Samsung с димером.",
+          "title_ka": "ლამპა 150w, Led samsung დიმერით",
+          "description_ka": "გამოყენებული 150w ლამპა Samsung-დან დიმერით."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "led_lamp",
+          "condition": "used",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/a8217fb4b080c317e8213146d167c5f72b834d6bf023edc8c2b41a69b6ab389e.jpg"
+          ],
+          "title_en": "100W HydroMars LED Lamp",
+          "description_en": "Used 100W HydroMars LED lamp.",
+          "title_ru": "Лампа 100w HydroMars",
+          "description_ru": "Использованная лампа 100w HydroMars.",
+          "title_ka": "ლამპა 100w HydroMars",
+          "description_ka": "გამოყენებული 100w HydroMars ლამპა."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "watering_can",
+          "condition": "used",
+          "price": 30,
+          "price:currency": "GEL",
+          "files": [],
+          "title_en": "5L Watering Can",
+          "description_en": "Used 5L watering can.",
+          "title_ru": "Поливалка 5л",
+          "description_ru": "Использованная поливалка 5л.",
+          "title_ka": "პოლივალკა 5ლ",
+          "description_ka": "გამოყენებული პოლივალკა 5ლ."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "net",
+          "condition": "used",
+          "price": 30,
+          "price:currency": "GEL",
+          "files": [],
+          "title_en": "Net",
+          "description_en": "Used net.",
+          "title_ru": "Сетка",
+          "description_ru": "Использованная сетка.",
+          "title_ka": "სетка",
+          "description_ka": "გამოყენებული сетკა."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "cooler",
+          "condition": "used",
+          "price": 30,
+          "price:currency": "GEL",
+          "files": [],
+          "title_en": "Turbo Cooler 125",
+          "description_en": "Used turbo cooler 125.",
+          "title_ru": "Кулер 125 турбо",
+          "description_ru": "Использованный кулер 125 турбо.",
+          "title_ka": "კულერი 125 ტურბო",
+          "description_ka": "გამოყენებული კულერი 125 ტურბო."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "fan",
+          "condition": "used",
+          "price": 50,
+          "price:currency": "GEL",
+          "files": [],
+          "title_en": "Two Fans",
+          "description_en": "Used two fans.",
+          "title_ru": "Два вентилятора",
+          "description_ru": "Использованные два вентилятора.",
+          "title_ka": "ორი ვენტილატორი",
+          "description_ka": "გამოყენებული ორი ვენტილატორი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480786",
+      "source:path": "baraholka_ge/2025/06/2480783.md",
+      "source:author:telegram": "tommyCrosss",
+      "source:author:name": "Tommy Cross",
+      "timestamp": "2025-06-22T08:03:55+00:00",
+      "files": [
+        "baraholka_ge/2025/06/8a31e826a364c4e688634014aa122a02701ce4383c38a1e06eef97507bb28f6b.jpg",
+        "baraholka_ge/2025/06/7b41e3230a6a0a28b2e6da6f8c8298e7955c2a9f4eed0912cdcba95c033dbba3.jpg",
+        "baraholka_ge/2025/06/e86037798278c2bf2cfca6b6eeeeda9da47572024d2ed14c7781159c96acecc1.jpg",
+        "baraholka_ge/2025/06/a8217fb4b080c317e8213146d167c5f72b834d6bf023edc8c2b41a69b6ab389e.jpg"
+      ]
+    },
+    "input": "Message text:\n1 Гровбокс GG 120х120х200 300лари\n2 Лампа 240w, Led samsung - 350лари\n3 Лампа 150w, Led samsung с димером 250лари\n4 Лампа 100w HydroMars 150лари\n5 Поливалка 5л 30лари\n6 Сетка 30лари\n7 Кулер 125 турбо 30лари\n8 Два вентилятора 50 лари\n\nВсё за 1000лари\n\nImage baraholka_ge/2025/06/8a31e826a364c4e688634014aa122a02701ce4383c38a1e06eef97507bb28f6b.jpg:\nThe image features a dark gray grow tent or storage tent with bright green accents along the seams. It has a dual zipper opening in the center for access. The material appears slightly wrinkled, suggesting it's been folded. The top of the tent has a branded logo, but the text is partially obscured. The background appears cluttered with some visible cables and other miscellaneous items, indicating the tent may be in a utility or storage area. The overall vibe is functional and practical, suitable for indoor gardening or storage purposes.\n\nImage baraholka_ge/2025/06/7b41e3230a6a0a28b2e6da6f8c8298e7955c2a9f4eed0912cdcba95c033dbba3.jpg:\nThe image shows a power supply unit resting on a ribbed metallic surface. The power supply, labeled \"MW XLG240-H-A,\" is encased in a silver body with input and output connections visible. The unit features various markings and specifications alongside safety certifications. It has cables connected, with one visible cable extending from the output side. The background suggests a clean and modern workspace environment. There are no watermarks or additional products visible in the image. The overall vibe appears functional and focused on electronic components.\n\nImage baraholka_ge/2025/06/e86037798278c2bf2cfca6b6eeeeda9da47572024d2ed14c7781159c96acecc1.jpg:\nThe image shows an LED driver mounted on a square aluminum plate. The driver is labeled \"XLG150.HAB\" and includes input and output specifications along with various certification marks. \n\nThere are two cables connected to the driver, one leading to a power switch that is visible. The overall assembly appears neat and functional, designed for electrical use, likely in a lighting setup. The background is plain and unremarkable, focusing attention on the driver itself. No additional annotations or watermarks are visible.\n\nImage baraholka_ge/2025/06/a8217fb4b080c317e8213146d167c5f72b834d6bf023edc8c2b41a69b6ab389e.jpg:\nThis image shows the underside of a lighting fixture, likely a grow light, from the brand \"Mars Hydro.\" The fixture is white and features a flat surface with several mounting points. Two metal clips are attached, presumably for hanging the light. There is a label with specifications and certification details printed on it. A power cable is also visible, extending from one side of the fixture. There are no additional visible features like logos or markings beyond the main branding. The overall appearance suggests a design aimed at functional use in a cultivation or growing environment."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2480178",
       "source:path": "baraholka_ge/2025/06/2480178.md",
@@ -6961,6 +7810,42 @@
       ]
     },
     "input": "Message text:\nПродам пару новых беспроводных геймпадов для ПК / switch / android / ios\n🔸Gamesir t4 pro - максимум наворотов за скромный бюджет, датчики холла, макросы, программируемые кнопки, подсветка, вибро и держатель для телефона в комплекте (крепится к геймпаду). 75 лари\n🔸EasySMX x05 - просто лучший в своем бюджете, не хватает только программируемых кнопок, а так все есть. 50 лари\n\nImage baraholka_ge/2025/06/2cc8f4350949aa0c34b446e14298927ef24fcf13b8cbc7365eab764d929f3801.jpg:\nThe image shows two boxed gaming controllers on a wooden surface. The first box, on the left, is a \"Gamesir T4 Pro\" controller. It is compatible with Android, iOS, PC, Switch, and Windows, featuring 4 ablatable buttons and a 6-axis gyro. The box design uses a red and black color scheme. \n\nThe second box, on the right, is for an \"EasySMX X05 Wireless Controller.\" The box is predominantly white with a gray image of the controller. It's labeled as compatible with multiple platforms and includes text in multiple languages. Both boxes appear to be unopened, and there's no visible watermark on the image."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-20T11:41:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "table",
+          "condition": "like_new",
+          "price": 120,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/74e45e38006fab94a501e6e1920df35d2e44530ea9523a9a7091b4cb524cf99f.jpg"
+          ],
+          "title_en": "Modern Console Table 48x120",
+          "description_en": "Selling a JYSK table, size 48x120, in perfect condition, almost like new! Price 120 GEL.",
+          "title_ru": "Современный консольный стол 48x120",
+          "description_ru": "Продам стол jysk, размер 48×120, состояние идеальное, почти как новый! Цена 120 лари.",
+          "title_ka": "მოდერნული კონსოლის მაგიდა 48x120",
+          "description_ka": "ვყიდი jysk მაგიდას, ზომა 48×120, მდგომარეობა იდეალურია, თითქმის ახალი! ფასი 120 ლარი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2480828",
+      "source:path": "baraholka_ge/2025/06/2480824.md",
+      "source:author:name": "Александр Осташевич",
+      "timestamp": "2025-06-22T08:08:30+00:00",
+      "files": [
+        "baraholka_ge/2025/06/74e45e38006fab94a501e6e1920df35d2e44530ea9523a9a7091b4cb524cf99f.jpg",
+        "baraholka_ge/2025/06/ad6da1f94a942c145747ff321e8f5f809df313d0bf4d8b03ec30ac59566f32af.jpg",
+        "baraholka_ge/2025/06/6b4b19a210184a8fbc91489954f0cc58a0dd17883b6fa4078405f2264f42381c.jpg",
+        "baraholka_ge/2025/06/505d928c3dc410dacb0e06a5485a7e4b87555d7e22ecdf5f9be9d5502621e0eb.jpg",
+        "baraholka_ge/2025/06/8a04be1ee94d6ff7be5665763f432d6ef48f4ca8f43693c987a0d2f5a4750662.jpg"
+      ]
+    },
+    "input": "Message text:\nПродам стол jysk, размер 48×120, состояние идеальное, почти как новый! Цена 120 лари.\n\nImage baraholka_ge/2025/06/74e45e38006fab94a501e6e1920df35d2e44530ea9523a9a7091b4cb524cf99f.jpg:\nThe image features a modern wooden console table with a light wooden top and a minimalist design. It includes two open compartments underneath for storage or display. The legs are black metal, creating a stylish contrast with the wood. The background shows a light-colored wall with vertical wooden slats, which adds an element of texture to the space. The floor appears to be made of light-colored wood, contributing to a contemporary and warm interior vibe. Overall, the setup suggests a clean, organized living area.\n\nImage baraholka_ge/2025/06/ad6da1f94a942c145747ff321e8f5f809df313d0bf4d8b03ec30ac59566f32af.jpg:\nThe image displays a sleek, modern desk named ABBETVED, measuring 48x120 cm. It features a light wood finish with a smooth surface, complemented by a single drawer embellished with a black handle. The desk is supported by black metal legs with a crisscross design, adding a contemporary touch. Below the product's details, there is a price of 439 GEL, marked under a “Basic” category. The desk is showcased in a minimalist style, appealing for either home or office settings. The overall vibe is clean and functional, making it a practical choice for workspace organization.\n\nImage baraholka_ge/2025/06/6b4b19a210184a8fbc91489954f0cc58a0dd17883b6fa4078405f2264f42381c.jpg:\nThe image shows a modern workspace or living area featuring a stylish, contemporary desk with a wooden surface and metal legs. The desk has a minimalist design with diagonal support beams for added stability. In the background, there is a cozy sofa with light upholstery, suggesting a comfortable atmosphere. The room has a bright, airy feel with well-lit walls and large windows, possibly contributing to a warm natural light. The flooring is wood-like, contributing to a cohesive modern aesthetic. There are vertical wooden slats in the background, adding texture and interest to the space. Overall, the decor reflects a contemporary design style.\n\nImage baraholka_ge/2025/06/505d928c3dc410dacb0e06a5485a7e4b87555d7e22ecdf5f9be9d5502621e0eb.jpg:\nThe image features a modern wooden desk with a light wood finish on the top and dark brown legs. The desk includes one central drawer that is partially open, revealing a light blue interior. There are also two open compartments on either side of the drawer. The floor is covered with wooden tiles, and the setting appears to have a contemporary vibe. In the background, there seems to be a bed, though details are minimal. Overall, the desk presents a sleek and functional design.\n\nImage baraholka_ge/2025/06/8a04be1ee94d6ff7be5665763f432d6ef48f4ca8f43693c987a0d2f5a4750662.jpg:\nThe image shows a small, modern wooden desk with a light brown, textured surface and a subtly curved edge. It features a single central drawer with a handle for storage. The desk is supported by slender black metal legs, giving it a contemporary look. In the background, there is a wooden headboard that suggests a cozy bedroom setting, with a beige sofa partially visible to the right. The flooring appears to be light-colored, possibly laminate or tiles. The overall vibe is modern and minimalist."
   },
   {
     "lot": {
@@ -8049,29 +8934,6 @@
       "timestamp": "2025-06-18T01:50:05+00:00"
     },
     "input": "Message text:\nСалaм пoявилaсь oднa тeмa благодаpя кoтоpой можно cпoкoйно вынoсить 6000 pyблeй за тpи чacа, вызвал интеpeс? Пиши нe кyсaюсь."
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T08:30:30+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "apartment",
-      "rooms": "2",
-      "area": 46,
-      "price": 400,
-      "price:currency": "USD",
-      "price:period": "year",
-      "payment_terms": "first and last month",
-      "heating": "central",
-      "addr:street": "Шартава",
-      "addr:housenumber": "32",
-      "building:name": "Sunrise",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751732",
-      "source:path": "batumiarendachat/2025/06/751725.md",
-      "source:author:telegram": "rusagent5",
-      "source:author:name": "Broker RD"
-    },
-    "input": "Message text:\n**#сдам****\n\n📌Шартава 32\n           Sunrise ****#sunrise****\n\n➖2 комнаты,1 светлая спальня \n▫️46 квадратов ▫️21 этаж\n\n➖центральное отопление \n➖кондиционер \n\n➖балкон\n\n 💸400$ на **год **\n📝оплата первого и последнего месяца \n📖915**"
   },
   {
     "lot": {
@@ -11086,7 +11948,7 @@
         "batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg"
       ]
     },
-    "input": "Message text:\nid: 110820\nchat: batumi_topchat\nsender: 1651602623\nsender_username: Chieff9999\nsender_phone: +380951093009\ntg_link: https://t.me/Chieff9999\nsender_name: Nikolay Valerievich\nauthor_type: user\ndate: 2025-06-22T06:22:15+00:00\ngroup_id: 14004586682800858\nis_admin: False\nfiles: ['batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg']\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations.\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations."
+    "input": "Message text:\nid: 110820\nchat: batumi_topchat\nsender: 1651602623\nsender_username: Chieff9999\nsender_phone: +380951093009\ntg_link: https://t.me/Chieff9999\nsender_name: Nikolay Valerievich\nauthor_type: user\ndate: 2025-06-22T06:22:15+00:00\ngroup_id: 14004586682800858\nis_admin: False\nfiles: ['batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg']\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations.\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations.\n\nImage batumi_topchat/2025/06/8c30ee2cc6ed5406b14a80034ad8d902aaede571ab6ced3085854142d2084b5c.jpg:\nThe image features a modern wooden table with a black glass top. The table has a minimalist design, supported by two wooden side panels that have a light finish, giving it a contemporary look. There is a lower shelf for additional storage or display. The flooring beneath is light-colored laminate. In the background, you can see kitchen appliances, including a green cabinet, a white refrigerator, and possibly a stove. The overall vibe is clean and functional, suggesting a modern kitchen space.\n\nImage batumi_topchat/2025/06/7ebfcf89c1e1a85dcd13f6cf7735bde95b3100dac54a1964e28f07952e2f8bee.jpg:\nThe image features a modern coffee table with a sleek design. The tabletop is made of black glass, which has a glossy surface. It sits on a wooden base that has two support legs on either side. The table legs and edges have a warm wood finish. There are glass supports at the corners, each adorned with a decorative metallic detail. In the background, a blue fabric drape can be seen, along with a white radiator. The flooring appears to have a light wooden finish with a herringbone pattern, giving a contemporary feel to the room. The overall vibe is modern and minimalist.\n\nImage batumi_topchat/2025/06/e619f36272fd13cc534eac8df4f7910cc95c349e3ef336971b3aa73b540aa1ea.jpg:\nThe image shows a modern, sleek table with a unique, slightly irregular glass top that has a dark, glossy finish. The table is supported by two wooden legs and features a lower shelf for additional storage. The wood has a light, natural finish. \n\nIn the background, there's a white radiator mounted on the wall next to a door. The flooring appears to be a light-colored wood, arranged in a herringbone pattern. A blue curtain hangs on the left side, adding a pop of color to the scene. The overall vibe is contemporary and minimalistic, suitable for a living space or office.\n\nImage batumi_topchat/2025/06/f803bb65846276dcd6b09f18ba91812bb582c49f62eb81a2ad28396725be78aa.jpg:\nThe image shows a decorative fabric cube, likely used as a storage box or pouf. The fabric features various coffee-related patterns and words, including \"coffee,\" \"espresso,\" \"cappuccino,\" and \"mocha,\" in different fonts and styles. The colors are primarily neutral with black and dark blue accents. The design gives a cozy and vibrant vibe, perfect for a kitchen or café setting. The box has a simple, cube shape with no visible markings or additional decorations."
   },
   {
     "lot": {
@@ -12420,6 +13282,20 @@
   },
   {
     "lot": {
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643516",
+      "source:path": "baraholka_batumi_home/2025/06/1643516.md",
+      "source:author:telegram": "telepostbot",
+      "source:author:name": "TelepostBot",
+      "timestamp": "2025-06-22T08:00:10+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/8e4280fd9e08090a8baf8bc97aead1b5acc56e798c130882746327f7c20fa139.jpg"
+      ]
+    },
+    "input": "Message text:\n🎮 **EVO SIM GAME — это больше, чем игра!**\n 🚀 Построй свою виртуальную империю, управляй бизнесом, развивай карьеру и живи так, как хочешь!\n🌍 Игра погружает в мир возможностей, где ты сам себе босс.\n 📈 Регистрируйся, прокачивай навыки, соревнуйся, зарабатывай!\n🎁 **ПРИСОЕДИНЯЙСЯ ПРЯМО СЕЙЧАС** и получи стартовые бонусы!\n 👉 Узнай больше по ссылке: [http://t.me/EvoSimGamePro_bot?start=292726391](http://t.me/EvoSimGamePro_bot?start=292726391)\n🔗 Только ты решаешь, кем станешь в EVO SIM — не упусти шанс!\n #EvoSimGame #ИграйИПрокачивайся #ТвойВыборТвояЖизнь\n\nImage baraholka_batumi_home/2025/06/8e4280fd9e08090a8baf8bc97aead1b5acc56e798c130882746327f7c20fa139.jpg:\nThe image is an advertisement for \"EVOSIMGAME,\" described as the \"first telecom provider in the world that pays.\" It features an illustrated person holding a mobile phone, with coins emerging from a larger phone on the right. The background is a gradient of purple with a faint outline of a communication tower. The overall style is modern and colorful, aimed at conveying a sense of innovation and excitement."
+  },
+  {
+    "lot": {
       "market:deal": "services_offer",
       "description_en": "Regular trips from Krasnodar to Vladikavkaz and Batumi. VIP minibus service with competitive prices. Package delivery available from Wildberries, OZON, and CDEK. Booking via Telegram, Viber, WhatsApp.",
       "description_ru": "Регулярные рейсы из Краснодара во Владикавказ и Батуми. VIP микроавтобус с конкурентоспособными ценами. Доставка посылок от Wildberries, OZON и CDEK. Бронирование через Телеграм, Вайбер, Ватсапп.",
@@ -12750,6 +13626,52 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T07:52:11+00:00",
+          "market:deal": "sell_item",
+          "item:type": "espresso_machine",
+          "brand": "inhouse",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi_home/2025/06/09d13082ded34279dd90a89f536745ca6d62a76077dc4f6c5df4e48f4db951fa.jpg",
+            "baraholka_batumi_home/2025/06/13c77b976a21f4744fbafae45dc5c064e3affc9084402957146ef28ea80d6c1a.jpg"
+          ],
+          "title_en": "Compact Espresso Machine",
+          "description_en": "The image features a compact espresso machine, finished in a sleek, dark metallic color. The design includes a horizontal ribbed top and a prominent control panel with several buttons and indicators. The machine has a portafilter attached on one side for brewing coffee, while the drip tray is located at the bottom with perforations for catching excess liquid. The branding 'inhouse' is visible on the front. Overall, the vibe is modern and stylish, suitable for contemporary kitchens.",
+          "title_ru": "Компактная кофемашина",
+          "description_ru": "На изображении представлена компактная кофемашина, выполненная в стильном темном металлическом цвете. Дизайн включает горизонтальную рифленую верхнюю часть и заметную панель управления с несколькими кнопками и индикаторами. Машина имеет портафильтр с одной стороны для приготовления кофе, а поддон для капель расположен внизу с перфорацией для сбора избыточной жидкости. Бренд 'inhouse' виден спереди. В целом, атмосфера современная и стильная, подходит для современных кухонь.",
+          "title_ka": "კომპაქტური ესპრესო მანქანა",
+          "description_ka": "სურათზე წარმოდგენილია კომპაქტური ესპრესო მანქანა, შესრულებული თანამედროვე მუქი მეტალის ფერში. დიზაინი მოიცავს ჰორიზონტალურ რიფლირებულ ზედაპირს და გამორჩეულ მართვის პანელს რამდენიმე ღილაკითა და ინდიკატორით. მანქანას აქვს პორტაფილტერი ერთ მხარეს ყავის მოსამზადებლად, ხოლო წვეთების თარო მდებარეობს ქვემოთ ზედაპირის ზედა ნაწილში. ბრენდი 'inhouse' ჩანს წინა მხარეს. მთლიანობაში, ატმოსფერო თანამედროვე და სტილური, შესაფერისია თანამედროვე სამზარეულოებისთვის."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643510",
+      "source:path": "baraholka_batumi_home/2025/06/1643508.md",
+      "source:author:name": "𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸",
+      "timestamp": "2025-06-22T07:52:11+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/09d13082ded34279dd90a89f536745ca6d62a76077dc4f6c5df4e48f4db951fa.jpg",
+        "baraholka_batumi_home/2025/06/13c77b976a21f4744fbafae45dc5c064e3affc9084402957146ef28ea80d6c1a.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1643509\nchat: baraholka_batumi_home\nsender: 8066362074\nsender_phone: \nsender_name: 𝕍𝕀ℂ𝕋𝕆ℝ𝕀𝔸\nauthor_type: user\ndate: 2025-06-22T07:52:11+00:00\ngroup_id: 14004629848559322\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/09d13082ded34279dd90a89f536745ca6d62a76077dc4f6c5df4e48f4db951fa.jpg']\n\nImage baraholka_batumi_home/2025/06/09d13082ded34279dd90a89f536745ca6d62a76077dc4f6c5df4e48f4db951fa.jpg:\nThe image features a compact espresso machine, finished in a sleek, dark metallic color. The design includes a horizontal ribbed top and a prominent control panel with several buttons and indicators. The machine has a portafilter attached on one side for brewing coffee, while the drip tray is located at the bottom with perforations for catching excess liquid. The branding \"inhouse\" is visible on the front. Overall, the vibe is modern and stylish, suitable for contemporary kitchens.\n\nImage baraholka_batumi_home/2025/06/13c77b976a21f4744fbafae45dc5c064e3affc9084402957146ef28ea80d6c1a.jpg:\nThis image features a brown espresso machine. It has a glossy finish and appears compact, suitable for countertop placement. The machine includes a portafilter on the right side with a shiny black handle. There are visible control buttons on the front, likely for brewing settings, along with a digital display that indicates a pressure rating of 15 bars. \n\nAdditionally, there is a window on the side, possibly for monitoring water levels. The brand name \"inhouse\" is visible on the front. The overall aesthetic is modern and sleek, ideal for a contemporary kitchen setup."
+  },
+  {
+    "lot": {
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643512",
+      "source:path": "baraholka_batumi_home/2025/06/1643512.md",
+      "source:author:name": "Марина Грибко",
+      "timestamp": "2025-06-22T07:53:55+00:00"
+    },
+    "input": "Message text:\nИщу для клиента квартиру 1+1 , район Метросити.  Бюджет: до 800 $"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "timestamp": "2025-06-21T04:24:19+00:00",
           "market:deal": "sell_item",
           "item:type": "trousers",
@@ -12799,6 +13721,17 @@
       ]
     },
     "input": "Message text:\nid: 1642400\nchat: baraholka_batumi_home\nsender: 5293946822\nsender_name: Темо 🐾 Темо\nsender_phone: \ndate: 2025-06-21T04:24:19+00:00\ngroup_id: 14003838873964666\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/58a011803d2d27ba32d3d7de8be56e4328efae3342eb974437ed62a193c70372.jpg']\n\nImage baraholka_batumi_home/2025/06/58a011803d2d27ba32d3d7de8be56e4328efae3342eb974437ed62a193c70372.jpg:\nThe image shows a pair of beige trousers from Banana Republic. The trousers have a clean, minimalist design with belt loops and pockets. They still have the original tags attached, indicating they are unworn. The trousers are placed on a brown surface, possibly a couch or a chair. The lighting in the image is soft, highlighting the fabric's texture and the trousers' fit.\n\nImage baraholka_batumi_home/2025/06/111c10fa3a3d6cab043f70575e08be3beb3c9e860f74705d7c58c9efc6aadac7.jpg:\nThe image shows a pair of cream-colored trousers laid out on a brown surface. The trousers have a classic design with belt loops and buttoned back pockets. There's a tag attached to the trousers, indicating the brand and possibly size details. The fabric appears smooth, suggesting a blend suitable for formal or semi-formal occasions. The arrangement reflects a clean and tidy presentation."
+  },
+  {
+    "lot": {
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643517",
+      "source:path": "baraholka_batumi_home/2025/06/1643517.md",
+      "source:author:telegram": "telepostbot",
+      "source:author:name": "TelepostBot",
+      "timestamp": "2025-06-22T08:00:10+00:00"
+    },
+    "input": "Message text:\nNone"
   },
   {
     "lot": {
@@ -14600,6 +15533,16 @@
   },
   {
     "lot": {
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643523",
+      "source:path": "baraholka_batumi_home/2025/06/1643523.md",
+      "source:author:name": "Vitali K",
+      "timestamp": "2025-06-22T08:02:18+00:00"
+    },
+    "input": "Message text:\nНе, мне без нужды. Спасибо."
+  },
+  {
+    "lot": {
       "lots": [
         {
           "timestamp": "2025-06-21T08:58:13+00:00",
@@ -14682,17 +15625,6 @@
       "timestamp": "2025-06-19T07:19:38+00:00"
     },
     "input": "Message text:\n⚡️⚡️⚡️⚡️⚡️\n⭐️битва ников на 25⭐️\n✝приму 16 активных ников💀\n☠️Афк людям не писать☠️\n   ⬅️Ники писать под этим постом⬅️"
-  },
-  {
-    "lot": {
-      "source:chat": "baraholka_batumi_home",
-      "source:message_id": "1643473",
-      "source:path": "baraholka_batumi_home/2025/06/1643473.md",
-      "source:author:telegram": "telepostbot",
-      "source:author:name": "TelepostBot",
-      "timestamp": "2025-06-22T07:11:10+00:00"
-    },
-    "input": "Message text:\nNone"
   },
   {
     "lot": {
@@ -14947,6 +15879,16 @@
       "timestamp": "2025-06-21T09:10:29+00:00"
     },
     "input": "Message text:\n/нужна студия или апартаменты на два дня"
+  },
+  {
+    "lot": {
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643522",
+      "source:path": "baraholka_batumi_home/2025/06/1643522.md",
+      "source:author:name": "Пелагея Бочко🌸",
+      "timestamp": "2025-06-22T08:00:55+00:00"
+    },
+    "input": "Message text:\nВсе никак . Хочешь взять?"
   },
   {
     "lot": {
@@ -15950,6 +16892,43 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-01T00:00:00+00:00",
+          "market:deal": "giveaway",
+          "item:type": "baby_clothing",
+          "condition": "new",
+          "price": 0,
+          "price:currency": "USD",
+          "addr:street": "Сулаберидзе",
+          "addr:housenumber": "10",
+          "files": [
+            "otdam_batumi/2025/06/889b7848e056730ef2a5ea574c1f274838f0a574c587bbaf60cc8343f4051252.jpg",
+            "otdam_batumi/2025/06/a3a869a533e0c73455efcde74075af226ec2ff933b56dbd71aa17f7ba666af6b.jpg"
+          ],
+          "title_en": "Baby Clothing Collection",
+          "description_en": "A collection of cute baby clothing items including a pink bodysuit, long-sleeved bodysuit, red floral skirt, and a soft pink hat. Perfect for young children.",
+          "title_ru": "Коллекция детской одежды",
+          "description_ru": "Коллекция милых предметов детской одежды, включая розовый боди, боди с длинным рукавом, красную цветочную юбку и мягкую розовую шляпу. Идеально для маленьких детей.",
+          "title_ka": "ბავშვის ტანსაცმლის კოლექცია",
+          "description_ka": "მილები ბავშვის ტანსაცმლის ნივთები, მათ შორის ვარდისფერი ბოდი, გრძელი მკლავის ბოდი, წითელი ყვავილოვანი ქვედაბოლო და რბილი ვარდისფერი ქუდი. იდეალურია პატარა ბავშვებისთვის."
+        }
+      ],
+      "source:chat": "otdam_batumi",
+      "source:message_id": "129262",
+      "source:path": "otdam_batumi/2025/06/129261.md",
+      "source:author:telegram": "Valentina_Pavlov_a",
+      "source:author:name": "Valentina",
+      "timestamp": "2025-06-22T08:25:53+00:00",
+      "files": [
+        "otdam_batumi/2025/06/889b7848e056730ef2a5ea574c1f274838f0a574c587bbaf60cc8343f4051252.jpg",
+        "otdam_batumi/2025/06/a3a869a533e0c73455efcde74075af226ec2ff933b56dbd71aa17f7ba666af6b.jpg"
+      ]
+    },
+    "input": "Message text:\n3/6 мес. Сулаберидзе 10\n\nImage otdam_batumi/2025/06/889b7848e056730ef2a5ea574c1f274838f0a574c587bbaf60cc8343f4051252.jpg:\nThe image shows a collection of baby clothing items arranged on a light-colored textured surface. \n\n1. **Pink Bodysuit**: A short-sleeved bodysuit with the text \"LET'S GROW TOGETHER\" printed on it, featuring shoulder ruffles.\n2. **Long-Sleeved Bodysuit**: A plain light pink long-sleeved bodysuit, slightly wrinkled.\n3. **Red Skirt**: A red floral skirt with white patterns, suitable for a baby.\n4. **Hat**: A soft pink hat adorned with a flower detail on the front.\n\nOverall, the items are cute and designed for young children, showcasing soft fabrics and bright colors.\n\nImage otdam_batumi/2025/06/a3a869a533e0c73455efcde74075af226ec2ff933b56dbd71aa17f7ba666af6b.jpg:\nThe image shows a children's romper suit, primarily yellow with a floral pattern featuring small white flowers. This outfit includes short sleeves and has two buttons on the front for easy fastening. The fabric has a polka dot design alongside the flowers. The edges appear to have a checkered pattern, likely made from a contrasting fabric. The romper is laid out flat on a light pink or beige textured surface, suggesting a cozy setting. Overall, it has a cheerful and playful vibe, suitable for a young child."
+  },
+  {
+    "lot": {
       "source:chat": "otdam_batumi",
       "source:message_id": "129011",
       "source:path": "otdam_batumi/2025/06/129011.md",
@@ -16128,24 +17107,6 @@
       "timestamp": "2025-06-19T10:58:53+00:00"
     },
     "input": "Message text:\nБронь"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-20T18:36:38+00:00",
-      "market:deal": "giveaway",
-      "item:type": "bed",
-      "condition": "used",
-      "files": [
-        "otdam_batumi/2025/06/c9661f1d32941c692fa015d5328c2dcfba9f9fd883bd1d6ebaa86d58cf4c4831.jpg"
-      ],
-      "contact:telegram": "pchernika10",
-      "source:chat": "otdam_batumi",
-      "source:message_id": "129156",
-      "source:path": "otdam_batumi/2025/06/129154.md",
-      "source:author:telegram": "pchernika10",
-      "source:author:name": "Polina"
-    },
-    "input": "Message text:\nid: 129156\nchat: otdam_batumi\nsender: 35043922\nsender_name: Polina\nsender_username: pchernika10\nsender_phone: \ntg_link: https://t.me/pchernika10\ndate: 2025-06-20T18:36:38+00:00\ngroup_id: 14003556779513738\nis_admin: False\nfiles: ['otdam_batumi/2025/06/c9661f1d32941c692fa015d5328c2dcfba9f9fd883bd1d6ebaa86d58cf4c4831.jpg']\n\nImage otdam_batumi/2025/06/c9661f1d32941c692fa015d5328c2dcfba9f9fd883bd1d6ebaa86d58cf4c4831.jpg:\nThe image shows a bed with a beige, patterned mattress that has a subtle floral design. The bed frame is made of wood and has a light brown finish. The room has a modern feel with light-colored laminate flooring. There's a glimpse of a wooden wardrobe or cabinet next to the bed. The overall setting appears clean and minimalistic."
   },
   {
     "lot": {
@@ -17337,39 +18298,6 @@
       "source:path": "arenda_batumi/2025/06/2099367.md"
     },
     "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T08:32:23+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "apartment",
-      "rooms": "1+1",
-      "area": 50,
-      "price": 700,
-      "price:currency": "USD",
-      "pets": "no",
-      "addr:street": "26 MAY",
-      "addr:housenumber": "52",
-      "heating": "gas",
-      "view": "city",
-      "floor": 5,
-      "elevator:fee": "no",
-      "furnishing": "furnished",
-      "balcony": "yes",
-      "wifi": "yes",
-      "air_conditioning": "yes",
-      "tv": "yes",
-      "microwave": "yes",
-      "oven": "yes",
-      "contact:phone": "995598888302",
-      "contact:whatsapp": "995598888302",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080736",
-      "source:path": "arenda_batumi/2025/06/2080730.md",
-      "source:author:telegram": "batumi_rental_property",
-      "source:author:name": "АРЕНДА/ПРОДАЖА БАТУМИ | RENT/SALE BATUMI"
-    },
-    "input": "Message text:\n#Сдаётся #Батуми #1+1 #Аренда #Квартира #Сдам #Сдаю #2комнаты\nСДАЁТСЯ КВАРТИРА (1+1) 50м²🔥 \n📍РАЙОН ПАРКА 6 МАЯ:\n     26 MAY, 52 \n\n🏠Новостройка \n🏠Телевидение/Wifi  \n🏠Кухонный инвентарь\n🏠Кондиционер\n🏠Центральное отопление ( ОТ ГАЗА ) \n🏠Духовая, Микроволновая печь\n🏠РЯДОМ МОРЕ, ПАРК 6 МАЯ, СТАРЫЙ БАТУМИ, ПЛОЩАДЬ ЕВРОПЫ \n🏠Балкон       \n🏠5 Этаж ( 2 Лифта )\n\nСтоимость: 700💵\n🤝ПОДБЕРЕМ ВАМ ВАРИАНТЫ КВАРТИР ПОД ВАШ ЗАПРОС\n☎️+995 598 888 302 ( WhatsApp )\n(САМА БОЛЬШАЯ БАЗА КВАРТИР)\n\nВАРИАНТЫ КВАРТИР ПО ССЫЛКЕ В ПРОФИЛЕ👤"
   },
   {
     "lot": {
@@ -18760,17 +19688,6 @@
   },
   {
     "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080742",
-      "source:path": "arenda_batumi/2025/06/2080738.md",
-      "source:author:telegram": "cappuccino_estate_3",
-      "source:author:name": "Cappuccino Estate",
-      "timestamp": "2025-06-15T08:33:32+00:00"
-    },
-    "input": "Message text:\nid: 2080738\nchat: arenda_batumi\nsender: 6954747190\nsender_name: Cappuccino Estate\nsender_username: cappuccino_estate_3\nsender_phone: \ntg_link: https://t.me/cappuccino_estate_3\ndate: 2025-06-15T08:33:32+00:00\ngroup_id: 13999811298406330\nis_admin: False"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-18T14:38:20+00:00",
       "market:deal": "job_offer",
       "occupation": "помощник по разгрузке",
@@ -18863,22 +19780,6 @@
       "source:author:name": "Анна"
     },
     "input": "Message text:\n#продам Уютную, стильную квартиру 2+1 \n📍пр-т. Фридона Халваши \n\n🔸56 м2 \n🔸16/19 этаж\n🔸2 спальни (одна внутренняя) \n🔸Центральное отопление \n🔸Полностью оборудованная \n🔸Современная с хорошим ремонтом \n🔸Красивый вид с балкона \n🔸Новый дом\n\n💵 67.000$"
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "timestamp": "2025-06-15T08:20:39+00:00",
-      "market:deal": "job_seek",
-      "description_ru": "Здравствуйте, ищу людей для выполнения удалённой работы. Можно расценивать как дополнительный доход. Предлагается постоянный и законный доход в диапазоне от 1000 до 2500 долларов в месяц. Чтобы получить дополнительную информацию отправьте '+' в личные сообщения.",
-      "description_en": "Hello, I am looking for people to perform remote work. It can be considered as additional income. A permanent and legal income is offered in the range of 1000 to 2500 dollars per month. To get more information, send '+' in private messages.",
-      "description_ka": "გამარჯობა, ვეძებ ადამიანებს დისტანციური სამუშაოს შესასრულებლად. ეს შეიძლება ჩაითვალოს დამატებით შემოსავლებად. შემოთავაზებულია მუდმივი და კანონიერად შემოსავალი 1000-დან 2500 დოლარამდე თვეში. დამატებითი ინფორმაციისთვის გამოგზავნეთ '+' პირად შეტყობინებებში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080644",
-      "source:path": "arenda_batumi/2025/06/2080644.md",
-      "source:author:telegram": "anna_makarova69",
-      "source:author:name": "Анна Макарова"
-    },
-    "input": "Message text:\n**Здравствуйте, ищу людей для выполнения удалённой работы. Можно расценивать как дополнительный доход.\nПредлагается постоянный и законный доход в диапазоне от 1000 до 2500 долларов в месяц.\nЧтобы получить дополнительную информацию отправьте \"+\" в личные сообщения.**"
   },
   {
     "lot": {
@@ -21985,30 +22886,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-15T08:11:05+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "commercial",
-      "area": 90,
-      "price": 1600,
-      "price:currency": "USD",
-      "price:period": "year",
-      "payment_terms": "first and last month",
-      "addr:street": "Мераба Костава",
-      "addr:housenumber": "24",
-      "floor": "1-2",
-      "heating": "central",
-      "air_conditioning": "yes",
-      "furnishing": "furnished",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080580",
-      "source:path": "arenda_batumi/2025/06/2080575.md",
-      "source:author:telegram": "cappuccino_estate_1",
-      "source:author:name": "Cappuccino Estate"
-    },
-    "input": "Message text:\n**#Сдам**** коммерческое помещение вблизи старого Батуми** ⛲️\n\n💲1600💲 **От года**❗️\n\n📍Мераба Костава 24\n\n▫️Этаж: 1-2, площадь: 90 кв/м  \n▫️Кондиционер, центральное отопление, кухня, санузел  \n▫️Помещение оснащено всем необходимым инвентарем и мебелью\n\n**Оплата за первый и последний месяцы**\n\nДля доп. фото/видео и по любым вопросам писать в ЛС или по номеру: +995557326104 (есть WhatsApp)"
-  },
-  {
-    "lot": {
       "timestamp": "2025-06-17T17:54:13+00:00",
       "market:deal": "rent_out_long",
       "property:type": "apartment",
@@ -22751,17 +23628,6 @@
       "timestamp": "2025-06-19T20:38:00+00:00"
     },
     "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080553",
-      "source:path": "arenda_batumi/2025/06/2080549.md",
-      "source:author:telegram": "cappuccino_estate_btm_contact",
-      "source:author:name": "Cappuccino Estate",
-      "timestamp": "2025-06-15T07:59:55+00:00"
-    },
-    "input": "Message text:\nid: 2080549\nchat: arenda_batumi\nsender: 6368821017\nsender_name: Cappuccino Estate\nsender_username: cappuccino_estate_btm_contact\nsender_phone: \ntg_link: https://t.me/cappuccino_estate_btm_contact\ndate: 2025-06-15T07:59:55+00:00\ngroup_id: 13999795162364722\nis_admin: False"
   },
   {
     "lot": {
@@ -23821,17 +24687,6 @@
       "source:author:name": "Виктория"
     },
     "input": "Message text:\nid: 2108068\nchat: arenda_batumi\nsender: 7557082575\nsender_username: Viktorika8402\nsender_phone: \ntg_link: https://t.me/Viktorika8402\nsender_name: Виктория\nauthor_type: user\ndate: 2025-06-20T10:52:33+00:00\ngroup_id: 14003334025900706\nis_admin: False\nfiles: ['arenda_batumi/2025/06/9b2a96d10660ddc830ea9f44566d300118bdd84ff424e1e8c82eb38aa8d75cb8.jpg']\n\nImage arenda_batumi/2025/06/9b2a96d10660ddc830ea9f44566d300118bdd84ff424e1e8c82eb38aa8d75cb8.jpg:\nThe image shows a small, enclosed balcony or room with a gas boiler mounted on the wall. The room features white walls and a ceiling light. There are two cushioned chairs and a small red side table placed between them. The space has a window on one side, but the view outside is not visible. The overall decor is simple and functional, with an emphasis on utility."
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2116747",
-      "source:path": "arenda_batumi/2025/06/2116747.md",
-      "source:author:telegram": "Akireev17",
-      "source:author:name": "Anton Kireev",
-      "timestamp": "2025-06-22T06:57:30+00:00"
-    },
-    "input": "Message text:\nNone"
   },
   {
     "lot": {
@@ -26219,17 +27074,6 @@
   {
     "lot": {
       "source:chat": "arenda_batumi",
-      "source:message_id": "2080520",
-      "source:path": "arenda_batumi/2025/06/2080519.md",
-      "source:author:telegram": "Olgamakler",
-      "source:author:name": "Olga_Bytskevich Rent Batumi🇬🇪",
-      "timestamp": "2025-06-15T07:54:41+00:00"
-    },
-    "input": "Message text:\nid: 2080519\nchat: arenda_batumi\nsender: 6698419700\nsender_name: Olga_Bytskevich Rent Batumi🇬🇪\nsender_username: Olgamakler\nsender_phone: \ntg_link: https://t.me/Olgamakler\ndate: 2025-06-15T07:54:41+00:00\ngroup_id: 13999792651094370\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
       "source:message_id": "2091188",
       "source:path": "arenda_batumi/2025/06/2091185.md",
       "source:author:telegram": "cappuccino_estate_btm_contact",
@@ -26496,27 +27340,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-15T08:14:32+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "apartment",
-      "rooms": "3",
-      "area": 70,
-      "price": 550,
-      "price:currency": "USD",
-      "pets": "no",
-      "heating": "central",
-      "addr:street": "Гиорги Брцкинвали",
-      "addr:housenumber": "183",
-      "payment_terms": "first and last month",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080609",
-      "source:path": "arenda_batumi/2025/06/2080600.md",
-      "source:author:name": "Kristi Kristi"
-    },
-    "input": "Message text:\n#сдамУлица Гиорги Брцкинвали. 183. ..сдается в новом доме..70 квадратных метров...3-комнатная квартира..с 2 светлыми спальнями..центральное..отопление..кондиционер..сдается на 1 год..без животных..550$ .593468818‼️Оплата по договору за первый и последний месяц"
-  },
-  {
-    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2092343",
       "source:path": "arenda_batumi/2025/06/2092338.md",
@@ -26547,23 +27370,6 @@
       "timestamp": "2025-06-18T16:21:04+00:00"
     },
     "input": "Message text:\nid: 2099012\nchat: arenda_batumi\nsender: 6698419700\nsender_name: Olga_Bytskevich Rent Batumi🇬🇪\nsender_username: Olgamakler\nsender_phone: \ntg_link: https://t.me/Olgamakler\ndate: 2025-06-18T16:21:04+00:00\ngroup_id: 14002109315401250\nis_admin: False"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T08:22:42+00:00",
-      "market:deal": "job_offer",
-      "occupation": "удалённая работа",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "свободный",
-      "remote": "yes",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080652",
-      "source:path": "arenda_batumi/2025/06/2080652.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
   {
     "lot": {
@@ -27076,17 +27882,6 @@
       "source:author:name": "Кристина"
     },
     "input": "Message text:\n**Для тех, кто ищет возможность подзаработать, срочно требуется персонал для удаленной занятости на ByBit/Binance с высокой оплатой:\n • Утренние смены: 6:30-11:30 — $260 в день\n • Вечерние смены: 17:30-22:30 — $310 в день\nДля получения дополнительной информации напишите \"+\" в личные сообщения.**"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2080594",
-      "source:path": "arenda_batumi/2025/06/2080591.md",
-      "source:author:telegram": "ElenaBatumiArenda",
-      "source:author:name": "Elena Batumi Rent",
-      "timestamp": "2025-06-15T08:12:37+00:00"
-    },
-    "input": "Message text:\nid: 2080591\nchat: arenda_batumi\nsender: 7650639900\nsender_name: Elena Batumi Rent\nsender_username: ElenaBatumiArenda\nsender_phone: \ntg_link: https://t.me/ElenaBatumiArenda\ndate: 2025-06-15T08:12:37+00:00\ngroup_id: 13999801256768042\nis_admin: False"
   },
   {
     "lot": {
@@ -28741,17 +29536,6 @@
   {
     "lot": {
       "source:chat": "domikibatumi",
-      "source:message_id": "597706",
-      "source:path": "domikibatumi/2025/06/597700.md",
-      "source:author:telegram": "seaside23",
-      "source:author:name": "Viktoria Seaside Estate",
-      "timestamp": "2025-06-15T08:29:23+00:00"
-    },
-    "input": "Message text:\nid: 597700\nchat: domikibatumi\nsender: 7693699968\nsender_name: Viktoria Seaside Estate\nsender_username: seaside23\nsender_phone: +995568742168\ntg_link: https://t.me/seaside23\ndate: 2025-06-15T08:29:23+00:00\ngroup_id: 13999809304807370\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "domikibatumi",
       "source:message_id": "605698",
       "source:path": "domikibatumi/2025/06/605691.md",
       "source:author:telegram": "Rrrrr4t",
@@ -29731,6 +30515,25 @@
       "source:author:name": "Sale in Batumi Татьяна"
     },
     "input": "Message text:\n#sale#batumi#bagrationi#недвижимость#квартира#батуми#инвестиции\nПродажа  студии, 38,4 м2, белый каркас.\nBagrationi Residence \nЦена 44 500 долларов \n+995 555 300 804 WhatsApp"
+  },
+  {
+    "lot": {
+      "timestamp": "2025-06-20T13:43:21+00:00",
+      "market:deal": "services_offer",
+      "description_en": "Modern bathroom with a shower cabin, white toilet, and washing machine. Clean and contemporary design with neutral tones.",
+      "description_ru": "Современная ванная комната с душевой кабиной, белым туалетом и стиральной машиной. Чистый и современный дизайн в нейтральных тонах.",
+      "description_ka": "თანამედროვე აბაზანა შხაპით, თეთრი ტუალეტით და სარეცხი მანქანით. სუფთა და თანამედროვე დიზაინი ნეიტრალური ტონებით.",
+      "files": [
+        "domikibatumi/2025/06/8b3b29098226bdb20c3f266cabde19d6b0c6ed8b4264d237eef5d8b7d3168f40.jpg"
+      ],
+      "contact:telegram": "Taso88",
+      "source:chat": "domikibatumi",
+      "source:message_id": "610904",
+      "source:path": "domikibatumi/2025/06/610899.md",
+      "source:author:telegram": "Taso88",
+      "source:author:name": "Taso"
+    },
+    "input": "Message text:\nid: 610904\nchat: domikibatumi\nsender: 1577080385\nsender_username: Taso88\nsender_phone: \ntg_link: https://t.me/Taso88\nsender_name: Taso\nauthor_type: user\ndate: 2025-06-20T13:43:21+00:00\ngroup_id: 14003416005560834\nis_admin: False\nfiles: ['domikibatumi/2025/06/8b3b29098226bdb20c3f266cabde19d6b0c6ed8b4264d237eef5d8b7d3168f40.jpg']\n\nImage domikibatumi/2025/06/8b3b29098226bdb20c3f266cabde19d6b0c6ed8b4264d237eef5d8b7d3168f40.jpg:\nThe image shows a modern bathroom with a shower cabin on the left side. The shower features a transparent glass door and is tiled in a light color, complemented by a patterned wall with wavy lines. To the right, there is a white toilet. A small shelf is mounted on the wall near the shower for storage. A white heated towel rail is visible above the toilet. Additionally, there is a washing machine positioned near the entrance, featuring a control panel with a display. The overall vibe of the bathroom is clean and contemporary, with neutral tones."
   },
   {
     "lot": {
