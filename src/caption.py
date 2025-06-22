@@ -83,7 +83,8 @@ def caption_file(path: Path) -> str:
     sha = hashlib.sha256(orig).hexdigest()
     out = path.with_suffix(".caption.md")
     if out.exists():
-        log.debug("Caption exists", file=str(path))
+        # Log at info level so users know the file was intentionally skipped.
+        log.info("Caption exists", file=str(path))
         return sha
 
     chat = _guess_chat(path)
