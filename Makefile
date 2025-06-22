@@ -9,29 +9,29 @@
 compose: build
 update: compose
 
-# Pull Telegram messages and media to ``data/``.
-pull:
+
+pull: # Pull Telegram messages and media to ``data/``.
 	python src/tg_client.py
 
-# Generate image captions for files missing ``*.caption.md``.
-caption: pull
+caption: pull ## Generate image captions for files missing ``*.caption.md``.
 	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
 	| sort -z -nr \
 	| cut -z -d' ' -f2- \
 	| parallel -j16 -0 python src/caption.py
 	python scripts/validate_outputs.py captions
 
-# Split messages into lots using captions and message text.
-chop: pull
-	python scripts/pending_chop.py \
-	| parallel -j16 -0 python src/chop.py
+chop: pull caption ## Split messages into lots using captions and message text.
+	python scripts/pending_chop.py | parallel -j16 -0 python src/chop.py
 	python scripts/validate_outputs.py lots
+
+ontology: chop ## Summarize lots so it's easier see what exactly is there in the dataset.
+	python src/scan_ontology.py
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop caption
-	python scripts/pending_embed.py \
-	| parallel -j16 -0 python src/embed.py
+	python scripts/pending_embed.py | parallel -j16 -0 python src/embed.py
 	python scripts/validate_outputs.py vectors
+
 
 # Render HTML pages from lots and templates.
 build: embed ontology
@@ -44,9 +44,6 @@ alert: embed
 
 validate:
 	python scripts/validate_outputs.py
-
-ontology: chop
-	python src/scan_ontology.py
 
 clean:
 	python src/clean_data.py
