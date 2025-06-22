@@ -16,6 +16,7 @@ from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
 from serde_utils import load_json, write_json
+from log_utils import get_logger, install_excepthook
 
 # Log progress on long downloads every few seconds and abort if they
 # run for too long.
@@ -42,22 +43,44 @@ def _mark_activity() -> None:
 
 from config_utils import load_config
 
+log = get_logger().bind(script=__file__)
+install_excepthook(log)
+
 cfg = load_config()
 TG_API_ID = cfg.TG_API_ID
 TG_API_HASH = cfg.TG_API_HASH
 TG_SESSION = cfg.TG_SESSION
-CHATS = cfg.CHATS
 KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
 DOWNLOAD_WORKERS = getattr(cfg, "DOWNLOAD_WORKERS", 4)
+
+# Parse chat list extracting optional ``chat/topic`` entries.  ``CHATS`` holds
+# unique chat names while ``TOPICS`` maps chats to allowed forum topic IDs.  A
+# plain chat name disables any topic filters for that chat.
+TOPICS: dict[str, list[int]] = {}
+_chats: list[str] = []
+for item in cfg.CHATS:
+    if "/" in item:
+        chat, tid_str = item.split("/", 1)
+        if chat in TOPICS and TOPICS[chat] is None:
+            # Full chat already requested
+            continue
+        try:
+            tid = int(tid_str)
+        except ValueError:
+            log.warning("Ignoring invalid topic id", entry=item)
+            continue
+        TOPICS.setdefault(chat, []).append(tid)
+    else:
+        chat = item
+        TOPICS[chat] = None
+    if chat not in _chats:
+        _chats.append(chat)
+CHATS = _chats
 _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
-from log_utils import get_logger, install_excepthook
 from phone_utils import format_georgian
 from post_io import write_post, read_post, get_contact
 from image_io import write_image_meta
 from moderation import should_skip_user
-
-log = get_logger().bind(script=__file__)
-install_excepthook(log)
 
 
 async def _heartbeat(interval: int = 60, warn_after: int = 300) -> None:
@@ -155,6 +178,27 @@ def _should_skip_media(msg: Message) -> str | None:
     if mtype.startswith("image/") and size > 10 * 1024 * 1024:
         return "image-too-large"
     return None
+
+
+def _allowed_topic(chat: str, msg: Message) -> bool:
+    """Return ``True`` if ``msg`` belongs to an allowed forum topic."""
+    allowed = TOPICS.get(chat)
+    if not allowed:
+        return True
+    topic_id = None
+    rep = getattr(msg, "reply_to", None)
+    if rep and getattr(rep, "forum_topic", False):
+        topic_id = getattr(rep, "reply_to_top_id", None)
+    action = getattr(msg, "action", None)
+    if topic_id is None and action and type(action).__name__ == "MessageActionTopicCreate":
+        topic_id = msg.id
+    if topic_id is None:
+        return False
+    try:
+        topic_id = int(topic_id)
+    except (TypeError, ValueError):
+        return False
+    return topic_id in allowed
 
 
 async def _extract_author(msg: Message, client: TelegramClient) -> dict:
@@ -308,6 +352,9 @@ async def _save_message(
     Returns the path of the stored message or ``None`` when skipped."""
     _mark_activity()
     log.debug("Processing message", chat=chat, id=msg.id)
+    if not _allowed_topic(chat, msg):
+        log.debug("Skipping topic", chat=chat, id=msg.id)
+        return None
     author = await _extract_author(msg, client)
     username = author.get("sender_username")
     if should_skip_user(username):
