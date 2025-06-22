@@ -11,7 +11,12 @@ from pathlib import Path
 from log_utils import get_logger, install_excepthook
 from lot_io import get_seller, get_timestamp
 from message_utils import gather_chop_input
-from post_io import read_post, get_contact as get_post_contact, get_timestamp as get_post_timestamp
+from post_io import (
+    read_post,
+    get_contact as get_post_contact,
+    get_timestamp as get_post_timestamp,
+    is_broken_meta,
+)
 from serde_utils import write_json
 from lot_io import read_lots
 
@@ -72,11 +77,11 @@ def _is_misparsed(lot: dict, meta: dict | None = None) -> bool:
         log.debug("Missing seller info", id=lot.get("_id"))
         return True
     if meta is not None:
-        if get_post_timestamp(meta) is None:
-            log.debug("Missing raw timestamp", id=lot.get("_id"))
-            return True
-        if get_post_contact(meta) is None:
-            log.debug("Missing raw contact", id=lot.get("_id"))
+        if is_broken_meta(meta):
+            if get_post_timestamp(meta) is None:
+                log.debug("Missing raw timestamp", id=lot.get("_id"))
+            if get_post_contact(meta) is None:
+                log.debug("Missing raw contact", id=lot.get("_id"))
             return True
     if any(not lot.get(f) for f in REVIEW_FIELDS):
         log.debug("Missing translations", id=lot.get("_id"))
@@ -130,7 +135,7 @@ def collect_ontology() -> tuple[
             if src and has_raw:
                 if meta is None:
                     meta, _ = read_post(RAW_DIR / src)
-                if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
+                if is_broken_meta(meta):
                     chat = lot.get("source:chat") or meta.get("chat")
                     mid = lot.get("source:message_id") or meta.get("id")
                     if chat and mid:

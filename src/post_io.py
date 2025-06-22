@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 from datetime import datetime, timezone
+import ast
+from typing import Iterator
 
 from log_utils import get_logger
 from serde_utils import parse_md, write_md
@@ -46,6 +48,34 @@ def get_timestamp(meta: dict) -> datetime | None:
         log.debug("Future timestamp", value=ts, id=meta.get("id"))
         return None
     return dt
+
+
+def is_broken_meta(meta: dict) -> bool:
+    """Return ``True`` when required metadata fields are missing."""
+    if not meta.get("chat") or not meta.get("id"):
+        return True
+    if get_timestamp(meta) is None:
+        return True
+    if get_contact(meta) is None:
+        return True
+    return False
+
+
+def iter_broken_posts(root: Path) -> Iterator[tuple[tuple[str, int], Path]]:
+    """Yield (chat, id) and the post path for incomplete metadata."""
+    for path in root.rglob("*.md"):
+        meta, text = read_post(path)
+        try:
+            files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
+        except Exception:
+            files = []
+        if not is_broken_meta(meta) and (text.strip() or files):
+            continue
+        chat = meta.get("chat")
+        mid = meta.get("id")
+        if not chat or not mid:
+            continue
+        yield (chat, int(mid)), path
 
 
 def read_post(path: Path) -> tuple[dict[str, str], str]:

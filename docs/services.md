@@ -51,8 +51,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   larger than ten megabytes and any media attached to messages more than two
   days old. Messages marked this way are ignored by `chop.py` so only complete
   posts are parsed.
-* **Automatic cleanup.** Messages listed in `broken_meta.json` or posts saved
-  without text or images are reloaded on startup. If the content changed their
+* **Automatic cleanup.** Messages listed in `broken_meta.json` – posts missing
+  mandatory metadata like the timestamp or author – or messages saved without
+  text or images are reloaded on startup. If the content changed their
   corresponding lot files are removed so the parser runs again.
 
 Metadata fields include at least:
@@ -177,9 +178,9 @@ If `data/raw` is not present the script will exit early to avoid overwriting the
 tracked JSON files. In that case simply review what is already under
 `data/ontology`.
 Lots flagged as misparsed are ignored by `build_site.py` so the website never
-shows incomplete posts.
-Any raw post lacking mandatory metadata is added to `broken_meta.json` so
-`tg_client.py` can refetch it during the next run.
+shows incomplete posts. Any raw post lacking a timestamp or author details is
+added to `broken_meta.json` so `tg_client.py` can refetch it during the next
+run.
 
 ## moderation.py
 Reusable library for spam filtering. `moderation.apply_to_history()` walks

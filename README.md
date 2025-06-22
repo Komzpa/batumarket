@@ -16,8 +16,8 @@ scanner should not run as it would produce empty files – review the tracked
 JSONs instead.
 
 The ontology files include `broken_meta.json` which lists messages missing
-metadata. `tg_client.py` tries to refetch everything in that list at the start
-of each run.
+mandatory metadata such as the timestamp or post author. `tg_client.py` tries to
+refetch everything in that list at the start of each run.
 `fields.approved.json` in the same folder lists popular fields with short
 English explanations and example values. Each entry contains the tag `key`, a
 `description_en` value and optional `values` describing common options.

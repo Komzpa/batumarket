@@ -80,7 +80,13 @@ for item in cfg.CHATS:
 CHATS = _chats
 _sem = asyncio.Semaphore(DOWNLOAD_WORKERS)
 from phone_utils import format_georgian
-from post_io import write_post, read_post, get_contact
+from post_io import (
+    write_post,
+    read_post,
+    get_contact,
+    is_broken_meta,
+    iter_broken_posts,
+)
 from image_io import write_image_meta
 from moderation import should_skip_user, should_skip_message
 
@@ -707,19 +713,7 @@ async def refetch_messages(client: TelegramClient) -> None:
                 broken_list.append({"chat": chat, "id": mid})
 
 
-    for path in RAW_DIR.rglob("*.md"):
-        meta, text = read_post(path)
-        try:
-            files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
-        except Exception:
-            files = []
-        if text.strip() or files:
-            continue
-        chat = meta.get("chat")
-        mid = meta.get("id")
-        if not chat or not mid:
-            continue
-        key = (chat, int(mid))
+    for key, path in iter_broken_posts(RAW_DIR):
         targets.setdefault(key, path)
 
     if not targets:

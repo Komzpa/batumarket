@@ -24,7 +24,8 @@ The command writes several JSON files under `data/ontology`:
   text passed to the parser.
 - `fraud.json` – lots explicitly flagged with a `fraud` tag and the text
   that produced them.
-- `broken_meta.json` – references to messages that need refetching.
+- `broken_meta.json` – references to messages that need refetching when the raw
+  metadata lacks a timestamp or author.
 - `misparsed.json` – lots that looked suspicious. Updating the file causes the
   corresponding JSON lots to be dropped so they will be parsed again.
 - `title_*.json` and `description_*.json` – unique values per language for
