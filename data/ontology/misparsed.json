@@ -123,6 +123,17 @@
   {
     "lot": {
       "source:chat": "dogacat_batumi",
+      "source:message_id": "395288",
+      "source:path": "dogacat_batumi/2025/06/395288.md",
+      "source:author:telegram": "raseengann",
+      "source:author:name": "Дарья",
+      "timestamp": "2025-06-22T12:46:13+00:00"
+    },
+    "input": "Message text:\nМожет попробуете передержки, жаль котика, пропадёт на улице ("
+  },
+  {
+    "lot": {
+      "source:chat": "dogacat_batumi",
       "source:message_id": "394653",
       "source:path": "dogacat_batumi/2025/06/394653.md",
       "source:author:telegram": "camrade_jivo",
@@ -305,16 +316,6 @@
       "timestamp": "2025-06-17T15:50:35+00:00"
     },
     "input": "Message text:\nОк, спасибо."
-  },
-  {
-    "lot": {
-      "source:chat": "dogacat_batumi",
-      "source:message_id": "393758",
-      "source:path": "dogacat_batumi/2025/06/393758.md",
-      "source:author:name": "NaT🌻☀️EL 🐾🦧",
-      "timestamp": "2025-06-15T12:40:18+00:00"
-    },
-    "input": "Message text:\nету если не ошибаюс встеачала сегодня и вчера на пиаца"
   },
   {
     "lot": {
@@ -1294,7 +1295,7 @@
       "source:author:telegram": "anna_pronkina90",
       "source:author:name": "Anna"
     },
-    "input": "Message text:\n🔋 Мощное автомобильное зарядное на 30w BOROFONE. Поддерживает P/D 30w и QC 3.0\n\nСостояние нового, пользовались пару раз.\n\n💶 Цена 13 GEL без торга\n\nЗабрать можно в Батуми, недалеко от дельфинария.\n\nImage batumi_360/2025/06/a2089efbe42cf434fdf7f9238ab79abbeb6f65c8583c10e1da5595f55f2b45ce.jpg:\nThe image shows a BOROFONE 30W dual port car charger. The packaging is a sleek design, primarily white with red and green text. It indicates compatibility with PD 30W, QC 3.0, and more. The charger features two ports: one USB-A and one USB-C, with power ratings of 18W and 30W, respectively. A handwritten annotation with the number \"38\" appears on the charger packaging. The background is a wooden surface, suggesting a simple and rustic presentation. There are no visible watermarks.\n\nImage batumi_360/2025/06/8ce585f33e4f7ac1d7c25fe3b4261ac5f87707be3d5d0d20d73dc543d5b29788.jpg:\nThe image features a compact charger in a clear plastic packaging. The charger has two USB ports: one USB Type-C and one USB Type-A, both with orange connectors. The device is labeled with \"30W\" and \"PD33W,\" indicating its power delivery capabilities. The package is minimalistic, with a simple white background and a cut-out handle at the bottom for easy carrying. The background appears to be a wooden surface, giving a warm, natural vibe. Overall, the package looks new and ready for retail display.\n\nImage batumi_360/2025/06/cc523abb29619c5ec1fa60785de6a0860f234b6f5bc5e5de4db01c6d88597513.jpg:\nThe image shows a compact black car charger marked with \"BOROFONE.\" It is packaged inside clear plastic, highlighting its design. The visible specifications indicate it has an output of 18W and supports a total of 30W with two USB ports. There are additional annotations on the packaging, likely showing features, but they are illegible. The base of the charger fits into a car's power outlet, indicating it's for in-vehicle use. The background appears to be a wooden surface, suggesting a simple flat-lay presentation."
+    "input": "Message text:\n🔋 Мощное автомобильное зарядное на 30w BOROFONE. Поддерживает P/D 30w и QC 3.0\n\nСостояние нового, пользовались пару раз.\n\n💶 Цена 13 GEL без торга\n\nЗабрать можно в Батуми, недалеко от дельфинария.\n\nImage batumi_360/2025/06/a2089efbe42cf434fdf7f9238ab79abbeb6f65c8583c10e1da5595f55f2b45ce.jpg:\nThe image shows a BOROFONE 30W dual port car charger. The packaging is a sleek design, primarily white with red and green text. It indicates compatibility with PD 30W, QC 3.0, and more. The charger features two ports: one USB-A and one USB-C, with power ratings of 18W and 30W, respectively. A handwritten annotation with the number \"38\" appears on the charger packaging. The background is a wooden surface, suggesting a simple and rustic presentation. There are no visible watermarks.\n\nImage batumi_360/2025/06/8ce585f33e4f7ac1d7c25fe3b4261ac5f87707be3d5d0d20d73dc543d5b29788.jpg:\nThe image features a compact charger in a clear plastic packaging. The charger has two USB ports: one USB Type-C and one USB Type-A, both with orange connectors. The device is labeled with \"30W\" and \"PD33W,\" indicating its power delivery capabilities. The package is minimalistic, with a simple white background and a cut-out handle at the bottom for easy carrying. The background appears to be a wooden surface, giving a warm, natural vibe. Overall, the package looks new and ready for retail display.\n\nImage batumi_360/2025/06/cc523abb29619c5ec1fa60785de6a0860f234b6f5bc5e5de4db01c6d88597513.jpg:\nThe image shows a compact black car charger marked with \"BOROFONE.\" It is packaged inside clear plastic, highlighting its design. The visible specifications indicate it has an output of 18W and supports a total of 30W with two USB ports. There are additional annotations on the packaging, likely showing features, but they are illegible. The base of the charger fits into a car's power outlet, indicating it's for in-vehicle use. The background appears to be a wooden surface, suggesting a simple flat-lay presentation.\n\nImage batumi_360/2025/06/cc523abb29619c5ec1fa60785de6a0860f234b6f5bc5e5de4db01c6d88597513.jpg:\nThe image shows a compact black car charger marked with \"BOROFONE.\" It is packaged inside clear plastic, highlighting its design. The visible specifications indicate it has an output of 18W and supports a total of 30W with two USB ports. There are additional annotations on the packaging, likely showing features, but they are illegible. The base of the charger fits into a car's power outlet, indicating it's for in-vehicle use. The background appears to be a wooden surface, suggesting a simple flat-lay presentation.\n\nImage batumi_360/2025/06/8ce585f33e4f7ac1d7c25fe3b4261ac5f87707be3d5d0d20d73dc543d5b29788.jpg:\nThe image features a compact charger in a clear plastic packaging. The charger has two USB ports: one USB Type-C and one USB Type-A, both with orange connectors. The device is labeled with \"30W\" and \"PD33W,\" indicating its power delivery capabilities. The package is minimalistic, with a simple white background and a cut-out handle at the bottom for easy carrying. The background appears to be a wooden surface, giving a warm, natural vibe. Overall, the package looks new and ready for retail display."
   },
   {
     "lot": {
@@ -1781,7 +1782,7 @@
         "events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg"
       ]
     },
-    "input": "Message text:\nid: 3905\nchat: events_ge\nsender: 1897652396\nsender_username: events_ge\nsender_phone: \ntg_link: https://t.me/events_ge\nauthor_type: user\ndate: 2025-06-22T12:10:04+00:00\ngroup_id: 14004753634069690\nis_admin: False\nfiles: ['events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg']\n\nImage events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg:\nThe image is a promotional poster for an event titled \"Open Mic,\" scheduled for June 29, 2025, at Woody Bar, starting at 21:00. It features a monochrome photograph of a man with light brown hair and a mustache, striking a confident pose. The event is hosted by Артем Михайлов, as indicated in the text. The poster has a vibrant red background with bold typography emphasizing \"open\" and \"mic\" in a repeated pattern, creating a dynamic visual effect. The overall vibe is modern and engaging, appealing to an audience interested in live performances."
+    "input": "Message text:\nid: 3905\nchat: events_ge\nsender: 1897652396\nsender_username: events_ge\nsender_phone: \ntg_link: https://t.me/events_ge\nauthor_type: user\ndate: 2025-06-22T12:10:04+00:00\ngroup_id: 14004753634069690\nis_admin: False\nfiles: ['events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg']\n\nImage events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg:\nThe image is a promotional poster for an event titled \"Open Mic,\" scheduled for June 29, 2025, at Woody Bar, starting at 21:00. It features a monochrome photograph of a man with light brown hair and a mustache, striking a confident pose. The event is hosted by Артем Михайлов, as indicated in the text. The poster has a vibrant red background with bold typography emphasizing \"open\" and \"mic\" in a repeated pattern, creating a dynamic visual effect. The overall vibe is modern and engaging, appealing to an audience interested in live performances.\n\nImage events_ge/2025/06/89b6c203e16b2f6fb8aee7cba04057575891150bfd469afd93ae1edf5366729f.jpg:\nThe image is a promotional poster for an event titled \"Open Mic,\" scheduled for June 29, 2025, at Woody Bar, starting at 21:00. It features a monochrome photograph of a man with light brown hair and a mustache, striking a confident pose. The event is hosted by Артем Михайлов, as indicated in the text. The poster has a vibrant red background with bold typography emphasizing \"open\" and \"mic\" in a repeated pattern, creating a dynamic visual effect. The overall vibe is modern and engaging, appealing to an audience interested in live performances."
   },
   {
     "lot": {
@@ -2867,6 +2868,20 @@
   {
     "lot": {
       "source:chat": "batumi_arendaaa",
+      "source:message_id": "2245434",
+      "source:path": "batumi_arendaaa/2025/06/2245434.md",
+      "source:author:telegram": "Ad_mi_n12l",
+      "source:author:name": "Ⓜ️sales manager📞",
+      "timestamp": "2025-06-22T12:16:35+00:00",
+      "files": [
+        "batumi_arendaaa/2025/06/76cbfb41d47937d6f68c3c1fc1c768811875869573c5f73171d85976c1958347.jpg"
+      ]
+    },
+    "input": "Message text:\n➡️Желающие снять квартиру в лучших, надежных и эффективных группах могут подписаться как на нашу группу в \n🆘Батуми, так и на нашу группу в Тбилиси.  Дом вашей мечты здесь\n🏡**🔤****🔤****🔤****🔤****🔤****🔤****🔤**🔤\n🏡**🔤****🔤****🔤****🔤****🔤****🔤****🔤****🔤****  **\n📍**Batumi arenda **⬇️\nhttps://t.me/batumi_arendaaa\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n\n**📍****TBILISI ARENDA**\nhttps://t.me/tbilisi_arendaaa\n⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️\n\nImage batumi_arendaaa/2025/06/76cbfb41d47937d6f68c3c1fc1c768811875869573c5f73171d85976c1958347.jpg:\nThe image features a logo with a blue house icon on a blue background. Inside the house shape, the text \"BATUMI YourHome\" is displayed in a white, elegant font. There is also a green circle in the lower right part of the house symbol. The design is simple and straightforward, likely intended to represent a real estate or home service in Batumi."
+  },
+  {
+    "lot": {
+      "source:chat": "batumi_arendaaa",
       "source:message_id": "2242019",
       "source:path": "batumi_arendaaa/2025/06/2242019.md",
       "source:author:telegram": "Ad_mi_n12l",
@@ -3730,6 +3745,264 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:48:33+00:00",
+          "market:deal": "sell_item",
+          "item:type": "office_chair",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg"
+          ],
+          "title_en": "Ergonomic Office Chair",
+          "description_en": "The image features a workspace setup with a modern aesthetic. At the center is a grey ergonomic office chair on a wheeled base. Behind it is a sleek black desk holding a monitor and a keyboard with visible cables underneath. Flanking the desk are two audio speakers with wooden casings, adding a warm touch to the setup. The walls are light-colored, creating a clean and bright atmosphere. Natural light appears to be coming from a nearby window, as indicated by the curtains. The floor has a light wood finish, enhancing the modern vibe. Overall, the workspace looks organized and comfortable, suitable for productivity.",
+          "title_ru": "Эргономичное офисное кресло",
+          "description_ru": "На изображении показан рабочий стол с современным дизайном. В центре находится серое эргономичное офисное кресло на колесах. За ним стоит стильный черный стол с монитором и клавиатурой, под которым видны кабели. По бокам от стола расположены две аудиоколонки с деревянными корпусами, добавляющими теплоты в обстановку. Стены светлые, создавая чистую и яркую атмосферу. Естественный свет, похоже, поступает из ближайшего окна, как видно по шторам. Пол с легким деревянным покрытием подчеркивает современный стиль. В целом, рабочее место выглядит организованным и комфортным, подходящим для продуктивности.",
+          "title_ka": "ერგონომიული ოფისის სკამი",
+          "description_ka": "სურათზე ნაჩვენებია სამუშაო სივრცე თანამედროვე ესთეტიკით. ცენტრში არის ნაცრისფერი ერგონომიული ოფისის სკამი ბორბლებზე. მის უკან არის ელეგანტური შავი მაგიდა, რომელზეც დგას მონიტორი და კლავიატურა, ქვემოთ კი ჩანს ხილული კაბელები. მაგიდის გვერდებზე არის ორი აუდიო სპიკერი ხის კორპუსით, რაც დამატებით სითბოს მატებს გარემოს. კედლები მსუბუქი ფერისაა, რაც ქმნის სუფთა და ნათელ ატმოსფეროს. ბუნებრივი შუქი, როგორც ჩანს, ახლოს მდებარე ფანჯრიდან მოდის, რაც ჩანს ფარდებზე. იატაკი მსუბუქი ხის საფარით არის დაფარული, რაც ხაზს უსვამს თანამედროვე სტილს. მთლიანობაში, სამუშაო ადგილი გამოიყურება ორგანიზებულად და კომფორტულად, რაც ხელს უწყობს პროდუქტიულობას."
+        },
+        {
+          "timestamp": "2025-06-22T12:48:33+00:00",
+          "market:deal": "sell_item",
+          "item:type": "iron",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg"
+          ],
+          "title_en": "Ironing Setup",
+          "description_en": "The image shows a basic ironing setup. An ironing board with a grey cover is positioned prominently, featuring a purple steam iron resting on it. Below the board, a vacuum cleaner is visible, suggesting a space prepared for both ironing and cleaning. A green booklet or magazine is placed on the floor beside the ironing board. The room has a modern appearance with light wooden flooring and neutral-colored walls.",
+          "title_ru": "Установка для глажки",
+          "description_ru": "На изображении показана базовая установка для глажки. Утюг с серым покрытием расположен на видном месте, на нем лежит фиолетовый паровой утюг. Под доской виден пылесос, что указывает на пространство, подготовленное как для глажки, так и для уборки. Рядом с доской для глажки на полу лежит зеленая брошюра или журнал. Комната выглядит современно с легким деревянным полом и нейтральными стенами.",
+          "title_ka": "გლაჟვის მოწყობილობა",
+          "description_ka": "სურათზე ნაჩვენებია ძირითადი გლაჟვის მოწყობილობა. გლაჟვის დაფა ნაცრისფერი საფარით არის განლაგებული, რომელზეც მოთავსებულია იისფერი ორთქლის უთო. დაფის ქვეშ ჩანს მტვერსასრუტი, რაც მიუთითებს, რომ სივრცე მზად არის როგორც გლაჟვის, ასევე დასუფთავებისათვის. გლაჟვის დაფის გვერდით, იატაკზე, მოთავსებულია მწვანე ბუკლეტი ან ჟურნალი. ოთახი თანამედროვე იერსახით გამოირჩევა, მსუბუქი ხის იატაკით და ნეიტრალური ფერის კედლებით."
+        },
+        {
+          "timestamp": "2025-06-22T12:48:33+00:00",
+          "market:deal": "sell_item",
+          "item:type": "tools",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg"
+          ],
+          "title_en": "Tool Collection",
+          "description_en": "The image shows a collection of tools laid out on a light-colored, textured surface. The tools include a black stapler, a green and red tool holder with various screwdriver bits, a small clear plastic bottle, a yellow-handled hammer, and a heavier black hammer with a wooden handle.",
+          "title_ru": "Коллекция инструментов",
+          "description_ru": "На изображении показана коллекция инструментов, разложенных на светлом текстурированном фоне. Инструменты включают черный степлер, зеленый и красный держатель для инструментов с различными битами для отверток, маленькую прозрачную пластиковую бутылку, молоток с желтой ручкой и более тяжелый черный молоток с деревянной ручкой.",
+          "title_ka": "ინსტრუმენტების კოლექცია",
+          "description_ka": "სურათზე ნაჩვენებია ინსტრუმენტების კოლექცია, რომელიც განლაგებულია მსუბუქი ფერის ტექსტურირებულ ზედაპირზე. ინსტრუმენტებს შორის არის შავი სტეპლერი, მწვანე და წითელი ინსტრუმენტების მფლობელი სხვადასხვა მტვერსასრუტის ბიტებით, პატარა გამჭვირვალე პლასტიკური ბოთლი, ყვითელი სახელური და უფრო მძიმე შავი მტვერსასრუტი ხის სახელურით."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481875",
+      "source:path": "baraholka_ge/2025/06/2481871.md",
+      "source:author:telegram": "vintagmics",
+      "source:author:name": "Romario",
+      "timestamp": "2025-06-22T12:48:33+00:00",
+      "files": [
+        "baraholka_ge/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg",
+        "baraholka_ge/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg",
+        "baraholka_ge/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2481873\nchat: baraholka_ge\nsender: 850873139\nsender_username: vintagmics\nsender_phone: \ntg_link: https://t.me/vintagmics\nsender_name: Romario\nauthor_type: user\ndate: 2025-06-22T12:48:33+00:00\ngroup_id: 14004772107111418\nis_admin: False\nfiles: ['baraholka_ge/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg']\n\nImage baraholka_ge/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg:\nThe image features a workspace setup with a modern aesthetic. At the center is a grey ergonomic office chair on a wheeled base. Behind it is a sleek black desk holding a monitor and a keyboard with visible cables underneath. Flanking the desk are two audio speakers with wooden casings, adding a warm touch to the setup. The walls are light-colored, creating a clean and bright atmosphere. Natural light appears to be coming from a nearby window, as indicated by the curtains. The floor has a light wood finish, enhancing the modern vibe. Overall, the workspace looks organized and comfortable, suitable for productivity.\n\nImage baraholka_ge/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg:\nThe image shows a basic ironing setup. An ironing board with a grey cover is positioned prominently, featuring a purple steam iron resting on it. Below the board, a vacuum cleaner is visible, suggesting a space prepared for both ironing and cleaning. A green booklet or magazine is placed on the floor beside the ironing board. \n\nThe room has a modern appearance with light wooden flooring and neutral-colored walls. There is a power strip visible, indicating access to electrical outlets. Overall, it conveys a tidy, functional vibe typically found in a home environment.\n\nImage baraholka_ge/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg:\nThe image shows a collection of tools laid out on a light-colored, textured surface. \n\n1. **Top-left**: A black stapler labeled \"Fobiton\", appears compact and manual.\n2. **Center**: A green and red tool holder with various screwdriver bits arranged in a spiral.\n3. **Top-right**: A small clear plastic bottle, possibly for oil or a similar liquid.\n4. **Bottom-left**: A yellow-handled hammer, featuring a black head.\n5. **Bottom-right**: A heavier black hammer with a wooden handle labeled \"TOLSEN\".\n\nThe overall vibe suggests a workbench or tool setup, likely for DIY or repair tasks."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "robe",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/6345f675ba6adf7c8b4e9b8825a6daaac9277b054b6db2544574954bd9a99ad8.jpg"
+          ],
+          "title_en": "Elegant Black Robe",
+          "description_en": "The robe features wide, loose sleeves and delicate lace trim along the neckline. It is cinched at the waist with a matching tie belt, creating a flattering silhouette.",
+          "title_ru": "Элегантный черный халат",
+          "description_ru": "Халат с широкими свободными рукавами и деликатной кружевной отделкой по горловине. Он завязан на талии с помощью соответствующего пояса, создавая привлекательный силуэт.",
+          "title_ka": "ელეგანტური შავი ხალათი",
+          "description_ka": "ხალათი ფართო, თავისუფალი მკლავებით და ნაზი ლეისით ყელის გარშემო. იგი მჭიდროდ არის შეკრული წელის გარშემო შესაბამისი ქამრით, რაც მიმზიდველ სილუეტს ქმნის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "bikini",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/8c715d3fb34497bfa2ec51cce92e6718dcff6ed01104a49d28e3ad1e2548df1c.jpg"
+          ],
+          "title_en": "Pink Bikini Set",
+          "description_en": "The bikini set features a classic triangle top with adjustable ties and matching minimal thong-style bottoms. Perfect for beach outings.",
+          "title_ru": "Розовый купальник",
+          "description_ru": "Купальник с классическим треугольным верхом и регулируемыми завязками, а также соответствующими минимальными плавками. Идеально подходит для пляжного отдыха.",
+          "title_ka": "ვარდისფერი ბიკინი",
+          "description_ka": "ბიკინი კლასიკური სამკუთხა ზედა ნაწილით და რეგულირებადი შეკვრებით, ასევე შესაბამისი მინიმალური თხელი ქვედა ნაწილით. იდეალურია სანაპიროზე გასასვლელად."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "swimwear",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/3934047aaec20fb80a696b3c467880046dc172bf46f38ac710a05a939acdf170.jpg"
+          ],
+          "title_en": "White Swimwear Set",
+          "description_en": "This swimwear set includes a sheer cover-up with a front tie, a triangle bikini top, and matching bottoms. Perfect for a chic beach look.",
+          "title_ru": "Белый купальник",
+          "description_ru": "Этот купальник включает в себя прозрачный накидку с передним завязкой, треугольный верх и соответствующие плавки. Идеально подходит для стильного пляжного образа.",
+          "title_ka": "თეთრი საცურაო კოსტუმი",
+          "description_ka": "ეს საცურაო კოსტუმი მოიცავს გამჭვირვალე ზედა ნაწილს წინა შეკვრით, სამკუთხა ზედა ნაწილსა და შესაბამის ქვედა ნაწილს. იდეალურია სტილური სანაპიროს ხილვისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "bodysuit",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/819cb95ccf428ae1609c52441c5d889b6c3d7c782f75b1bbff0618dc022534d6.jpg"
+          ],
+          "title_en": "Light Beige Bodysuit",
+          "description_en": "This bodysuit features a simple design with a scoop neckline and fitted silhouette. Perfect for layering or wearing alone.",
+          "title_ru": "Светло-бежевый боди",
+          "description_ru": "Этот боди имеет простой дизайн с круглым вырезом и облегающим силуэтом. Идеально подходит для многослойного ношения или ношения отдельно.",
+          "title_ka": "მსუბუქი ბეჟის ბოდიუ",
+          "description_ka": "ეს ბოდიუ აქვს მარტივი დიზაინი მრგვალი ყელის და მჭიდრო სილუეტით. იდეალურია შრეებად ან ცალ-ცალკე ტარებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/5397586448b8e450d55ee77083f3fafb6a324aa12a350958856a14b81b96b969.jpg"
+          ],
+          "title_en": "Black Fitted Dress",
+          "description_en": "This fitted dress features a sleek design with a black leather jacket draped over one shoulder. Perfect for a night out.",
+          "title_ru": "Черное облегающее платье",
+          "description_ru": "Это облегающее платье имеет стильный дизайн с черной кожаной курткой, накинутой на одно плечо. Идеально подходит для вечернего выхода.",
+          "title_ka": "შავი მჭიდრო კაბა",
+          "description_ka": "ეს მჭიდრო კაბა აქვს თანამედროვე დიზაინი შავი ტყავის ქურთუკით, რომელიც ერთ მხარზეა გადაფარებული. იდეალურია საღამოს გასვლისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "shorts",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/dbebf3a49c52e1d9dfd28abe7ac9638e56c1a64fc6f5bf8c13551d9e86a4bcea.jpg"
+          ],
+          "title_en": "White Denim Shorts",
+          "description_en": "These high-waisted denim shorts feature a classic button and zipper fly with frayed hems. Perfect for summer wear.",
+          "title_ru": "Белые джинсовые шорты",
+          "description_ru": "Эти джинсовые шорты с высокой талией имеют классическую застежку и молнию с обрезанными краями. Идеально подходят для летней носки.",
+          "title_ka": "თეთრი ჯინსის შორტები",
+          "description_ka": "ეს ჯინსის შორტები მაღალი წელის მქონე კლასიკური ღილაკით და მოლინით, გაწვდილი კიდეებით. იდეალურია ზაფხულის ტარებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "jeans",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/fd540d4489e5f715b413e8106f9a03935e5ab01b2d819847bc4719a165f22be9.jpg"
+          ],
+          "title_en": "Light Blue Denim Jeans",
+          "description_en": "These high-waisted jeans feature a slightly faded wash with a trendy distressed style. Perfect for casual wear.",
+          "title_ru": "Светло-голубые джинсы",
+          "description_ru": "Эти джинсы с высокой талией имеют слегка выцветший цвет с модным потертым стилем. Идеально подходят для повседневной носки.",
+          "title_ka": "მსუბუქი ლურჯი ჯინსები",
+          "description_ka": "ეს ჯინსები მაღალი წელის მქონე, ოდნავ გამუქებული ფერით და მოდური დაზიანებული სტილით. იდეალურია ყოველდღიური ტარებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "crop_top",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/3da8eb0b60eaa55aafd2cb45552a15be8513dc84367cb075c3ebdded8cf7f234.jpg"
+          ],
+          "title_en": "Black Crop Top",
+          "description_en": "This crop top features a modern design and is perfect for casual outings. Pair it with a mini skirt for a stylish look.",
+          "title_ru": "Черный кроп-топ",
+          "description_ru": "Этот кроп-топ имеет современный дизайн и идеально подходит для повседневных выходов. Сочетайте его с мини-юбкой для стильного образа.",
+          "title_ka": "შავი კროპ-ტოპი",
+          "description_ka": "ეს კროპ-ტოპი აქვს თანამედროვე დიზაინი და იდეალურია ყოველდღიური გასვლებისთვის. შეუთავსეთ იგი მინი-იუბკასთან სტილური ხილვისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:47:40+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/d58959518e5cfaa5dbd48fe80adbe02ec375b3b2ca03c4850fc714e7f5f02e75.jpg"
+          ],
+          "title_en": "Black Long-Sleeve Dress",
+          "description_en": "This long-sleeve dress features ruched detailing and a fitted silhouette. Perfect for a modern and stylish look.",
+          "title_ru": "Черное платье с длинными рукавами",
+          "description_ru": "Это платье с длинными рукавами имеет сборки и облегающий силуэт. Идеально подходит для современного и стильного образа.",
+          "title_ka": "შავი გრძელი მკლავის კაბა",
+          "description_ka": "ეს გრძელი მკლავის კაბა აქვს შეკუმშული დეტალები და მჭიდრო სილუეტი. იდეალურია თანამედროვე და სტილური ხილვისთვის."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481860",
+      "source:path": "baraholka_ge/2025/06/2481851.md",
+      "source:author:telegram": "fromthemyheart",
+      "source:author:name": "Darya",
+      "timestamp": "2025-06-22T12:47:41+00:00",
+      "files": [
+        "baraholka_ge/2025/06/6345f675ba6adf7c8b4e9b8825a6daaac9277b054b6db2544574954bd9a99ad8.jpg",
+        "baraholka_ge/2025/06/8c715d3fb34497bfa2ec51cce92e6718dcff6ed01104a49d28e3ad1e2548df1c.jpg",
+        "baraholka_ge/2025/06/3934047aaec20fb80a696b3c467880046dc172bf46f38ac710a05a939acdf170.jpg",
+        "baraholka_ge/2025/06/819cb95ccf428ae1609c52441c5d889b6c3d7c782f75b1bbff0618dc022534d6.jpg",
+        "baraholka_ge/2025/06/5397586448b8e450d55ee77083f3fafb6a324aa12a350958856a14b81b96b969.jpg",
+        "baraholka_ge/2025/06/dbebf3a49c52e1d9dfd28abe7ac9638e56c1a64fc6f5bf8c13551d9e86a4bcea.jpg",
+        "baraholka_ge/2025/06/fd540d4489e5f715b413e8106f9a03935e5ab01b2d819847bc4719a165f22be9.jpg",
+        "baraholka_ge/2025/06/3da8eb0b60eaa55aafd2cb45552a15be8513dc84367cb075c3ebdded8cf7f234.jpg",
+        "baraholka_ge/2025/06/d58959518e5cfaa5dbd48fe80adbe02ec375b3b2ca03c4850fc714e7f5f02e75.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2481852\nchat: baraholka_ge\nsender: 782909714\nsender_username: fromthemyheart\nsender_phone: +995599103425\ntg_link: https://t.me/fromthemyheart\nsender_name: Darya\nauthor_type: user\ndate: 2025-06-22T12:47:40+00:00\ngroup_id: 14004771686916082\nis_admin: False\nfiles: ['baraholka_ge/2025/06/6345f675ba6adf7c8b4e9b8825a6daaac9277b054b6db2544574954bd9a99ad8.jpg']\n\nImage baraholka_ge/2025/06/6345f675ba6adf7c8b4e9b8825a6daaac9277b054b6db2544574954bd9a99ad8.jpg:\nThe image features a woman wearing a long, flowing black robe. The robe has wide, loose sleeves and is adorned with delicate lace trim along the neckline and down the front. It is cinched at the waist with a matching tie belt, creating a flattering silhouette. The fabric appears to be soft and smooth, adding an elegant touch to the garment. The background is a light, textured fabric that contrasts with the dark robe, enhancing the overall appearance. The atmosphere suggests a stylish and intimate setting, suitable for loungewear or evening attire.\n\nImage baraholka_ge/2025/06/8c715d3fb34497bfa2ec51cce92e6718dcff6ed01104a49d28e3ad1e2548df1c.jpg:\nThis image features a pink bikini set made from a shimmery, mesh-like material. The top is a classic triangle style, with adjustable ties around the neck and under the bust. The bottoms are a matching pink with side ties, designed in a minimal thong style. \n\nIn the foreground, there are white tulips arranged in a bouquet, adding a fresh touch. A straw hat with a decorative leaf accent is also visible, suggesting a summer or beach vibe. The background includes a partially visible magazine or book, enhancing a relaxed, casual atmosphere. The overall aesthetic is light and summery, perfect for beach outings or poolside lounging.\n\nImage baraholka_ge/2025/06/3934047aaec20fb80a696b3c467880046dc172bf46f38ac710a05a939acdf170.jpg:\nThe image features a stylish white swimwear set laid out on a wooden surface. The ensemble includes a sheer, long-sleeved cover-up with a front tie and flared sleeves, a triangle bikini top with tie closures, and matching bikini bottoms that also feature ties on the sides. The fabric appears lightweight and textured. Additionally, a woven straw bag is partially visible in the corner, suggesting a beach or poolside vibe. The overall aesthetic combines modern beachwear with a chic, summery feel.\n\nImage baraholka_ge/2025/06/819cb95ccf428ae1609c52441c5d889b6c3d7c782f75b1bbff0618dc022534d6.jpg:\nThe image shows a long-sleeved bodysuit in a light beige color. The fabric has a slightly worn or faded appearance, and the design is simple, with a scoop neckline and a fitted silhouette. The garment features full-length sleeves and a thong-style back for a sleek finish. It is laid out flat on a dark gray fabric, possibly a sofa or blanket, which contrasts with the bodysuit's color. There are no visible tags or markings in the image.\n\nImage baraholka_ge/2025/06/5397586448b8e450d55ee77083f3fafb6a324aa12a350958856a14b81b96b969.jpg:\nThe image features a person wearing a black fitted dress and a black leather jacket draped over one shoulder. They are standing in front of a mirror, taking a selfie with a pink phone. The background shows a wooden door that has a light wood finish, and the walls are painted in a light gray color. The floor appears to be a light-colored tile. The overall vibe of the space is modern and casual. The person's footwear consists of strappy sandals. The hairstyle is long and wavy, adding to the stylish appearance.\n\nImage baraholka_ge/2025/06/dbebf3a49c52e1d9dfd28abe7ac9638e56c1a64fc6f5bf8c13551d9e86a4bcea.jpg:\nThe image features a pair of white denim shorts placed on a gray fabric background. The shorts have a high-waisted design with a classic button and zipper fly, along with two front pockets and frayed hems. There are small gold-tone buttons on the pockets. The fabric appears slightly worn, contributing to a casual, summer vibe. The overall condition looks good, and they have a stylish, trendy look suitable for warm weather.\n\nImage baraholka_ge/2025/06/fd540d4489e5f715b413e8106f9a03935e5ab01b2d819847bc4719a165f22be9.jpg:\nThe image features a pair of light blue denim jeans laid out on a gray, textured surface. The jeans have a high-waisted fit with a slightly faded wash, featuring five pockets and a button closure. One leg appears to be cut off or unfinished, with frayed edges at the bottom, suggesting a distressed or trendy style. There are no visible tags or labels on the jeans in this view. The overall vibe is casual and modern, suitable for a relaxed fashion aesthetic.\n\nImage baraholka_ge/2025/06/3da8eb0b60eaa55aafd2cb45552a15be8513dc84367cb075c3ebdded8cf7f234.jpg:\nThe image shows a person in an elevator. They are wearing a black crop top and a white pleated mini skirt. The individual has long brown hair and appears to have a tattoo on their right arm. They are holding a can of energy drink with green branding. The elevator has metallic walls, reflecting the interior. The person poses with one foot slightly lifted, creating a casual stance. The background lacks any visible numbers or buttons, focusing on the individual. The environment appears modern and well-maintained.\n\nImage baraholka_ge/2025/06/d58959518e5cfaa5dbd48fe80adbe02ec375b3b2ca03c4850fc714e7f5f02e75.jpg:\nThe image features a black long-sleeve dress made of a stretchy material. It has a round neck and ruched detailing on the sides, which can be adjusted with drawstrings tied at the waist. The dress appears sleek and fitted, emphasizing a modern aesthetic. The background is a soft gray fabric, possibly a sofa or bed, complementing the dress’s color. There are no visible tags, prices, or watermarks in the image. Overall, the vibe is contemporary and stylish."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2467706",
       "source:path": "baraholka_ge/2025/06/2467706.md",
@@ -3893,6 +4166,146 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "children's_outfit",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg"
+          ],
+          "title_en": "Children's Outfit with Floral Patterns",
+          "description_en": "A playful children's outfit consisting of a top and a matching skirt, featuring a light cream background with small floral patterns in shades of blue and green.",
+          "title_ru": "Детский наряд с цветочным узором",
+          "description_ru": "Игристый детский наряд, состоящий из топа и юбки, с светло-кремовым фоном и маленькими цветочными узорами в оттенках синего и зеленого.",
+          "title_ka": "ბავშვის ტანსაცმელი ყვავილების ნიმუშით",
+          "description_ka": "ბავშვის ტანსაცმელი, რომელიც შედგება ზედისა და შესაბამისი ქვედაბოლოსგან, მსუბუქი კრემისფერი ფონით და პატარა ყვავილების ნიმუშებით."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hairdryer",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg"
+          ],
+          "title_en": "Philips Hairdryer Model BHD514/00",
+          "description_en": "A sleek and modern Philips hairdryer rated at 2300W, featuring a large nozzle and various styling attachments.",
+          "title_ru": "Фен Philips модели BHD514/00",
+          "description_ru": "Стильный и современный фен Philips мощностью 2300 Вт с большим насадкой и различными насадками для укладки.",
+          "title_ka": "ფენი Philips მოდელი BHD514/00",
+          "description_ka": "მოდერნული Philips-ის ფენი 2300 ვატით, დიდი ნოზლით და სხვადასხვა სტილის დანართებით."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg"
+          ],
+          "title_en": "White Summer Dress",
+          "description_en": "A fresh and summery white dress with thin straps and a fitted bodice, featuring a delicate diamond-like pattern.",
+          "title_ru": "Белое летнее платье",
+          "description_ru": "Свежое и летнее белое платье с тонкими бретелями и облегающим лифом, с деликатным узором в виде ромбов.",
+          "title_ka": "თეთრი ზაფხულის კაბა",
+          "description_ka": "ახალი და ზაფხულის თეთრი კაბა თხელი ზოლებით და მჭიდრო ზედა ნაწილით, რომელიც გამოირჩევა ნაზი რაფინირებული ნიმუშით."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "denim_shorts",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg"
+          ],
+          "title_en": "Stradivarius Blue Denim Shorts",
+          "description_en": "Light-wash blue denim shorts with a classic five-pocket design and a distressed style.",
+          "title_ru": "Синие джинсовые шорты Stradivarius",
+          "description_ru": "Светло-голубые джинсовые шорты с классическим дизайном на пять карманов и потертым стилем.",
+          "title_ka": "Stradivarius-ის ლურჯი ჯინსის შორტები",
+          "description_ka": "მსუბუქი ლურჯი ჯინსის შორტები კლასიკური ხუთი ჯიბით და დაზიანებული სტილით."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "bucket_hat",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg"
+          ],
+          "title_en": "Under Armour Bucket Hat",
+          "description_en": "A stylish white bucket hat with a prominent Under Armour logo and a wide brim.",
+          "title_ru": "Бакетная шляпа Under Armour",
+          "description_ru": "Стильная белая бакетная шляпа с заметным логотипом Under Armour и широкими полями.",
+          "title_ka": "Under Armour-ის ბაკეტური ქუდი",
+          "description_ka": "სტილური თეთრი ბაკეტური ქუდი გამოხატული Under Armour-ის ლოგოთი და ფართო მარყუჟით."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "sleeveless_vest",
+          "condition": "new",
+          "price": 95,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg"
+          ],
+          "title_en": "White Sleeveless Vest",
+          "description_en": "A quilted white sleeveless vest with a hood and zippered pockets, available in sizes XS and S.",
+          "title_ru": "Белый безрукавный жилет",
+          "description_ru": "Квилтированный белый безрукавный жилет с капюшоном и карманами на молнии, доступный в размерах XS и S.",
+          "title_ka": "თეთრი ხელთათმანი ჟილეტი",
+          "description_ka": "ქვილტირებული თეთრი ხელთათმანი ჟილეტი კაპიუშონით და ზიპ-პოკეტებით, ხელმისაწვდომია ზომებში XS და S."
+        },
+        {
+          "timestamp": "2025-06-22T12:25:56+00:00",
+          "market:deal": "sell_item",
+          "item:type": "denim_jeans",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_ge/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg"
+          ],
+          "title_en": "Light Blue Denim Jeans",
+          "description_en": "Casual light blue denim jeans with a straight-leg cut and a frayed hem.",
+          "title_ru": "Светло-голубые джинсы",
+          "description_ru": "Кэжуальные светло-голубые джинсы с прямым кроем и обрезанным краем.",
+          "title_ka": "მსუბუქი ლურჯი ჯინსი",
+          "description_ka": "კეჟუალური მსუბუქი ლურჯი ჯინსი პირდაპირი კერვით და გაწვდილი კიდით."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481805",
+      "source:path": "baraholka_ge/2025/06/2481799.md",
+      "source:author:name": "Viкtoriіa",
+      "timestamp": "2025-06-22T12:25:57+00:00",
+      "files": [
+        "baraholka_ge/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg",
+        "baraholka_ge/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg",
+        "baraholka_ge/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg",
+        "baraholka_ge/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg",
+        "baraholka_ge/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg",
+        "baraholka_ge/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg",
+        "baraholka_ge/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2481800\nchat: baraholka_ge\nsender: 815301752\nsender_phone: \nsender_name: Viкtoriіa\nauthor_type: user\ndate: 2025-06-22T12:25:56+00:00\ngroup_id: 14004761253198282\nis_admin: False\nfiles: ['baraholka_ge/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg']\n\nImage baraholka_ge/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg:\nThe image shows a children's outfit consisting of a top and a matching skirt. The fabric features a light cream background adorned with small floral patterns in shades of blue, green, and hints of darker tones. The top has a short sleeve design, while the skirt appears to be ruffled at the hem. \n\nAdditionally, there is a close-up view of the fabric, highlighting the floral print and texture. The background appears to be a soft, textured rug, creating a cozy vibe. The overall look is playful and suitable for casual wear.\n\nImage baraholka_ge/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg:\nThe image features a Philips hairdryer model BHD514/00, rated at 2300W. Its design is sleek and modern, predominantly in black with purple accents. The hairdryer has a large nozzle and is shown with a range of different styling attachments, enhancing its versatility. The price is displayed as 150 Lari, and there are some annotations in Georgian. The background is simple and unobtrusive, focusing attention on the product itself. No additional items or watermarks are indicated in the image.\n\nImage baraholka_ge/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg:\nThe image features a white dress made from a textured fabric. The dress has thin straps and a fitted bodice that flows out into a slightly flared skirt. The material showcases a detailed pattern, giving it a delicate, crafted look. The close-up section on the right focuses on the intricate textures, highlighting a diamond-like pattern with raised stitching. The dress is laid out flat on a light-colored, shaggy rug. Overall, the vibe is fresh and summery, suitable for casual or semi-formal occasions.\n\nImage baraholka_ge/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg:\nThe image showcases a pair of blue denim shorts from the brand Stradivarius. The fabric appears to be light-wash with a faded look. The label indicates the size as 30, and it mentions \"Made in Cambodia.\" The shorts feature a classic five-pocket design with the back pocket visible. The hem appears to be cut off, giving it a distressed style. The background has a fuzzy, beige texture, suggesting a cozy setting. Overall, the vibe is casual and trendy, suitable for warm weather.\n\nImage baraholka_ge/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg:\nThe image shows a white bucket hat with a stylish design. It features a prominent logo on the front, which appears to be an Under Armour emblem. The hat has a soft, textured fabric and a wide brim. The background consists of a beige, shaggy carpet that adds a cozy vibe to the scene. A hand is partially visible, holding the hat, suggesting it’s being showcased for display or sale. Overall, the look is casual and sporty.\n\nImage baraholka_ge/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg:\nThe image features a white sleeveless vest with a hood. It has a quilted design with horizontal stitching and two zippered pockets at the front. The vest is labeled as \"Оригинал\" and is available in sizes XS and S, priced at 95 лар. The background appears to be a light-colored stone surface. There are no additional items or details visible in the image.\n\nImage baraholka_ge/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg:\nThe image features a pair of light blue denim jeans laid out on a textured beige rug. The jeans have a straight-leg cut, with a noticeable frayed hem. The label shows that they are from the brand \"Pull & Bear,\" specifically from their denim department. The background appears simple, emphasizing the jeans themselves. Overall, the vibe is casual and relaxed, with a focus on the garments."
+  },
+  {
+    "lot": {
       "market:deal": "services_offer",
       "occupation": "массажист",
       "description_ru": "Предоставляю услуги массажиста по доступным ценам, работаю по вызову: ●Классический расслабляющий массаж всего тела ●Локальный массаж (ноги, кисти, лицо, шейно-воротничковая зона) ●Лимфодренажный и антицеллюлитный массаж. Обладаю руками с особой энергетикой! Если сомневаетесь, при первом посещении скидка 50%! Обращайтесь по телефону, или пишите, вы этого заслужили!",
@@ -4014,78 +4427,6 @@
       "timestamp": "2025-06-22T06:06:35+00:00"
     },
     "input": "Message text:\nрынок Бони"
-  },
-  {
-    "lot": {
-      "lots": [
-        {
-          "timestamp": "2025-06-22T11:23:21+00:00",
-          "market:deal": "sell_item",
-          "item:type": "smartphone_case",
-          "condition": "used",
-          "price": null,
-          "price:currency": null,
-          "urgency": "none",
-          "files": [
-            "baraholka_ge/2025/06/d138170d8d79fcdd23b35720784749b66bb4b7dbda55a11beeb9a251fd93cdb5.jpg"
-          ],
-          "title_en": "Black iPhone Case",
-          "description_en": "A sleek and minimalist black smartphone case for an iPhone model, featuring cutouts for the camera and Apple logo.",
-          "title_ru": "Черный чехол для iPhone",
-          "description_ru": "Скромный и минималистичный черный чехол для смартфона модели iPhone с вырезами для камеры и логотипа Apple.",
-          "title_ka": "შავი iPhone-ის ქეისი",
-          "description_ka": "მინიმალისტური შავი ქეისი iPhone-ის მოდელისთვის, კამერისა და Apple-ის ლოგოსთვის გამოჭრილი ადგილებით."
-        },
-        {
-          "timestamp": "2025-06-22T11:23:21+00:00",
-          "market:deal": "sell_item",
-          "item:type": "smartphone",
-          "condition": "used",
-          "price": null,
-          "price:currency": null,
-          "urgency": "none",
-          "files": [
-            "baraholka_ge/2025/06/a0b87e83adca1349386e5a11828b121e188d217aa6a1f457b5f44cb917fd2328.jpg"
-          ],
-          "title_en": "Smartphone with Battery Health Info",
-          "description_en": "A smartphone displaying battery health information: Normal condition, 94% maximum capacity, 273 cycle count.",
-          "title_ru": "Смартфон с информацией о состоянии батареи",
-          "description_ru": "Смартфон, отображающий информацию о состоянии батареи: нормальное состояние, максимальная емкость 94%, 273 цикла.",
-          "title_ka": "სმარტფონი ბატარეის ჯანმრთელობის ინფორმაციით",
-          "description_ka": "სმარტფონი, რომელიც აჩვენებს ბატარეის ჯანმრთელობის ინფორმაციას: ნორმალური მდგომარეობა, მაქსიმალური სიმძლავრე 94%, 273 ციკლი."
-        },
-        {
-          "timestamp": "2025-06-22T11:23:21+00:00",
-          "market:deal": "sell_item",
-          "item:type": "gadget",
-          "condition": "used",
-          "price": null,
-          "price:currency": null,
-          "urgency": "none",
-          "files": [
-            "baraholka_ge/2025/06/c96a9ed3aad8d9845c7086a767c1623a79b1a035849373f1ac3bfcbba264930e.jpg"
-          ],
-          "title_en": "Small Black Gadget",
-          "description_en": "A small black plastic gadget with a narrow profile and an engraved design.",
-          "title_ru": "Маленький черный гаджет",
-          "description_ru": "Маленький черный пластиковый гаджет с узким профилем и гравировкой.",
-          "title_ka": "პატარა შავი მოწყობილობა",
-          "description_ka": "პატარა შავი პლასტმასის მოწყობილობა ვიწრო პროფილით და გრავირებული დიზაინით."
-        }
-      ],
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2481612",
-      "source:path": "baraholka_ge/2025/06/2481607.md",
-      "source:author:name": "Георгий",
-      "timestamp": "2025-06-22T11:23:22+00:00",
-      "files": [
-        "baraholka_ge/2025/06/c96a9ed3aad8d9845c7086a767c1623a79b1a035849373f1ac3bfcbba264930e.jpg",
-        "baraholka_ge/2025/06/d138170d8d79fcdd23b35720784749b66bb4b7dbda55a11beeb9a251fd93cdb5.jpg",
-        "baraholka_ge/2025/06/a0b87e83adca1349386e5a11828b121e188d217aa6a1f457b5f44cb917fd2328.jpg",
-        "baraholka_ge/2025/06/cf02d42065a7f63b39a928243e53ebb539e338ddb8bb1dc2030e4985af22a0b2.jpg"
-      ]
-    },
-    "input": "Message text:\nid: 2481609\nchat: baraholka_ge\nsender: 8015428954\nsender_phone: \nsender_name: Георгий\nauthor_type: user\ndate: 2025-06-22T11:23:21+00:00\ngroup_id: 14004731214352106\nis_admin: False\nfiles: ['baraholka_ge/2025/06/c96a9ed3aad8d9845c7086a767c1623a79b1a035849373f1ac3bfcbba264930e.jpg']\n\nImage baraholka_ge/2025/06/c96a9ed3aad8d9845c7086a767c1623a79b1a035849373f1ac3bfcbba264930e.jpg:\nThe image shows a person's hand holding a small, black plastic item, possibly a tool or a gadget. The item has a narrow profile and appears to have an engraved or embossed design on one side, though the details are unclear. The background indicates a smooth, possibly leather-like surface in a neutral color. The hand holding the item has a light skin tone, with well-groomed fingers. The overall feel of the photo is casual, capturing close-up details of the object.\n\nImage baraholka_ge/2025/06/d138170d8d79fcdd23b35720784749b66bb4b7dbda55a11beeb9a251fd93cdb5.jpg:\nThe image shows a person’s hand holding a black smartphone case that appears to be for an iPhone model. The case is sleek and minimalist in design, featuring cutouts for the camera and the Apple logo on the back. The hand is gripping the case, which has a smooth texture. In the background, another similar case can be seen, indicating that multiple items might be present. The surface beneath the phone is a textured brown, suggesting a table or a desk. The overall vibe of the image is modern and contemporary.\n\nImage baraholka_ge/2025/06/a0b87e83adca1349386e5a11828b121e188d217aa6a1f457b5f44cb917fd2328.jpg:\nThe image shows the screen of a smartphone displaying battery health information in Russian. Key details include:\n\n- **Battery Condition**: Normal\n- **Maximum Capacity**: 94%\n- **Cycle Count**: 273\n- **First Use Date**: March 2024\n- **Manufacturing Date**: May 2024\n\nThe smartphone appears to have a rounded design typical of recent models. The background surface seems to be textured, likely a dark-colored fabric or some material. There are no visible watermarks or additional elements in the image.\n\nImage baraholka_ge/2025/06/cf02d42065a7f63b39a928243e53ebb539e338ddb8bb1dc2030e4985af22a0b2.jpg:\nThe image shows a flat surface, likely a car seat, with various items laid out. \n\n1. **iPhone Box**: A white iPhone box is partially visible, indicating it might contain a phone or accessories.\n2. **Cable**: A beige charging cable is coiled next to the box. It appears to be in good condition, with a standard USB end.\n3. **Paper Notes**: There are two pieces of paper, one is white with handwritten notes and the other looks like a warranty or instructions card. \n4. **Phone Case**: An additional item, possibly a phone case, is partially showing on the right side, also in a darker color. \n\nThe setting has a casual, everyday vibe, typical of a car interior. No additional product details are discernible."
   },
   {
     "lot": {
@@ -5471,6 +5812,34 @@
   },
   {
     "lot": {
+      "timestamp": "2025-06-22T12:54:18+00:00",
+      "market:deal": "sell_item",
+      "item:type": "shoe",
+      "brand": "PUMA",
+      "model": "Doublecourt",
+      "condition": "new",
+      "price": 200,
+      "price:currency": "GEL",
+      "urgency": "none",
+      "files": [
+        "baraholka_ge/2025/06/677a2cfa7ca8a4ac195e8410d8db121c2b7e4cde4f31b714bc4716f4ef84d75c.jpg",
+        "baraholka_ge/2025/06/2bcb579c3e06c5abf6f9d68b5ddd9aeabca2d4dfc5f556fcb9ac02997814a31d.jpg",
+        "baraholka_ge/2025/06/4e5171933e02facd58303e30624f750e394f3adba82d1f3f26e44262ac3f4eab.jpg"
+      ],
+      "title_en": "PUMA Doublecourt Men's Sneakers Size 47",
+      "description_en": "Brand new, authentic PUMA Doublecourt Men's Sneakers. Size: 47 EU / 12 US / 31 cm. From USA. Price: 200 GEL.",
+      "title_ru": "Оригинальные кроссовки PUMA Doublecourt, размер 47",
+      "description_ru": "Новые, оригинальные кроссовки PUMA Doublecourt. Размер: 47 EU / 12 US / 31 см. Привезены из США. Цена: 200 GEL.",
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481887",
+      "source:path": "baraholka_ge/2025/06/2481885.md",
+      "source:author:telegram": "LukTak",
+      "source:author:name": "Luka"
+    },
+    "input": "Message text:\nOriginal PUMA Doublecourt Men's Sneakers 👟\n✔️ Brand new, authentic (QR code included)\n✔️ Size: 47 EU / 12 US / 31 cm\n✔️ From USA\n💵 ~~220~~₾  200₾\n\nОригинальные кроссовки PUMA Doublecourt Men's Sneakers 👟\n✔️ Новые, оригинал (есть QR-код).\n✔️ Размер: 47 EU / 12 US / 31 см.\n✔️ Привезены из США.\n💵 ~~220~~₾  200₾\n\nImage baraholka_ge/2025/06/677a2cfa7ca8a4ac195e8410d8db121c2b7e4cde4f31b714bc4716f4ef84d75c.jpg:\nThe image features a pair of white Puma sneakers, prominently displayed with a slightly angled view to highlight their design. The shoes are mostly white with black detailing, including a black tongue and black stripes along the sides. They showcase classic lace-ups and perforated detailing on the toe area. \n\nIn the background, there’s a green Puma shoebox with the brand logo visible. The setting appears casual and contemporary, with a plain surface beneath the shoes, drawing attention to the footwear. Overall, the vibe is sporty and stylish, suitable for everyday wear.\n\nImage baraholka_ge/2025/06/2bcb579c3e06c5abf6f9d68b5ddd9aeabca2d4dfc5f556fcb9ac02997814a31d.jpg:\nThe image features a pair of white Puma sneakers. They have a classic design with a smooth leather finish, black accents around the edges, and perforations on the toe area for breathability. The laces are white, and the sneakers appear well-maintained. In the background, there's a green Puma shoebox with the brand logo prominently displayed. The ambiance suggests a clean and modern interior. Overall, the sneakers exude a sporty yet casual vibe.\n\nImage baraholka_ge/2025/06/4e5171933e02facd58303e30624f750e394f3adba82d1f3f26e44262ac3f4eab.jpg:\nThe image features a pair of PUMA sneakers in a predominantly white colorway. They have a smooth leather texture with a classic design, showcasing a low-top silhouette. The shoes are accented with dark navy detailing along the collar and along the side, which includes the iconic PUMA stripe. The soles appear to be lightly textured for grip, and there is a sleek look to the overall construction. The branding is visible on the tongue and at the back heel. The shoes evoke a sporty, casual vibe, suitable for everyday wear."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2480301",
       "source:path": "baraholka_ge/2025/06/2480301.md",
@@ -6092,6 +6461,194 @@
       ]
     },
     "input": "Message text:\nid: 2480517\nchat: baraholka_ge\nsender: 5781555323\nsender_username: FM_Energy\nsender_phone: \ntg_link: https://t.me/FM_Energy\nsender_name: [FM]Energy\nauthor_type: user\ndate: 2025-06-22T06:20:09+00:00\ngroup_id: 14004585678161250\nis_admin: False\nfiles: ['baraholka_ge/2025/06/6a5d461346130b48de5926c07fdb2675ac089398ba29e598d523dcf5387e1939.jpg']\n\nImage baraholka_ge/2025/06/6a5d461346130b48de5926c07fdb2675ac089398ba29e598d523dcf5387e1939.jpg:\nThe image shows a layered bedding arrangement featuring a floral-patterned quilt or bedspread on top. The quilt is predominantly white with small red and pink flowers, indicating a vintage or cozy aesthetic. Beneath it, there appears to be a mattress with a thick, textured surface in light cream or beige, outlined with contrasting stitching. The mattress is layered on what looks like a black and beige animal-print rug or fabric. The overall vibe suggests a homey and comfortable atmosphere, possibly in a bedroom setting.\n\nImage baraholka_ge/2025/06/6bb2d7ce1e407366f695752b0721dc8117a2dc6f83d1a3c4c6616e4aed981328.jpg:\nThe image shows a simple bedroom setting. There is a bare mattress on a wooden bed frame, covered with a floral patterned blanket in pink and white. The walls are adorned with a pastel wallpaper featuring a floral design, giving a slightly retro vibe. Next to the bed, there’s a yellow plastic bag and some miscellaneous items, perhaps indicating a cluttered space. The room appears to be basic and somewhat unfinished, lacking decor and additional furniture. The overall atmosphere suggests an older, lived-in environment."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "skirt",
+          "brand": "Copurs",
+          "condition": "like_new",
+          "price": 45,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/06d93db94042cac38ebc8bded92a957a76dc1f407938368c8990a4fd220215f1.jpg",
+            "baraholka_ge/2025/06/ed1abd032f90b635677f51f94224a7c0d0ffd858f1e8e52c49fcf9e50ba29770.jpg",
+            "baraholka_ge/2025/06/9163d08fbb688ad61b5fa3eee3b2cd258122b6b017c9993b3f6ba6b3fb5a7131.jpg",
+            "baraholka_ge/2025/06/d779cbc2b07ea4416e307b6347ff066aee142acd143227fb62b5624871954e13.jpg"
+          ],
+          "title_en": "Skirt by Copurs, Size 36",
+          "description_en": "Skirt by Copurs in perfect condition, size 36, priced at 45 Lari. More items in my profile description.",
+          "title_ru": "Юбка бренда Copurs, размер 36",
+          "description_ru": "Юбка бренда Copurs в идеальном состоянии, размер 36, цена 45 лари. Больше вещей в описании профиля.",
+          "title_ka": "Copurs-ის юбка, ზომა 36",
+          "description_ka": "Copurs-ის юбка იდეალურ მდგომარეობაში, ზომა 36, ფასი 45 ლარი. მეტი ნივთები ჩემს პროფილში აღწერაში."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481831",
+      "source:path": "baraholka_ge/2025/06/2481830.md",
+      "source:author:telegram": "elliebatumi",
+      "source:author:name": "Ellie G",
+      "timestamp": "2025-06-22T12:39:36+00:00",
+      "files": [
+        "baraholka_ge/2025/06/06d93db94042cac38ebc8bded92a957a76dc1f407938368c8990a4fd220215f1.jpg",
+        "baraholka_ge/2025/06/ed1abd032f90b635677f51f94224a7c0d0ffd858f1e8e52c49fcf9e50ba29770.jpg",
+        "baraholka_ge/2025/06/9163d08fbb688ad61b5fa3eee3b2cd258122b6b017c9993b3f6ba6b3fb5a7131.jpg",
+        "baraholka_ge/2025/06/d779cbc2b07ea4416e307b6347ff066aee142acd143227fb62b5624871954e13.jpg"
+      ]
+    },
+    "input": "Message text:\n**Юбка бренда Copurs\n45 лари\nРазмер: 36\nСостояние: идеальное\nБольше моих вещей в описании профиля**\n\nImage baraholka_ge/2025/06/06d93db94042cac38ebc8bded92a957a76dc1f407938368c8990a4fd220215f1.jpg:\nThe image shows a white skirt hanging on a hanger. It is made of a delicate fabric with an eyelet design and floral patterns. The skirt has multiple layers, creating a tiered effect with fringe trim details. The waistband appears to be elasticized, ensuring a comfortable fit. The overall appearance is light and airy, suitable for summer wear.\n\nImage baraholka_ge/2025/06/ed1abd032f90b635677f51f94224a7c0d0ffd858f1e8e52c49fcf9e50ba29770.jpg:\nThe image shows the inner lining of a garment, displaying a label with the brand \"COPURS by IGNEYA COPUR.\" The size is marked as \"36.\" The fabric appears to be light-colored and smooth. There is a zipper visible on the left side, suggesting it's an item of clothing, possibly a dress or a jacket.\n\nImage baraholka_ge/2025/06/9163d08fbb688ad61b5fa3eee3b2cd258122b6b017c9993b3f6ba6b3fb5a7131.jpg:\nThe image features three fashion outfits in white, showcasing different styles of off-the-shoulder dresses and tops. On the left, there's an off-shoulder dress with a fitted bodice and flared skirt. The central figure is wearing a two-piece outfit with a ruffled, off-shoulder top and a matching skirt featuring delicate eyelet details. The figure on the right also wears a similar two-piece set with a focus on eyelet embroidery and a wide-brimmed hat. All garments emphasize a summer vibe, with airy, lightweight fabrics and feminine silhouettes. Gold hoop earrings complement the outfits.\n\nImage baraholka_ge/2025/06/d779cbc2b07ea4416e307b6347ff066aee142acd143227fb62b5624871954e13.jpg:\nThe image shows a close-up of a white lace garment. The fabric features intricate floral and oval cut-out patterns, creating a delicate design. The hem is adorned with a fringe detail, adding texture and movement. The lace has a sheer quality, and there is an additional layer of finer woven trim above the fringe. The garment appears to be lightweight, suitable for warm weather or as a decorative overlay."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/cf488a2a7d47cbaba5b4ae2d0a16d123ce68cbe28496cb8debce13ce6e3911f5.jpg"
+          ],
+          "title_en": "Colorful Abstract Dress",
+          "description_en": "The dress has a short, ruffled off-the-shoulder design with vivid colors, suitable for casual or summery occasions.",
+          "title_ru": "Яркое абстрактное платье",
+          "description_ru": "Платье с коротким рюшевым дизайном и яркими цветами, подходит для повседневных или летних мероприятий.",
+          "title_ka": "ფერადი აბსტრაქტული კაბა",
+          "description_ka": "კაბა მოკლე, რაფინირებული დიზაინით და ნათელი ფერებით, შესაფერისია ყოველდღიური ან ზაფხულის შემთხვევებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "skirt",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/caf38668fbf88a5a0106411ec620f918ae16b6aec807d529b427c163c55b34ac.jpg"
+          ],
+          "title_en": "Zigzag Pattern Skirt",
+          "description_en": "The skirt features a bold zigzag pattern in red, white, and navy blue, perfect for summer.",
+          "title_ru": "Юбка с зигзагообразным узором",
+          "description_ru": "Юбка с ярким зигзагообразным узором в красном, белом и темно-синем цветах, идеально подходит для лета.",
+          "title_ka": "ზიგზაგური ნიმუშის юбка",
+          "description_ka": "იუბკა გამორჩეული ზიგზაგური ნიმუშით წითელი, თეთრი და მუქი ლურჯი ფერებით, იდეალურია ზაფხულისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "cape",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/eaa2db578db8a10d6692320f5eb300a4fb2cb3e064e16b6db754cdde3ee27b4b.jpg"
+          ],
+          "title_en": "Patterned Cape",
+          "description_en": "This lightweight cape features a black and white diamond motif with a solid navy blue section.",
+          "title_ru": "Пончо с узором",
+          "description_ru": "Это легкое пончо с черно-белым ромбовидным узором и сплошной темно-синей секцией.",
+          "title_ka": "ნიმუშიანი პონჩო",
+          "description_ka": "ეს მსუბუქი პონჩო შავი და თეთრი რაფინირებული ნიმუშით და მუქი ლურჯი სექციით არის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "skirt",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/086d80cbbe07b09e01d492a5012b5403843c247f4151a51ff944a50d8c3cc312.jpg"
+          ],
+          "title_en": "Floral Navy Blue Skirt",
+          "description_en": "This skirt features a navy blue base with a white flower pattern, perfect for warm weather.",
+          "title_ru": "Юбка с цветочным узором",
+          "description_ru": "Эта юбка имеет темно-синий фон с белым цветочным узором, идеально подходит для теплой погоды.",
+          "title_ka": "ყვავილოვანი მუქი ლურჯი юбка",
+          "description_ka": "ეს юбკა მუქი ლურჯი ფონისა და თეთრი ყვავილების ნიმუშით არის, იდეალურია თბილი ამინდისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "skirt",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/9b2fd9595518e439880437aedcf3b2ff654efe47258242af90096e63dc9a223e.jpg"
+          ],
+          "title_en": "Gradient Tiered Dress",
+          "description_en": "This sleeveless dress features a gradient of colors from light beige to vibrant green, perfect for summer.",
+          "title_ru": "Платье с градиентом",
+          "description_ru": "Это безрукавное платье с градиентом от светлого бежевого до ярко-зеленого, идеально подходит для лета.",
+          "title_ka": "გრადიენტული კაბა",
+          "description_ka": "ეს безрукавное კაბა გრადიენტით მსუბუქი ბეჟისგან მუქი მწვანემდე, იდეალურია ზაფხულისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "skirt",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/e1e37ffb9566c8e0c3f4c55933d57db088e61f6f4daec476258ad6e8c3da8519.jpg"
+          ],
+          "title_en": "Floral Print Skirt",
+          "description_en": "This skirt features a white base with a delicate floral print, suitable for casual occasions.",
+          "title_ru": "Юбка с цветочным принтом",
+          "description_ru": "Эта юбка имеет белый фон с деликатным цветочным принтом, подходит для повседневных мероприятий.",
+          "title_ka": "ყვავილოვანი პრინტით юбკა",
+          "description_ka": "ეს юбკა თეთრი ფონისა და ნაზი ყვავილების პრინტით არის, შესაფერისია ყოველდღიური შემთხვევებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:59:08+00:00",
+          "market:deal": "sell_item",
+          "item:type": "children's outfit",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_ge/2025/06/50f24dd0c4ab9ad14538cc1e1ee78039142229900c75f3f7bdc8ec35d13473c2.jpg"
+          ],
+          "title_en": "Children's Blazer and Trousers Set",
+          "description_en": "This outfit includes a dark blue blazer and bright blue trousers, perfect for kids.",
+          "title_ru": "Детский комплект: пиджак и брюки",
+          "description_ru": "Этот комплект включает темно-синий пиджак и ярко-синие брюки, идеально подходит для детей.",
+          "title_ka": "ბავშვთა კომპლექტი: ჟაკეტი და შარვალი",
+          "description_ka": "ეს კომპლექტი მოიცავს მუქი ლურჯი ჟაკეტსა და ნათელი ლურჯი შარვალს, იდეალურია ბავშვებისთვის."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481911",
+      "source:path": "baraholka_ge/2025/06/2481902.md",
+      "source:author:name": "🐅",
+      "timestamp": "2025-06-22T12:59:09+00:00",
+      "files": [
+        "baraholka_ge/2025/06/cf488a2a7d47cbaba5b4ae2d0a16d123ce68cbe28496cb8debce13ce6e3911f5.jpg",
+        "baraholka_ge/2025/06/caf38668fbf88a5a0106411ec620f918ae16b6aec807d529b427c163c55b34ac.jpg",
+        "baraholka_ge/2025/06/eaa2db578db8a10d6692320f5eb300a4fb2cb3e064e16b6db754cdde3ee27b4b.jpg",
+        "baraholka_ge/2025/06/086d80cbbe07b09e01d492a5012b5403843c247f4151a51ff944a50d8c3cc312.jpg",
+        "baraholka_ge/2025/06/1cb49bac818fda6bcf347336109b007dc17d9e732b5c1d38abb1e2af3241500b.jpg",
+        "baraholka_ge/2025/06/9b2fd9595518e439880437aedcf3b2ff654efe47258242af90096e63dc9a223e.jpg",
+        "baraholka_ge/2025/06/e1e37ffb9566c8e0c3f4c55933d57db088e61f6f4daec476258ad6e8c3da8519.jpg",
+        "baraholka_ge/2025/06/50f24dd0c4ab9ad14538cc1e1ee78039142229900c75f3f7bdc8ec35d13473c2.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 2481903\nchat: baraholka_ge\nsender: 7759948820\nsender_phone: \nsender_name: 🐅\nauthor_type: user\ndate: 2025-06-22T12:59:08+00:00\ngroup_id: 14004777188476178\nis_admin: False\nfiles: ['baraholka_ge/2025/06/cf488a2a7d47cbaba5b4ae2d0a16d123ce68cbe28496cb8debce13ce6e3911f5.jpg']\n\nImage baraholka_ge/2025/06/cf488a2a7d47cbaba5b4ae2d0a16d123ce68cbe28496cb8debce13ce6e3911f5.jpg:\nThe image features a colorful, abstract-patterned dress hanging on a hanger. The dress has a short, ruffled off-the-shoulder design with a variety of vivid colors, including shades of red, yellow, green, and blue, creating a swirling effect reminiscent of waves or marble. It appears lightweight and flowy, suitable for casual or summery occasions. The background is a dark-colored door, which contrasts with the vibrant patterns of the dress. Overall, the vibe is playful and stylish.\n\nImage baraholka_ge/2025/06/caf38668fbf88a5a0106411ec620f918ae16b6aec807d529b427c163c55b34ac.jpg:\nThe image features a garment hanging on a hook against a dark background. It appears to be a skirt or dress, characterized by a bold, zigzag pattern in red, white, and navy blue. The fabric has a light and flowy quality, indicative of a summer or casual style. The waistband is elasticated, suggesting comfort. The lighting in the image is soft, emphasizing the colors of the fabric. There are no visible tags or logos, and the hook adds a casual vibe to the display. Overall, it presents a lively and vibrant aesthetic, suitable for warm weather.\n\nImage baraholka_ge/2025/06/eaa2db578db8a10d6692320f5eb300a4fb2cb3e064e16b6db754cdde3ee27b4b.jpg:\nThe image features a garment that resembles a cape or poncho. It has a patterned design in black and white, with a diamond motif, and a solid navy blue section in the center. The garment appears to be lightweight and is hung on a hanger against a dark background, likely a closet or wardrobe. There are no visible tags or markings indicating price or brand. The overall vibe is casual and stylish.\n\nImage baraholka_ge/2025/06/086d80cbbe07b09e01d492a5012b5403843c247f4151a51ff944a50d8c3cc312.jpg:\nThe image shows a floral skirt hanging against a dark background. The skirt is primarily navy blue with a white flower pattern throughout. It features an elastic waistband, allowing for flexibility in fit. The floral design includes various types of flowers, creating a lively and summery appearance. The light conditions make some areas appear brighter, emphasizing the contrast between the navy and white. Overall, the skirt has a casual vibe suitable for warm weather.\n\nImage baraholka_ge/2025/06/1cb49bac818fda6bcf347336109b007dc17d9e732b5c1d38abb1e2af3241500b.jpg:\nThe image shows a person seated on a bed, wearing a long skirt with red, white, and blue diagonal stripes. The skirt has a flowing design. The individual is also wearing a dark top and appears to be holding a mobile phone with one hand. The background features a light-colored bed and a partly visible round mirror reflecting part of the room's decor, which includes a patterned cushion on the bed. The room has a cozy, casual vibe. The individual is wearing light-colored flat shoes.\n\nImage baraholka_ge/2025/06/9b2fd9595518e439880437aedcf3b2ff654efe47258242af90096e63dc9a223e.jpg:\nThe image features a sleeveless, tiered dress in a gradient of colors. The top is a light beige, flowing into a bright orange, and then transitioning to yellow, before finishing in vibrant green at the hem. The dress has a simple, elegant design with spaghetti straps and a gathered bodice, giving it a relaxed, summer vibe. It's displayed on a decorative hanger against a dark wooden door, which adds a rustic feel to the presentation. The background suggests a cozy indoor setting. There are no visible brand labels or price tags in the image.\n\nImage baraholka_ge/2025/06/e1e37ffb9566c8e0c3f4c55933d57db088e61f6f4daec476258ad6e8c3da8519.jpg:\nThis image features a light, airy skirt hung against a dark background. The skirt is predominantly white with a delicate floral print in various colors, including pink, yellow, and green. It has an elastic waistband, indicating comfort and ease of wear. The fabric appears lightweight and may be suitable for casual or warm-weather occasions. The hemline is slightly flared, adding a touch of elegance to its design. Overall, the vibe of the garment is fresh and feminine, perfect for spring or summer.\n\nImage baraholka_ge/2025/06/50f24dd0c4ab9ad14538cc1e1ee78039142229900c75f3f7bdc8ec35d13473c2.jpg:\nThe image features a children's outfit consisting of a dark blue blazer and bright blue trousers. The blazer has one button and a pocket on the left side. The trousers are loose-fitting, with a belt loop and a fabric tie at the waist. The background has a light-colored, textured bedding or surface, which makes the outfit stand out, highlighting its colors. The overall vibe of the setting appears casual and homey. There are no visible tags or annotations in the image."
   },
   {
     "lot": {
@@ -11241,6 +11798,60 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "market:deal": "sell_item",
+          "item:type": "shoe",
+          "condition": "used",
+          "price": 80,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "title_en": "Nike Air Max Sneakers Size 38",
+          "description_en": "Nike Air Max sneakers in size 38 for 80 Lari.",
+          "title_ru": "Кроссовки Nike Air Max 38 размер",
+          "description_ru": "Кроссовки Nike Air Max 38 размера за 80 лари.",
+          "files": [
+            "baraholka_ge/2025/06/dc2cac8e40bb9f4971920b5078b718ea9e66526c0931b13610d6e0319ce8c6bc.jpg"
+          ]
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "shoe",
+          "condition": "used",
+          "price": 90,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "title_en": "Nike Planet Slip-Ons Size 36",
+          "description_en": "Nike Planet slip-ons in size 36 for 90 Lari.",
+          "title_ru": "Слипоны Nike Planet 36 размер",
+          "description_ru": "Слипоны Nike Planet 36 размера за 90 лари.",
+          "files": [
+            "baraholka_ge/2025/06/455691c7bcdff7e2f9e722c5825212edb69dfc15482d6eab222bd0f72d04319e.jpg"
+          ]
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481869",
+      "source:path": "baraholka_ge/2025/06/2481861.md",
+      "source:author:name": "Alla Lisovskaya (Abgaryan)",
+      "timestamp": "2025-06-22T12:48:00+00:00",
+      "files": [
+        "baraholka_ge/2025/06/b0aad04556708d98b6b45683a4dc59fd3afd1cb5a730f51fe000896303a595f9.jpg",
+        "baraholka_ge/2025/06/455691c7bcdff7e2f9e722c5825212edb69dfc15482d6eab222bd0f72d04319e.jpg",
+        "baraholka_ge/2025/06/587f2be6f784391207eeb62a2eff89e34d704fa65c39f64ac00a9051c177cf02.jpg",
+        "baraholka_ge/2025/06/72458e2bc60d3af8946e9614675ca7f94981f93210b8f43462149afb240022d1.jpg",
+        "baraholka_ge/2025/06/54a1c868049aa62a8ab35ddaeb5a190c4bee3b91a8fd6e1fa21739222feb5124.jpg",
+        "baraholka_ge/2025/06/966aa0cc18af455150810aa30b7e7e9ff623128d7a9a90ebe5102a1d3b76aac2.jpg",
+        "baraholka_ge/2025/06/dc2cac8e40bb9f4971920b5078b718ea9e66526c0931b13610d6e0319ce8c6bc.jpg",
+        "baraholka_ge/2025/06/5279fd4d429755febf4e8633efe721a6f8c908f4cb78b701a36f3ae99589fbf6.jpg",
+        "baraholka_ge/2025/06/94f53af467d9478ef2aa4a45bc9fb537356b19ced9902028420f5fed4d5d04d1.jpg",
+        "baraholka_ge/2025/06/696f1d7f256d4c3bd6a32d587da6b29d70ec6072ad60f6ea38b3341422f43eb1.jpg"
+      ]
+    },
+    "input": "Message text:\nNike air max кроссовки 38 размер 80 лари\nNike planet слипоны 90 лари 36 размер\n\nImage baraholka_ge/2025/06/b0aad04556708d98b6b45683a4dc59fd3afd1cb5a730f51fe000896303a595f9.jpg:\nThe image shows a pair of white slip-on sneakers. They have a smooth leather upper and feature a Nike logo on each shoe. One shoe displays a red swoosh and a green star, while the other has a red curved line suggesting a smile, indicating a playful design. The soles appear slightly worn, and the interior has a blue with white speckled print. The background consists of wooden flooring, indicating a casual setting. Overall, the sneakers have a fun and youthful vibe, showcasing some artistic elements.\n\nImage baraholka_ge/2025/06/455691c7bcdff7e2f9e722c5825212edb69dfc15482d6eab222bd0f72d04319e.jpg:\nThe image features a pair of white Nike sneakers with a unique design. The shoes have a velcro closure and show noticeable wear. Inside, the soles have a colorful space-themed design, featuring a planet in the center with a surrounding starry pattern. There are playful scrawls in neon green and red on the outer sides. The Nike logo is visible on the front of each shoe. The overall vibe suggests a casual style with a fun, artistic twist. The sneakers appear to be in used condition, with some signs of wear evident on the material.\n\nImage baraholka_ge/2025/06/587f2be6f784391207eeb62a2eff89e34d704fa65c39f64ac00a9051c177cf02.jpg:\nThe image shows the inside of a shoe, presumably a sneaker, with a focus on the labeling and tag. The label indicates the following details:\n\n- US size: 5.5\n- UK size: 3.5\n- EU size: 36\n- CM size: 22.5\n\nThe shoe seems to have a dark blue and white design, possibly featuring a decorative inner lining with a space-themed graphic, including a character or motif related to outer space. There is also a QR code present on the label. The shoe appears to be made in Indonesia. There are no visible signs of wear, indicating it might be new or gently used.\n\nImage baraholka_ge/2025/06/72458e2bc60d3af8946e9614675ca7f94981f93210b8f43462149afb240022d1.jpg:\nThe image shows a pair of white Nike sneakers. The shoes feature a navy blue Nike swoosh on the sides and have a speckled design on the lower part, indicating a creative or artistic touch. The tongues of the shoes are slightly detached, showcasing some wear. There are also grey elements on the sides, possibly indicating a design choice or an attempt at customization. The sole appears to be intact, and the shoes have a casual, streetwear vibe. The floor underneath the shoes is wooden, adding to a modern aesthetic.\n\nImage baraholka_ge/2025/06/54a1c868049aa62a8ab35ddaeb5a190c4bee3b91a8fd6e1fa21739222feb5124.jpg:\nThe image shows a pair of white and navy sneakers, featuring painted or written text. One shoe has the words \"THE PLANET OF HOOPS\" inscribed, while the other shoe contains the phrase \"THERE'S NO GOING BACK,\" with a green splash graphic. The sneakers have a casual style, possibly designed for basketball, with a slightly worn appearance. The soles are dark navy with a speckled white pattern. The background is a wooden floor, contributing to a warm, casual vibe.\n\nImage baraholka_ge/2025/06/966aa0cc18af455150810aa30b7e7e9ff623128d7a9a90ebe5102a1d3b76aac2.jpg:\nThe image shows a pair of children's shoes. They are light gray leather with a soft, rounded design. The rear of the shoes features the words \"PLANET\" on the left shoe and \"80016\" on the right shoe, both in a metallic font. The soles are dark blue with white speckled detailing. The shoes appear to be in good condition, likely designed for toddlers. The background is a wooden surface, likely a floor, suggesting an indoor setting.\n\nImage baraholka_ge/2025/06/dc2cac8e40bb9f4971920b5078b718ea9e66526c0931b13610d6e0319ce8c6bc.jpg:\nThe image shows a pair of Nike Air Max sneakers, primarily featuring a white and multicolored design. The back of the shoes displays bold colors including yellow, red, pink, and blue in horizontal stripes. The soles have a slight translucence with visible air cushioning. The shoes show some wear, particularly at the heel and sole areas. There are decorative doodle-like designs on the lower sections, adding a playful touch. The overall vibe is modern and sporty, ideal for casual wear.\n\nImage baraholka_ge/2025/06/5279fd4d429755febf4e8633efe721a6f8c908f4cb78b701a36f3ae99589fbf6.jpg:\nThe image features a pair of Nike Air Max 97 sneakers. They are designed with a multi-colored wave pattern, including shades of beige, pink, yellow, and navy blue. The upper portion has a mix of mesh and synthetic materials, with a prominent Nike logo in yellow at the top of the tongue. The sole displays a distinctive design with white accents and playful graphics, including stars and other motifs. The sneakers are arranged on a wooden floor, highlighting their vibrant colors and unique detailing.\n\nImage baraholka_ge/2025/06/94f53af467d9478ef2aa4a45bc9fb537356b19ced9902028420f5fed4d5d04d1.jpg:\nThe image features a pair of colorful sneakers with a modern design. They have a multi-colored wave pattern comprised of yellow, red, pink, blue, and white. The base of the shoes is a dark color with a floral or patterned detail along the edge. The laces are light gray, and the tongue is a beige mesh material, adding a textured contrast. The sneakers appear to be in good condition, set against a warm wooden floor that suggests a cozy vibe.\n\nImage baraholka_ge/2025/06/696f1d7f256d4c3bd6a32d587da6b29d70ec6072ad60f6ea38b3341422f43eb1.jpg:\nThe image shows a single sneaker, specifically a Nike Air Max 97 model. The shoe features a distinctive design with multiple colored wavy stripes in pink, yellow, and blue, layered over a black background adorned with various white graphic motifs, including peace signs and stars. The iconic Nike swoosh is visible in a bright orange hue on the side. The shoelaces are light grey, and the sneaker appears well-constructed with a cushioned sole. The flooring underneath is a wooden laminate in a herringbone pattern, adding to a cozy aesthetic."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_ge",
       "source:message_id": "2480580",
       "source:path": "baraholka_ge/2025/06/2480580.md",
@@ -12767,6 +13378,59 @@
     "lot": {
       "lots": [
         {
+          "market:deal": "sell_item",
+          "item:type": "gamepad",
+          "brand": "Gamesir",
+          "model": "T4 Pro",
+          "condition": "new",
+          "price": 75,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/2cc8f4350949aa0c34b446e14298927ef24fcf13b8cbc7365eab764d929f3801.jpg"
+          ],
+          "title_en": "Gamesir T4 Pro Gaming Controller",
+          "description_en": "Selling a new Gamesir T4 Pro gaming controller for PC, Switch, Android, and iOS. Features hall sensors, macros, programmable buttons, backlight, vibration, and a phone holder included.",
+          "title_ru": "Геймпад Gamesir T4 Pro",
+          "description_ru": "Продаю новый геймпад Gamesir T4 Pro для ПК, Switch, Android и iOS. Оснащен датчиками холла, макросами, программируемыми кнопками, подсветкой, вибрацией и держателем для телефона в комплекте.",
+          "title_ka": "Gamesir T4 Pro გეიმპადი",
+          "description_ka": "ვყიდი ახალ Gamesir T4 Pro გეიმპადს PC, Switch, Android და iOS-ისთვის. აქვს ჰოლის სენსორები, მაკროსები, პროგრამირებადი ღილაკები, განათება, ვიბრაცია და ტელეფონის დამჭერი კომპლექტში."
+        },
+        {
+          "market:deal": "sell_item",
+          "item:type": "gamepad",
+          "brand": "EasySMX",
+          "model": "X05",
+          "condition": "new",
+          "price": 50,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/2cc8f4350949aa0c34b446e14298927ef24fcf13b8cbc7365eab764d929f3801.jpg"
+          ],
+          "title_en": "EasySMX X05 Wireless Controller",
+          "description_en": "Selling a new EasySMX X05 wireless controller, the best in its budget range. Compatible with multiple platforms, missing only programmable buttons.",
+          "title_ru": "Беспроводной геймпад EasySMX X05",
+          "description_ru": "Продаю новый беспроводной геймпад EasySMX X05, лучший в своем бюджете. Совместим с несколькими платформами, не хватает только программируемых кнопок.",
+          "title_ka": "EasySMX X05 უსადენო გეიმპადი",
+          "description_ka": "ვყიდი ახალ EasySMX X05 უსადენო გეიმპადს, საუკეთესო თავის ფასში. თავსებადია რამდენიმე პლატფორმასთან, მხოლოდ პროგრამირებადი ღილაკები აკლია."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481825",
+      "source:path": "baraholka_ge/2025/06/2481825.md",
+      "source:author:name": "Alex Vasilic",
+      "timestamp": "2025-06-22T12:36:13+00:00",
+      "files": [
+        "baraholka_ge/2025/06/2cc8f4350949aa0c34b446e14298927ef24fcf13b8cbc7365eab764d929f3801.jpg"
+      ]
+    },
+    "input": "Message text:\nПродам пару новых геймпадов (джойстик, контроллер) для ПК / switch / android / ios\n🔸Gamesir t4 pro - максимум наворотов за скромный бюджет, датчики холла, макросы, программируемые кнопки, подсветка, вибро и держатель для телефона в комплекте (крепится к геймпаду). 75 лари\n🔸EasySMX x05 - просто лучший в своем бюджете, не хватает только программируемых кнопок, а так - все на месте. 50 лари\n\nImage baraholka_ge/2025/06/2cc8f4350949aa0c34b446e14298927ef24fcf13b8cbc7365eab764d929f3801.jpg:\nThe image shows two boxed gaming controllers on a wooden surface. The first box, on the left, is a \"Gamesir T4 Pro\" controller. It is compatible with Android, iOS, PC, Switch, and Windows, featuring 4 ablatable buttons and a 6-axis gyro. The box design uses a red and black color scheme. \n\nThe second box, on the right, is for an \"EasySMX X05 Wireless Controller.\" The box is predominantly white with a gray image of the controller. It's labeled as compatible with multiple platforms and includes text in multiple languages. Both boxes appear to be unopened, and there's no visible watermark on the image."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "timestamp": "2025-06-22T09:57:38+00:00",
           "market:deal": "sell_item",
           "item:type": "shirt",
@@ -13097,6 +13761,66 @@
       ]
     },
     "input": "Message text:\n__7) La roche posay Гель для лица и тела для проблемной кожи-40 лари__\n__8)МИЦЕЛЛЯРНОЕ ПЕНЯЩЕЕ ОЧИЩАЮЩЕЕ ВОДНОЕ СРЕДСТВО 150 МЛ__\n__СРЕДСТВО ДЛЯ СНЯТИЯ МАКИЯЖА ДЛЯ ЧУВСТВИТЕЛЬНОЙ КОЖИ-60 лари__\n**__9)CICAPLAST B5+ SPF50__**\n__ВОССТАНАВЛИВАЮЩИЙ БАЛЬЗАМ ДЛЯ ЛИЦА И ТЕЛА-50 лари__\n__10) Vichy Normadern ** **Пробиотическая обновляющая сыворотка против несовершенств кожи-60 лари__\n__11)Увлажняющий лосьон для лица CeraVe для нормальной и сухой кожи -30 лари__\n__12)Крем для рук CeraVe для сухой и очень сухой кожи- 20 лар__\n\nImage baraholka_ge/2025/06/38af191379b8c9fab642bb8ee6a3a65da29f90b683131fa77562033e1cfe431d.jpg:\nThe image showcases various skincare products arranged in a grid format, featuring brands Vichy and La Roche-Posay. \n\n1. **Top Left**: Vichy Lifactiv Supreme H.A. Epidermic Filler in a box, labeled as a hyaluronic acid product aimed at smoothing and firming skin.\n2. **Top Right**: Vichy Lifactiv Supreme Intensive Anti-Wrinkle & Firming Care SPF 30, 50 ml, also containing hyaluronic acid.\n3. **Middle Left**: La Roche-Posay Hyalu B5 Serum, known for hydration and skin repair.\n4. **Middle Center**: La Roche-Posay Pure Retinol Face Serum, designed for anti-aging.\n5. **Middle Right**: La Roche-Posay Mela B3, targeting pigmentation with niacinamide.\n6. **Bottom Left**: A dark purple container, possibly a serum or treatment.\n\nAll products are held in hands, emphasizing their size and packaging details."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-01T11:41:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "laptop",
+          "brand": "Lenovo",
+          "model": "ThinkPad E15 Gen 2",
+          "condition": "used",
+          "price": 900,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/a48029bcd9289399310c2c888f5fb4b0b6765bb483ee237ebb144901b321a35c.jpg",
+            "baraholka_ge/2025/06/bf0d3f03f9be1f6a48f768a3bd31a54443ca5330a0db8a1403b3a336473af546.jpg",
+            "baraholka_ge/2025/06/615a808776ea02ff3943d154387d6840ce5bedd48ce8ffe90e9af46bc4c8b0b6.jpg"
+          ],
+          "title_en": "Lenovo ThinkPad E15 Gen 2 Laptop",
+          "description_en": "15.6\" Lenovo ThinkPad E15 Gen 2 [IPS, 60 Hz, Intel 1135G7, RAM 8GB, SSD 256GB, Intel Iris Xe Graphics, black]. Battery 89% 6-7 hours. Price 900 GEL, non-negotiable.",
+          "title_ru": "Ноутбук Lenovo ThinkPad E15 Gen 2",
+          "description_ru": "15.6\" Ноутбук Lenovo ThinkPad E15 Gen 2 [IPS, 60 Гц, Intel 1135G7, RAM 8GB, SSD 256GB, Intel Iris Xe Graphics, черный]. Батарея 89% 6-7 часов. Цена 900 лар без торга.",
+          "title_ka": "Lenovo ThinkPad E15 Gen 2 ლეპტოპი",
+          "description_ka": "15.6\" Lenovo ThinkPad E15 Gen 2 [IPS, 60 Hz, Intel 1135G7, RAM 8GB, SSD 256GB, Intel Iris Xe Graphics, შავი]. ბატარეა 89% 6-7 საათი. ფასი 900 ლარი, მოლაპარაკების გარეშე."
+        },
+        {
+          "timestamp": "2025-06-01T11:41:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "charger",
+          "condition": "new",
+          "price": 80,
+          "price:currency": "GEL",
+          "urgency": "none",
+          "files": [
+            "baraholka_ge/2025/06/0a5c83a0f860be6844a00b8d86084e0220b5175ca6647c75a0957f0a5113d942.jpg",
+            "baraholka_ge/2025/06/22dea9f71f0ecb844428365f0224287453a764c6520f46063e14b18d419202f8.jpg"
+          ],
+          "title_en": "100W USB-C Charger",
+          "description_en": "Brand new 100W USB-C Type-C Charger compatible with various HP and Apple devices. Price 80 GEL.",
+          "title_ru": "100W USB-C Зарядное Устройство",
+          "description_ru": "Абсолютно новый 100W USB-C Type-C Зарядное Устройство, совместимое с различными устройствами HP и Apple. Цена 80 лар.",
+          "title_ka": "100W USB-C დამტენი",
+          "description_ka": "აბსოლუტურად ახალი 100W USB-C Type-C დამტენი, თავსებადია სხვადასხვა HP და Apple მოწყობილობებთან. ფასი 80 ლარი."
+        }
+      ],
+      "source:chat": "baraholka_ge",
+      "source:message_id": "2481797",
+      "source:path": "baraholka_ge/2025/06/2481793.md",
+      "source:author:name": "T",
+      "timestamp": "2025-06-22T12:21:40+00:00",
+      "files": [
+        "baraholka_ge/2025/06/a48029bcd9289399310c2c888f5fb4b0b6765bb483ee237ebb144901b321a35c.jpg",
+        "baraholka_ge/2025/06/bf0d3f03f9be1f6a48f768a3bd31a54443ca5330a0db8a1403b3a336473af546.jpg",
+        "baraholka_ge/2025/06/615a808776ea02ff3943d154387d6840ce5bedd48ce8ffe90e9af46bc4c8b0b6.jpg",
+        "baraholka_ge/2025/06/0a5c83a0f860be6844a00b8d86084e0220b5175ca6647c75a0957f0a5113d942.jpg",
+        "baraholka_ge/2025/06/22dea9f71f0ecb844428365f0224287453a764c6520f46063e14b18d419202f8.jpg"
+      ]
+    },
+    "input": "Message text:\n15.6\" Ноутбук Lenovo ThinkPad E15 Gen 2 [IPS, 60 Гц, Intel 1135G7, RAM 8GB, SSD 256GB, Intel Iris Xe Graphics, черный].\n\nЕсть место для второго M.2 2280 NVMe диска. Также есть слот для оперативной памяти чтобы ее увеличить. Лицензионная заводская Windows 11 24H2. Батарея 89% 6-7 часов.\n\nГрафическое ядро Intel Iris Xe обеспечивает достаточную производительность для повседневных задач и некоторых игр. \n\nПо желанию могу увеличить объем диска за доплату.\n\n900 лар без торга.\n\n___\n\nАбсолютно новый 100W USB-C Type-C Type C Charger for HP Spectre Fold 17 x360 16-aa0047nr HP Pavilion Plus 14 14-ew1010nr HP ZBook Firefly 14 16 G11 HP Envy 17-cw1087nr 17-cw1097nr Charger TPN-LA31 N57041-001 N56858-001\n\nМожно использовать как замену Power Adapter APPLE USB-C, 96 W для MacBook Pro и других. Цена приятно удивляет.\n\nЦена 80 лар\n\nImage baraholka_ge/2025/06/a48029bcd9289399310c2c888f5fb4b0b6765bb483ee237ebb144901b321a35c.jpg:\nThe image shows a Lenovo ThinkPad laptop, open and facing the viewer. The screen displays a colorful abstract design, likely the default wallpaper. The laptop has a sleek black exterior, featuring a trackpad and a standard keyboard layout with distinctive red accents typical of ThinkPad models. \n\nThe laptop is sitting on a textured surface, which appears to be a light beige with a dotted pattern. The left side of the screen shows the Windows taskbar with icons visible. A small Intel Core i7 sticker is present on the lower left corner of the laptop. There are no visible damages or marks on the device, suggesting it is in good condition.\n\nImage baraholka_ge/2025/06/bf0d3f03f9be1f6a48f768a3bd31a54443ca5330a0db8a1403b3a336473af546.jpg:\nThe image shows a closed black laptop with the \"ThinkPad\" logo prominently displayed on the top left and the \"Lenovo\" logo on the bottom right. The laptop appears to have a smooth, matte finish. In the background, there is a patterned surface featuring alternating white and grey dots. The overall vibe suggests a modern and minimalistic aesthetic, likely in an office or home workspace setting. No additional items or specific details about the computer's specifications are visible.\n\nImage baraholka_ge/2025/06/615a808776ea02ff3943d154387d6840ce5bedd48ce8ffe90e9af46bc4c8b0b6.jpg:\nThe image shows the underside of a laptop, which is predominantly black and features various ventilation grilles for heat dissipation. There is a small white sticker on one side, possibly indicating model information or a serial number. The laptop appears to have a sturdy build, typical of business-class or high-performance models. The surface has a smooth finish with some visible scratches, indicating it may have been used. The background consists of a patterned fabric with oval shapes in beige and white, creating a neutral and simple vibe.\n\nImage baraholka_ge/2025/06/0a5c83a0f860be6844a00b8d86084e0220b5175ca6647c75a0957f0a5113d942.jpg:\nThe image features a laptop charger with an output of 100W. The charger has a thick, braided cable that is neatly coiled. The plug at one end is a standard two-prong type commonly used in various regions. The charger itself appears to have a glossy black finish, with some technical information printed on its surface. There are no visible brands or logos clearly defined. The background is plain and light, suggesting a simple display setup. The overall vibe is utilitarian, focusing on the charger without any additional decorative elements.\n\nImage baraholka_ge/2025/06/22dea9f71f0ecb844428365f0224287453a764c6520f46063e14b18d419202f8.jpg:\nThe image shows a portable charger or power adapter with a sleek design. It features a black plastic casing with a ribbed texture on its body. The male plug end has two prongs, typical for electrical outlets, while the other side has a USB Type-A port and a Micro USB port for charging devices. The cable appears to be long and flexible, facilitating easy connection. The overall vibe of the item suggests it’s modern and portable, ideal for charging gadgets on the go."
   },
   {
     "lot": {
@@ -15481,26 +16205,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-15T12:41:18+00:00",
-      "market:deal": "sell_property",
-      "property:type": "apartment",
-      "area": 30,
-      "price": 46000,
-      "price:currency": "USD",
-      "addr:street": "Ангиса",
-      "title_en": "30m2 apartment on Angisa",
-      "description_en": "For sale 30m2 apartment on Angisa. New renovation, no one has lived there yet, $46000. If needed, I can send details in private messages.",
-      "title_ru": "30м2 квартира на Ангиса",
-      "description_ru": "Продам 30м2 на ангиса. Ремонт новый, ещё никто не жил, 46000$. Если кому нужно, пришлю в лс.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751957",
-      "source:path": "batumiarendachat/2025/06/751957.md",
-      "source:author:name": "D I K 🍀"
-    },
-    "input": "Message text:\nПродам 30м2 на ангиса \nРемонт новый,ещё никто не жил,46000$ если кому нужно пришлю в лс\nСотрудничаю 50/50"
-  },
-  {
-    "lot": {
       "source:chat": "batumiarendachat",
       "source:message_id": "754044",
       "source:path": "batumiarendachat/2025/06/754044.md",
@@ -16471,24 +17175,6 @@
       "source:path": "batumiarendachat/2025/06/752577.md"
     },
     "input": "Message text:\nОткрыта вакансия для удалённой работы на биржевых платформах с гибким графиком.\nОбучение бесплатно, опыт не обязателен.\nУтренняя смена (6:30–11:30) — 170 евро /день\nВечерняя смена (17:30–22:30) — 200 евро /день\nДля подробностей пишите в личные сообщения!"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T12:32:27+00:00",
-      "market:deal": "rent_seek",
-      "property:type": "apartment",
-      "rooms": "1",
-      "price": 400,
-      "price:currency": "USD",
-      "addr:full": "центр города",
-      "urgency": "urgent",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "751955",
-      "source:path": "batumiarendachat/2025/06/751955.md",
-      "source:author:telegram": "Enro2828",
-      "source:author:name": "Квартиры-Батуми"
-    },
-    "input": "Message text:\nСрочно сниму для клиента от собственника квартиру 1+1 в центре города с хорошим светлым ремонтом на год.\nБюджет 400$"
   },
   {
     "lot": {
@@ -17894,6 +18580,17 @@
   },
   {
     "lot": {
+      "source:chat": "batumiarendachat",
+      "source:message_id": "762153",
+      "source:path": "batumiarendachat/2025/06/762153.md",
+      "source:author:telegram": "ChristineWhite85",
+      "source:author:name": "Christine White",
+      "timestamp": "2025-06-22T12:48:39+00:00"
+    },
+    "input": "Message text:\n__**Ищешь новыe финaнсовыe возможности?**🤨__"
+  },
+  {
+    "lot": {
       "market:deal": "job_offer",
       "occupation": "покраска калитки",
       "salary": 5000,
@@ -18542,6 +19239,23 @@
       "timestamp": "2025-06-18T09:39:56+00:00"
     },
     "input": "Message text:\nПривет 🫡  в команду, требуется люди. Возраст от 22 лет. Осталось 2 места.  В день от 200$. Интересует? Пиши + в личные💰💻"
+  },
+  {
+    "lot": {
+      "fraud": "sketchy_job",
+      "timestamp": "2025-06-22T12:44:02+00:00",
+      "market:deal": "job_offer",
+      "occupation": "remote work",
+      "salary": 250,
+      "salary:currency": "USD",
+      "contact:telegram": "Пишите быстреe!",
+      "contact:phone": "Пишите быстреe!",
+      "source:chat": "batumiarendachat",
+      "source:message_id": "762152",
+      "source:path": "batumiarendachat/2025/06/762152.md",
+      "source:author:name": "Катя Пестова"
+    },
+    "input": "Message text:\nB пoиcкe людей, вoзьму 2-3 человекa \nУдаленная деятeльнoсть \nOт 250$ в дeнь\nПишитe быстреe!"
   },
   {
     "lot": {
@@ -21497,6 +22211,49 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-01T11:41:34+00:00",
+          "market:deal": "sell_item",
+          "item:type": "laptop",
+          "brand": "Asus",
+          "model": "ROG Flow Z13",
+          "condition": "used",
+          "price": 1800,
+          "price:currency": "USD",
+          "urgency": "none",
+          "files": [
+            "baraholka_batumi_home/2025/06/2f848506844a686506382d91f0eaeda9dd8173dc0847dd86a2b16bb8b95cde61.jpg",
+            "baraholka_batumi_home/2025/06/f3371a7eab83c204c36e152e22c64366cfac789edde4cec53e7636412597382b.jpg",
+            "baraholka_batumi_home/2025/06/5e1c18f10f51531ab4944a3022597c8e2463754545cad0e9e8a57000fddd5d6f.jpg",
+            "baraholka_batumi_home/2025/06/a8f195fcf2a74e7d175368bde705621d7d35a5d8b2ccac9f40e15e24608761fe.jpg",
+            "baraholka_batumi_home/2025/06/3423a4c4d30ee54a9020f2b5892ea7800e6662261b5936be5e05681c9d477a2f.jpg"
+          ],
+          "title_en": "Gaming Laptop Asus ROG Flow Z13",
+          "description_en": "Selling a gaming laptop Asus ROG Flow Z13 (2022) with NVIDIA GeForce RTX 3050 Ti, Intel Core i9-12900H, 16 GB RAM, and 1 TB SSD. Excellent for gaming, work, and creativity. Originally purchased for $3600, selling for $1800. Contact for more details.",
+          "title_ru": "Игровой ноутбук Asus ROG Flow Z13",
+          "description_ru": "Продаю игровой ноутбук Asus ROG Flow Z13 (2022) с NVIDIA GeForce RTX 3050 Ti, Intel Core i9-12900H, 16 ГБ ОЗУ и SSD на 1 ТБ. Отлично подходит для игр, работы и творчества. Покупал за 3600 $, продаю за 1800 $. Пишите в личку для подробностей.",
+          "title_ka": "თამაშების ლეპტოპი Asus ROG Flow Z13",
+          "description_ka": "ვყიდი თამაშების ლეპტოპ Asus ROG Flow Z13 (2022) NVIDIA GeForce RTX 3050 Ti, Intel Core i9-12900H, 16 GB RAM და 1 TB SSD-ით. შესანიშნავია თამაშებისთვის, მუშაობისთვის და შემოქმედებისთვის. თავდაპირველად ვიყიდე 3600 $-ად, ვყიდი 1800 $-ად. დაწერეთ პირადში დეტალებისთვის."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643859",
+      "source:path": "baraholka_batumi_home/2025/06/1643855.md",
+      "source:author:name": "Kurd Vonnegut",
+      "timestamp": "2025-06-22T12:24:11+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/f3371a7eab83c204c36e152e22c64366cfac789edde4cec53e7636412597382b.jpg",
+        "baraholka_batumi_home/2025/06/2f848506844a686506382d91f0eaeda9dd8173dc0847dd86a2b16bb8b95cde61.jpg",
+        "baraholka_batumi_home/2025/06/5e1c18f10f51531ab4944a3022597c8e2463754545cad0e9e8a57000fddd5d6f.jpg",
+        "baraholka_batumi_home/2025/06/a8f195fcf2a74e7d175368bde705621d7d35a5d8b2ccac9f40e15e24608761fe.jpg",
+        "baraholka_batumi_home/2025/06/3423a4c4d30ee54a9020f2b5892ea7800e6662261b5936be5e05681c9d477a2f.jpg"
+      ]
+    },
+    "input": "Message text:\n💻 Продаю игровой ноутбук Asus ROG Flow Z13 (2022)\n\n⚙️ Характеристики:\n• NVIDIA GeForce RTX 3050 Ti\n• Intel Core i9-12900H\n• 16 GB RAM\n• SSD 1 TB\n• Сенсорный экран\n• Складной форм-фактор: ноутбук + планшет в одном\n• Отлично подходит для игр, работы и творчества\n\n🧩 Особенности:\nМодельная особенность (встречается у всех устройств этой серии) — клавиатура корректно работает в положении «лёжа» (не висит в воздухе, как у Mac Magic Keyboard).\n\n💥 Высокая производительность, портативность, топовый экран и удобство формата 2-в-1 — крутое решение для тех, кто хочет максимум мощности в компактном корпусе.\n\nПокупал в 2022 за 3600 $ в комплекте с внешней видео-док станцией.\nПродаю только ноутбук. \n**Отдам за 1800 $ **(быстрым - хорошая скидка)\n\n📍 Пишите в личку, отвечу на все вопросы.\n\nImage baraholka_batumi_home/2025/06/f3371a7eab83c204c36e152e22c64366cfac789edde4cec53e7636412597382b.jpg:\nThe image features a modern workspace setup on a wooden desk. There are two monitors: a large, curved screen displaying various applications, and a smaller tablet or secondary screen showing media controls. A pair of black headphones rests on a black mouse pad beside them. To the left, there's a small black speaker. The desk appears to be part of a clean, minimalistic interior, with a light-colored floor. The workspace conveys a contemporary vibe, suitable for productivity and content creation. There are no visible cables or clutter, emphasizing a neat organization.\n\nImage baraholka_batumi_home/2025/06/2f848506844a686506382d91f0eaeda9dd8173dc0847dd86a2b16bb8b95cde61.jpg:\nThe image shows a gaming laptop positioned on a dark wooden table. The laptop features a sleek, angular design with a matte black finish and subtle textures on the surface. Prominently displayed are the NVIDIA GeForce RTX logo and Intel Core branding, suggesting powerful graphics and processing capabilities. There's a colorful lighting element visible on the side of the laptop, likely indicating performance status. The laptop appears to be open, revealing a keyboard that is partially visible but not detailed. The background has a minimalistic vibe, characterized by neutral walls and no distracting elements.\n\nImage baraholka_batumi_home/2025/06/5e1c18f10f51531ab4944a3022597c8e2463754545cad0e9e8a57000fddd5d6f.jpg:\nThe image displays a computer screen showing system settings. Key specifications include:\n\n- **Storage:** 954 GB total, with 328 GB used.\n- **Graphics:** 4 GB video card, indicating multiple installed graphics processors.\n- **RAM:** 16 GB available, with a speed of 6400 MHz.\n- **Processor:** 12th Gen Intel Core i9-12900H, operating at 2.50 GHz.\n- **Device Model:** DESKTOP-E236M74, indicating it is an ROG Flow Z13 GZ301ZE.\n\nThe interface is in Russian, and the display has a clean and modern appearance. No physical items or additional details are visible in the image.\n\nImage baraholka_batumi_home/2025/06/a8f195fcf2a74e7d175368bde705621d7d35a5d8b2ccac9f40e15e24608761fe.jpg:\nThe image shows a laptop with a detachable keyboard placed on a dark wooden table. The laptop screen is upright at an angle, displaying system settings in a menu format. The keyboard is sleek with a touchpad, and there appears to be protective plastic still on it. The device is connected to a power source with a cable inserted into the side. The background is a plain light-colored wall, suggesting a minimalistic setup. No additional items or clutter are visible in the scene.\n\nImage baraholka_batumi_home/2025/06/3423a4c4d30ee54a9020f2b5892ea7800e6662261b5936be5e05681c9d477a2f.jpg:\nThe image shows a laptop sitting on a dark wooden table. The laptop appears to have a slightly damaged edge, with the side of the cover peeling away. The keyboard is visible, including the keys and touchpad. The screen is turned on, displaying a user interface, though specific details are not visible. There is no visible watermark or other items in the image. The table surface looks smooth and modern, contrasting with the laptop’s condition. The overall setup gives off a casual, home-office vibe."
+  },
+  {
+    "lot": {
       "source:chat": "baraholka_batumi_home",
       "source:message_id": "1643126",
       "source:path": "baraholka_batumi_home/2025/06/1643126.md",
@@ -21504,6 +22261,97 @@
       "timestamp": "2025-06-21T16:11:19+00:00"
     },
     "input": "Message text:\nДЕЛАЮ ИТОГИ УЧАСТВУЕМ ПОСКОРЕЕ!!!"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:49:50+00:00",
+          "market:deal": "sell_item",
+          "item:type": "mattress",
+          "brand": "iDAS",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi_home/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg"
+          ],
+          "title_en": "Mattress from Collection Mars by iDAS",
+          "description_en": "The image shows a mattress from the 'Collection Mars' by iDAS, featuring a textured surface with a quilted pattern of hexagonal shapes. It is predominantly white with a clean and modern aesthetic.",
+          "title_ru": "Матрас из коллекции Mars от iDAS",
+          "description_ru": "На изображении показан матрас из коллекции 'Mars' от iDAS с текстурированной поверхностью и стеганым узором в виде шестиугольников. Он преимущественно белого цвета с чистым и современным дизайном.",
+          "title_ka": "Mars კოლექციის მატრასი iDAS-ისგან",
+          "description_ka": "სურათზე ნაჩვენებია iDAS-ის Mars კოლექციის მატრასი, რომელიც გამოირჩევა ტექსტურირებული ზედაპირით და ექვსკუთხა ფორმების სტეგანირებული ნიმუშით. იგი ძირითადად თეთრია და აქვს სუფთა და თანამედროვე ესთეტიკა."
+        },
+        {
+          "timestamp": "2025-06-22T12:49:50+00:00",
+          "market:deal": "sell_item",
+          "item:type": "tools",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi_home/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg"
+          ],
+          "title_en": "Collection of DIY Tools",
+          "description_en": "The image displays a collection of tools including a stapler, a tool holder with screwdriver bits, a small container for parts, and two hammers. Ideal for home improvement projects.",
+          "title_ru": "Набор инструментов для DIY",
+          "description_ru": "На изображении показан набор инструментов, включая степлер, держатель для инструментов с битами, маленький контейнер для деталей и два молотка. Идеально подходит для домашних проектов.",
+          "title_ka": "DIY ინსტრუმენტების ნაკრები",
+          "description_ka": "სურათზე ნაჩვენებია DIY ინსტრუმენტების ნაკრები, რომელიც მოიცავს степლერს, ინსტრუმენტების მფლობელს ბიტებით, პატარა კონტეინერს ნაწილებისთვის და ორ მოლოტს. იდეალურია სახლის პროექტებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:49:50+00:00",
+          "market:deal": "sell_item",
+          "item:type": "iron",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi_home/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg"
+          ],
+          "title_en": "Iron and Vacuum Cleaner Setup",
+          "description_en": "The image shows an iron resting on a grey ironing board with a vacuum cleaner beside it. A tidy and modern atmosphere is depicted.",
+          "title_ru": "Утюг и пылесос",
+          "description_ru": "На изображении показан утюг, лежащий на серой гладильной доске, рядом с пылесосом. Изображение передает аккуратную и современную атмосферу.",
+          "title_ka": "უტი და ვაკუუმი",
+          "description_ka": "სურათზე ნაჩვენებია უტი, რომელიც სქელ სარეცხზე დევს, გვერდით კი ვაკუუმი. სურათი ასახავს სუფთა და თანამედროვე ატმოსფეროს."
+        },
+        {
+          "timestamp": "2025-06-22T12:49:50+00:00",
+          "market:deal": "sell_item",
+          "item:type": "office_setup",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi_home/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg"
+          ],
+          "title_en": "Home Office Setup",
+          "description_en": "The image shows a home office setup with a gray office chair, a black desk, and a computer monitor. A cozy environment with natural light is depicted.",
+          "title_ru": "Домашний офис",
+          "description_ru": "На изображении показан домашний офис с серым офисным креслом, черным столом и компьютерным монитором. Изображение передает уютную атмосферу с естественным светом.",
+          "title_ka": "სახლში ოფისი",
+          "description_ka": "სურათზე ნაჩვენებია სახლის ოფისი, სადაც არის ნაცრისფერი ოფისის სკამი, შავი მაგიდა და კომპიუტერის მონიტორი. სურათი ასახავს კომფორტულ გარემოს ბუნებრივი სინათლით."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643909",
+      "source:path": "baraholka_batumi_home/2025/06/1643907.md",
+      "source:author:name": "Romario",
+      "timestamp": "2025-06-22T12:49:51+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg",
+        "baraholka_batumi_home/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg",
+        "baraholka_batumi_home/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg",
+        "baraholka_batumi_home/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1643908\nchat: baraholka_batumi_home\nsender: 850873139\nsender_phone: \nsender_name: Romario\nauthor_type: user\ndate: 2025-06-22T12:49:50+00:00\ngroup_id: 14004772726916818\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg']\n\nImage baraholka_batumi_home/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg:\nThe image shows a mattress from the \"Collection Mars\" by iDAS, with a focus on its textured surface. The mattress is predominantly white with a quilted pattern featuring hexagonal shapes. A black packaging label is visible, which includes the brand name and some icons, likely indicating features or materials used. The background is a light-colored wooden surface, giving a clean and modern aesthetic. There are no additional items or details in the image that provide more context about the mattress.\n\nImage baraholka_batumi_home/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg:\nThe image displays a collection of tools on a light-colored wooden surface. \n\n1. **Top-left**: A black and purple tool, likely a stapler or similar device.\n2. **Top-right**: A red and green tool holder featuring multiple screwdriver bits.\n3. **Middle**: A small transparent container, possibly for small parts or screws.\n4. **Bottom-middle**: A yellow-handled hammer, noted for its grip and utility.\n5. **Bottom-right**: A heavier black hammer with a wooden handle, labeled \"TOLSEN.\"\n\nThe overall vibe suggests a workspace focusing on DIY or home improvement.\n\nImage baraholka_batumi_home/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg:\nThe image shows an iron resting on a grey ironing board. The board is set up on a black folding frame, and a vacuum cleaner is positioned beside it, with a dark handle and a base on the floor. A power strip with several sockets is visible on the floor under the ironing board. There is a green booklet or magazine lying open on the floor near the vacuum cleaner. The interior features light-colored walls and a wooden floor, contributing to a modern and tidy atmosphere.\n\nImage baraholka_batumi_home/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg:\nThe image shows a home office setup. There is a gray office chair with a mesh backrest positioned in front of a sleek black desk. On the desk, there is a black keyboard and a computer monitor, alongside some visible cables. Two wooden speakers on either side of the desk provide an audio setup. The floor appears to be light-colored, likely laminate or hardwood. The corner of a couch can be seen in the image, suggesting a cozy environment. Natural light is coming in from a window, indicating a bright atmosphere. No specific items or prices are annotated in the picture."
   },
   {
     "lot": {
@@ -21515,6 +22363,146 @@
       "timestamp": "2025-06-21T11:14:00+00:00"
     },
     "input": "Message text:\nНе могу вам написать. Напишите пожалуйста район"
+  },
+  {
+    "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "outfit",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg"
+          ],
+          "title_en": "Cute Two-Piece Outfit with Floral Pattern",
+          "description_en": "This is a cute two-piece outfit featuring a light background adorned with a pattern of small blue flowers. The top has short sleeves and a round neckline, while the bottom is a flared skirt with a ruffled hem. The fabric appears soft and lightweight, suitable for warm weather.",
+          "title_ru": "Милый двухкомпонентный наряд с цветочным узором",
+          "description_ru": "Это милый двухкомпонентный наряд с легким фоном, украшенным узором из маленьких синих цветов. Верх имеет короткие рукава и круглый вырез, а низ - расклешенную юбку с рюшами. Ткань кажется мягкой и легкой, подходящей для теплой погоды.",
+          "title_ka": "კატეგორიული ორი ნაწილის კაბა ყვავილების ნიმუშით",
+          "description_ka": "ეს არის კატეგორიული ორი ნაწილის კაბა, რომელიც აქვს მსუბუქი ფონით, მინიატურული ცისფერი ყვავილების ნიმუშით. ზედა ნაწილი აქვს მოკლე მკლავები და წრიული ყელი, ხოლო ქვედა ნაწილი არის გაფართოებული ქვედა ნაწილი რაფინირებული კიდით. ქსოვილი ჩანს რბილი და მსუბუქი, რაც შესაფერისია თბილი ამინდისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "hair_dryer",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg"
+          ],
+          "title_en": "Philips Hair Dryer Model BHD314/00",
+          "description_en": "This is a Philips hair dryer model BHD314/00 with a power rating of 2300W, prominently displayed in purple. It includes a styling attachment with multiple styling nozzles.",
+          "title_ru": "Фен Philips модели BHD314/00",
+          "description_ru": "Это фен Philips модели BHD314/00 с мощностью 2300 Вт, ярко представлен в фиолетовом цвете. В комплект входит укладочная насадка с несколькими насадками для укладки.",
+          "title_ka": "ფენი Philips მოდელი BHD314/00",
+          "description_ka": "ეს არის ფენი Philips მოდელი BHD314/00, რომლის სიმძლავრეა 2300W, გამორჩეულად წარმოდგენილი მეწამულ ფერში. მასთან ერთად არის სტილის დანართი რამდენიმე სტილის ნოზლით."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "dress",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg"
+          ],
+          "title_en": "White Dress with Spaghetti Straps",
+          "description_en": "This white dress features thin spaghetti straps and a fitted bodice with a decorative pattern. The skirt flows out, showcasing a textured design.",
+          "title_ru": "Белое платье с тонкими бретелями",
+          "description_ru": "Это белое платье с тонкими бретелями и облегающим лифом с декоративным узором. Юбка расклешена, демонстрируя текстурированный дизайн.",
+          "title_ka": "თეთრი კაბა თხელი ბადით",
+          "description_ka": "ეს თეთრი კაბა აქვს თხელი ბადით და მჭიდრო ზედა ნაწილით დეკორატიული ნიმუშით. ქვედა ნაწილი ფართოვდება, რაც აჩვენებს ტექსტურირებულ დიზაინს."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "denim_shorts",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg"
+          ],
+          "title_en": "Light Blue Denim Shorts from Stradivarius",
+          "description_en": "These light blue denim shorts feature a high-waisted design with a traditional five-pocket style. They are soft with a slightly worn look.",
+          "title_ru": "Светло-голубые джинсовые шорты от Stradivarius",
+          "description_ru": "Эти светло-голубые джинсовые шорты имеют высокую талию и традиционный стиль с пятью карманами. Они мягкие с легким изношенным видом.",
+          "title_ka": "მსუბუქი ცისფერი ჯინსის შორტები Stradivarius-დან",
+          "description_ka": "ეს მსუბუქი ცისფერი ჯინსის შორტები აქვს მაღალი წელის დიზაინი და ტრადიციული ხუთი ჯიბით. ისინი რბილი და ოდნავ აცვიათ."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "vest",
+          "condition": "new",
+          "price": 95,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg"
+          ],
+          "title_en": "White Quilted Vest with Hood",
+          "description_en": "This sleeveless white vest features a quilted design and is labeled as original, suitable for sizes XS and S.",
+          "title_ru": "Белый стеганый жилет с капюшоном",
+          "description_ru": "Этот безрукавный белый жилет имеет стеганый дизайн и помечен как оригинальный, подходит для размеров XS и S.",
+          "title_ka": "თეთრი კუჭიანი ჟილეტი კაპიუშონით",
+          "description_ka": "ეს არის თეთრი ჟილეტი კაპიუშონით, რომელიც აქვს კუჭიანი დიზაინი და არის ორიგინალური, შესაფერისი XS და S ზომებისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "bucket_hat",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg"
+          ],
+          "title_en": "White Bucket Hat with Under Armour Logo",
+          "description_en": "This white bucket hat features a prominent Under Armour logo and is made from soft material, suitable for outdoor activities.",
+          "title_ru": "Белая ведерко-шляпа с логотипом Under Armour",
+          "description_ru": "Эта белая ведерко-шляпа имеет заметный логотип Under Armour и изготовлена из мягкого материала, подходящего для активного отдыха на улице.",
+          "title_ka": "თეთრი ბუკეტი ქუდი Under Armour-ის ლოგოთი",
+          "description_ka": "ეს თეთრი ბუკეტი ქუდი აქვს გამოჩენილი Under Armour-ის ლოგო და დამზადებულია რბილი მასალისგან, რაც შესაფერისია გარეთ აქტიური საქმიანობისთვის."
+        },
+        {
+          "timestamp": "2025-06-22T12:26:31+00:00",
+          "market:deal": "sell_item",
+          "item:type": "denim_jeans",
+          "condition": "new",
+          "price": 150,
+          "price:currency": "GEL",
+          "files": [
+            "baraholka_batumi_home/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg"
+          ],
+          "title_en": "Light Blue Denim Jeans from PULL&BEAR",
+          "description_en": "These light blue denim jeans have a straight-leg cut and appear unworn, with no visible wear or damage.",
+          "title_ru": "Светло-голубые джинсы от PULL&BEAR",
+          "description_ru": "Эти светло-голубые джинсы имеют прямой крой и выглядят новыми, без видимого износа или повреждений.",
+          "title_ka": "მსუბუქი ცისფერი ჯინსი PULL&BEAR-დან",
+          "description_ka": "ეს მსუბუქი ცისფერი ჯინსი აქვს სწორი ფორმა და ჩანს, რომ არ არის აცვიათ, არანაირი видимый износ или повреждения."
+        }
+      ],
+      "source:chat": "baraholka_batumi_home",
+      "source:message_id": "1643866",
+      "source:path": "baraholka_batumi_home/2025/06/1643860.md",
+      "source:author:name": "Viкtoriіa",
+      "timestamp": "2025-06-22T12:26:31+00:00",
+      "files": [
+        "baraholka_batumi_home/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg",
+        "baraholka_batumi_home/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg",
+        "baraholka_batumi_home/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg",
+        "baraholka_batumi_home/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg",
+        "baraholka_batumi_home/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg",
+        "baraholka_batumi_home/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg",
+        "baraholka_batumi_home/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 1643861\nchat: baraholka_batumi_home\nsender: 815301752\nsender_phone: \nsender_name: Viкtoriіa\nauthor_type: user\ndate: 2025-06-22T12:26:31+00:00\ngroup_id: 14004761533138722\nis_admin: False\nfiles: ['baraholka_batumi_home/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg']\n\nImage baraholka_batumi_home/2025/06/425bdc678b5cdd34b308f46e396ba8f4179c09b1ff5211872f0391f5d25f739c.jpg:\nThe image shows a cute two-piece outfit featuring a light background adorned with a pattern of small blue flowers. The top has short sleeves and a round neckline, while the bottom is a flared skirt with a ruffled hem. The fabric appears soft and lightweight, suitable for warm weather. The clothing is displayed on a fluffy, neutral-colored carpet, giving the scene a cozy vibe. There are no visible tags, prices, or other markings in the image.\n\nImage baraholka_batumi_home/2025/06/967b4c16ca0769e86e9d81a962a146e44cb086aa04e068f2bb171d1095ff3bae.jpg:\nThe image showcases a Philips hair dryer model BHD314/00 with a power rating of 2300W, prominently displayed in purple. The hair dryer has a sleek design, including a unique circular intake vent. Accompanying it is a styling attachment with multiple styling nozzles, also in a matching purple shade. \n\nThe price is listed as 150 Lari, marked in the bottom left corner. There are no visible watermarks or additional annotations. The background is plain and does not provide any context about the setting. Overall, the product appears modern and well-designed for effective hair styling.\n\nImage baraholka_batumi_home/2025/06/306def7f4b5b1771f9ef9f1d06bbe18e683e97c2e9b312103c8ba5d7df0ac821.jpg:\nThe image features a white dress displayed on a textured, light-colored rug. The dress has thin spaghetti straps and a fitted bodice with a decorative pattern. The skirt flows out, showcasing a textured design with diamond and line motifs. The second part of the image zooms in to highlight the fabric's intricate knit detail, emphasizing its delicate pattern and texture. Overall, the dress evokes a light and airy vibe, suitable for warm weather or casual occasions. There are no visible tags or labels in the image.\n\nImage baraholka_batumi_home/2025/06/48fa6d6e295a8250ba759a138854802c71d12f29ef88c8862e4fc8a9c0946cc1.jpg:\nThe image showcases a pair of light blue denim shorts from the brand Stradivarius. The label indicates they are made in Cambodia and size 34 (USA size 4). The shorts feature a high-waisted design with a traditional five-pocket style. The fabric appears soft with a slightly worn look, enhancing a casual vibe. There is no visible damage or distressing noted. The background is a textured beige fabric, giving a cozy feel to the presentation.\n\nImage baraholka_batumi_home/2025/06/eb56a18be391a7ec9f803928cc44481a6c00c62cffdcaee30e391a581e99499f.jpg:\nThe image shows a sleeveless white vest with a hood, featuring a quilted design. It's labeled as original, suitable for sizes XS and S. The vest has a zipper closure at the front, with two zippered pockets on the sides. The background appears to be a light-colored, possibly tiled surface. The price is marked as 95 лари (lar), positioned to the right of the vest. There are no visible tags or additional details on the clothing item itself.\n\nImage baraholka_batumi_home/2025/06/dc78eb9d57b296e2830f15c7b501ca8170083a81307f2809696ade151fb607cd.jpg:\nThe image features a white bucket hat held in someone's hand. The hat has a prominent logo on the front, which is the Under Armour logo, showcasing a shiny metallic finish. The texture appears to be soft, likely made from cotton or a similar material. The background is a fluffy, beige rug, creating a cozy environment. The hand holding the hat is showing a natural skin tone, with visible fingernails. The overall vibe is casual and sporty, suggesting the hat is suitable for outdoor activities.\n\nImage baraholka_batumi_home/2025/06/68c697e7f8f6317056d0443c4a90f944bf8cc3e01852dafe96a9789707137d29.jpg:\nThe image shows a pair of light blue denim jeans laid out on a textured beige rug. The jeans have a straight-leg cut and appear to be unworn, with no visible wear or damage. A close-up of the waistband reveals the brand label \"PULL&BEAR\" along with \"DENIM DEPT.\" in a tan color. The fabric looks typical of regular denim, and the overall structure suggests a casual style. The setting is cozy, likely indoors, emphasizing the relaxed atmosphere of the garment display."
   },
   {
     "lot": {
@@ -24431,6 +25419,98 @@
     "lot": {
       "lots": [
         {
+          "timestamp": "2025-06-22T12:52:57+00:00",
+          "market:deal": "sell_item",
+          "item:type": "mattress",
+          "brand": "IDAS",
+          "condition": "new",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg"
+          ],
+          "title_en": "Mattress from Silver Collection Mars",
+          "description_en": "The mattress features a quilted surface with a soft, light-colored fabric. Brand: IDAS.",
+          "title_ru": "Матрас из коллекции Silver Mars",
+          "description_ru": "Матрас с стеганой поверхностью из мягкой светлой ткани. Бренд: IDAS.",
+          "title_ka": "მატრასი Silver Collection Mars",
+          "description_ka": "მატრასი აქვს კუჭიანი ზედაპირი მსუბუქი ფერის ქსოვილით. ბრენდი: IDAS."
+        },
+        {
+          "timestamp": "2025-06-22T12:52:57+00:00",
+          "market:deal": "sell_item",
+          "item:type": "tool_set",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg"
+          ],
+          "title_en": "Home Repair Tool Set",
+          "description_en": "Includes a screwdriver set, wire stripper, rubber mallet, and hammer.",
+          "title_ru": "Набор инструментов для ремонта дома",
+          "description_ru": "Включает в себя набор отверток, стриппер, резиновый молоток и молот.",
+          "title_ka": "სახლში სარემონტო ინსტრუმენტების ნაკრები",
+          "description_ka": "შეიცავს ხრახნიანი ნაკრებს, მავთულის გამწოვს, რეზინის მოლოტსა და მოლოტს."
+        },
+        {
+          "timestamp": "2025-06-22T12:52:57+00:00",
+          "market:deal": "sell_item",
+          "item:type": "ironing_board",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg"
+          ],
+          "title_en": "Ironing Board with Vacuum Cleaner",
+          "description_en": "Includes a gray ironing board, purple steam iron, and a vacuum cleaner.",
+          "title_ru": "Гладильная доска с пылесосом",
+          "description_ru": "Включает в себя серую гладильную доску, фиолетовый паровой утюг и пылесос.",
+          "title_ka": "გლანდის დაფა ვაკუუმის წმენდით",
+          "description_ka": "შეიცავს ნაცრისფერ გლანდის დაფას, იისფერი ორთქლის უთოს და ვაკუუმის წმენდას."
+        },
+        {
+          "timestamp": "2025-06-22T12:52:57+00:00",
+          "market:deal": "sell_item",
+          "item:type": "office_furniture",
+          "condition": "used",
+          "price": null,
+          "price:currency": null,
+          "urgency": null,
+          "files": [
+            "baraholka_batumi/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg"
+          ],
+          "title_en": "Modern Office Workspace Setup",
+          "description_en": "Includes a gray office chair, black computer desk, and wooden speakers.",
+          "title_ru": "Современный офисный рабочий уголок",
+          "description_ru": "Включает в себя серый офисный стул, черный компьютерный стол и деревянные колонки.",
+          "title_ka": "თანამედროვე ოფისის სამუშაო ადგილი",
+          "description_ka": "შეიცავს ნაცრისფერ ოფისის სკამს, შავ კომპიუტერულ მაგიდას და ხის დინამიკებს."
+        }
+      ],
+      "source:chat": "baraholka_batumi",
+      "source:message_id": "494724",
+      "source:path": "baraholka_batumi/2025/06/494722.md",
+      "source:author:telegram": "vintagmics",
+      "source:author:name": "Romario",
+      "timestamp": "2025-06-22T12:52:58+00:00",
+      "files": [
+        "baraholka_batumi/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg",
+        "baraholka_batumi/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg",
+        "baraholka_batumi/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg",
+        "baraholka_batumi/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg"
+      ]
+    },
+    "input": "Message text:\nid: 494723\nchat: baraholka_batumi\nsender: 850873139\nsender_username: vintagmics\nsender_phone: \ntg_link: https://t.me/vintagmics\nsender_name: Romario\nauthor_type: user\ndate: 2025-06-22T12:52:57+00:00\ngroup_id: 14004774217609090\nis_admin: False\nfiles: ['baraholka_batumi/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg']\n\nImage baraholka_batumi/2025/06/ee5770fd7d9f64e426ebdd70dd9aebbcac0aa5e11da09d4c9668ebd63c5399dd.jpg:\nThe image shows part of a mattress with a tag attached to it. The mattress appears to have a quilted surface featuring a soft, light-colored fabric. The tag reads \"Silver Collection Mars,\" with the brand name \"IDAS.\" It includes several icons or symbols related to the product, but they are not clearly visible. The backdrop is a light wooden surface, suggesting a modern interior aesthetic. The overall vibe is clean and minimalist, suitable for a contemporary bedroom setting.\n\nImage baraholka_batumi/2025/06/530bf7779388d627ff6b309c312159c6ca24d1b4fa5f4c2a5841a2f7d1233262.jpg:\nThe image features a selection of tools arranged on a light-colored wooden surface. \n\n1. **Screwdriver Set**: A circular, multicolored screwdriver bit holder at the top, containing various bits.\n2. **Wire Stripper**: Positioned to the left, this tool is dark purple with a handle designed for gripping.\n3. **Plastic Bottle**: A small, transparent plastic bottle is next to the screwdriver set, possibly for storing small items.\n4. **Rubber Mallet**: At the bottom, a sturdy black rubber mallet with a wooden handle.\n5. **Hammer**: A traditional hammer with a black head and a wooden grip, labeled \"TOGSEN.\"\n\nOverall, the arrangement suggests a focus on tools for home repairs or DIY projects.\n\nImage baraholka_batumi/2025/06/019b4bdda02f1b44daa8972f1236ceac1b29f4a4753b6bf8dcfb609ae83b5026.jpg:\nThe image features an ironing board with a gray cover and a purple steam iron placed on top. Below the board stands a vacuum cleaner, which has a black body and a pink base. Next to the iron, there's a green-themed booklet or magazine laying flat on the floor. The flooring appears to be light-colored and modern, adding to an overall neat and minimalistic vibe. The wall in the background is painted a soft color, contributing to the interior's clean aesthetic. There are visible power cords around the ironing board and vacuum cleaner.\n\nImage baraholka_batumi/2025/06/533af6d26e697cec32a2f7758285c6d2261304fc6bd2d085e4c4f8fc26b30a30.jpg:\nThe image shows a modern workspace setup. In the foreground, there's a gray office chair with a mesh backrest. Behind it, there's a sleek black computer desk holding a monitor, a keyboard, and a mouse. On either side of the desk, there are wooden speakers with a classic design. The floor appears to have a light-colored laminate finish. The overall vibe is contemporary and functional, suitable for a home office or creative space. Cables are visible, indicating potential connections for the audio and computer equipment. Large curtains can be seen in the background, suggesting a window nearby."
+  },
+  {
+    "lot": {
+      "lots": [
+        {
           "market:deal": "sell_item",
           "item:type": "dress",
           "condition": "very_good",
@@ -25412,17 +26492,6 @@
       "timestamp": "2025-06-20T12:27:00+00:00"
     },
     "input": "Message text:\nПривет. Кто-то отдает или продает маленький бар-холодильник и чайник? Ищу для себя вариант на работу."
-  },
-  {
-    "lot": {
-      "source:chat": "otdam_batumi",
-      "source:message_id": "129282",
-      "source:path": "otdam_batumi/2025/06/129282.md",
-      "source:author:telegram": "AlexSunDIY",
-      "source:author:name": "Alex Sun",
-      "timestamp": "2025-06-22T10:38:10+00:00"
-    },
-    "input": "Message text:\nЗдравствуйте \nГотов забрать)"
   },
   {
     "lot": {
@@ -27489,17 +28558,6 @@
   {
     "lot": {
       "source:chat": "arenda_batumi",
-      "source:message_id": "2082177",
-      "source:path": "arenda_batumi/2025/06/2082170.md",
-      "source:author:telegram": "best_friend_batumi_rent",
-      "source:author:name": "Аренда Квартир в Батуми",
-      "timestamp": "2025-06-15T12:57:47+00:00"
-    },
-    "input": "Message text:\nid: 2082170\nchat: arenda_batumi\nsender: 7096342094\nsender_name: Аренда Квартир в Батуми\nsender_username: best_friend_batumi_rent\nsender_phone: \ntg_link: https://t.me/best_friend_batumi_rent\ndate: 2025-06-15T12:57:47+00:00\ngroup_id: 13999938138029634\nis_admin: False"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
       "source:message_id": "2088587",
       "source:path": "arenda_batumi/2025/06/2088582.md",
       "source:author:telegram": "cappuccino_estate_3",
@@ -27595,17 +28653,6 @@
       "timestamp": "2025-06-20T03:42:54+00:00"
     },
     "input": "Message text:\nДаже на нашем пляже решили поставить пару гидроциклов , нужен человек кто будет следить и сдавать в аренду , 3000 в день будем давать по началу, для вас и друзей беслатно 30 минут в день"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082076",
-      "source:path": "arenda_batumi/2025/06/2082074.md",
-      "source:author:telegram": "arenda_batumiya",
-      "source:author:name": "Аренда Батуми",
-      "timestamp": "2025-06-15T12:39:24+00:00"
-    },
-    "input": "Message text:\nid: 2082074\nchat: arenda_batumi\nsender: 7470990276\nsender_name: Аренда Батуми\nsender_username: arenda_batumiya\nsender_phone: \ntg_link: https://t.me/arenda_batumiya\ndate: 2025-06-15T12:39:24+00:00\ngroup_id: 13999929314424986\nis_admin: False"
   },
   {
     "lot": {
@@ -28489,17 +29536,6 @@
       "timestamp": "2025-06-19T07:30:02+00:00"
     },
     "input": "Message text:\nСыграть в шахматы на камеру, уметь играть не обязательно, 5.000р!"
-  },
-  {
-    "lot": {
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082072",
-      "source:path": "arenda_batumi/2025/06/2082067.md",
-      "source:author:telegram": "cappuccino_estate_1",
-      "source:author:name": "Cappuccino Estate",
-      "timestamp": "2025-06-15T12:38:23+00:00"
-    },
-    "input": "Message text:\nid: 2082067\nchat: arenda_batumi\nsender: 6938439060\nsender_name: Cappuccino Estate\nsender_username: cappuccino_estate_1\nsender_phone: \ntg_link: https://t.me/cappuccino_estate_1\ndate: 2025-06-15T12:38:23+00:00\ngroup_id: 13999928826315626\nis_admin: False"
   },
   {
     "lot": {
@@ -29518,32 +30554,6 @@
       "timestamp": "2025-06-16T14:29:27+00:00"
     },
     "input": "Message text:\nid: 2087405\nchat: arenda_batumi\nsender: 5159475410\nsender_name: 🌺Eлена Батуми Риелтор Недвижимость🌺\nsender_username: Elenarieltorbatumi\nsender_phone: +995555327719\ntg_link: https://t.me/Elenarieltorbatumi\ndate: 2025-06-16T14:29:27+00:00\ngroup_id: 14000673340482290\nis_admin: False"
-  },
-  {
-    "lot": {
-      "timestamp": "2025-06-15T13:00:44+00:00",
-      "market:deal": "rent_out_long",
-      "property:type": "apartment",
-      "rooms": "1",
-      "area": 43,
-      "price": 450,
-      "price:currency": "USD",
-      "pets": "negotiable",
-      "addr:street": "Звиада Гамсахурдия",
-      "addr:housenumber": "42",
-      "floor": 3,
-      "heating": "karma",
-      "furnishing": "furnished",
-      "balcony": "yes",
-      "contact:phone": "995557326104",
-      "contact:whatsapp": "995557326104",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082185",
-      "source:path": "arenda_batumi/2025/06/2082179.md",
-      "source:author:telegram": "cappuccino_estate_3",
-      "source:author:name": "Cappuccino Estate"
-    },
-    "input": "Message text:\n**#Сдам**** уютную 1+1 квартиру в старом Батуми** 🌸\n\n💲450💲 **От года**❗️\n\n📍Звиада Гамсахурдия 42\n\n▫️Этаж: 3, площадь: 43 кв/м  \n▫️Светлая спальня, кондиционер, отопление карма, духовка, TV, душевая, балкон. Не новостройка, без лифта  \n▫️Животные по договорённости\n\n**Оплата за первый и последний месяцы**\n\nДля доп. фото/видео и по любым вопросам писать в ЛС или по номеру: +995557326104 (есть WhatsApp)"
   },
   {
     "lot": {
@@ -32854,24 +33864,6 @@
   },
   {
     "lot": {
-      "timestamp": "2025-06-15T12:31:54+00:00",
-      "market:deal": "rent_seek",
-      "property:type": "apartment",
-      "rooms": "1",
-      "price": 400,
-      "price:currency": "USD",
-      "addr:full": "центр города",
-      "urgency": "urgent",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2082045",
-      "source:path": "arenda_batumi/2025/06/2082045.md",
-      "source:author:telegram": "Enro2828",
-      "source:author:name": "Квартиры-Батуми"
-    },
-    "input": "Message text:\nСрочно сниму для клиента от собственника квартиру 1+1 в центре города с хорошим светлым ремонтом на год.\nБюджет 400$"
-  },
-  {
-    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2095387",
       "source:path": "arenda_batumi/2025/06/2095379.md",
@@ -34917,6 +35909,64 @@
   },
   {
     "lot": {
+      "lots": [
+        {
+          "timestamp": "2025-06-01T00:00:00+00:00",
+          "market:deal": "rent_out_long",
+          "property:type": "studio",
+          "rooms": "studio",
+          "area": 34,
+          "price": 450,
+          "price:currency": "USD",
+          "price:period": "month",
+          "pets": "small_dog",
+          "view": "sea",
+          "addr:street": "Лордкипанидзе",
+          "addr:housenumber": "2б",
+          "floor": 12,
+          "building:levels": "high",
+          "heating": "central",
+          "security": "guard",
+          "parking": "yes",
+          "files": [
+            "arenda_batumi/2025/06/2427ade843fdf88bf1fa1635420415e15bb95dad81dcb49525128295216ae634.jpg",
+            "arenda_batumi/2025/06/bb123ffca6d2a01cc8b78cd617b90bce9fd67d6adf8e17b799fc54c9f4391a50.jpg",
+            "arenda_batumi/2025/06/0a2a6676473624e3aefab78d4e9f619998ce86e837f62c15dbf1478a1d71df52.jpg",
+            "arenda_batumi/2025/06/767b85bd031d16227192a97648e80448644b1bd33f4a9410fa0a33a56ad4acf0.jpg",
+            "arenda_batumi/2025/06/e3e600e5309860603b70eeed570697c87700d1eec5f6339085933070f3de5e72.jpg",
+            "arenda_batumi/2025/06/a9df133ba84effb835ca96e310767d0655252a65e97660be38a5faed9ddcd358.jpg",
+            "arenda_batumi/2025/06/aff74d6086f8a469c5172fa53547dc5bd8c8a5ec588148b0ac4a4ec339e9c75f.jpg",
+            "arenda_batumi/2025/06/cc77fb3b0585cb4a00b7593104758a36852811c3436761944c97883d8c5628ce.jpg"
+          ],
+          "title_en": "Studio on Lordkipanidze 2b, 12th floor with sea view",
+          "description_en": "Modern studio apartment for rent on Lordkipanidze 2b, 12th floor. 34m² with sea view, central heating, security, and parking. Pets allowed. $450 per month for a year, $600 for summer.",
+          "title_ru": "Студия на Лордкипанидзе 2б, 12 этаж с видом на море",
+          "description_ru": "Современная студия в аренду на Лордкипанидзе 2б, 12 этаж. 34м² с видом на море, центральное отопление, охрана и парковка. Разрешены маленькие питомцы. 450$ в месяц на год, 600$ на лето.",
+          "title_ka": "სტუდია ლორდკიპანიძის 2ბ, 12-ე სართულზე ზღვის ხედით",
+          "description_ka": "მოდერნული სტუდია გაქირავებისათვის ლორდკიპანიძის 2ბ, 12-ე სართულზე. 34მ² ზღვის ხედით, ცენტრალური გათბობა, დაცვა და პარკინგი. ნებადართულია პატარა შინაური ცხოველები. 450$ თვეში წელიწადში, 600$ ზაფხულში."
+        }
+      ],
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118309",
+      "source:path": "arenda_batumi/2025/06/2118302.md",
+      "source:author:telegram": "arenda_batumiya",
+      "source:author:name": "Аренда Батуми",
+      "timestamp": "2025-06-22T12:39:05+00:00",
+      "files": [
+        "arenda_batumi/2025/06/2427ade843fdf88bf1fa1635420415e15bb95dad81dcb49525128295216ae634.jpg",
+        "arenda_batumi/2025/06/bb123ffca6d2a01cc8b78cd617b90bce9fd67d6adf8e17b799fc54c9f4391a50.jpg",
+        "arenda_batumi/2025/06/0a2a6676473624e3aefab78d4e9f619998ce86e837f62c15dbf1478a1d71df52.jpg",
+        "arenda_batumi/2025/06/767b85bd031d16227192a97648e80448644b1bd33f4a9410fa0a33a56ad4acf0.jpg",
+        "arenda_batumi/2025/06/e3e600e5309860603b70eeed570697c87700d1eec5f6339085933070f3de5e72.jpg",
+        "arenda_batumi/2025/06/a9df133ba84effb835ca96e310767d0655252a65e97660be38a5faed9ddcd358.jpg",
+        "arenda_batumi/2025/06/aff74d6086f8a469c5172fa53547dc5bd8c8a5ec588148b0ac4a4ec339e9c75f.jpg",
+        "arenda_batumi/2025/06/cc77fb3b0585cb4a00b7593104758a36852811c3436761944c97883d8c5628ce.jpg"
+      ]
+    },
+    "input": "Message text:\n#сдам #аренда #студия\n#новыйбульвар  #Steps\n📍Лордкипанидзе 2б \n12 этаж, 34м²\n• вид на море\n• центральное отопление \n• ресепшен, виделнаблюдение, охрана, парковка\n✅ сдается на год\n✅ обслуживание включено \n✅ можно с маленькими питомцами🐶🐱\n450$ в месяц на год\nесли только лето 600$\n\nImage arenda_batumi/2025/06/2427ade843fdf88bf1fa1635420415e15bb95dad81dcb49525128295216ae634.jpg:\nThe image depicts a modern interior space with a minimalist design. The room features a light wood floor and white walls, accentuated by a black curtain partially covering a large window that allows ample natural light to enter. A round mirror hangs on the right wall above a compact round wooden table paired with two brown chairs. A flat-screen TV is mounted on the wall opposite the table. In the background, a bed with a neutral-colored headboard is visible, suggesting a cozy sleeping area. The ceiling has modern pendant lighting. An air conditioning unit is positioned above the bed. No gas boiler is visible. The vibe is clean and contemporary.\n\nImage arenda_batumi/2025/06/bb123ffca6d2a01cc8b78cd617b90bce9fd67d6adf8e17b799fc54c9f4391a50.jpg:\nThe image shows a modern, well-lit bedroom with a minimalist design. There is a double bed with white linens and two pillows. A contemporary ceiling light fixture hangs above. A wall-mounted TV is on the right, opposite the bed. A large floor-to-ceiling window, covered with sheer and dark curtains, allows natural light to enter, possibly leading to a balcony, but the view is blocked by the curtains. A wooden floor adds warmth, complemented by light-colored walls. The room has an air conditioner on the wall above the bed. A round mirror is visible on the right, next to a sleek wooden console table. The overall vibe is modern and comfortable.\n\nImage arenda_batumi/2025/06/0a2a6676473624e3aefab78d4e9f619998ce86e837f62c15dbf1478a1d71df52.jpg:\nThe image shows a narrow hallway with a modern, minimalist design. The floor features light wood-like laminate, and the walls are painted in a soft gray. There's a small, round wooden table with a pair of brown velvet chairs, creating a cozy and stylish dining nook. A round mirror hangs above the table. At the end of the hallway, there is a white door with a visible electronic lock. The space has a clean and contemporary feel, with no visible clutter.\n\nImage arenda_batumi/2025/06/767b85bd031d16227192a97648e80448644b1bd33f4a9410fa0a33a56ad4acf0.jpg:\nThe image depicts a modern, well-lit bedroom with a cozy atmosphere. It features a neatly made bed with white bedding, positioned next to a large window that has sheer curtains allowing natural light to stream in. Dark, heavier curtains frame the window. On the opposite wall, there's a flat-screen TV mounted above a small, light wood-colored desk, accompanied by a minimalist chair. A round mirror hangs above the desk, complementing the contemporary decor. A stylish ceiling light fixture adds to the modern vibe of the space. The flooring is wood, and a radiator is visible beneath the window. The view outside the window isn't clear, but the room is located at a higher level.\n\nImage arenda_batumi/2025/06/e3e600e5309860603b70eeed570697c87700d1eec5f6339085933070f3de5e72.jpg:\nThe image shows a modern, minimalistic studio apartment with a light wood floor and soft beige walls. A double bed with white linens is positioned near a large floor-to-ceiling window, allowing ample natural light. The window features both sheer and blackout curtains. A wall-mounted TV is placed above a wooden sideboard. A round mirror is on the wall next to a small circular wooden dining table with two chairs. The room appears well-lit and airy, with a contemporary light fixture hanging from the ceiling. The overall design is sleek and functional, emphasizing simplicity and comfort.\n\nImage arenda_batumi/2025/06/a9df133ba84effb835ca96e310767d0655252a65e97660be38a5faed9ddcd358.jpg:\nThis bathroom has a modern design with a clean, minimalist style. The walls and floor feature white marble-like tiles with gray veining. A glass-enclosed shower with black trim is situated on the right, equipped with a wall-mounted shelf for toiletries. The vanity includes a rectangular mirror above a white floating cabinet with a silver faucet. A white towel is neatly hung on a ring near the sink, and a hairdryer is mounted on the wall. The ceiling light provides a bright, even illumination, enhancing the room’s sleek and contemporary look.\n\nImage arenda_batumi/2025/06/aff74d6086f8a469c5172fa53547dc5bd8c8a5ec588148b0ac4a4ec339e9c75f.jpg:\nThe bathroom has a modern design with white marble-patterned tiles on the walls and floor. There's a glass-enclosed shower with a black frame, adding a sleek touch. A white sink with a wall-mounted cabinet and mirror is visible. On the right, a washing machine is topped with neatly folded white towels, and a towel rack is mounted on the wall above it. The lighting is bright, and the overall style is contemporary and clean.\n\nImage arenda_batumi/2025/06/cc77fb3b0585cb4a00b7593104758a36852811c3436761944c97883d8c5628ce.jpg:\nThe image shows a long, modern corridor with an intriguing design. The ceiling features a striking black-and-white wavy pattern, while the floor is covered with a contemporary, striped carpet. The walls are painted white and contain dark-framed doors evenly spaced along both sides, giving the area a symmetrical and orderly appearance. Overhead, there are multiple ceiling lights providing a well-lit environment. The corridor exudes a sleek and somewhat futuristic vibe, commonly found in newer hotels or upscale apartments."
+  },
+  {
+    "lot": {
       "source:chat": "arenda_batumi",
       "source:message_id": "2091921",
       "source:path": "arenda_batumi/2025/06/2091918.md",
@@ -35052,6 +36102,25 @@
       "timestamp": "2025-06-20T10:36:18+00:00"
     },
     "input": "Message text:\nНужны люди на раздачу листовок, либо промоутеры, всем обучим и расскажем. Вознаграждение неплохое"
+  },
+  {
+    "lot": {
+      "timestamp": "2025-06-22T12:27:10+00:00",
+      "market:deal": "job_offer",
+      "occupation": "удаленная работа на ByBit/Binance",
+      "salary": 260,
+      "salary:currency": "USD",
+      "schedule": "утренние смены: 6:30-11:30, вечерние смены: 17:30-22:30",
+      "contact:telegram": "+",
+      "contact:phone": "+",
+      "fraud": "sketchy_job",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118236",
+      "source:path": "arenda_batumi/2025/06/2118236.md",
+      "source:author:telegram": "Kris_crpto",
+      "source:author:name": "Кристина"
+    },
+    "input": "Message text:\n**Для тех, кто ищет возможность подзаработать, срочно требуется персонал для удаленной занятости на ByBit/Binance с высокой оплатой:\n • Утренние смены: 6:30-11:30 — $260 в день\n • Вечерние смены: 17:30-22:30 — $310 в день\nДля получения дополнительной информации напишите \"+\" в личные сообщения.**"
   },
   {
     "lot": {
@@ -35202,6 +36271,17 @@
       "source:author:name": "RENT BATUMI | FLATS, HOUSE, COMMERCIAL"
     },
     "input": "Message text:\n#Сдаётся #Батуми #2+1 #Аренда #Квартира #Сдам #Сдаю #3комнаты\nСДАЁТСЯ КВАРТИРА (2+1) 100м²🔥 \n📍РАЙОН ПАРКА 6 МАЯ:\n     26 MAY, 52 \n\n🏠Новостройка \n🏠Телевидение/Wifi  \n🏠Кухонный инвентарь\n🏠Кондиционер\n🏠Центральное отопление ( ОТ ГАЗА ) \n🏠Духовая, Микроволновая печь, Посудомоечная машина ✅\n🏠РЯДОМ МОРЕ, ПАРК 6 МАЯ, СТАРЫЙ БАТУМИ, ПЛОЩАДЬ ЕВРОПЫ \n🏠Балкон       \n🏠7 Этаж ( 2 Лифта )\n\nСтоимость: 1,300💵\n🤝ПОДБЕРЕМ ВАМ ВАРИАНТЫ КВАРТИР ПОД ВАШ ЗАПРОС\n☎️+995 598 888 302 ( WhatsApp )\n(САМА БОЛЬШАЯ БАЗА КВАРТИР)\n\nВАРИАНТЫ КВАРТИР ПО ССЫЛКЕ В ПРОФИЛЕ👤"
+  },
+  {
+    "lot": {
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2118332",
+      "source:path": "arenda_batumi/2025/06/2118332.md",
+      "source:author:telegram": "ThomasParker_Wb",
+      "source:author:name": "Thomas Parker",
+      "timestamp": "2025-06-22T12:46:48+00:00"
+    },
+    "input": "Message text:\n__**Ищeшь спoсоб cтабильного зaработка?**🖐__"
   },
   {
     "lot": {
