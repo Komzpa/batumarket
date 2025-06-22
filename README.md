@@ -27,7 +27,9 @@ Logs are written to `errors.log` in JSON format. Set `LOG_LEVEL` in
 adjust verbosity. When the level is `INFO`, `tg_client.py` logs each
 captioned file along with the generated text. `caption.py` also notes when a
 file is skipped because the caption already exists. Run `make caption` to
-(re)process any images that might have missed automatic captioning. Unicode
+(re)process any images that might have missed automatic captioning. Existing
+captions are detected so rerunning the command does not trigger extra API calls.
+Unicode
 characters, including Cyrillic, are stored verbatim so logs remain easy to
 read.
 Lots are parsed automatically once captions finish so new posts show up on the

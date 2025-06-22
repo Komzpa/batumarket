@@ -48,6 +48,7 @@ make compose
 
 This pulls messages (images are captioned immediately and lots are parsed in the background). Chopped lots trigger embedding right away so vectors stay in sync without a separate step. The command finishes by building the static site.
 Run `make caption` or `make chop` separately if you need to reprocess failed images.
+`make caption` now skips files that already have captions so reruns are cheap.
 
 Run the test suite and linter before committing:
 

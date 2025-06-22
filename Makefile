@@ -14,9 +14,7 @@ pull: # Pull Telegram messages and media to ``data/``.
 	python src/tg_client.py
 
 caption: pull ## Generate image captions for files missing ``*.caption.md``.
-	find data/media -type f ! -name '*.md' -printf '%T@ %p\0' \
-	| sort -z -nr \
-	| cut -z -d' ' -f2- \
+	python scripts/pending_caption.py \
 	| parallel -j16 -0 python src/caption.py
 	python scripts/validate_outputs.py captions
 

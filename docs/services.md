@@ -90,7 +90,8 @@ present (or there were no images) and the cooldown expires the client spawns
 `chop.py` in the background. This way lots appear quickly without waiting for
 the next `make chop` run and incomplete posts are avoided.
 If some captions are missing you can run `make caption` to retry processing
-all images.
+any uncaptured images. The command skips files that already have captions so
+the API isn't called unnecessarily.
 
 See [chopper_prompt.md](../prompts/chopper_prompt.md) for the schema and taxonomy used by the
 lot chopper. The prompt now includes short title examples and an `item:audience` field to mark
