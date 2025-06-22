@@ -1,4 +1,9 @@
-body { font-family: sans-serif; margin: 0; padding: 1em; }
+body {
+  font-family: sans-serif;
+  margin: 0 auto;
+  padding: 1em;
+  max-width: 800px;
+}
 nav.top { display: flex; justify-content: space-between; margin-bottom: 1em; }
 .lang-switch a { margin-left: 0.5em; }
 .carousel { display: flex; gap: 0.5em; overflow-x: auto; }

@@ -44,3 +44,5 @@ msgstr "Лот"
 
 msgid "Index"
 msgstr "Главная страница"
+msgid "Similar items"
+msgstr "Похожие объявления"

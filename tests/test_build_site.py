@@ -391,3 +391,67 @@ def test_vectors_nested_paths(tmp_path, monkeypatch):
 
     html = (tmp_path / "views" / "chat" / "2024" / "1-0_en.html").read_text()
     assert "2-0_en.html" in html
+
+
+def test_page_headers_and_orig_open(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    media_dir = tmp_path / "media"
+    media_dir.mkdir()
+    raw_dir = tmp_path / "raw"
+    raw_dir.mkdir()
+    vec_dir = tmp_path / "vecs"
+    vec_dir.mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "a",
+                "description_en": "d",
+                "title_ru": "a",
+                "description_ru": "d",
+                "title_ka": "a",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+                "contact:telegram": "@u",
+                "source:path": "1.md",
+            },
+            {
+                "timestamp": now,
+                "title_en": "b",
+                "description_en": "d",
+                "title_ru": "b",
+                "description_ru": "d",
+                "title_ka": "b",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+                "contact:telegram": "@u",
+            },
+        ])
+    )
+    (raw_dir / "1.md").write_text("id: 1\n\ntext", encoding="utf-8")
+    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
+    (vec_dir / "2.json").write_text(json.dumps([{"id": "1-1", "vec": [0.9, 0.1]}]))
+
+    build_site.main()
+
+    html = (tmp_path / "views" / "1-0_en.html").read_text()
+    assert '<details class="orig-text" open>' in html
+    assert '<h2>Similar items</h2>' in html
+    assert '<h2>More by this user</h2>' in html
+    assert 'class="more-user similar carousel"' in html
