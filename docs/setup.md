@@ -46,7 +46,7 @@ make compose
 
 `make update` continues to work as an alias for this pipeline.
 
-This pulls messages (images are captioned immediately and lots are parsed in the background), generates embeddings and finally builds the static site.
+This pulls messages (images are captioned immediately and lots are parsed in the background). Chopped lots trigger embedding right away so vectors stay in sync without a separate step. The command finishes by building the static site.
 Run `make caption` or `make chop` separately if you need to reprocess failed images.
 
 Run the test suite and linter before committing:

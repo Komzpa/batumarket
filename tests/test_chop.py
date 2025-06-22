@@ -42,6 +42,26 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     assert called.get("response_format") == {"type": "json_object"}
 
 
+def test_chop_triggers_embed(tmp_path, monkeypatch):
+    dummy_resp = types.SimpleNamespace(
+        choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="[]"))]
+    )
+    monkeypatch.setattr(chop.openai.chat.completions, "create", lambda *a, **k: dummy_resp)
+    monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
+    called = []
+    monkeypatch.setattr(chop.embed, "embed_file", lambda p: called.append(p))
+
+    msg = tmp_path / "raw" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("id: 1", encoding="utf-8")
+
+    chop.main([str(msg)])
+
+    assert called == [tmp_path / "lots" / "1.json"]
+
+
 def test_build_prompt():
     msg = "hello"
     files = ["a.jpg", "b.jpg"]

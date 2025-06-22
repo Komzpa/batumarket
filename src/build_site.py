@@ -61,6 +61,12 @@ def _load_vectors() -> dict[str, list[float]]:
         obj = load_json(path)
         if isinstance(obj, dict) and "id" in obj and "vec" in obj:
             data[obj["id"]] = obj["vec"]
+        elif isinstance(obj, list):
+            for item in obj:
+                if isinstance(item, dict) and "id" in item and "vec" in item:
+                    data[item["id"]] = item["vec"]
+                else:
+                    log.error("Bad vector entry", file=str(path))
         else:
             log.error("Failed to parse vector file", file=str(path))
     log.info("Loaded vectors", count=len(data))

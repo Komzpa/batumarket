@@ -13,6 +13,8 @@ OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
 from token_utils import estimate_tokens
 from serde_utils import write_json
+from lot_io import read_lots
+import json
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -29,7 +31,7 @@ VEC_DIR = Path("data/vectors")
 
 
 def embed_file(path: Path) -> None:
-    """Embed ``path`` and write the vector beside it under ``VEC_DIR``."""
+    """Embed ``path`` and write the vectors beside it under ``VEC_DIR``."""
     rel = path.relative_to(LOTS_DIR)
     out = (VEC_DIR / rel).with_suffix(".json")
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -37,21 +39,35 @@ def embed_file(path: Path) -> None:
         log.debug("Vector up to date", file=str(path))
         return
 
-    chat = rel.parts[0] if len(rel.parts) > 1 else ""
-    lot_id = f"{chat}/{path.stem}" if chat else path.stem
-    text = path.read_text()
-    log.debug("Embedding", id=lot_id, tokens=estimate_tokens(text))
-    try:
-        resp = openai.embeddings.create(
-            model="text-embedding-3-large", input=text
-        )
-        vec = resp.data[0].embedding
-    except Exception:
-        log.exception("Embed failed", id=lot_id)
+    lots = read_lots(path)
+    if not lots:
+        log.error("Failed to read lot file", file=str(path))
         return
 
-    write_json(out, {"id": lot_id, "vec": vec})
-    log.debug("Vector written", path=str(out))
+    chat = rel.parts[0] if len(rel.parts) > 1 else ""
+    texts = []
+    lot_ids = []
+    for idx, lot in enumerate(lots):
+        lot_id = f"{chat}/{path.stem}-{idx}" if chat else f"{path.stem}-{idx}"
+        lot_ids.append(lot_id)
+        texts.append(json.dumps(lot, ensure_ascii=False, sort_keys=True))
+
+    log.debug("Embedding", count=len(texts), file=str(path))
+    try:
+        resp = openai.embeddings.create(
+            model="text-embedding-3-large", input=texts
+        )
+        vecs = [item.embedding for item in resp.data]
+    except Exception:
+        log.exception("Embed failed", file=str(path))
+        return
+
+    data = [
+        {"id": i, "vec": v}
+        for i, v in zip(lot_ids, vecs)
+    ]
+    write_json(out, data)
+    log.debug("Vector written", path=str(out), count=len(data))
 
 
 def main(argv: list[str] | None = None) -> None:
