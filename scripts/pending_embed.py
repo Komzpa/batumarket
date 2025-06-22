@@ -83,8 +83,9 @@ def main() -> None:
                 if should_skip_message(meta, text):
                     skip = True
             except Exception:
+                # Corrupted raw posts should not block embeddings.
+                # Log the failure but continue processing the lot.
                 log.exception("Failed moderation check", file=str(path))
-                continue
         if not skip and any(should_skip_lot(l) for l in lots):
             skip = True
         if skip:

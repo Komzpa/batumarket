@@ -130,6 +130,8 @@ wrapping them in a list and deletes mismatched ones so stale vectors never pollu
 the index. Files from moderated posts are skipped entirely so no vectors are
 stored for spam.
 The script now logs how many lots need embeddings which helps spot empty runs.
+If a raw message cannot be parsed the error is logged and the lot is still
+queued so embeddings are never skipped due to metadata issues.
 
 Vector ids are generated with `lot_io.make_lot_id` which keeps every
 subdirectory from `data/lots`.  This matches the ids used by
