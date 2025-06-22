@@ -38,10 +38,10 @@ Uses Telethon to mirror the target chats as a normal user account.
   `data/raw/<chat>/<year>/<month>/<id>.md` with basic metadata at the top.
   Media files live beside a `.md` description in
   `data/media/<chat>/<year>/<month>/`, named by their SHA-256 hash plus
-  extension.  Albums are merged into a single file so every attachment appears
-  together.  If a later segment arrives first, nearby messages before and after
-  the current one are fetched automatically so the caption is not lost and all
-  photos are stored.  Messages that disappear from Telegram during the last ``KEEP_DAYS`` days are
+  extension.  The client listens on ``events.Album`` so every attachment arrives
+  grouped.  If some segments are missing nearby messages are fetched by
+  ``grouped_id`` to avoid incomplete posts.  Messages that disappear from
+  Telegram during the last ``KEEP_DAYS`` days are
   removed from disk while edits overwrite the Markdown in place.
 * **Resume state.** The timestamp of the last processed batch is stored under
   `data/state/<chat>.txt` so interrupted runs continue from the same point.

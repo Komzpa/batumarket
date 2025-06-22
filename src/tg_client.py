@@ -1015,8 +1015,18 @@ async def main(argv: list[str] | None = None) -> None:
     log.info("Initial sync complete; listening for updates")
     asyncio.create_task(_heartbeat())
 
+
+    @client.on(events.Album(chats=CHATS))
+    async def album_handler(event):
+        chat = event.chat.username or str(event.chat_id)
+        for msg in event.messages:
+            await _save_bounded(client, chat, msg)
+        _mark_activity()
+
     @client.on(events.NewMessage(chats=CHATS))
     async def handler(event):
+        if event.message.grouped_id:
+            return
         chat = event.chat.username or str(event.chat_id)
         await _save_bounded(client, chat, event.message)
         _mark_activity()
