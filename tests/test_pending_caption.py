@@ -34,6 +34,25 @@ def test_skip_existing(tmp_path, monkeypatch, capsys):
     assert out == ""
 
 
+def test_skip_due_to_moderation(tmp_path, monkeypatch, capsys):
+    monkeypatch.setattr(pending_caption, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(pending_caption, "RAW_DIR", tmp_path / "raw")
+
+    img = pending_caption.MEDIA_DIR / "chat" / "2024" / "05" / "img.jpg"
+    img.parent.mkdir(parents=True)
+    img.write_bytes(b"img")
+    meta = img.with_suffix(".md")
+    meta.write_text("message_id: 1")
+
+    msg = pending_caption.RAW_DIR / "chat" / "2024" / "05" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("sender_username: m_s_help_bot\n\nspam")
+
+    pending_caption.main()
+    out = capsys.readouterr().out
+    assert out == ""
+
+
 def test_cli_runs(tmp_path):
     media_dir = tmp_path / "data" / "media" / "chat"
     media_dir.mkdir(parents=True)

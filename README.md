@@ -32,6 +32,7 @@ captions are detected so rerunning the command does not trigger extra API calls.
 Unicode
 characters, including Cyrillic, are stored verbatim so logs remain easy to
 read.
+Pictures belonging to moderated posts are ignored so the caption queue stays clean.
 Lots are parsed automatically once captions finish so new posts show up on the
 site without additional commands.
 

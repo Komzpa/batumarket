@@ -10,9 +10,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from lot_io import read_lots
 from serde_utils import load_json, write_json
 from log_utils import get_logger
+from moderation import should_skip_message, should_skip_lot
+from post_io import read_post
 
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
+RAW_DIR = Path("data/raw")
 
 log = get_logger().bind(script=__file__)
 
@@ -63,8 +66,25 @@ def main() -> None:
     )
     for path in files:
         lots = read_lots(path) or []
+        if not lots:
+            continue
         rel = path.relative_to(LOTS_DIR)
         out = (VEC_DIR / rel).with_suffix(".json")
+        raw = RAW_DIR / lots[0].get("source:path", "")
+        skip = False
+        if raw.exists():
+            try:
+                meta, text = read_post(raw)
+                if should_skip_message(meta, text):
+                    skip = True
+            except Exception:
+                log.exception("Failed moderation check", file=str(path))
+                continue
+        if not skip and any(should_skip_lot(l) for l in lots):
+            skip = True
+        if skip:
+            log.info("Skipping", file=str(path), reason="moderation")
+            continue
         if _needs_embed(path, out, lots):
             sys.stdout.write(str(path))
             sys.stdout.write("\0")
