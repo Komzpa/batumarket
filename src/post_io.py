@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 from log_utils import get_logger
-from serde_utils import parse_md, write_md, read_md
+from serde_utils import write_md, read_md
 import ast
 
 
@@ -70,27 +70,36 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
     text = read_md(path)
     meta_all: list[dict[str, str]] = []
     rest = text
+    # Posts may include multiple header sections separated by blank lines.
+    # Keep stripping them until we encounter the actual body text.
     while rest:
         meta, rest_body = _parse_block(rest)
         if not meta:
             break
         meta_all.append(meta)
+        # Inspect the beginning of the remaining text to check if another
+        # header block follows.
         lines = rest_body.lstrip().splitlines()
         if not lines:
             rest = ""
             break
         first = lines[0]
         key = first.split(":", 1)[0].strip() if ":" in first else ""
+        # A line starting with ``key:`` that matches an existing header key
+        # indicates another header section rather than the body.
         if key and key in meta:
             new_rest = rest_body.lstrip()
             if new_rest == rest:
-                if "\n" in rest:
-                    log.warning("Duplicate header loop", path=str(path))
+                # Avoid infinite loops when the body starts with a duplicate
+                # header. If stripping whitespace does not advance ``rest``
+                # simply drop the remaining text and stop parsing.
                 if "\n" in rest_body:
                     rest = ""
                 else:
                     rest = rest_body
                 break
+            # Another header block follows. Continue parsing with the
+            # stripped remainder.
             rest = new_rest
             continue
         rest = rest_body
@@ -100,6 +109,8 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         return {}, rest
 
     meta = meta_all[0]
+    # Later header blocks should only repeat data. ``files`` may contain new
+    # entries which we merge, other keys must match exactly.
     for extra in meta_all[1:]:
         for k, v in extra.items():
             if k == "files":
@@ -110,6 +121,7 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
             else:
                 assert meta.get(k) == v, f"mismatched header {k} in {path}"
 
+    # Convert digit-only values to integers for convenience.
     for k, v in list(meta.items()):
         if isinstance(v, str) and v.isdigit():
             meta[k] = int(v)
@@ -118,6 +130,7 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         try:
             files = ast.literal_eval(meta["files"]) if isinstance(meta["files"], str) else meta["files"]
             if isinstance(files, list):
+                # Remove duplicates while preserving order.
                 dedup = list(dict.fromkeys(files))
                 if len(dedup) != len(files):
                     log.debug(
@@ -127,6 +140,7 @@ def read_post(path: Path) -> tuple[dict[str, str], str]:
         except Exception:
             log.debug("Invalid files", path=str(path))
 
+    # ``rest`` now contains the body text without surrounding whitespace.
     return meta, rest.strip()
 
 
