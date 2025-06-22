@@ -220,16 +220,15 @@ in sync.
 
 ## debug_dump.py
 Collects everything related to a single lot into one text block.
-Pass a page URL and the script will trim the hostname, run
-`tg_client.py --fetch` on the underlying Telegram post and then append
-the resulting logs along with the lot JSON, vector file and raw post.
-Captions and image metadata are included when present so the entire
-pipeline state can be shared in one go. If the lot JSON is missing the
-chat name and message ID are extracted from the page path so Telegram
-can still be queried.
-Standard error from the Telegram client is also captured so dependency
-issues are visible. Use `--refresh` to drop any cached files and
-reprocess the lot before dumping.
+Pass a page URL and the script will trim the hostname and gather the
+lot JSON, vector file and raw post.  Telegram is only queried when the
+files are missing or when ``--refetch`` is used.  The resulting logs
+are included alongside captions and image metadata so the pipeline
+state can be shared in one go.  If the lot JSON is missing the chat
+name and message ID are extracted from the page path so Telegram can
+still be queried.  Standard error from the Telegram client is also
+captured so dependency issues are visible.  Use ``--refresh`` to drop
+any cached files and refetch everything before dumping.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running

@@ -83,3 +83,46 @@ def test_delete_files(tmp_path, monkeypatch):
     assert not img_md.exists()
     assert not img_cap.exists()
 
+
+def test_skip_fetch_when_cached(tmp_path, monkeypatch):
+    lot_id = "chat/2024/01/1"
+
+    monkeypatch.setattr(debug_dump, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(debug_dump, "VEC_DIR", tmp_path / "vec")
+    monkeypatch.setattr(debug_dump, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(debug_dump, "MEDIA_DIR", tmp_path / "media")
+
+    lot_file = debug_dump.LOTS_DIR / f"{lot_id}.json"
+    lot_file.parent.mkdir(parents=True, exist_ok=True)
+    lot_file.write_text('{"source:path": "raw.md"}')
+
+    raw_path = debug_dump.RAW_DIR / "raw.md"
+    raw_path.parent.mkdir(parents=True, exist_ok=True)
+    raw_path.write_text("id: 1\n\ntext")
+
+    def fail_fetch(*_a, **_k):
+        raise AssertionError("called")
+
+    monkeypatch.setattr(debug_dump, "run_tg_fetch", fail_fetch)
+    url = "http://example.com/chat/2024/01/1-0_en.html"
+    debug_dump.main([url])
+
+
+def test_moderation_summary(tmp_path, monkeypatch):
+    monkeypatch.setattr(debug_dump, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(debug_dump, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(debug_dump, "VEC_DIR", tmp_path / "vec")
+    monkeypatch.setattr(debug_dump, "MEDIA_DIR", tmp_path / "media")
+
+    lot_id = "chat/2024/01/1"
+    lot_path = debug_dump.LOTS_DIR / f"{lot_id}.json"
+    lot_path.parent.mkdir(parents=True, exist_ok=True)
+    lot_path.write_text('[{"source:path": "1.md", "title_en": "t", "description_en": "d", "title_ru": "t", "description_ru": "d", "title_ka": "t", "description_ka": "d"}]')
+
+    raw_path = debug_dump.RAW_DIR / "1.md"
+    raw_path.parent.mkdir(parents=True, exist_ok=True)
+    raw_path.write_text("id: 1\n\nmdma")
+
+    summary = debug_dump.moderation_summary(lot_id)
+    assert "banned phrase" in summary
+
