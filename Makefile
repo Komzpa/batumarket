@@ -2,7 +2,7 @@
 
 # Define pipeline stages explicitly so ``make -j compose`` executes them in the
 # correct order.  Each stage runs only after its dependency completes.
-.PHONY: compose update pull caption chop embed build alert ontology clean precommit validate
+.PHONY: compose update pull removed caption chop embed build alert ontology clean precommit validate
 
 # ``compose`` is the main entry point used by documentation and tests.  ``update``
 # remains as a backwards compatible alias.
@@ -11,7 +11,11 @@ update: compose
 
 
 pull: # Pull Telegram messages and media to ``data/``.
-	python src/tg_client.py
+	python src/tg_client.py --ensure-access --refetch --fetch-missing
+
+removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
+	python src/tg_client.py --check-deleted
+	$(MAKE) clean
 
 caption: pull ## Generate image captions for files missing ``*.caption.md``.
 	python scripts/pending_caption.py \
@@ -32,7 +36,7 @@ embed: chop caption
 
 
 # Render HTML pages from lots and templates.
-build: embed ontology
+build: embed ontology removed
 	rm -rf data/views/*
 	python src/build_site.py
 

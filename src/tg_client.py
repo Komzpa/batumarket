@@ -871,6 +871,26 @@ async def main(argv: list[str] | None = None) -> None:
         metavar=("CHAT", "ID"),
         help="download a single message for investigation and exit",
     )
+    parser.add_argument(
+        "--ensure-access",
+        action="store_true",
+        help="join configured chats and exit",
+    )
+    parser.add_argument(
+        "--refetch",
+        action="store_true",
+        help="reload incomplete or misparsed messages and exit",
+    )
+    parser.add_argument(
+        "--fetch-missing",
+        action="store_true",
+        help="sync new and backfill missing messages",
+    )
+    parser.add_argument(
+        "--check-deleted",
+        action="store_true",
+        help="remove posts deleted from Telegram and exit",
+    )
     args = parser.parse_args(argv)
 
     client = TelegramClient(
@@ -912,12 +932,22 @@ async def main(argv: list[str] | None = None) -> None:
             log.error("Message not found", chat=chat, id=mid)
         return
 
-    await ensure_chat_access(client)
+    if not any(
+        [args.ensure_access, args.refetch, args.fetch_missing, args.check_deleted]
+    ):
+        args.ensure_access = args.refetch = args.fetch_missing = True
 
-    await refetch_messages(client)
+    if args.ensure_access:
+        await ensure_chat_access(client)
 
-    await fetch_missing(client)
-    await remove_deleted(client, KEEP_DAYS)
+    if args.refetch:
+        await refetch_messages(client)
+
+    if args.fetch_missing:
+        await fetch_missing(client)
+
+    if args.check_deleted:
+        await remove_deleted(client, KEEP_DAYS)
     if not args.listen:
         log.info("Sync complete")
         return

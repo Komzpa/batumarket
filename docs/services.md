@@ -23,6 +23,9 @@ Uses Telethon to mirror the target chats as a normal user account.
   synced so the Makefile can continue.
 * **Manual debug.** ``--fetch <chat> <id>`` downloads one message for
   inspection and exits after printing its text to the logs.
+* **Granular sync.** ``--ensure-access`` joins chats, ``--refetch`` reloads
+  incomplete posts and ``--fetch-missing`` pulls new history. Omitting these
+  flags runs all three in sequence.
 * **Multiple sessions.** The Telegram client runs with ``sequential_updates=True``
   so several sessions can use the same account without missing events.
 * **Heartbeat.** A background task logs a ``Heartbeat`` message every minute and
@@ -200,9 +203,12 @@ directories are created automatically.
 in sync.
 
 ## Makefile
-The `Makefile` in the repository root wires these scripts together.  Running
+The `Makefile` in the repository root wires these scripts together. Running
 `make compose` performs a full refresh: pulling messages (images are captioned on
-the fly), chopping, embedding and rebuilding the static site.  `make update` is kept as a
+the fly), chopping, embedding and rebuilding the static site. Missing posts are
+pruned with `make removed` which depends on the main sync and ends by calling
+`make clean` so stray files never linger. The build phase depends on this step
+but when run with `-j` it proceeds in the background. `make update` remains as a
 compatibility alias for older instructions.
 
 ## Validation
