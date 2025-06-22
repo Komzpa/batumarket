@@ -110,9 +110,13 @@ processed at once. The API call specifies `response_format={"type":
 "json_object"}` so GPT-4o returns plain JSON without Markdown wrappers.
 
 ## embed.py
-Generates `text-embedding-3-large` vectors for each message file.  The output is
-stored under `data/vectors/` mirroring the layout of `data/lots`.  GNU Parallel
-processes the newest files first so search results are quickly refreshed.
+Generates `text-embedding-3-large` vectors for each lot.  The output is stored
+under `data/vectors/` mirroring the layout of `data/lots`.  Each file contains a
+list of `{id, vec}` pairs so multiple lots share a single vector file.  GNU
+Parallel processes the newest files first so search results are quickly
+refreshed. `pending_embed.py` upgrades any leftover single-object files by
+wrapping them in a list and deletes mismatched ones so stale vectors never pollute
+the index.
 
 Translations are now produced by `chop.py` itself.  Fields like
 `title_ru` or `description_ka` are included in the lot JSON directly. Titles

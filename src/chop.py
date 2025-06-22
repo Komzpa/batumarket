@@ -21,6 +21,7 @@ from log_utils import get_logger, install_excepthook
 from caption_io import read_caption
 from post_io import read_post
 from message_utils import build_prompt
+import embed
 
 # Blueprint describing expected fields and message taxonomy used by the model.
 BLUEPRINT = Path("prompts/chopper_prompt.md").read_text(encoding="utf-8")
@@ -132,6 +133,10 @@ def process_message(msg_path: Path) -> None:
             lot.setdefault(f"description_{lang}", "")
     out.write_text(json.dumps(lots, ensure_ascii=False, indent=2))
     log.debug("Wrote", path=str(out))
+    try:
+        embed.embed_file(out)
+    except Exception:
+        log.exception("Embedding failed", path=str(out))
 
 
 def main(argv: list[str] | None = None) -> None:
