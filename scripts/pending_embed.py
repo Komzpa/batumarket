@@ -2,6 +2,11 @@
 """List lot JSON files needing embeddings and upgrade legacy vectors."""
 from pathlib import Path
 import sys
+# Make ``src`` imports work when executing this script directly from the
+# repository root as done in the Makefile.  Unit tests set ``PYTHONPATH``
+# explicitly so this is only needed for manual runs.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+
 from lot_io import read_lots
 from serde_utils import load_json, write_json
 from log_utils import get_logger
