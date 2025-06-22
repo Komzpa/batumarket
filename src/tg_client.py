@@ -556,32 +556,22 @@ async def _save_message(
     text = str(text).replace("View original post", "").strip()
     log.debug("Processed message text", chat=chat, id=msg.id, preview=text[:80])
     log.debug("Saving message", chat=chat, id=msg.id, files=len(files), preview=text[:80])
-    group_path = None
-    if msg.grouped_id and not replace:
-        group_path = _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
-        if group_path is None:
-            try:
-                start = max(1, msg.id - 9)
-                end = msg.id + 9
-                ids = list(range(start, end + 1))
-                others = await client.get_messages(chat, ids=ids)
-                for other in others:
-                    if other.id == msg.id:
-                        continue
-                    if getattr(other, "grouped_id", None) == msg.grouped_id:
-                        await _save_message(client, chat, other)
-            except Exception:
-                log.exception("Failed to fetch album", chat=chat, id=msg.id)
-            group_path = _GROUPS.get(msg.grouped_id) or subdir / f"{msg.id}.md"
-        else:
-            meta_prev, body_prev = read_post(group_path)
-            files_prev = ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
-            files = list(dict.fromkeys(files_prev + files))
-            meta_prev.update(meta)
-            meta_prev["files"] = files
-            meta = meta_prev
-            text = body_prev or text
-        _GROUPS[msg.grouped_id] = group_path
+    group_path = (
+        _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
+        if msg.grouped_id
+        else None
+    )
+    path = old_path or group_path or subdir / f"{msg.id}.md"
+    if group_path and not replace:
+        meta_prev, body_prev = read_post(group_path)
+        files_prev = (
+            ast.literal_eval(meta_prev.get("files", "[]")) if "files" in meta_prev else []
+        )
+        files = list(dict.fromkeys(files_prev + files))
+        meta_prev.update(meta)
+        meta_prev["files"] = files
+        meta = meta_prev
+        text = body_prev or text
 
     if get_contact(meta) is None:
         preview = text.replace("\n", " ")[:120]
@@ -593,7 +583,6 @@ async def _save_message(
             meta=json.dumps(meta, ensure_ascii=False),
         )
         return None
-    path = old_path or group_path or subdir / f"{msg.id}.md"
     if replace and old_path and old_path != path and old_path.exists():
         old_path.unlink()
         lot_old = LOTS_DIR / old_path.relative_to(RAW_DIR).with_suffix(".json")
@@ -610,13 +599,31 @@ async def _save_message(
         meta["files"] = list(dict.fromkeys(meta["files"]))
         assert len(meta["files"]) == len(set(meta["files"])), "duplicate files"
     _write_md(path, meta, text)
+
     if replace:
         lot_path = LOTS_DIR / path.relative_to(RAW_DIR).with_suffix(".json")
         if lot_path.exists():
             lot_path.unlink()
             log.info("Dropped lots after refetch", file=str(lot_path))
+
     if msg.grouped_id:
         _GROUP_CACHE.setdefault(chat, {})[msg.grouped_id] = path
+        _GROUPS[msg.grouped_id] = path
+
+    if msg.grouped_id and not replace and group_path is None:
+        try:
+            start = max(1, msg.id - 9)
+            end = msg.id + 9
+            ids = list(range(start, end + 1))
+            others = await client.get_messages(chat, ids=ids)
+            for other in others:
+                if other.id == msg.id:
+                    continue
+                if getattr(other, "grouped_id", None) == msg.grouped_id:
+                    await _save_message(client, chat, other)
+        except Exception:
+            log.exception("Failed to fetch album", chat=chat, id=msg.id)
+
     log.info("Wrote message", path=str(path), id=msg.id)
     _enqueue_chop(path, meta, text)
     return path
