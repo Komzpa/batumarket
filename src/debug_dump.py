@@ -137,9 +137,38 @@ def collect_files(lot_id: str) -> list[tuple[str, str]]:
     return files
 
 
+def delete_files(lot_id: str) -> None:
+    """Remove files related to ``lot_id`` from the filesystem."""
+    lot_file = lot_json_path(lot_id, LOTS_DIR)
+    lot_data = load_json(lot_file) if lot_file.exists() else None
+    if lot_file.exists():
+        lot_file.unlink()
+    vec = VEC_DIR / f"{lot_id}.json"
+    if vec.exists():
+        vec.unlink()
+    if not lot_data:
+        return
+    lot = lot_data[0] if isinstance(lot_data, list) else lot_data
+    raw_rel = lot.get("source:path")
+    if raw_rel:
+        raw_path = RAW_DIR / raw_rel
+        if raw_path.exists():
+            raw_path.unlink()
+    for rel in lot.get("files", []):
+        p = MEDIA_DIR / rel
+        for extra in [p, p.with_suffix(".md"), p.with_suffix(".caption.md")]:
+            if extra.exists():
+                extra.unlink()
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Dump debug info for a lot")
     parser.add_argument("url", help="link to the lot page")
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="drop existing files and reprocess before dumping",
+    )
     args = parser.parse_args(argv)
 
     lot_id, _lang = parse_url(args.url)
@@ -156,6 +185,8 @@ def main(argv: list[str] | None = None) -> None:
         print("Failed to determine chat or message id", file=sys.stderr)
         return
 
+    if args.refresh:
+        delete_files(lot_id)
     logs = run_tg_fetch(chat, mid)
     parts = ["### tg_client log", logs.strip()]
     for name, content in collect_files(lot_id):

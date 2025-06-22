@@ -36,3 +36,50 @@ def test_run_tg_fetch_includes_stderr(tmp_path, monkeypatch):
     assert "out" in out
     assert "err" in out
 
+
+def test_delete_files(tmp_path, monkeypatch):
+    lot_id = "chat/2024/01/1"
+
+    lots_dir = tmp_path / "lots"
+    vec_dir = tmp_path / "vec"
+    raw_dir = tmp_path / "raw"
+    media_dir = tmp_path / "media"
+    lots_dir.mkdir(parents=True)
+    vec_dir.mkdir()
+    raw_dir.mkdir()
+    media_dir.mkdir()
+
+    monkeypatch.setattr(debug_dump, "LOTS_DIR", lots_dir)
+    monkeypatch.setattr(debug_dump, "VEC_DIR", vec_dir)
+    monkeypatch.setattr(debug_dump, "RAW_DIR", raw_dir)
+    monkeypatch.setattr(debug_dump, "MEDIA_DIR", media_dir)
+
+    lot_file = lots_dir / f"{lot_id}.json"
+    lot_file.parent.mkdir(parents=True, exist_ok=True)
+    lot_file.write_text('{"source:path": "raw.md", "files": ["f.jpg"]}')
+
+    vec_file = vec_dir / f"{lot_id}.json"
+    vec_file.parent.mkdir(parents=True, exist_ok=True)
+    vec_file.write_text("vec")
+
+    raw_path = raw_dir / "raw.md"
+    raw_path.parent.mkdir(parents=True, exist_ok=True)
+    raw_path.write_text("raw")
+
+    img = media_dir / "f.jpg"
+    img.parent.mkdir(parents=True, exist_ok=True)
+    img.write_text("bin")
+    img_md = img.with_suffix(".md")
+    img_md.write_text("meta")
+    img_cap = img.with_suffix(".caption.md")
+    img_cap.write_text("cap")
+
+    debug_dump.delete_files(lot_id)
+
+    assert not lot_file.exists()
+    assert not vec_file.exists()
+    assert not raw_path.exists()
+    assert not img.exists()
+    assert not img_md.exists()
+    assert not img_cap.exists()
+
