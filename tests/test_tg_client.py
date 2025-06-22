@@ -39,6 +39,27 @@ sys.modules["telethon.tl.custom"] = dummy_custom
 sys.modules["telethon.tl.functions.channels"] = dummy_funcs
 sys.modules["telethon.errors"] = dummy_errors
 
+# Minimal progressbar stub
+dummy_progressbar = types.ModuleType("progressbar")
+
+class _DummyPB:
+    def __init__(self, *a, **k):
+        pass
+
+    def start(self):
+        return self
+
+    def update(self, *_):
+        return self
+
+    def finish(self):
+        return self
+
+dummy_progressbar.Bar = lambda *a, **k: None
+dummy_progressbar.ETA = lambda *a, **k: None
+dummy_progressbar.ProgressBar = lambda *a, **k: _DummyPB()
+sys.modules["progressbar"] = dummy_progressbar
+
 # Make src/ importable
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -818,12 +839,14 @@ def test_save_message_schedules_chop(tmp_path, monkeypatch):
             called["path"] = path
 
         monkeypatch.setattr(tg_client, "_schedule_chop", sched)
+        monkeypatch.setattr(tg_client, "CHOP_COOLDOWN", 0)
 
         client = types.SimpleNamespace(get_permissions=fake_get_permissions)
         date = datetime.datetime(2024, 5, 1, tzinfo=datetime.timezone.utc)
         msg = DummyMessage(1, date, text="hi")
 
         await tg_client._save_message(client, "chat", msg)
+        tg_client._process_chop_queue()
 
         expected = tmp_path / "chat" / "2024" / "05" / "1.md"
         assert called.get("path") == expected
