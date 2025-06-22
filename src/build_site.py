@@ -18,7 +18,7 @@ from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader
 import gettext
 from serde_utils import load_json
-from lot_io import read_lots, get_seller, get_timestamp
+from lot_io import read_lots, get_seller, get_timestamp, iter_lot_files
 
 try:
     from sklearn.neighbors import NearestNeighbors
@@ -122,9 +122,11 @@ def _env_for_lang(lang: str) -> Environment:
 
 
 def _iter_lots() -> list[dict]:
-    """Yield lots with helper metadata."""
+    """Return all lots ready for rendering."""
     lots = []
-    for path in LOTS_DIR.rglob("*.json"):
+    # ``iter_lot_files`` keeps file ordering consistent with ``pending_embed.py``
+    # so both scripts see the same data in the same order.
+    for path in iter_lot_files(LOTS_DIR):
         data = read_lots(path)
         if not data:
             continue

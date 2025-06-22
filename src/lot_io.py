@@ -127,3 +127,19 @@ def embedding_path(
     rel = lot_path.relative_to(lots_root)
     return (vec_root / rel).with_suffix(".json")
 
+
+def iter_lot_files(root: Path = LOTS_DIR, newest_first: bool = False) -> list[Path]:
+    """Return ``*.json`` files under ``root``.
+
+    When ``newest_first`` is ``True`` the result is ordered by modification
+    time with the most recently changed files first.  Both ``build_site.py`` and
+    ``pending_embed.py`` rely on this helper so they scan the lot directory in
+    the same order.
+    """
+    files = list(root.rglob("*.json"))
+    if newest_first:
+        files.sort(key=lambda p: p.stat().st_mtime, reverse=True)
+    else:
+        files.sort()
+    return files
+

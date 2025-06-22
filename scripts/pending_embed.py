@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""List lot JSON files needing embeddings and upgrade legacy vectors."""
+"""List lot JSON files needing embeddings and upgrade legacy vectors.
+
+The output is fed to ``embed.py`` via GNU Parallel.  Both this script and
+``build_site.py`` traverse ``data/lots`` using ``lot_io.iter_lot_files`` so new
+lots are discovered in the same order across the pipeline.
+"""
 from pathlib import Path
 import sys
 # Make ``src`` imports work when executing this script directly from the
@@ -7,7 +12,7 @@ import sys
 # explicitly so this is only needed for manual runs.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lot_io import read_lots, embedding_path
+from lot_io import read_lots, embedding_path, iter_lot_files
 from serde_utils import load_json, write_json
 from log_utils import get_logger
 from moderation import should_skip_message, should_skip_lot
@@ -21,10 +26,11 @@ log = get_logger().bind(script=__file__)
 
 
 def _needs_embedding(path: Path, emb: Path, lots: list[dict]) -> bool:
-    """Return ``True`` when ``emb`` is missing or out of date.
+    """Return ``True`` when ``emb`` is missing or stale.
 
-    The function upgrades older embedding files written as a single object and
-    deletes mismatched files.
+    The function also upgrades older vector files stored as a single object and
+    removes corrupted or mismatched ones so ``embed.py`` always operates on
+    clean data.
     """
     if not emb.exists():
         return True
@@ -67,9 +73,10 @@ def main() -> None:
         log.error("LOTS_DIR missing", dir=str(LOTS_DIR))
         return
 
-    files = sorted(
-        LOTS_DIR.rglob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True
-    )
+    # ``embed.py`` expects the newest files first so search results refresh
+    # quickly.  ``iter_lot_files`` provides the same ordering used by
+    # ``build_site.py`` which keeps both scripts in sync.
+    files = iter_lot_files(LOTS_DIR, newest_first=True)
     pending: list[Path] = []
     for path in files:
         lots = read_lots(path) or []
@@ -92,6 +99,8 @@ def main() -> None:
         if skip:
             log.info("Skipping", file=str(path), reason="moderation")
             continue
+        # ``_needs_embedding`` checks file timestamps and vector consistency.
+        # ``embed.py`` is only invoked when embedding is actually required.
         if _needs_embedding(path, out, lots):
             pending.append(path)
 
