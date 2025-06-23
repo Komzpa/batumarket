@@ -107,17 +107,30 @@ def caption_file(path: Path) -> str:
     ]
     log.debug("Captioning", sha=sha, chat=chat, file=str(path))
     log.debug("OpenAI request", messages=message)
+    schema = {
+        "type": "object",
+        "properties": {f"caption_{l}": {"type": "string"} for l in LANGS},
+        "required": [f"caption_{l}" for l in LANGS],
+    }
     try:
         resp = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=message,
             temperature=0,
-            response_format={"type": "json_object"},
+            tools=[
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "describe_image",
+                        "description": "Generate captions for marketplace images",
+                        "parameters": schema,
+                    },
+                }
+            ],
+            tool_choice="describe_image",
         )
-        raw = resp.choices[0].message.content.strip()
+        raw = resp.choices[0].message.tool_calls[0].function.arguments
         log.info("OpenAI response", text=raw, file=str(path))
-        if raw.startswith("```"):
-            raw = raw.strip("`\n")
         data = json.loads(raw)
     except Exception:
         log.exception("Caption failed", sha=sha, file=str(path))

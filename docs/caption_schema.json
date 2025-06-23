@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "caption_en": {"type": "string"},
+    "caption_ru": {"type": "string"},
+    "caption_ka": {"type": "string"}
+  },
+  "required": ["caption_en", "caption_ru", "caption_ka"],
+  "additionalProperties": false
+}

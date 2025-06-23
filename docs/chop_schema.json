@@ -1,0 +1,24 @@
+{
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "market:deal": {"type": "string"},
+      "title_en": {"type": "string"},
+      "description_en": {"type": "string"},
+      "title_ru": {"type": "string"},
+      "description_ru": {"type": "string"},
+      "title_ka": {"type": "string"},
+      "description_ka": {"type": "string"}
+    },
+    "required": [
+      "title_en",
+      "description_en",
+      "title_ru",
+      "description_ru",
+      "title_ka",
+      "description_ka"
+    ],
+    "additionalProperties": true
+  }
+}

@@ -3,10 +3,12 @@
 The lot chopper transforms raw posts into structured JSON.
 Replies **must** contain nothing but valid JSON.
 A single message can describe several lots so the model should return a JSON array.
-Even when only one lot is found the output must still be wrapped in an array. 
+Even when only one lot is found the output must still be wrapped in an array.
 **Never wrap the JSON in Markdown code fences or add any surrounding text.**
 Normalize emojis and fancy formatting into plain text.
 Fix spelling mistakes when sure about it.
+The API uses Structured Outputs with the [chop schema](../docs/chop_schema.json)
+to ensure titles and descriptions are present for every language.
 
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:

@@ -82,6 +82,9 @@ Calls GPT-4o Vision using the instructions in
 `data/media`. The prompt highlights the overall vibe of the interior and asks
 the model to return a JSON object with ``caption_<lang>`` fields for all
 configured languages. ``tg_client.py``
+sends a tool schema documented in
+[`caption_schema.json`](caption_schema.json) so the response always
+includes every language.
 schedules ``caption.py`` right after an image
 is stored, or if a stored file is missing its caption, so downloads continue in
 parallel. Before sending to the API every picture is scaled so the shorter side
@@ -121,8 +124,9 @@ queues only messages that lack a JSON result, preserving modification order, and
 runs `chop.py` for each one using GNU Parallel so several messages are
 processed at once. Posts flagged by `moderation.should_skip_message` are
 excluded from this list so the parser never wastes API calls on obvious spam.
-The API call specifies `response_format={"type":
-"json_object"}` so GPT-4o returns plain JSON without Markdown wrappers.
+The API call now uses Structured Outputs with
+[`chop_schema.json`](chop_schema.json) so titles and descriptions are always
+present. GPT-4o returns the parsed JSON directly without Markdown wrappers.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  The output is stored
