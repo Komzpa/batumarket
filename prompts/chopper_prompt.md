@@ -65,10 +65,9 @@ Craft both `title_<lang>` and `description_<lang>` for every lot using both the 
   Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.  
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
-- Anything outside these groups should be placed under `misc` until patterns emerge.
 
 ## Antifraud
-- `fraud=sketchy_job` - if the description does not explain the actual work.
+- `fraud=sketchy_job` - if the description is for the job offering but does not explain the actual work.
 - `fraud=drugs` - posts offering illegal narcotics or other prohibited drugs.
 - `fraud=sketchy_job` - Salaries quoted in Russian roubles for work in Georgia are suspicious.
 - `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов").
@@ -109,7 +108,7 @@ Good summaries clearly describe the specific offer:
 - Смартфон Samsung S23 FE 256GB
 - Дрон DJI Air 2S Fly More Combo
 - MacBook Air M4 13" 16/256Gb цвета Midnight
-- Rот Васька, серый короткошёрстный, 2 года
+- Кот Васька, серый короткошёрстный, 2 года
 
 Avoid generic headlines and summarise the actual offering instead:
 
