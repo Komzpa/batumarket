@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 from datetime import datetime, timezone
+import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -43,8 +44,43 @@ def test_caption_roundtrip(tmp_path: Path):
 def test_lot_roundtrip(tmp_path: Path):
     path = tmp_path / "lot.json"
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-    lots = [{"a": 1, "b": "x", "c": "", "timestamp": now, "contact:phone": "1"}]
+    lots = [
+        {
+            "a": 1,
+            "b": "x",
+            "c": "",
+            "timestamp": now,
+            "contact:phone": "1",
+            "title_en": "t",
+            "description_en": "d",
+            "title_ru": "t",
+            "description_ru": "d",
+            "title_ka": "t",
+            "description_ka": "d",
+        }
+    ]
     write_lots(path, lots)
     data = read_lots(path)
-    assert data == [{"a": 1, "b": "x", "timestamp": now, "contact:phone": "1"}]
+    assert data == [
+        {
+            "a": 1,
+            "b": "x",
+            "timestamp": now,
+            "contact:phone": "1",
+            "title_en": "t",
+            "description_en": "d",
+            "title_ru": "t",
+            "description_ru": "d",
+            "title_ka": "t",
+            "description_ka": "d",
+        }
+    ]
+
+
+def test_write_lots_requires_translations(tmp_path: Path):
+    path = tmp_path / "lot.json"
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    lots = [{"timestamp": now, "contact:phone": "1", "title_en": "t"}]
+    with pytest.raises(AssertionError):
+        write_lots(path, lots)
 

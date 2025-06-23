@@ -31,6 +31,16 @@ SELLER_FIELDS = [
     "seller",
 ]
 
+# ``title_<lang>`` and ``description_<lang>`` must be present for every lot.
+TRANSLATION_FIELDS = [
+    "title_en",
+    "description_en",
+    "title_ru",
+    "description_ru",
+    "title_ka",
+    "description_ka",
+]
+
 
 def get_seller(lot: dict) -> str | None:
     """Return the seller identifier or ``None`` when missing."""
@@ -85,6 +95,8 @@ def write_lots(path: Path, lots: Iterable[dict]) -> None:
     for lot in lots:
         assert get_timestamp(lot) is not None, "timestamp required"
         assert get_seller(lot) is not None, "seller required"
+        missing = [f for f in TRANSLATION_FIELDS if not lot.get(f)]
+        assert not missing, f"missing translations: {', '.join(missing)}"
         cleaned.append(_clean_lot(lot))
     write_json(path, cleaned)
     log.debug("Wrote lots", path=str(path))
