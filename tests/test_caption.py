@@ -28,11 +28,7 @@ def test_caption_file_writes(tmp_path, monkeypatch):
         choices=[
             types.SimpleNamespace(
                 message=types.SimpleNamespace(
-                    tool_calls=[
-                        types.SimpleNamespace(
-                            function=types.SimpleNamespace(arguments='{"caption_en": "desc"}')
-                        )
-                    ]
+                    content='{"caption_en": "desc"}'
                 )
             )
         ]
@@ -61,11 +57,7 @@ def test_caption_logs(tmp_path, monkeypatch):
         choices=[
             types.SimpleNamespace(
                 message=types.SimpleNamespace(
-                    tool_calls=[
-                        types.SimpleNamespace(
-                            function=types.SimpleNamespace(arguments='{"caption_en": "desc"}')
-                        )
-                    ]
+                    content='{"caption_en": "desc"}'
                 )
             )
         ]

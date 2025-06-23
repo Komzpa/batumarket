@@ -117,6 +117,8 @@ def process_message(msg_path: Path) -> None:
         },
     }
     try:
+        # Structured Outputs give us a simple JSON string rather than the
+        # function-calling blocks used by older API versions.
         resp = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
@@ -129,8 +131,8 @@ def process_message(msg_path: Path) -> None:
         raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw)
         lots = json.loads(raw)
-    except Exception:
-        log.exception("Failed to chop", file=str(msg_path))
+    except Exception as exc:
+        log.exception("Failed to chop", file=str(msg_path), error=str(exc))
         return
     if isinstance(lots, dict):
         lots = [lots]

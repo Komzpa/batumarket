@@ -114,6 +114,8 @@ def caption_file(path: Path) -> str:
         "additionalProperties": False,
     }
     try:
+        # Structured Outputs returns the content as plain JSON rather than via
+        # the legacy function calling API. This keeps the integration simple.
         resp = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=message,
@@ -126,8 +128,8 @@ def caption_file(path: Path) -> str:
         raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw, file=str(path))
         data = json.loads(raw)
-    except Exception:
-        log.exception("Caption failed", sha=sha, file=str(path))
+    except Exception as exc:
+        log.exception("Caption failed", sha=sha, file=str(path), error=str(exc))
         return sha
 
     missing = [l for l in LANGS if f"caption_{l}" not in data]
