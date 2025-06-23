@@ -23,7 +23,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
         choices=[
             types.SimpleNamespace(
-                message=types.SimpleNamespace(content="[]")
+                message=types.SimpleNamespace(content='{"lots": []}')
             )
         ]
     )
@@ -52,7 +52,7 @@ def test_chop_triggers_embed(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
         choices=[
             types.SimpleNamespace(
-                message=types.SimpleNamespace(content="[]")
+                message=types.SimpleNamespace(content='{"lots": []}')
             )
         ]
     )
