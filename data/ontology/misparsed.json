@@ -1,158 +1,6 @@
 [
   {
     "lot": {
-      "lots": [
-        {
-          "market:deal": "sell_item",
-          "item:type": "gas_heater",
-          "condition": "good",
-          "price": 150,
-          "price:currency": "GEL",
-          "files": [
-            "baraholka_ge/2025/06/5feda9def061011757649d419ff2103ca7107d8560df747026a9c4d28725612f.jpg"
-          ],
-          "title_en": "Fujiyama Gas Heater",
-          "description_en": "Fujiyama gas heater in good condition for 150 GEL.",
-          "title_ru": "Газовый обогреватель Fujiyama",
-          "description_ru": "Газовый обогреватель Fujiyama в хорошем состоянии за 150 лари.",
-          "title_ka": "გაზის გამათბობელი Fujiyama",
-          "description_ka": "გაზის გამათბობელი Fujiyama კარგ მდგომარეობაში 150 ლარად."
-        },
-        {
-          "market:deal": "sell_item",
-          "item:type": "shower_tray",
-          "condition": "good",
-          "files": [],
-          "title_en": "Shower Tray 90*90 cm",
-          "description_en": "Shower tray measuring 90*90 cm in good condition.",
-          "title_ru": "Душевой поддон 90*90 см",
-          "description_ru": "Душевой поддон размером 90*90 см в хорошем состоянии.",
-          "title_ka": "დუშის პანელი 90*90 სმ",
-          "description_ka": "დუშის პანელი ზომით 90*90 სმ კარგ მდგომარეობაში."
-        }
-      ],
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483182",
-      "source:path": "baraholka_ge/2025/06/2483182.md",
-      "source:author:telegram": "Elbatumi",
-      "source:author:name": "Артём",
-      "timestamp": "2025-06-23T05:29:05+00:00",
-      "files": [
-        "baraholka_ge/2025/06/5feda9def061011757649d419ff2103ca7107d8560df747026a9c4d28725612f.jpg"
-      ]
-    },
-    "input": "Message text:\n1. Карма Fujiyama 150 лари.\n2. Душевой поддон 90*90 см. \nВсё в хорошем состоянии.\n\nImage baraholka_ge/2025/06/5feda9def061011757649d419ff2103ca7107d8560df747026a9c4d28725612f.jpg:\nThe image shows a device labeled \"Fujiyama\" with a metallic casing, possibly a gas boiler or heater. On the front, there’s a power indicator light and a main control knob with clearly marked settings from 1 to 5. \n\nThere’s an attached panel or cover that features technical specifications in a format typical for appliances, denoted by a brand name \"Ersal.\" The label includes details such as model number, electrical specifications, and safety certifications.\n\nThe overall vibe of the setting appears modern and functional, with a clean design. No specific mention of a watermark is noted. The device is likely used for heating purposes, though further context is not provided."
-  },
-  {
-    "lot": {
-      "market:deal": "services_offer",
-      "occupation": "маникюрный мастер",
-      "description_en": "Hello! Would you like a cool, beautiful, sterile, and high-quality manicure and pedicure in Batumi? I am a manicure master with 10 years of experience. I invite you to services: Manicure, Gel strengthening, Nail extension, Design, French, Pedicure. More of my work on Instagram: marinkalubimkaa or MANICURE BATUMI MARINA.",
-      "description_ru": "Привет! Хочешь классный, красивый, стерильный и качественный маникюр и педикюр в Батуми? Я мастер маникюра с опытом 10 лет. Приглашаю на услуги: маникюр, укрепление гелем, наращивание ногтей, дизайн, френч, педикюр. Больше моих работ в Инстаграм: marinkalubimkaa или МАНИКЮР БАТУМИ МАРИНА.",
-      "description_ka": "გამარჯობა! გსურთ მშვენიერი, ლამაზი, სტერილური და ხარისხიანი მანიკური და პედიკური ბათუმში? მე ვარ მანიკურის ოსტატი 10 წლიანი გამოცდილებით. გიწვევთ მომსახურებაზე: მანიკური, გელის გაძლიერება, ფრჩხილების გაზრდა, დიზაინი, ფრანგული, პედიკური. ჩემი სამუშაოების მეტი Instagram-ზე: marinkalubimkaa ან მანიკური ბათუმი მარინა.",
-      "contact:phone": "995595018557",
-      "contact:whatsapp": "995595018557",
-      "files": [
-        "baraholka_ge/2025/06/a2791b4e8946415be629bb04806d403317b9fa2c50b4ac68eff490820189df1c.jpg"
-      ],
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483199",
-      "source:path": "baraholka_ge/2025/06/2483198.md",
-      "source:author:telegram": "marinkaa1984",
-      "source:author:name": "Marinka Lubimka",
-      "timestamp": "2025-06-23T05:46:03+00:00"
-    },
-    "input": "Message text:\nПривет!🌸Хочешь Классный, Красивый, Стерильный и Качественный  Маникюр и Педикюр в Батуми❤️? Я Мастер Маникюра, с опытом 10 лет.\nПриглашаю на услуги : \nМаникюр, Укрепление гелем, Наращивание  ногтей, Дизайн, Френч, Педикюр.\nБольше моих работ в Инстаграм : marinkalubimkaa или МАНИКЮР БАТУМИ МАРИНА \n +995595018557\n+380974904732\n\nImage baraholka_ge/2025/06/a2791b4e8946415be629bb04806d403317b9fa2c50b4ac68eff490820189df1c.jpg:\nThe image features a collage of multiple sets of manicured nails, showcasing various designs and colors in a grid format. \n\n1. **Top Row**: \n   - First set: Bright red nails with a pointed shape.\n   - Second set: Light purple, glossy finish.\n   - Third set: Orange nails with a matte finish and decorative black line art.\n   - Fourth set: Colorful nail art featuring floral designs.\n\n2. **Middle Row**: \n   - First set: A marbled design in reds and browns.\n   - Second set: Dark, glossy nails with a subtle gold accent.\n   - Third set: A mix of beige and nude with a jewel embellishment.\n\n3. **Bottom Row**: \n   - First set: Deep red nails with a classic finish.\n   - Second set: Off-white with a modern geometric design.\n   - Third set: Green and light pink with gold accents.\n\nOverall, the styles range from simple to intricate, appealing to diverse tastes."
-  },
-  {
-    "lot": {
-      "lots": [
-        {
-          "market:deal": "sell_item",
-          "item:type": "tennis_racket",
-          "condition": "new",
-          "price": 300,
-          "price:currency": "GEL",
-          "urgency": "none",
-          "files": [
-            "baraholka_ge/2025/06/5f23b47ee6a3e45a0e0ffd446ea16ce9d96924d84a6e92ea6a4cf07b0192465d.jpg"
-          ],
-          "title_en": "New Babolat Tennis Racket",
-          "description_en": "Selling a new Babolat tennis racket with two vibration dampeners and two overgrips. Price: 300 GEL.",
-          "title_ru": "Новая ракетка Babolat",
-          "description_ru": "Продаю новую ракетку Babolat с двумя виброгасителями и двумя овергрипами. Цена: 300 лари.",
-          "title_ka": "ახალი Babolat-ის ჩოგანი",
-          "description_ka": "ვყიდი ახალ Babolat-ის ჩოგანს, ორი ვიბრაციის დამცავი და ორი ოვერგრიპით. ფასი: 300 ლარი."
-        },
-        {
-          "market:deal": "sell_item",
-          "item:type": "tennis_bag",
-          "condition": "used",
-          "price": 70,
-          "price:currency": "GEL",
-          "urgency": "negotiable",
-          "files": [],
-          "title_en": "Used Babolat Tennis Bag",
-          "description_en": "Selling a used Babolat tennis bag with three pockets. Quite spacious. Price: 70 GEL, negotiable.",
-          "title_ru": "Б/У кофр Babolat для ракеток",
-          "description_ru": "Продаю б/у кофр Babolat на несколько ракеток с тремя карманами. Довольно вместительный. Цена: 70 лари, возможен торг.",
-          "title_ka": "ბ/უ Babolat-ის ჩოგნების ჩანთა",
-          "description_ka": "ვყიდი ბ/უ Babolat-ის ჩოგნების ჩანთას სამი ჯიბით. საკმაოდ მოცულობითია. ფასი: 70 ლარი, შესაძლებელია მოლაპარაკება."
-        }
-      ],
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483246",
-      "source:path": "baraholka_ge/2025/06/2483243.md",
-      "source:author:telegram": "Maria_57401",
-      "source:author:name": "MMV",
-      "timestamp": "2025-06-23T06:14:46+00:00",
-      "files": [
-        "baraholka_ge/2025/06/5f23b47ee6a3e45a0e0ffd446ea16ce9d96924d84a6e92ea6a4cf07b0192465d.jpg"
-      ]
-    },
-    "input": "Message text:\nПродам:\n1. Ракетка Babolat, новая, характеристики на фото. С двумя виброгасителями, и двумя овергрипами. 300 лари. \n2. Кофр Babolat на несколько ракеток с тремя карманами. Б/У. Довольно вместительный. 70 лари. Возможен торг.\nБольше вещей по ссылке в шапке профиля.\n\nImage baraholka_ge/2025/06/5f23b47ee6a3e45a0e0ffd446ea16ce9d96924d84a6e92ea6a4cf07b0192465d.jpg:\nThe image features a tennis racket prominently displayed on a black and white Babolat cover. The racket has a vibrant red and white color scheme. Attached to the racket are two packs of strings: one labeled \"Pro Tacky Comfort\" and the other displaying a graphic with strawberries. The background consists of light gray tiled flooring. The overall vibe is sporty and modern, with a focus on tennis equipment."
-  },
-  {
-    "lot": {
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483139",
-      "source:path": "baraholka_ge/2025/06/2483130.md",
-      "source:author:telegram": "irinamarguts",
-      "source:author:name": "Irina",
-      "timestamp": "2025-06-23T04:23:20+00:00",
-      "files": [
-        "baraholka_ge/2025/06/1e99d862b93daac774133becf4798991887d316faf9127c3f7223eac2428dd33.jpg"
-      ]
-    },
-    "input": "Message text:\nпишите в личку\n\nImage baraholka_ge/2025/06/1e99d862b93daac774133becf4798991887d316faf9127c3f7223eac2428dd33.jpg:\nThe image features a pair of intricate silver earrings designed in the shape of flowers. Each earring consists of a decorative flower with a lace-like pattern at the top and cascading chains resembling strands or fringes extending downward. The metal appears shiny and well-crafted, indicating good quality. The earrings are presented against a wooden surface, which adds a natural, warm vibe to the display. The design combines elegance with a playful touch due to the flowing chains."
-  },
-  {
-    "lot": {
-      "market:deal": "services_offer",
-      "occupation": "попутчик",
-      "description_ru": "Здравствуйте. Сегодня (23.06, понедельник), в районе 16:00 еду Тбилиси - Батуми (могу через попутные населённые пункты), возьму попутчиков и посылки. Кого интересует - пишите. Не коммерция.",
-      "start_date": "2023-06-23T16:00:00+00:00",
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483141",
-      "source:path": "baraholka_ge/2025/06/2483141.md",
-      "source:author:name": "Kirya",
-      "timestamp": "2025-06-23T04:27:25+00:00"
-    },
-    "input": "Message text:\nЗдравствуйте. Сегодня (23.06, понедельник), в районе 16:00 еду Тбилиси - Батуми (могу через попутные населённые пункты), возьму попутчиков и посылки. Кого интересует - пишите. Не коммерция."
-  },
-  {
-    "lot": {
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2483128",
-      "source:path": "baraholka_ge/2025/06/2483128.md",
-      "source:author:telegram": "Vyltyr",
-      "source:author:name": "Олексій Тронь",
-      "timestamp": "2025-06-23T04:04:54+00:00"
-    },
-    "input": "Message text:\nНапишите в ЛС"
-  },
-  {
-    "lot": {
       "fraud": "sketchy_job",
       "timestamp": "2025-06-18T10:48:16+00:00",
       "market:deal": "services_offer",
@@ -334,28 +182,6 @@
   },
   {
     "lot": {
-      "market:deal": "services_offer",
-      "occupation": "driver",
-      "description_en": "Comfortable trips on a 2018 Ford Fusion with an experienced driver. Services include transfers to/from airports in Kutaisi, Tbilisi, and Batumi, visa runs, and individual/family tours around Georgia. Tour destinations include waterfalls, canyons, caves, hot springs, wine tastings, horseback riding, quad biking, rafting, ziplining, and other activities. Additional services include sober driver, family driver (school/kindergarten drop-off), and child seat availability. Why choose me: safety and comfort, punctuality and politeness, individual approach.",
-      "description_ru": "Комфортные поездки на Ford Fusion 2018 с опытным водителем. Услуги: трансферы в/из аэропортов Кутаиси, Тбилиси и Батуми, визаран, индивидуальные и семейные экскурсии по Грузии. Направления экскурсий: водопады, каньоны, пещеры, горячие источники, дегустации вин, прогулки на лошадях, квадроциклах, рафтинг, зиплайн и другие активности. Дополнительные услуги: трезвый водитель, семейный водитель (отвезу детей в школу/сад), детское кресло в наличии. Почему выбирают меня: безопасность и комфорт, пунктуальность и вежливость, индивидуальный подход.",
-      "description_ka": "კომფორტული მგზავრობები 2018 წლის Ford Fusion-ზე გამოცდილი მძღოლით. მომსახურება მოიცავს ტრანსფერებს/დანიშნულების ადგილებზე: ქუთაისი, თბილისი და ბათუმი, ვიზარანი და ინდივიდუალური/ოჯახური ექსკურსიები საქართველოს გარშემო. ექსკურსიების მიმართულებები: ჩანჩქერები, კანიონები, მღვიმეები, ცხელი წყლები, ღვინის დეგუსტაცია, ცხენით გასეირნება, კვადროციკლი, რაფტინგი, ზიპლაინი და სხვა აქტივობები. დამატებითი მომსახურება: სუფთა მძღოლი, ოჯახური მძღოლი (ბავშვების სკოლაში/ბაღში წაყვანა), ბავშვების სავარძელი ხელმისაწვდომია. რატომ მირჩევნიათ: უსაფრთხოება და კომფორტი, პუნქტუალურობა და თავაზიანობა, ინდივიდუალური მიდგომა.",
-      "contact:phone": "995571548008",
-      "contact:whatsapp": "995571548008",
-      "contact:telegram": "995571548008",
-      "files": [
-        "batumi_topchat/2025/06/b85aeebb5920f6f25c2cda7770420f6821696d20a5f412f053be12f866e8b7a0.jpg"
-      ],
-      "source:chat": "batumi_topchat",
-      "source:message_id": "110986",
-      "source:path": "batumi_topchat/2025/06/110986.md",
-      "source:author:telegram": "Sergidriver",
-      "source:author:name": "Sergidriver",
-      "timestamp": "2025-06-23T03:22:46+00:00"
-    },
-    "input": "Message text:\nТрансферы | Визараны | Экскурсии по Грузии\nКомфортные поездки на Ford Fusion 2018 с опытным водителем\nУслуги:\n– Трансферы в/из аэропортов:\n✅ Кутаиси\n✅ Тбилиси\n✅ Батуми\n– Визаран (поездка за границу для обновления визы)\n– Индивидуальные и семейные экскурсии по Грузии\nНаправления экскурсий:\n– Водопады, каньоны, пещеры\n– Горячие источники\n– Дегустации вин\n– Прогулки на лошадях, квадроциклах\n– Рафтинг, зиплайн и другие активности\nДополнительные услуги:\n– Трезвый водитель\n– Семейный водитель (отвезу детей в школу/сад)\n– Детское кресло в наличии\nПочему выбирают меня:\n– Безопасность и комфорт\n– Пунктуальность и вежливость\n– Индивидуальный подход\nСвязь:\nTelegram / WhatsApp\nСергей\n+995 571 54 80 08\n+995 555 50 48 57\n\nImage batumi_topchat/2025/06/b85aeebb5920f6f25c2cda7770420f6821696d20a5f412f053be12f866e8b7a0.jpg:\nThe image shows a dark gray Ford sedan parked on a narrow, cobblestone path surrounded by lush greenery. Tall trees and dense bushes flank the path, creating a natural environment. The car has its headlights on, illuminating the cobblestones. There are no visible buildings nearby, and the overall setting appears tranquil and secluded. The vehicle has a clean and sleek design. A part of the path is edged with wooden railings, adding to the rustic charm of the locale. The atmosphere feels serene, likely in a remote area or a nature reserve."
-  },
-  {
-    "lot": {
       "market:deal": "event_invite",
       "event:type": "game",
       "date": "2023-10-20T00:00:00+00:00",
@@ -528,6 +354,52 @@
       "timestamp": "2025-06-18T10:44:49+00:00"
     },
     "input": "Message text:\nВозьму 4 человека на временную подработку. Деньгами не обижу, обо всем договоримся. Плата в конце дня. Возьму парней и девушек"
+  },
+  {
+    "lot": {
+      "market:deal": "job_seek",
+      "occupation": "remote work",
+      "salary": 120,
+      "salary:currency": "EUR",
+      "schedule": "flexible",
+      "contact:telegram": "@username",
+      "title_en": "Remote Work Opportunity",
+      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
+      "title_ru": "Вакансия для удалённой работы",
+      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
+      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
+      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2121234",
+      "source:path": "arenda_batumi/2025/06/2121234.md",
+      "source:author:telegram": "ElizabetYdi",
+      "source:author:name": "Елизавета Юдина",
+      "timestamp": "2025-06-23T07:49:10+00:00"
+    },
+    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
+  },
+  {
+    "lot": {
+      "market:deal": "job_seek",
+      "occupation": "remote work",
+      "salary": 120,
+      "salary:currency": "EUR",
+      "schedule": "flexible",
+      "contact:telegram": "@username",
+      "title_en": "Remote Work Opportunity",
+      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
+      "title_ru": "Вакансия для удалённой работы",
+      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
+      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
+      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებაში.",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2121579",
+      "source:path": "arenda_batumi/2025/06/2121579.md",
+      "source:author:telegram": "ElizabetYdi",
+      "source:author:name": "Елизавета Юдина",
+      "timestamp": "2025-06-23T09:27:23+00:00"
+    },
+    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
   {
     "lot": {
