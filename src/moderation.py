@@ -6,7 +6,7 @@ import json
 import ast
 
 from log_utils import get_logger
-from post_io import read_post
+from post_io import read_post, raw_post_path, RAW_DIR
 from scan_ontology import REVIEW_FIELDS
 from lot_io import read_lots
 
@@ -52,7 +52,6 @@ BLACKLISTED_USERS = [
     'aboniment_admin1'
 ]
 
-RAW_DIR = Path("data/raw")
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
 
@@ -135,7 +134,7 @@ def apply_to_history() -> None:
         if not items:
             continue
         src = items[0].get("source:path")
-        raw = RAW_DIR / src if src else None
+        raw = raw_post_path(src) if src else None
         if not raw or not raw.exists():
             continue
         _, text = read_post(raw)

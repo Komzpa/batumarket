@@ -10,6 +10,8 @@ Uses Telethon to mirror the target chats as a normal user account.
 * **Chat access.** At startup the client checks that the account has already
   joined every chat listed in `CHATS`, joining any missing private channels so
   their history is accessible.
+* **Missing chats.** If a configured chat cannot be resolved the client logs a
+  warning and continues syncing the others.
 * **Topic filter.** Add `chat/topic_id` entries to `CHATS` when you only want a
   specific forum thread. Messages from other topics are ignored.
 * **Back-fill strategy.** The client keeps only the last ``KEEP_DAYS`` days on
