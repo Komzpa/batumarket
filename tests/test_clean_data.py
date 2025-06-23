@@ -149,3 +149,20 @@ def test_clean_data_removes_missing_translations(tmp_path, monkeypatch):
     clean_data.main()
 
     assert not bad.exists()
+
+
+def test_clean_data_keeps_fraud_without_translations(tmp_path, monkeypatch):
+    monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
+
+    lot_dir = clean_data.LOTS_DIR / "chat" / "2024" / "05"
+    lot_dir.mkdir(parents=True)
+    flagged = lot_dir / "1.json"
+    flagged.write_text(json.dumps([{"_id": "1", "fraud": "spam"}]))
+
+    clean_data.main()
+
+    assert flagged.exists()

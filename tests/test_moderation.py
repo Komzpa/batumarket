@@ -43,3 +43,8 @@ def test_should_skip_fraud():
         "description_ka": "d",
     }
     assert moderation.should_skip_lot(lot)
+
+
+def test_lot_skip_reason_ignores_missing_when_fraud():
+    lot = {"fraud": "scam", "title_en": "", "description_en": ""}
+    assert moderation.lot_skip_reason(lot) == "fraud"
