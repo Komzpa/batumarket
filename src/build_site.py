@@ -525,7 +525,7 @@ def main() -> None:
             )
             log.debug("Wrote", path=str(out))
 
-    recent.sort(key=lambda x: x.get("dt") or now, reverse=True)
+    recent.sort(key=lambda x: x.get("dt") or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
 
     log.debug("Writing index pages")
     index_tpls = {lang: envs[lang].get_template("index.html") for lang in langs}

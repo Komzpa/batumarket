@@ -46,11 +46,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let A = a.cells[idx].dataset.raw || a.cells[idx].textContent;
         let B = b.cells[idx].dataset.raw || b.cells[idx].textContent;
         if (type === 'number') {
-          A = parseFloat(A) || 0;
-          B = parseFloat(B) || 0;
+          A = parseFloat(A);
+          B = parseFloat(B);
+          const na = Number.isNaN(A);
+          const nb = Number.isNaN(B);
+          if (na && !nb) return 1;
+          if (!na && nb) return -1;
+          if (na && nb) return 0;
         } else if (type === 'time') {
           A = Date.parse(A);
           B = Date.parse(B);
+          const na = Number.isNaN(A);
+          const nb = Number.isNaN(B);
+          if (na && !nb) return 1;
+          if (!na && nb) return -1;
+          if (na && nb) return 0;
         }
         return (A > B ? 1 : (A < B ? -1 : 0)) * (asc ? 1 : -1);
       });
@@ -120,11 +130,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const sortSelect = document.getElementById('sort-mode');
   const indexTable = document.getElementById('index-table');
   if (sortSelect && indexTable) {
-    function scoreRelevance(vec) {
-      if (!vec) return 0;
+    function relevanceKey(vec) {
       const likes = loadList('likes');
       const dislikes = loadList('dislikes');
-      return bestSim(vec, likes) - bestSim(vec, dislikes);
+      if (!vec || (likes.length === 0 && dislikes.length === 0)) {
+        return { sign: 0, dist: Infinity };
+      }
+      const likeScore = bestSim(vec, likes);
+      const dislikeScore = bestSim(vec, dislikes);
+      if (likeScore >= dislikeScore && likeScore > 0) {
+        return { sign: 1, dist: 1 - likeScore };
+      }
+      if (dislikeScore > likeScore && dislikeScore > 0) {
+        return { sign: -1, dist: 1 - dislikeScore };
+      }
+      return { sign: 0, dist: Infinity };
     }
     function scoreUnexplored(vec) {
       const base = loadList('likes').concat(loadList('dislikes'));
@@ -144,14 +164,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const rows = Array.from(tbody.querySelectorAll('tr'));
       rows.sort((a, b) => {
         if (mode === 'price_asc' || mode === 'price_desc') {
-          const pa = parseFloat(a.dataset.price) || 0;
-          const pb = parseFloat(b.dataset.price) || 0;
+          const pa = parseFloat(a.dataset.price);
+          const pb = parseFloat(b.dataset.price);
+          const na = Number.isNaN(pa);
+          const nb = Number.isNaN(pb);
+          if (na && !nb) return 1;
+          if (!na && nb) return -1;
+          if (na && nb) return 0;
           return mode === 'price_asc' ? pa - pb : pb - pa;
         }
         const va = JSON.parse(a.dataset.vector || 'null');
         const vb = JSON.parse(b.dataset.vector || 'null');
         if (mode === 'relevance') {
-          return scoreRelevance(vb) - scoreRelevance(va);
+          const ra = relevanceKey(va);
+          const rb = relevanceKey(vb);
+          if (ra.sign !== rb.sign) return rb.sign - ra.sign;
+          if (ra.dist !== rb.dist) return ra.dist - rb.dist;
+          return 0;
         }
         if (mode === 'unexplored') {
           return scoreUnexplored(vb) - scoreUnexplored(va);
