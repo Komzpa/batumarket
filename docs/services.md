@@ -127,6 +127,7 @@ excluded from this list so the parser never wastes API calls on obvious spam.
 The API call now uses Structured Outputs with
 [`chop_schema.json`](chop_schema.json) so titles and descriptions are always
 present. GPT-4o returns the parsed JSON directly without Markdown wrappers.
+The request waits up to fifteen minutes for a reply so slow responses do not halt processing.
 
 ## embed.py
 Generates `text-embedding-3-large` vectors for each lot.  The output is stored

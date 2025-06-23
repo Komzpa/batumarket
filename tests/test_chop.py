@@ -46,6 +46,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     fmt = called.get("response_format", {}).get("json_schema", {})
     assert called.get("response_format", {}).get("type") == "json_schema"
     assert fmt.get("name") == "extract_lots"
+    assert called["timeout"] == chop.OPENAI_TIMEOUT
 
 
 def test_chop_triggers_embed(tmp_path, monkeypatch):

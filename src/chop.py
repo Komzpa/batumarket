@@ -32,6 +32,7 @@ log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
 openai.api_key = OPENAI_KEY
+OPENAI_TIMEOUT = 900  # maximum seconds to wait for GPT-4o
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
@@ -130,6 +131,7 @@ def process_message(msg_path: Path) -> None:
             model="gpt-4o-mini",
             messages=messages,
             temperature=0,
+            timeout=OPENAI_TIMEOUT,
             response_format={
                 "type": "json_schema",
                 "json_schema": {
