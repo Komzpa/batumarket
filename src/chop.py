@@ -93,36 +93,7 @@ def process_message(msg_path: Path) -> None:
     ]
     log.debug("Prompt tokens", count=estimate_tokens(prompt), langs=LANGS)
     log.info("OpenAI request", messages=messages)
-    schema = {
-        "type": "object",
-        "properties": {
-            "lots": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "title_en": {"type": "string"},
-                        "description_en": {"type": "string"},
-                        "title_ru": {"type": "string"},
-                        "description_ru": {"type": "string"},
-                        "title_ka": {"type": "string"},
-                        "description_ka": {"type": "string"},
-                    },
-                    "required": [
-                        "title_en",
-                        "description_en",
-                        "title_ru",
-                        "description_ru",
-                        "title_ka",
-                        "description_ka",
-                    ],
-                    "additionalProperties": True,
-                },
-            }
-        },
-        "required": ["lots"],
-        "additionalProperties": False,
-    }
+    schema = json.loads(Path("prompts/chopper_schema.json").read_text(encoding="utf-8"))
     try:
         # Structured Outputs give us a simple JSON string rather than the
         # function-calling blocks used by older API versions.

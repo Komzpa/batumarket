@@ -125,7 +125,7 @@ runs `chop.py` for each one using GNU Parallel so several messages are
 processed at once. Posts flagged by `moderation.should_skip_message` are
 excluded from this list so the parser never wastes API calls on obvious spam.
 The API call now uses Structured Outputs with
-[`chop_schema.json`](chop_schema.json) so titles and descriptions are always
+[`chopper_schema.json`](../prompts/chopper_schema.json) so titles and descriptions are always
 present. GPT-4o returns the parsed JSON directly without Markdown wrappers.
 
 ## embed.py
