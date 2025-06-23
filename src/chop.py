@@ -17,9 +17,18 @@ from config_utils import load_config
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = cfg.LANGS
+CHOP_MODELS = getattr(
+    cfg,
+    "CHOP_MODELS",
+    [
+        {"model": "gpt-4o-mini"},
+        {"model": "gpt-4o"},
+    ],
+)
 from log_utils import get_logger, install_excepthook
 from caption_io import read_caption, has_caption
 from post_io import read_post, raw_post_path, RAW_DIR
+from lot_io import valid_lots
 from message_utils import build_prompt
 import embed
 
@@ -124,40 +133,44 @@ def process_message(msg_path: Path) -> None:
         "required": ["lots"],
         "additionalProperties": False,
     }
-    try:
-        # Structured Outputs give us a simple JSON string rather than the
-        # function-calling blocks used by older API versions.
-        resp = openai.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=messages,
-            temperature=0,
-            timeout=OPENAI_TIMEOUT,
-            response_format={
-                "type": "json_schema",
-                "json_schema": {
-                    "schema": schema,
-                    "name": "extract_lots",
-                    # disable strict mode as OpenAI fails when schema
-                    # contains unsupported keywords
-                    "strict": False,
-                },
-            },
-        )
-        raw = resp.choices[0].message.content
-        log.info("OpenAI response", text=raw)
-        lots_data = json.loads(raw)
-    except Exception as exc:
-        log.exception("Failed to chop", file=str(msg_path), error=str(exc))
-        return
     lots = None
-    if isinstance(lots_data, dict):
-        # API schema now wraps the array in an object because root arrays are
-        # rejected.  Keep backward compatibility just in case.
-        lots = lots_data.get("lots")
-        if lots is None:
-            lots = [lots_data]
-    else:
-        lots = lots_data
+    for params in CHOP_MODELS:
+        try:
+            log.info("Calling model", model=params)
+            resp = openai.chat.completions.create(
+                messages=messages,
+                temperature=0,
+                timeout=OPENAI_TIMEOUT,
+                response_format={
+                    "type": "json_schema",
+                    "json_schema": {
+                        "schema": schema,
+                        "name": "extract_lots",
+                        "strict": False,
+                    },
+                },
+                **params,
+            )
+            raw = resp.choices[0].message.content
+            log.info("OpenAI response", text=raw)
+            lots_data = json.loads(raw)
+        except Exception as exc:
+            log.exception("Failed to chop", file=str(msg_path), model=params, error=str(exc))
+            continue
+        if isinstance(lots_data, dict):
+            lots = lots_data.get("lots")
+            if lots is None:
+                lots = [lots_data]
+        else:
+            lots = lots_data
+        if valid_lots(lots):
+            log.info("Model succeeded", model=params)
+            break
+        log.info("Invalid result", model=params)
+        lots = None
+    if lots is None:
+        log.error("All models failed", file=str(msg_path))
+        return
     source_path = str(msg_path.relative_to(RAW_DIR))
     for lot in lots:
         lot.setdefault("source:chat", meta.get("chat"))

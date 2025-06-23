@@ -115,8 +115,9 @@ items for men, women or kids. Ads posted to the wrong chat
 `fraud=spam` even when they look legitimate.
 
 ## chop.py
-Feeds the message text plus any media captions to GPT-4o to extract individual
-lots. `chop.py` marks the start of the original message with `Message text:` so
+Feeds the message text plus any media captions to GPT‑4o‑mini to extract
+individual lots with a fallback to GPT‑4o when the result is incomplete.
+`chop.py` marks the start of the original message with `Message text:` so
 the LLM does not confuse it with captions. Each caption is preceded by its
 filename. The script processes a single Markdown file path provided on the
 command line and writes a matching JSON file under `data/lots`. The Makefile
@@ -126,7 +127,8 @@ processed at once. Posts flagged by `moderation.should_skip_message` are
 excluded from this list so the parser never wastes API calls on obvious spam.
 The API call now uses Structured Outputs with
 [`chop_schema.json`](chop_schema.json) so titles and descriptions are always
-present. GPT-4o returns the parsed JSON directly without Markdown wrappers.
+present. The models are tried in order from `CHOP_MODELS` in `config.py` and
+return the parsed JSON directly without Markdown wrappers.
 The request waits up to fifteen minutes for a reply so slow responses do not halt processing.
 
 ## embed.py
