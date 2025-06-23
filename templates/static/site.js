@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
       rows.sort((a, b) => {
         const ac = a.cells[idx];
         const bc = b.cells[idx];
-        let A = ac ? (ac.dataset.raw?.trim() || ac.textContent.trim()) : '';
-        let B = bc ? (bc.dataset.raw?.trim() || bc.textContent.trim()) : '';
+        let A = ac?.dataset.raw ?? ac?.textContent.trim() ?? '';
+        let B = bc?.dataset.raw ?? bc?.textContent.trim() ?? '';
         if (type === 'number') {
           A = parseFloat(A);
           B = parseFloat(B);
