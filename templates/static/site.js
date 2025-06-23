@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
       rows.sort((a, b) => {
         const ac = a.cells[idx];
         const bc = b.cells[idx];
-        let A = ac ? (ac.dataset.raw || ac.textContent) : '';
-        let B = bc ? (bc.dataset.raw || bc.textContent) : '';
+        let A = ac ? (ac.dataset.raw?.trim() || ac.textContent.trim()) : '';
+        let B = bc ? (bc.dataset.raw?.trim() || bc.textContent.trim()) : '';
         if (type === 'number') {
           A = parseFloat(A);
           B = parseFloat(B);
@@ -71,10 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return (A > B ? 1 : (A < B ? -1 : 0)) * (asc ? 1 : -1);
       });
-      const frag = document.createDocumentFragment();
-      rows.forEach(r => frag.appendChild(r));
-      tbody.innerHTML = '';
-      tbody.appendChild(frag);
+      tbody.replaceChildren(...rows);
       table.querySelectorAll('th').forEach(h => h.classList.remove('asc', 'desc'));
       th.classList.add(asc ? 'asc' : 'desc');
     });
@@ -197,10 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return 0;
       });
-      const frag = document.createDocumentFragment();
-      rows.forEach(r => frag.appendChild(r));
-      tbody.innerHTML = '';
-      tbody.appendChild(frag);
+      tbody.replaceChildren(...rows);
     }
     sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
     sortSelect.addEventListener('change', applySort);
