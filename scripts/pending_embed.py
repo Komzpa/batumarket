@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from lot_io import read_lots, embedding_path, iter_lot_files
 from serde_utils import load_json, write_json
 from log_utils import get_logger
-from moderation import should_skip_message, should_skip_lot
+from moderation import message_skip_reason, lot_skip_reason
 from post_io import read_post, raw_post_path_from_lot
 
 LOTS_DIR = Path("data/lots")
@@ -84,20 +84,23 @@ def main() -> None:
             continue
         out = embedding_path(path, VEC_DIR, LOTS_DIR)
         raw = raw_post_path_from_lot(lots[0], RAW_DIR)
-        skip = False
+        reason = None
         if raw and raw.exists():
             try:
                 meta, text = read_post(raw)
-                if should_skip_message(meta, text):
-                    skip = True
+                reason = message_skip_reason(meta, text)
             except Exception:
                 # Corrupted raw posts should not block embeddings.
                 # Log the failure but continue processing the lot.
                 log.exception("Failed moderation check", file=str(path))
-        if not skip and any(should_skip_lot(l) for l in lots):
-            skip = True
-        if skip:
-            log.info("Skipping", file=str(path), reason="moderation")
+        if not reason:
+            for l in lots:
+                lot_reason = lot_skip_reason(l)
+                if lot_reason:
+                    reason = f"lot:{lot_reason}"
+                    break
+        if reason:
+            log.info("Skipping", file=str(path), reason=reason)
             continue
         # ``_needs_embedding`` checks file timestamps and vector consistency.
         # ``embed.py`` is only invoked when embedding is actually required.
@@ -107,6 +110,7 @@ def main() -> None:
     for path in pending:
         sys.stdout.write(str(path))
         sys.stdout.write("\0")
+        sys.stdout.flush()
 
     log.info("Pending lots", count=len(pending))
 

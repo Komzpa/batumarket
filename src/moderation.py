@@ -73,17 +73,14 @@ def should_skip_user(username: str | None) -> bool:
     return username.lower() in BLACKLISTED_USERS
 
 
-def should_skip_message(meta: dict, text: str) -> bool:
-    """Return ``True`` when the raw Telegram message should be ignored."""
+def message_skip_reason(meta: dict, text: str) -> str | None:
+    """Return the moderation reason for ``meta`` and ``text`` or ``None``."""
     if meta.get("skipped_media"):
-        log.debug("Message rejected", reason="skipped-media", id=meta.get("id"))
-        return True
+        return "skipped-media"
     if should_skip_user(meta.get("sender_username")):
-        log.debug("Message rejected", reason="blacklisted-user", user=meta.get("sender_username"))
-        return True
+        return "blacklisted-user"
     if should_skip_text(text):
-        log.debug("Message rejected", id=meta.get("id"))
-        return True
+        return "banned-text"
     files: list[str] = []
     if "files" in meta:
         val = meta.get("files")
@@ -97,21 +94,35 @@ def should_skip_message(meta: dict, text: str) -> bool:
         except Exception:
             log.debug("Bad file list", value=val, id=meta.get("id"))
     if not text.strip() and not files:
-        log.debug("Message rejected", reason="empty", id=meta.get("id"))
+        return "empty"
+    return None
+
+
+def should_skip_message(meta: dict, text: str) -> bool:
+    """Return ``True`` when the raw Telegram message should be ignored."""
+    reason = message_skip_reason(meta, text)
+    if reason:
+        log.debug("Message rejected", reason=reason, id=meta.get("id"))
         return True
     return False
 
 
+def lot_skip_reason(lot: dict) -> str | None:
+    """Return the moderation reason for ``lot`` or ``None``."""
+    if lot.get("fraud") is not None:
+        return "fraud"
+    if lot.get("contact:telegram") == "@username":
+        return "example contact"
+    if any(not lot.get(f) for f in REVIEW_FIELDS):
+        return "missing translation"
+    return None
+
+
 def should_skip_lot(lot: dict) -> bool:
     """Return ``True`` when the lot fails additional checks."""
-    if lot.get("fraud") is not None:
-        log.debug("Lot rejected", reason="fraud", id=lot.get("_id"))
-        return True
-    if lot.get("contact:telegram") == "@username":
-        log.debug("Lot rejected", reason="example contact")
-        return True
-    if any(not lot.get(f) for f in REVIEW_FIELDS):
-        log.debug("Lot rejected", reason="missing translation", id=lot.get("_id"))
+    reason = lot_skip_reason(lot)
+    if reason:
+        log.debug("Lot rejected", reason=reason, id=lot.get("_id"))
         return True
     return False
 
