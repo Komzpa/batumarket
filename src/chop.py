@@ -93,19 +93,49 @@ def process_message(msg_path: Path) -> None:
     ]
     log.debug("Prompt tokens", count=estimate_tokens(prompt), langs=LANGS)
     log.info("OpenAI request", messages=messages)
+    schema = {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "properties": {
+                "title_en": {"type": "string"},
+                "description_en": {"type": "string"},
+                "title_ru": {"type": "string"},
+                "description_ru": {"type": "string"},
+                "title_ka": {"type": "string"},
+                "description_ka": {"type": "string"},
+            },
+            "required": [
+                "title_en",
+                "description_en",
+                "title_ru",
+                "description_ru",
+                "title_ka",
+                "description_ka",
+            ],
+            "additionalProperties": True,
+        },
+    }
     try:
         resp = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
             temperature=0,
-            response_format={"type": "json_object"},
+            tools=[
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "extract_lots",
+                        "description": "Split posts into lots",
+                        "parameters": schema,
+                    },
+                }
+            ],
+            tool_choice="extract_lots",
         )
-        raw = resp.choices[0].message.content
+        raw = resp.choices[0].message.tool_calls[0].function.arguments
         log.info("OpenAI response", text=raw)
-        text_json = raw.strip()
-        if text_json.startswith("```"):
-            text_json = text_json.strip("`\n")
-        lots = json.loads(text_json)
+        lots = json.loads(raw)
     except Exception:
         log.exception("Failed to chop", file=str(msg_path))
         return
