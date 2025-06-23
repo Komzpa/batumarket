@@ -132,7 +132,13 @@ def process_message(msg_path: Path) -> None:
             temperature=0,
             response_format={
                 "type": "json_schema",
-                "json_schema": {"schema": schema, "name": "extract_lots", "strict": True},
+                "json_schema": {
+                    "schema": schema,
+                    "name": "extract_lots",
+                    # disable strict mode as OpenAI fails when schema
+                    # contains unsupported keywords
+                    "strict": False,
+                },
             },
         )
         raw = resp.choices[0].message.content

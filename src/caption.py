@@ -122,7 +122,13 @@ def caption_file(path: Path) -> str:
             temperature=0,
             response_format={
                 "type": "json_schema",
-                "json_schema": {"schema": schema, "name": "describe_image", "strict": True},
+                "json_schema": {
+                    "schema": schema,
+                    "name": "describe_image",
+                    # strict mode fails if our schema uses features unsupported
+                    # by OpenAI's validator
+                    "strict": False,
+                },
             },
         )
         raw = resp.choices[0].message.content
