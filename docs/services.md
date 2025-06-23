@@ -79,19 +79,21 @@ the full message metadata and skips the post so issues can be investigated.
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
-`data/media`. The prompt now highlights the overall vibe of the interior – for
-example old Soviet, hotel-room style, modern, unfinished or antique. ``tg_client.py``
+`data/media`. The prompt highlights the overall vibe of the interior and asks
+the model to return a JSON object with ``caption_<lang>`` fields for all
+configured languages. ``tg_client.py``
 schedules ``caption.py`` right after an image
 is stored, or if a stored file is missing its caption, so downloads continue in
 parallel. Before sending to the API every picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
 ``512x512`` without cropping.
 Each processed image gets a companion `*.caption.json` file stored beside the
-original. Captions list `caption_<lang>` fields for all languages and are later included in the lot chopper prompt where the
+original. Captions list `caption_<lang>` fields for every language in ``LANGS`` and are later included in the lot chopper prompt where the
 `chop.py` script lists every `Image <filename>` before its caption. This makes
 it crystal clear which picture the text belongs to. When `LOG_LEVEL` is set to
 `INFO`, the script logs each processed filename along with the generated
-caption. `tg_client.py` keeps a queue of freshly written posts together with
+caption. The AI response is logged together with the image path so failures are
+easy to trace. ``tg_client.py`` keeps a queue of freshly written posts together with
 any images still waiting for captions. Each queued item cools down for about
 twenty seconds so additional album messages can arrive. Once all captions are
 present (or there were no images) and the cooldown expires the client spawns
