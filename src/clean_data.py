@@ -10,6 +10,7 @@ from datetime import datetime, timedelta, timezone
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from lot_io import read_lots, TRANSLATION_FIELDS
+from post_io import raw_post_path, RAW_DIR
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -17,7 +18,6 @@ install_excepthook(log)
 cfg = load_config()
 KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
 
-RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
@@ -39,7 +39,7 @@ def _clean_raw(cutoff: datetime) -> None:
     count = 0
     if not RAW_DIR.exists():
         return
-    for md in RAW_DIR.rglob("*.md"):
+    for md in raw_post_path(Path()).rglob("*.md"):
         ts = _parse_date(md)
         if ts and ts < cutoff:
             md.unlink()
@@ -83,7 +83,7 @@ def _clean_lots() -> None:
             count += 1
             continue
         src = items[0].get("source:path")
-        if src and not (RAW_DIR / src).exists():
+        if src and not raw_post_path(src).exists():
             path.unlink()
             log.info("Deleted lot", file=str(path))
             count += 1

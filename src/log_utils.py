@@ -16,6 +16,26 @@ LOGFILE = "errors.log"
 _logger_initialized = False
 _logger = None
 
+
+def _extract_tb_lineno(tb):
+    """Return the last line number from a traceback."""
+    while tb and tb.tb_next:
+        tb = tb.tb_next
+    return tb.tb_lineno if tb else None
+
+
+def _add_exc_line(_, __, event_dict):
+    """Attach ``line`` from traceback to structured log events."""
+    exc_info = event_dict.get("exc_info")
+    tb = None
+    if isinstance(exc_info, tuple):
+        tb = exc_info[2]
+    elif exc_info:
+        tb = sys.exc_info()[2]
+    if tb:
+        event_dict.setdefault("line", _extract_tb_lineno(tb))
+    return event_dict
+
 def init_logger(truncate=False):
     """Initialize logger writing to ``LOGFILE``.
 
@@ -68,6 +88,7 @@ def init_logger(truncate=False):
             processors=[
                 structlog.processors.TimeStamper(fmt="iso"),
                 structlog.processors.add_log_level,
+                _add_exc_line,
                 structlog.processors.JSONRenderer(ensure_ascii=False),
             ],
         )
@@ -93,6 +114,9 @@ def init_logger(truncate=False):
                 self._logger.error(self._format(msg, **kw))
 
             def exception(self, msg, **kw):
+                exc_type, exc_value, tb = sys.exc_info()
+                if tb:
+                    kw.setdefault("line", _extract_tb_lineno(tb))
                 self._logger.exception(self._format(msg, **kw))
 
             def debug(self, msg, **kw):
@@ -116,5 +140,10 @@ def install_excepthook(logger):
         if issubclass(exc_type, KeyboardInterrupt):
             sys.__excepthook__(exc_type, exc_value, exc_traceback)
             return
-        logger.exception("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+        line = _extract_tb_lineno(exc_traceback)
+        logger.exception(
+            "Uncaught exception",
+            line=line,
+            exc_info=(exc_type, exc_value, exc_traceback),
+        )
     sys.excepthook = handle_exception

@@ -23,7 +23,7 @@ from caption_io import read_caption
 from serde_utils import read_text, load_json
 from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
-from post_io import read_post
+from post_io import read_post, raw_post_path, RAW_DIR
 import ast
 import moderation
 from scan_ontology import REVIEW_FIELDS
@@ -32,7 +32,6 @@ log = get_logger().bind(script=__file__)
 
 LOTS_DIR = Path("data/lots")
 VEC_DIR = Path("data/vectors")
-RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 
 
@@ -127,7 +126,7 @@ def collect_files(lot_id: str) -> list[tuple[str, str]]:
     lot = lot_data[0] if isinstance(lot_data, list) else lot_data
     raw_rel = lot.get("source:path")
     if raw_rel:
-        raw_path = RAW_DIR / raw_rel
+        raw_path = raw_post_path(raw_rel)
         files.append((str(raw_path), read_text(raw_path)))
     for rel in lot.get("files", []):
         p = MEDIA_DIR / rel
@@ -155,7 +154,7 @@ def delete_files(lot_id: str) -> None:
     lot = lot_data[0] if isinstance(lot_data, list) else lot_data
     raw_rel = lot.get("source:path")
     if raw_rel:
-        raw_path = RAW_DIR / raw_rel
+        raw_path = raw_post_path(raw_rel)
         if raw_path.exists():
             raw_path.unlink()
     for rel in lot.get("files", []):
@@ -215,7 +214,7 @@ def moderation_summary(lot_id: str) -> str:
     if lots:
         raw_rel = lots[0].get("source:path")
         if raw_rel:
-            raw_path = RAW_DIR / raw_rel
+            raw_path = raw_post_path(raw_rel)
     if raw_path and raw_path.exists():
         meta, text = read_post(raw_path)
         reason = _message_reason(meta, text)

@@ -29,7 +29,7 @@ except Exception:
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
-from post_io import read_post
+from post_io import read_post, raw_post_path, RAW_DIR
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -39,7 +39,6 @@ VIEWS_DIR = Path("data/views")
 TEMPLATES = Path("templates")
 VEC_DIR = Path("data/vectors")
 ONTOLOGY = Path("data/ontology/fields.json")
-RAW_DIR = Path("data/raw")
 LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
 
@@ -146,7 +145,7 @@ def _iter_lots() -> list[dict]:
             meta: dict[str, str] | None = None
             text = ""
             if src:
-                raw_path = RAW_DIR / src
+                raw_path = raw_post_path(src)
                 meta, text = read_post(raw_path)
                 if should_skip_message(meta, text):
                     log.info(
@@ -228,7 +227,7 @@ def build_page(
         orig_text = ""
         src = lot.get("source:path")
         if src:
-            _, orig_text = read_post(RAW_DIR / src)
+            _, orig_text = read_post(raw_post_path(src))
 
         chat = lot.get("source:chat")
         mid = lot.get("source:message_id")

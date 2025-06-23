@@ -19,6 +19,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
 from serde_utils import load_json, write_json
 from log_utils import get_logger, install_excepthook
+from post_io import raw_post_path
 
 # Log progress on long downloads every few seconds and abort if they
 # run for too long.
@@ -145,7 +146,7 @@ _GROUP_CACHE: dict[str, dict[int, Path]] = {}
 
 def _scan_group_cache(chat: str) -> dict[int, Path]:
     """Build group_id -> Path mapping for ``chat`` quickly."""
-    chat_dir = RAW_DIR / chat
+    chat_dir = raw_post_path(chat)
     groups: dict[int, Path] = {}
     if not chat_dir.exists():
         return groups
@@ -177,7 +178,7 @@ def _find_group_path(chat: str, group_id: int) -> Path | None:
 
 def _get_message_path(chat: str, msg_id: int) -> Path | None:
     """Return path of stored message ``msg_id`` in ``chat`` if any."""
-    for p in (RAW_DIR / chat).rglob(f"{msg_id}.md"):
+    for p in raw_post_path(chat).rglob(f"{msg_id}.md"):
         return p
     return None
 
@@ -403,7 +404,7 @@ async def _flush_chop_queue() -> None:
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
     """Return the stored date for ``msg_id`` in ``chat`` if available."""
     path = None
-    for p in (RAW_DIR / chat).rglob(f"{msg_id}.md"):
+    for p in raw_post_path(chat).rglob(f"{msg_id}.md"):
         path = p
         break
     if not path:
@@ -445,7 +446,7 @@ def _save_progress(chat: str, ts: datetime) -> None:
 
 def get_first_id(chat: str) -> int:
     """Return the smallest saved message id for ``chat``."""
-    chat_dir = RAW_DIR / chat
+    chat_dir = raw_post_path(chat)
     if not chat_dir.exists():
         return 0
     ids = []
@@ -459,7 +460,7 @@ def get_first_id(chat: str) -> int:
 
 def get_last_id(chat: str) -> int:
     """Return the highest saved message id for ``chat``."""
-    chat_dir = RAW_DIR / chat
+    chat_dir = raw_post_path(chat)
     if not chat_dir.exists():
         return 0
     ids = []
@@ -498,14 +499,14 @@ async def _save_message(
             user=username,
         )
         return None
-    subdir = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}"
-    subdir.mkdir(parents=True, exist_ok=True)
+    rel = Path(chat) / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
     group_path = (
         _GROUPS.get(msg.grouped_id) or _find_group_path(chat, msg.grouped_id)
         if msg.grouped_id
         else None
     )
-    path = old_path or group_path or subdir / f"{msg.id}.md"
+    path = old_path or group_path or raw_post_path(rel)
+    path.parent.mkdir(parents=True, exist_ok=True)
 
     meta_prev: dict[str, object] = {}
     body_prev = ""
@@ -826,7 +827,7 @@ async def refetch_messages(client: TelegramClient) -> None:
                 targets.setdefault(key, _get_message_path(chat, int(mid)))
                 broken_list.append({"chat": chat, "id": mid})
 
-    for path in RAW_DIR.rglob("*.md"):
+    for path in raw_post_path(Path()).rglob("*.md"):
         meta, text = read_post(path)
         try:
             files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
@@ -888,21 +889,27 @@ async def fetch_missing(client: TelegramClient) -> None:
             start_date = progress or cutoff
             end_date = first_date or now
             backfill: list[Message] = []
-            async for msg in client.iter_messages(
-                chat, offset_date=start_date, reverse=True
-            ):
-                if msg.date >= end_date:
-                    break
-                path = (
-                    RAW_DIR
-                    / chat
-                    / f"{msg.date:%Y}"
-                    / f"{msg.date:%m}"
-                    / f"{msg.id}.md"
-                )
-                if path.exists():
+            try:
+                async for msg in client.iter_messages(
+                    chat, offset_date=start_date, reverse=True
+                ):
+                    if msg.date >= end_date:
+                        break
+                    rel = (
+                        Path(chat)
+                        / f"{msg.date:%Y}"
+                        / f"{msg.date:%m}"
+                        / f"{msg.id}.md"
+                    )
+                    path = raw_post_path(rel)
+                    if path.exists():
+                        continue
+                    backfill.append(msg)
+            except ValueError as exc:
+                if "username" in str(exc):
+                    log.warning("Skipping invalid chat", chat=chat)
                     continue
-                backfill.append(msg)
+                raise
             count = await _download_messages(client, chat, backfill, f"{chat} backfill")
             log.info("Backfilled chat", chat=chat, new_messages=count)
             if end_date > start_date:
@@ -913,15 +920,22 @@ async def fetch_missing(client: TelegramClient) -> None:
         start_date = progress or last_date or cutoff
         end_date = now
         to_fetch: list[Message] = []
-        async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
-            if msg.date < start_date:
+        try:
+            async for msg in client.iter_messages(chat, min_id=last_id, reverse=True):
+                if msg.date < start_date:
+                    continue
+                if msg.date >= end_date:
+                    break
+                rel = Path(chat) / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
+                path = raw_post_path(rel)
+                if path.exists():
+                    continue
+                to_fetch.append(msg)
+        except ValueError as exc:
+            if "username" in str(exc):
+                log.warning("Skipping invalid chat", chat=chat)
                 continue
-            if msg.date >= end_date:
-                break
-            path = RAW_DIR / chat / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
-            if path.exists():
-                continue
-            to_fetch.append(msg)
+            raise
         count = await _download_messages(client, chat, to_fetch, f"{chat} new")
         log.info("Synced chat", chat=chat, new_messages=count)
         if end_date > start_date:
@@ -934,7 +948,7 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
     cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)
     for chat in CHATS:
         count = 0
-        for path in (RAW_DIR / chat).rglob("*.md"):
+        for path in raw_post_path(chat).rglob("*.md"):
             meta, _ = read_post(path)
             date_str = meta.get("date")
             try:

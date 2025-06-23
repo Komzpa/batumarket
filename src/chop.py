@@ -19,7 +19,7 @@ OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = cfg.LANGS
 from log_utils import get_logger, install_excepthook
 from caption_io import read_caption
-from post_io import read_post
+from post_io import read_post, raw_post_path, RAW_DIR
 from message_utils import build_prompt
 import embed
 
@@ -32,8 +32,6 @@ log = get_logger().bind(script=__file__)
 install_excepthook(log)
 
 openai.api_key = OPENAI_KEY
-
-RAW_DIR = Path("data/raw")
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
