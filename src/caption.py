@@ -3,6 +3,7 @@
 import argparse
 import base64
 import hashlib
+import json
 import subprocess
 from pathlib import Path
 from typing import Tuple
@@ -10,11 +11,13 @@ from typing import Tuple
 import openai
 
 from config_utils import load_config
+from serde_utils import load_json, write_json
 
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
+LANGS = getattr(cfg, "LANGS", ["en"])
 from log_utils import get_logger, install_excepthook
-from caption_io import write_caption, has_caption
+from caption_io import caption_json_path, has_caption
 from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
@@ -89,7 +92,7 @@ def caption_file(path: Path) -> str:
     chat = _guess_chat(path)
     processed = _prepare_image(path)
     image_b64 = base64.b64encode(processed).decode()
-    prompt = CAPTION_PROMPT.format(chat=chat)
+    prompt = CAPTION_PROMPT.format(chat=chat, langs=", ".join(LANGS))
     message = [
         {"role": "system", "content": prompt},
         {
@@ -105,15 +108,33 @@ def caption_file(path: Path) -> str:
     log.debug("Captioning", sha=sha, chat=chat, file=str(path))
     log.debug("OpenAI request", messages=message)
     try:
-        resp = openai.chat.completions.create(model="gpt-4o-mini", messages=message)
-        text = resp.choices[0].message.content.strip()
-        log.info("OpenAI response", text=text)
+        resp = openai.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=message,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        raw = resp.choices[0].message.content.strip()
+        log.info("OpenAI response", text=raw, file=str(path))
+        if raw.startswith("```"):
+            raw = raw.strip("`\n")
+        data = json.loads(raw)
     except Exception:
-        log.exception("Caption failed", sha=sha)
+        log.exception("Caption failed", sha=sha, file=str(path))
         return sha
 
-    write_caption(path, text)
-    log.info("Caption", file=str(path), text=text)
+    missing = [l for l in LANGS if f"caption_{l}" not in data]
+    if missing:
+        log.error("Missing caption languages", file=str(path), missing=missing)
+        return sha
+
+    out_path = caption_json_path(path)
+    existing = load_json(out_path) if out_path.exists() else {}
+    if not isinstance(existing, dict):
+        existing = {}
+    existing.update({k: data[k] for k in data if k.startswith("caption_")})
+    write_json(out_path, existing)
+    log.info("Caption", file=str(path), text=existing)
     return sha
 
 

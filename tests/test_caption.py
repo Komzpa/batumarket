@@ -25,7 +25,11 @@ from log_utils import LOGFILE
 
 def test_caption_file_writes(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
-        choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="desc"))]
+        choices=[
+            types.SimpleNamespace(
+                message=types.SimpleNamespace(content='{"caption_en": "desc"}')
+            )
+        ]
     )
     monkeypatch.setattr(
         caption.openai.chat.completions, "create", lambda *a, **k: dummy_resp
@@ -48,7 +52,11 @@ def test_caption_logs(tmp_path, monkeypatch):
     log_path.write_text("")
 
     dummy_resp = types.SimpleNamespace(
-        choices=[types.SimpleNamespace(message=types.SimpleNamespace(content="desc"))]
+        choices=[
+            types.SimpleNamespace(
+                message=types.SimpleNamespace(content='{"caption_en": "desc"}')
+            )
+        ]
     )
     monkeypatch.setattr(
         caption.openai.chat.completions, "create", lambda *a, **k: dummy_resp
