@@ -2,8 +2,8 @@
 
 The lot chopper transforms raw posts into structured JSON.
 Replies **must** contain nothing but valid JSON.
-A single message can describe several lots so the model should return a JSON array.
-Even when only one lot is found the output must still be wrapped in an array.
+A single message can describe several lots so the model should return an object with a `lots` array.
+Even when only one lot is found the `lots` array should contain that single entry.
 **Never wrap the JSON in Markdown code fences or add any surrounding text.**
 Normalize emojis and fancy formatting into plain text.
 Fix spelling mistakes when sure about it.
@@ -79,25 +79,27 @@ Craft both `title_<lang>` and `description_<lang>` for every lot using both the 
 
 ## Example
 ```json
-[
-  {
-    "timestamp": "2025-05-20T11:41:34+00:00",
-    "market:deal": "rent_out",
-    "property:type": "apartment",
-    "rooms": "2",
-    "price": 450,
-    "price:currency": "USD",
-    "pets": "no",
-    "addr:street": "Кобаладзе",
-    "addr:housenumber": "8а",
-    "building:name": "Orbi City",
-    "heating": "central",
-    "view": "sea",
-    "files": [
-      "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg"
-    ]
-  }
-]
+{
+  "lots": [
+    {
+      "timestamp": "2025-05-20T11:41:34+00:00",
+      "market:deal": "rent_out",
+      "property:type": "apartment",
+      "rooms": "2",
+      "price": 450,
+      "price:currency": "USD",
+      "pets": "no",
+      "addr:street": "Кобаладзе",
+      "addr:housenumber": "8а",
+      "building:name": "Orbi City",
+      "heating": "central",
+      "view": "sea",
+      "files": [
+        "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg"
+      ]
+    }
+  ]
+}
 ```
 
 ## Title examples
@@ -124,7 +126,7 @@ Avoid generic headlines and summarise the actual offering instead:
 - Товары на продажу
 
 
-Skip the lot entirely when it is no longer relevant (empty array is ok):
+Skip the lot entirely when it is no longer relevant (`"lots": []` is ok):
 
 - Запрос на верификацию
 - Объявление о правилах группы и услугах

@@ -94,27 +94,34 @@ def process_message(msg_path: Path) -> None:
     log.debug("Prompt tokens", count=estimate_tokens(prompt), langs=LANGS)
     log.info("OpenAI request", messages=messages)
     schema = {
-        "type": "array",
-        "items": {
-            "type": "object",
-            "properties": {
-                "title_en": {"type": "string"},
-                "description_en": {"type": "string"},
-                "title_ru": {"type": "string"},
-                "description_ru": {"type": "string"},
-                "title_ka": {"type": "string"},
-                "description_ka": {"type": "string"},
-            },
-            "required": [
-                "title_en",
-                "description_en",
-                "title_ru",
-                "description_ru",
-                "title_ka",
-                "description_ka",
-            ],
-            "additionalProperties": True,
+        "type": "object",
+        "properties": {
+            "lots": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "title_en": {"type": "string"},
+                        "description_en": {"type": "string"},
+                        "title_ru": {"type": "string"},
+                        "description_ru": {"type": "string"},
+                        "title_ka": {"type": "string"},
+                        "description_ka": {"type": "string"},
+                    },
+                    "required": [
+                        "title_en",
+                        "description_en",
+                        "title_ru",
+                        "description_ru",
+                        "title_ka",
+                        "description_ka",
+                    ],
+                    "additionalProperties": True,
+                },
+            }
         },
+        "required": ["lots"],
+        "additionalProperties": False,
     }
     try:
         # Structured Outputs give us a simple JSON string rather than the
@@ -130,12 +137,19 @@ def process_message(msg_path: Path) -> None:
         )
         raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw)
-        lots = json.loads(raw)
+        lots_data = json.loads(raw)
     except Exception as exc:
         log.exception("Failed to chop", file=str(msg_path), error=str(exc))
         return
-    if isinstance(lots, dict):
-        lots = [lots]
+    lots = None
+    if isinstance(lots_data, dict):
+        # API schema now wraps the array in an object because root arrays are
+        # rejected.  Keep backward compatibility just in case.
+        lots = lots_data.get("lots")
+        if lots is None:
+            lots = [lots_data]
+    else:
+        lots = lots_data
     source_path = str(msg_path.relative_to(RAW_DIR))
     for lot in lots:
         lot.setdefault("source:chat", meta.get("chat"))
