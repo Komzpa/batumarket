@@ -15,7 +15,8 @@ All message Markdown files under `data/raw` should have a JSON lot file in
 `data/lots`. Without it the embedder will skip the message. Every lot must
 include translated titles and descriptions for each language. Missing
 translations are treated as an error and the cleanup step removes such files
-so the parser can try again.
+so the parser can try again. Lots flagged with `fraud` are kept even when
+translations are missing so questionable posts can be reviewed later.
 
 ## Vectors
 

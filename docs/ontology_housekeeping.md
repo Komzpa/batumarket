@@ -56,7 +56,8 @@ resolved remove the entries and regenerate the file.
 The chopper generates `title_<lang>` and `description_<lang>` for every lot.
 Every language version must be present. The lot serializer rejects JSON
 files missing any of them and the cleanup step drops such entries so the
-parser can try again.
+parser can try again. Lots marked with `fraud` are exempt from this rule so
+evidence of scams is not lost during maintenance.
 Titles and descriptions should summarise the offer clearly. Popular
 boilerplate text that does not distinguish one ad from another should be
 explicitly discouraged in the prompt so the resulting website lists are

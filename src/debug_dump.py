@@ -195,6 +195,7 @@ def _message_reason(meta: dict, text: str) -> str | None:
 
 def _lot_reason(lot: dict) -> str | None:
     """Return explanation why ``lot`` would be skipped."""
+    # Fraud reports are kept even when translations are missing so the check comes first.
     if lot.get("fraud") is not None:
         return "fraud"
     if lot.get("contact:telegram") == "@username":

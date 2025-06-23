@@ -77,7 +77,11 @@ def _clean_lots() -> None:
         if not items:
             log.warning("Bad lot file", file=str(path))
             continue
-        if any(not lot.get(f) for lot in items for f in TRANSLATION_FIELDS):
+        missing = any(not lot.get(f) for lot in items for f in TRANSLATION_FIELDS)
+        flagged = any(l.get("fraud") is not None for l in items)
+        # Keep lots flagged as fraud even when translations are missing so
+        # potential scams remain available for manual review.
+        if missing and not flagged:
             path.unlink()
             log.info("Deleted lot", file=str(path), reason="missing translations")
             count += 1

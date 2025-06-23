@@ -108,8 +108,11 @@ def should_skip_message(meta: dict, text: str) -> bool:
 
 def lot_skip_reason(lot: dict) -> str | None:
     """Return the moderation reason for ``lot`` or ``None``."""
+    # Fraud overrides every other rule so the lot can be filtered even when
+    # translations are missing.
     if lot.get("fraud") is not None:
         return "fraud"
+    # Placeholder contacts from examples do not belong on the website.
     if lot.get("contact:telegram") == "@username":
         return "example contact"
     if any(not lot.get(f) for f in REVIEW_FIELDS):
