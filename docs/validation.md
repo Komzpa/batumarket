@@ -20,6 +20,8 @@ so the parser can try again.
 
 Every lot JSON is expected to have an embedding stored in `data/vectors`.
 A vector older than its source lot is treated as stale and reported.
+Pages are not generated for lots missing embeddings so incomplete data never
+reaches the website.
 
 Earlier versions used a dedicated ``validate_outputs.py`` helper.
 The checks are now built into the main pipeline stages so no additional commands are needed.

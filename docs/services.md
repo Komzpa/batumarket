@@ -153,7 +153,9 @@ from `data/lots` and written to `data/views`.  The script loads
 `ontology/fields.json` to order attribute tables and embeddings from `data/vectors` to suggest
 similar lots.  Vector files without a matching lot are dropped before computing
 similarity so stale data never bloats memory. Similarity search now uses `scikit-learn` to find nearest
-neighbours efficiently. Each lot page shows images in a small carousel,
+neighbours efficiently. Lots without vectors are skipped entirely during rendering.
+Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
+Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
 generated separately for every language configured in `config.py`.  The

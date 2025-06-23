@@ -75,6 +75,14 @@ def _cos_sim(a: list[float], b: list[float]) -> float:
     return dot / (na * nb)
 
 
+def _format_vector(vec: list[float] | None) -> str | None:
+    """Return compact JSON representation for ``vec``."""
+    if vec is None:
+        return None
+    parts = [f"{v:.4f}".rstrip("0").rstrip(".") for v in vec]
+    return "[" + ",".join(parts) + "]"
+
+
 def _load_ontology() -> list[str]:
     if not ONTOLOGY.exists():
         return []
@@ -261,6 +269,7 @@ def build_page(
             )
             breadcrumbs.append({"title": deal, "link": cat_link})
         breadcrumbs.append({"title": lot.get(f"title_{lang}") or lot['_id'], "link": None})
+        vector_str = _format_vector(vector)
         out.write_text(
             template.render(
                 title=lot.get(f"title_{lang}", "Lot"),
@@ -278,7 +287,7 @@ def build_page(
                 static_prefix=static_prefix,
                 media_prefix=media_prefix,
                 breadcrumbs=breadcrumbs,
-                vector=vector,
+                vector=vector_str,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -319,7 +328,8 @@ def main() -> None:
         log.debug("Dropped vectors without lots", count=len(extra_vecs))
     missing_vecs = lot_keys - vec_keys
     if missing_vecs:
-        log.debug("Lots missing vectors", count=len(missing_vecs))
+        lots = [lot for lot in lots if lot["_id"] not in missing_vecs]
+        log.debug("Dropped lots without vectors", count=len(missing_vecs))
 
     # Map each lot id to its embedding vector if available.
     id_to_vec = {lot["_id"]: vectors.get(lot["_id"]) for lot in lots}
@@ -493,7 +503,7 @@ def main() -> None:
                         "price": lot.get("price"),
                         "seller": seller,
                         "id": lot["_id"],
-                        "vec": id_to_vec.get(lot["_id"]),
+                        "vec": _format_vector(id_to_vec.get(lot["_id"])),
                     }
                 )
             out = cat_dir / f"{deal}_{lang}.html"
