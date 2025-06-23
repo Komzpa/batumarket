@@ -30,7 +30,7 @@ def gather_chop_input(msg_path: Path, media_dir: Path) -> str:
     files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
     captions = []
     for rel in files:
-        cap_path = (media_dir / rel).with_suffix(".caption.md")
+        cap_path = media_dir / rel
         caption_text = read_caption(cap_path)
         captions.append(caption_text)
     prompt = build_prompt(text, files, captions)

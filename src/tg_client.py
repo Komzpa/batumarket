@@ -20,6 +20,11 @@ from telethon.errors import UserAlreadyParticipantError
 from serde_utils import load_json, write_json
 from log_utils import get_logger, install_excepthook
 from post_io import raw_post_path
+from caption_io import (
+    has_caption,
+    caption_json_path,
+    caption_md_path,
+)
 
 # Log progress on long downloads every few seconds and abort if they
 # run for too long.
@@ -146,7 +151,7 @@ _GROUP_CACHE: dict[str, dict[int, Path]] = {}
 
 def _scan_group_cache(chat: str) -> dict[int, Path]:
     """Build group_id -> Path mapping for ``chat`` quickly."""
-    chat_dir = raw_post_path(chat)
+    chat_dir = raw_post_path(chat, RAW_DIR)
     groups: dict[int, Path] = {}
     if not chat_dir.exists():
         return groups
@@ -178,7 +183,7 @@ def _find_group_path(chat: str, group_id: int) -> Path | None:
 
 def _get_message_path(chat: str, msg_id: int) -> Path | None:
     """Return path of stored message ``msg_id`` in ``chat`` if any."""
-    for p in raw_post_path(chat).rglob(f"{msg_id}.md"):
+    for p in raw_post_path(chat, RAW_DIR).rglob(f"{msg_id}.md"):
         return p
     return None
 
@@ -332,7 +337,7 @@ def _enqueue_chop(path: Path, meta: dict, text: str) -> None:
             ".gif",
             ".webp",
         }:
-            if not p.with_suffix(".caption.md").exists():
+            if not has_caption(p):
                 pending.add(p)
     entry = _CHOP_QUEUE.get(path)
     if entry:
@@ -361,9 +366,7 @@ def _process_chop_queue() -> None:
     """Check queued posts and chop cooled down ones."""
     now = time.monotonic()
     for path, item in list(_CHOP_QUEUE.items()):
-        pending = {
-            p for p in item["pending"] if not p.with_suffix(".caption.md").exists()
-        }
+        pending = {p for p in item["pending"] if not has_caption(p)}
         item["pending"] = pending
         if not pending and now - item["timestamp"] >= CHOP_COOLDOWN:
             log.debug("Chop cooldown complete", file=str(path))
@@ -404,7 +407,7 @@ async def _flush_chop_queue() -> None:
 def _get_id_date(chat: str, msg_id: int) -> datetime | None:
     """Return the stored date for ``msg_id`` in ``chat`` if available."""
     path = None
-    for p in raw_post_path(chat).rglob(f"{msg_id}.md"):
+    for p in raw_post_path(chat, RAW_DIR).rglob(f"{msg_id}.md"):
         path = p
         break
     if not path:
@@ -446,7 +449,7 @@ def _save_progress(chat: str, ts: datetime) -> None:
 
 def get_first_id(chat: str) -> int:
     """Return the smallest saved message id for ``chat``."""
-    chat_dir = raw_post_path(chat)
+    chat_dir = raw_post_path(chat, RAW_DIR)
     if not chat_dir.exists():
         return 0
     ids = []
@@ -460,7 +463,7 @@ def get_first_id(chat: str) -> int:
 
 def get_last_id(chat: str) -> int:
     """Return the highest saved message id for ``chat``."""
-    chat_dir = raw_post_path(chat)
+    chat_dir = raw_post_path(chat, RAW_DIR)
     if not chat_dir.exists():
         return 0
     ids = []
@@ -505,7 +508,7 @@ async def _save_message(
         if msg.grouped_id
         else None
     )
-    path = old_path or group_path or raw_post_path(rel)
+    path = old_path or group_path or raw_post_path(rel, RAW_DIR)
     path.parent.mkdir(parents=True, exist_ok=True)
 
     meta_prev: dict[str, object] = {}
@@ -677,7 +680,6 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
     subdir.mkdir(parents=True, exist_ok=True)
     filename = f"{sha}{ext}"
     path = subdir / filename
-    caption = path.with_suffix(".caption.md")
     if not path.exists():
         path.write_bytes(data)
         log.info(
@@ -691,10 +693,10 @@ async def _save_media(chat: str, msg: Message, data: bytes) -> str:
 
     mime = (getattr(msg.file, "mime_type", "") or "").lower()
     if mime.startswith("image/"):
-        if not caption.exists():
+        if not has_caption(path):
             _schedule_caption(path)
         else:
-            log.debug("Caption exists", file=str(caption))
+            log.debug("Caption exists", file=str(caption_json_path(path)))
     meta = {
         "message_id": msg.id,
         "date": msg.date.isoformat(),
@@ -739,11 +741,7 @@ def _remove_local_message(path: Path | None) -> None:
         log.warning("Invalid file list", path=str(path))
     for f in files:
         fpath = MEDIA_DIR / f
-        for extra in [
-            fpath,
-            fpath.with_suffix(".caption.md"),
-            fpath.with_suffix(".md"),
-        ]:
+        for extra in [fpath, caption_json_path(fpath), caption_md_path(fpath), fpath.with_suffix(".md")]:
             if extra.exists():
                 extra.unlink()
                 log.info("Deleted media", file=str(extra))
@@ -827,7 +825,7 @@ async def refetch_messages(client: TelegramClient) -> None:
                 targets.setdefault(key, _get_message_path(chat, int(mid)))
                 broken_list.append({"chat": chat, "id": mid})
 
-    for path in raw_post_path(Path()).rglob("*.md"):
+    for path in raw_post_path(Path(), RAW_DIR).rglob("*.md"):
         meta, text = read_post(path)
         try:
             files = ast.literal_eval(meta.get("files", "[]")) if "files" in meta else []
@@ -901,7 +899,7 @@ async def fetch_missing(client: TelegramClient) -> None:
                         / f"{msg.date:%m}"
                         / f"{msg.id}.md"
                     )
-                    path = raw_post_path(rel)
+                    path = raw_post_path(rel, RAW_DIR)
                     if path.exists():
                         continue
                     backfill.append(msg)
@@ -927,7 +925,7 @@ async def fetch_missing(client: TelegramClient) -> None:
                 if msg.date >= end_date:
                     break
                 rel = Path(chat) / f"{msg.date:%Y}" / f"{msg.date:%m}" / f"{msg.id}.md"
-                path = raw_post_path(rel)
+                path = raw_post_path(rel, RAW_DIR)
                 if path.exists():
                     continue
                 to_fetch.append(msg)
@@ -948,7 +946,7 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
     cutoff = datetime.now(timezone.utc) - timedelta(days=keep_days)
     for chat in CHATS:
         count = 0
-        for path in raw_post_path(chat).rglob("*.md"):
+        for path in raw_post_path(chat, RAW_DIR).rglob("*.md"):
             meta, _ = read_post(path)
             date_str = meta.get("date")
             try:
@@ -978,7 +976,8 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
                     fpath = MEDIA_DIR / f
                     for extra in [
                         fpath,
-                        fpath.with_suffix(".caption.md"),
+                        caption_json_path(fpath),
+                        caption_md_path(fpath),
                         fpath.with_suffix(".md"),
                     ]:
                         if extra.exists():

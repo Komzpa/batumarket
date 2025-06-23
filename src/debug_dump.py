@@ -19,7 +19,12 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
-from caption_io import read_caption
+from caption_io import (
+    read_caption,
+    caption_json_path,
+    caption_md_path,
+    has_caption,
+)
 from serde_utils import read_text, load_json
 from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
@@ -126,7 +131,7 @@ def collect_files(lot_id: str) -> list[tuple[str, str]]:
     lot = lot_data[0] if isinstance(lot_data, list) else lot_data
     raw_rel = lot.get("source:path")
     if raw_rel:
-        raw_path = raw_post_path(raw_rel)
+        raw_path = raw_post_path(raw_rel, RAW_DIR)
         files.append((str(raw_path), read_text(raw_path)))
     for rel in lot.get("files", []):
         p = MEDIA_DIR / rel
@@ -134,9 +139,8 @@ def collect_files(lot_id: str) -> list[tuple[str, str]]:
         meta = p.with_suffix(".md")
         if meta.exists():
             files.append((str(meta), read_text(meta)))
-        cap = p.with_suffix(".caption.md")
-        if cap.exists():
-            files.append((str(cap), read_caption(cap)))
+        if has_caption(p):
+            files.append((str(caption_json_path(p)), read_caption(p)))
     return files
 
 
@@ -154,12 +158,12 @@ def delete_files(lot_id: str) -> None:
     lot = lot_data[0] if isinstance(lot_data, list) else lot_data
     raw_rel = lot.get("source:path")
     if raw_rel:
-        raw_path = raw_post_path(raw_rel)
+        raw_path = raw_post_path(raw_rel, RAW_DIR)
         if raw_path.exists():
             raw_path.unlink()
     for rel in lot.get("files", []):
         p = MEDIA_DIR / rel
-        for extra in [p, p.with_suffix(".md"), p.with_suffix(".caption.md")]:
+        for extra in [p, p.with_suffix(".md"), caption_json_path(p), caption_md_path(p)]:
             if extra.exists():
                 extra.unlink()
 
@@ -214,7 +218,7 @@ def moderation_summary(lot_id: str) -> str:
     if lots:
         raw_rel = lots[0].get("source:path")
         if raw_rel:
-            raw_path = raw_post_path(raw_rel)
+            raw_path = raw_post_path(raw_rel, RAW_DIR)
     if raw_path and raw_path.exists():
         meta, text = read_post(raw_path)
         reason = _message_reason(meta, text)

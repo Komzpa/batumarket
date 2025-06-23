@@ -14,7 +14,7 @@ from config_utils import load_config
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
-from caption_io import write_caption
+from caption_io import write_caption, has_caption
 from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
@@ -78,11 +78,10 @@ def _guess_chat(path: Path) -> str:
 
 
 def caption_file(path: Path) -> str:
-    """Caption ``path`` with GPT-4o and save ``.caption.md`` beside it."""
+    """Caption ``path`` with GPT-4o and save ``.caption.json`` beside it."""
     orig = path.read_bytes()
     sha = hashlib.sha256(orig).hexdigest()
-    out = path.with_suffix(".caption.md")
-    if out.exists():
+    if has_caption(path):
         # Log at info level so users know the file was intentionally skipped.
         log.info("Caption exists", file=str(path))
         return sha
@@ -113,7 +112,7 @@ def caption_file(path: Path) -> str:
         log.exception("Caption failed", sha=sha)
         return sha
 
-    write_caption(out, text)
+    write_caption(path, text)
     log.info("Caption", file=str(path), text=text)
     return sha
 

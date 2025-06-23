@@ -36,7 +36,7 @@ def test_post_roundtrip(tmp_path: Path):
 
 
 def test_caption_roundtrip(tmp_path: Path):
-    path = tmp_path / "cap.md"
+    path = tmp_path / "cap.jpg"
     write_caption(path, "cap")
     assert read_caption(path) == "cap\n"
 

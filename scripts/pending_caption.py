@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from post_io import read_post
 from image_io import read_image_meta
+from caption_io import has_caption
 from moderation import should_skip_message
 from log_utils import get_logger
 
@@ -28,12 +29,16 @@ def _get_message_path(chat: str, msg_id: int) -> Path | None:
 
 def main() -> None:
     files = sorted(
-        (p for p in MEDIA_DIR.rglob("*") if p.is_file() and p.suffix != ".md"),
+        (
+            p
+            for p in MEDIA_DIR.rglob("*")
+            if p.is_file() and p.suffix not in {".md", ".json"}
+        ),
         key=lambda p: p.stat().st_mtime,
         reverse=True,
     )
     for path in files:
-        if path.with_suffix(".caption.md").exists():
+        if has_caption(path):
             continue
         meta = read_image_meta(path)
         chat = path.relative_to(MEDIA_DIR).parts[0]

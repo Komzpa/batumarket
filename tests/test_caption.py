@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import sys
+import json
 import types
 
 # Provide a minimal ``openai`` stub before importing the module under test.
@@ -36,9 +37,10 @@ def test_caption_file_writes(tmp_path, monkeypatch):
     img.write_bytes(b"data")
 
     caption.caption_file(img)
-    out = img.with_suffix(".caption.md")
+    out = img.with_suffix(".caption.json")
     assert out.exists()
-    assert out.read_text().strip() == "desc"
+    data = json.loads(out.read_text())
+    assert data["caption_en"].strip() == "desc"
 
 
 def test_caption_logs(tmp_path, monkeypatch):

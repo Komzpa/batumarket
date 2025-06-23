@@ -114,12 +114,12 @@ def collect_ontology() -> tuple[
             src = lot.get("source:path")
             meta = None
             if src and has_raw:
-                meta, _ = read_post(raw_post_path(src))
+                meta, _ = read_post(raw_post_path(src, RAW_DIR))
             if _is_misparsed(lot, meta):
                 prompt = ""
                 if src and has_raw:
                     try:
-                        prompt = gather_chop_input(raw_post_path(src), MEDIA_DIR)
+                        prompt = gather_chop_input(raw_post_path(src, RAW_DIR), MEDIA_DIR)
                     except Exception:
                         log.exception("Failed to build parser input", source=src)
                 misparsed.append({"lot": lot, "input": prompt})
@@ -127,13 +127,13 @@ def collect_ontology() -> tuple[
                 prompt = ""
                 if src and has_raw:
                     try:
-                        prompt = gather_chop_input(raw_post_path(src), MEDIA_DIR)
+                        prompt = gather_chop_input(raw_post_path(src, RAW_DIR), MEDIA_DIR)
                     except Exception:
                         log.exception("Failed to build parser input", source=src)
                 fraud.append({"lot": lot, "input": prompt})
             if src and has_raw:
                 if meta is None:
-                    meta, _ = read_post(raw_post_path(src))
+                    meta, _ = read_post(raw_post_path(src, RAW_DIR))
                 if not meta.get("id") or not meta.get("chat") or not meta.get("date"):
                     chat = lot.get("source:chat") or meta.get("chat")
                     mid = lot.get("source:message_id") or meta.get("id")

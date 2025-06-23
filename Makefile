@@ -15,7 +15,7 @@ removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
 	python src/tg_client.py --refetch --check-deleted
 	$(MAKE) clean # remove newly created leftovers
 
-caption: pull ## Generate image captions for files missing ``*.caption.md``.
+caption: pull ## Generate image captions for files missing ``*.caption.json``.
 	python scripts/pending_caption.py | parallel --eta -j16 -0 python src/caption.py
 
 chop: pull caption ## Split messages into lots using captions and message text.

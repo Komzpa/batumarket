@@ -30,6 +30,7 @@ from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
+from caption_io import read_caption
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -145,7 +146,7 @@ def _iter_lots() -> list[dict]:
             meta: dict[str, str] | None = None
             text = ""
             if src:
-                raw_path = raw_post_path(src)
+                raw_path = raw_post_path(src, RAW_DIR)
                 meta, text = read_post(raw_path)
                 if should_skip_message(meta, text):
                     log.info(
@@ -198,8 +199,7 @@ def build_page(
         images = []
         for rel in lot.get("files", []):
             p = MEDIA_DIR / rel
-            cap = p.with_suffix(".caption.md")
-            caption = cap.read_text(encoding="utf-8") if cap.exists() else ""
+            caption = read_caption(p, lang)
             images.append({"path": rel, "caption": caption})
 
         # Drop internal helper fields that are meaningless to end users.
@@ -227,7 +227,7 @@ def build_page(
         orig_text = ""
         src = lot.get("source:path")
         if src:
-            _, orig_text = read_post(raw_post_path(src))
+            _, orig_text = read_post(raw_post_path(src, RAW_DIR))
 
         chat = lot.get("source:chat")
         mid = lot.get("source:message_id")

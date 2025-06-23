@@ -18,7 +18,7 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = cfg.LANGS
 from log_utils import get_logger, install_excepthook
-from caption_io import read_caption
+from caption_io import read_caption, has_caption
 from post_io import read_post, raw_post_path, RAW_DIR
 from message_utils import build_prompt
 import embed
@@ -71,11 +71,10 @@ def process_message(msg_path: Path) -> None:
             log.info("Skipping message", path=str(msg_path), reason="missing-media", file=str(p))
             return
         if p.suffix.lower() in IMAGE_EXTS:
-            cap = p.with_suffix(".caption.md")
-            if not cap.exists():
+            if not has_caption(p):
                 log.info("Skipping message", path=str(msg_path), reason="missing-caption", file=str(p))
                 return
-            caption_text = read_caption(cap)
+            caption_text = read_caption(p)
             log.debug("Found caption", file=str(p), text=caption_text)
             captions.append(caption_text)
 

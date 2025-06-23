@@ -11,6 +11,7 @@ from config_utils import load_config
 from log_utils import get_logger, install_excepthook
 from lot_io import read_lots, TRANSLATION_FIELDS
 from post_io import raw_post_path, RAW_DIR
+from caption_io import has_caption
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -39,7 +40,7 @@ def _clean_raw(cutoff: datetime) -> None:
     count = 0
     if not RAW_DIR.exists():
         return
-    for md in raw_post_path(Path()).rglob("*.md"):
+    for md in raw_post_path(Path(), RAW_DIR).rglob("*.md"):
         ts = _parse_date(md)
         if ts and ts < cutoff:
             md.unlink()
@@ -57,8 +58,7 @@ def _clean_media(cutoff: datetime) -> None:
         ts = _parse_date(md)
         if ts and ts < cutoff:
             file = md.with_suffix("")
-            caption = file.with_suffix(".caption.md")
-            if not caption.exists():
+            if not has_caption(file):
                 for p in [file, md]:
                     if p.exists():
                         p.unlink()
@@ -83,7 +83,7 @@ def _clean_lots() -> None:
             count += 1
             continue
         src = items[0].get("source:path")
-        if src and not raw_post_path(src).exists():
+        if src and not raw_post_path(src, RAW_DIR).exists():
             path.unlink()
             log.info("Deleted lot", file=str(path))
             count += 1
