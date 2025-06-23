@@ -56,8 +56,8 @@ msgstr "Dislike"
 msgid "Sort by:"
 msgstr "Sort by:"
 
-msgid "Relevance"
-msgstr "Relevance"
+msgid "Relevant first"
+msgstr "Relevant first"
 
 msgid "Cheapest first"
 msgstr "Cheapest first"
@@ -67,3 +67,9 @@ msgstr "Expensive first"
 
 msgid "Unexplored first"
 msgstr "Unexplored first"
+
+msgid "Older first"
+msgstr "Older first"
+
+msgid "Newer first"
+msgstr "Newer first"

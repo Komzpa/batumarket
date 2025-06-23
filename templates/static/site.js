@@ -38,44 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('th[data-sort]').forEach(th => {
-    th.addEventListener('click', () => {
-      const table = th.closest('table');
-      const idx = th.cellIndex;
-      const tbody = table.tBodies[0];
-      if (!tbody) return;
-      const rows = Array.from(tbody.rows);
-      const asc = !th.classList.contains('asc');
-      const type = th.dataset.sort;
-      rows.sort((a, b) => {
-        const ac = a.cells[idx];
-        const bc = b.cells[idx];
-        let A = ac?.dataset.raw ?? ac?.textContent.trim() ?? '';
-        let B = bc?.dataset.raw ?? bc?.textContent.trim() ?? '';
-        if (type === 'number') {
-          A = parseFloat(A);
-          B = parseFloat(B);
-          const na = Number.isNaN(A);
-          const nb = Number.isNaN(B);
-          if (na && !nb) return 1;
-          if (!na && nb) return -1;
-          if (na && nb) return 0;
-        } else if (type === 'time') {
-          A = Date.parse(A);
-          B = Date.parse(B);
-          const na = Number.isNaN(A);
-          const nb = Number.isNaN(B);
-          if (na && !nb) return 1;
-          if (!na && nb) return -1;
-          if (na && nb) return 0;
-        }
-        return (A > B ? 1 : (A < B ? -1 : 0)) * (asc ? 1 : -1);
-      });
-      tbody.replaceChildren(...rows);
-      table.querySelectorAll('th').forEach(h => h.classList.remove('asc', 'desc'));
-      th.classList.add(asc ? 'asc' : 'desc');
-    });
-  });
+  // Table header sorting was removed. Use the dropdown instead.
 
   const mainCarousel = document.querySelector('.carousel.main');
   if (mainCarousel) {
@@ -179,6 +142,16 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!na && nb) return -1;
           if (na && nb) return 0;
           return mode === 'price_asc' ? pa - pb : pb - pa;
+        }
+        if (mode === 'time_asc' || mode === 'time_desc') {
+          const ta = Date.parse(a.cells[a.cells.length - 1]?.dataset.raw || a.cells[a.cells.length - 1]?.textContent.trim() || '');
+          const tb = Date.parse(b.cells[b.cells.length - 1]?.dataset.raw || b.cells[b.cells.length - 1]?.textContent.trim() || '');
+          const na = Number.isNaN(ta);
+          const nb = Number.isNaN(tb);
+          if (na && !nb) return 1;
+          if (!na && nb) return -1;
+          if (na && nb) return 0;
+          return mode === 'time_asc' ? ta - tb : tb - ta;
         }
         const va = parseJSON(a.dataset.vector || 'null');
         const vb = parseJSON(b.dataset.vector || 'null');

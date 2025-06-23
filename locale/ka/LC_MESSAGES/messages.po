@@ -56,8 +56,8 @@ msgstr "არ მოწონს"
 msgid "Sort by:"
 msgstr "დახარისხება:"
 
-msgid "Relevance"
-msgstr "შესაბამისობით"
+msgid "Relevant first"
+msgstr "პირველი შესაბამისი"
 
 msgid "Cheapest first"
 msgstr "პირველი იაფი"
@@ -67,3 +67,9 @@ msgstr "პირველი ძვირი"
 
 msgid "Unexplored first"
 msgstr "ჯერ უცნობი"
+
+msgid "Older first"
+msgstr "პირველი ძველი"
+
+msgid "Newer first"
+msgstr "პირველი ახალი"

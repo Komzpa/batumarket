@@ -180,8 +180,8 @@ timestamp that lies in the future it is ignored during rendering so the website
 never displays misleading dates.
 Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the
 browser together with the lot embedding. Category pages offer a sorting switch
-that orders lots by price, by whether they are closer to liked or disliked
-items and then by distance, or pushes unexplored offers to the top.
+that orders lots by how relevant they are to liked or disliked samples, shows
+unexplored offers first, sorts by price or sorts by post time.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
