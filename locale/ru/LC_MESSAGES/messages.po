@@ -56,8 +56,8 @@ msgstr "Не нравится"
 msgid "Sort by:"
 msgstr "Сортировка:"
 
-msgid "Relevance"
-msgstr "По релевантности"
+msgid "Relevant first"
+msgstr "Сначала релевантные"
 
 msgid "Cheapest first"
 msgstr "Сначала дешевые"
@@ -66,4 +66,10 @@ msgid "Expensive first"
 msgstr "Сначала дорогие"
 
 msgid "Unexplored first"
-msgstr "Новые сначала"
+msgstr "Сначала неизученные"
+
+msgid "Older first"
+msgstr "Сначала старые"
+
+msgid "Newer first"
+msgstr "Сначала новые"
