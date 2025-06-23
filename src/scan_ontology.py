@@ -16,7 +16,6 @@ from serde_utils import write_json
 from lot_io import read_lots
 
 log = get_logger().bind(script=__file__)
-install_excepthook(log)
 
 LOTS_DIR = Path("data/lots")
 RAW_DIR = Path("data/raw")
@@ -153,6 +152,7 @@ def collect_ontology() -> tuple[
 
 
 def main() -> None:
+    install_excepthook(log)
     log.info("Scanning ontology", path=str(LOTS_DIR))
     if not LOTS_DIR.exists() or not any(LOTS_DIR.rglob("*.json")):
         log.warning("Lots directory missing or empty", path=str(LOTS_DIR))
@@ -195,3 +195,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
