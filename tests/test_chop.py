@@ -23,13 +23,7 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
         choices=[
             types.SimpleNamespace(
-                message=types.SimpleNamespace(
-                    tool_calls=[
-                        types.SimpleNamespace(
-                            function=types.SimpleNamespace(arguments="[]")
-                        )
-                    ]
-                )
+                message=types.SimpleNamespace(content="[]")
             )
         ]
     )
@@ -49,21 +43,14 @@ def test_chop_processes_nested(tmp_path, monkeypatch):
     chop.main([str(msg)])
 
     assert (tmp_path / "lots" / "chat" / "2024" / "05" / "1.json").exists()
-    assert called.get("tool_choice") == "extract_lots"
-    assert isinstance(called.get("tools"), list)
+    assert isinstance(called.get("response_format"), dict)
 
 
 def test_chop_triggers_embed(tmp_path, monkeypatch):
     dummy_resp = types.SimpleNamespace(
         choices=[
             types.SimpleNamespace(
-                message=types.SimpleNamespace(
-                    tool_calls=[
-                        types.SimpleNamespace(
-                            function=types.SimpleNamespace(arguments="[]")
-                        )
-                    ]
-                )
+                message=types.SimpleNamespace(content="[]")
             )
         ]
     )

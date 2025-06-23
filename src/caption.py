@@ -123,7 +123,10 @@ def caption_file(path: Path) -> str:
                 "json_schema": {"schema": schema, "name": "describe_image", "strict": True},
             },
         )
-        raw = resp.choices[0].message.content
+        msg = resp.choices[0].message
+        raw = getattr(msg, "content", None)
+        if raw is None and getattr(msg, "tool_calls", None):
+            raw = msg.tool_calls[0].function.arguments
         log.info("OpenAI response", text=raw, file=str(path))
         data = json.loads(raw)
     except Exception:
