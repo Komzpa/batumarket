@@ -6,6 +6,10 @@ function saveList(name, arr) {
   localStorage.setItem(name, JSON.stringify(arr));
 }
 
+function parseJSON(str) {
+  try { return JSON.parse(str); } catch (e) { return null; }
+}
+
 function cosSim(a, b) {
   let dot = 0, na = 0, nb = 0;
   for (let i = 0; i < a.length && i < b.length; i++) {
@@ -179,8 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
           if (na && nb) return 0;
           return mode === 'price_asc' ? pa - pb : pb - pa;
         }
-        const va = JSON.parse(a.dataset.vector || 'null');
-        const vb = JSON.parse(b.dataset.vector || 'null');
+        const va = parseJSON(a.dataset.vector || 'null');
+        const vb = parseJSON(b.dataset.vector || 'null');
         if (mode === 'relevance') {
           const ra = relevanceKey(va);
           const rb = relevanceKey(vb);
