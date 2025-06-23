@@ -5,7 +5,8 @@ Each script checks for missing pieces and exits with an error when something is 
 
 ## Captions
 
-Each image stored under `data/media` must have a matching `*.caption.md` file.
+Each image stored under `data/media` must have a matching `*.caption.json` file.
+Captions include `caption_<lang>` keys for every language listed in `LANGS`.
 Missing captions mean the chopper cannot pair pictures with their text.
 
 ## Lots

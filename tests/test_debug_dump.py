@@ -71,8 +71,8 @@ def test_delete_files(tmp_path, monkeypatch):
     img.write_text("bin")
     img_md = img.with_suffix(".md")
     img_md.write_text("meta")
-    img_cap = img.with_suffix(".caption.md")
-    img_cap.write_text("cap")
+    img_cap = img.with_suffix(".caption.json")
+    img_cap.write_text('{"caption_en": "cap"}')
 
     debug_dump.delete_files(lot_id)
 

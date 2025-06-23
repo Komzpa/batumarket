@@ -46,7 +46,7 @@ def test_clean_data(tmp_path, monkeypatch):
     img_new = media_dir / "b.jpg"
     img_new.write_bytes(b"img2")
     (media_dir / "b.jpg.md").write_text(f"message_id:2\ndate:{recent.isoformat()}\n")
-    (media_dir / "b.caption.md").write_text("cap")
+    (media_dir / "b.caption.json").write_text('{"caption_en": "cap"}')
 
     media_empty_dir = clean_data.MEDIA_DIR / "oldchat" / "2024" / "05"
     media_empty_dir.mkdir(parents=True)

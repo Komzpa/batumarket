@@ -27,7 +27,7 @@ def test_skip_existing(tmp_path, monkeypatch, capsys):
     img = pending_caption.MEDIA_DIR / "chat" / "2024" / "05" / "img.jpg"
     img.parent.mkdir(parents=True)
     img.write_bytes(b"img")
-    (img.with_suffix(".caption.md")).write_text("cap")
+    (img.with_suffix(".caption.json")).write_text("{\"caption_en\": \"cap\"}")
 
     pending_caption.main()
     out = capsys.readouterr().out

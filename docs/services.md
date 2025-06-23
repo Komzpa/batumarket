@@ -86,8 +86,8 @@ is stored, or if a stored file is missing its caption, so downloads continue in
 parallel. Before sending to the API every picture is scaled so the shorter side
 equals 512&nbsp;px, then ImageMagick's liquid rescale squeezes it down to
 ``512x512`` without cropping.
-Each processed image gets a companion `*.caption.md` file stored beside the
-original. Captions are later included in the lot chopper prompt where the
+Each processed image gets a companion `*.caption.json` file stored beside the
+original. Captions list `caption_<lang>` fields for all languages and are later included in the lot chopper prompt where the
 `chop.py` script lists every `Image <filename>` before its caption. This makes
 it crystal clear which picture the text belongs to. When `LOG_LEVEL` is set to
 `INFO`, the script logs each processed filename along with the generated
