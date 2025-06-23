@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 import sys
 import os
+import re
 
 os.environ.setdefault("LOG_LEVEL", "INFO")
 
@@ -28,6 +29,7 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     lots_dir.mkdir()
     (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
+    (tmp_path / "vecs").mkdir()
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
         {
@@ -43,7 +45,7 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
             "contact:telegram": "@user",
         }
     ]))
-
+    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
     build_site.main()
 
     assert (tmp_path / "views" / "1-0_en.html").exists()
@@ -77,6 +79,7 @@ def test_handles_list_fields(tmp_path, monkeypatch):
     lots_dir.mkdir()
     (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
+    (tmp_path / "vecs").mkdir()
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     (lots_dir / "1.json").write_text(json.dumps([
         {
@@ -92,6 +95,7 @@ def test_handles_list_fields(tmp_path, monkeypatch):
             "contact:telegram": ["@user", "@other"],
         }
     ]))
+    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
     build_site.main()
 
@@ -112,6 +116,7 @@ def test_author_fallback(tmp_path, monkeypatch):
     (tmp_path / "media").mkdir()
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (tmp_path / "vecs").mkdir()
     (lots_dir / "1.json").write_text(json.dumps([
         {
             "timestamp": now,
@@ -127,6 +132,7 @@ def test_author_fallback(tmp_path, monkeypatch):
             "source:author:name": "Poster",
         }
     ]))
+    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
     build_site.main()
 
@@ -249,6 +255,7 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
     lots_dir.mkdir()
     media_dir = tmp_path / "media"
     media_dir.mkdir()
+    (tmp_path / "vecs").mkdir()
     img = media_dir / "a.jpg"
     img.write_bytes(b"img")
     from datetime import datetime, timezone
@@ -260,14 +267,15 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
             "description_en": "d",
             "title_ru": "x",
             "description_ru": "d",
+            "files": ["a.jpg"],
             "title_ka": "x",
             "description_ka": "d",
-            "files": ["a.jpg"],
             "market:deal": "sell_item",
             "extra": "",
             "other": None,
         }
     ]))
+    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
     build_site.main()
 
@@ -459,3 +467,103 @@ def test_page_headers_and_orig_open(tmp_path, monkeypatch):
     assert '<h2>Similar items</h2>' in html
     assert '<h2>More by this user</h2>' in html
     assert 'class="more-user similar carousel"' in html
+
+def test_drop_lots_without_vectors(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    vec_dir = tmp_path / "vecs"
+    vec_dir.mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "a",
+            "description_en": "d",
+            "title_ru": "a",
+            "description_ru": "d",
+            "title_ka": "a",
+            "description_ka": "d",
+            "files": [],
+            "market:deal": "sell_item",
+        },
+        {
+            "timestamp": now,
+            "title_en": "b",
+            "description_en": "d",
+            "title_ru": "b",
+            "description_ru": "d",
+            "title_ka": "b",
+            "description_ka": "d",
+            "files": [],
+            "market:deal": "sell_item",
+        },
+    ]))
+
+    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
+
+    build_site.main()
+
+    assert (tmp_path / "views" / "1-0_en.html").exists()
+    assert not (tmp_path / "views" / "1-1_en.html").exists()
+    cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
+    assert "1-0_en.html" in cat_html
+    assert "1-1_en.html" not in cat_html
+
+
+def test_vector_formatting(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    vec_dir = tmp_path / "vecs"
+    vec_dir.mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(json.dumps([
+        {
+            "timestamp": now,
+            "title_en": "a",
+            "description_en": "d",
+            "title_ru": "a",
+            "description_ru": "d",
+            "title_ka": "a",
+            "description_ka": "d",
+            "files": [],
+            "market:deal": "sell_item",
+        },
+    ]))
+
+    vec = [0.123456, -0.987654]
+    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": vec}]))
+
+    build_site.main()
+
+    cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
+    m = re.search(r"data-vector='([^']+)'", cat_html)
+    assert m
+    raw = m.group(1)
+    assert " " not in raw
+    parts = raw.strip("[]").split(",")
+    assert all(len(p) <= 7 for p in parts)
+    assert raw == build_site._format_vector(vec)

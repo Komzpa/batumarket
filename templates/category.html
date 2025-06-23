@@ -20,7 +20,7 @@
   </thead>
   <tbody>
   {% for lot in items %}
-    <tr data-id="{{ lot.id }}" data-vector='{{ lot.vec | tojson }}' data-price="{{ lot.price or '' }}">
+    <tr data-id="{{ lot.id }}" data-vector='{{ lot.vec | default("null") | safe }}' data-price="{{ lot.price or '' }}'>
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
       <td>{{ lot.price or '' }}</td>
       <td>{{ lot.seller or '' }}</td>
