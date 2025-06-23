@@ -57,14 +57,53 @@ def test_clean_data(tmp_path, monkeypatch):
     lot_dir = clean_data.LOTS_DIR / "chat" / "2024" / "05"
     lot_dir.mkdir(parents=True)
     old_lot = lot_dir / "1.json"
-    old_lot.write_text(json.dumps([{"_id": "1", "source:path": "chat/2024/05/1.md"}]))
+    old_lot.write_text(
+        json.dumps([
+            {
+                "_id": "1",
+                "source:path": "chat/2024/05/1.md",
+                "title_en": "t",
+                "description_en": "d",
+                "title_ru": "t",
+                "description_ru": "d",
+                "title_ka": "t",
+                "description_ka": "d",
+            }
+        ])
+    )
     new_lot = lot_dir / "2.json"
-    new_lot.write_text(json.dumps([{"_id": "2", "source:path": "chat/2024/05/2.md"}]))
+    new_lot.write_text(
+        json.dumps([
+            {
+                "_id": "2",
+                "source:path": "chat/2024/05/2.md",
+                "title_en": "t",
+                "description_en": "d",
+                "title_ru": "t",
+                "description_ru": "d",
+                "title_ka": "t",
+                "description_ka": "d",
+            }
+        ])
+    )
 
     lot_empty_dir = clean_data.LOTS_DIR / "oldchat" / "2024" / "05"
     lot_empty_dir.mkdir(parents=True)
     empty_lot = lot_empty_dir / "3.json"
-    empty_lot.write_text(json.dumps([{"_id": "3", "source:path": "oldchat/2024/05/1.md"}]))
+    empty_lot.write_text(
+        json.dumps([
+            {
+                "_id": "3",
+                "source:path": "oldchat/2024/05/1.md",
+                "title_en": "t",
+                "description_en": "d",
+                "title_ru": "t",
+                "description_ru": "d",
+                "title_ka": "t",
+                "description_ka": "d",
+            }
+        ])
+    )
 
     vec_dir = clean_data.VEC_DIR / "chat" / "2024" / "05"
     vec_dir.mkdir(parents=True)
@@ -93,3 +132,20 @@ def test_clean_data(tmp_path, monkeypatch):
     assert v_new.exists()
     assert not v_orphan.exists()
     assert not orphan_dir.exists()
+
+
+def test_clean_data_removes_missing_translations(tmp_path, monkeypatch):
+    monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
+
+    lot_dir = clean_data.LOTS_DIR / "chat" / "2024" / "05"
+    lot_dir.mkdir(parents=True)
+    bad = lot_dir / "1.json"
+    bad.write_text(json.dumps([{"_id": "1"}]))
+
+    clean_data.main()
+
+    assert not bad.exists()

@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
-from lot_io import read_lots
+from lot_io import read_lots, TRANSLATION_FIELDS
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -76,6 +76,11 @@ def _clean_lots() -> None:
         items = read_lots(path)
         if not items:
             log.warning("Bad lot file", file=str(path))
+            continue
+        if any(not lot.get(f) for lot in items for f in TRANSLATION_FIELDS):
+            path.unlink()
+            log.info("Deleted lot", file=str(path), reason="missing translations")
+            count += 1
             continue
         src = items[0].get("source:path")
         if src and not (RAW_DIR / src).exists():
