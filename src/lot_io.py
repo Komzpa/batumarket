@@ -42,6 +42,20 @@ TRANSLATION_FIELDS = [
 ]
 
 
+def valid_lots(lots: list[dict] | None) -> bool:
+    """Return ``True`` when every lot contains the required translations."""
+    if lots is None:
+        return False
+    if not lots:
+        return True
+    for item in lots:
+        if not isinstance(item, dict):
+            return False
+        if any(not item.get(f) for f in TRANSLATION_FIELDS):
+            return False
+    return True
+
+
 def get_seller(lot: dict) -> str | None:
     """Return the seller identifier or ``None`` when missing."""
     for key in SELLER_FIELDS:

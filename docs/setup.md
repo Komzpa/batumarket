@@ -36,6 +36,7 @@ variables before running any script:
   topic ID restricts syncing to that forum thread (e.g. `dogacat_batumi/136416`).
   The client joins each chat automatically if needed.
 - `OPENAI_KEY` – API key for OpenAI models
+- `CHOP_MODELS` – list of model parameters tried when parsing lots
 - `DOWNLOAD_WORKERS` – how many messages to fetch in parallel during the initial sync
 
 Use the Makefile in the repository root to run the pipeline:

@@ -29,6 +29,13 @@ CHATS = [
 # OpenAI API key used for captioning, chopping and translating.
 OPENAI_KEY = "sk-..."
 
+# Models used to chop posts into lots. The parser tries them in order until a
+# result passes basic validation.
+CHOP_MODELS = [
+    {"model": "gpt-4o-mini"},
+    {"model": "gpt-4o"},
+]
+
 
 # Languages used when parsing lots.  ``chop.py`` will generate title and
 # description fields for each entry in this list.
