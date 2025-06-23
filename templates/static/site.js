@@ -37,14 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('th[data-sort]').forEach(th => {
     th.addEventListener('click', () => {
       const table = th.closest('table');
-      const idx = Array.from(th.parentNode.children).indexOf(th);
-      const tbody = table.querySelector('tbody');
-      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const idx = th.cellIndex;
+      const tbody = table.tBodies[0];
+      if (!tbody) return;
+      const rows = Array.from(tbody.rows);
       const asc = !th.classList.contains('asc');
       const type = th.dataset.sort;
       rows.sort((a, b) => {
-        let A = a.cells[idx].dataset.raw || a.cells[idx].textContent;
-        let B = b.cells[idx].dataset.raw || b.cells[idx].textContent;
+        const ac = a.cells[idx];
+        const bc = b.cells[idx];
+        let A = ac ? (ac.dataset.raw || ac.textContent) : '';
+        let B = bc ? (bc.dataset.raw || bc.textContent) : '';
         if (type === 'number') {
           A = parseFloat(A);
           B = parseFloat(B);
@@ -64,8 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return (A > B ? 1 : (A < B ? -1 : 0)) * (asc ? 1 : -1);
       });
+      const frag = document.createDocumentFragment();
+      rows.forEach(r => frag.appendChild(r));
       tbody.innerHTML = '';
-      rows.forEach(r => tbody.appendChild(r));
+      tbody.appendChild(frag);
       table.querySelectorAll('th').forEach(h => h.classList.remove('asc', 'desc'));
       th.classList.add(asc ? 'asc' : 'desc');
     });
@@ -160,8 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function applySort() {
       const mode = sortSelect.value;
       localStorage.setItem('sort-mode', mode);
-      const tbody = indexTable.querySelector('tbody');
-      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const tbody = indexTable.tBodies[0];
+      if (!tbody) return;
+      const rows = Array.from(tbody.rows);
       rows.sort((a, b) => {
         if (mode === 'price_asc' || mode === 'price_desc') {
           const pa = parseFloat(a.dataset.price);
@@ -187,8 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return 0;
       });
+      const frag = document.createDocumentFragment();
+      rows.forEach(r => frag.appendChild(r));
       tbody.innerHTML = '';
-      rows.forEach(r => tbody.appendChild(r));
+      tbody.appendChild(frag);
     }
     sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
     sortSelect.addEventListener('change', applySort);
