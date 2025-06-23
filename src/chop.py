@@ -121,19 +121,12 @@ def process_message(msg_path: Path) -> None:
             model="gpt-4o-mini",
             messages=messages,
             temperature=0,
-            tools=[
-                {
-                    "type": "function",
-                    "function": {
-                        "name": "extract_lots",
-                        "description": "Split posts into lots",
-                        "parameters": schema,
-                    },
-                }
-            ],
-            tool_choice="extract_lots",
+            response_format={
+                "type": "json_schema",
+                "json_schema": {"schema": schema, "name": "extract_lots", "strict": True},
+            },
         )
-        raw = resp.choices[0].message.tool_calls[0].function.arguments
+        raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw)
         lots = json.loads(raw)
     except Exception:

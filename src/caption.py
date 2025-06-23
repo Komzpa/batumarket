@@ -111,25 +111,19 @@ def caption_file(path: Path) -> str:
         "type": "object",
         "properties": {f"caption_{l}": {"type": "string"} for l in LANGS},
         "required": [f"caption_{l}" for l in LANGS],
+        "additionalProperties": False,
     }
     try:
         resp = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=message,
             temperature=0,
-            tools=[
-                {
-                    "type": "function",
-                    "function": {
-                        "name": "describe_image",
-                        "description": "Generate captions for marketplace images",
-                        "parameters": schema,
-                    },
-                }
-            ],
-            tool_choice="describe_image",
+            response_format={
+                "type": "json_schema",
+                "json_schema": {"schema": schema, "name": "describe_image", "strict": True},
+            },
         )
-        raw = resp.choices[0].message.tool_calls[0].function.arguments
+        raw = resp.choices[0].message.content
         log.info("OpenAI response", text=raw, file=str(path))
         data = json.loads(raw)
     except Exception:
