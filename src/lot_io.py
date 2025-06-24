@@ -169,3 +169,13 @@ def iter_lot_files(root: Path = LOTS_DIR, newest_first: bool = False) -> list[Pa
         files.sort()
     return files
 
+
+def get_lot(lot_id: str, root: Path = LOTS_DIR) -> dict | None:
+    """Return the lot identified by ``lot_id`` or ``None`` when missing."""
+    rel, idx = parse_lot_id(lot_id)
+    path = root / rel.with_suffix(".json")
+    data = read_lots(path)
+    if not data or idx >= len(data) or idx < 0:
+        return None
+    return data[idx]
+

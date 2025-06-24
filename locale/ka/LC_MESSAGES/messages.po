@@ -73,3 +73,18 @@ msgstr "პირველი ძველი"
 
 msgid "Newer first"
 msgstr "პირველი ახალი"
+
+msgid "Registered"
+msgstr "დარეგისტრირდით"
+
+msgid "Unknown lang. Choices: %(langs)s"
+msgstr "უცნობი ენა. არჩევანი: %(langs)s"
+
+msgid "Current: %(lang)s. Options: %(langs)s"
+msgstr "მიმდინარე: %(lang)s. შესაძლო ენები: %(langs)s"
+
+msgid "Language set to %(lang)s"
+msgstr "ენა დაყენებულია %(lang)s"
+
+msgid "Noted"
+msgstr "შენიშნულია"

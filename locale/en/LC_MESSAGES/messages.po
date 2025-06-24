@@ -73,3 +73,18 @@ msgstr "Older first"
 
 msgid "Newer first"
 msgstr "Newer first"
+
+msgid "Registered"
+msgstr "Registered"
+
+msgid "Unknown lang. Choices: %(langs)s"
+msgstr "Unknown lang. Choices: %(langs)s"
+
+msgid "Current: %(lang)s. Options: %(langs)s"
+msgstr "Current: %(lang)s. Options: %(langs)s"
+
+msgid "Language set to %(lang)s"
+msgstr "Language set to %(lang)s"
+
+msgid "Noted"
+msgstr "Noted"

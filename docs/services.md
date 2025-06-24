@@ -196,9 +196,15 @@ unexplored offers first, sorts by price or sorts by post time.
 Header rows remain on top while sorting and long titles are truncated
 with ellipsis so the table never grows wider than the viewport.
 
-## alert_bot.py
-Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
-to all subscribers when new lots are detected.
+## telegram_bot.py
+Telegram bot that handles alerts and personalised recommendations. Users
+register with `/start` and can change their language with `/lang <code>`.
+Each profile stores likes, dislikes and a queue of recommended posts. New lots
+are matched against preferences and queued if likely to be liked. The bot
+periodically sends queued lots as short messages with 👍/👎 buttons. Messages
+are translated via the gettext files under `locale/` so each user sees
+responses in their chosen language. Running `telegram_bot.py alert "text"`
+sends a broadcast message to all registered users.
 
 ## scan_ontology.py
 Walks through `data/lots` and collects a list of every key used across all
