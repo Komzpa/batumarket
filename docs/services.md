@@ -259,9 +259,12 @@ The `Makefile` in the repository root wires these scripts together. Running
 `make compose` performs a full refresh: pulling messages (images are captioned on
 the fly), chopping, embedding and rebuilding the static site. Missing posts are
 pruned with `make removed` which depends on the main sync and ends by calling
-`make clean` so stray files never linger. The build phase depends on this step
-but when run with `-j` it proceeds in the background. `make update` remains as a
-compatibility alias for older instructions.
+`make clean` so stray files never linger. This target now writes today's date to
+a stamp file and will only run once after midnight. Subsequent invocations exit
+quickly without running heavy dependencies. The build phase depends on this step
+but when run
+with `-j` it proceeds in the background. `make update` remains as a compatibility
+alias for older instructions.
 
 ## Validation
 Pipeline stages rely on the previous step's output.
