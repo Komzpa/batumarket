@@ -47,6 +47,7 @@ Make:
  - Makefile: If you need intermediate result from other target, split it into two and depend on the intermediate result.
  - Makefile: there are comments on the same line after each target separated by ## - they are used in debug graph visualization, need to be concise and descriptive of what's going on in the code itself.
  - Trivial oneliner SQLs are okay to keep in Makefile.
+ - Format target comments as self-documented Makefile, on same line: `target: dependencies | order_only_deps ## Description`
  - Remember than Makefile uses tabs.
  - Explain high-level architecture and quirks in Makefile
  - To smoke-check Makefile, `make --trace all` helps see dependency chain.
