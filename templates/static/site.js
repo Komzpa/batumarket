@@ -96,81 +96,79 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
   }
 
-  const sortSelect = document.getElementById('sort-mode');
-  const indexTable = document.getElementById('index-table');
-  if (sortSelect && indexTable) {
-    function relevanceKey(vec) {
-      const likes = loadList('likes');
-      const dislikes = loadList('dislikes');
-      if (!vec || (likes.length === 0 && dislikes.length === 0)) {
-        return { sign: 0, dist: Infinity };
-      }
-      const likeScore = bestSim(vec, likes);
-      const dislikeScore = bestSim(vec, dislikes);
-      if (likeScore >= dislikeScore && likeScore > 0) {
-        return { sign: 1, dist: 1 - likeScore };
-      }
-      if (dislikeScore > likeScore && dislikeScore > 0) {
-        return { sign: -1, dist: 1 - dislikeScore };
-      }
+  const sortSelect  = document.getElementById('sort-mode');
+  const indexTable  = document.getElementById('index-table');
+
+  if (!sortSelect || !indexTable) return;
+
+  const isDataRow = row => row.dataset.vector !== undefined;
+
+  const price   = row => parseFloat(row.dataset.price);
+  const vector  = row => parseJSON(row.dataset.vector || 'null');
+  const rawTime = cell =>
+      Date.parse(cell.dataset.raw || cell.textContent.trim() || '');
+
+  function relevanceKey(vec) {
+    const likes = loadList('likes');
+    const dislikes = loadList('dislikes');
+    if (!vec || (!likes.length && !dislikes.length))
       return { sign: 0, dist: Infinity };
-    }
-    function scoreUnexplored(vec) {
-      const base = loadList('likes').concat(loadList('dislikes'));
-      if (!vec || base.length === 0) return 0;
-      let best = 0;
-      for (const item of base) {
-        if (!item.vec) continue;
-        const s = cosSim(vec, item.vec);
-        if (s > best) best = s;
-      }
-      return -best;
-    }
-    function applySort() {
-      const mode = sortSelect.value;
-      localStorage.setItem('sort-mode', mode);
-      const tbody = indexTable.tBodies[0];
-      if (!tbody) return;
-      const rows = Array.from(tbody.rows);
-      rows.sort((a, b) => {
-        if (mode === 'price_asc' || mode === 'price_desc') {
-          const pa = parseFloat(a.dataset.price);
-          const pb = parseFloat(b.dataset.price);
-          const na = Number.isNaN(pa);
-          const nb = Number.isNaN(pb);
-          if (na && !nb) return 1;
-          if (!na && nb) return -1;
-          if (na && nb) return 0;
-          return mode === 'price_asc' ? pa - pb : pb - pa;
-        }
-        if (mode === 'time_asc' || mode === 'time_desc') {
-          const ta = Date.parse(a.cells[a.cells.length - 1]?.dataset.raw || a.cells[a.cells.length - 1]?.textContent.trim() || '');
-          const tb = Date.parse(b.cells[b.cells.length - 1]?.dataset.raw || b.cells[b.cells.length - 1]?.textContent.trim() || '');
-          const na = Number.isNaN(ta);
-          const nb = Number.isNaN(tb);
-          if (na && !nb) return 1;
-          if (!na && nb) return -1;
-          if (na && nb) return 0;
-          return mode === 'time_asc' ? ta - tb : tb - ta;
-        }
-        const va = parseJSON(a.dataset.vector || 'null');
-        const vb = parseJSON(b.dataset.vector || 'null');
-        if (mode === 'relevance') {
-          const ra = relevanceKey(va);
-          const rb = relevanceKey(vb);
-          if (ra.sign !== rb.sign) return rb.sign - ra.sign;
-          if (ra.dist !== rb.dist) return ra.dist - rb.dist;
-          return 0;
-        }
-        if (mode === 'unexplored') {
-          return scoreUnexplored(vb) - scoreUnexplored(va);
-        }
-        return 0;
-      });
-      tbody.replaceChildren(...rows);
-    }
-    sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
-    sortSelect.addEventListener('change', applySort);
-    applySort();
+
+    const like = bestSim(vec, likes);
+    const dislike = bestSim(vec, dislikes);
+
+    if (like >= dislike && like > 0) return { sign: 1, dist: 1 - like };
+    if (dislike > like && dislike > 0) return { sign: -1, dist: 1 - dislike };
+    return { sign: 0, dist: Infinity };
   }
+
+  function unexploredScore(vec) {
+    const base = loadList('likes').concat(loadList('dislikes'));
+    if (!vec || !base.length) return 0;
+    return -bestSim(vec, base);
+  }
+
+  function applySort() {
+    const mode = sortSelect.value;
+    localStorage.setItem('sort-mode', mode);
+
+    const tbody = indexTable.tBodies[0];
+    const dataRows = Array.from(tbody.rows).filter(isDataRow);
+
+    dataRows.sort((a, b) => {
+      if (mode.startsWith('price')) {
+        const pa = price(a), pb = price(b);
+        if (Number.isNaN(pa) || Number.isNaN(pb)) return Number.isNaN(pa) - Number.isNaN(pb);
+        return mode.endsWith('_asc') ? pa - pb : pb - pa;
+      }
+
+      if (mode.startsWith('time')) {
+        const ta = rawTime(a.cells[a.cells.length - 1]);
+        const tb = rawTime(b.cells[b.cells.length - 1]);
+        if (Number.isNaN(ta) || Number.isNaN(tb)) return Number.isNaN(ta) - Number.isNaN(tb);
+        return mode.endsWith('_asc') ? ta - tb : tb - ta;
+      }
+
+      const va = vector(a), vb = vector(b);
+
+      if (mode === 'relevance') {
+        const ra = relevanceKey(va), rb = relevanceKey(vb);
+        if (ra.sign !== rb.sign) return rb.sign - ra.sign;
+        return ra.dist - rb.dist;
+      }
+
+      if (mode === 'unexplored')
+        return unexploredScore(vb) - unexploredScore(va);
+
+      return 0;
+    });
+
+    const frag = document.createDocumentFragment();
+    dataRows.forEach(r => frag.appendChild(r));
+    tbody.appendChild(frag);
+  }
+
+  sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
+  sortSelect.addEventListener('change', applySort);
+  applySort();
 });
