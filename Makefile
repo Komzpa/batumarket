@@ -47,9 +47,9 @@ build: embed ontology ## Render HTML pages from lots and templates
 deploy: build ## Deploy built static website to the server
 	rsync --delete-before --size-only -zz --compress-choice=zstd --compress-level=3 --omit-dir-times --omit-link-times --info=stats2,progress2 -aH -e "ssh -T -c aes128-ctr -o Compression=no" data/views/ 178.62.209.164:/srv/www/batumarket/
 
-# Telegram alert bot for new lots.
+# Telegram bot for alerts and recommendations.
 alert: embed ## Notify about new lots
-	python src/alert_bot.py
+	python src/telegram_bot.py
 
 # Gather logs and related files for one lot.
 debugdump: ## Dump logs for a single lot

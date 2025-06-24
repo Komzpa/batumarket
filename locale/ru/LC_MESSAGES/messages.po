@@ -73,3 +73,18 @@ msgstr "Сначала старые"
 
 msgid "Newer first"
 msgstr "Сначала новые"
+
+msgid "Registered"
+msgstr "Вы зарегистрированы"
+
+msgid "Unknown lang. Choices: %(langs)s"
+msgstr "Неизвестный язык. Возможные варианты: %(langs)s"
+
+msgid "Current: %(lang)s. Options: %(langs)s"
+msgstr "Текущий: %(lang)s. Возможные варианты: %(langs)s"
+
+msgid "Language set to %(lang)s"
+msgstr "Язык установлен на %(lang)s"
+
+msgid "Noted"
+msgstr "Принято"

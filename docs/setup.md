@@ -32,7 +32,7 @@ cp config.example.py config.py
 
 Copy `config.example.py` to `config.py` and fill in the secrets or export the
 variables before running any script:
-- `TG_TOKEN` – Telegram bot token used by the alert bot
+- `TG_TOKEN` – Telegram bot token used by `telegram_bot.py`
 - `TG_API_ID` / `TG_API_HASH` – credentials for the Telethon client
 - `TG_SESSION` – filename where the logged in user session will be stored
 - `CHATS` – list of chat usernames to mirror.  A slash followed by a numeric

@@ -4,8 +4,9 @@ Copy this file to ``config.py`` and replace the placeholder values with your
 own credentials.  Secrets should never be committed to the repository.
 """
 
-# Telegram bot token used by ``alert_bot.py``.  Create a bot with BotFather and
-# paste the token here.
+# Telegram bot token used by ``telegram_bot.py``.  Create a bot with
+# BotFather and paste the token here.  The same token powers both the
+# interactive bot and the HTTP API.
 TG_TOKEN = "123:ABC"
 
 # Telethon client credentials.  ``TG_API_ID`` and ``TG_API_HASH`` identify the

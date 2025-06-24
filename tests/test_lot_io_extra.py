@@ -5,8 +5,16 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from lot_io import get_seller, get_timestamp
-from lot_io import make_lot_id, parse_lot_id, embedding_path, iter_lot_files
+from lot_io import (
+    get_seller,
+    get_timestamp,
+    make_lot_id,
+    parse_lot_id,
+    embedding_path,
+    iter_lot_files,
+    get_lot,
+    write_lots,
+)
 
 
 def test_get_seller_priority():
@@ -60,3 +68,24 @@ def test_iter_lot_files_order(tmp_path):
 
     files_default = iter_lot_files(root)
     assert files_default == [a, b]
+
+
+def test_get_lot(tmp_path):
+    lot_root = tmp_path / "lots"
+    lot_root.mkdir()
+    path = lot_root / "a.json"
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    lot = {
+        "timestamp": now,
+        "contact:phone": "1",
+        "title_en": "t",
+        "description_en": "d",
+        "title_ru": "t",
+        "description_ru": "d",
+        "title_ka": "t",
+        "description_ka": "d",
+    }
+    write_lots(path, [lot])
+    lot_id = make_lot_id(Path("a"), 0)
+    loaded = get_lot(lot_id, lot_root)
+    assert loaded == lot
