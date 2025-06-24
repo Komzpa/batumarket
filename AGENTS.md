@@ -13,6 +13,8 @@ Documentation:
 Debugging:
  - Write enough comments so you can deduce what was a requirement in the future and not walk in circles.
  - Add enough debug logs so you can find out what's wrong but not be overwhelmed when something does not work as expected.
+ - Use TDD if change is not trivial: start by designing solution/docs, then write tests, then change code to do the thing it should.
+ - Use TDD to handle bugs.
  - Code test coverage is measured by codecov. Write useful tests to increase it and check key requirements to hold.
  - When refactoring to move a feature, don't forget to remove the original code path.
  - Don't stub stuff out with insane fallbacks (like lat/lon=0) - instead make the rest of the code work around data absence and inform user.
