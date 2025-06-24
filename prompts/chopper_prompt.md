@@ -72,7 +72,7 @@ Craft both `title_<lang>` and `description_<lang>` for every lot using both the 
 - `fraud=sketchy_job` - if the description is for the job offering but does not explain the actual work.
 - `fraud=drugs` - posts offering illegal narcotics or other prohibited drugs.
 - `fraud=sketchy_job` - Salaries quoted in Russian roubles for work in Georgia are suspicious.
-- `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов").
+- `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов", "Binance с высокой оплатой").
 - `fraud=spam` - If the chat topic does not match the advertised category (for example a job post sent to a real-estate channel) mark the lot as spam even if it looks legitimate otherwise.
 - Ad-hoc explained ones are not to be marked as fraud. Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
 
