@@ -6,3 +6,5 @@ telethon
 scikit-learn
 progressbar2
 html5lib
+pytest
+pytest-cov

@@ -61,3 +61,6 @@ clean: ## Delete all temporary files
 precommit: ## Run pre-commit checks
 	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
 	python scripts/check_translations.py
+
+test: ## Run unit tests with coverage
+	pytest --cov=src --cov-report=term-missing
