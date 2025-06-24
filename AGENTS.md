@@ -1,4 +1,4 @@
-# Notes for agents
+# Important rules for agents
 
 Documentation:
  - Check out README.md.
@@ -6,31 +6,31 @@ Documentation:
  - docs/ folder has general project documentation that needs to be kept up to date.
  - Fix everything in the `docs/` folder to match reality.
  - Don't update `README.md` with minor code fixes.
- - Every feature needs to have comprehensive up-to-date documentation near it.
  - When moving around md files also fix the links in them and links to them across all others.
  - Prefer storing notes and documentation as markdown (``.md``).
- - When writing documentation, align sentence boundaries with new lines for easier git diffs.
  - Update docs every time you update something significant across files.
 
 Debugging:
+ - Write enough comments so you can deduce what was a requirement in the future and not walk in circles.
  - Add enough debug logs so you can find out what's wrong but not be overwhelmed when something does not work as expected.
  - Code test coverage is measured by codecov. Write useful tests to increase it and check key requirements to hold.
  - When refactoring to move a feature, don't forget to remove the original code path.
  - Don't stub stuff out with insane fallbacks (like lat/lon=0) - instead make the rest of the code work around data absence and inform user.
  - File names may have spaces in them, check that you are correctly quoting and escaping them.
  - When adding logs, add message before starting something as long as after finishing, as it will let you find what crashed in the middle.
- - Inject assertions into IO abstraction layer to catch any data that violates them.
+ - Inject data assertions into IO abstraction libraries to catch any data that violates them.
 
 Style:
  - Add empty lines between logical blocks as in the rest of the codebase.
+ - When writing documentation, align sentence boundaries with new lines for easier git diffs.
  - Clean stuff up if you can: fix typos, make lexics more correct in English.
- - Write enough comments so you can deduce what was a requirement in the future.
  - Write insightful code comments.
  - Do not break indentation.
  - Do not mix tabs and spaces.
  - Format the code nicely and consistently.
  - Do not replace URLs with non-existing ones.
  - If a file with code grows longer than 500 lines, refactor it into two or move some parts into already created libraries.
+ - Every feature needs to have comprehensive up-to-date documentation near it, write it.
 
 Java:
  - Write enough comments so that people proficient in Python, PostGIS can grasp the Java code.
@@ -51,10 +51,14 @@ Make:
  - Explain high-level architecture and quirks in Makefile
  - To smoke-check Makefile, `make --trace all` helps see dependency chain.
 
+Python:
+ - Write comments for each logical block.
+
 AI:
+ - Try to make a patch to fix/improve things even if user's request sounds like a question.
  - Check token counts.
  - Use system prompts where needed.
- - Try to make a patch to fix/improve things even if user's request sounds like a question.
+ - Colloquial "vectors" are to be called "embeddings" in codebase.
 
 Testing:
  - Github Actions is used as CI. Update it as necessary.
