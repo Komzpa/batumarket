@@ -18,8 +18,19 @@ table.attrs td, table.attrs th { border: 1px solid #ddd; padding: 0.25em 0.5em; 
 .similar { display: flex; flex-wrap: wrap; gap: 0.5em; margin-top: 1em; }
 .similar a { text-decoration: none; border: 1px solid #ddd; padding: 0.25em; }
 .similar img { max-height: 80px; display: block; }
-table#index-table { border-collapse: collapse; width: 100%; }
+table#index-table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
 table#index-table th, table#index-table td { border: 1px solid #ddd; padding: 0.25em 0.5em; }
+#index-table td:first-child,
+#index-table th:first-child {
+  max-width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 table#index-table th { cursor: default; }
 .sort-control { margin-bottom: 0.5em; }
 .vote { margin-top: 0.5em; }

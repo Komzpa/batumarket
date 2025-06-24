@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!sortSelect || !indexTable) return;
 
-  const isDataRow = row => row.dataset.vector !== undefined;
+  // data rows have <td> cells, header or spacer rows have <th>
+  const isDataRow = row => row.querySelector('td') !== null;
 
   const price   = row => parseFloat(row.dataset.price);
   const vector  = row => parseJSON(row.dataset.vector || 'null');
@@ -133,7 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('sort-mode', mode);
 
     const tbody = indexTable.tBodies[0];
-    const dataRows = Array.from(tbody.rows).filter(isDataRow);
+    const allRows    = Array.from(tbody.rows);
+    const staticRows = allRows.filter(r => !isDataRow(r));
+    const dataRows   = allRows.filter(isDataRow);
 
     dataRows.sort((a, b) => {
       if (mode.startsWith('price')) {
@@ -163,9 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return 0;
     });
 
-    const frag = document.createDocumentFragment();
-    dataRows.forEach(r => frag.appendChild(r));
-    tbody.appendChild(frag);
+    tbody.replaceChildren(...staticRows, ...dataRows);
   }
 
   sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';

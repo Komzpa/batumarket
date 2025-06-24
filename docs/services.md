@@ -184,6 +184,8 @@ Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the
 browser together with the lot embedding. Category pages offer a sorting switch
 that orders lots by how relevant they are to liked or disliked samples, shows
 unexplored offers first, sorts by price or sorts by post time.
+Header rows remain on top while sorting and long titles are truncated
+with ellipsis so the table never grows wider than the viewport.
 
 ## alert_bot.py
 Simple Telegram bot that lets users subscribe to notifications.  Alerts are sent
