@@ -51,6 +51,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `laundry` - `yes` when a separate laundry room is available.
 - `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp`, `contact:website` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
 - `files` – list of stored media paths for the lot. Match the files to their respective lots. Put most representative picture first - it will be used on post preview.
+When a post contains more than one lot assign each captioned image to exactly one lot based on context. Reuse a picture only when it clearly shows every item offered together.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
 

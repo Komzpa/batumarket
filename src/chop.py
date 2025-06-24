@@ -134,7 +134,8 @@ def process_message(msg_path: Path) -> None:
         "additionalProperties": False,
     }
     lots = None
-    for params in CHOP_MODELS:
+    mini_lots = None
+    for idx, params in enumerate(CHOP_MODELS):
         try:
             log.info("Calling model", model=params)
             resp = openai.chat.completions.create(
@@ -165,12 +166,24 @@ def process_message(msg_path: Path) -> None:
             lots = lots_data
         if valid_lots(lots):
             log.info("Model succeeded", model=params)
+            if idx == 0 and params.get("model") == "gpt-4o-mini" and len(lots) > 1 and len(CHOP_MODELS) > 1:
+                log.info(
+                    "Mini model returned multiple lots, reprocessing",
+                    count=len(lots),
+                )
+                mini_lots = lots
+                lots = None
+                continue
             break
         log.info("Invalid result", model=params)
         lots = None
     if lots is None:
-        log.error("All models failed", file=str(msg_path))
-        return
+        if mini_lots is not None:
+            log.info("Falling back to mini model result")
+            lots = mini_lots
+        else:
+            log.error("All models failed", file=str(msg_path))
+            return
     source_path = str(msg_path.relative_to(RAW_DIR))
     for lot in lots:
         lot.setdefault("source:chat", meta.get("chat"))
