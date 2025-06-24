@@ -20,6 +20,7 @@ If you prefer isolated dependencies create a virtual environment and use the
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
+pip install pytest pytest-cov
 ```
 
 Copy the example configuration and edit it with your credentials:
@@ -56,7 +57,7 @@ Run the test suite and linter before committing:
 
 ```bash
 make precommit
-pytest
+pytest --cov=src --cov-report=term-missing
 ```
 
 For offline smoke tests you can enable testing mode:

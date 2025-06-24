@@ -11,3 +11,6 @@ session*
 config.py
 errors.log
 *.mo
+.coverage
+htmlcov/
+coverage.xml
