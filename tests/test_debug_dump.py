@@ -50,7 +50,7 @@ def test_delete_files(tmp_path, monkeypatch):
     media_dir.mkdir()
 
     monkeypatch.setattr(debug_dump, "LOTS_DIR", lots_dir)
-    monkeypatch.setattr(debug_dump, "VEC_DIR", vec_dir)
+    monkeypatch.setattr(debug_dump, "EMBED_DIR", vec_dir)
     monkeypatch.setattr(debug_dump, "RAW_DIR", raw_dir)
     monkeypatch.setattr(debug_dump, "MEDIA_DIR", media_dir)
 
@@ -88,7 +88,7 @@ def test_skip_fetch_when_cached(tmp_path, monkeypatch):
     lot_id = "chat/2024/01/1"
 
     monkeypatch.setattr(debug_dump, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(debug_dump, "VEC_DIR", tmp_path / "vec")
+    monkeypatch.setattr(debug_dump, "EMBED_DIR", tmp_path / "vec")
     monkeypatch.setattr(debug_dump, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(debug_dump, "MEDIA_DIR", tmp_path / "media")
 
@@ -111,7 +111,7 @@ def test_skip_fetch_when_cached(tmp_path, monkeypatch):
 def test_moderation_summary(tmp_path, monkeypatch):
     monkeypatch.setattr(debug_dump, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(debug_dump, "RAW_DIR", tmp_path / "raw")
-    monkeypatch.setattr(debug_dump, "VEC_DIR", tmp_path / "vec")
+    monkeypatch.setattr(debug_dump, "EMBED_DIR", tmp_path / "vec")
     monkeypatch.setattr(debug_dump, "MEDIA_DIR", tmp_path / "media")
 
     lot_id = "chat/2024/01/1"
@@ -125,11 +125,11 @@ def test_moderation_summary(tmp_path, monkeypatch):
 
     summary = debug_dump.moderation_summary(lot_id)
     assert "banned phrase" in summary
-    assert "vectors: missing" in summary
+    assert "embeddings: missing" in summary
 
-    vec_path = debug_dump.VEC_DIR / f"{lot_id}.json"
+    vec_path = debug_dump.EMBED_DIR / f"{lot_id}.json"
     vec_path.parent.mkdir(parents=True, exist_ok=True)
     vec_path.write_text('[{"id": "x", "vec": [1]}]')
     summary = debug_dump.moderation_summary(lot_id)
-    assert "vectors: ok" in summary
+    assert "embeddings: ok" in summary
 

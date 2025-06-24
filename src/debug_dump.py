@@ -3,7 +3,7 @@
 
 The script accepts a URL pointing to a generated HTML page and gathers
 all related files for that lot.  The Telegram client is invoked with
-``--fetch`` so message metadata can be refreshed.  Logs, lots, vectors
+``--fetch`` so message metadata can be refreshed.  Logs, lots, embeddings
 and raw posts are concatenated into a single output suitable for
 copy/paste when troubleshooting the pipeline.  If the JSON describing
 the lot is missing, the chat name and message ID are derived from the
@@ -36,7 +36,7 @@ from scan_ontology import REVIEW_FIELDS
 log = get_logger().bind(script=__file__)
 
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 MEDIA_DIR = Path("data/media")
 
 
@@ -123,7 +123,7 @@ def collect_files(lot_id: str) -> list[tuple[str, str]]:
         lot_data = load_json(lot_file)
     else:
         lot_data = None
-    vec = VEC_DIR / f"{lot_id}.json"
+    vec = EMBED_DIR / f"{lot_id}.json"
     if vec.exists():
         files.append((str(vec), read_text(vec)))
     if not lot_data:
@@ -150,7 +150,7 @@ def delete_files(lot_id: str) -> None:
     lot_data = load_json(lot_file) if lot_file.exists() else None
     if lot_file.exists():
         lot_file.unlink()
-    vec = VEC_DIR / f"{lot_id}.json"
+    vec = EMBED_DIR / f"{lot_id}.json"
     if vec.exists():
         vec.unlink()
     if not lot_data:
@@ -233,11 +233,11 @@ def moderation_summary(lot_id: str) -> str:
     if not lots:
         lines.append("lot: missing")
 
-    vec_path = VEC_DIR / f"{lot_id}.json"
+    vec_path = EMBED_DIR / f"{lot_id}.json"
     if vec_path.exists():
         data = load_json(vec_path)
         if data is None:
-            lines.append("vectors: corrupted")
+            lines.append("embeddings: corrupted")
         else:
             if isinstance(data, dict) and "id" in data:
                 vec_count = 1
@@ -246,11 +246,13 @@ def moderation_summary(lot_id: str) -> str:
             else:
                 vec_count = 0
             if vec_count and lots and vec_count != len(lots):
-                lines.append(f"vectors: count mismatch {vec_count} vs {len(lots)}")
+                lines.append(
+                    f"embeddings: count mismatch {vec_count} vs {len(lots)}"
+                )
             else:
-                lines.append("vectors: ok")
+                lines.append("embeddings: ok")
     else:
-        lines.append("vectors: missing")
+        lines.append("embeddings: missing")
 
     return "\n".join(lines)
 

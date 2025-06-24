@@ -18,7 +18,7 @@ def test_clean_data(tmp_path, monkeypatch):
     monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(clean_data, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=DummyCfg.KEEP_DAYS + 1)
@@ -105,13 +105,13 @@ def test_clean_data(tmp_path, monkeypatch):
         ])
     )
 
-    vec_dir = clean_data.VEC_DIR / "chat" / "2024" / "05"
+    vec_dir = clean_data.EMBED_DIR / "chat" / "2024" / "05"
     vec_dir.mkdir(parents=True)
     v_old = vec_dir / "1.json"
     v_old.write_text("oldvec")
     v_new = vec_dir / "2.json"
     v_new.write_text("newvec")
-    orphan_dir = clean_data.VEC_DIR / "orphan" / "2024" / "05"
+    orphan_dir = clean_data.EMBED_DIR / "orphan" / "2024" / "05"
     orphan_dir.mkdir(parents=True)
     v_orphan = orphan_dir / "3.json"
     v_orphan.write_text("orphan")
@@ -138,7 +138,7 @@ def test_clean_data_removes_missing_translations(tmp_path, monkeypatch):
     monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(clean_data, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
 
     lot_dir = clean_data.LOTS_DIR / "chat" / "2024" / "05"
@@ -155,7 +155,7 @@ def test_clean_data_keeps_fraud_without_translations(tmp_path, monkeypatch):
     monkeypatch.setattr(clean_data, "RAW_DIR", tmp_path / "raw")
     monkeypatch.setattr(clean_data, "MEDIA_DIR", tmp_path / "media")
     monkeypatch.setattr(clean_data, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(clean_data, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(clean_data, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(clean_data, "load_config", lambda: DummyCfg())
 
     lot_dir = clean_data.LOTS_DIR / "chat" / "2024" / "05"

@@ -21,7 +21,7 @@ KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)
 
 MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 
 
 def _parse_date(md: Path) -> datetime | None:
@@ -95,19 +95,19 @@ def _clean_lots() -> None:
         log.info("Removed stale lots", count=count)
 
 
-def _clean_vectors() -> None:
-    """Delete vector files when the matching lot JSON is absent."""
+def _clean_embeddings() -> None:
+    """Delete embedding files when the matching lot JSON is absent."""
     count = 0
-    if not VEC_DIR.exists():
+    if not EMBED_DIR.exists():
         return
-    for path in VEC_DIR.rglob("*.json"):
-        lot = LOTS_DIR / path.relative_to(VEC_DIR)
+    for path in EMBED_DIR.rglob("*.json"):
+        lot = LOTS_DIR / path.relative_to(EMBED_DIR)
         if not lot.exists():
             path.unlink()
-            log.info("Deleted vector", file=str(path))
+            log.info("Deleted embedding", file=str(path))
             count += 1
     if count:
-        log.info("Removed orphan vectors", count=count)
+        log.info("Removed orphan embeddings", count=count)
 
 
 def _remove_empty_dirs(root: Path) -> None:
@@ -130,8 +130,8 @@ def main() -> None:
     _clean_raw(cutoff)
     _clean_media(cutoff)
     _clean_lots()
-    _clean_vectors()
-    for root in [RAW_DIR, MEDIA_DIR, LOTS_DIR, VEC_DIR]:
+    _clean_embeddings()
+    for root in [RAW_DIR, MEDIA_DIR, LOTS_DIR, EMBED_DIR]:
         _remove_empty_dirs(root)
 
 

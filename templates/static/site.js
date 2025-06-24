@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     likeBtn.addEventListener('click', () => {
       let likes = loadList('likes').filter(i => i.id !== window.currentLot.id);
-      likes.push({id: window.currentLot.id, vec: window.currentLot.vector});
+      likes.push({id: window.currentLot.id, vec: window.currentLot.embed});
       saveList('likes', likes);
       let dislikes = loadList('dislikes').filter(i => i.id !== window.currentLot.id);
       saveList('dislikes', dislikes);
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     dislikeBtn.addEventListener('click', () => {
       let dislikes = loadList('dislikes').filter(i => i.id !== window.currentLot.id);
-      dislikes.push({id: window.currentLot.id, vec: window.currentLot.vector});
+      dislikes.push({id: window.currentLot.id, vec: window.currentLot.embed});
       saveList('dislikes', dislikes);
       let likes = loadList('likes').filter(i => i.id !== window.currentLot.id);
       saveList('likes', likes);
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const isDataRow = row => row.querySelector('td') !== null;
 
   const price   = row => parseFloat(row.dataset.price);
-  const vector  = row => parseJSON(row.dataset.vector || 'null');
+  const vector  = row => parseJSON(row.dataset.embed || 'null');
   const rawTime = cell =>
       Date.parse(cell.dataset.raw || cell.textContent.trim() || '');
 

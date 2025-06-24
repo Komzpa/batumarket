@@ -13,7 +13,7 @@ from serde_utils import load_json
 
 def test_upgrade_legacy_format(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(pending_embed, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(pending_embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(pending_embed, "EMBED_DIR", tmp_path / "vecs")
 
     path = pending_embed.LOTS_DIR / "1.json"
     path.parent.mkdir(parents=True)
@@ -29,7 +29,7 @@ def test_upgrade_legacy_format(tmp_path, monkeypatch, capsys):
     }
     path.write_text(json.dumps([lot]))
 
-    vec = pending_embed.VEC_DIR / "1.json"
+    vec = pending_embed.EMBED_DIR / "1.json"
     vec.parent.mkdir(parents=True)
     vec.write_text(json.dumps({"id": "x", "vec": [1]}))
 
@@ -43,7 +43,7 @@ def test_upgrade_legacy_format(tmp_path, monkeypatch, capsys):
 
 def test_vector_count_mismatch(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(pending_embed, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(pending_embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(pending_embed, "EMBED_DIR", tmp_path / "vecs")
 
     path = pending_embed.LOTS_DIR / "1.json"
     path.parent.mkdir(parents=True)
@@ -69,7 +69,7 @@ def test_vector_count_mismatch(tmp_path, monkeypatch, capsys):
     }
     path.write_text(json.dumps([lot1, lot2]))
 
-    vec = pending_embed.VEC_DIR / "1.json"
+    vec = pending_embed.EMBED_DIR / "1.json"
     vec.parent.mkdir(parents=True)
     vec.write_text(json.dumps([{"id": "x", "vec": [1]}]))
 
@@ -103,7 +103,7 @@ def test_cli_runs(tmp_path):
 
 def test_skip_due_to_moderation(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(pending_embed, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(pending_embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(pending_embed, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(pending_embed, "RAW_DIR", tmp_path / "raw")
 
     lot_dir = pending_embed.LOTS_DIR
@@ -134,7 +134,7 @@ def test_skip_due_to_moderation(tmp_path, monkeypatch, capsys):
 
 def test_does_not_skip_on_raw_parse_error(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(pending_embed, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(pending_embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(pending_embed, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(pending_embed, "RAW_DIR", tmp_path / "raw")
 
     lot_dir = pending_embed.LOTS_DIR
