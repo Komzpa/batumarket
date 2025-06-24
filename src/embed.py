@@ -25,18 +25,18 @@ openai.api_key = OPENAI_KEY
 # can be nested several levels deep. ``rglob`` is used to scan everything under
 # the root ``data/lots`` directory.
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 
 
 
 
 def embed_file(path: Path) -> None:
-    """Embed ``path`` and write the vectors beside it under ``VEC_DIR``."""
+    """Embed ``path`` and write the result beside it under ``EMBED_DIR``."""
     rel = path.relative_to(LOTS_DIR)
-    out = (VEC_DIR / rel).with_suffix(".json")
+    out = (EMBED_DIR / rel).with_suffix(".json")
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists() and out.stat().st_mtime >= path.stat().st_mtime:
-        log.debug("Vector up to date", file=str(path))
+        log.debug("Embedding up to date", file=str(path))
         return
 
     lots = read_lots(path)
@@ -66,7 +66,7 @@ def embed_file(path: Path) -> None:
         for i, v in zip(lot_ids, vecs)
     ]
     write_json(out, data)
-    log.debug("Vector written", path=str(out), count=len(data))
+    log.debug("Embedding written", path=str(out), count=len(data))
 
 
 def main(argv: list[str] | None = None) -> None:

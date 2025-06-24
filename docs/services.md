@@ -132,15 +132,15 @@ return the parsed JSON directly without Markdown wrappers.
 The request waits up to fifteen minutes for a reply so slow responses do not halt processing.
 
 ## embed.py
-Generates `text-embedding-3-large` vectors for each lot.  The output is stored
-under `data/vectors/` mirroring the layout of `data/lots`.  Each file contains a
-list of `{id, vec}` pairs so multiple lots share a single vector file.  GNU
+Generates `text-embedding-3-large` embeddings for each lot.  The output is stored
+under `data/embeddings/` mirroring the layout of `data/lots`.  Each file contains a
+list of `{id, vec}` pairs so multiple lots share a single embedding file.  GNU
 Parallel processes the newest files first so search results are quickly
 refreshed. Both this step and `build_site.py` use `lot_io.iter_lot_files` to
 walk the directory so files are processed in the same order. `pending_embed.py`
 upgrades any leftover single-object files by
-wrapping them in a list and deletes mismatched ones so stale vectors never pollute
-the index. Files from moderated posts are skipped entirely so no vectors are
+wrapping them in a list and deletes mismatched ones so stale embeddings never pollute
+the index. Files from moderated posts are skipped entirely so no embeddings are
 stored for spam.
 The script now logs how many lots need embeddings which helps spot empty runs.
 If a raw message cannot be parsed the error is logged and the lot is still
@@ -161,10 +161,19 @@ applicable so that every language has a meaningful summary.
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
-`ontology/fields.json` to order attribute tables and embeddings from `data/vectors` to suggest
+`ontology/fields.json` to order attribute tables and embeddings from `data/embeddings` to suggest
 similar lots.  Vector files without a matching lot are dropped before computing
-similarity so stale data never bloats memory. Similarity search now uses `scikit-learn` to find nearest
-neighbours efficiently. Lots without vectors are skipped entirely during rendering.
+similarity so stale data never bloats memory. Similarity search now relies on
+`scikit-learn` and stores the top six neighbour ids with their cosine
+distances in `data/similar`.  The directory mirrors `data/lots` so stale entries
+can be identified easily.  Before calculating new recommendations the cache is
+pruned from references to missing lots. When a new lot is added the reciprocal
+caches of the posts it links to are updated if the new entry ranks higher.
+Code handling embedding loading and recommendation caching resides in
+`src/similar_utils.py` to keep `build_site.py` concise.  Titles and thumbnails
+are resolved from the lot JSON when pages are rendered so each language shows
+the correct translation. Lots without embeddings are skipped entirely during
+rendering.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
@@ -177,7 +186,7 @@ The index page now lists all `market:deal` categories with the number of
 posts seen in the last ``KEEP_DAYS`` days and how many unique posters were involved.
 Each category links to a separate page listing every lot of that type.
 Lot pages include a "more by this user" section which shows other lots from the
-same Telegram account ordered by vector similarity.  If a lot has a
+same Telegram account ordered by embedding similarity.  If a lot has a
 timestamp that lies in the future it is ignored during rendering so the website
 never displays misleading dates.
 Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the
@@ -244,7 +253,7 @@ in sync.
 ## debug_dump.py
 Collects everything related to a single lot into one text block.
 Pass a page URL and the script will trim the hostname and gather the
-lot JSON, vector file and raw post.  Telegram is only queried when the
+lot JSON, embedding file and raw post.  Telegram is only queried when the
 files are missing or when ``--refetch`` is used.  The resulting logs
 are included alongside captions and image metadata so the pipeline
 state can be shared in one go.  If the lot JSON is missing the chat
@@ -252,7 +261,7 @@ name and message ID are extracted from the page path so Telegram can
 still be queried.  Standard error from the Telegram client is also
 captured so dependency issues are visible.  Use ``--refresh`` to drop
 any cached files and refetch everything before dumping.
-The moderation summary reports vector status so missing embeddings are obvious.
+The moderation summary reports embedding status so missing embeddings are obvious.
 
 ## Makefile
 The `Makefile` in the repository root wires these scripts together. Running

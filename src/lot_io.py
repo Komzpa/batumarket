@@ -10,7 +10,7 @@ from log_utils import get_logger
 from serde_utils import load_json, write_json
 
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 
 log = get_logger().bind(module=__name__)
 
@@ -147,11 +147,11 @@ def lot_json_path(lot_id: str, root: Path) -> Path:
 
 
 def embedding_path(
-    lot_path: Path, vec_root: Path = VEC_DIR, lots_root: Path = LOTS_DIR
+    lot_path: Path, emb_root: Path = EMBED_DIR, lots_root: Path = LOTS_DIR
 ) -> Path:
     """Return embedding file path for ``lot_path``."""
     rel = lot_path.relative_to(lots_root)
-    return (vec_root / rel).with_suffix(".json")
+    return (emb_root / rel).with_suffix(".json")
 
 
 def iter_lot_files(root: Path = LOTS_DIR, newest_first: bool = False) -> list[Path]:

@@ -18,10 +18,10 @@ translations are treated as an error and the cleanup step removes such files
 so the parser can try again. Lots flagged with `fraud` are kept even when
 translations are missing so questionable posts can be reviewed later.
 
-## Vectors
+## Embeddings
 
-Every lot JSON is expected to have an embedding stored in `data/vectors`.
-A vector older than its source lot is treated as stale and reported.
+Every lot JSON is expected to have an embedding stored in `data/embeddings`.
+An embedding file older than its source lot is treated as stale and reported.
 Pages are not generated for lots missing embeddings so incomplete data never
 reaches the website.
 

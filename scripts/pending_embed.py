@@ -19,7 +19,7 @@ from moderation import message_skip_reason, lot_skip_reason
 from post_io import read_post, raw_post_path_from_lot
 
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 RAW_DIR = Path("data/raw")
 
 log = get_logger().bind(script=__file__)
@@ -82,7 +82,7 @@ def main() -> None:
         lots = read_lots(path) or []
         if not lots:
             continue
-        out = embedding_path(path, VEC_DIR, LOTS_DIR)
+        out = embedding_path(path, EMBED_DIR, LOTS_DIR)
         raw = raw_post_path_from_lot(lots[0], RAW_DIR)
         reason = None
         if raw and raw.exists():

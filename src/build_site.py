@@ -3,12 +3,11 @@
 Each ``*.json`` file under ``data/lots`` may contain several lots so we assign
 a unique ``_page_id`` to every entry.  Templates live in ``templates/`` and the
 output is written to ``data/views`` keeping the directory layout intact.  The
-script also loads embeddings from ``data/vectors`` if present to find similar
+script also loads embeddings from ``data/embeddings`` if present to find similar
 lots based on cosine similarity.  ``data/ontology/fields.json`` is consulted to
 display table columns in a stable order.
 """
 
-import math
 import os
 from pathlib import Path
 import shutil
@@ -18,13 +17,22 @@ from datetime import datetime, timedelta, timezone
 from jinja2 import Environment, FileSystemLoader
 import gettext
 from serde_utils import load_json
-from lot_io import read_lots, get_seller, get_timestamp, iter_lot_files
-
-try:
-    from sklearn.neighbors import NearestNeighbors
-    _has_sklearn = True
-except Exception:
-    _has_sklearn = False
+from lot_io import (
+    read_lots,
+    get_seller,
+    get_timestamp,
+    iter_lot_files,
+)
+from similar_utils import (
+    SIMILAR_DIR,
+    _load_embeddings,
+    _format_vector,
+    _load_similar,
+    _save_similar,
+    _prune_similar,
+    _calc_similar_nn,
+    _cos_sim,
+)
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
@@ -38,49 +46,11 @@ install_excepthook(log)
 LOTS_DIR = Path("data/lots")
 VIEWS_DIR = Path("data/views")
 TEMPLATES = Path("templates")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 ONTOLOGY = Path("data/ontology/fields.json")
 LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
 
-def _load_vectors() -> dict[str, list[float]]:
-    """Return mapping of lot id to embedding vector."""
-    if not VEC_DIR.exists():
-        log.info("Vector directory missing", path=str(VEC_DIR))
-        return {}
-    data: dict[str, list[float]] = {}
-    for path in VEC_DIR.rglob("*.json"):
-        obj = load_json(path)
-        if isinstance(obj, dict) and "id" in obj and "vec" in obj:
-            data[obj["id"]] = obj["vec"]
-        elif isinstance(obj, list):
-            for item in obj:
-                if isinstance(item, dict) and "id" in item and "vec" in item:
-                    data[item["id"]] = item["vec"]
-                else:
-                    log.error("Bad vector entry", file=str(path))
-        else:
-            log.error("Failed to parse vector file", file=str(path))
-    log.info("Loaded vectors", count=len(data))
-    return data
-
-
-def _cos_sim(a: list[float], b: list[float]) -> float:
-    """Return cosine similarity between two vectors."""
-    dot = sum(x * y for x, y in zip(a, b))
-    na = math.sqrt(sum(x * x for x in a))
-    nb = math.sqrt(sum(y * y for y in b))
-    if na == 0 or nb == 0:
-        return -1.0
-    return dot / (na * nb)
-
-
-def _format_vector(vec: list[float] | None) -> str | None:
-    """Return compact JSON representation for ``vec``."""
-    if vec is None:
-        return None
-    parts = [f"{v:.4f}".rstrip("0").rstrip(".") for v in vec]
-    return "[" + ",".join(parts) + "]"
 
 
 def _load_ontology() -> list[str]:
@@ -125,6 +95,8 @@ def _env_for_lang(lang: str) -> Environment:
     # would trigger ``ValueError`` when rendering.
     env.install_gettext_translations(trans, newstyle=False)
     return env
+
+
 
 
 
@@ -191,7 +163,8 @@ def build_page(
     more_user: list[dict],
     fields: list[str],
     langs: list[str],
-    vector: list[float] | None,
+    embedding: list[float] | None,
+    lookup: dict[str, dict],
 ) -> None:
     """Render ``lot`` into separate HTML files for every language."""
     for lang in langs:
@@ -237,22 +210,52 @@ def build_page(
         out = VIEWS_DIR / f"{lot['_id']}_{lang}.html"
         out.parent.mkdir(parents=True, exist_ok=True)
 
-        page_similar = [
-            {
-                "link": os.path.relpath(VIEWS_DIR / f"{item['id']}_{lang}.html", out.parent),
-                "title": item["title"],
-                "thumb": item["thumb"],
-            }
-            for item in similar
-        ]
-        page_user = [
-            {
-                "link": os.path.relpath(VIEWS_DIR / f"{item['id']}_{lang}.html", out.parent),
-                "title": item["title"],
-                "thumb": item["thumb"],
-            }
-            for item in more_user
-        ]
+        page_similar = []
+        for item in similar:
+            other = lookup.get(item["id"], {})
+            title = (
+                other.get(f"title_{lang}")
+                or other.get("title_en")
+                or next(
+                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
+                    item["id"],
+                )
+            )
+            files = other.get("files") or []
+            thumb = files[0] if files else ""
+            page_similar.append(
+                {
+                    "link": os.path.relpath(
+                        VIEWS_DIR / f"{item['id']}_{lang}.html",
+                        out.parent,
+                    ),
+                    "title": title,
+                    "thumb": thumb,
+                }
+            )
+        page_user = []
+        for item in more_user:
+            other = lookup.get(item["id"], {})
+            title = (
+                other.get(f"title_{lang}")
+                or other.get("title_en")
+                or next(
+                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
+                    item["id"],
+                )
+            )
+            files = other.get("files") or []
+            thumb = files[0] if files else ""
+            page_user.append(
+                {
+                    "link": os.path.relpath(
+                        VIEWS_DIR / f"{item['id']}_{lang}.html",
+                        out.parent,
+                    ),
+                    "title": title,
+                    "thumb": thumb,
+                }
+            )
         static_prefix = os.path.relpath(VIEWS_DIR / "static", out.parent)
         media_prefix = os.path.relpath(VIEWS_DIR / "media", out.parent)
         home_link = os.path.relpath(VIEWS_DIR / f"index_{lang}.html", out.parent)
@@ -268,7 +271,7 @@ def build_page(
             )
             breadcrumbs.append({"title": deal, "link": cat_link})
         breadcrumbs.append({"title": lot.get(f"title_{lang}") or lot['_id'], "link": None})
-        vector_str = _format_vector(vector)
+        embed_str = _format_vector(embedding)
         out.write_text(
             template.render(
                 title=lot.get(f"title_{lang}", "Lot"),
@@ -286,7 +289,7 @@ def build_page(
                 static_prefix=static_prefix,
                 media_prefix=media_prefix,
                 breadcrumbs=breadcrumbs,
-                vector=vector_str,
+                embed=embed_str,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -311,79 +314,40 @@ def main() -> None:
 
     log.debug("Loading ontology")
     fields = _load_ontology()
-    log.debug("Loading vectors")
-    vectors = _load_vectors()
+    log.debug("Loading embeddings")
+    embeddings = _load_embeddings()
     log.debug("Loading lots")
     lots = _iter_lots()
     _copy_images(lots)
+    log.debug("Loading similar cache")
+    sim_map = _load_similar()
 
-    # Clean up mismatched data before working on vectors.
+    # Clean up mismatched data before working on embeddings.
     lot_keys = {lot["_id"] for lot in lots}
-    vec_keys = set(vectors)
-    extra_vecs = vec_keys - lot_keys
-    if extra_vecs:
-        for key in extra_vecs:
-            vectors.pop(key, None)
-        log.debug("Dropped vectors without lots", count=len(extra_vecs))
-    missing_vecs = lot_keys - vec_keys
-    if missing_vecs:
-        lots = [lot for lot in lots if lot["_id"] not in missing_vecs]
-        log.debug("Dropped lots without vectors", count=len(missing_vecs))
+    emb_keys = set(embeddings)
+    extra_embs = emb_keys - lot_keys
+    if extra_embs:
+        for key in extra_embs:
+            embeddings.pop(key, None)
+        log.debug("Dropped embeddings without lots", count=len(extra_embs))
+    missing_embs = lot_keys - emb_keys
+    if missing_embs:
+        lots = [lot for lot in lots if lot["_id"] not in missing_embs]
+        log.debug("Dropped lots without embeddings", count=len(missing_embs))
 
     # Map each lot id to its embedding vector if available.
-    id_to_vec = {lot["_id"]: vectors.get(lot["_id"]) for lot in lots}
+    id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
+    lookup = {lot["_id"]: lot for lot in lots}
 
     log.info("Computing similar lots", count=len(lots))
-    sim_map: dict[str, list[dict]] = {}
 
-    vec_ids = [lot["_id"] for lot in lots if id_to_vec.get(lot["_id"])]
-    if _has_sklearn and vec_ids:
-        matrix = [id_to_vec[i] for i in vec_ids]
-        # ``kneighbors`` raises when ``n_neighbors`` exceeds the number of
-        # vectors, so keep the value within bounds.
-        k = min(7, len(matrix))
-        nn = NearestNeighbors(n_neighbors=k, metric="cosine")
-        nn.fit(matrix)
-        dists, idxs = nn.kneighbors(matrix)
-        idx_to_id = {i: vec_ids[i] for i in range(len(vec_ids))}
-        lookup = {lot["_id"]: lot for lot in lots}
-        for i, lot_id in enumerate(vec_ids):
-            items = []
-            for dist, other_idx in zip(dists[i][1:], idxs[i][1:]):
-                other = lookup[idx_to_id[other_idx]]
-                title = other.get("title_en") or next(
-                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
-                    other.get("_id"),
-                )
-                files = other.get("files") or []
-                thumb = files[0] if files else ""
-                items.append({"id": other["_id"], "title": title, "thumb": thumb})
-            sim_map[lot_id] = items
-    else:
-        for lot in lots:
-            vec = id_to_vec.get(lot["_id"])
-            if not vec:
-                sim_map[lot["_id"]] = []
-                continue
-            scores = []
-            for other in lots:
-                if other is lot:
-                    continue
-                ov = id_to_vec.get(other["_id"])
-                if not ov:
-                    continue
-                scores.append((_cos_sim(vec, ov), other))
-            scores.sort(key=lambda x: x[0], reverse=True)
-            items = []
-            for score, other in scores[:6]:
-                title = other.get("title_en") or next(
-                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
-                    other.get("_id"),
-                )
-                files = other.get("files") or []
-                thumb = files[0] if files else ""
-                items.append({"id": other["_id"], "title": title, "thumb": thumb})
-            sim_map[lot["_id"]] = items
+    _prune_similar(sim_map, lot_keys)
+
+    new_ids = [i for i in lot_keys if i not in sim_map]
+    vec_ids = [i for i in lot_keys if id_to_vec.get(i)]
+
+    _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
+
 
     # Collect lots by Telegram user for "more by this user" section.
     user_map: dict[str, list[dict]] = {}
@@ -412,15 +376,7 @@ def main() -> None:
                 else:
                     scores.append((0.0, other))
             scores.sort(key=lambda x: x[0], reverse=True)
-            items = []
-            for score, other in scores[:20]:
-                title = other.get("title_en") or next(
-                    (other.get(f"title_{l}") for l in langs if other.get(f"title_{l}")),
-                    other.get("_id"),
-                )
-                files = other.get("files") or []
-                thumb = files[0] if files else ""
-                items.append({"id": other["_id"], "title": title, "thumb": thumb})
+            items = [{"id": other["_id"]} for _, other in scores[:20]]
             more_user_map[lot["_id"]] = items
 
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
@@ -470,6 +426,7 @@ def main() -> None:
             fields,
             langs,
             id_to_vec.get(lot["_id"]),
+            lookup,
         )
 
     log.debug("Writing category pages")
@@ -502,7 +459,7 @@ def main() -> None:
                         "price": lot.get("price"),
                         "seller": seller,
                         "id": lot["_id"],
-                        "vec": _format_vector(id_to_vec.get(lot["_id"])),
+                        "embed": _format_vector(id_to_vec.get(lot["_id"])),
                     }
                 )
             out = cat_dir / f"{deal}_{lang}.html"
@@ -559,6 +516,7 @@ def main() -> None:
         src = VIEWS_DIR / f"index_{langs[0]}.html"
         default.write_text(src.read_text())
         log.debug("Wrote", path=str(default))
+    _save_similar(sim_map)
     log.info("Site build complete")
 
 

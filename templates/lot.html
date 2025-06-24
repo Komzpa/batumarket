@@ -30,7 +30,7 @@
 <script>
   window.currentLot = {
     id: {{ lot['_id']|tojson }},
-    vector: {{ vector|default("null")|safe }}
+    embed: {{ embed|default("null")|safe }}
   };
 </script>
 <h2>{{ _('Similar items') }}</h2>

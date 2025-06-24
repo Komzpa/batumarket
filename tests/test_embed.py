@@ -29,7 +29,7 @@ import embed
 
 def test_embed_file(tmp_path, monkeypatch):
     monkeypatch.setattr(embed, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(embed, "VEC_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(embed, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(embed, "openai", dummy_openai)
 
     path = tmp_path / "lots" / "chat" / "2024" / "05" / "1.json"

@@ -53,7 +53,7 @@ BLACKLISTED_USERS = [
 ]
 
 LOTS_DIR = Path("data/lots")
-VEC_DIR = Path("data/vectors")
+EMBED_DIR = Path("data/embeddings")
 
 
 def should_skip_text(text: str) -> bool:
@@ -146,7 +146,7 @@ def apply_to_history() -> None:
         )
         if skip:
             path.unlink()
-            vec = (VEC_DIR / path.relative_to(LOTS_DIR)).with_suffix(".json")
+            vec = (EMBED_DIR / path.relative_to(LOTS_DIR)).with_suffix(".json")
             if vec.exists():
                 vec.unlink()
             removed += 1
