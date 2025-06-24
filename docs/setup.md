@@ -1,7 +1,7 @@
 # Setup and Usage
 
-This project uses Python 3.12.  On Debian based distributions the required
-modules are available as packages:
+This project uses Python 3.12.
+On Debian based distributions the required modules are available as packages:
 
 ```bash
 sudo apt install python3-openai \
@@ -10,6 +10,7 @@ sudo apt install python3-openai \
     python3-structlog python3-telethon \
     python3-sklearn python3-progressbar2 \
     python3-html5lib \
+    python3-pytest python3-pytest-cov \
     gettext  # provides msgfmt used to compile translations
 ```
 
