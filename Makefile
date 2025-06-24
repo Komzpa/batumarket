@@ -4,16 +4,27 @@
 # correct order.  Each stage runs only after its dependency completes.
 .PHONY: compose update pull removed caption chop embed build alert ontology clean precommit debugdump
 
-all: clean build deploy removed
+all: clean build deploy removed ## Clean, build, deploy and prune removed posts
 
-pull: # Pull Telegram messages and media to ``data/``.
+pull: ## Pull Telegram messages and media to ``data/``.
 	python src/tg_client.py --ensure-access --fetch-missing
 
+REMOVED_STAMP ?= data/.removed-stamp
+
+# Run cleanups only once after midnight. Subsequent invocations exit quickly
 removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
+	@stamp=$(REMOVED_STAMP); \
+	today=$$(date -I); \
+	mkdir -p $$(dirname $$stamp); \
+	if [ "$$today" = "$$(cat $$stamp 2>/dev/null)" ]; then \
+	echo "Already pruned today"; \
+	else \
+	echo "$$today" > $$stamp; \
 	$(MAKE) clean # remove previously half-cleaned leftovers
 	python src/scan_ontology.py # re-collect what still needs to be fetched
 	python src/tg_client.py --refetch --check-deleted
 	$(MAKE) clean # remove newly created leftovers
+	fi
 
 caption: pull ## Generate image captions for files missing ``*.caption.json``.
 	python scripts/pending_caption.py | parallel --eta -j16 -0 python src/caption.py
@@ -25,11 +36,11 @@ ontology: chop ## Summarize lots so it's easier see what exactly is there in the
 	python src/scan_ontology.py
 
 # Store embeddings for each lot in JSON files using GNU Parallel.
-embed: chop caption
+embed: chop caption ## Store embeddings for each lot
 	python scripts/pending_embed.py | parallel --eta -j16 -0 python src/embed.py
 
 # Render HTML pages from lots and templates.
-build: embed ontology
+build: embed ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
 
@@ -37,16 +48,16 @@ deploy: build ## Deploy built static website to the server
 	rsync --delete-before --size-only -zz --compress-choice=zstd --compress-level=3 --omit-dir-times --omit-link-times --info=stats2,progress2 -aH -e "ssh -T -c aes128-ctr -o Compression=no" data/views/ 178.62.209.164:/srv/www/batumarket/
 
 # Telegram alert bot for new lots.
-alert: embed
+alert: embed ## Notify about new lots
 	python src/alert_bot.py
 
 # Gather logs and related files for one lot.
-debugdump:
+debugdump: ## Dump logs for a single lot
 	python src/debug_dump.py "$(URL)"
 
-clean:
+clean: ## Delete all temporary files
 	python src/clean_data.py
 
-precommit:
+precommit: ## Run pre-commit checks
 	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
 	python scripts/check_translations.py
