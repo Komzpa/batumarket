@@ -129,14 +129,16 @@ document.addEventListener('DOMContentLoaded', () => {
     return -bestSim(vec, base);
   }
 
-  function applySort() {
-    const mode = sortSelect.value;
-    localStorage.setItem('sort-mode', mode);
+  /** helper – returns an array of only real <tr> children */
+  function grabRows(body) {
+    return Array.from(body.children).filter(el => el.tagName === 'TR');
+  }
 
-    const tbody = indexTable.tBodies[0];
-    const allRows    = Array.from(tbody.rows);
-    const staticRows = allRows.filter(r => !isDataRow(r));
-    const dataRows   = allRows.filter(isDataRow);
+  function resortTable(mode) {
+    const oldBody  = indexTable.tBodies[0];
+    const rows     = grabRows(oldBody);
+    const staticRows = rows.filter(r => !isDataRow(r));
+    const dataRows   = rows.filter(isDataRow);
 
     dataRows.sort((a, b) => {
       if (mode.startsWith('price')) {
@@ -166,10 +168,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return 0;
     });
 
-    tbody.replaceChildren(...staticRows, ...dataRows);
+    const fresh = document.createElement('tbody');
+    fresh.append(...staticRows, ...dataRows);
+
+    oldBody.replaceWith(fresh);
   }
 
+  sortSelect.addEventListener('change', () => {
+    const mode = sortSelect.value;
+    localStorage.setItem('sort-mode', mode);
+    resortTable(mode);
+  });
+
   sortSelect.value = localStorage.getItem('sort-mode') || 'relevance';
-  sortSelect.addEventListener('change', applySort);
-  applySort();
+  resortTable(sortSelect.value);
 });
