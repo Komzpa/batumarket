@@ -9,6 +9,7 @@ sudo apt install python3-openai \
     python3-jinja2 \
     python3-structlog python3-telethon \
     python3-sklearn python3-progressbar2 \
+    python3-html5lib \
     gettext  # provides msgfmt used to compile translations
 ```
 
