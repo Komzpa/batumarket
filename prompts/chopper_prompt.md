@@ -7,8 +7,7 @@ Even when only one lot is found the `lots` array should contain that single entr
 **Never wrap the JSON in Markdown code fences or add any surrounding text.**
 Normalize emojis and fancy formatting into plain text.
 Fix spelling mistakes when sure about it.
-The API uses Structured Outputs with the [chop schema](../docs/chop_schema.json)
-to ensure titles and descriptions are present for every language.
+The API uses Structured Outputs to ensure titles and descriptions are present for every language.
 
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:
@@ -21,9 +20,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `rooms` – "studio" or integer as a string.
 - `start_date`, `end_date` - iso8601 date.`
 - `area` – integer square metres when available.
-- `price`, `price:currency` – normalised price fields. Use ISO‑4217 currency
-  codes; correct obvious typos (`Gel`, `LAR` to `GEL`; `TL` to `TRY`). "у.е." might be USD. Values outside the list
-  of known codes should be dropped.
+- `price`, `price:currency` – normalised price fields. Use ISO‑4217 currency codes; correct obvious typos (`Gel`, `LAR` to `GEL`; `TL` to `TRY`, `рубли` to `RUB`). "у.е." might be USD. Values outside the list of known codes should be dropped.
 - `price:period` - `month`, `day`, `night`, `year`, `long_term`, `season`
 - `price:deposit`, `price:deposit:currency`.
 - `price:deposit:pets`
@@ -37,7 +34,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `addr:city` (`Батуми`, `Кобулети`, `Махинджаури`, `Гонио`, `Чакви`, ...), `addr:suburb` (`район Аэропорта`, `старый город`...), `addr:neighbourhood` (`рядом с VOX`...), `addr:street` ("3-й тупик Ангиса", "улица Леха и Марии Качинских"...), `addr:unit` ("Block A", "Block C"), `addr:housenumber`, `addr:floor`, `addr:door` – street and number match.
 - `addr:full` - text of address verbatim as-is in ad, no spelling adjustments.
 - `building:name` – named apartment blocks (`Orbi City`, `Orbi Residence`, `Orbi Beach Tower`, `Orbi Sea Towers`, `Black Sea Towers`, `Gumbati`, `Vox`, `Sunrise`, `White Sails`, `Магнолия`, `Batumi View`, `Intourist residence`, `Dar Tower`, `Metro City`, `Intourist Residence`, ...)
-- `floor`, `building:levels` – floor number (int or hint `low`, `middle`, `high`)  and total floors.
+- `floor`, `building:levels` – floor number (int or hint `low`, `middle`, `high`) and total floors.
 - `urgency` - `urgent`, `none`.
 - `elevator:fee` - `no`, yes
 - `commission` - `no`, `yes`
@@ -67,15 +64,14 @@ Craft both `title_<lang>` and `description_<lang>` for every lot using both the 
 - **Goods** – `sell_item`, `buy_item`.
   Keys: `item:type`, `brand`, `model`, `condition`, `price`, `price:currency`, `urgency`.
 - **Jobs / Services** – `job_offer`, `job_seek`, `services_offer`, `services_seek`.
-  Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.  
+  Keys: `occupation`, `salary`, `salary:currency`, `schedule`, `remote`, `contact:*`.
 - **Community / Events** – `event_invite`, `event_seek`, `announcement`.
   Keys: `event:type`, `date`, `location`, `fee`, `contact:*`.
 
 ## Antifraud
-- `fraud=sketchy_job` - if the description is for the job offering but does not explain the actual work.
+- `fraud=sketchy_job` - if the description is for the job offering but does not explain the actual work. ("дополнительный заработок в свободное время", "пиши + в ЛC"). Salaries quoted in Russian roubles for work in Georgia are suspicious of being fraud.
 - `fraud=drugs` - posts offering illegal narcotics or other prohibited drugs.
-- `fraud=sketchy_job` - Salaries quoted in Russian roubles for work in Georgia are suspicious.
-- `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов", "Binance с высокой оплатой").
+- `fraud=scam` - Quick money schemes promising loans or token giveaways ("Дам в долг", "Помогу с деньгами", "чем раньше они войдут, тем больше смогут забрать в халявной раздаче токенов", "Binance с высокой оплатой", "возможность хоpошo пoднять").
 - `fraud=spam` - If the chat topic does not match the advertised category (for example a job post sent to a real-estate channel) mark the lot as spam even if it looks legitimate otherwise.
 - Ad-hoc explained ones are not to be marked as fraud. Simple manual labour requests like "перенести/разгрузить" are normal unqualified jobs and not fraudulent.
 
@@ -84,22 +80,74 @@ Craft both `title_<lang>` and `description_<lang>` for every lot using both the 
 ```json
 {
   "lots": [
-    {
-      "timestamp": "2025-05-20T11:41:34+00:00",
-      "market:deal": "rent_out",
+     {      
+      "market:deal": "rent_out_long",
       "property:type": "apartment",
       "rooms": "2",
+      "area": 68,
+      "floor": 12,
+      "building:levels": 25,
       "price": 450,
       "price:currency": "USD",
-      "pets": "no",
-      "addr:street": "Кобаладзе",
+      "price:period": "month",
+      "price:deposit": 450,
+      "price:deposit:currency": "USD",
+      "price:deposit:pets": 200,
+      "payment_terms": "first and last month",
+      "pets": "cat_only",
+      "smoking": "no",
+      "distance:sea": 350,
+      "view": "sea;city",
+      "heating": "electric",
+      "underfloor_heating": "yes",
+      "gas": "possible",
+      "furnishing": "furnished",
+      "washing_machine": "yes",
+      "dishwasher": "yes",
+      "air_conditioning": "yes",
+      "wifi": "yes",
+      "balcony": "yes",
+      "parking": "yes",
+      "parking:type": "underground",
+      "pool": "no",
+      "elevator": "yes",
+      "elevator:fee": "no",
+      "security": "guard;cctv",
+      "panorama": "yes",
+      "ventilation": "yes",
+      "laundry": "yes",
+      "addr:city": "Батуми",
+      "addr:suburb": "Новый Бульвар",
+      "addr:street": "улица Кобаладзе",
       "addr:housenumber": "8а",
+      "addr:unit": "Block C",
+      "addr:floor": "12",
+      "addr:full": "Батуми, улица Кобаладзе 8а, Block C, 12 этаж",
       "building:name": "Orbi City",
-      "heating": "central",
-      "view": "sea",
+      "urgency": "none",
+      "title_ru": "2-комнатная квартира в Orbi City с панорамным видом на море",
+      "title_en": "2-room apartment in Orbi City with panoramic sea view",
+      "title_ka": "2-ოთახიანი ბინა Orbi City-ში, ზღვის ხედით",
+      "description_ru": "Сдается на долгий срок светлая меблированная квартира 68 м². Теплый пол, охрана, без комиссии, кошки приветствуются.",
+      "description_en": "Long-term rent: bright 68 m² furnished apartment. Floor heating, security, no agency fee. Cats welcome.",
+      "description_ka": "გაქირავება გრძელვადიანად: ნათელი 68 მ² ბინა ავეჯით. თბილი იატაკი, დაცვა, საკომისიო არ არის. კატები დასაშვებია.",
       "files": [
-        "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg"
+        "arenda_batumi/2025/05/39e69dc40820bdc9b749f9dbe1a621a6900acc7d0c9b7afc453c539c235d5341.jpg",
+        "real_estate/2025/06/apt_orbi_city_02.jpg"
       ]
+    },
+    {
+      "market:deal": "job_offer",
+      "fraud": "sketchy_job",
+      "salary": 200000,
+      "salary:currency": "RUB",
+      "schedule": "flexible",
+      "remote": "yes",
+      "contact:whatsapp": "+79261234567",
+      "title_ru": "Лёгкий онлайн заработок, до 200 000 руб/мес",
+      "title_en": "Easy online income up to 200 000 RUB/month",
+      "description_ru": "Работа в свободное время, без опыта. Пиши + в ЛС и получай выплаты каждый день!",
+      "description_en": "Work anytime, no skills needed. DM '+' to start earning daily!"
     }
   ]
 }
@@ -123,7 +171,6 @@ Avoid generic headlines and summarise the actual offering instead:
 - Разное сообщение
 - Предложение удалённой работы
 - Объявление о недвижимости
-- Разное объявление
 - Объявление от Ольги
 - Вакансия удалённой работы
 - Товары на продажу
