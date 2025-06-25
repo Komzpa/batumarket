@@ -163,6 +163,258 @@ def _copy_images(lots: list[dict]) -> None:
             shutil.copy2(src, dst)
 
 
+def _copy_static() -> None:
+    """Copy CSS and JS so generated pages are standalone."""
+    static_src = TEMPLATES / "static"
+    static_dst = VIEWS_DIR / "static"
+    if static_src.exists():
+        if static_dst.exists():
+            shutil.rmtree(static_dst)
+        shutil.copytree(static_src, static_dst)
+        log.debug("Copied static assets", src=str(static_src), dst=str(static_dst))
+
+
+def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]]]:
+    """Return ontology fields, embeddings, lots and similarity cache."""
+    log.debug("Loading ontology")
+    fields = _load_ontology()
+    log.debug("Loading embeddings")
+    embeddings = _load_embeddings()
+    log.debug("Loading lots")
+    lots = _iter_lots()
+    _copy_images(lots)
+    log.debug("Loading similar cache")
+    sim_map = _load_similar()
+    return fields, embeddings, lots, sim_map
+
+
+def _sync_embeddings(lots: list[dict], embeddings: dict[str, list[float]]) -> tuple[list[dict], dict[str, list[float]]]:
+    """Drop lots or vectors that do not match and return cleaned data."""
+    lot_keys = {lot["_id"] for lot in lots}
+    emb_keys = set(embeddings)
+    extra_embs = emb_keys - lot_keys
+    if extra_embs:
+        for key in extra_embs:
+            embeddings.pop(key, None)
+        log.debug("Dropped embeddings without lots", count=len(extra_embs))
+    missing_embs = lot_keys - emb_keys
+    if missing_embs:
+        lots = [lot for lot in lots if lot["_id"] not in missing_embs]
+        log.debug("Dropped lots without embeddings", count=len(missing_embs))
+    return lots, embeddings
+
+
+def _apply_price_model(lots: list[dict], id_to_vec: dict[str, list[float]]) -> None:
+    """Predict prices in USD and guess missing currencies."""
+    log.debug("Training price model")
+    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
+    rates = currency_rates(price_model, currency_map) if price_model else {}
+    if rates:
+        log.info("Regressed currency rates", rates=rates)
+    for lot in lots:
+        vec = id_to_vec.get(lot["_id"])
+        pred_usd = predict_price(price_model, currency_map, vec, "USD")
+        if pred_usd is not None:
+            lot["ai_price"] = round(pred_usd, 2)
+        if lot.get("price") is not None and lot.get("price:currency") is None:
+            try:
+                price_val = float(lot["price"])
+            except Exception:
+                price_val = None
+            if price_val and pred_usd:
+                guessed = guess_currency(rates, price_val, pred_usd, counts)
+                if guessed:
+                    lot["price:currency"] = guessed
+
+
+def _similar_by_user(lots: list[dict], id_to_vec: dict[str, list[float]]) -> dict[str, list[dict]]:
+    """Return map of lot id to other lots from the same user."""
+    user_map: dict[str, list[dict]] = {}
+    for lot in lots:
+        user = (
+            lot.get("contact:telegram")
+            or lot.get("source:author:telegram")
+            or lot.get("source:author:name")
+        )
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
+        if user is not None:
+            user_map.setdefault(str(user), []).append(lot)
+
+    more_user_map: dict[str, list[dict]] = {}
+    for user, user_lots in user_map.items():
+        for lot in user_lots:
+            others = [o for o in user_lots if o is not lot]
+            scores = []
+            vec = id_to_vec.get(lot["_id"])
+            for other in others:
+                ov = id_to_vec.get(other["_id"])
+                if vec and ov:
+                    scores.append((_cos_sim(vec, ov), other))
+                else:
+                    scores.append((0.0, other))
+            scores.sort(key=lambda x: x[0], reverse=True)
+            items = [{"id": other["_id"]} for _, other in scores[:20]]
+            more_user_map[lot["_id"]] = items
+    return more_user_map
+
+
+def _categorise(
+    lots: list[dict], langs: list[str], keep_days: int
+) -> tuple[dict[str, list[dict]], dict[str, dict], list[dict]]:
+    """Return category info and recent lot list."""
+    now = datetime.now(timezone.utc)
+    recent_cutoff = now - timedelta(days=keep_days)
+    recent: list[dict] = []
+    categories: dict[str, list[dict]] = {}
+    category_stats: dict[str, dict] = {}
+    for lot in lots:
+        dt = get_timestamp(lot)
+        deal = lot.get("market:deal", "misc")
+        if not isinstance(deal, str):
+            log.debug("Non-string deal", id=lot.get("_id"), value=deal)
+            if isinstance(deal, list) and deal:
+                deal = deal[0]
+            else:
+                deal = str(deal)
+        categories.setdefault(deal, []).append(lot)
+        stat = category_stats.setdefault(deal, {"recent": 0, "users": set()})
+        user = lot.get("contact:telegram")
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
+        if user:
+            stat["users"].add(str(user))
+        if dt and dt >= recent_cutoff:
+            titles = {lang: lot.get(f"title_{lang}") for lang in langs}
+            seller = get_seller(lot)
+            stat["recent"] += 1
+            recent.append(
+                {
+                    "id": lot["_id"],
+                    "titles": titles,
+                    "dt": dt,
+                    "price": lot.get("price") or lot.get("ai_price"),
+                    "seller": seller,
+                }
+            )
+    return categories, category_stats, recent
+
+
+def _render_site(
+    lots: list[dict],
+    fields: list[str],
+    langs: list[str],
+    envs: dict[str, Environment],
+    keep_days: int,
+    id_to_vec: dict[str, list[float]],
+    lookup: dict[str, dict],
+    sim_map: dict[str, list[dict]],
+    more_user_map: dict[str, list[dict]],
+    categories: dict[str, list[dict]],
+    category_stats: dict[str, dict],
+) -> None:
+    for lot in lots:
+        log.debug("Rendering", id=lot["_id"])
+        build_page(
+            lot,
+            sim_map.get(lot["_id"], []),
+            more_user_map.get(lot["_id"], []),
+            fields,
+            langs,
+            id_to_vec.get(lot["_id"]),
+            lookup,
+        )
+
+    log.debug("Writing category pages")
+    cat_tpls = {lang: envs[lang].get_template("category.html") for lang in langs}
+    cat_dir = VIEWS_DIR / "deal"
+    cat_dir.mkdir(parents=True, exist_ok=True)
+    for deal, lot_list in categories.items():
+        lot_list_sorted = sorted(
+            lot_list,
+            key=lambda x: get_timestamp(x) or datetime.min,
+            reverse=True,
+        )
+        for lang in langs:
+            items_lang = []
+            for lot in lot_list_sorted:
+                title = lot.get(f"title_{lang}") or next(
+                    (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
+                    lot.get("_id"),
+                )
+                seller = get_seller(lot)
+                dt = get_timestamp(lot)
+                items_lang.append(
+                    {
+                        "link": os.path.relpath(
+                            VIEWS_DIR / f"{lot['_id']}_{lang}.html",
+                            cat_dir,
+                        ),
+                        "title": title,
+                        "dt": dt,
+                        "price": lot.get("price") or lot.get("ai_price"),
+                        "seller": seller,
+                        "id": lot["_id"],
+                        "embed": _format_vector(id_to_vec.get(lot["_id"])),
+                    }
+                )
+            out = cat_dir / f"{deal}_{lang}.html"
+            breadcrumbs = [
+                {"title": "Home", "link": os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir)},
+                {"title": deal, "link": None},
+            ]
+            out.write_text(
+                cat_tpls[lang].render(
+                    deal=deal,
+                    items=items_lang,
+                    langs=langs,
+                    current_lang=lang,
+                    page_basename=deal,
+                    title=deal,
+                    static_prefix=os.path.relpath(VIEWS_DIR / "static", cat_dir),
+                    breadcrumbs=breadcrumbs,
+                )
+            )
+            log.debug("Wrote", path=str(out))
+
+    log.debug("Writing index pages")
+    index_tpls = {lang: envs[lang].get_template("index.html") for lang in langs}
+    for lang in langs:
+        cats_lang = []
+        for deal, stat in category_stats.items():
+            cats_lang.append(
+                {
+                    "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),
+                    "deal": deal,
+                    "recent": stat["recent"],
+                    "users": len(stat["users"]),
+                }
+            )
+        out = VIEWS_DIR / f"index_{lang}.html"
+        breadcrumbs = [{"title": "Home", "link": f"index_{lang}.html"}]
+        out.write_text(
+            index_tpls[lang].render(
+                categories=cats_lang,
+                langs=langs,
+                current_lang=lang,
+                page_basename="index",
+                title="Index",
+                static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
+                breadcrumbs=breadcrumbs,
+                keep_days=keep_days,
+            )
+        )
+        log.debug("Wrote", path=str(out))
+    if langs:
+        default = VIEWS_DIR / "index.html"
+        src = VIEWS_DIR / f"index_{langs[0]}.html"
+        default.write_text(src.read_text())
+        log.debug("Wrote", path=str(default))
+
+
+
 def build_page(
     lot: dict,
     similar: list[dict],
@@ -311,244 +563,39 @@ def main() -> None:
     envs = {lang: _env_for_lang(lang) for lang in langs}
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Copy CSS and JS so the generated pages are standalone
-    static_src = TEMPLATES / "static"
-    static_dst = VIEWS_DIR / "static"
-    if static_src.exists():
-        if static_dst.exists():
-            shutil.rmtree(static_dst)
-        shutil.copytree(static_src, static_dst)
-        log.debug("Copied static assets", src=str(static_src), dst=str(static_dst))
+    _copy_static()
+    fields, embeddings, lots, sim_map = _load_state()
+    lots, embeddings = _sync_embeddings(lots, embeddings)
 
-    log.debug("Loading ontology")
-    fields = _load_ontology()
-    log.debug("Loading embeddings")
-    embeddings = _load_embeddings()
-    log.debug("Loading lots")
-    lots = _iter_lots()
-    _copy_images(lots)
-    log.debug("Loading similar cache")
-    sim_map = _load_similar()
-
-    # Clean up mismatched data before working on embeddings.
-    lot_keys = {lot["_id"] for lot in lots}
-    emb_keys = set(embeddings)
-    extra_embs = emb_keys - lot_keys
-    if extra_embs:
-        for key in extra_embs:
-            embeddings.pop(key, None)
-        log.debug("Dropped embeddings without lots", count=len(extra_embs))
-    missing_embs = lot_keys - emb_keys
-    if missing_embs:
-        lots = [lot for lot in lots if lot["_id"] not in missing_embs]
-        log.debug("Dropped lots without embeddings", count=len(missing_embs))
-
-    # Map each lot id to its embedding vector if available.
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
     lookup = {lot["_id"]: lot for lot in lots}
 
-    # Train regression model to predict prices from embeddings.  ``rates``
-    # capture implicit exchange multipliers learnt from the training data.
-    log.debug("Training price model")
-    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
-    rates = currency_rates(price_model, currency_map) if price_model else {}
-    if rates:
-        log.info("Regressed currency rates", rates=rates)
+    _apply_price_model(lots, id_to_vec)
 
     log.info("Computing similar lots", count=len(lots))
-
+    lot_keys = {lot["_id"] for lot in lots}
     _prune_similar(sim_map, lot_keys)
-
     new_ids = [i for i in lot_keys if i not in sim_map]
     vec_ids = [i for i in lot_keys if id_to_vec.get(i)]
-
     _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
 
+    more_user_map = _similar_by_user(lots, id_to_vec)
+    categories, category_stats, _recent = _categorise(lots, langs, keep_days)
 
-    # Collect lots by Telegram user for "more by this user" section.
-    user_map: dict[str, list[dict]] = {}
-    for lot in lots:
-        user = (
-            lot.get("contact:telegram")
-            or lot.get("source:author:telegram")
-            or lot.get("source:author:name")
-        )
-        if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
-            user = user[0] if user else None
-        if user is not None:
-            user_map.setdefault(str(user), []).append(lot)
+    _render_site(
+        lots,
+        fields,
+        langs,
+        envs,
+        keep_days,
+        id_to_vec,
+        lookup,
+        sim_map,
+        more_user_map,
+        categories,
+        category_stats,
+    )
 
-    more_user_map: dict[str, list[dict]] = {}
-    for user, user_lots in user_map.items():
-        for lot in user_lots:
-            others = [o for o in user_lots if o is not lot]
-            scores = []
-            vec = id_to_vec.get(lot["_id"])
-            for other in others:
-                ov = id_to_vec.get(other["_id"])
-                if vec and ov:
-                    scores.append((_cos_sim(vec, ov), other))
-                else:
-                    scores.append((0.0, other))
-            scores.sort(key=lambda x: x[0], reverse=True)
-            items = [{"id": other["_id"]} for _, other in scores[:20]]
-            more_user_map[lot["_id"]] = items
-
-    for lot in lots:
-        vec = id_to_vec.get(lot["_id"])
-        pred_usd = predict_price(price_model, currency_map, vec, "USD")
-        if pred_usd is not None:
-            # Store predicted USD amount for template fallback
-            lot["ai_price"] = round(pred_usd, 2)
-        if lot.get("price") is not None and lot.get("price:currency") is None:
-            # Attempt to guess missing currency using regressed rates
-            try:
-                price_val = float(lot["price"])
-            except Exception:
-                price_val = None
-            if price_val and pred_usd:
-                guessed = guess_currency(rates, price_val, pred_usd, counts)
-                if guessed:
-                    lot["price:currency"] = guessed
-
-    # ``datetime.utcnow`` returns a naive object which breaks comparisons with
-    # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
-    now = datetime.now(timezone.utc)
-    recent_cutoff = now - timedelta(days=keep_days)
-    recent = []
-    categories: dict[str, list[dict]] = {}
-    category_stats: dict[str, dict] = {}
-    for lot in lots:
-        dt = get_timestamp(lot)
-        deal = lot.get("market:deal", "misc")
-        if not isinstance(deal, str):
-            log.debug("Non-string deal", id=lot.get("_id"), value=deal)
-            if isinstance(deal, list) and deal:
-                deal = deal[0]
-            else:
-                deal = str(deal)
-        categories.setdefault(deal, []).append(lot)
-        stat = category_stats.setdefault(deal, {"recent": 0, "users": set()})
-        user = lot.get("contact:telegram")
-        if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
-            user = user[0] if user else None
-        if user:
-            stat["users"].add(str(user))
-        if dt and dt >= recent_cutoff:
-            titles = {lang: lot.get(f"title_{lang}") for lang in langs}
-            seller = get_seller(lot)
-            stat["recent"] += 1
-            recent.append(
-                {
-                    "id": lot["_id"],
-                    "titles": titles,
-                    "dt": dt,
-                    "price": lot.get("price") or lot.get("ai_price"),
-                    "seller": seller,
-                }
-            )
-
-    for lot in lots:
-        log.debug("Rendering", id=lot["_id"])
-        build_page(
-            lot,
-            sim_map.get(lot["_id"], []),
-            more_user_map.get(lot["_id"], []),
-            fields,
-            langs,
-            id_to_vec.get(lot["_id"]),
-            lookup,
-        )
-
-    log.debug("Writing category pages")
-    cat_tpls = {lang: envs[lang].get_template("category.html") for lang in langs}
-    cat_dir = VIEWS_DIR / "deal"
-    cat_dir.mkdir(parents=True, exist_ok=True)
-    for deal, lot_list in categories.items():
-        lot_list_sorted = sorted(
-            lot_list,
-            key=lambda x: get_timestamp(x) or datetime.min,
-            reverse=True,
-        )
-        for lang in langs:
-            items_lang = []
-            for lot in lot_list_sorted:
-                title = lot.get(f"title_{lang}") or next(
-                    (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
-                    lot.get("_id"),
-                )
-                seller = get_seller(lot)
-                dt = get_timestamp(lot)
-                items_lang.append(
-                    {
-                        "link": os.path.relpath(
-                            VIEWS_DIR / f"{lot['_id']}_{lang}.html",
-                            cat_dir,
-                        ),
-                        "title": title,
-                        "dt": dt,
-                        "price": lot.get("price") or lot.get("ai_price"),
-                        "seller": seller,
-                        "id": lot["_id"],
-                        "embed": _format_vector(id_to_vec.get(lot["_id"])),
-                    }
-                )
-            out = cat_dir / f"{deal}_{lang}.html"
-            breadcrumbs = [
-                {"title": "Home", "link": os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir)},
-                {"title": deal, "link": None},
-            ]
-            out.write_text(
-                cat_tpls[lang].render(
-                    deal=deal,
-                    items=items_lang,
-                    langs=langs,
-                    current_lang=lang,
-                    page_basename=deal,
-                    title=deal,
-                    static_prefix=os.path.relpath(VIEWS_DIR / "static", cat_dir),
-                    breadcrumbs=breadcrumbs,
-                )
-            )
-            log.debug("Wrote", path=str(out))
-
-    recent.sort(key=lambda x: x.get("dt") or datetime.min.replace(tzinfo=timezone.utc), reverse=True)
-
-    log.debug("Writing index pages")
-    index_tpls = {lang: envs[lang].get_template("index.html") for lang in langs}
-    for lang in langs:
-        cats_lang = []
-        for deal, stat in category_stats.items():
-            cats_lang.append(
-                {
-                    "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),
-                    "deal": deal,
-                    "recent": stat["recent"],
-                    "users": len(stat["users"]),
-                }
-            )
-        out = VIEWS_DIR / f"index_{lang}.html"
-        breadcrumbs = [{"title": "Home", "link": f"index_{lang}.html"}]
-        out.write_text(
-            index_tpls[lang].render(
-                categories=cats_lang,
-                langs=langs,
-                current_lang=lang,
-                page_basename="index",
-                title="Index",
-                static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
-                breadcrumbs=breadcrumbs,
-                keep_days=keep_days,
-            )
-        )
-        log.debug("Wrote", path=str(out))
-    if langs:
-        default = VIEWS_DIR / "index.html"
-        src = VIEWS_DIR / f"index_{langs[0]}.html"
-        default.write_text(src.read_text())
-        log.debug("Wrote", path=str(default))
     _save_similar(sim_map)
     log.info("Site build complete")
 
