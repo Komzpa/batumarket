@@ -175,11 +175,14 @@ Code handling embedding loading and recommendation caching resides in
 are resolved from the lot JSON when pages are rendered so each language shows
 the correct translation. Lots without embeddings are skipped entirely during
 rendering. A regression model (see ``src/price_utils.py``) derives ``ai_price``
-in USD from embeddings when the ``price`` field is missing. Currency
-multipliers are learnt from existing data so that effective exchange rates can
-be logged. When a post has a numeric price but no currency the closest
-multiplier is used to guess the currency. Pages fall back to the predicted
-amount when no explicit price is available.
+in USD from embeddings when the ``price`` field is missing. Currency names are
+normalised to ISO‑4217 codes so ``Gel`` or ``lar`` are treated as ``GEL``.
+Multipliers are learnt from existing data so that effective exchange rates can
+be logged. The training step logs how many samples were seen for each currency
+and currencies with fewer than 50 examples are skipped when guessing a missing
+currency. Unknown labels are ignored. When a post has a numeric price but no
+currency the closest multiplier is used to guess the currency. Pages fall back
+to the predicted amount when no explicit price is available.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of

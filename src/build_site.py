@@ -350,7 +350,7 @@ def main() -> None:
     # Train regression model to predict prices from embeddings.  ``rates``
     # capture implicit exchange multipliers learnt from the training data.
     log.debug("Training price model")
-    price_model, currency_map = train_price_regression(lots, id_to_vec)
+    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
     rates = currency_rates(price_model, currency_map) if price_model else {}
     if rates:
         log.info("Regressed currency rates", rates=rates)
@@ -408,7 +408,7 @@ def main() -> None:
             except Exception:
                 price_val = None
             if price_val and pred_usd:
-                guessed = guess_currency(rates, price_val, pred_usd)
+                guessed = guess_currency(rates, price_val, pred_usd, counts)
                 if guessed:
                     lot["price:currency"] = guessed
 
