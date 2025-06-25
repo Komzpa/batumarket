@@ -1,7 +1,9 @@
 # Setup and Usage
 
 This project uses Python 3.12.
-On Debian based distributions the required modules are available as packages:
+On Debian based distributions the required modules are available as packages.
+Run `make install-dependencies` to install everything automatically or copy the
+following command:
 
 ```bash
 sudo apt install python3-openai \
@@ -11,8 +13,10 @@ sudo apt install python3-openai \
     python3-sklearn python3-progressbar2 \
     python3-html5lib \
     python3-pytest python3-pytest-cov \
-    gettext  # provides msgfmt used to compile translations
+    python3-graphviz graphviz gettext  # gettext provides msgfmt
 ```
+
+Graphviz is required because `make precommit` renders the call graph.
 
 If you prefer isolated dependencies create a virtual environment and use the
 `requirements.txt` file instead:

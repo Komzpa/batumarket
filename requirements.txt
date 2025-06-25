@@ -8,3 +8,4 @@ progressbar2
 html5lib
 pytest
 pytest-cov
+graphviz
