@@ -17,6 +17,31 @@ from sklearn.linear_model import LinearRegression
 
 from log_utils import get_logger
 
+# Map various currency spellings to ISO-4217 codes.
+CURRENCY_ALIASES = {
+    "usd": "USD",
+    "eur": "EUR",
+    "gel": "GEL",
+    "lari": "GEL",
+    "lar": "GEL",
+    "uah": "UAH",
+    "rub": "RUB",
+    "tl": "TRY",
+    "try": "TRY",
+}
+
+
+def canonical_currency(code: str | None) -> str | None:
+    """Return canonical currency code or ``None`` when unknown."""
+    if code is None:
+        return None
+    key = str(code).strip().lower()
+    if not key:
+        return None
+    if key in {"currency units", "units", "unit"}:
+        return None
+    return CURRENCY_ALIASES.get(key, key.upper())
+
 log = get_logger().bind(module=__name__)
 
 
@@ -27,14 +52,15 @@ log = get_logger().bind(module=__name__)
 def train_price_regression(
     lots: Iterable[Mapping],
     id_to_vec: Mapping[str, list[float]],
-) -> tuple[LinearRegression | None, dict[str, int]]:
-    """Return ``(model, currency_map)`` trained on ``lots``.
+) -> tuple[LinearRegression | None, dict[str, int], dict[str, int]]:
+    """Return ``(model, currency_map, counts)`` trained on ``lots``.
 
     ``lots`` must contain ``price`` and ``price:currency`` fields. Only lots with
     embeddings present in ``id_to_vec`` are considered. Prices are regressed on
     the logarithm scale so coefficients are interpretable as multiplicative
     factors. ``USD`` is treated as the base currency so coefficients can be
-    interpreted as exchange rate multipliers.
+    interpreted as exchange rate multipliers. The returned ``counts`` dictionary
+    maps each currency to the number of training samples observed.
     """
 
     # ``prepared`` accumulates validated samples as ``(vec, log_price, currency)``
@@ -43,11 +69,15 @@ def train_price_regression(
     # Keep track of currencies we encounter to build one-hot vectors.
     all_currencies = {"USD"}
     prepared: list[tuple[list[float], float, str]] = []
+    counts: dict[str, int] = {}
     dim = None  # Embedding dimensionality for validation
     for lot in lots:
         price = lot.get("price")
-        curr = lot.get("price:currency")
+        curr_raw = lot.get("price:currency")
         lid = lot.get("_id")
+        curr = canonical_currency(curr_raw)
+        if curr_raw is not None and curr != curr_raw:
+            log.debug("Canonicalised currency", original=curr_raw, canonical=curr, id=lid)
         vec = id_to_vec.get(lid)
         if price is None or curr is None or vec is None:
             continue
@@ -64,12 +94,13 @@ def train_price_regression(
             log.debug("Vector dim mismatch", id=lid)
             continue
         all_currencies.add(str(curr))
+        counts[curr] = counts.get(curr, 0) + 1
         # Regression is done on the logarithm scale
         prepared.append((list(vec), math.log(p), str(curr)))
 
     if not prepared:
         log.info("No samples for price regression")
-        return None, {}
+        return None, {}, {}
 
     # Map currency name to one-hot index, USD always goes first
     currencies = {
@@ -92,8 +123,13 @@ def train_price_regression(
     y = np.array(targets)
     model = LinearRegression()
     model.fit(X, y)
-    log.info("Trained price model", samples=len(samples), currencies=len(currencies))
-    return model, currencies
+    log.info(
+        "Trained price model",
+        samples=len(samples),
+        currencies=len(currencies),
+        counts=counts,
+    )
+    return model, currencies, counts
 
 
 # ---------------------------------------------------------------------------
@@ -141,13 +177,21 @@ def currency_rates(model: LinearRegression, currencies: Mapping[str, int]) -> di
     return rates
 
 
-def guess_currency(rates: Mapping[str, float], price: float, pred_usd: float) -> str | None:
+def guess_currency(
+    rates: Mapping[str, float],
+    price: float,
+    pred_usd: float,
+    counts: Mapping[str, int] | None = None,
+    min_samples: int = 50,
+) -> str | None:
     """Return currency with multiplier closest to ``price/pred_usd``.
 
     ``pred_usd`` is the predicted price in USD.  ``price`` is the numeric value
     provided by the user without a currency.  The function compares the implied
     multiplier ``price / pred_usd`` against the learnt exchange rates and picks
-    the closest match.
+    the closest match.  ``counts`` may be provided to ignore rarely seen
+    currencies when guessing.  Any currency with fewer than ``min_samples``
+    samples in the training set is skipped.
     """
 
     if not rates or pred_usd <= 0 or not math.isfinite(pred_usd) or price <= 0:
@@ -156,6 +200,8 @@ def guess_currency(rates: Mapping[str, float], price: float, pred_usd: float) ->
     best_cur = None
     best_diff = float("inf")
     for cur, mul in rates.items():
+        if counts and counts.get(cur, 0) < min_samples:
+            continue
         diff = abs(ratio - mul)
         if diff < best_diff:
             best_diff = diff
