@@ -39,6 +39,12 @@ from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
+from price_utils import (
+    train_price_regression,
+    predict_price,
+    currency_rates,
+    guess_currency,
+)
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -179,13 +185,15 @@ def build_page(
         attrs = {
             k: v
             for k, v in lot.items()
-            if k not in {"files"}
+            if k not in {"files", "ai_price"}
             and not k.startswith("title_")
             and not k.startswith("description_")
             and not k.startswith("source:")
             and not k.startswith("_")
             and v not in ("", None)
         }
+        if "price" not in attrs and lot.get("ai_price") is not None:
+            attrs["price"] = lot["ai_price"]
         sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
         for k in attrs:
             if k not in sorted_attrs:
@@ -339,6 +347,14 @@ def main() -> None:
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
     lookup = {lot["_id"]: lot for lot in lots}
 
+    # Train regression model to predict prices from embeddings.  ``rates``
+    # capture implicit exchange multipliers learnt from the training data.
+    log.debug("Training price model")
+    price_model, currency_map = train_price_regression(lots, id_to_vec)
+    rates = currency_rates(price_model, currency_map) if price_model else {}
+    if rates:
+        log.info("Regressed currency rates", rates=rates)
+
     log.info("Computing similar lots", count=len(lots))
 
     _prune_similar(sim_map, lot_keys)
@@ -379,6 +395,23 @@ def main() -> None:
             items = [{"id": other["_id"]} for _, other in scores[:20]]
             more_user_map[lot["_id"]] = items
 
+    for lot in lots:
+        vec = id_to_vec.get(lot["_id"])
+        pred_usd = predict_price(price_model, currency_map, vec, "USD")
+        if pred_usd is not None:
+            # Store predicted USD amount for template fallback
+            lot["ai_price"] = round(pred_usd, 2)
+        if lot.get("price") is not None and lot.get("price:currency") is None:
+            # Attempt to guess missing currency using regressed rates
+            try:
+                price_val = float(lot["price"])
+            except Exception:
+                price_val = None
+            if price_val and pred_usd:
+                guessed = guess_currency(rates, price_val, pred_usd)
+                if guessed:
+                    lot["price:currency"] = guessed
+
     # ``datetime.utcnow`` returns a naive object which breaks comparisons with
     # timezone-aware timestamps coming from lots.  Normalize everything to UTC.
     now = datetime.now(timezone.utc)
@@ -412,7 +445,7 @@ def main() -> None:
                     "id": lot["_id"],
                     "titles": titles,
                     "dt": dt,
-                    "price": lot.get("price"),
+                    "price": lot.get("price") or lot.get("ai_price"),
                     "seller": seller,
                 }
             )
@@ -456,7 +489,7 @@ def main() -> None:
                         ),
                         "title": title,
                         "dt": dt,
-                        "price": lot.get("price"),
+                        "price": lot.get("price") or lot.get("ai_price"),
                         "seller": seller,
                         "id": lot["_id"],
                         "embed": _format_vector(id_to_vec.get(lot["_id"])),
