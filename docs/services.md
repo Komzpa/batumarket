@@ -302,4 +302,7 @@ See [validation.md](validation.md) for the checks performed.
 
 ## Call graph
 The documentation includes a diagram of how functions invoke each other.
-Running `make precommit` regenerates `docs/callgraph.svg` automatically.
+Nodes keep a uniform size: font size scales with function length instead of the
+node dimensions. Entry points are drawn as ovals while regular functions are
+rectangles. Running `make precommit` regenerates `docs/callgraph.svg`
+automatically.
