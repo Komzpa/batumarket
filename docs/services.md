@@ -116,8 +116,8 @@ items for men, women or kids. Ads posted to the wrong chat
 
 ## chop.py
 Feeds the message text plus any media captions to GPT‑4o‑mini first. If the
-model returns more than one lot or an incomplete result the same post is
-reprocessed with GPT‑4o so pictures are matched to the correct lot.
+model returns more than one lot or produces data that `make clean` would delete
+the post is reprocessed with GPT‑4o so pictures are matched to the correct lot.
 `chop.py` marks the start of the original message with `Message text:` so
 the LLM does not confuse it with captions. Each caption is preceded by its
 filename. The script processes a single Markdown file path provided on the

@@ -150,6 +150,62 @@ def test_chop_reruns_for_multiple_lots(tmp_path, monkeypatch):
     assert out.exists()
 
 
+def test_chop_reruns_when_lot_needs_cleanup(tmp_path, monkeypatch):
+    """Mini model output lacking translations triggers the full model."""
+    resp_mini = types.SimpleNamespace(
+        choices=[
+            types.SimpleNamespace(
+                message=types.SimpleNamespace(
+                    content=json.dumps([
+                        {
+                            "title_en": "only",
+                            "description_en": "d"
+                        }
+                    ])
+                )
+            )
+        ]
+    )
+    resp_full = types.SimpleNamespace(
+        choices=[
+            types.SimpleNamespace(
+                message=types.SimpleNamespace(
+                    content=json.dumps([
+                        {
+                            "title_en": "ok",
+                            "description_en": "d",
+                            "title_ru": "ok",
+                            "description_ru": "d",
+                            "title_ka": "ok",
+                            "description_ka": "d"
+                        }
+                    ])
+                )
+            )
+        ]
+    )
+    responses = [resp_mini, resp_full]
+    called = []
+
+    def fake_create(*a, **k):
+        called.append(k.get("model"))
+        return responses.pop(0)
+
+    monkeypatch.setattr(chop.openai.chat.completions, "create", fake_create)
+    monkeypatch.setattr(chop, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(chop, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(chop, "MEDIA_DIR", tmp_path / "media")
+
+    msg = tmp_path / "raw" / "1.md"
+    msg.parent.mkdir(parents=True)
+    msg.write_text("id: 1", encoding="utf-8")
+
+    chop.main([str(msg)])
+
+    assert called == ["gpt-4o-mini", "gpt-4o"]
+    assert (tmp_path / "lots" / "1.json").exists()
+
+
 def test_build_prompt():
     msg = "hello"
     files = ["a.jpg", "b.jpg"]
