@@ -27,20 +27,12 @@ except SystemExit:
 # Phrases that indicate spam or irrelevant posts.  The check is case insensitive
 # so new variations are still caught.
 DEFAULT_BANNED_SUBSTRINGS = [
-    "прошу подпишитесь на канал @flats_in_georgia чтобы я пропускал ваши сообщения в этот чат!",
-    "нарушил допустимую частоту публикации обьявлений и не сможет писать до",
-    "вы используете запрещенное слово",
-    "ищу людей на неполный рабочий день",
-    "ищу людей для легкой работы, оплата хорошая",
     "ищу людей для легкοй рабοты, оплата хорошая",
     "наркотики",
     "кокаин",
     "героин",
     "спайс",
     "mdma",
-    "cтоимость рекламного пакета в нашей группе по тематике",
-    "желающие снять квартиру в лучших, надежных и эффективных группах могут подписаться"
-
 ]
 
 BANNED_SUBSTRINGS = getattr(cfg, "BANNED_SUBSTRINGS", DEFAULT_BANNED_SUBSTRINGS)
@@ -49,22 +41,9 @@ BANNED_SUBSTRINGS = getattr(cfg, "BANNED_SUBSTRINGS", DEFAULT_BANNED_SUBSTRINGS)
 # ignored entirely so we do not waste time downloading captcha images or other
 # irrelevant content.  All names must be lower case for easy comparison.
 DEFAULT_BLACKLISTED_USERS = [
-    "m_s_help_bot",
-    "chatkeeperbot",
-    "dosvidulibot",
-    "batumi_batumi_bot",
-    'ghclone3bot',
     'grouphelpbot',
     'ghclone2bot',
     'ghclone1bot',
-    'ghclone4bot',
-    'ghclone5bot',
-    'ghclone6bot',
-    'ghclone7bot',
-    'chatassist_bot',
-    'verifuma_bot',
-    'razvitiekanala_bot',
-    'aboniment_admin1'
 ]
 
 BLACKLISTED_USERS = [
