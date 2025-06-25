@@ -178,26 +178,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "помощник при переезде",
-      "salary": 6000,
-      "salary:currency": "RUB",
-      "schedule": "3 часа",
-      "title_en": "Moving assistance: organizing items",
-      "description_en": "Looking for help with moving: organizing items in their places. Rate is 6000 RUB for 3 hours.",
-      "title_ru": "Помощь при переезде: вещи по местам",
-      "description_ru": "Ищу помощь при переезде: расстановка вещей по местам. Ставка — 6000₽ за 3 часа.",
-      "title_ka": "მოსახლეობის დახმარება: ნივთების ორგანიზება",
-      "description_ka": "მჭირდება დახმარება გადასვლაში: ნივთების ადგილებზე ორგანიზება. განაკვეთი 6000₾ 3 საათისთვის.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "756400",
-      "source:path": "batumiarendachat/2025/06/756400.md",
-      "timestamp": "2025-06-18T14:40:59+00:00"
-    },
-    "input": "Message text:\nНебольшая помощь при переезде: вещи по местам.\nСтавка — 6000₽ за 3 часа"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "unknown",
       "salary": 400,
       "salary:currency": "USD",
@@ -319,26 +299,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "помощник при переезде",
-      "salary": 6000,
-      "salary:currency": "RUB",
-      "schedule": "3 часа",
-      "title_en": "Moving assistance",
-      "description_en": "Assistance with moving: organizing items in their places. Rate - 6000 RUB for 3 hours.",
-      "title_ru": "Помощь при переезде",
-      "description_ru": "Небольшая помощь при переезде: вещи по местам. Ставка — 6000₽ за 3 часа",
-      "title_ka": "გადმოსვლის დახმარება",
-      "description_ka": "პატარა დახმარება გადმოსვლისას: ნივთების ადგილებზე განთავსება. განაკვეთი - 6000₾ 3 საათისთვის.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "756474",
-      "source:path": "batumiarendachat/2025/06/756474.md",
-      "timestamp": "2025-06-18T16:12:11+00:00"
-    },
-    "input": "Message text:\nНебольшая помощь при переезде: вещи по местам.\nСтавка — 6000₽ за 3 часа"
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "работа на ша6ашкy",
       "salary": 6000,
@@ -377,27 +337,6 @@
       "timestamp": "2025-06-20T23:17:50+00:00"
     },
     "input": "Message text:\nЧеловек на упаковку подарков и сувениров — 4700 ₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "title_en": "Box distribution in storage",
-      "description_en": "Arrange boxes on shelves in the storage room. No load, just distribution. Time - up to 3 hours. Payment - 4700 RUB.",
-      "title_ru": "Расставить коробки по полкам в кладовке",
-      "description_ru": "Расставить коробки по полкам в кладовке. Без груза, просто распределение. Время — до 3 часов. Оплата — 4700₽.",
-      "title_ka": "კორბების განაწილება საწყობში",
-      "description_ka": "კორბების განაწილება საწყობში. გარეშე ტვირთი, მხოლოდ განაწილება. დრო - 3 საათამდე. ანაზღაურება - 4700₾.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "756915",
-      "source:path": "batumiarendachat/2025/06/756915.md",
-      "timestamp": "2025-06-18T18:26:56+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
   },
   {
     "lot": {
@@ -922,23 +861,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job with good pay. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადმოტანისთვის საჭიროა დამხმარეები. ეს არის ერთჯერადი სამუშაო კარგი ანაზღაურებით. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "ფურის გადმოტანისთვის დამხმარეები საჭიროა",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099888",
-      "source:path": "arenda_batumi/2025/06/2099888.md",
-      "timestamp": "2025-06-18T19:40:06+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "подработка",
       "salary": 890,
       "salary:currency": "RUB",
@@ -1071,22 +993,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "description_en": "Car wash is looking for people. We will show and train everything. From 4000 to 8000 per day.",
-      "title_en": "Job offer at car wash",
-      "description_ru": "Автомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс.",
-      "title_ru": "Вакансия на автомойке",
-      "description_ka": "ავტომოიაკა ეძებს ადამიანებს. ყველაფერს გაჩვენებთ და გაწვდით. დღეში 4000-8000.",
-      "title_ka": "ავტომოიაკის ვაკანსია",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099367",
-      "source:path": "arenda_batumi/2025/06/2099367.md",
-      "timestamp": "2025-06-18T17:44:03+00:00"
-    },
-    "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "description_en": "Looking for someone to quickly help move a couple of things in the yard. I will reward with five thousand.",
       "title_en": "Help needed to move items in the yard",
       "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
@@ -1099,22 +1005,6 @@
       "timestamp": "2025-06-19T09:52:20+00:00"
     },
     "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Car wash is looking for people. We will show and train everything. From 4000 to 8000 per day.",
-      "title_en": "Job offer at car wash",
-      "description_ru": "Автомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс.",
-      "title_ru": "Вакансия на автомойке",
-      "description_ka": "ავტომოიაკა ეძებს ადამიანებს. ყველაფერს გაწვდით და გაწვდით. დღეში 4000-8000.",
-      "title_ka": "ავტომოიაკაზე სამუშაო შეთავაზება",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099688",
-      "source:path": "arenda_batumi/2025/06/2099688.md",
-      "timestamp": "2025-06-18T18:46:15+00:00"
-    },
-    "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
   },
   {
     "lot": {
@@ -1352,44 +1242,6 @@
   },
   {
     "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_seek",
-      "occupation": "разные виды работ",
-      "salary": 700,
-      "salary:currency": "RUB",
-      "urgency": "urgent",
-      "title_en": "Urgent: Workers Needed for Various Jobs",
-      "description_en": "Urgently looking for workers for various types of jobs. Payment starts from 700 rubles per hour. Quick start, good conditions. Write and start earning tomorrow.",
-      "title_ru": "Срочно: требуются исполнители на разные виды работ",
-      "description_ru": "Срочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра.",
-      "title_ka": "სწრაფად: სხვადასხვა სამუშაოებისთვის საჭირო არიან მუშები",
-      "description_ka": "სწრაფად საჭიროა მუშები სხვადასხვა სახის სამუშაოებისთვის. ანაზღაურება იწყება 700 რუბლიდან საათში. სწრაფი დაწყება, კარგი პირობები. დაწერეთ და დაიწყეთ ხვალიდან შემოსავლის მიღება.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099626",
-      "source:path": "arenda_batumi/2025/06/2099626.md",
-      "timestamp": "2025-06-18T18:30:39+00:00"
-    },
-    "input": "Message text:\nСрочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job with good pay. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადმოსატანად დახმარება მჭირდება. ეს არის ერთჯერადი სამუშაო კარგი ანაზღაურებით. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "დახმარება საჭიროა ფურის გადმოსატანად",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2098393",
-      "source:path": "arenda_batumi/2025/06/2098393.md",
-      "timestamp": "2025-06-18T14:38:20+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
@@ -1456,40 +1308,6 @@
       "timestamp": "2025-06-24T07:44:48+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job with good pay. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადატანისთვის დახმარება მჭირდება. ეს არის ერთჯერადი სამუშაო კარგი ანაზღაურებით. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "დახმარება საჭირო ფურის გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2100008",
-      "source:path": "arenda_batumi/2025/06/2100008.md",
-      "timestamp": "2025-06-18T20:41:27+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job, and the pay is good. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადმოსატანად დახმარება მჭირდება. ეს არის ერთჯერადი სამუშაო, და ანაზღაურება კარგია. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "დახმარება საჭიროა ფურის გადმოსატანად",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2098937",
-      "source:path": "arenda_batumi/2025/06/2098937.md",
-      "timestamp": "2025-06-18T16:08:26+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
   },
   {
     "lot": {
@@ -2152,27 +1970,6 @@
   },
   {
     "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_seek",
-      "occupation": "разные виды работ",
-      "salary": 700,
-      "salary:currency": "RUB",
-      "urgency": "urgent",
-      "title_en": "Urgently needed performers for various types of work",
-      "description_en": "Urgently needed performers for various types of work. Payment from 700 rubles per hour. Quick start, good conditions. Write and start earning tomorrow.",
-      "title_ru": "Срочно требуются исполнители на разные виды работ",
-      "description_ru": "Срочно требуются исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра.",
-      "title_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე",
-      "description_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე. ანაზღაურება საათში 700 რუბლიდან. სწრაფი დაწყება, კარგი პირობები. დაწერეთ და დაიწყეთ ხვალიდან შემოსავლის მიღება.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099306",
-      "source:path": "arenda_batumi/2025/06/2099306.md",
-      "timestamp": "2025-06-18T17:28:13+00:00"
-    },
-    "input": "Message text:\nСрочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
@@ -2664,23 +2461,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job, and the pay is good. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადმოსატანად საჭიროა დამხმარეები. ეს არის ერთჯერადი სამუშაო, და ანაზღაურება კარგია. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "დამხმარეები საჭიროა ფურის გადმოსატანად",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099245",
-      "source:path": "arenda_batumi/2025/06/2099245.md",
-      "timestamp": "2025-06-18T17:09:30+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
@@ -3060,23 +2840,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "разгрузка фуры",
-      "description_en": "Need helpers to unload a truck with items for an orphanage. This is a one-time job with good pay. Message me for details.",
-      "description_ru": "Нужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями.",
-      "description_ka": "ბავშვთა სახლისთვის ნივთების გადმოტანისთვის საჭიროა დამხმარეები. ეს არის ერთჯერადი სამუშაო კარგი ანაზღაურებით. მომწერეთ დეტალებისთვის.",
-      "title_en": "Helpers needed for unloading truck",
-      "title_ru": "Нужны помощники для разгрузки фуры",
-      "title_ka": "დამხმარეები საჭიროა ფურის გადმოტანისთვის",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099668",
-      "source:path": "arenda_batumi/2025/06/2099668.md",
-      "timestamp": "2025-06-18T18:40:03+00:00"
-    },
-    "input": "Message text:\nНужны помощники для разгрузки фуры с вещами для детского дома. Работа одноразовая, оплата хорошая. Пишите в личку, буду рад помочь с деталями."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
       "title_en": "Job offer for partnership with training",
       "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
@@ -3151,6 +2914,30 @@
   },
   {
     "lot": {
+      "market:deal": "job_offer",
+      "occupation": "фрилансер",
+      "salary": 65,
+      "salary:currency": "EUR",
+      "schedule": "утро (10:00–15:00)",
+      "remote": "yes",
+      "contact:telegram": "@username",
+      "title_en": "Remote work for freelancers on Binance",
+      "description_en": "Remote work on Binance for freelancers from the CIS and Europe! No experience? No problem - we will train from scratch. All work is done from a phone - you can work from anywhere. Two shifts available: Morning (10:00–15:00) - up to 65€ per day Evening (15:00–19:00) - up to 50€ per day. Write '+' in private messages - I will tell you everything in detail.",
+      "title_ru": "Удалённая работа на Binance для фрилансеров",
+      "description_ru": "Удалённая работа на Binance для фрилансеров из СНГ и Европы! Без опыта? Не проблема — обучим с нуля. Вся работа выполняется с телефона — можно работать из любой точки. Доступны две смены на выбор: Утро (10:00–15:00) — до 65€ в день Вечер (15:00–19:00) — до 50€ в день. Пиши «+» в личку — расскажу всё подробно.",
+      "title_ka": "ბინანსზე ფრეილანსერებისათვის შორიდან მუშაობა",
+      "description_ka": "ბინანსზე ფრეილანსერებისათვის შორიდან მუშაობა სსრკ-სა და ევროპის ქვეყნებიდან! გამოცდილება არ გაქვთ? პრობლემა არაა - ჩვენ გაწვდით ყველაფერს თავიდან. მთელი სამუშაო ტელეფონით კეთდება - შეგიძლიათ მუშაობა ნებისმიერი ადგილიდან. ხელმისაწვდომია ორი ცვლა: დილა (10:00–15:00) - დღეში 65€ მდე საღამო (15:00–19:00) - დღეში 50€ მდე. დაწერეთ '+' პირადში - ყველაფერს დეტალურად გეტყვით.",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2134086",
+      "source:path": "arenda_batumi/2025/06/2134086.md",
+      "source:author:telegram": "VladKripl",
+      "source:author:name": "Владислав",
+      "timestamp": "2025-06-25T18:06:22+00:00"
+    },
+    "input": "Message text:\n**Удалённая** работа на Binance для фрилансеров из СНГ и Европы!\n\nБез опыта? Не проблема — обучим с нуля.\nВся работа выполняется с телефона — можно работать из любой точки.\nДоступны две смены на выбор:\nУтро (10:00–15:00) — до 65€ в день\nВечер (15:00–19:00) — до 50€ в день\n\nПиши «+» в личку — расскажу всё подробно."
+  },
+  {
+    "lot": {
       "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
@@ -3171,22 +2958,6 @@
       "timestamp": "2025-06-24T10:55:30+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Car wash is looking for people. We will show and train everything. From 4000 to 8000 per day.",
-      "title_en": "Job offer at car wash",
-      "description_ru": "Автомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс.",
-      "title_ru": "Вакансия на автомойке",
-      "description_ka": "ავტომოიაკა ეძებს ადამიანებს. ყველაფერს გაწვდით და გაწვდით. დღეში 4000-8000.",
-      "title_ka": "ავტომოიაკაზე სამუშაო შეთავაზება",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2099011",
-      "source:path": "arenda_batumi/2025/06/2099011.md",
-      "timestamp": "2025-06-18T16:18:06+00:00"
-    },
-    "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
   },
   {
     "lot": {
@@ -3288,185 +3059,5 @@
       "timestamp": "2025-06-24T12:31:12+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning job",
-      "description_en": "Looking for people to clean a garage tomorrow. Contact me.",
-      "title_ru": "Работа по уборке гаража",
-      "description_ru": "Нужны люди для уборки гаража завтра. Пишите мне.",
-      "title_ka": "გარაჟის გაწმენდის სამუშაო",
-      "description_ka": "მჭირდება ადამიანები გარაჟის გასაწმენდად ხვალ. მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "619862",
-      "source:path": "domikibatumi/2025/06/619862.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T17:06:39+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "Looking for people to help clean a garage tomorrow. Contact me.",
-      "title_ru": "Нужна помощь по уборке гаража",
-      "description_ru": "Ищу людей, чтобы помочь убрать гараж завтра. Пишите мне.",
-      "title_ka": "გარაჟის გაწმენდის დახმარება საჭიროა",
-      "description_ka": "მჭირდება ადამიანები, რომ ხვალ გარაჟი გაწმინდონ. მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "619970",
-      "source:path": "domikibatumi/2025/06/619970.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T17:54:05+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "Looking for people to help clean a garage tomorrow. Contact me.",
-      "title_ru": "Нужна помощь с уборкой гаража",
-      "description_ru": "Ищу людей, чтобы помочь убрать гараж завтра. Пишите мне.",
-      "title_ka": "გარაჟის გაწმენდის დახმარება საჭიროა",
-      "description_ka": "მჭირდება ადამიანები, რომ ხვალ გარაჟი გაწმინდონ. მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "620252",
-      "source:path": "domikibatumi/2025/06/620252.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T19:54:32+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning job",
-      "description_en": "Need people for garage cleaning tomorrow, message me.",
-      "title_ru": "Работа по уборке гаража",
-      "description_ru": "Надо мне люди на завтра, убрать гараж, пишите мне.",
-      "title_ka": "გარაჟის გაწმენდის სამუშაო",
-      "description_ka": "მჭირდება ადამიანები გუშინ, გთხოვთ მომწეროთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "620089",
-      "source:path": "domikibatumi/2025/06/620089.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T19:00:17+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "I need people to help clean the garage tomorrow, message me.",
-      "title_ru": "Нужна помощь по уборке гаража",
-      "description_ru": "Мне нужны люди, чтобы помочь убрать гараж завтра, пишите мне.",
-      "title_ka": "გარაჟის დასუფთავების დახმარება საჭიროა",
-      "description_ka": "მჭირდება ადამიანები, რომ ხვალ გარაჟი დაასუფთავონ, მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "620014",
-      "source:path": "domikibatumi/2025/06/620014.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T18:19:32+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "I need people for tomorrow to clean the garage, message me.",
-      "title_ru": "Нужны люди для уборки гаража",
-      "description_ru": "Надо мне люди на завтра, убрать гараж, писать мне.",
-      "title_ka": "მჭირდება ადამიანები ავტოფარეხის დასასუფთავებლად",
-      "description_ka": "მჭირდება ადამიანები ხვალ ავტოფარეხის დასასუფთავებლად, მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "619991",
-      "source:path": "domikibatumi/2025/06/619991.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T18:04:14+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning job",
-      "description_en": "Looking for people to clean a garage tomorrow. Contact me.",
-      "title_ru": "Работа по уборке гаража",
-      "description_ru": "Нужны люди для уборки гаража завтра. Пишите мне.",
-      "title_ka": "გარაჟის დასუფთავების სამუშაო",
-      "description_ka": "მჭირდება ადამიანები გარაჟის დასასუფთავებლად ხვალ. მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "619883",
-      "source:path": "domikibatumi/2025/06/619883.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T17:14:42+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "I need people to help clean the garage tomorrow, message me.",
-      "title_ru": "Нужна помощь с уборкой гаража",
-      "description_ru": "Мне нужны люди, чтобы помочь убрать гараж завтра, пишите мне.",
-      "title_ka": "გარაჟის გაწმენდაში დახმარება მჭირდება",
-      "description_ka": "მჭირდება ადამიანები, რომ მეხმარონ გარაჟის გაწმენდაში ხვალ, მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "619906",
-      "source:path": "domikibatumi/2025/06/619906.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T17:23:31+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "уборка гаража",
-      "contact:telegram": "@username",
-      "title_en": "Garage cleaning help needed",
-      "description_en": "Looking for people to help clean a garage tomorrow. Contact me.",
-      "title_ru": "Нужна помощь с уборкой гаража",
-      "description_ru": "Ищу людей, чтобы помочь убрать гараж завтра. Пишите мне.",
-      "title_ka": "გარაჟის გაწმენდაში დახმარება მჭირდება",
-      "description_ka": "მჭირდება ადამიანები, რომ ხვალ გარაჟი გაწმინდონ. მომწერეთ.",
-      "source:chat": "domikibatumi",
-      "source:message_id": "620003",
-      "source:path": "domikibatumi/2025/06/620003.md",
-      "source:author:telegram": "NoI1ERdW2bfBLb",
-      "source:author:name": "Оксана Роговая",
-      "timestamp": "2025-06-24T18:14:49+00:00"
-    },
-    "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
   }
 ]
