@@ -22,9 +22,9 @@
   </thead>
   <tbody>
   {% for lot in items %}
-    <tr data-id="{{ lot.id }}" data-embed="{{ lot.embed | default('null') | safe }}" data-price="{{ lot.price or '' }}">
+    <tr data-id="{{ lot.id }}" data-embed="{{ lot.embed | default('null') | safe }}" data-price="{{ lot.price or lot.ai_price or '' }}">
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
-      <td>{{ lot.price or '' }}</td>
+      <td>{{ lot.price or lot.ai_price or '' }}</td>
       <td>{{ lot.seller or '' }}</td>
       <td{% if lot.dt %} data-raw="{{ lot.dt.isoformat() }}"{% endif %}>{{ lot.dt.strftime('%Y-%m-%d %H:%M') if lot.dt else '' }}</td>
     </tr>

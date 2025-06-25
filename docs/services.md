@@ -174,7 +174,12 @@ Code handling embedding loading and recommendation caching resides in
 `src/similar_utils.py` to keep `build_site.py` concise.  Titles and thumbnails
 are resolved from the lot JSON when pages are rendered so each language shows
 the correct translation. Lots without embeddings are skipped entirely during
-rendering.
+rendering. A regression model (see ``src/price_utils.py``) derives ``ai_price``
+in USD from embeddings when the ``price`` field is missing. Currency
+multipliers are learnt from existing data so that effective exchange rates can
+be logged. When a post has a numeric price but no currency the closest
+multiplier is used to guess the currency. Pages fall back to the predicted
+amount when no explicit price is available.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of

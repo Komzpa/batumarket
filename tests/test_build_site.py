@@ -821,3 +821,51 @@ def test_similar_titles_use_language(tmp_path, monkeypatch):
     html_ru = (tmp_path / "views" / "1-0_ru.html").read_text()
     assert "world" in html_en
     assert "мир" in html_ru
+
+
+
+def test_ai_price_fallback(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "vecs").mkdir()
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+    (lots_dir / "1.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "ref", "description_en": "d",
+                "title_ru": "ref", "description_ru": "d",
+                "title_ka": "ref", "description_ka": "d",
+                "files": [], "market:deal": "sell_item",
+                "price": 100, "price:currency": "USD"
+            },
+            {
+                "timestamp": now,
+                "title_en": "pred", "description_en": "d",
+                "title_ru": "pred", "description_ru": "d",
+                "title_ka": "pred", "description_ka": "d",
+                "files": [], "market:deal": "sell_item",
+                "price:currency": "USD"
+            }
+        ])
+    )
+    (tmp_path / "vecs" / "1.json").write_text(
+        json.dumps([
+            {"id": "1-0", "vec": [1.0, 0.0]},
+            {"id": "1-1", "vec": [1.0, 0.0]}
+        ])
+    )
+
+    build_site.main()
+
+    cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
+    assert cat_html.count("100") >= 2
