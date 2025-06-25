@@ -134,6 +134,7 @@ def enqueue_new_ids(ids: list[str]) -> None:
 
 
 async def _send_queue(app) -> None:
+    """Send next lot from each user queue via ``app``."""
     for uid, prof in profiles.items():
         queue = prof.get("queue") or []
         if not queue:
@@ -182,6 +183,7 @@ async def send_alert(text: str) -> None:
 
 
 async def start_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Register the user and confirm startup."""
     uid = str(update.effective_user.id)
     prof = ensure_profile(uid)
     lang = prof.get("lang", cfg.LANGS[0])
@@ -189,6 +191,7 @@ async def start_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def lang_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Set preferred language or list available choices."""
     uid = str(update.effective_user.id)
     prof = ensure_profile(uid)
     if not context.args:
@@ -206,6 +209,7 @@ async def lang_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 
 
 async def vote_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Handle inline button presses for lot feedback."""
     if not update.callback_query:
         return
     uid = str(update.effective_user.id)
@@ -225,6 +229,7 @@ async def vote_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
 
 
 async def main() -> None:
+    """Run the Telegram recommendation bot."""
     load_profiles()
     load_state()
     scan_embeddings()

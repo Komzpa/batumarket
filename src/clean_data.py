@@ -37,6 +37,7 @@ def _parse_date(md: Path) -> datetime | None:
 
 
 def _clean_raw(cutoff: datetime) -> None:
+    """Delete raw posts older than ``cutoff``."""
     count = 0
     if not RAW_DIR.exists():
         return
@@ -51,6 +52,7 @@ def _clean_raw(cutoff: datetime) -> None:
 
 
 def _clean_media(cutoff: datetime) -> None:
+    """Remove unused media files older than ``cutoff``."""
     count = 0
     if not MEDIA_DIR.exists():
         return
@@ -69,6 +71,7 @@ def _clean_media(cutoff: datetime) -> None:
 
 
 def _clean_lots() -> None:
+    """Drop lots missing translations or source posts."""
     count = 0
     if not LOTS_DIR.exists():
         return
@@ -124,6 +127,7 @@ def _remove_empty_dirs(root: Path) -> None:
 
 
 def main() -> None:
+    """Clean up old or inconsistent files across data directories."""
     cutoff = datetime.now(timezone.utc) - timedelta(days=KEEP_DAYS)
     _clean_raw(cutoff)
     _clean_media(cutoff)

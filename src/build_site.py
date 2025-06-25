@@ -57,6 +57,7 @@ MEDIA_DIR = Path("data/media")
 
 
 def _load_ontology() -> list[str]:
+    """Return sorted field list from ``ONTOLOGY`` or empty list when missing."""
     if not ONTOLOGY.exists():
         return []
     data = load_json(ONTOLOGY)
@@ -69,6 +70,7 @@ def _load_ontology() -> list[str]:
 
 
 def _compile_locale(lang: str) -> None:
+    """Compile ``lang`` gettext catalogue when out of date."""
     po = LOCALE_DIR / lang / 'LC_MESSAGES' / 'messages.po'
     mo = po.with_suffix('.mo')
     if not po.exists():
@@ -82,6 +84,7 @@ def _compile_locale(lang: str) -> None:
 
 
 def _env_for_lang(lang: str) -> Environment:
+    """Return Jinja environment configured for ``lang``."""
     _compile_locale(lang)
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES)),
@@ -147,6 +150,7 @@ def _iter_lots() -> list[dict]:
 
 
 def _copy_images(lots: list[dict]) -> None:
+    """Copy media referenced by ``lots`` into ``VIEWS_DIR``."""
     media_dst = VIEWS_DIR / "media"
     if media_dst.exists():
         shutil.rmtree(media_dst)
@@ -242,6 +246,7 @@ def _render_site(
     categories: dict[str, list[dict]],
     category_stats: dict[str, dict],
 ) -> None:
+    """Render all HTML pages for ``lots`` using cached templates."""
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
         build_page(
@@ -483,6 +488,7 @@ def build_page(
 
 
 def main() -> None:
+    """Build the static site under ``VIEWS_DIR``."""
     log.info("Building site")
     cfg = load_config()
     langs = getattr(cfg, "LANGS", ["en"])

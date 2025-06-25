@@ -258,6 +258,7 @@ def moderation_summary(lot_id: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> None:
+    """Collect log and data files related to a single lot."""
     parser = argparse.ArgumentParser(description="Dump debug info for a lot")
     parser.add_argument("url", help="link to the lot page")
     parser.add_argument(

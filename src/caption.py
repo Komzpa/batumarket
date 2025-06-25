@@ -154,6 +154,7 @@ def caption_file(path: Path) -> str:
 
 
 def main() -> None:
+    """Caption a single image provided on the command line."""
     parser = argparse.ArgumentParser(description="Caption an image")
     parser.add_argument("image", help="Path to the image file")
     args = parser.parse_args()
