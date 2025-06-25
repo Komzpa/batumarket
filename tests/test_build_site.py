@@ -960,3 +960,33 @@ def test_category_stats_with_centroid(tmp_path):
     assert stat["price_max"] == 100
     assert stat["last_dt"] == now
     assert stat["centroid"] == [1.0, 0.0]
+
+
+def test_recent_user_count():
+    from datetime import datetime, timedelta, timezone
+
+    now = datetime.now(timezone.utc)
+    recent_ts = (now - timedelta(days=1)).isoformat()
+    old_ts = (now - timedelta(days=8)).isoformat()
+
+    lots = [
+        {
+            "_id": "1",
+            "timestamp": recent_ts,
+            "market:deal": "sell_item",
+            "contact:telegram": "alice",
+        },
+        {
+            "_id": "2",
+            "timestamp": old_ts,
+            "market:deal": "sell_item",
+            "contact:telegram": "bob",
+        },
+    ]
+
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {})
+    assert "sell_item" in cats
+    stat = stats["sell_item"]
+    assert stat["recent"] == 1
+    assert len(stat["recent_users"]) == 1
+    assert len(stat["users"]) == 2
