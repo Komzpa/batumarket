@@ -7,7 +7,9 @@ import os
 from graphviz import Digraph
 
 # Collect function definitions across modules.
-func_defs: dict[str, ast.FunctionDef] = {}
+# ``AsyncFunctionDef`` nodes were previously ignored which meant ``tg_client``
+# functions like ``main`` did not appear in the diagram.
+func_defs: dict[str, ast.AST] = {}
 by_name: dict[str, set[str]] = {}
 docstrings: dict[str, str] = {}
 entrypoints: dict[str, list[ast.stmt]] = {}
@@ -18,7 +20,7 @@ for path in glob.glob("src/*.py"):
         tree = ast.parse(f.read(), filename=path)
 
     for node in tree.body:
-        if isinstance(node, ast.FunctionDef):
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             qname = f"{module}.{node.name}"
             func_defs[qname] = node
             by_name.setdefault(node.name, set()).add(qname)
