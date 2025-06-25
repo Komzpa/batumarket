@@ -59,7 +59,6 @@ clean: ## Delete all temporary files
 	python src/clean_data.py
 
 install-dependencies: ## Install system packages used in tests
-	@sudo apt-get update
 	@sudo apt-get install -y \
 	python3-openai \
 	python3-python-telegram-bot \
@@ -79,5 +78,5 @@ test: install-dependencies ## Run unit tests with coverage
 
 # Build project call graph at function level.
 callgraph: ## Generate call graph diagram
-	python scripts/function_callgraph.py > docs/callgraph.dot
+	python scripts/function_callgraph.py | unflatten -l 3 -f -c 6 > docs/callgraph.dot
 	dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg
