@@ -45,6 +45,9 @@ LANGS = ["en", "ru", "ka"]
 # How many days of history to keep on disk
 KEEP_DAYS = 7
 
+# Preferred currency for price display.
+DISPLAY_CURRENCY = "USD"
+
 # Default log verbosity. Use "DEBUG", "INFO" or "ERROR".
 LOG_LEVEL = "INFO"
 

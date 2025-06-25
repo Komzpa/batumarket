@@ -17,6 +17,7 @@ import lot_io
 class DummyCfg:
     LANGS = ["en"]
     KEEP_DAYS = 7
+    DISPLAY_CURRENCY = "USD"
 
 
 @pytest.fixture(autouse=True)
