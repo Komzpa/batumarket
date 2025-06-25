@@ -85,9 +85,7 @@ for qname in all_defs:
         qname,
         shape=shape,
         tooltip=docstrings.get(qname, ""),
-        width=str(scale),
-        height=str(scale),
-        fixedsize="true",
+        fontsize=str(round(14 * scale, 2)),
     )
 
 for src, dst in sorted(edges):
