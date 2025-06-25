@@ -7,7 +7,7 @@ from typing import Iterable
 from datetime import datetime, timezone
 
 from log_utils import get_logger
-from serde_utils import load_json, write_json
+from notes_utils import load_json, write_json
 
 LOTS_DIR = Path("data/lots")
 EMBED_DIR = Path("data/embeddings")

@@ -12,7 +12,7 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
 from token_utils import estimate_tokens
-from serde_utils import write_json
+from notes_utils import write_json
 from lot_io import read_lots, make_lot_id
 import json
 

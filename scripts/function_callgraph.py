@@ -14,7 +14,7 @@ by_name: dict[str, set[str]] = {}
 docstrings: dict[str, str] = {}
 entrypoints: dict[str, list[ast.stmt]] = {}
 
-for path in glob.glob("src/*.py"):
+for path in glob.glob("src/*.py") + glob.glob("scripts/*.py"):
     module = os.path.splitext(os.path.basename(path))[0]
     with open(path, "r", encoding="utf-8") as f:
         tree = ast.parse(f.read(), filename=path)

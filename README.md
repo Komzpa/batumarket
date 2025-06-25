@@ -38,5 +38,6 @@ site without additional commands.
 
 Domain specific helpers like `src/post_io.py`, `src/lot_io.py` and
 `src/caption_io.py` provide validated loading and saving of posts,
-lots and captions.  They build on `src/serde_utils.py` so every stage
-creates directories automatically and logs parsing errors once.
+lots and captions.  They share small helpers from
+`src/notes_utils.py` so every stage creates directories automatically
+and logs parsing errors once.

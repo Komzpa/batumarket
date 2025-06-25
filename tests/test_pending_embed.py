@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import pending_embed
-from serde_utils import load_json
+from notes_utils import load_json
 
 
 def test_upgrade_legacy_format(tmp_path, monkeypatch, capsys):

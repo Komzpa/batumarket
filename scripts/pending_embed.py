@@ -13,7 +13,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from lot_io import read_lots, embedding_path, iter_lot_files
-from serde_utils import load_json, write_json
+from notes_utils import load_json, write_json
 from log_utils import get_logger
 from moderation import message_skip_reason, lot_skip_reason
 from post_io import read_post, raw_post_path_from_lot

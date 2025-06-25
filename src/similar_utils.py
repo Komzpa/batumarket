@@ -7,7 +7,7 @@ from pathlib import Path
 
 import progressbar
 
-from serde_utils import load_json, write_json
+from notes_utils import load_json, write_json
 from sklearn.neighbors import NearestNeighbors
 
 from lot_io import LOTS_DIR, EMBED_DIR, lot_json_path

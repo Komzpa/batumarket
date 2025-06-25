@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from serde_utils import write_md, parse_md
+from notes_utils import write_md, parse_md
 from log_utils import get_logger
 
 log = get_logger().bind(module=__name__)
