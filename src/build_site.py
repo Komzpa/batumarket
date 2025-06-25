@@ -246,6 +246,7 @@ def _categorise(
             {
                 "recent": 0,
                 "users": set(),
+                "recent_users": set(),
                 "prices": [],
                 "times": [],
                 "vecsum": None,
@@ -263,6 +264,8 @@ def _categorise(
             user = user[0] if user else None
         if user:
             stat["users"].add(str(user))
+            if dt and dt >= recent_cutoff:
+                stat["recent_users"].add(str(user))
         price = lot.get("_display_value")
         if price not in ("", None):
             try:
@@ -431,7 +434,7 @@ def _render_site(
                     "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),
                     "deal": deal,
                     "recent": stat["recent"],
-                    "users": len(stat["users"]),
+                    "users": len(stat.get("recent_users", set())),
                 }
             )
         out = VIEWS_DIR / f"index_{lang}.html"
