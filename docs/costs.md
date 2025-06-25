@@ -15,7 +15,7 @@ Each image is sent to GPT‑4o with a short prompt. A single 1080 × 1080 ph
 **Captioning total:** ~$2.1 per day.
 
 ## Chopping Posts
-`chop.py` uses GPT‑4o‑mini to split messages into lots with a fallback to GPT‑4o when the result is incomplete. The message text plus image captions add up to roughly 850k input tokens per day. The JSON output is about 100k tokens.
+`chop.py` uses GPT‑4o‑mini to split messages into lots with a fallback to GPT‑4o when the result is incomplete or would be discarded during cleanup. The message text plus image captions add up to roughly 850k input tokens per day. The JSON output is about 100k tokens.
 
 - **Input**: `850k / 1M × $5 ≈ $4.25`
 - **Output**: `100k / 1M × $15 ≈ $1.50`

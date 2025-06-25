@@ -28,7 +28,7 @@ CHOP_MODELS = getattr(
 from log_utils import get_logger, install_excepthook
 from caption_io import read_caption, has_caption
 from post_io import read_post, raw_post_path, RAW_DIR
-from lot_io import valid_lots
+from lot_io import valid_lots, needs_cleanup
 from message_utils import build_prompt
 import embed
 
@@ -166,14 +166,14 @@ def process_message(msg_path: Path) -> None:
             lots = lots_data
         if valid_lots(lots):
             log.info("Model succeeded", model=params)
-            if idx == 0 and params.get("model") == "gpt-4o-mini" and len(lots) > 1 and len(CHOP_MODELS) > 1:
-                log.info(
-                    "Mini model returned multiple lots, reprocessing",
-                    count=len(lots),
-                )
-                mini_lots = lots
-                lots = None
-                continue
+            if idx == 0 and params.get("model") == "gpt-4o-mini" and len(CHOP_MODELS) > 1:
+                if len(lots) > 1 or needs_cleanup(lots):
+                    log.info(
+                        "Mini model result needs full model", count=len(lots)
+                    )
+                    mini_lots = lots
+                    lots = None
+                    continue
             break
         log.info("Invalid result", model=params)
         lots = None

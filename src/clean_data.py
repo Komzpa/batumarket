@@ -9,7 +9,7 @@ from datetime import datetime, timedelta, timezone
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
-from lot_io import read_lots, TRANSLATION_FIELDS
+from lot_io import read_lots, needs_cleanup
 from post_io import raw_post_path, RAW_DIR
 from caption_io import has_caption
 
@@ -77,11 +77,9 @@ def _clean_lots() -> None:
         if not items:
             log.warning("Bad lot file", file=str(path))
             continue
-        missing = any(not lot.get(f) for lot in items for f in TRANSLATION_FIELDS)
-        flagged = any(l.get("fraud") is not None for l in items)
         # Keep lots flagged as fraud even when translations are missing so
         # potential scams remain available for manual review.
-        if missing and not flagged:
+        if needs_cleanup(items):
             path.unlink()
             log.info("Deleted lot", file=str(path), reason="missing translations")
             count += 1

@@ -56,6 +56,13 @@ def valid_lots(lots: list[dict] | None) -> bool:
     return True
 
 
+def needs_cleanup(lots: list[dict]) -> bool:
+    """Return ``True`` when ``clean_data`` would drop ``lots``."""
+    missing = any(not lot.get(f) for lot in lots for f in TRANSLATION_FIELDS)
+    flagged = any(lot.get("fraud") is not None for lot in lots)
+    return missing and not flagged
+
+
 def get_seller(lot: dict) -> str | None:
     """Return the seller identifier or ``None`` when missing."""
     for key in SELLER_FIELDS:
