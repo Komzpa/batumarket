@@ -2,7 +2,7 @@
 
 # Define pipeline stages explicitly so ``make -j compose`` executes them in the
 # correct order.  Each stage runs only after its dependency completes.
-.PHONY: compose update pull removed caption chop embed build alert ontology clean precommit debugdump
+.PHONY: compose update pull removed caption chop embed build alert ontology clean precommit debugdump callgraph install-dependencies
 
 all: clean build deploy removed ## Clean, build, deploy and prune removed posts
 
@@ -58,9 +58,26 @@ debugdump: ## Dump logs for a single lot
 clean: ## Delete all temporary files
 	python src/clean_data.py
 
-precommit: ## Run pre-commit checks
+install-dependencies: ## Install system packages used in tests
+	@sudo apt-get update
+	@sudo apt-get install -y \
+	python3-openai \
+	python3-python-telegram-bot \
+	python3-jinja2 \
+	python3-structlog python3-telethon \
+	python3-sklearn python3-progressbar2 \
+	python3-html5lib \
+	python3-pytest python3-pytest-cov \
+	python3-graphviz graphviz gettext
+
+precommit: callgraph ## Run pre-commit checks
 	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
 	python scripts/check_translations.py
 
-test: ## Run unit tests with coverage
+test: install-dependencies ## Run unit tests with coverage
 	pytest --cov=src --cov-report=term-missing
+
+# Build project call graph at function level.
+callgraph: ## Generate call graph diagram
+	python scripts/function_callgraph.py > docs/callgraph.dot
+	dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg

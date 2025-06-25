@@ -296,3 +296,7 @@ alias for older instructions.
 Pipeline stages rely on the previous step's output.
 Each stage now checks that required files are present so the pipeline fails early.
 See [validation.md](validation.md) for the checks performed.
+
+## Call graph
+The documentation includes a diagram of how functions invoke each other.
+Running `make precommit` regenerates `docs/callgraph.svg` automatically.

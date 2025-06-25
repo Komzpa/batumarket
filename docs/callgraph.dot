@@ -1,0 +1,329 @@
+digraph callgraph {
+	"image_io.read_image_meta" [shape=box]
+	"image_io.write_image_meta" [shape=box]
+	"caption_io._get_langs" [shape=box]
+	"caption_io.caption_json_path" [shape=box]
+	"caption_io.caption_md_path" [shape=box]
+	"caption_io.has_caption" [shape=box]
+	"caption_io.read_caption" [shape=box]
+	"caption_io.write_caption" [shape=box]
+	"similar_utils._load_embeddings" [shape=box]
+	"similar_utils._cos_sim" [shape=box]
+	"similar_utils._format_vector" [shape=box]
+	"similar_utils._similar_path" [shape=box]
+	"similar_utils._load_similar" [shape=box]
+	"similar_utils._save_similar" [shape=box]
+	"similar_utils._update_reciprocal" [shape=box]
+	"similar_utils._prune_similar" [shape=box]
+	"similar_utils._calc_similar_nn" [shape=box]
+	"serde_utils.read_text" [shape=box]
+	"serde_utils.read_md" [shape=box]
+	"serde_utils.write_md" [shape=box]
+	"serde_utils.parse_md" [shape=box]
+	"serde_utils.load_json" [shape=box]
+	"serde_utils.write_json" [shape=box]
+	"post_io._parse_block" [shape=box]
+	"post_io.get_contact" [shape=box]
+	"post_io.get_timestamp" [shape=box]
+	"post_io.read_post" [shape=box]
+	"post_io.write_post" [shape=box]
+	"post_io.raw_post_path" [shape=box]
+	"post_io.raw_post_path_from_lot" [shape=box]
+	"moderation.should_skip_text" [shape=box]
+	"moderation.should_skip_user" [shape=box]
+	"moderation.message_skip_reason" [shape=box]
+	"moderation.should_skip_message" [shape=box]
+	"moderation.lot_skip_reason" [shape=box]
+	"moderation.should_skip_lot" [shape=box]
+	"moderation.apply_to_history" [shape=box]
+	"chop.process_message" [shape=box]
+	"chop.main" [shape=box]
+	"token_utils.estimate_tokens" [shape=box]
+	"scan_ontology._is_misparsed" [shape=box]
+	"scan_ontology.collect_ontology" [shape=box]
+	"scan_ontology.main" [shape=box]
+	"caption._identify_size" [shape=box]
+	"caption._prepare_image" [shape=box]
+	"caption._guess_chat" [shape=box]
+	"caption.caption_file" [shape=box]
+	"caption.main" [shape=box]
+	"config_utils.load_config" [shape=box]
+	"telegram_bot._t" [shape=box]
+	"telegram_bot.ensure_profile" [shape=box]
+	"telegram_bot.load_profiles" [shape=box]
+	"telegram_bot.save_profiles" [shape=box]
+	"telegram_bot.load_state" [shape=box]
+	"telegram_bot.save_state" [shape=box]
+	"telegram_bot.scan_embeddings" [shape=box]
+	"telegram_bot._should_suggest" [shape=box]
+	"telegram_bot.enqueue_new_ids" [shape=box]
+	"notes_utils.collect_notes" [shape=box]
+	"build_site._load_ontology" [shape=box]
+	"build_site._compile_locale" [shape=box]
+	"build_site._env_for_lang" [shape=box]
+	"build_site._iter_lots" [shape=box]
+	"build_site._copy_images" [shape=box]
+	"build_site.build_page" [shape=box]
+	"build_site.main" [shape=box]
+	"embed.embed_file" [shape=box]
+	"embed.main" [shape=box]
+	"tg_client._mark_activity" [shape=box]
+	"tg_client._progress_logger" [shape=box]
+	"tg_client._write_md" [shape=box]
+	"tg_client._scan_group_cache" [shape=box]
+	"tg_client._find_group_path" [shape=box]
+	"tg_client._get_message_path" [shape=box]
+	"tg_client._should_skip_media" [shape=box]
+	"tg_client._allowed_topic" [shape=box]
+	"tg_client._schedule_caption" [shape=box]
+	"tg_client._schedule_chop" [shape=box]
+	"tg_client._enqueue_chop" [shape=box]
+	"tg_client._start_chop_worker" [shape=box]
+	"tg_client._process_chop_queue" [shape=box]
+	"tg_client._get_id_date" [shape=box]
+	"tg_client._load_progress" [shape=box]
+	"tg_client._save_progress" [shape=box]
+	"tg_client.get_first_id" [shape=box]
+	"tg_client.get_last_id" [shape=box]
+	"tg_client._remove_local_message" [shape=box]
+	"log_utils._extract_tb_lineno" [shape=box]
+	"log_utils._add_exc_line" [shape=box]
+	"log_utils.init_logger" [shape=box]
+	"log_utils.get_logger" [shape=box]
+	"log_utils.install_excepthook" [shape=box]
+	"message_utils.build_prompt" [shape=box]
+	"message_utils.gather_chop_input" [shape=box]
+	"lot_io._clean_lot" [shape=box]
+	"lot_io.valid_lots" [shape=box]
+	"lot_io.needs_cleanup" [shape=box]
+	"lot_io.get_seller" [shape=box]
+	"lot_io.get_timestamp" [shape=box]
+	"lot_io.read_lots" [shape=box]
+	"lot_io.write_lots" [shape=box]
+	"lot_io.make_lot_id" [shape=box]
+	"lot_io.parse_lot_id" [shape=box]
+	"lot_io.lot_json_path" [shape=box]
+	"lot_io.embedding_path" [shape=box]
+	"lot_io.iter_lot_files" [shape=box]
+	"lot_io.get_lot" [shape=box]
+	"debug_dump.parse_url" [shape=box]
+	"debug_dump.guess_source_from_lot" [shape=box]
+	"debug_dump.load_source_info" [shape=box]
+	"debug_dump.run_tg_fetch" [shape=box]
+	"debug_dump.collect_files" [shape=box]
+	"debug_dump.delete_files" [shape=box]
+	"debug_dump._message_reason" [shape=box]
+	"debug_dump._lot_reason" [shape=box]
+	"debug_dump.moderation_summary" [shape=box]
+	"debug_dump.main" [shape=box]
+	"price_utils.canonical_currency" [shape=box]
+	"price_utils.train_price_regression" [shape=box]
+	"price_utils.predict_price" [shape=box]
+	"price_utils.currency_rates" [shape=box]
+	"price_utils.guess_currency" [shape=box]
+	"phone_utils.format_georgian" [shape=box]
+	"clean_data._parse_date" [shape=box]
+	"clean_data._clean_raw" [shape=box]
+	"clean_data._clean_media" [shape=box]
+	"clean_data._clean_lots" [shape=box]
+	"clean_data._clean_embeddings" [shape=box]
+	"clean_data._remove_empty_dirs" [shape=box]
+	"clean_data.main" [shape=box]
+	"testing_mode.apply_testing_mode" [shape=box]
+	"build_site._env_for_lang" -> "build_site._compile_locale"
+	"build_site._iter_lots" -> "lot_io.iter_lot_files"
+	"build_site._iter_lots" -> "lot_io.read_lots"
+	"build_site._iter_lots" -> "moderation.should_skip_lot"
+	"build_site._iter_lots" -> "moderation.should_skip_message"
+	"build_site._iter_lots" -> "post_io.raw_post_path"
+	"build_site._iter_lots" -> "post_io.read_post"
+	"build_site._load_ontology" -> "serde_utils.load_json"
+	"build_site.build_page" -> "build_site._env_for_lang"
+	"build_site.build_page" -> "caption_io.read_caption"
+	"build_site.build_page" -> "lot_io.get_timestamp"
+	"build_site.build_page" -> "post_io.get_timestamp"
+	"build_site.build_page" -> "post_io.raw_post_path"
+	"build_site.build_page" -> "post_io.read_post"
+	"build_site.build_page" -> "similar_utils._format_vector"
+	"build_site.main" -> "build_site._copy_images"
+	"build_site.main" -> "build_site._env_for_lang"
+	"build_site.main" -> "build_site._iter_lots"
+	"build_site.main" -> "build_site._load_ontology"
+	"build_site.main" -> "build_site.build_page"
+	"build_site.main" -> "config_utils.load_config"
+	"build_site.main" -> "lot_io.get_seller"
+	"build_site.main" -> "lot_io.get_timestamp"
+	"build_site.main" -> "post_io.get_timestamp"
+	"build_site.main" -> "price_utils.currency_rates"
+	"build_site.main" -> "price_utils.guess_currency"
+	"build_site.main" -> "price_utils.predict_price"
+	"build_site.main" -> "price_utils.train_price_regression"
+	"build_site.main" -> "serde_utils.read_text"
+	"build_site.main" -> "similar_utils._calc_similar_nn"
+	"build_site.main" -> "similar_utils._cos_sim"
+	"build_site.main" -> "similar_utils._format_vector"
+	"build_site.main" -> "similar_utils._load_embeddings"
+	"build_site.main" -> "similar_utils._load_similar"
+	"build_site.main" -> "similar_utils._prune_similar"
+	"build_site.main" -> "similar_utils._save_similar"
+	"caption._prepare_image" -> "caption._identify_size"
+	"caption.caption_file" -> "caption._guess_chat"
+	"caption.caption_file" -> "caption._prepare_image"
+	"caption.caption_file" -> "caption_io.caption_json_path"
+	"caption.caption_file" -> "caption_io.has_caption"
+	"caption.caption_file" -> "serde_utils.load_json"
+	"caption.caption_file" -> "serde_utils.write_json"
+	"caption.main" -> "caption.caption_file"
+	"caption_io._get_langs" -> "config_utils.load_config"
+	"caption_io.has_caption" -> "caption_io.caption_json_path"
+	"caption_io.has_caption" -> "caption_io.caption_md_path"
+	"caption_io.read_caption" -> "caption_io._get_langs"
+	"caption_io.read_caption" -> "caption_io.caption_json_path"
+	"caption_io.read_caption" -> "caption_io.caption_md_path"
+	"caption_io.read_caption" -> "serde_utils.load_json"
+	"caption_io.read_caption" -> "serde_utils.read_md"
+	"caption_io.write_caption" -> "caption_io._get_langs"
+	"caption_io.write_caption" -> "caption_io.caption_json_path"
+	"caption_io.write_caption" -> "serde_utils.load_json"
+	"caption_io.write_caption" -> "serde_utils.write_json"
+	"chop.main" -> "chop.process_message"
+	"chop.process_message" -> "caption_io.has_caption"
+	"chop.process_message" -> "caption_io.read_caption"
+	"chop.process_message" -> "embed.embed_file"
+	"chop.process_message" -> "lot_io.needs_cleanup"
+	"chop.process_message" -> "lot_io.valid_lots"
+	"chop.process_message" -> "message_utils.build_prompt"
+	"chop.process_message" -> "moderation.should_skip_message"
+	"chop.process_message" -> "post_io.read_post"
+	"chop.process_message" -> "token_utils.estimate_tokens"
+	"clean_data._clean_lots" -> "lot_io.needs_cleanup"
+	"clean_data._clean_lots" -> "lot_io.read_lots"
+	"clean_data._clean_lots" -> "post_io.raw_post_path"
+	"clean_data._clean_media" -> "caption_io.has_caption"
+	"clean_data._clean_media" -> "clean_data._parse_date"
+	"clean_data._clean_raw" -> "clean_data._parse_date"
+	"clean_data._clean_raw" -> "post_io.raw_post_path"
+	"clean_data._parse_date" -> "serde_utils.read_text"
+	"clean_data.main" -> "clean_data._clean_embeddings"
+	"clean_data.main" -> "clean_data._clean_lots"
+	"clean_data.main" -> "clean_data._clean_media"
+	"clean_data.main" -> "clean_data._clean_raw"
+	"clean_data.main" -> "clean_data._remove_empty_dirs"
+	"debug_dump._message_reason" -> "moderation.should_skip_user"
+	"debug_dump.collect_files" -> "caption_io.caption_json_path"
+	"debug_dump.collect_files" -> "caption_io.has_caption"
+	"debug_dump.collect_files" -> "caption_io.read_caption"
+	"debug_dump.collect_files" -> "lot_io.lot_json_path"
+	"debug_dump.collect_files" -> "post_io.raw_post_path"
+	"debug_dump.collect_files" -> "serde_utils.load_json"
+	"debug_dump.collect_files" -> "serde_utils.read_text"
+	"debug_dump.delete_files" -> "caption_io.caption_json_path"
+	"debug_dump.delete_files" -> "caption_io.caption_md_path"
+	"debug_dump.delete_files" -> "lot_io.lot_json_path"
+	"debug_dump.delete_files" -> "post_io.raw_post_path"
+	"debug_dump.delete_files" -> "serde_utils.load_json"
+	"debug_dump.load_source_info" -> "lot_io.lot_json_path"
+	"debug_dump.load_source_info" -> "serde_utils.load_json"
+	"debug_dump.main" -> "debug_dump.collect_files"
+	"debug_dump.main" -> "debug_dump.delete_files"
+	"debug_dump.main" -> "debug_dump.guess_source_from_lot"
+	"debug_dump.main" -> "debug_dump.load_source_info"
+	"debug_dump.main" -> "debug_dump.moderation_summary"
+	"debug_dump.main" -> "debug_dump.parse_url"
+	"debug_dump.main" -> "debug_dump.run_tg_fetch"
+	"debug_dump.moderation_summary" -> "debug_dump._lot_reason"
+	"debug_dump.moderation_summary" -> "debug_dump._message_reason"
+	"debug_dump.moderation_summary" -> "lot_io.lot_json_path"
+	"debug_dump.moderation_summary" -> "post_io.raw_post_path"
+	"debug_dump.moderation_summary" -> "post_io.read_post"
+	"debug_dump.moderation_summary" -> "serde_utils.load_json"
+	"debug_dump.run_tg_fetch" -> "serde_utils.read_text"
+	"embed.embed_file" -> "lot_io.make_lot_id"
+	"embed.embed_file" -> "lot_io.read_lots"
+	"embed.embed_file" -> "serde_utils.write_json"
+	"embed.main" -> "embed.embed_file"
+	"image_io.read_image_meta" -> "serde_utils.parse_md"
+	"image_io.write_image_meta" -> "serde_utils.write_md"
+	"log_utils._add_exc_line" -> "log_utils._extract_tb_lineno"
+	"log_utils.get_logger" -> "log_utils.init_logger"
+	"log_utils.init_logger" -> "log_utils._extract_tb_lineno"
+	"log_utils.init_logger" -> "log_utils.get_logger"
+	"log_utils.install_excepthook" -> "log_utils._extract_tb_lineno"
+	"lot_io.get_lot" -> "lot_io.parse_lot_id"
+	"lot_io.get_lot" -> "lot_io.read_lots"
+	"lot_io.lot_json_path" -> "lot_io.parse_lot_id"
+	"lot_io.read_lots" -> "lot_io._clean_lot"
+	"lot_io.read_lots" -> "serde_utils.load_json"
+	"lot_io.write_lots" -> "lot_io._clean_lot"
+	"lot_io.write_lots" -> "lot_io.get_seller"
+	"lot_io.write_lots" -> "lot_io.get_timestamp"
+	"lot_io.write_lots" -> "post_io.get_timestamp"
+	"lot_io.write_lots" -> "serde_utils.write_json"
+	"message_utils.gather_chop_input" -> "caption_io.read_caption"
+	"message_utils.gather_chop_input" -> "message_utils.build_prompt"
+	"message_utils.gather_chop_input" -> "post_io.read_post"
+	"moderation.apply_to_history" -> "lot_io.read_lots"
+	"moderation.apply_to_history" -> "moderation.should_skip_lot"
+	"moderation.apply_to_history" -> "moderation.should_skip_message"
+	"moderation.apply_to_history" -> "post_io.raw_post_path"
+	"moderation.apply_to_history" -> "post_io.read_post"
+	"moderation.message_skip_reason" -> "moderation.should_skip_text"
+	"moderation.message_skip_reason" -> "moderation.should_skip_user"
+	"moderation.should_skip_lot" -> "moderation.lot_skip_reason"
+	"moderation.should_skip_message" -> "moderation.message_skip_reason"
+	"notes_utils.collect_notes" -> "serde_utils.read_md"
+	"post_io.raw_post_path_from_lot" -> "post_io.raw_post_path"
+	"post_io.read_post" -> "post_io._parse_block"
+	"post_io.read_post" -> "serde_utils.read_md"
+	"post_io.write_post" -> "lot_io.get_timestamp"
+	"post_io.write_post" -> "post_io.get_contact"
+	"post_io.write_post" -> "post_io.get_timestamp"
+	"post_io.write_post" -> "serde_utils.write_md"
+	"price_utils.train_price_regression" -> "price_utils.canonical_currency"
+	"scan_ontology._is_misparsed" -> "lot_io.get_seller"
+	"scan_ontology._is_misparsed" -> "lot_io.get_timestamp"
+	"scan_ontology._is_misparsed" -> "post_io.get_timestamp"
+	"scan_ontology.collect_ontology" -> "lot_io.read_lots"
+	"scan_ontology.collect_ontology" -> "message_utils.gather_chop_input"
+	"scan_ontology.collect_ontology" -> "post_io.raw_post_path"
+	"scan_ontology.collect_ontology" -> "post_io.read_post"
+	"scan_ontology.collect_ontology" -> "scan_ontology._is_misparsed"
+	"scan_ontology.main" -> "log_utils.install_excepthook"
+	"scan_ontology.main" -> "scan_ontology.collect_ontology"
+	"scan_ontology.main" -> "serde_utils.write_json"
+	"serde_utils.load_json" -> "serde_utils.read_text"
+	"serde_utils.parse_md" -> "serde_utils.read_md"
+	"serde_utils.read_md" -> "serde_utils.read_text"
+	"serde_utils.read_text" -> "serde_utils.read_text"
+	"similar_utils._calc_similar_nn" -> "similar_utils._update_reciprocal"
+	"similar_utils._load_embeddings" -> "serde_utils.load_json"
+	"similar_utils._load_similar" -> "serde_utils.load_json"
+	"similar_utils._save_similar" -> "lot_io.lot_json_path"
+	"similar_utils._save_similar" -> "serde_utils.write_json"
+	"similar_utils._save_similar" -> "similar_utils._similar_path"
+	"telegram_bot._should_suggest" -> "similar_utils._cos_sim"
+	"telegram_bot.enqueue_new_ids" -> "telegram_bot._should_suggest"
+	"telegram_bot.enqueue_new_ids" -> "telegram_bot.save_profiles"
+	"telegram_bot.ensure_profile" -> "telegram_bot.save_profiles"
+	"telegram_bot.load_profiles" -> "serde_utils.read_text"
+	"telegram_bot.load_state" -> "serde_utils.read_text"
+	"telegram_bot.scan_embeddings" -> "similar_utils._load_embeddings"
+	"tg_client._enqueue_chop" -> "caption_io.has_caption"
+	"tg_client._enqueue_chop" -> "moderation.should_skip_message"
+	"tg_client._enqueue_chop" -> "tg_client._start_chop_worker"
+	"tg_client._find_group_path" -> "tg_client._scan_group_cache"
+	"tg_client._get_id_date" -> "post_io.raw_post_path"
+	"tg_client._get_id_date" -> "serde_utils.read_text"
+	"tg_client._get_message_path" -> "post_io.raw_post_path"
+	"tg_client._load_progress" -> "serde_utils.read_text"
+	"tg_client._process_chop_queue" -> "caption_io.has_caption"
+	"tg_client._process_chop_queue" -> "tg_client._schedule_chop"
+	"tg_client._remove_local_message" -> "caption_io.caption_json_path"
+	"tg_client._remove_local_message" -> "caption_io.caption_md_path"
+	"tg_client._remove_local_message" -> "post_io.read_post"
+	"tg_client._scan_group_cache" -> "post_io.raw_post_path"
+	"tg_client._write_md" -> "post_io.write_post"
+	"tg_client.get_first_id" -> "post_io.raw_post_path"
+	"tg_client.get_last_id" -> "post_io.raw_post_path"
+}
+
