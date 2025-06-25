@@ -20,10 +20,10 @@ removed: pull ## Drop local posts removed from Telegram and tidy leftover files.
 	echo "Already pruned today"; \
 	else \
 	echo "$$today" > $$stamp; \
-	$(MAKE) clean # remove previously half-cleaned leftovers
-	python src/scan_ontology.py # re-collect what still needs to be fetched
-	python src/tg_client.py --refetch --check-deleted
-	$(MAKE) clean # remove newly created leftovers
+	$(MAKE) clean; \
+	python src/scan_ontology.py; \
+	python src/tg_client.py --refetch --check-deleted; \
+	$(MAKE) clean; \
 	fi
 
 caption: pull ## Generate image captions for files missing ``*.caption.json``.
