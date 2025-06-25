@@ -3,7 +3,7 @@
 from pathlib import Path
 
 from config_utils import load_config
-from serde_utils import read_md, load_json, write_json
+from notes_utils import read_md, load_json, write_json
 from log_utils import get_logger
 
 _LANGS: list[str] | None = None

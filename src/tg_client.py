@@ -17,7 +17,7 @@ import progressbar
 from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
-from serde_utils import load_json, write_json
+from notes_utils import load_json, write_json
 from log_utils import get_logger, install_excepthook
 from post_io import raw_post_path
 from caption_io import (

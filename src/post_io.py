@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 from log_utils import get_logger
-from serde_utils import write_md, read_md
+from notes_utils import write_md, read_md
 
 RAW_DIR = Path("data/raw")
 import ast

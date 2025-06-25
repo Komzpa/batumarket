@@ -11,13 +11,13 @@ from typing import Tuple
 import openai
 
 from config_utils import load_config
-from serde_utils import load_json, write_json
+from notes_utils import load_json
 
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = getattr(cfg, "LANGS", ["en"])
 from log_utils import get_logger, install_excepthook
-from caption_io import caption_json_path, has_caption
+from caption_io import caption_json_path, has_caption, write_caption
 from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
@@ -143,12 +143,13 @@ def caption_file(path: Path) -> str:
         log.error("Missing caption languages", file=str(path), missing=missing)
         return sha
 
+    for lang in LANGS:
+        key = f"caption_{lang}"
+        if key in data:
+            write_caption(path, data[key], lang)
+
     out_path = caption_json_path(path)
-    existing = load_json(out_path) if out_path.exists() else {}
-    if not isinstance(existing, dict):
-        existing = {}
-    existing.update({k: data[k] for k in data if k.startswith("caption_")})
-    write_json(out_path, existing)
+    existing = load_json(out_path) or {}
     log.info("Caption", file=str(path), text=existing)
     return sha
 

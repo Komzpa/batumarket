@@ -25,7 +25,7 @@ from caption_io import (
     caption_md_path,
     has_caption,
 )
-from serde_utils import read_text, load_json
+from notes_utils import read_text, load_json
 from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
 from post_io import read_post, raw_post_path, RAW_DIR

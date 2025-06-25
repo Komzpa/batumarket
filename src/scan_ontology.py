@@ -10,7 +10,6 @@ from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
 from lot_io import get_seller, get_timestamp
-from moderation import is_misparsed
 from message_utils import gather_chop_input
 from post_io import (
     read_post,
@@ -19,7 +18,7 @@ from post_io import (
     raw_post_path,
     RAW_DIR,
 )
-from serde_utils import write_json
+from notes_utils import write_json
 from lot_io import read_lots
 
 log = get_logger().bind(script=__file__)
@@ -72,6 +71,8 @@ def collect_ontology() -> tuple[
     list[dict],
 ]:
     """Return counts per field, value counters, misparsed lots and broken metadata."""
+    from moderation import is_misparsed
+
     ontology: defaultdict[str, Counter[str]] = defaultdict(Counter)
     values: dict[str, Counter[str]] = {f: Counter() for f in REVIEW_FIELDS}
     misparsed: list[dict] = []

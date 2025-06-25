@@ -55,4 +55,19 @@ LOG_LEVEL = "INFO"
 # values speed up downloads at the risk of hitting Telegram rate limits.
 DOWNLOAD_WORKERS = 4
 
+# Moderation settings
+# ``BLACKLISTED_USERS`` lists Telegram usernames to ignore entirely.
+# ``BANNED_SUBSTRINGS`` contains text snippets that cause messages to be skipped.
+BLACKLISTED_USERS = [
+    "m_s_help_bot",
+    "chatkeeperbot",
+    "dosvidulibot",
+    "batumi_batumi_bot",
+]
+BANNED_SUBSTRINGS = [
+    "ищу людей на неполный рабочий день",
+    "наркотики",
+    "кокаин",
+]
+
 

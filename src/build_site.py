@@ -16,7 +16,7 @@ from datetime import datetime, timedelta, timezone
 
 from jinja2 import Environment, FileSystemLoader
 import gettext
-from serde_utils import load_json
+from notes_utils import load_json
 from lot_io import (
     read_lots,
     get_seller,
