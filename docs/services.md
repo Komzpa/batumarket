@@ -199,7 +199,11 @@ JavaScript. Static files from `templates/static` are copied to
 `data/views/static` so the site works without extra assets.
 The index page now lists all `market:deal` categories with the number of
 posts seen in the last ``KEEP_DAYS`` days and how many unique posters were involved.
-Each category links to a separate page listing every lot of that type.
+`sell_item` entries are additionally broken down by `item:type` so phones,
+laptops and similar goods have their own pages.  Each category tracks the
+median price with a min–max range, the time of the most recent post and a
+centroid of all available embeddings.
+Each category link leads to a page listing every lot of that type.
 Lot pages include a "more by this user" section which shows other lots from the
 same Telegram account ordered by embedding similarity.  If a lot has a
 timestamp that lies in the future it is ignored during rendering so the website

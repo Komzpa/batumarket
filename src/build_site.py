@@ -223,14 +223,62 @@ def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[s
 
 
 def _categorise(
-    lots: list[dict], langs: list[str], keep_days: int
+    lots: list[dict],
+    langs: list[str],
+    keep_days: int,
+    id_to_vec: dict[str, list[float]],
 ) -> tuple[dict[str, list[dict]], dict[str, dict], list[dict]]:
-    """Return category info and recent lot list."""
+    """Return category info and recent lot list.
+
+    Categories are split by ``market:deal`` and ``sell_item`` lots are further
+    grouped by ``item:type``.
+    Stats include price range, last timestamp and embedding centroid so the
+    sorting logic used on item pages also works for categories.
+    """
     now = datetime.now(timezone.utc)
     recent_cutoff = now - timedelta(days=keep_days)
     recent: list[dict] = []
     categories: dict[str, list[dict]] = {}
     category_stats: dict[str, dict] = {}
+    def update_stat(cat: str) -> dict:
+        stat = category_stats.setdefault(
+            cat,
+            {
+                "recent": 0,
+                "users": set(),
+                "prices": [],
+                "times": [],
+                "vecsum": None,
+                "count": 0,
+            },
+        )
+        return stat
+
+    def add_lot(cat: str, lot: dict, dt: datetime | None) -> None:
+        categories.setdefault(cat, []).append(lot)
+        stat = update_stat(cat)
+        user = lot.get("contact:telegram")
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
+        if user:
+            stat["users"].add(str(user))
+        price = lot.get("_display_value")
+        if price not in ("", None):
+            try:
+                stat["prices"].append(float(price))
+            except Exception:
+                pass
+        if dt:
+            stat["times"].append(dt)
+        vec = id_to_vec.get(lot.get("_id"))
+        if vec:
+            if stat["vecsum"] is None:
+                stat["vecsum"] = [0.0 for _ in vec]
+            for i, v in enumerate(vec):
+                stat["vecsum"][i] += v
+            stat["count"] += 1
+
     for lot in lots:
         dt = get_timestamp(lot)
         deal = lot.get("market:deal", "misc")
@@ -240,18 +288,20 @@ def _categorise(
                 deal = deal[0]
             else:
                 deal = str(deal)
-        categories.setdefault(deal, []).append(lot)
-        stat = category_stats.setdefault(deal, {"recent": 0, "users": set()})
-        user = lot.get("contact:telegram")
-        if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
-            user = user[0] if user else None
-        if user:
-            stat["users"].add(str(user))
+
+        add_lot(deal, lot, dt)
+
+        if deal == "sell_item":
+            itype = lot.get("item:type")
+            if isinstance(itype, list):
+                itype = itype[0] if itype else None
+            if isinstance(itype, str) and itype:
+                add_lot(f"{deal}.{itype}", lot, dt)
+
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
             seller = get_seller(lot)
-            stat["recent"] += 1
+            update_stat(deal)["recent"] += 1
             recent.append(
                 {
                     "id": lot["_id"],
@@ -262,6 +312,30 @@ def _categorise(
                     "seller": seller,
                 }
             )
+
+    for cat, stat in category_stats.items():
+        prices = stat.pop("prices")
+        times = stat.pop("times")
+        vecsum = stat.pop("vecsum")
+        count = stat.pop("count")
+        if prices:
+            prices_sorted = sorted(prices)
+            mid = len(prices_sorted) // 2
+            if len(prices_sorted) % 2:
+                stat["price_typical"] = prices_sorted[mid]
+            else:
+                stat["price_typical"] = (
+                    prices_sorted[mid - 1] + prices_sorted[mid]
+                ) / 2
+            stat["price_min"] = prices_sorted[0]
+            stat["price_max"] = prices_sorted[-1]
+        else:
+            stat["price_typical"] = stat["price_min"] = stat["price_max"] = None
+        stat["last_dt"] = max(times) if times else None
+        if vecsum is not None and count:
+            stat["centroid"] = [v / count for v in vecsum]
+        else:
+            stat["centroid"] = None
     return categories, category_stats, recent
 
 
@@ -560,7 +634,9 @@ def main() -> None:
     _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
 
     more_user_map = _similar_by_user(lots, id_to_vec)
-    categories, category_stats, _recent = _categorise(lots, langs, keep_days)
+    categories, category_stats, _recent = _categorise(
+        lots, langs, keep_days, id_to_vec
+    )
 
     _render_site(
         lots,

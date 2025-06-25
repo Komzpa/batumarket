@@ -870,3 +870,93 @@ def test_ai_price_fallback(tmp_path, monkeypatch):
 
     cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
     assert cat_html.count("100") >= 2
+
+
+def test_sell_item_subcategories(tmp_path, monkeypatch):
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    vec_dir = tmp_path / "vecs"
+    vec_dir.mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "phone",
+                "description_en": "d",
+                "title_ru": "phone",
+                "description_ru": "d",
+                "title_ka": "phone",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+                "item:type": "smartphone",
+                "price": 100,
+                "price:currency": "USD",
+            },
+            {
+                "timestamp": now,
+                "title_en": "laptop",
+                "description_en": "d",
+                "title_ru": "laptop",
+                "description_ru": "d",
+                "title_ka": "laptop",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+                "item:type": "laptop",
+                "price": 200,
+                "price:currency": "USD",
+            },
+        ])
+    )
+    (vec_dir / "1.json").write_text(
+        json.dumps([
+            {"id": "1-0", "vec": [1.0, 0.0]},
+            {"id": "1-1", "vec": [0.0, 2.0]},
+        ])
+    )
+
+    build_site.main()
+
+    assert (tmp_path / "views" / "deal" / "sell_item.smartphone_en.html").exists()
+    assert (tmp_path / "views" / "deal" / "sell_item.laptop_en.html").exists()
+
+
+def test_category_stats_with_centroid(tmp_path):
+    from datetime import datetime, timezone
+
+    now = datetime.now(timezone.utc).replace(microsecond=0)
+    ts = now.isoformat()
+    lots = [
+        {
+            "_id": "1-0",
+            "timestamp": ts,
+            "market:deal": "sell_item",
+            "item:type": "smartphone",
+            "price": 100,
+            "price:currency": "USD",
+        }
+    ]
+    embeds = {"1-0": [1.0, 0.0]}
+    build_site._convert_prices(lots, {"USD": 1.0}, "USD")
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, embeds)
+    assert "sell_item.smartphone" in cats
+    stat = stats["sell_item.smartphone"]
+    assert stat["price_typical"] == 100
+    assert stat["price_min"] == 100
+    assert stat["price_max"] == 100
+    assert stat["last_dt"] == now
+    assert stat["centroid"] == [1.0, 0.0]
