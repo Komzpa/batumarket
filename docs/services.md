@@ -170,6 +170,8 @@ distances in `data/similar`.  The directory mirrors `data/lots` so stale entries
 can be identified easily.  Before calculating new recommendations the cache is
 pruned from references to missing lots. When a new lot is added the reciprocal
 caches of the posts it links to are updated if the new entry ranks higher.
+The progress bar shows how many lots were processed during recommendation
+generation and the search now runs in one batch which shortens the wait time.
 Code handling embedding loading and recommendation caching resides in
 `src/similar_utils.py` to keep `build_site.py` concise.  Titles and thumbnails
 are resolved from the lot JSON when pages are rendered so each language shows
