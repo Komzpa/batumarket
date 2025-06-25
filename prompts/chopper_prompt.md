@@ -12,15 +12,24 @@ The API uses Structured Outputs to ensure titles and descriptions are present fo
 ## Schema
 The output is a flat dictionary inspired by OpenStreetMap tags. Important keys include:
 
-- `market:deal` – main intent such as `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_item`, `buy_item`, `sell_property`, `buy_property`, `exchange`, `giveaway`, `job_offer`, `job_seek`, `services_offer`, `services_seek`, `pets`,`announcement`, `event_invite`, `event_seek`, `cryptocurrency`, `pet_adopt_out`, `pet_adopt_seek`, `fundraise`.
-- `property:type` – e.g. `apartment`, `studio`, `apartment_studio`, `house`, `room`, `duplex`, `villa`, `bungalow`, `land`, `commercial`, `hotel_room`, ...
+- `market:deal` – main intent such as `rent_out_long`, `rent_out_short`, `rent_seek`, `sell_item`, `buy_item`, `sell_property`, `buy_property`, `exchange`, `giveaway`, `job_offer`, `job_seek`, `services_offer`, `services_seek`, `pets`,`announcement`, `event_invite`, `event_seek`, `cryptocurrency`, `pet_adopt_out`, `pet_adopt_seek`, `fundraise`, `news`.
+- `price`, `price:currency` – normalised price fields. Use ISO‑4217 currency codes; correct obvious typos (`Gel`, `LAR` to `GEL`; `TL` to `TRY`, `рубли` to `RUB`). "у.е." might be USD. Values outside the list of known codes should be dropped.
+- `commission` - `no`, `yes`
+
+- `occupation` - `software_engineer`, `teacher`, `carpenter`, `babysitter`, `personal_assistant`, `travel_agent`, `doctor`, `waiter`, `courier`, `construction_worker`, ...
+
 - `item:type` - `smartphone`, `medicine`, `monitor`, `led_bulb`, `cryptocurrency`, `kids_kick_scooter`, `hoverboard`, `baby_crib`, `bluetooth_speaker`, `jacket`, `potted_plant`, `board_game`, `shoe`, `smartwatch`, `charger`, `smart_speaker`, `action_camera`, `drone`, `grow_light`, `laptop`, `recliner`, `bedspread`, `mini_fridge`, `cat`, `dog`, `kitten`, `puppy`, `fox`... (lower-case, singular, underscores_for_spaces)
 - `item:audience` – `men`, `women`, `kids` – use for clothing or other gendered items.
 - `condition` - `new`, `open_box`, `unused`, `like_new`, `very_good`, `good`, `fair`, `used`, `needs_repair`, `for_parts`, `refurbished`, `shop_display`, `obsolete`, `handmade` ... 
+- `brand` - `Apple`, `DJI`, `NVidia`, `Samsung`, ...
+- `model` - `iPhone 7 XR Plus`, `RTX5090 48Gb` ...
+
+- `property:type` – e.g. `apartment`, `studio`, `apartment_studio`, `house`, `room`, `duplex`, `villa`, `bungalow`, `land`, `commercial`, `hotel_room`, ...
 - `rooms` – "studio" or integer as a string.
-- `start_date`, `end_date` - iso8601 date.`
+- `start_date`, `end_date` - iso8601 date of when it becomes available to until when it is available.
 - `area` – integer square metres when available.
-- `price`, `price:currency` – normalised price fields. Use ISO‑4217 currency codes; correct obvious typos (`Gel`, `LAR` to `GEL`; `TL` to `TRY`, `рубли` to `RUB`). "у.е." might be USD. Values outside the list of known codes should be dropped.
+- `bathrooms` - integer count, `2+` for ranges.
+- `land_area` - integer square metres when selling land or a house with land.
 - `price:period` - `month`, `day`, `night`, `year`, `long_term`, `season`
 - `price:deposit`, `price:deposit:currency`.
 - `price:deposit:pets`
@@ -31,25 +40,28 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `heating` – `central`, `gas`, `electric`, `none`, `karma`.
 - `underfloor_heating` - `yes`, `no`.
 - `gas` – `yes`, `no`, `in_progress`, `possible`, ... whether a gas pipe or heating is mentioned.
-- `addr:city` (`Батуми`, `Кобулети`, `Махинджаури`, `Гонио`, `Чакви`, ...), `addr:suburb` (`район Аэропорта`, `старый город`...), `addr:neighbourhood` (`рядом с VOX`...), `addr:street` ("3-й тупик Ангиса", "улица Леха и Марии Качинских"...), `addr:unit` ("Block A", "Block C"), `addr:housenumber`, `addr:floor`, `addr:door` – street and number match.
-- `addr:full` - text of address verbatim as-is in ad, no spelling adjustments.
-- `building:name` – named apartment blocks (`Orbi City`, `Orbi Residence`, `Orbi Beach Tower`, `Orbi Sea Towers`, `Black Sea Towers`, `Gumbati`, `Vox`, `Sunrise`, `White Sails`, `Магнолия`, `Batumi View`, `Intourist residence`, `Dar Tower`, `Metro City`, `Intourist Residence`, ...)
-- `floor`, `building:levels` – floor number (int or hint `low`, `middle`, `high`) and total floors.
 - `urgency` - `urgent`, `none`.
-- `elevator:fee` - `no`, yes
-- `commission` - `no`, `yes`
+- `elevator:fee` - `no`, `yes`.
 - `security` - `guard`, `cctv`, `concierge`, ...
 - `furnishing` – `furnished`, `part`, `none`.
 - `smoking` - `yes`, `no`.
 - `washing_machine`, `dishwasher`, `computer_table`, `stove`, `oven`, `bath`, `shower`, `sofa`, `wifi`, `air_conditioning`, `tv`, `fridge`, `microwave`, `balcony`, `pool`, `elevator`, `parking`, `gym`, `spa`, `playground` ... – `yes`, `no`, `on_request`, null/skip.
-- `parking:type` - `underground`, `yard`, `street`, ..
-- `bathrooms` - integer count, `2+` for ranges.
-- `land_area` - integer square metres when selling land or a house.
+- `parking:type` - `underground`, `yard`, `street`, ...
 - `panorama` - `yes` when a wide view is explicitly mentioned.
 - `ventilation` - `yes` if mechanical airflow is advertised.
 - `laundry` - `yes` when a separate laundry room is available.
+- `floor`, `building:levels` – floor number (int or hint `low`, `middle`, `high`) and total floors.
+- `addr:city` – `Батуми`, `Кобулети`, `Махинджаури`, `Гонио`, `Чакви`, …
+- `addr:suburb` – `район Аэропорта`, `старый город`, …
+- `addr:neighbourhood` – `рядом с VOX`, …
+- `addr:street` – full official name, natural order, exactly as on OSM: `3-й тупик Ангиса`, `улица Леха и Марии Качинских`, …
+- `addr:unit` – `Block A`, `Block C`, …
+- `addr:housenumber`, `addr:floor`, `addr:door`
+- `addr:full` - text of address verbatim as-is in ad, no spelling adjustments, keep author's typos.
+- `building:name` – named apartment blocks (`Orbi City`, `Orbi Residence`, `Orbi Beach Tower`, `Orbi Sea Towers`, `Black Sea Towers`, `Gumbati`, `Vox`, `Sunrise`, `White Sails`, `Магнолия`, `Batumi View`, `Intourist residence`, `Dar Tower`, `Metro City`, `Intourist Residence`, ...)
 - `contact:phone`, `contact:telegram`, `contact:instagram`, `contact:viber`, `contact:whatsapp`, `contact:website` – stripped to digits in full international format or `@username`. If a phone number is specifically advertised for Telegram, store it in both `contact:phone` and `contact:telegram`.
-- `files` – list of stored media paths for the lot. Match the files to their respective lots. Put most representative picture first - it will be used on post preview.
+
+- `files` – list of stored media paths for the lot. Match the files to their respective lots. Put most representative picture first - it will be used on lot preview.
 When a post contains more than one lot assign each captioned image to exactly one lot based on context. Reuse a picture only when it clearly shows every item offered together.
 
 Additional nuggets like parking, balcony or urgency can be added as they appear. Only include keys you are confident about; omit unknown fields to keep the JSON lean.
