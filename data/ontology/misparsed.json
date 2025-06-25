@@ -125,21 +125,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757051",
-      "source:path": "batumiarendachat/2025/06/757051.md",
-      "timestamp": "2025-06-18T21:06:20+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "партнёрство",
       "salary": 400,
       "salary:currency": "USD",
