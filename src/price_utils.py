@@ -208,3 +208,26 @@ def guess_currency(
             best_cur = cur
     return best_cur
 
+
+def apply_price_model(lots: Iterable[Mapping], id_to_vec: Mapping[str, list[float]]) -> None:
+    """Predict prices in USD and guess missing currencies."""
+    log.debug("Training price model")
+    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
+    rates = currency_rates(price_model, currency_map) if price_model else {}
+    if rates:
+        log.info("Regressed currency rates", rates=rates)
+    for lot in lots:
+        vec = id_to_vec.get(lot["_id"])
+        pred_usd = predict_price(price_model, currency_map, vec, "USD")
+        if pred_usd is not None:
+            lot["ai_price"] = round(pred_usd, 2)
+        if lot.get("price") is not None and lot.get("price:currency") is None:
+            try:
+                price_val = float(lot["price"])
+            except Exception:
+                price_val = None
+            if price_val and pred_usd:
+                guessed = guess_currency(rates, price_val, pred_usd, counts)
+                if guessed:
+                    lot["price:currency"] = guessed
+

@@ -6,9 +6,15 @@ import json
 import ast
 
 from log_utils import get_logger
-from post_io import read_post, raw_post_path, RAW_DIR
+from post_io import (
+    read_post,
+    raw_post_path,
+    RAW_DIR,
+    get_contact as get_post_contact,
+    get_timestamp as get_post_timestamp,
+)
 from scan_ontology import REVIEW_FIELDS
-from lot_io import read_lots
+from lot_io import read_lots, get_seller, get_timestamp
 
 log = get_logger().bind(module=__name__)
 
@@ -125,6 +131,30 @@ def should_skip_lot(lot: dict) -> bool:
     reason = lot_skip_reason(lot)
     if reason:
         log.debug("Lot rejected", reason=reason, id=lot.get("_id"))
+        return True
+    return False
+
+
+def is_misparsed(lot: dict, meta: dict | None = None) -> bool:
+    """Return ``True`` for obviously invalid lots or source posts."""
+    if lot.get("contact:telegram") == "@username":
+        log.debug("Example contact", id=lot.get("_id"))
+        return True
+    if get_timestamp(lot) is None:
+        log.debug("Missing timestamp", id=lot.get("_id"))
+        return True
+    if get_seller(lot) is None:
+        log.debug("Missing seller info", id=lot.get("_id"))
+        return True
+    if meta is not None:
+        if get_post_timestamp(meta) is None:
+            log.debug("Missing raw timestamp", id=lot.get("_id"))
+            return True
+        if get_post_contact(meta) is None:
+            log.debug("Missing raw contact", id=lot.get("_id"))
+            return True
+    if any(not lot.get(f) for f in REVIEW_FIELDS):
+        log.debug("Missing translations", id=lot.get("_id"))
         return True
     return False
 

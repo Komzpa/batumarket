@@ -10,6 +10,7 @@ from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
 from lot_io import get_seller, get_timestamp
+from moderation import is_misparsed
 from message_utils import gather_chop_input
 from post_io import (
     read_post,
@@ -63,31 +64,6 @@ SKIP_FIELDS = {
 SKIP_PREFIXES = ("title_", "description_")
 
 
-
-def _is_misparsed(lot: dict, meta: dict | None = None) -> bool:
-    """Return ``True`` for obviously invalid lots or source posts."""
-    if lot.get("contact:telegram") == "@username":
-        log.debug("Example contact", id=lot.get("_id"))
-        return True
-    if get_timestamp(lot) is None:
-        log.debug("Missing timestamp", id=lot.get("_id"))
-        return True
-    if get_seller(lot) is None:
-        log.debug("Missing seller info", id=lot.get("_id"))
-        return True
-    if meta is not None:
-        if get_post_timestamp(meta) is None:
-            log.debug("Missing raw timestamp", id=lot.get("_id"))
-            return True
-        if get_post_contact(meta) is None:
-            log.debug("Missing raw contact", id=lot.get("_id"))
-            return True
-    if any(not lot.get(f) for f in REVIEW_FIELDS):
-        log.debug("Missing translations", id=lot.get("_id"))
-        return True
-    return False
-
-
 def collect_ontology() -> tuple[
     dict[str, dict[str, int]],
     dict[str, Counter[str]],
@@ -115,7 +91,7 @@ def collect_ontology() -> tuple[
             meta = None
             if src and has_raw:
                 meta, _ = read_post(raw_post_path(src, RAW_DIR))
-            if _is_misparsed(lot, meta):
+            if is_misparsed(lot, meta):
                 prompt = ""
                 if src and has_raw:
                     try:
