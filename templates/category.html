@@ -24,7 +24,10 @@
   {% for lot in items %}
     <tr data-id="{{ lot.id }}" data-embed="{{ lot.embed | default('null') | safe }}" data-price="{{ lot.price_value }}">
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
-      <td class="price{% if lot.price_class %} {{ lot.price_class }}{% endif %}">{{ lot.price }}</td>
+      <td class="price{% if lot.price_class %} {{ lot.price_class }}{% endif %}"
+          data-usd="{{ lot.price_usd }}" data-ai="{% if lot.price_class == 'ai-price' %}1{% else %}0{% endif %}">
+          {{ lot.price }}{% if lot.price_class == 'ai-price' %} (AI){% endif %}
+      </td>
       <td>{{ lot.seller or '' }}</td>
       <td{% if lot.dt %} data-raw="{{ lot.dt.isoformat() }}"{% endif %}>{{ lot.dt.strftime('%Y-%m-%d %H:%M') if lot.dt else '' }}</td>
     </tr>

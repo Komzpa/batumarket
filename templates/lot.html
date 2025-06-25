@@ -20,9 +20,10 @@
 <table class="attrs">
 {% for key, val in attrs.items() %}
   {% if key == 'price' and lot['_price_class'] %}
-  <tr><th>{{ key }}</th><td class="{{ lot['_price_class'] }} price">{{ val }}</td></tr>
+  <tr><th>{{ key }}</th><td class="{{ lot['_price_class'] }} price"
+      data-usd="{{ lot['_usd_value'] }}" data-ai="1">{{ val }} (AI)</td></tr>
   {% elif key == 'price' %}
-  <tr><th>{{ key }}</th><td class="price">{{ val }}</td></tr>
+  <tr><th>{{ key }}</th><td class="price" data-usd="{{ lot['_usd_value'] }}" data-ai="0">{{ val }}</td></tr>
   {% else %}
   <tr><th>{{ key }}</th><td>{{ val }}</td></tr>
   {% endif %}

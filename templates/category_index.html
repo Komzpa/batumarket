@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>{{ deal }}</h1>
+<table id="index-table">
+  <thead>
+    <tr>
+      <th data-sort="string">{{ _('Category') }}</th>
+      <th data-sort="number">{% trans days=keep_days %}Posts last {{ days }} days{% endtrans %}</th>
+      <th data-sort="number">{{ _('Unique posters') }}</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for cat in categories %}
+    <tr>
+      <td><a href="{{ cat.link }}">{{ cat.name }}</a></td>
+      <td>{{ cat.recent }}</td>
+      <td>{{ cat.users }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
