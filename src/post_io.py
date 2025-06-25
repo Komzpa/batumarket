@@ -6,26 +6,10 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 from log_utils import get_logger
-from notes_utils import write_md, read_md
+from notes_utils import write_md, read_md, _parse_block
 
 RAW_DIR = Path("data/raw")
 import ast
-
-
-def _parse_block(text: str) -> tuple[dict[str, str], str]:
-    """Return metadata dict and remaining body from ``text``."""
-    lines = text.splitlines()
-    meta: dict[str, str] = {}
-    body_start = 0
-    for i, line in enumerate(lines):
-        if not line.strip():
-            body_start = i + 1
-            break
-        if ":" in line:
-            k, v = line.split(":", 1)
-            meta[k.strip()] = v.strip()
-    body = "\n".join(lines[body_start:])
-    return meta, body
 
 log = get_logger().bind(module=__name__)
 
