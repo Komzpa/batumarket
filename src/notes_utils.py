@@ -34,9 +34,8 @@ def write_md(path: str | Path, text: str) -> None:
     log.debug("Wrote markdown", path=str(p))
 
 
-def parse_md(path: Path) -> tuple[dict[str, str], str]:
-    """Return metadata dictionary and body text from ``path``."""
-    text = read_md(path)
+def _parse_block(text: str) -> tuple[dict[str, str], str]:
+    """Return metadata dict and remaining body from ``text``."""
     lines = text.splitlines()
     meta: dict[str, str] = {}
     body_start = 0
@@ -49,6 +48,12 @@ def parse_md(path: Path) -> tuple[dict[str, str], str]:
             meta[k.strip()] = v.strip()
     body = "\n".join(lines[body_start:])
     return meta, body
+
+
+def parse_md(path: Path) -> tuple[dict[str, str], str]:
+    """Return metadata dictionary and body text from ``path``."""
+    text = read_md(path)
+    return _parse_block(text)
 
 
 def load_json(path: Path):

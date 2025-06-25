@@ -1,10 +1,11 @@
-"""Generate a GraphViz call graph of project functions and CLI entrypoints."""
+"""Generate a GraphViz call graph of project functions."""
 
 import ast
 import glob
 import os
 
 from graphviz import Digraph
+import math
 
 # Collect function definitions across modules.
 # ``AsyncFunctionDef`` nodes were previously ignored which meant ``tg_client``
@@ -13,11 +14,13 @@ func_defs: dict[str, ast.AST] = {}
 by_name: dict[str, set[str]] = {}
 docstrings: dict[str, str] = {}
 entrypoints: dict[str, list[ast.stmt]] = {}
+sizes: dict[str, int] = {}
 
 for path in glob.glob("src/*.py") + glob.glob("scripts/*.py"):
     module = os.path.splitext(os.path.basename(path))[0]
     with open(path, "r", encoding="utf-8") as f:
-        tree = ast.parse(f.read(), filename=path)
+        src = f.read()
+    tree = ast.parse(src, filename=path)
 
     for node in tree.body:
         if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
@@ -25,6 +28,8 @@ for path in glob.glob("src/*.py") + glob.glob("scripts/*.py"):
             func_defs[qname] = node
             by_name.setdefault(node.name, set()).add(qname)
             docstrings[qname] = ast.get_docstring(node) or ""
+            size = getattr(node, "end_lineno", node.lineno) - node.lineno + 1
+            sizes[qname] = max(1, size)
         elif (
             isinstance(node, ast.If)
             and isinstance(node.test, ast.Compare)
@@ -37,6 +42,11 @@ for path in glob.glob("src/*.py") + glob.glob("scripts/*.py"):
         ):
             entrypoints[f"{module}:cli"] = node.body
             docstrings[f"{module}:cli"] = "Command line entrypoint"
+            if node.body:
+                size = getattr(node.body[-1], "end_lineno", node.body[-1].lineno) - node.body[0].lineno + 1
+            else:
+                size = 1
+            sizes[f"{module}:cli"] = size
 
 # Build edges between functions and from entrypoints.
 edges = set()
@@ -67,35 +77,19 @@ for qname, node in all_defs.items():
 # Render the graph using the ``graphviz`` library.
 dot = Digraph("callgraph", graph_attr={"rankdir": "LR"})
 
-# Group CLI entry points on the same horizontal rank so they form a line.
-cli_cluster = Digraph(
-    "cluster_cli",
-    graph_attr={"label": "CLI entrypoints", "rank": "same"},
-)
-
 for qname in all_defs:
-    if qname.endswith(":cli"):
-        cli_cluster.node(qname, shape="ellipse", tooltip=docstrings.get(qname, ""))
-    else:
-        dot.node(qname, shape="box", tooltip=docstrings.get(qname, ""))
+    size = sizes.get(qname, 1)
+    scale = max(0.5, round(math.sqrt(size) / 2, 2))
+    shape = "ellipse" if qname.endswith(":cli") else "box"
+    dot.node(
+        qname,
+        shape=shape,
+        tooltip=docstrings.get(qname, ""),
+        width=str(scale),
+        height=str(scale),
+        fixedsize="true",
+    )
 
-# Connect entry points invisibly so they stay ordered in the diagram.
-entrypoints_order = [
-    "build_site:cli",
-    "embed:cli",
-    "caption:cli",
-    "tg_client:cli",
-    "debug_dump:cli",
-    "chop:cli",
-    "clean_data:cli",
-    "moderation:cli",
-    "scan_ontology:cli",
-    "telegram_bot:cli",
-]
-for src, dst in zip(entrypoints_order, entrypoints_order[1:]):
-    dot.edge(src, dst, style="invis")
-
-dot.subgraph(cli_cluster)
 for src, dst in sorted(edges):
     dot.edge(src, dst)
 
