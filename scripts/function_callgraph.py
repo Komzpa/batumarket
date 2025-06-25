@@ -66,8 +66,34 @@ for qname, node in all_defs.items():
 
 # Render the graph using the ``graphviz`` library.
 dot = Digraph("callgraph", graph_attr={"rankdir": "LR"})
+
+# Group CLI entry points together to keep them on the same rank.
+cli_cluster = Digraph(
+    "cluster_cli",
+    graph_attr={"label": "CLI entrypoints", "newrank": "true"},
+)
+
 for qname in all_defs:
-    dot.node(qname, shape="box", tooltip=docstrings.get(qname, ""))
+    target = cli_cluster if qname.endswith(":cli") else dot
+    target.node(qname, shape="box", tooltip=docstrings.get(qname, ""))
+
+# Connect entry points invisibly so they stay ordered in the diagram.
+entrypoints_order = [
+    "build_site:cli",
+    "embed:cli",
+    "caption:cli",
+    "tg_client:cli",
+    "debug_dump:cli",
+    "chop:cli",
+    "clean_data:cli",
+    "moderation:cli",
+    "scan_ontology:cli",
+    "telegram_bot:cli",
+]
+for src, dst in zip(entrypoints_order, entrypoints_order[1:]):
+    dot.edge(src, dst, style="invis")
+
+dot.subgraph(cli_cluster)
 for src, dst in sorted(edges):
     dot.edge(src, dst)
 
