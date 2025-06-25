@@ -138,18 +138,32 @@ def _calc_similar_nn(
     vec_ids: list[str],
     id_to_vec: dict[str, list[float]],
 ) -> None:
-    """Fill ``sim_map`` for ``new_ids`` using a nearest neighbour search."""
+    """Fill ``sim_map`` for ``new_ids`` using a nearest neighbour search.
+
+    ``vec_ids`` lists all lots that have an embedding.  ``new_ids`` is a subset
+    for which we still need recommendations.  We gather vectors for
+    ``vec_ids`` and use ``NearestNeighbors`` from scikit-learn to find the
+    closest items.  Embeddings of lots without a vector are skipped.
+    """
     if not vec_ids:
         for lid in new_ids:
             sim_map[lid] = []
         return
 
+    # Convert embedding map to a list so we can build a contiguous matrix for
+    # scikit-learn.  ``vec_ids`` preserve the order of vectors in this matrix.
     matrix = [id_to_vec[i] for i in vec_ids]
     k = min(7, len(matrix))
+
+    # Fit nearest neighbours on the full matrix once.
     nn = NearestNeighbors(n_neighbors=k, metric="cosine")
     nn.fit(matrix)
+
+    # Map each lot id to its row index to quickly look up vectors.
     index_map = {v: idx for idx, v in enumerate(vec_ids)}
 
+    # Build a batch of vectors to query at once.  Lots missing an embedding get
+    # an empty result immediately.
     queries = []
     q_ids = []
     for lid in new_ids:
@@ -163,8 +177,12 @@ def _calc_similar_nn(
     if not queries:
         return
 
+    # Find neighbours for all queries in a single call which is much faster than
+    # querying one by one.
     dist, neigh = nn.kneighbors(queries, n_neighbors=k)
 
+    # ``progressbar2`` changed the ``maxval`` argument to ``max_value`` in newer
+    # releases.  Handle both so we work across distributions.
     widgets = [
         "similar ",
         progressbar.Bar(marker="#", left="[", right="]"),
@@ -180,6 +198,7 @@ def _calc_similar_nn(
             raise
     bar.start()
     for i, lot_id in enumerate(q_ids):
+        # Skip the first neighbour which is the query item itself.
         sims = []
         for d, other_idx in zip(dist[i][1:], neigh[i][1:]):
             other_id = vec_ids[other_idx]
