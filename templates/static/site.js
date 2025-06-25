@@ -38,6 +38,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const curSel = document.getElementById('currency-select');
+  if (curSel && window.currencyRates) {
+    for (const cur of Object.keys(window.currencyRates)) {
+      const opt = document.createElement('option');
+      opt.value = cur;
+      opt.textContent = cur;
+      curSel.appendChild(opt);
+    }
+    let saved = localStorage.getItem('currency') || window.displayCurrency;
+    if (!window.currencyRates[saved]) saved = Object.keys(window.currencyRates)[0];
+    curSel.value = saved;
+    const updateCur = () => {
+      const c = curSel.value;
+      localStorage.setItem('currency', c);
+      document.querySelectorAll('.price[data-usd]').forEach(el => {
+        const usd = parseFloat(el.dataset.usd);
+        if (Number.isNaN(usd)) return;
+        const val = usd * window.currencyRates[c];
+        const ai = el.dataset.ai === '1';
+        el.textContent = val.toFixed(2) + ' ' + c + (ai ? ' (AI)' : '');
+      });
+    };
+    curSel.addEventListener('change', updateCur);
+    updateCur();
+  }
+
   // Table header sorting was removed. Use the dropdown instead.
 
   const mainCarousel = document.querySelector('.carousel.main');

@@ -41,7 +41,12 @@ from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
-from price_utils import apply_price_model, fetch_official_rates, canonical_currency
+from price_utils import (
+    apply_price_model,
+    fetch_official_rates,
+    canonical_currency,
+    prepare_price_fields,
+)
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -174,36 +179,6 @@ def _copy_static() -> None:
         shutil.copytree(static_src, static_dst)
         log.debug("Copied static assets", src=str(static_src), dst=str(static_dst))
 
-
-def _convert_prices(lots: list[dict], rates: dict[str, float], cur: str) -> None:
-    """Add `_display_price` and `_price_class` fields converted to `cur`."""
-    for lot in lots:
-        price = lot.get("price")
-        pcur = canonical_currency(lot.get("price:currency"))
-        display = ""
-        cls = ""
-        value = None
-        if price is not None and pcur in rates and cur in rates:
-            try:
-                val = float(price)
-            except Exception:
-                val = None
-            if val is not None:
-                usd = val / rates[pcur]
-                disp = usd * rates[cur]
-                value = disp
-                display = f"{disp:.2f} {cur}"
-        if not display and lot.get("ai_price") is not None and cur in rates:
-            try:
-                val = float(lot["ai_price"]) * rates[cur]
-                value = val
-                display = f"{val:.2f} {cur}"
-                cls = "ai-price"
-            except Exception:
-                pass
-        lot["_display_price"] = display
-        lot["_price_class"] = cls
-        lot["_display_value"] = value if value is not None else ""
 
 
 def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]]]:
@@ -354,9 +329,14 @@ def _render_site(
     more_user_map: dict[str, list[dict]],
     categories: dict[str, list[dict]],
     category_stats: dict[str, dict],
+    rates: dict[str, float],
     display_cur: str,
 ) -> None:
-    """Render all HTML pages for ``lots`` using cached templates."""
+    """Render all HTML pages for ``lots`` using cached templates.
+
+    ``rates`` maps currency codes to multipliers relative to USD.  The values
+    are embedded into the pages so the front-end can convert prices on the fly.
+    """
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
         build_page(
@@ -367,13 +347,21 @@ def _render_site(
             langs,
             id_to_vec.get(lot["_id"]),
             lookup,
+            rates,
             display_cur,
         )
 
     log.debug("Writing category pages")
     cat_tpls = {lang: envs[lang].get_template("category.html") for lang in langs}
+    subcat_tpls = {lang: envs[lang].get_template("category_index.html") for lang in langs}
     cat_dir = VIEWS_DIR / "deal"
     cat_dir.mkdir(parents=True, exist_ok=True)
+    child_map: dict[str, list[str]] = {}
+    for name in categories:
+        if "." in name:
+            base, _ = name.split(".", 1)
+            child_map.setdefault(base, []).append(name)
+
     for deal, lot_list in categories.items():
         lot_list_sorted = sorted(
             lot_list,
@@ -382,46 +370,67 @@ def _render_site(
         )
         for lang in langs:
             items_lang = []
-            for lot in lot_list_sorted:
-                title = lot.get(f"title_{lang}") or next(
-                    (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
-                    lot.get("_id"),
-                )
-                seller = get_seller(lot)
-                dt = get_timestamp(lot)
-                items_lang.append(
-                    {
-                        "link": os.path.relpath(
-                            VIEWS_DIR / f"{lot['_id']}_{lang}.html",
-                            cat_dir,
-                        ),
-                        "title": title,
-                        "dt": dt,
-                        "price": lot.get("_display_price"),
-                        "price_class": lot.get("_price_class"),
-                        "price_value": lot.get("_display_value"),
-                        "seller": seller,
-                        "id": lot["_id"],
-                        "embed": _format_vector(id_to_vec.get(lot["_id"])),
-                    }
-                )
+            subcats = child_map.get(deal)
+            if subcats:
+                for sub in subcats:
+                    stat = category_stats.get(sub, {})
+                    items_lang.append(
+                        {
+                            "link": os.path.relpath(cat_dir / f"{sub}_{lang}.html", cat_dir),
+                            "name": sub.split(".", 1)[1],
+                            "recent": stat.get("recent", 0),
+                            "users": len(stat.get("recent_users", set())),
+                        }
+                    )
+                tpl = subcat_tpls[lang]
+                render_args = {"deal": deal, "categories": items_lang}
+            else:
+                for lot in lot_list_sorted:
+                    title = lot.get(f"title_{lang}") or next(
+                        (lot.get(f"title_{l}") for l in langs if lot.get(f"title_{l}")),
+                        lot.get("_id"),
+                    )
+                    seller = get_seller(lot)
+                    dt = get_timestamp(lot)
+                    items_lang.append(
+                        {
+                            "link": os.path.relpath(
+                                VIEWS_DIR / f"{lot['_id']}_{lang}.html",
+                                cat_dir,
+                            ),
+                            "title": title,
+                            "dt": dt,
+                            "price": lot.get("_display_price"),
+                            "price_class": lot.get("_price_class"),
+                            "price_value": lot.get("_display_value"),
+                            "price_usd": lot.get("_usd_value"),
+                            "seller": seller,
+                            "id": lot["_id"],
+                            "embed": _format_vector(id_to_vec.get(lot["_id"])),
+                        }
+                    )
+                tpl = cat_tpls[lang]
+                render_args = {"deal": deal, "items": items_lang}
+
             out = cat_dir / f"{deal}_{lang}.html"
             breadcrumbs = [
                 {"title": "Home", "link": os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir)},
                 {"title": deal, "link": None},
             ]
-            out.write_text(
-                cat_tpls[lang].render(
-                    deal=deal,
-                    items=items_lang,
-                    langs=langs,
-                    current_lang=lang,
-                    page_basename=deal,
-                    title=deal,
-                    static_prefix=os.path.relpath(VIEWS_DIR / "static", cat_dir),
-                    breadcrumbs=breadcrumbs,
-                )
+            render_args.update(
+                {
+                    "langs": langs,
+                    "current_lang": lang,
+                    "page_basename": deal,
+                    "title": deal,
+                    "static_prefix": os.path.relpath(VIEWS_DIR / "static", cat_dir),
+                    "breadcrumbs": breadcrumbs,
+                    "rates": rates,
+                    "display_cur": display_cur,
+                    "keep_days": keep_days,
+                }
             )
+            out.write_text(tpl.render(**render_args))
             log.debug("Wrote", path=str(out))
 
     log.debug("Writing index pages")
@@ -449,6 +458,8 @@ def _render_site(
                 static_prefix=os.path.relpath(VIEWS_DIR / "static", VIEWS_DIR),
                 breadcrumbs=breadcrumbs,
                 keep_days=keep_days,
+                rates=rates,
+                display_cur=display_cur,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -468,9 +479,14 @@ def build_page(
     langs: list[str],
     embedding: list[float] | None,
     lookup: dict[str, dict],
+    rates: dict[str, float],
     display_cur: str,
 ) -> None:
-    """Render ``lot`` into separate HTML files for every language."""
+    """Render ``lot`` into separate HTML files for every language.
+
+    ``rates`` provides currency multipliers used by the front-end for dynamic
+    conversion.
+    """
     for lang in langs:
         env = _env_for_lang(lang)
         images = []
@@ -598,6 +614,8 @@ def build_page(
                 media_prefix=media_prefix,
                 breadcrumbs=breadcrumbs,
                 embed=embed_str,
+                rates=rates,
+                display_cur=display_cur,
             )
         )
         log.debug("Wrote", path=str(out))
@@ -627,7 +645,7 @@ def main() -> None:
         use_rates = rates_official
     else:
         use_rates = ai_rates
-    _convert_prices(lots, use_rates, display_cur)
+    prepare_price_fields(lots, use_rates, display_cur)
 
     log.info("Computing similar lots", count=len(lots))
     lot_keys = {lot["_id"] for lot in lots}
@@ -653,6 +671,7 @@ def main() -> None:
         more_user_map,
         categories,
         category_stats,
+        use_rates,
         display_cur,
     )
 

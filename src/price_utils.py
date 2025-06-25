@@ -300,3 +300,48 @@ def apply_price_model(
     return ai_rates
 
 
+def prepare_price_fields(lots: list[dict], rates: Mapping[str, float], cur: str) -> None:
+    """Add display price helpers to ``lots``.
+
+    ``rates`` maps currency codes to multipliers relative to USD and
+    ``cur`` is the display currency. ``_display_price`` is a formatted
+    string in ``cur``. ``_usd_value`` stores the numeric USD value so
+    the front-end can switch currencies without rebuilding the site.
+    Prices predicted by AI get ``_price_class`` set to ``ai-price`` for
+    styling.
+    """
+
+    for lot in lots:
+        price = lot.get("price")
+        pcur = canonical_currency(lot.get("price:currency"))
+        display = ""
+        cls = ""
+        value = None
+        usd_val = None
+        if price is not None and pcur in rates and cur in rates:
+            try:
+                val = float(price)
+            except Exception:
+                val = None
+            if val is not None:
+                usd_val = val / rates[pcur]
+                disp = usd_val * rates[cur]
+                value = disp
+                display = f"{disp:.2f} {cur}"
+        if not display and lot.get("ai_price") is not None and cur in rates:
+            try:
+                usd_val = float(lot["ai_price"])
+                val = usd_val * rates[cur]
+                value = val
+                display = f"{val:.2f} {cur}"
+                cls = "ai-price"
+            except Exception:
+                pass
+        lot["_display_price"] = display
+        lot["_price_class"] = cls
+        lot["_display_value"] = value if value is not None else ""
+        if usd_val is not None:
+            lot["_usd_value"] = usd_val
+
+
+

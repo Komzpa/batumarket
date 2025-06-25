@@ -27,7 +27,14 @@
             {% endif %}
         {% endfor %}
     </div>
+    <div class="currency-switch">
+        <select id="currency-select"></select>
+    </div>
 </nav>
+<script>
+    window.currencyRates = {{ rates|tojson }};
+    window.displayCurrency = '{{ display_cur }}';
+</script>
 {% block body %}{% endblock %}
 </body>
 </html>

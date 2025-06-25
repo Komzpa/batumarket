@@ -5,6 +5,7 @@ body {
 }
 nav.top { display: flex; justify-content: space-between; margin-bottom: 1em; }
 .lang-switch a { margin-left: 0.5em; }
+.currency-switch select { margin-left: 0.5em; }
 .carousel { display: flex; gap: 0.5em; overflow-x: auto; }
 .carousel.main img {
   cursor: pointer;
