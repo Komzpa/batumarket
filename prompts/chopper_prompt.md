@@ -22,7 +22,7 @@ The output is a flat dictionary inspired by OpenStreetMap tags. Important keys i
 - `start_date`, `end_date` - iso8601 date.`
 - `area` – integer square metres when available.
 - `price`, `price:currency` – normalised price fields. Use ISO‑4217 currency
-  codes and correct obvious typos like `Gel` to `GEL`. Values outside the list
+  codes; correct obvious typos (`Gel`, `LAR` to `GEL`; `TL` to `TRY`). "у.е." might be USD. Values outside the list
   of known codes should be dropped.
 - `price:period` - `month`, `day`, `night`, `year`, `long_term`, `season`
 - `price:deposit`, `price:deposit:currency`.
