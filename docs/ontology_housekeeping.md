@@ -68,5 +68,6 @@ useful.
 The captioning prompt in `prompts/captioner_prompt.md` influences what
 attributes the chopper can infer. Update it when you see new property
 features or room details appear in `fields.json` so captions mention them
-explicitly. This helps the parser extract attributes like `view`, `heating`
-or notable furniture from the images.
+explicitly. The prompt now stresses qualities a buyer cares about and asks the
+model to skip "This image..." style preambles. This helps the parser extract
+attributes like `view`, `heating` or notable furniture from the images.

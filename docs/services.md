@@ -79,9 +79,9 @@ the full message metadata and skips the post so issues can be investigated.
 ## caption.py
 Calls GPT-4o Vision using the instructions in
 [`captioner_prompt.md`](../prompts/captioner_prompt.md) to describe photos from
-`data/media`. The prompt highlights the overall vibe of the interior and asks
-the model to return a JSON object with ``caption_<lang>`` fields for all
-configured languages. ``tg_client.py``
+`data/media`. The prompt focuses on details interesting to buyers and tells the
+model to skip filler phrases. Captions are returned as a JSON object with
+``caption_<lang>`` fields for all configured languages. ``tg_client.py``
 sends a tool schema documented in
 [`caption_schema.json`](caption_schema.json) so the response always
 includes every language.
