@@ -5,6 +5,8 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
+import progressbar
+
 from serde_utils import load_json, write_json
 from sklearn.neighbors import NearestNeighbors
 
@@ -147,16 +149,43 @@ def _calc_similar_nn(
     nn = NearestNeighbors(n_neighbors=k, metric="cosine")
     nn.fit(matrix)
     index_map = {v: idx for idx, v in enumerate(vec_ids)}
-    for lot_id in new_ids:
-        idx = index_map.get(lot_id)
-        if idx is None:
-            sim_map[lot_id] = []
-            continue
-        dist, neigh = nn.kneighbors([matrix[idx]], n_neighbors=k)
+
+    queries = []
+    q_ids = []
+    for lid in new_ids:
+        idx = index_map.get(lid)
+        if idx is not None:
+            queries.append(matrix[idx])
+            q_ids.append(lid)
+        else:
+            sim_map[lid] = []
+
+    if not queries:
+        return
+
+    dist, neigh = nn.kneighbors(queries, n_neighbors=k)
+
+    widgets = [
+        "similar ",
+        progressbar.Bar(marker="#", left="[", right="]"),
+        " ",
+        progressbar.ETA(),
+    ]
+    try:
+        bar = progressbar.ProgressBar(max_value=len(q_ids), widgets=widgets)
+    except TypeError as exc:
+        if "max_value" in str(exc) and "maxval" in str(exc):
+            bar = progressbar.ProgressBar(maxval=len(q_ids), widgets=widgets)
+        else:
+            raise
+    bar.start()
+    for i, lot_id in enumerate(q_ids):
         sims = []
-        for d, other_idx in zip(dist[0][1:], neigh[0][1:]):
+        for d, other_idx in zip(dist[i][1:], neigh[i][1:]):
             other_id = vec_ids[other_idx]
             sims.append({"id": other_id, "dist": float(d)})
         sim_map[lot_id] = sims
         _update_reciprocal(sim_map, lot_id, sims)
+        bar.update(i + 1)
+    bar.finish()
 
