@@ -208,3 +208,57 @@ def _calc_similar_nn(
         bar.update(i + 1)
     bar.finish()
 
+
+def _sync_embeddings(
+    lots: list[dict],
+    embeddings: dict[str, list[float]],
+) -> tuple[list[dict], dict[str, list[float]]]:
+    """Drop lots or vectors that do not match and return cleaned data."""
+    lot_keys = {lot["_id"] for lot in lots}
+    emb_keys = set(embeddings)
+    extra_embs = emb_keys - lot_keys
+    if extra_embs:
+        for key in extra_embs:
+            embeddings.pop(key, None)
+        log.debug("Dropped embeddings without lots", count=len(extra_embs))
+    missing_embs = lot_keys - emb_keys
+    if missing_embs:
+        lots = [lot for lot in lots if lot["_id"] not in missing_embs]
+        log.debug("Dropped lots without embeddings", count=len(missing_embs))
+    return lots, embeddings
+
+
+def _similar_by_user(
+    lots: list[dict], id_to_vec: dict[str, list[float]]
+) -> dict[str, list[dict]]:
+    """Return map of lot id to other lots from the same user."""
+    user_map: dict[str, list[dict]] = {}
+    for lot in lots:
+        user = (
+            lot.get("contact:telegram")
+            or lot.get("source:author:telegram")
+            or lot.get("source:author:name")
+        )
+        if isinstance(user, list):
+            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            user = user[0] if user else None
+        if user is not None:
+            user_map.setdefault(str(user), []).append(lot)
+
+    more_user_map: dict[str, list[dict]] = {}
+    for user, user_lots in user_map.items():
+        for lot in user_lots:
+            others = [o for o in user_lots if o is not lot]
+            scores = []
+            vec = id_to_vec.get(lot["_id"])
+            for other in others:
+                ov = id_to_vec.get(other["_id"])
+                if vec and ov:
+                    scores.append((_cos_sim(vec, ov), other))
+                else:
+                    scores.append((0.0, other))
+            scores.sort(key=lambda x: x[0], reverse=True)
+            items = [{"id": other["_id"]} for _, other in scores[:20]]
+            more_user_map[lot["_id"]] = items
+    return more_user_map
+

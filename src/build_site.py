@@ -32,6 +32,8 @@ from similar_utils import (
     _prune_similar,
     _calc_similar_nn,
     _cos_sim,
+    _sync_embeddings,
+    _similar_by_user,
 )
 
 from config_utils import load_config
@@ -39,12 +41,7 @@ from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
-from price_utils import (
-    train_price_regression,
-    predict_price,
-    currency_rates,
-    guess_currency,
-)
+from price_utils import apply_price_model
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -188,76 +185,6 @@ def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[s
     return fields, embeddings, lots, sim_map
 
 
-def _sync_embeddings(lots: list[dict], embeddings: dict[str, list[float]]) -> tuple[list[dict], dict[str, list[float]]]:
-    """Drop lots or vectors that do not match and return cleaned data."""
-    lot_keys = {lot["_id"] for lot in lots}
-    emb_keys = set(embeddings)
-    extra_embs = emb_keys - lot_keys
-    if extra_embs:
-        for key in extra_embs:
-            embeddings.pop(key, None)
-        log.debug("Dropped embeddings without lots", count=len(extra_embs))
-    missing_embs = lot_keys - emb_keys
-    if missing_embs:
-        lots = [lot for lot in lots if lot["_id"] not in missing_embs]
-        log.debug("Dropped lots without embeddings", count=len(missing_embs))
-    return lots, embeddings
-
-
-def _apply_price_model(lots: list[dict], id_to_vec: dict[str, list[float]]) -> None:
-    """Predict prices in USD and guess missing currencies."""
-    log.debug("Training price model")
-    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
-    rates = currency_rates(price_model, currency_map) if price_model else {}
-    if rates:
-        log.info("Regressed currency rates", rates=rates)
-    for lot in lots:
-        vec = id_to_vec.get(lot["_id"])
-        pred_usd = predict_price(price_model, currency_map, vec, "USD")
-        if pred_usd is not None:
-            lot["ai_price"] = round(pred_usd, 2)
-        if lot.get("price") is not None and lot.get("price:currency") is None:
-            try:
-                price_val = float(lot["price"])
-            except Exception:
-                price_val = None
-            if price_val and pred_usd:
-                guessed = guess_currency(rates, price_val, pred_usd, counts)
-                if guessed:
-                    lot["price:currency"] = guessed
-
-
-def _similar_by_user(lots: list[dict], id_to_vec: dict[str, list[float]]) -> dict[str, list[dict]]:
-    """Return map of lot id to other lots from the same user."""
-    user_map: dict[str, list[dict]] = {}
-    for lot in lots:
-        user = (
-            lot.get("contact:telegram")
-            or lot.get("source:author:telegram")
-            or lot.get("source:author:name")
-        )
-        if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
-            user = user[0] if user else None
-        if user is not None:
-            user_map.setdefault(str(user), []).append(lot)
-
-    more_user_map: dict[str, list[dict]] = {}
-    for user, user_lots in user_map.items():
-        for lot in user_lots:
-            others = [o for o in user_lots if o is not lot]
-            scores = []
-            vec = id_to_vec.get(lot["_id"])
-            for other in others:
-                ov = id_to_vec.get(other["_id"])
-                if vec and ov:
-                    scores.append((_cos_sim(vec, ov), other))
-                else:
-                    scores.append((0.0, other))
-            scores.sort(key=lambda x: x[0], reverse=True)
-            items = [{"id": other["_id"]} for _, other in scores[:20]]
-            more_user_map[lot["_id"]] = items
-    return more_user_map
 
 
 def _categorise(
@@ -570,7 +497,7 @@ def main() -> None:
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
     lookup = {lot["_id"]: lot for lot in lots}
 
-    _apply_price_model(lots, id_to_vec)
+    apply_price_model(lots, id_to_vec)
 
     log.info("Computing similar lots", count=len(lots))
     lot_keys = {lot["_id"] for lot in lots}
