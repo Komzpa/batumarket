@@ -29,6 +29,7 @@ from log_utils import get_logger, install_excepthook
 from caption_io import read_caption, has_caption
 from post_io import read_post, raw_post_path, RAW_DIR
 from lot_io import valid_lots, needs_cleanup
+from typing import Iterable
 from message_utils import build_prompt
 import embed
 
@@ -46,6 +47,17 @@ MEDIA_DIR = Path("data/media")
 LOTS_DIR = Path("data/lots")
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp"}
+
+
+def has_misc_deal(lots: Iterable[dict]) -> bool:
+    """Return True when any lot is classified as misc or announcement."""
+    for lot in lots:
+        deal = lot.get("market:deal")
+        if isinstance(deal, list):
+            deal = deal[0] if deal else None
+        if isinstance(deal, str) and deal in {"misc", "announcement"}:
+            return True
+    return False
 
 # System prompt appended to the blueprint.  Explicitly instruct the model to
 # respond with *only* JSON, no code fences or extra text.  The API request will
@@ -168,7 +180,7 @@ def process_message(msg_path: Path) -> None:
         if valid_lots(lots):
             log.info("Model succeeded", model=params)
             if idx == 0 and params.get("model") == "gpt-4o-mini" and len(CHOP_MODELS) > 1:
-                if len(lots) > 1 or needs_cleanup(lots):
+                if len(lots) > 1 or needs_cleanup(lots) or has_misc_deal(lots):
                     log.info(
                         "Mini model result needs full model", count=len(lots)
                     )
