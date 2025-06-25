@@ -67,15 +67,17 @@ for qname, node in all_defs.items():
 # Render the graph using the ``graphviz`` library.
 dot = Digraph("callgraph", graph_attr={"rankdir": "LR"})
 
-# Group CLI entry points together to keep them on the same rank.
+# Group CLI entry points on the same horizontal rank so they form a line.
 cli_cluster = Digraph(
     "cluster_cli",
-    graph_attr={"label": "CLI entrypoints", "newrank": "true"},
+    graph_attr={"label": "CLI entrypoints", "rank": "same"},
 )
 
 for qname in all_defs:
-    target = cli_cluster if qname.endswith(":cli") else dot
-    target.node(qname, shape="box", tooltip=docstrings.get(qname, ""))
+    if qname.endswith(":cli"):
+        cli_cluster.node(qname, shape="ellipse", tooltip=docstrings.get(qname, ""))
+    else:
+        dot.node(qname, shape="box", tooltip=docstrings.get(qname, ""))
 
 # Connect entry points invisibly so they stay ordered in the diagram.
 entrypoints_order = [

@@ -991,6 +991,7 @@ async def remove_deleted(client: TelegramClient, keep_days: int) -> None:
 
 
 async def main(argv: list[str] | None = None) -> None:
+    """Synchronize configured chats and optional live updates."""
     parser = argparse.ArgumentParser(description="Sync Telegram chats")
     parser.add_argument(
         "--listen",

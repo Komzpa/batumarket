@@ -60,6 +60,7 @@ SYSTEM_PROMPT = (
 
 
 def process_message(msg_path: Path) -> None:
+    """Extract lots from ``msg_path`` and save them under ``LOTS_DIR``."""
     rel = msg_path.relative_to(RAW_DIR)
     out = LOTS_DIR / rel.with_suffix(".json")
     out.parent.mkdir(parents=True, exist_ok=True)
