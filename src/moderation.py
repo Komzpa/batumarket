@@ -28,6 +28,8 @@ except SystemExit:
 # so new variations are still caught.
 DEFAULT_BANNED_SUBSTRINGS = [
     "ищу людей для легкοй рабοты, оплата хорошая",
+    "подпишитесь на канал",
+    "spam",
     "наркотики",
     "кокаин",
     "героин",
