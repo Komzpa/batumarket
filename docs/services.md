@@ -180,11 +180,14 @@ rendering. A regression model (see ``src/price_utils.py``) derives ``ai_price``
 in USD from embeddings when the ``price`` field is missing. Currency names are
 normalised to ISO‑4217 codes so ``Gel`` or ``lar`` are treated as ``GEL``.
 Multipliers are learnt from existing data so that effective exchange rates can
-be logged. The training step logs how many samples were seen for each currency
-and currencies with fewer than 50 examples are skipped when guessing a missing
-currency. Unknown labels are ignored. When a post has a numeric price but no
-currency the closest multiplier is used to guess the currency. Pages fall back
-to the predicted amount when no explicit price is available.
+be logged. Official rates from the National Bank of Georgia are fetched and
+preferred over the regression result when converting. The training step logs
+how many samples were seen for each currency and currencies with fewer than 50
+examples are skipped when guessing a missing currency. Unknown labels are
+ignored. Currency guessing now checks that both the modelled multipliers and the
+official ones agree before assigning a value. Pages fall back to the predicted
+amount when no explicit price is available. Displayed prices are converted to
+``DISPLAY_CURRENCY`` and aligned with a grey tint when coming from the model.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of

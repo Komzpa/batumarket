@@ -41,7 +41,7 @@ from log_utils import get_logger, install_excepthook
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
-from price_utils import apply_price_model
+from price_utils import apply_price_model, fetch_official_rates, canonical_currency
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
@@ -175,6 +175,37 @@ def _copy_static() -> None:
         log.debug("Copied static assets", src=str(static_src), dst=str(static_dst))
 
 
+def _convert_prices(lots: list[dict], rates: dict[str, float], cur: str) -> None:
+    """Add `_display_price` and `_price_class` fields converted to `cur`."""
+    for lot in lots:
+        price = lot.get("price")
+        pcur = canonical_currency(lot.get("price:currency"))
+        display = ""
+        cls = ""
+        value = None
+        if price is not None and pcur in rates and cur in rates:
+            try:
+                val = float(price)
+            except Exception:
+                val = None
+            if val is not None:
+                usd = val / rates[pcur]
+                disp = usd * rates[cur]
+                value = disp
+                display = f"{disp:.2f} {cur}"
+        if not display and lot.get("ai_price") is not None and cur in rates:
+            try:
+                val = float(lot["ai_price"]) * rates[cur]
+                value = val
+                display = f"{val:.2f} {cur}"
+                cls = "ai-price"
+            except Exception:
+                pass
+        lot["_display_price"] = display
+        lot["_price_class"] = cls
+        lot["_display_value"] = value if value is not None else ""
+
+
 def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]]]:
     """Return ontology fields, embeddings, lots and similarity cache."""
     log.debug("Loading ontology")
@@ -226,7 +257,8 @@ def _categorise(
                     "id": lot["_id"],
                     "titles": titles,
                     "dt": dt,
-                    "price": lot.get("price") or lot.get("ai_price"),
+                    "price": lot.get("_display_price"),
+                    "price_class": lot.get("_price_class"),
                     "seller": seller,
                 }
             )
@@ -245,6 +277,7 @@ def _render_site(
     more_user_map: dict[str, list[dict]],
     categories: dict[str, list[dict]],
     category_stats: dict[str, dict],
+    display_cur: str,
 ) -> None:
     """Render all HTML pages for ``lots`` using cached templates."""
     for lot in lots:
@@ -257,6 +290,7 @@ def _render_site(
             langs,
             id_to_vec.get(lot["_id"]),
             lookup,
+            display_cur,
         )
 
     log.debug("Writing category pages")
@@ -286,7 +320,9 @@ def _render_site(
                         ),
                         "title": title,
                         "dt": dt,
-                        "price": lot.get("price") or lot.get("ai_price"),
+                        "price": lot.get("_display_price"),
+                        "price_class": lot.get("_price_class"),
+                        "price_value": lot.get("_display_value"),
                         "seller": seller,
                         "id": lot["_id"],
                         "embed": _format_vector(id_to_vec.get(lot["_id"])),
@@ -355,6 +391,7 @@ def build_page(
     langs: list[str],
     embedding: list[float] | None,
     lookup: dict[str, dict],
+    display_cur: str,
 ) -> None:
     """Render ``lot`` into separate HTML files for every language."""
     for lang in langs:
@@ -377,7 +414,9 @@ def build_page(
             and v not in ("", None)
         }
         if "price" not in attrs and lot.get("ai_price") is not None:
-            attrs["price"] = lot["ai_price"]
+            attrs["price"] = lot["_display_price"]
+        elif "price" in attrs:
+            attrs["price"] = lot.get("_display_price", attrs["price"])
         sorted_attrs = {k: attrs[k] for k in fields if k in attrs}
         for k in attrs:
             if k not in sorted_attrs:
@@ -493,6 +532,7 @@ def main() -> None:
     cfg = load_config()
     langs = getattr(cfg, "LANGS", ["en"])
     keep_days = getattr(cfg, "KEEP_DAYS", 7)
+    display_cur = canonical_currency(getattr(cfg, "DISPLAY_CURRENCY", "USD")) or "USD"
     envs = {lang: _env_for_lang(lang) for lang in langs}
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -503,7 +543,14 @@ def main() -> None:
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
     lookup = {lot["_id"]: lot for lot in lots}
 
-    apply_price_model(lots, id_to_vec)
+    rates_official = fetch_official_rates()
+    ai_rates = apply_price_model(lots, id_to_vec, rates_official)
+
+    if rates_official:
+        use_rates = rates_official
+    else:
+        use_rates = ai_rates
+    _convert_prices(lots, use_rates, display_cur)
 
     log.info("Computing similar lots", count=len(lots))
     lot_keys = {lot["_id"] for lot in lots}
@@ -527,6 +574,7 @@ def main() -> None:
         more_user_map,
         categories,
         category_stats,
+        display_cur,
     )
 
     _save_similar(sim_map)

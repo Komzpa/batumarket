@@ -11,6 +11,8 @@ rates.
 
 import math
 from typing import Iterable, Mapping
+import json
+from urllib.request import urlopen
 
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -41,6 +43,42 @@ def canonical_currency(code: str | None) -> str | None:
     if key in {"currency units", "units", "unit"}:
         return None
     return CURRENCY_ALIASES.get(key, key.upper())
+
+
+def fetch_official_rates() -> dict[str, float]:
+    """Return currency multipliers relative to USD from NBG."""
+    url = "https://nbg.gov.ge/gw/api/ct/monetarypolicy/currencies/en/json"
+    try:
+        with urlopen(url, timeout=10) as resp:
+            data = json.load(resp)
+    except Exception:
+        log.exception("Failed to fetch NBG rates")
+        return {}
+    if not data or not isinstance(data, list) or not data[0].get("currencies"):
+        log.error("Bad NBG response")
+        return {}
+    rates_gel = {"GEL": 1.0}
+    usd = None
+    for item in data[0]["currencies"]:
+        try:
+            code = item["code"].upper()
+            rate = float(item["rate"]) / float(item.get("quantity", 1))
+        except Exception:
+            continue
+        rates_gel[code] = rate
+        if code == "USD":
+            usd = rate
+    if not usd:
+        log.error("USD rate missing in NBG data")
+        return {}
+    rates: dict[str, float] = {"USD": 1.0, "GEL": usd}
+    for code, val in rates_gel.items():
+        if code in {"USD", "GEL"}:
+            continue
+        if val:
+            rates[code] = usd / val
+    log.info("Fetched official rates", rates=rates)
+    return rates
 
 log = get_logger().bind(module=__name__)
 
@@ -209,13 +247,36 @@ def guess_currency(
     return best_cur
 
 
-def apply_price_model(lots: Iterable[Mapping], id_to_vec: Mapping[str, list[float]]) -> None:
+def _guess_currency_verified(
+    ai_rates: Mapping[str, float],
+    official_rates: Mapping[str, float],
+    price: float,
+    pred_usd: float,
+    counts: Mapping[str, int] | None,
+    min_samples: int = 50,
+) -> str | None:
+    """Return currency when both AI and official rates agree."""
+
+    guess_ai = guess_currency(ai_rates, price, pred_usd, counts, min_samples)
+    guess_of = guess_currency(official_rates, price, pred_usd, counts, min_samples)
+    if guess_ai and guess_ai == guess_of:
+        return guess_ai
+    return None
+
+
+def apply_price_model(
+    lots: Iterable[Mapping],
+    id_to_vec: Mapping[str, list[float]],
+    official_rates: Mapping[str, float] | None = None,
+) -> dict[str, float]:
     """Predict prices in USD and guess missing currencies."""
     log.debug("Training price model")
     price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
-    rates = currency_rates(price_model, currency_map) if price_model else {}
-    if rates:
-        log.info("Regressed currency rates", rates=rates)
+    ai_rates = currency_rates(price_model, currency_map) if price_model else {}
+    if ai_rates:
+        log.info("Regressed currency rates", rates=ai_rates)
+    if official_rates:
+        log.info("Official currency rates", rates=official_rates)
     for lot in lots:
         vec = id_to_vec.get(lot["_id"])
         pred_usd = predict_price(price_model, currency_map, vec, "USD")
@@ -227,7 +288,15 @@ def apply_price_model(lots: Iterable[Mapping], id_to_vec: Mapping[str, list[floa
             except Exception:
                 price_val = None
             if price_val and pred_usd:
-                guessed = guess_currency(rates, price_val, pred_usd, counts)
+                guessed = _guess_currency_verified(
+                    ai_rates,
+                    official_rates or {},
+                    price_val,
+                    pred_usd,
+                    counts,
+                )
                 if guessed:
                     lot["price:currency"] = guessed
+    return ai_rates
+
 
