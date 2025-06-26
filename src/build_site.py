@@ -28,9 +28,6 @@ from similar_utils import (
     _load_embeddings,
     _format_vector,
     _load_similar,
-    _save_similar,
-    _prune_similar,
-    _calc_similar_nn,
     _cos_sim,
     _sync_embeddings,
     _similar_by_user,
@@ -656,13 +653,6 @@ def main() -> None:
         use_rates = ai_rates
     prepare_price_fields(lots, use_rates, display_cur)
 
-    log.info("Computing similar lots", count=len(lots))
-    lot_keys = {lot["_id"] for lot in lots}
-    _prune_similar(sim_map, lot_keys)
-    new_ids = [i for i in lot_keys if i not in sim_map]
-    vec_ids = [i for i in lot_keys if id_to_vec.get(i)]
-    _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
-
     more_user_map = _similar_by_user(lots, id_to_vec)
     categories, category_stats, _recent = _categorise(
         lots, langs, keep_days, id_to_vec
@@ -684,7 +674,6 @@ def main() -> None:
         display_cur,
     )
 
-    _save_similar(sim_map)
     log.info("Site build complete")
 
 

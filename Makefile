@@ -39,8 +39,12 @@ ontology: chop ## Summarize lots so it's easier see what exactly is there in the
 embed: chop caption ## Store embeddings for each lot
 	python scripts/pending_embed.py | parallel --eta -j16 -0 python src/embed.py
 
+# Update cache of similar items based on embeddings.
+similar: embed ## Compute lot recommendations
+	python src/similar.py
+
 # Render HTML pages from lots and templates.
-build: embed ontology ## Render HTML pages from lots and templates
+build: similar ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
 
