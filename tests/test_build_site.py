@@ -13,6 +13,7 @@ import build_site
 import price_utils
 import similar_utils
 import similar
+import prices
 import lot_io
 
 
@@ -28,8 +29,12 @@ def patch_similar(tmp_path, monkeypatch):
     monkeypatch.setattr(similar_utils, "MORE_USER_DIR", tmp_path / "more_user")
     monkeypatch.setattr(similar_utils, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(similar, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(prices, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(prices, "PRICE_DIR", tmp_path / "prices")
+    monkeypatch.setattr(prices, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(lot_io, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(lot_io, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(price_utils, "PRICE_DIR", tmp_path / "prices")
     monkeypatch.setenv("ALLOW_EMPTY_POSTERS", "1")
 
 
@@ -37,6 +42,7 @@ def patch_similar(tmp_path, monkeypatch):
 def build(monkeypatch):
     def run():
         similar.main()
+        prices.main()
         build_site.main()
 
     return run

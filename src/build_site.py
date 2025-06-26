@@ -38,7 +38,8 @@ from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
 from price_utils import (
-    apply_price_model,
+    _load_prices,
+    _load_rates,
     fetch_official_rates,
     canonical_currency,
     prepare_price_fields,
@@ -650,8 +651,20 @@ def main() -> None:
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
     lookup = {lot["_id"]: lot for lot in lots}
 
+    price_cache = _load_prices()
+    ai_rates = _load_rates()
+    for lot in lots:
+        info = price_cache.get(lot["_id"]) or {}
+        if "ai_price" in info:
+            lot["ai_price"] = info["ai_price"]
+        if (
+            lot.get("price") is not None
+            and lot.get("price:currency") is None
+            and "price:currency" in info
+        ):
+            lot["price:currency"] = info["price:currency"]
+
     rates_official = fetch_official_rates()
-    ai_rates = apply_price_model(lots, id_to_vec, rates_official)
 
     if rates_official:
         use_rates = rates_official
