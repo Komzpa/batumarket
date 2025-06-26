@@ -41,6 +41,7 @@ from price_utils import (
     apply_price_model,
     fetch_official_rates,
     canonical_currency,
+    load_price_model,
     prepare_price_fields,
 )
 
@@ -54,6 +55,7 @@ EMBED_DIR = Path("data/embeddings")
 ONTOLOGY = Path("data/ontology/fields.json")
 LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
+MODEL_FILE = Path("data/price_model.json")
 
 
 
@@ -651,7 +653,15 @@ def main() -> None:
     lookup = {lot["_id"]: lot for lot in lots}
 
     rates_official = fetch_official_rates()
-    ai_rates = apply_price_model(lots, id_to_vec, rates_official)
+    model, cur_map, counts = load_price_model(MODEL_FILE)
+    ai_rates = apply_price_model(
+        lots,
+        id_to_vec,
+        rates_official,
+        model,
+        cur_map,
+        counts,
+    )
 
     if rates_official:
         use_rates = rates_official

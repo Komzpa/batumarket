@@ -12,12 +12,14 @@ rates.
 import math
 from typing import Iterable, Mapping
 import json
+from pathlib import Path
 from urllib.request import urlopen
 
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
 from log_utils import get_logger
+from notes_utils import load_json, write_json
 
 # Map various currency spellings to ISO-4217 codes.
 CURRENCY_ALIASES = {
@@ -170,6 +172,46 @@ def train_price_regression(
     return model, currencies, counts
 
 
+def save_price_model(
+    model: LinearRegression,
+    currencies: Mapping[str, int],
+    counts: Mapping[str, int],
+    path: Path,
+) -> None:
+    """Write ``model`` parameters to ``path`` as JSON."""
+
+    data = {
+        "intercept": float(model.intercept_),
+        "coef": [float(c) for c in model.coef_],
+        "currencies": {str(k): int(v) for k, v in currencies.items()},
+        "counts": {str(k): int(v) for k, v in counts.items()},
+    }
+    write_json(path, data)
+    log.debug("Saved price model", path=str(path))
+
+
+def load_price_model(path: Path) -> tuple[LinearRegression | None, dict[str, int], dict[str, int]]:
+    """Return ``(model, currencies, counts)`` loaded from ``path``."""
+
+    obj = load_json(path)
+    if not isinstance(obj, dict):
+        log.warning("Price model missing", path=str(path))
+        return None, {}, {}
+    try:
+        coef = [float(c) for c in obj.get("coef", [])]
+        intercept = float(obj["intercept"])
+        currencies = {str(k): int(v) for k, v in obj.get("currencies", {}).items()}
+        counts = {str(k): int(v) for k, v in obj.get("counts", {}).items()}
+    except Exception:
+        log.exception("Bad price model", path=str(path))
+        return None, {}, {}
+    model = LinearRegression()
+    model.coef_ = np.array(coef, dtype=float)
+    model.intercept_ = float(intercept)
+    model.n_features_in_ = len(coef)
+    return model, currencies, counts
+
+
 # ---------------------------------------------------------------------------
 # Prediction helpers
 # ---------------------------------------------------------------------------
@@ -268,10 +310,20 @@ def apply_price_model(
     lots: Iterable[Mapping],
     id_to_vec: Mapping[str, list[float]],
     official_rates: Mapping[str, float] | None = None,
+    model: LinearRegression | None = None,
+    currency_map: Mapping[str, int] | None = None,
+    counts: Mapping[str, int] | None = None,
 ) -> dict[str, float]:
     """Predict prices in USD and guess missing currencies."""
-    log.debug("Training price model")
-    price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
+
+    if model is None or currency_map is None:
+        log.debug("Training price model")
+        price_model, currency_map, counts = train_price_regression(lots, id_to_vec)
+    else:
+        log.debug("Using cached price model")
+        price_model = model
+        if counts is None:
+            counts = {}
     ai_rates = currency_rates(price_model, currency_map) if price_model else {}
     if ai_rates:
         log.info("Regressed currency rates", rates=ai_rates)
