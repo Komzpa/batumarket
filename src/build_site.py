@@ -230,9 +230,9 @@ def _categorise(
     def add_lot(cat: str, lot: dict, dt: datetime | None) -> None:
         categories.setdefault(cat, []).append(lot)
         stat = update_stat(cat)
-        user = lot.get("contact:telegram")
+        user = get_seller(lot)
         if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
+            log.debug("Multiple sellers", id=lot.get("_id"), value=user)
             user = user[0] if user else None
         if user:
             stat["users"].add(str(user))

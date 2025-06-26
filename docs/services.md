@@ -205,7 +205,9 @@ Both index and category pages react to it so the chosen order persists while
 browsing.
 The index page lists only top level `market:deal` categories with the number of
 posts seen in the last ``KEEP_DAYS`` days and how many unique posters were
-involved. `sell_item` entries are additionally broken down by `item:type` so
+involved. Poster identity is resolved via `lot_io.get_seller()` so phone
+numbers, Telegram handles or other contacts all count. `sell_item` entries are
+additionally broken down by `item:type` so
 phones, laptops and similar goods have their own pages. Clicking on the main
 `sell_item` link shows a table of those subcategories instead of the raw lot
 list. Each category tracks the median price with a min–max range, the time of
