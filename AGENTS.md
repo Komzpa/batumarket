@@ -1,14 +1,18 @@
 # Important rules for agents
 
-Documentation:
+Grasping what's up:
  - Check out README.md.
+ - Check callgraph in docs.
  - Check data schema as described in `docs/`.
+
+Documentation:
  - docs/ folder has general project documentation that needs to be kept up to date.
  - Fix everything in the `docs/` folder to match reality.
  - Don't update `README.md` with minor code fixes.
  - When moving around md files also fix the links in them and links to them across all others.
  - Prefer storing notes and documentation as markdown (``.md``).
  - Update docs every time you update something significant across files.
+ - Write code comments near the code.
 
 Debugging:
  - Write enough comments so you can deduce what was a requirement in the future and not walk in circles.
@@ -57,6 +61,7 @@ Make:
 
 Python:
  - Write comments for each logical block.
+ - Write docstrings, they will get used for call graph and generated documentation.
 
 AI:
  - Try to make a patch to fix/improve things even if user's request sounds like a question.
