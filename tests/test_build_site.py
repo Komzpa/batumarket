@@ -26,6 +26,7 @@ def patch_similar(tmp_path, monkeypatch):
     monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
     monkeypatch.setattr(similar_utils, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(lot_io, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setenv("ALLOW_EMPTY_POSTERS", "1")
 
 
 def test_build_site_creates_pages(tmp_path, monkeypatch):
