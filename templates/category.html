@@ -1,16 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 <h1>{{ deal }}</h1>
-<p class="sort-control">{{ _('Sort by:') }}
-  <select id="sort-mode">
-    <option value="relevance">{{ _('Relevant first') }}</option>
-    <option value="unexplored">{{ _('Unexplored first') }}</option>
-    <option value="price_asc">{{ _('Cheapest first') }}</option>
-    <option value="price_desc">{{ _('Expensive first') }}</option>
-    <option value="time_asc">{{ _('Older first') }}</option>
-    <option value="time_desc">{{ _('Newer first') }}</option>
-  </select>
-</p>
+<p class="sort-control"></p>
 <table id="index-table">
   <thead>
     <tr>
@@ -26,7 +17,7 @@
       <td><a href="{{ lot.link }}">{{ lot.title }}</a></td>
       <td class="price{% if lot.price_class %} {{ lot.price_class }}{% endif %}"
           data-usd="{{ lot.price_usd }}" data-ai="{% if lot.price_class == 'ai-price' %}1{% else %}0{% endif %}">
-          {{ lot.price }}{% if lot.price_class == 'ai-price' %} (AI){% endif %}
+          {% if lot.price_class == 'ai-price' %}(AI) {% endif %}{{ lot.price }}
       </td>
       <td>{{ lot.seller or '' }}</td>
       <td{% if lot.dt %} data-raw="{{ lot.dt.isoformat() }}"{% endif %}>{{ lot.dt.strftime('%Y-%m-%d %H:%M') if lot.dt else '' }}</td>

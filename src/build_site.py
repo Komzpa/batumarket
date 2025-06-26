@@ -239,8 +239,10 @@ def _categorise(
             user = user[0] if user else None
         if user:
             stat["users"].add(str(user))
-            if dt and dt >= recent_cutoff:
+        if dt and dt >= recent_cutoff:
+            if user:
                 stat["recent_users"].add(str(user))
+            stat["recent"] += 1
         price = lot.get("_display_value")
         if price not in ("", None):
             try:
@@ -279,7 +281,6 @@ def _categorise(
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
             seller = get_seller(lot)
-            update_stat(deal)["recent"] += 1
             recent.append(
                 {
                     "id": lot["_id"],
@@ -314,6 +315,12 @@ def _categorise(
             stat["centroid"] = [v / count for v in vecsum]
         else:
             stat["centroid"] = None
+
+    if not os.environ.get("ALLOW_EMPTY_POSTERS"):
+        for cat, lots_list in categories.items():
+            assert lots_list, f"No lots for category {cat}"
+            assert category_stats[cat]["users"], f"No posters for category {cat}"
+
     return categories, category_stats, recent
 
 
@@ -438,6 +445,8 @@ def _render_site(
     for lang in langs:
         cats_lang = []
         for deal, stat in category_stats.items():
+            if "." in deal:
+                continue
             cats_lang.append(
                 {
                     "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),

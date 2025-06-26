@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Number.isNaN(usd)) return;
         const val = usd * window.currencyRates[c];
         const ai = el.dataset.ai === '1';
-        el.textContent = val.toFixed(2) + ' ' + c + (ai ? ' (AI)' : '');
+        el.textContent = (ai ? '(AI) ' : '') + val.toFixed(2) + ' ' + c;
       });
     };
     curSel.addEventListener('change', updateCur);

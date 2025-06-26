@@ -200,14 +200,16 @@ JavaScript. Static files from `templates/static` are copied to
 Every page now also includes a currency selector next to the language switcher.
 Prices are converted on the fly in the browser using the rates embedded into
 the page and the last choice is remembered.
-The index page now lists all `market:deal` categories with the number of
-posts seen in the last ``KEEP_DAYS`` days and how many unique posters were involved.
-`sell_item` entries are additionally broken down by `item:type` so phones,
-laptops and similar goods have their own pages.  Clicking on the main
-`sell_item` link now shows a table of those subcategories instead of the raw lot
-list. Each category tracks the
-median price with a min–max range, the time of the most recent post and a
-centroid of all available embeddings.
+The navigation bar exposes a global sorting method selector.
+Both index and category pages react to it so the chosen order persists while
+browsing.
+The index page lists only top level `market:deal` categories with the number of
+posts seen in the last ``KEEP_DAYS`` days and how many unique posters were
+involved. `sell_item` entries are additionally broken down by `item:type` so
+phones, laptops and similar goods have their own pages. Clicking on the main
+`sell_item` link shows a table of those subcategories instead of the raw lot
+list. Each category tracks the median price with a min–max range, the time of
+the most recent post and a centroid of all available embeddings.
 Each subcategory link leads to a page listing every lot of that type while other
 categories link directly to their respective lot lists.
 Lot pages include a "more by this user" section which shows other lots from the

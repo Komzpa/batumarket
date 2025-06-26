@@ -30,6 +30,17 @@
     <div class="currency-switch">
         <select id="currency-select"></select>
     </div>
+    <div class="sort-switch">
+        <label for="sort-mode">{{ _('Sort by:') }}</label>
+        <select id="sort-mode">
+            <option value="relevance">{{ _('Relevant first') }}</option>
+            <option value="unexplored">{{ _('Unexplored first') }}</option>
+            <option value="price_asc">{{ _('Cheapest first') }}</option>
+            <option value="price_desc">{{ _('Expensive first') }}</option>
+            <option value="time_asc">{{ _('Older first') }}</option>
+            <option value="time_desc">{{ _('Newer first') }}</option>
+        </select>
+    </div>
 </nav>
 <script>
     window.currencyRates = {{ rates|tojson }};
