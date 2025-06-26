@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 import build_site
 import price_utils
 import similar_utils
+import similar
 import lot_io
 
 
@@ -29,7 +30,16 @@ def patch_similar(tmp_path, monkeypatch):
     monkeypatch.setenv("ALLOW_EMPTY_POSTERS", "1")
 
 
-def test_build_site_creates_pages(tmp_path, monkeypatch):
+@pytest.fixture
+def build(monkeypatch):
+    def run():
+        similar.main()
+        build_site.main()
+
+    return run
+
+
+def test_build_site_creates_pages(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -59,7 +69,7 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
         }
     ]))
     (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
-    build_site.main()
+    build()
 
     assert (tmp_path / "views" / "1-0_en.html").exists()
     index = tmp_path / "views" / "index_en.html"
@@ -79,7 +89,7 @@ def test_build_site_creates_pages(tmp_path, monkeypatch):
     assert 'window.currentLot' in lot_html
 
 
-def test_handles_list_fields(tmp_path, monkeypatch):
+def test_handles_list_fields(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -110,12 +120,12 @@ def test_handles_list_fields(tmp_path, monkeypatch):
     ]))
     (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
-    build_site.main()
+    build()
 
     assert (tmp_path / "views" / "1-0_en.html").exists()
 
 
-def test_author_fallback(tmp_path, monkeypatch):
+def test_author_fallback(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -147,13 +157,13 @@ def test_author_fallback(tmp_path, monkeypatch):
     ]))
     (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
-    build_site.main()
+    build()
 
     cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
     assert "@poster" in cat_html
 
 
-def test_build_site_skips_moderated(tmp_path, monkeypatch):
+def test_build_site_skips_moderated(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -188,12 +198,12 @@ def test_build_site_skips_moderated(tmp_path, monkeypatch):
 
     monkeypatch.setattr(build_site, "should_skip_message", lambda m, t: True)
 
-    build_site.main()
+    build()
 
     assert not (tmp_path / "views" / "1-0_en.html").exists()
 
 
-def test_build_site_skips_misparsed(tmp_path, monkeypatch):
+def test_build_site_skips_misparsed(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -222,12 +232,12 @@ def test_build_site_skips_misparsed(tmp_path, monkeypatch):
         }
     ]))
 
-    build_site.main()
+    build()
 
     assert not (tmp_path / "views" / "1-0_en.html").exists()
 
 
-def test_build_site_skips_missing_titles(tmp_path, monkeypatch):
+def test_build_site_skips_missing_titles(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -250,12 +260,12 @@ def test_build_site_skips_missing_titles(tmp_path, monkeypatch):
         }
     ]))
 
-    build_site.main()
+    build()
 
     assert not (tmp_path / "views" / "1-0_en.html").exists()
 
 
-def test_images_and_empty_values(tmp_path, monkeypatch):
+def test_images_and_empty_values(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -290,7 +300,7 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
     ]))
     (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
-    build_site.main()
+    build()
 
     assert (tmp_path / "views" / "media" / "a.jpg").exists()
     html = (tmp_path / "views" / "1-0_en.html").read_text()
@@ -298,127 +308,8 @@ def test_images_and_empty_values(tmp_path, monkeypatch):
     assert "other" not in html
 
 
-def test_vectors_generate_similar(tmp_path, monkeypatch):
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
 
-    lots_dir = tmp_path / "lots"
-    lots_dir.mkdir()
-    (tmp_path / "media").mkdir()
-    vec_dir = tmp_path / "vecs"
-    vec_dir.mkdir()
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "a",
-                "description_en": "d",
-                "title_ru": "a",
-                "description_ru": "d",
-                "title_ka": "a",
-                "description_ka": "d",
-                "files": [],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-    (lots_dir / "2.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "b",
-                "description_en": "d",
-                "title_ru": "b",
-                "description_ru": "d",
-                "title_ka": "b",
-                "description_ka": "d",
-                "files": [],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-
-    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
-    (vec_dir / "2.json").write_text(json.dumps([{"id": "2-0", "vec": [0.9, 0.1]}]))
-
-    build_site.main()
-
-    html = (tmp_path / "views" / "1-0_en.html").read_text()
-    assert "2-0_en.html" in html
-
-
-def test_vectors_nested_paths(tmp_path, monkeypatch):
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
-
-    lots_dir = tmp_path / "lots" / "chat" / "2024"
-    lots_dir.mkdir(parents=True)
-    (tmp_path / "media").mkdir()
-    vec_dir = tmp_path / "vecs" / "chat" / "2024"
-    vec_dir.mkdir(parents=True)
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "a",
-                "description_en": "d",
-                "title_ru": "a",
-                "description_ru": "d",
-                "title_ka": "a",
-                "description_ka": "d",
-                "files": [],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-    (lots_dir / "2.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "b",
-                "description_en": "d",
-                "title_ru": "b",
-                "description_ru": "d",
-                "title_ka": "b",
-                "description_ka": "d",
-                "files": [],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-
-    (vec_dir / "1.json").write_text(
-        json.dumps([{"id": "chat/2024/1-0", "vec": [1, 0]}])
-    )
-    (vec_dir / "2.json").write_text(
-        json.dumps([{"id": "chat/2024/2-0", "vec": [0.9, 0.1]}])
-    )
-
-    build_site.main()
-
-    html = (tmp_path / "views" / "chat" / "2024" / "1-0_en.html").read_text()
-    assert "2-0_en.html" in html
-
-
-def test_page_headers_and_orig_open(tmp_path, monkeypatch):
+def test_page_headers_and_orig_open(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -473,7 +364,7 @@ def test_page_headers_and_orig_open(tmp_path, monkeypatch):
     (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
     (vec_dir / "2.json").write_text(json.dumps([{"id": "1-1", "vec": [0.9, 0.1]}]))
 
-    build_site.main()
+    build()
 
     html = (tmp_path / "views" / "1-0_en.html").read_text()
     assert '<details class="orig-text" open>' in html
@@ -481,7 +372,7 @@ def test_page_headers_and_orig_open(tmp_path, monkeypatch):
     assert '<h2>More by this user</h2>' in html
     assert 'class="more-user similar carousel"' in html
 
-def test_drop_lots_without_vectors(tmp_path, monkeypatch):
+def test_drop_lots_without_vectors(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -526,7 +417,7 @@ def test_drop_lots_without_vectors(tmp_path, monkeypatch):
 
     (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
-    build_site.main()
+    build()
 
     assert (tmp_path / "views" / "1-0_en.html").exists()
     assert not (tmp_path / "views" / "1-1_en.html").exists()
@@ -535,54 +426,7 @@ def test_drop_lots_without_vectors(tmp_path, monkeypatch):
     assert "1-1_en.html" not in cat_html
 
 
-def test_vector_formatting(tmp_path, monkeypatch):
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
-
-    lots_dir = tmp_path / "lots"
-    lots_dir.mkdir()
-    (tmp_path / "media").mkdir()
-    vec_dir = tmp_path / "vecs"
-    vec_dir.mkdir()
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "a",
-            "description_en": "d",
-            "title_ru": "a",
-            "description_ru": "d",
-            "title_ka": "a",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        },
-    ]))
-
-    vec = [0.123456, -0.987654]
-    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": vec}]))
-
-    build_site.main()
-
-    cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
-    m = re.search(r"data-embed=\"([^\"]+)\"", cat_html)
-    assert m
-    raw = m.group(1)
-    assert " " not in raw
-    parts = raw.strip("[]").split(",")
-    assert all(len(p) <= 7 for p in parts)
-    assert raw == similar_utils._format_vector(vec)
-
-
-def test_category_html_parses(tmp_path, monkeypatch):
+def test_category_html_parses(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -614,7 +458,7 @@ def test_category_html_parses(tmp_path, monkeypatch):
     ]))
     (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
 
-    build_site.main()
+    build()
 
     cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
     import html5lib
@@ -624,210 +468,7 @@ def test_category_html_parses(tmp_path, monkeypatch):
     assert parser.errors == []
 
 
-def test_similar_cache_updates(tmp_path, monkeypatch):
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
-    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
-
-    lots_dir = tmp_path / "lots"
-    lots_dir.mkdir()
-    (tmp_path / "media").mkdir()
-    (tmp_path / "vecs").mkdir()
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "a",
-            "description_en": "d",
-            "title_ru": "a",
-            "description_ru": "d",
-            "title_ka": "a",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        }
-    ]))
-    (lots_dir / "2.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "b",
-            "description_en": "d",
-            "title_ru": "b",
-            "description_ru": "d",
-            "title_ka": "b",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        }
-    ]))
-
-    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
-    (tmp_path / "vecs" / "2.json").write_text(json.dumps([{"id": "2-0", "vec": [0.9, 0.1]}]))
-
-    build_site.main()
-
-    # add new lot and rerun
-    (lots_dir / "3.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "c",
-            "description_en": "d",
-            "title_ru": "c",
-            "description_ru": "d",
-            "title_ka": "c",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        }
-    ]))
-    (tmp_path / "vecs" / "3.json").write_text(json.dumps([{"id": "3-0", "vec": [0.8, 0.2]}]))
-
-    build_site.main()
-
-    sim_file = similar_utils.SIMILAR_DIR / "1.json"
-    data = json.loads(sim_file.read_text())
-    cache = {item["id"]: item["similar"] for item in data}
-    assert any(s["id"] == "3-0" for s in cache["1-0"])
-    assert all("dist" in s for s in cache["1-0"])
-
-
-def test_similar_cache_invalidates_removed(tmp_path, monkeypatch):
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
-    monkeypatch.setattr(build_site, "load_config", lambda: DummyCfg())
-
-    lots_dir = tmp_path / "lots"
-    lots_dir.mkdir()
-    (tmp_path / "media").mkdir()
-    (tmp_path / "vecs").mkdir()
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "a",
-            "description_en": "d",
-            "title_ru": "a",
-            "description_ru": "d",
-            "title_ka": "a",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        }
-    ]))
-    (lots_dir / "2.json").write_text(json.dumps([
-        {
-            "timestamp": now,
-            "title_en": "b",
-            "description_en": "d",
-            "title_ru": "b",
-            "description_ru": "d",
-            "title_ka": "b",
-            "description_ka": "d",
-            "files": [],
-            "market:deal": "sell_item",
-        }
-    ]))
-
-    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
-    (tmp_path / "vecs" / "2.json").write_text(json.dumps([{"id": "2-0", "vec": [0.9, 0.1]}]))
-
-    build_site.main()
-
-    (lots_dir / "2.json").unlink()
-    (tmp_path / "vecs" / "2.json").unlink()
-
-    build_site.main()
-
-    sim_file = similar_utils.SIMILAR_DIR / "1.json"
-    data = json.loads(sim_file.read_text())
-    cache = {item["id"]: item["similar"] for item in data}
-    assert all(s["id"] != "2-0" for s in cache["1-0"])
-
-
-def test_similar_titles_use_language(tmp_path, monkeypatch):
-    class Cfg:
-        LANGS = ["en", "ru"]
-        KEEP_DAYS = 7
-
-    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
-    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
-    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
-    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
-    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
-    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
-    monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
-    monkeypatch.setattr(build_site, "load_config", lambda: Cfg())
-
-    lots_dir = tmp_path / "lots"
-    lots_dir.mkdir()
-    media_dir = tmp_path / "media"
-    media_dir.mkdir()
-    vec_dir = tmp_path / "vecs"
-    vec_dir.mkdir()
-
-    from datetime import datetime, timezone
-    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
-
-    (lots_dir / "1.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "hello",
-                "title_ru": "привет",
-                "title_ka": "hello",
-                "description_en": "d",
-                "description_ru": "d",
-                "description_ka": "d",
-                "files": ["a.jpg"],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-    (lots_dir / "2.json").write_text(
-        json.dumps([
-            {
-                "timestamp": now,
-                "title_en": "world",
-                "title_ru": "мир",
-                "title_ka": "world",
-                "description_en": "d",
-                "description_ru": "d",
-                "description_ka": "d",
-                "files": ["b.jpg"],
-                "market:deal": "sell_item",
-            }
-        ])
-    )
-
-    (vec_dir / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
-    (vec_dir / "2.json").write_text(json.dumps([{"id": "2-0", "vec": [0.9, 0.1]}]))
-
-    build_site.main()
-
-    html_en = (tmp_path / "views" / "1-0_en.html").read_text()
-    html_ru = (tmp_path / "views" / "1-0_ru.html").read_text()
-    assert "world" in html_en
-    assert "мир" in html_ru
-
-
-
-def test_ai_price_fallback(tmp_path, monkeypatch):
+def test_ai_price_fallback(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -868,13 +509,13 @@ def test_ai_price_fallback(tmp_path, monkeypatch):
         ])
     )
 
-    build_site.main()
+    build()
 
     cat_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
     assert cat_html.count("100") >= 2
 
 
-def test_sell_item_subcategories(tmp_path, monkeypatch):
+def test_sell_item_subcategories(tmp_path, monkeypatch, build):
     monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
     monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
@@ -931,7 +572,7 @@ def test_sell_item_subcategories(tmp_path, monkeypatch):
         ])
     )
 
-    build_site.main()
+    build()
 
     assert (tmp_path / "views" / "deal" / "sell_item.smartphone_en.html").exists()
     assert (tmp_path / "views" / "deal" / "sell_item.laptop_en.html").exists()

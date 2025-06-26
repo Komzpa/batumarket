@@ -160,21 +160,21 @@ Translations are now produced by `chop.py` itself.  Fields like
 use the street name together with room count, floor level and view where
 applicable so that every language has a meaningful summary.
 
+## similar.py
+Calculates nearest neighbour recommendations for each lot. Embeddings come from
+`data/embeddings` and lots from `data/lots`. Stale entries are pruned before
+running a cosine search via scikit‑learn. The top six neighbours for every lot
+are stored under `data/similar` mirroring the lot layout. Run `make similar` to
+refresh this cache.
+
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
 `ontology/fields.json` to order attribute tables and embeddings from `data/embeddings` to suggest
-similar lots.  Vector files without a matching lot are dropped before computing
-similarity so stale data never bloats memory. Similarity search now relies on
-`scikit-learn` and stores the top six neighbour ids with their cosine
-distances in `data/similar`.  The directory mirrors `data/lots` so stale entries
-can be identified easily.  Before calculating new recommendations the cache is
-pruned from references to missing lots. When a new lot is added the reciprocal
-caches of the posts it links to are updated if the new entry ranks higher.
-The progress bar shows how many lots were processed during recommendation
-generation and the search now runs in one batch which shortens the wait time.
-Code handling embedding loading and recommendation caching resides in
-`src/similar_utils.py` to keep `build_site.py` concise.  Titles and thumbnails
+similar lots. Recommendations are read from the cache in `data/similar` and the
+site still renders even when the cache is missing or outdated. Code handling
+embedding loading and recommendation caching resides in `src/similar_utils.py`
+to keep `build_site.py` concise. Titles and thumbnails
 are resolved from the lot JSON when pages are rendered so each language shows
 the correct translation. Lots without embeddings are skipped entirely during
 rendering. A regression model (see ``src/price_utils.py``) derives ``ai_price``
