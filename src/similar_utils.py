@@ -16,6 +16,7 @@ from log_utils import get_logger
 log = get_logger().bind(module=__name__)
 
 SIMILAR_DIR = Path("data/similar")
+MORE_USER_DIR = Path("data/more_user")
 
 
 def _load_embeddings() -> dict[str, list[float]]:
@@ -64,6 +65,12 @@ def _similar_path(lot_path: Path) -> Path:
     return (SIMILAR_DIR / rel).with_suffix(".json")
 
 
+def _more_user_path(lot_path: Path) -> Path:
+    """Return cache file path for ``lot_path`` under ``MORE_USER_DIR``."""
+    rel = lot_path.relative_to(LOTS_DIR)
+    return (MORE_USER_DIR / rel).with_suffix(".json")
+
+
 def _load_similar() -> dict[str, list[dict]]:
     """Return cached similar lots mapping."""
     if not SIMILAR_DIR.exists():
@@ -93,6 +100,31 @@ def _load_similar() -> dict[str, list[dict]]:
     return data
 
 
+def _load_more_user() -> dict[str, list[dict]]:
+    """Return cached per-user lot mapping."""
+    if not MORE_USER_DIR.exists():
+        return {}
+    data: dict[str, list[dict]] = {}
+    for path in MORE_USER_DIR.rglob("*.json"):
+        obj = load_json(path)
+        if isinstance(obj, list):
+            for item in obj:
+                if (
+                    isinstance(item, dict)
+                    and isinstance(item.get("id"), str)
+                    and isinstance(item.get("more_user"), list)
+                ):
+                    sims = []
+                    for s in item["more_user"]:
+                        if isinstance(s, dict) and isinstance(s.get("id"), str):
+                            sims.append({"id": s["id"]})
+                    if len(sims) == len(item["more_user"]):
+                        data[item["id"]] = sims
+    if data:
+        log.info("Loaded user cache", count=len(data))
+    return data
+
+
 def _save_similar(sim_map: dict[str, list[dict]]) -> None:
     """Write ``sim_map`` to ``SIMILAR_DIR`` mirroring ``LOTS_DIR`` layout."""
     files: dict[Path, list] = {}
@@ -100,6 +132,17 @@ def _save_similar(sim_map: dict[str, list[dict]]) -> None:
         lot_path = lot_json_path(lot_id, LOTS_DIR)
         out = _similar_path(lot_path)
         files.setdefault(out, []).append({"id": lot_id, "similar": sims})
+    for path, items in files.items():
+        write_json(path, items)
+
+
+def _save_more_user(more_map: dict[str, list[dict]]) -> None:
+    """Write ``more_map`` to ``MORE_USER_DIR`` mirroring ``LOTS_DIR`` layout."""
+    files: dict[Path, list] = {}
+    for lot_id, sims in more_map.items():
+        lot_path = lot_json_path(lot_id, LOTS_DIR)
+        out = _more_user_path(lot_path)
+        files.setdefault(out, []).append({"id": lot_id, "more_user": sims})
     for path, items in files.items():
         write_json(path, items)
 
