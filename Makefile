@@ -43,6 +43,10 @@ embed: chop caption ## Store embeddings for each lot
 similar: embed ## Compute lot recommendations
 	python src/similar.py
 
+# Train price regression model and save it under ``data/price_model.json``.
+prices: embed ## Train price model
+	python src/price_train.py
+
 # Render HTML pages from lots and templates.
 build: similar ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
