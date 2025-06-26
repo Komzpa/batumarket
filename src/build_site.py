@@ -339,8 +339,10 @@ def _render_site(
 ) -> None:
     """Render all HTML pages for ``lots`` using cached templates.
 
-    ``rates`` maps currency codes to multipliers relative to USD.  The values
-    are embedded into the pages so the front-end can convert prices on the fly.
+    ``envs`` supplies jinja environments for every language so they are
+    initialised only once. ``rates`` maps currency codes to multipliers relative
+    to USD.  The values are embedded into the pages so the front-end can
+    convert prices on the fly.
     """
     for lot in lots:
         log.debug("Rendering", id=lot["_id"])
@@ -354,6 +356,7 @@ def _render_site(
             lookup,
             rates,
             display_cur,
+            envs,
         )
 
     log.debug("Writing category pages")
@@ -488,14 +491,16 @@ def build_page(
     lookup: dict[str, dict],
     rates: dict[str, float],
     display_cur: str,
+    envs: dict[str, Environment],
 ) -> None:
     """Render ``lot`` into separate HTML files for every language.
 
     ``rates`` provides currency multipliers used by the front-end for dynamic
-    conversion.
+    conversion. ``envs`` preloads jinja environments to avoid expensive
+    reinitialisation for each page.
     """
     for lang in langs:
-        env = _env_for_lang(lang)
+        env = envs[lang]
         images = []
         for rel in lot.get("files", []):
             p = MEDIA_DIR / rel
