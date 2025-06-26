@@ -25,6 +25,7 @@ class DummyCfg:
 @pytest.fixture(autouse=True)
 def patch_similar(tmp_path, monkeypatch):
     monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
+    monkeypatch.setattr(similar_utils, "MORE_USER_DIR", tmp_path / "more_user")
     monkeypatch.setattr(similar_utils, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setattr(similar, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(lot_io, "LOTS_DIR", tmp_path / "lots")

@@ -12,9 +12,12 @@ from similar_utils import (
     _load_embeddings,
     _load_similar,
     _save_similar,
+    _load_more_user,
+    _save_more_user,
     _prune_similar,
     _calc_similar_nn,
     _sync_embeddings,
+    _similar_by_user,
 )
 
 log = get_logger().bind(script=__file__)
@@ -65,7 +68,10 @@ def main() -> None:
     vec_ids = [i for i in lot_keys if id_to_vec.get(i)]
     _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
 
+    more_user_map = _similar_by_user(lots, id_to_vec)
+
     _save_similar(sim_map)
+    _save_more_user(more_user_map)
     log.info("Similar cache updated")
 
 

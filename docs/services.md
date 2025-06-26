@@ -164,16 +164,16 @@ applicable so that every language has a meaningful summary.
 Calculates nearest neighbour recommendations for each lot. Embeddings come from
 `data/embeddings` and lots from `data/lots`. Stale entries are pruned before
 running a cosine search via scikit‑learn. The top six neighbours for every lot
-are stored under `data/similar` mirroring the lot layout. Run `make similar` to
-refresh this cache.
+are stored under `data/similar` mirroring the lot layout. A second cache under
+`data/more_user` lists other lots from the same Telegram user ordered by
+embedding similarity. Run `make similar` to refresh these caches.
 
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
-`ontology/fields.json` to order attribute tables and embeddings from `data/embeddings` to suggest
-similar lots. Recommendations are read from the cache in `data/similar` and the
-site still renders even when the cache is missing or outdated. Code handling
-embedding loading and recommendation caching resides in `src/similar_utils.py`
+`ontology/fields.json` to order attribute tables and reads similarity caches
+from `data/similar` and `data/more_user` instead of computing them on the fly.
+Embedding loading and recommendation caching resides in `src/similar_utils.py`
 to keep `build_site.py` concise. Titles and thumbnails
 are resolved from the lot JSON when pages are rendered so each language shows
 the correct translation. Lots without embeddings are skipped entirely during
@@ -214,10 +214,10 @@ list. Each category tracks the median price with a min–max range, the time of
 the most recent post and a centroid of all available embeddings.
 Each subcategory link leads to a page listing every lot of that type while other
 categories link directly to their respective lot lists.
-Lot pages include a "more by this user" section which shows other lots from the
-same Telegram account ordered by embedding similarity.  If a lot has a
-timestamp that lies in the future it is ignored during rendering so the website
-never displays misleading dates.
+Lot pages include a "more by this user" section which lists other lots from the
+same Telegram account ordered by embedding similarity. The list comes from the
+`data/more_user` cache.  If a lot has a timestamp that lies in the future it is
+ignored during rendering so the website never displays misleading dates.
 Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the
 browser together with the lot embedding. Category pages offer a sorting switch
 that orders lots by how relevant they are to liked or disliked samples, shows

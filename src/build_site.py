@@ -28,9 +28,8 @@ from similar_utils import (
     _load_embeddings,
     _format_vector,
     _load_similar,
-    _cos_sim,
+    _load_more_user,
     _sync_embeddings,
-    _similar_by_user,
 )
 
 from config_utils import load_config
@@ -178,8 +177,8 @@ def _copy_static() -> None:
 
 
 
-def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]]]:
-    """Return ontology fields, embeddings, lots and similarity cache."""
+def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]], dict[str, list[dict]]]:
+    """Return ontology fields, embeddings, lots and similarity caches."""
     log.debug("Loading ontology")
     fields = _load_ontology()
     log.debug("Loading embeddings")
@@ -189,7 +188,9 @@ def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[s
     _copy_images(lots)
     log.debug("Loading similar cache")
     sim_map = _load_similar()
-    return fields, embeddings, lots, sim_map
+    log.debug("Loading user cache")
+    more_user_map = _load_more_user()
+    return fields, embeddings, lots, sim_map, more_user_map
 
 
 
@@ -638,7 +639,7 @@ def main() -> None:
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
     _copy_static()
-    fields, embeddings, lots, sim_map = _load_state()
+    fields, embeddings, lots, sim_map, more_user_map = _load_state()
     lots, embeddings = _sync_embeddings(lots, embeddings)
 
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
@@ -653,7 +654,6 @@ def main() -> None:
         use_rates = ai_rates
     prepare_price_fields(lots, use_rates, display_cur)
 
-    more_user_map = _similar_by_user(lots, id_to_vec)
     categories, category_stats, _recent = _categorise(
         lots, langs, keep_days, id_to_vec
     )
