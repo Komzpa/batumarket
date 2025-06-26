@@ -421,27 +421,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "title_en": "Box distribution in storage",
-      "description_en": "Arrange boxes on shelves in the storage room. No load, just distribution. Time - up to 3 hours. Payment - 4700 RUB.",
-      "title_ru": "Расстановка коробок в кладовке",
-      "description_ru": "Расставить коробки по полкам в кладовке. Без груза, просто распределение. Время — до 3 часов. Оплата — 4700₽.",
-      "title_ka": "კორბების განაწილება საწყობში",
-      "description_ka": "გადაიყვანეთ კორბები თაროებზე საწყობში. არ არის ტვირთი, მხოლოდ განაწილება. დრო - 3 საათამდე. ანაზღაურება - 4700₾.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757065",
-      "source:path": "batumiarendachat/2025/06/757065.md",
-      "timestamp": "2025-06-18T22:28:38+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "партнёрство",
       "salary": 400,
       "salary:currency": "USD",
