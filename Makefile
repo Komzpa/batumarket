@@ -30,7 +30,7 @@ caption: pull ## Generate image captions for files missing ``*.caption.json``.
 	python scripts/pending_caption.py | parallel --eta -j16 -0 python src/caption.py
 
 chop: pull caption ## Split messages into lots using captions and message text.
-	python scripts/pending_chop.py | parallel --eta -j16 -0 python src/chop.py
+	python scripts/pending_chop.py | parallel --eta -j16 -0 python src/chop.py || true
 
 ontology: chop ## Summarize lots so it's easier see what exactly is there in the dataset.
 	python src/scan_ontology.py
