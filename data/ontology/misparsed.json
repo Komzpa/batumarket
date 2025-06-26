@@ -144,25 +144,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "вынос мусора",
-      "salary": 4500,
-      "salary:currency": "RUB",
-      "title_en": "Garbage disposal after the holiday",
-      "description_en": "Dispose of garbage bags after the holiday - 4500 RUB, taxi on me.",
-      "title_ru": "Вынести мусорные пакеты после праздника",
-      "description_ru": "Вынести мусорные пакеты после праздника — 4500₽, такси с меня.",
-      "title_ka": "წვეულების შემდეგ ნაგვის გატანა",
-      "description_ka": "წვეულების შემდეგ ნაგვის გატანა - 4500₽, ტაქსი ჩემზე.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757272",
-      "source:path": "batumiarendachat/2025/06/757272.md",
-      "timestamp": "2025-06-19T06:33:20+00:00"
-    },
-    "input": "Message text:\nВынести мусорные пакеты после праздника — 4500₽, такси с меня"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "unknown",
       "salary": 400,
       "salary:currency": "USD",
@@ -204,21 +185,6 @@
       "timestamp": "2025-06-20T14:45:57+00:00"
     },
     "input": "Message text:\nBaкaнcия для вcех c зарплатoй οт 80к ρублeй в нeделю!  oт 16 до 45 лeт  выплаты 2 ρaзa в недeлю втοрник и cуббοтa. Πишитe"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757193",
-      "source:path": "batumiarendachat/2025/06/757193.md",
-      "timestamp": "2025-06-19T05:12:55+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
   },
   {
     "lot": {
@@ -425,27 +391,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "title_en": "Box distribution in storage",
-      "description_en": "Arrange boxes on shelves in the storage room. No load, just distribution. Time - up to 3 hours. Payment - 4700 RUB.",
-      "title_ru": "Расстановка коробок в кладовке",
-      "description_ru": "Расставить коробки по полкам в кладовке. Без груза, просто распределение. Время — до 3 часов. Оплата — 4700₽.",
-      "title_ka": "კორობების განაწილება საწყობში",
-      "description_ka": "კორობების განაწილება საწყობში. არც ტვირთი, მხოლოდ განაწილება. დრო - 3 საათამდე. ანაზღაურება - 4700₽.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757244",
-      "source:path": "batumiarendachat/2025/06/757244.md",
-      "timestamp": "2025-06-19T06:16:58+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "не указано",
       "salary": 70000,
       "salary:currency": "RUB",
@@ -585,21 +530,6 @@
       "timestamp": "2025-06-19T11:32:06+00:00"
     },
     "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757358",
-      "source:path": "batumiarendachat/2025/06/757358.md",
-      "timestamp": "2025-06-19T07:16:58+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
   },
   {
     "lot": {
@@ -756,61 +686,6 @@
       "timestamp": "2025-06-24T07:31:01+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_seek",
-      "occupation": "разные виды работ",
-      "salary": 700,
-      "salary:currency": "RUB",
-      "timestamp": "2025-06-19T05:00:19+00:00",
-      "title_en": "Urgent: Workers Needed for Various Jobs",
-      "description_en": "Urgently looking for workers for various types of jobs. Payment starts from 700 rubles per hour. Quick start, good conditions. Write and start earning by tomorrow.",
-      "title_ru": "Срочно: Требуются исполнители на разные виды работ",
-      "description_ru": "Срочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра.",
-      "title_ka": "სწრაფად საჭიროა მუშები სხვადასხვა სამუშაოებისთვის",
-      "description_ka": "სწრაფად საჭიროა მუშები სხვადასხვა სამუშაოებისთვის. ანაზღაურება იწყება 700 რუბლიდან საათში. სწრაფი დაწყება, კარგი პირობები. დაწერეთ და დაიწყეთ ხვალიდან მუშაობა.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2100896",
-      "source:path": "arenda_batumi/2025/06/2100896.md"
-    },
-    "input": "Message text:\nСрочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "подработка",
-      "salary": 890,
-      "salary:currency": "RUB",
-      "description_ru": "Возьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех",
-      "title_ru": "Подработка для 5 человек, 890 рублей в час",
-      "description_en": "Looking for 5 people for part-time work. Paying 890 rubles per hour. Both girls and guys are welcome. Waiting for everyone.",
-      "title_en": "Part-time work for 5 people, 890 rubles per hour",
-      "description_ka": "5 ადამიანი დასაქმებისთვის. ვიხდი 890 რუბლს საათში. მოერგებიან გოგონები და ბიჭები. ველით ყველას.",
-      "title_ka": "5 ადამიანის დასაქმება, 890 რუბლი საათში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101105",
-      "source:path": "arenda_batumi/2025/06/2101105.md",
-      "timestamp": "2025-06-19T05:48:33+00:00"
-    },
-    "input": "Message text:\nВозьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a few things around the yard. Will reward 5000.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в перемещении вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი 5000.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101114",
-      "source:path": "arenda_batumi/2025/06/2101114.md",
-      "timestamp": "2025-06-19T05:50:51+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
   },
   {
     "lot": {
@@ -1639,29 +1514,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101458",
-      "source:path": "arenda_batumi/2025/06/2101458.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T07:04:18+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
       "salary:currency": "EUR",
@@ -2323,25 +2175,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "подработка",
-      "salary": 890,
-      "salary:currency": "RUB",
-      "title_en": "Part-time job offer",
-      "description_en": "Looking for 5 people for part-time work. Paying 890 rubles per hour. Both girls and guys are welcome. Waiting for everyone.",
-      "title_ru": "Предложение о подработке",
-      "description_ru": "Возьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех.",
-      "title_ka": "ნამუშევარი",
-      "description_ka": "მჭირდება 5 ადამიანი დროებითი სამუშაოსთვის. ვიხდი 890 რუბლს საათში. გამოდგებიან გოგონები და ბიჭები. ველოდები ყველას.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101419",
-      "source:path": "arenda_batumi/2025/06/2101419.md",
-      "timestamp": "2025-06-19T06:58:35+00:00"
-    },
-    "input": "Message text:\nВозьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "description_en": "Part-time job available. From 6000 for a couple of hours, no experience required.",
       "title_en": "Part-time job opportunity",
       "description_ru": "Есть подработка. От 6 тыс за пару часов, можно без опыта",
@@ -2810,26 +2643,6 @@
       "timestamp": "2025-06-19T15:49:20+00:00"
     },
     "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_seek",
-      "occupation": "разные виды работ",
-      "salary": 700,
-      "salary:currency": "RUB",
-      "title_en": "Urgent job seekers for various types of work",
-      "description_en": "Urgent job seekers for various types of work. Payment from 700 rubles per hour. Quick start, good conditions. Write and start earning tomorrow.",
-      "title_ru": "Срочно требуется исполнители на разные виды работ",
-      "description_ru": "Срочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра.",
-      "title_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე",
-      "description_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე. ანაზღაურება საათში 700 რუბლიდან. სწრაფი დაწყება, კარგი პირობები. დაწერეთ და დაიწყეთ ხვალიდან მუშაობა.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101264",
-      "source:path": "arenda_batumi/2025/06/2101264.md",
-      "timestamp": "2025-06-19T06:30:14+00:00"
-    },
-    "input": "Message text:\nСрочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра."
   },
   {
     "lot": {
