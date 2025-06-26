@@ -26,6 +26,8 @@ class DummyCfg:
 def patch_similar(tmp_path, monkeypatch):
     monkeypatch.setattr(similar_utils, "SIMILAR_DIR", tmp_path / "similar")
     monkeypatch.setattr(similar_utils, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(similar, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(lot_io, "LOTS_DIR", tmp_path / "lots")
     monkeypatch.setattr(lot_io, "EMBED_DIR", tmp_path / "vecs")
     monkeypatch.setenv("ALLOW_EMPTY_POSTERS", "1")
 
@@ -636,3 +638,22 @@ def test_recent_user_count():
     assert stat["recent"] == 1
     assert len(stat["recent_users"]) == 1
     assert len(stat["users"]) == 2
+
+
+def test_phone_sellers_allowed(monkeypatch):
+    from datetime import datetime, timezone
+
+    monkeypatch.delenv("ALLOW_EMPTY_POSTERS", raising=False)
+
+    lots = [
+        {
+            "_id": "1",
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "market:deal": "sell_item",
+            "contact:phone": "+12345",
+        }
+    ]
+
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {})
+    assert "sell_item" in cats
+    assert stats["sell_item"]["users"] == {"+12345"}
