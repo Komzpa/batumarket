@@ -12,12 +12,15 @@ rates.
 import math
 from typing import Iterable, Mapping
 import json
+from pathlib import Path
 from urllib.request import urlopen
 
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
 from log_utils import get_logger
+from notes_utils import load_json, write_json
+from lot_io import LOTS_DIR, lot_json_path
 
 # Map various currency spellings to ISO-4217 codes.
 CURRENCY_ALIASES = {
@@ -81,6 +84,65 @@ def fetch_official_rates() -> dict[str, float]:
     return rates
 
 log = get_logger().bind(module=__name__)
+
+PRICE_DIR = Path("data/prices")
+
+
+def _price_path(lot_path: Path) -> Path:
+    """Return cache file path for ``lot_path`` under ``PRICE_DIR``."""
+    rel = lot_path.relative_to(LOTS_DIR)
+    return (PRICE_DIR / rel).with_suffix(".json")
+
+
+def _load_prices() -> dict[str, dict]:
+    """Return cached AI prices indexed by lot id."""
+    if not PRICE_DIR.exists():
+        return {}
+    data: dict[str, dict] = {}
+    for path in PRICE_DIR.rglob("*.json"):
+        obj = load_json(path)
+        if isinstance(obj, list):
+            for item in obj:
+                if isinstance(item, dict) and isinstance(item.get("id"), str):
+                    info: dict[str, object] = {}
+                    if isinstance(item.get("ai_price"), (int, float)):
+                        info["ai_price"] = float(item["ai_price"])
+                    if isinstance(item.get("price:currency"), str):
+                        info["price:currency"] = item["price:currency"]
+                    data[item["id"]] = info
+    if data:
+        log.info("Loaded price cache", count=len(data))
+    return data
+
+
+def _load_rates() -> dict[str, float]:
+    """Return AI currency multipliers from ``rates.json``."""
+    path = PRICE_DIR / "rates.json"
+    if not path.exists():
+        return {}
+    data = load_json(path)
+    if not isinstance(data, dict):
+        return {}
+    try:
+        return {k: float(v) for k, v in data.items()}
+    except Exception:
+        return {}
+
+
+def _save_prices(price_map: dict[str, dict]) -> None:
+    """Write ``price_map`` to ``PRICE_DIR`` mirroring ``LOTS_DIR`` layout."""
+    files: dict[Path, list] = {}
+    for lot_id, info in price_map.items():
+        lot_path = lot_json_path(lot_id, LOTS_DIR)
+        out = _price_path(lot_path)
+        entry = {"id": lot_id}
+        if "ai_price" in info:
+            entry["ai_price"] = info["ai_price"]
+        if "price:currency" in info:
+            entry["price:currency"] = info["price:currency"]
+        files.setdefault(out, []).append(entry)
+    for path, items in files.items():
+        write_json(path, items)
 
 
 # ---------------------------------------------------------------------------

@@ -168,6 +168,13 @@ are stored under `data/similar` mirroring the lot layout. A second cache under
 `data/more_user` lists other lots from the same Telegram user ordered by
 embedding similarity. Run `make similar` to refresh these caches.
 
+## prices.py
+Learns a price regression model from the available lots and embeddings.
+Predicted values and guessed currencies are stored under `data/prices`
+mirroring the lot layout. The file `rates.json` keeps the learnt currency
+multipliers so the website can fall back on them when official rates are
+unavailable. Run `make prices` to update the cache.
+
 ## build_site.py
 Renders the static marketplace website using Jinja templates.  Lots are read
 from `data/lots` and written to `data/views`.  The script loads
@@ -177,16 +184,12 @@ Embedding loading and recommendation caching resides in `src/similar_utils.py`
 to keep `build_site.py` concise. Titles and thumbnails
 are resolved from the lot JSON when pages are rendered so each language shows
 the correct translation. Lots without embeddings are skipped entirely during
-rendering. A regression model (see ``src/price_utils.py``) derives ``ai_price``
-in USD from embeddings when the ``price`` field is missing. Currency names are
+rendering. ``prices.py`` stores predictions from the regression model defined
+in ``src/price_utils.py`` under ``data/prices``. The learnt multipliers are
+read back from ``rates.json`` when building the site. Currency names are
 normalised to ISO‑4217 codes so ``Gel`` or ``lar`` are treated as ``GEL``.
-Multipliers are learnt from existing data so that effective exchange rates can
-be logged. Official rates from the National Bank of Georgia are fetched and
-preferred over the regression result when converting. The training step logs
-how many samples were seen for each currency and currencies with fewer than 50
-examples are skipped when guessing a missing currency. Unknown labels are
-ignored. Currency guessing now checks that both the modelled multipliers and the
-official ones agree before assigning a value. Pages fall back to the predicted
+Official rates from the National Bank of Georgia are preferred for conversion
+but the cached multipliers act as a fallback. Pages fall back to the predicted
 amount when no explicit price is available. Displayed prices are converted to
 ``DISPLAY_CURRENCY`` and aligned with a grey tint when coming from the model.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.

@@ -43,8 +43,12 @@ embed: chop caption ## Store embeddings for each lot
 similar: embed ## Compute lot recommendations
 	python src/similar.py
 
+# Train price model and store predictions.
+prices: embed ## Predict prices
+	python src/prices.py
+
 # Render HTML pages from lots and templates.
-build: similar ontology ## Render HTML pages from lots and templates
+build: similar prices ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
 
