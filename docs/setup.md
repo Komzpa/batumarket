@@ -2,7 +2,9 @@
 
 This project uses Python 3.12.
 On Debian based distributions the required modules are available as packages.
-Run `make install-dependencies` to install everything automatically or copy the
+Run `make install-dependencies` once after cloning the repository to
+install all required packages. This installs both system libraries and
+the Python modules from `requirements.txt`.  Alternatively copy the
 following command:
 
 ```bash
@@ -58,11 +60,19 @@ This pulls messages (images are captioned immediately and lots are parsed in the
 Run `make caption` or `make chop` separately if you need to reprocess failed images.
 `make caption` now skips files that already have captions so reruns are cheap.
 
-Run the test suite and linter before committing:
+Run the linter and unit tests before committing. The `test` target
+depends on `precommit` so running it first checks the call graph and
+compiles translations. Both targets print a hint when they fail because
+some modules are missing:
 
 ```bash
-make precommit
-pytest --cov=src --cov-report=term-missing
+make test
+```
+
+If the tests complain about missing modules install the dependencies first:
+
+```bash
+make install-dependencies
 ```
 
 For offline smoke tests you can enable testing mode:
