@@ -59,7 +59,9 @@ This pulls messages (images are captioned immediately and lots are parsed in the
 Run `make caption` or `make chop` separately if you need to reprocess failed images.
 `make caption` now skips files that already have captions so reruns are cheap.
 
-Run the linter and unit tests before committing:
+Run the linter and unit tests before committing. Both the `precommit`
+and `test` targets print a hint if they fail because some modules are
+missing:
 
 ```bash
 make test

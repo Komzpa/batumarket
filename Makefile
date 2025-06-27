@@ -78,11 +78,16 @@ install-dependencies: ## Install system packages and Python modules used in test
 	python3-graphviz graphviz gettext
 	pip install --user -r requirements.txt
 
-precommit: callgraph ## Run pre-commit checks
-	@find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
-	python scripts/check_translations.py
 
-test: precommit install-dependencies ## Run linter and unit tests with coverage
+precommit: ## Run pre-commit checks
+	{ $(MAKE) callgraph && \
+	  find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh && \
+	  python scripts/check_translations.py; } || { \
+	  echo "Precommit failed. Run 'make install-dependencies' if system packages are missing."; \
+	  exit 1; \
+}
+
+test: precommit ## Run linter and unit tests with coverage
 	pytest --cov=src --cov-report=term-missing || { \
 	echo "Tests failed. Run 'make install-dependencies' if system packages are missing."; \
 	exit 1; \
