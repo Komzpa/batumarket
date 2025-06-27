@@ -1,50 +1,6 @@
 [
   {
     "lot": {
-      "market:deal": "job_seek",
-      "occupation": "подсобник",
-      "salary": 45000,
-      "salary:currency": "RUB",
-      "contact:telegram": "@username",
-      "title_en": "Seeking helpers",
-      "description_en": "Looking for helpers, we will pay 45,000 rubles per week, message me, we will consider everyone.",
-      "title_ru": "Ищу подсобников",
-      "description_ru": "Ищу подсобников, заплатим 45 000 рублей в неделю, пиши мне, рассмотрим всех.",
-      "title_ka": "ეძებ辅助人员",
-      "description_ka": "ეძებ辅助人员, კვირაში 45 000 რუბლს გადავიხდით, მომწერეთ, ყველას განვიხილავთ.",
-      "source:chat": "arenda_batumiN1",
-      "source:message_id": "2047444",
-      "source:path": "arenda_batumiN1/2025/06/2047444.md",
-      "source:author:telegram": "HHH83YkhrsEPWpi",
-      "source:author:name": "Георгий Громав",
-      "timestamp": "2025-06-20T15:54:50+00:00"
-    },
-    "input": "Message text:\nищу подсобников , заплатим 45 000 рублей в неделю , пиши мне рассмотрим всех"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "подсобник",
-      "salary": 45000,
-      "salary:currency": "RUB",
-      "contact:telegram": "@username",
-      "title_en": "Seeking helpers",
-      "description_en": "Looking for helpers, we will pay 45,000 rubles per week, message me, we will consider everyone.",
-      "title_ru": "Ищу подсобников",
-      "description_ru": "Ищу подсобников, заплатим 45 000 рублей в неделю, пиши мне, рассмотрим всех.",
-      "title_ka": "მეხმარე",
-      "description_ka": "მეხმარე, კვირაში 45,000 რუბლს გადავიხდით, მომწერეთ, ყველას განვიხილავთ.",
-      "source:chat": "arenda_batumiN1",
-      "source:message_id": "2047267",
-      "source:path": "arenda_batumiN1/2025/06/2047267.md",
-      "source:author:telegram": "HHH83YkhrsEPWpi",
-      "source:author:name": "Георгий Громав",
-      "timestamp": "2025-06-20T14:45:10+00:00"
-    },
-    "input": "Message text:\nищу подсобников , заплатим 45 000 рублей в неделю , пиши мне рассмотрим всех"
-  },
-  {
-    "lot": {
       "title_en": "Converse All Star Sneakers",
       "description_en": "Converse All Star high-top sneakers, size 38, classic design with canvas upper and iconic star logo. Price: 40 GEL. Free delivery in Batumi.",
       "title_ru": "Кеды Converse All Star",
@@ -125,25 +81,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "партнёрство",
-      "salary": 400,
-      "salary:currency": "USD",
-      "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათ, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_en": "Partnership Opportunity",
-      "title_ru": "Возможность партнерства",
-      "title_ka": "პარტნიორობის შესაძლებლობა",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "759141",
-      "source:path": "batumiarendachat/2025/06/759141.md",
-      "timestamp": "2025-06-20T08:47:26+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "unknown",
       "salary": 400,
       "salary:currency": "USD",
@@ -163,52 +100,6 @@
       "timestamp": "2025-06-23T16:39:46+00:00"
     },
     "input": "Message text:\nEcть возмoжнoсть зapaбатывать  \nТолькo 16+\nМинимум 400$ в неделю\nПишите, вcё рaccкaжем, всeму нayчим"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "не указано",
-      "salary": 80000,
-      "salary:currency": "RUB",
-      "schedule": "не указано",
-      "contact:telegram": "@username",
-      "description_en": "Vacancy for everyone with a salary of 80k rubles per week! From 16 to 45 years old, payments twice a week on Tuesday and Saturday. Write to me.",
-      "description_ru": "Вакансия для всех с зарплатой от 80к рублей в неделю! От 16 до 45 лет, выплаты 2 раза в неделю вторник и суббота. Пишите.",
-      "description_ka": "ვაკანსია ყველასთვის 80k რუბლის ხელფასით კვირაში! 16-დან 45 წლამდე, გადახდები კვირაში ორჯერ სამშაბათსა და შაბათს. დაწერეთ.",
-      "title_en": "Job vacancy with salary of 80k rubles per week",
-      "title_ru": "Вакансия с зарплатой 80к рублей в неделю",
-      "title_ka": "ვაკანსია 80k რუბლით კვირაში",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "759434",
-      "source:path": "batumiarendachat/2025/06/759434.md",
-      "source:author:name": "Сократ Клюшников",
-      "timestamp": "2025-06-20T14:45:57+00:00"
-    },
-    "input": "Message text:\nBaкaнcия для вcех c зарплатoй οт 80к ρублeй в нeделю!  oт 16 до 45 лeт  выплаты 2 ρaзa в недeлю втοрник и cуббοтa. Πишитe"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "не указано",
-      "salary": 80000,
-      "salary:currency": "RUB",
-      "schedule": "не указано",
-      "contact:telegram": "@username",
-      "description_en": "Vacancy for everyone with a salary of 80,000 rubles per week! Ages 16 to 45, payments twice a week on Tuesday and Saturday. Write to me.",
-      "description_ru": "Вакансия для всех с зарплатой от 80к рублей в неделю! от 16 до 45 лет, выплаты 2 раза в неделю вторник и суббота. Пишите.",
-      "description_ka": "ვაკანსია ყველასთვის 80,000 რუბლის ხელფასით კვირაში! 16-დან 45 წლამდე, გადახდები კვირაში ორჯერ სამშაბათსა და შაბათს. დაწერეთ.",
-      "title_en": "Job vacancy with salary of 80,000 rubles per week",
-      "title_ru": "Вакансия с зарплатой 80,000 рублей в неделю",
-      "title_ka": "ვაკანსია 80,000 რუბლის ხელფასით კვირაში",
-      "urgency": "none",
-      "fraud": "sketchy_job",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "759230",
-      "source:path": "batumiarendachat/2025/06/759230.md",
-      "source:author:name": "Сократ Клюшников",
-      "timestamp": "2025-06-20T09:56:42+00:00"
-    },
-    "input": "Message text:\nBaкaнсия для вcех с зapплaтoй οт 80к ρyблeй в неделю!  oт 16 дo 45 лет  выплaты 2 ρaза в неделю втοpник и cyббοта. Πишитe"
   },
   {
     "lot": {
@@ -277,58 +168,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "персонал",
-      "salary": 260,
-      "salary:currency": "EUR",
-      "schedule": "утро: 6:30-11:30",
-      "description_en": "Looking for staff urgently, no experience required. Good salary. Morning shift: 6:30-11:30 — 260€ per day. Night shift: 17:30-22:30 — 310€ per day. Interested? Message me.",
-      "title_en": "Urgent job offer for staff with good salary",
-      "description_ru": "Ищу персонал срочно, без опыта. Хорошая зарплата. Утренний график: 6:30-11:30 — 260€ в день. Ночной график: 17:30-22:30 — 310€ в день. Интересно? Напишите мне.",
-      "title_ru": "Срочное предложение работы для персонала с хорошей зарплатой",
-      "description_ka": "მჭირდება პერსონალი სასწრაფოდ, გამოცდილების გარეშე. კარგი ხელფასი. დილის ცვლა: 6:30-11:30 — 260€ დღეში. ღამის ცვლა: 17:30-22:30 — 310€ დღეში. დაინტერესებულებმა მომწერეთ.",
-      "title_ka": "სასწრაფო სამუშაოს შეთავაზება პერსონალისთვის კარგი ხელფასით",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757690",
-      "source:path": "batumiarendachat/2025/06/757690.md",
-      "timestamp": "2025-06-19T10:00:04+00:00"
-    },
-    "input": "Message text:\nВсем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата..\n-Утро: 6:30-11:30 — 260€ в день\n-Ночь: 17:30-22:30 310 €/в день\nКому интересно напишите + в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Help with painting a metal gate. Work outdoors. Payment - 5000 rubles.",
-      "title_en": "Job offer: Help with painting a metal gate",
-      "description_ru": "Помощь с покраской металлической калитки. Работа на свежем воздухе. Оплата — 5000₽",
-      "title_ru": "Предложение работы: Помощь с покраской металлической калитки",
-      "description_ka": "მეტალის კარების შეღებვაში დახმარება. სამუშაო ღია ცის ქვეშ. ანაზღაურება - 5000 რუბლი.",
-      "title_ka": "სამუშაოს შეთავაზება: მეტალის კარების შეღებვაში დახმარება",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "758022",
-      "source:path": "batumiarendachat/2025/06/758022.md",
-      "timestamp": "2025-06-19T14:20:14+00:00"
-    },
-    "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Good day. Due to expansion, we are opening positions in a top team. Income from $200 daily. Write '+' in private messages.",
-      "title_en": "Job opportunity with daily income from $200",
-      "description_ru": "Добрый день. В связи с расширением мы открываем места в топовой команде. Доход от 200$ ежедневно. Напишите '+' в личные.",
-      "title_ru": "Вакансия с доходом от 200$ в день",
-      "description_ka": "გამარჯობა. გაფართოების გამო, ჩვენ ვხსნით ადგილებს საუკეთესო გუნდში. შემოსავალი დღეში 200$-დან. დაწერეთ '+' პირადში.",
-      "title_ka": "სამუშაოს შესაძლებლობა დღიური შემოსავლის 200$-დან",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757623",
-      "source:path": "batumiarendachat/2025/06/757623.md",
-      "timestamp": "2025-06-19T08:59:31+00:00"
-    },
-    "input": "Message text:\nДобрый день☺️ В связи из расширением мы открываем места в топовой команде. Доход от 200$ ежедневно. Напишите \"+\" в личные"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "не указано",
       "salary": 15000,
       "salary:currency": "RUB",
@@ -348,45 +187,6 @@
       "timestamp": "2025-06-22T10:19:49+00:00"
     },
     "input": "Message text:\n💼 Вакансия для тех, кто ищет стабильность  \n💰 Заработок от 15 000 ₽ в день  \n📆 Гибкий график работы  \n🎓 Обучение от А до Я  \n📩 Оставь заявку в Telegram!"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "персонал",
-      "salary": 260,
-      "salary:currency": "EUR",
-      "schedule": "утро: 6:30-11:30",
-      "description_en": "Looking for staff urgently, no experience required. Good salary. Morning shift: 6:30-11:30 — 260€ per day. Night shift: 17:30-22:30 — 310€ per day. Interested? Message me.",
-      "description_ru": "Всем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата. Утро: 6:30-11:30 — 260€ в день. Ночь: 17:30-22:30 310 €/в день. Кому интересно напишите + в личные сообщения.",
-      "description_ka": "ყველას, ვინც სამუშაოს ეძებს. urgently მჭირდება პერსონალი, გამოცდილების გარეშე. კარგი ხელფასი. დილა: 6:30-11:30 — 260€ დღეში. ღამე: 17:30-22:30 310 €/დღეში. ვისაც აინტერესებს, მომწერეთ.",
-      "title_en": "Urgent Staff Needed - No Experience Required",
-      "title_ru": "Срочно нужен персонал - опыт не требуется",
-      "title_ka": "სასწრაფოდ საჭიროა პერსონალი - გამოცდილება არ არის საჭირო",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "758016",
-      "source:path": "batumiarendachat/2025/06/758016.md",
-      "timestamp": "2025-06-19T14:03:06+00:00"
-    },
-    "input": "Message text:\nВсем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата..\n-Утро: 6:30-11:30 — 260€ в день\n-Ночь: 17:30-22:30 310 €/в день\nКому интересно напишите + в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "партнёрство",
-      "salary": 400,
-      "salary:currency": "USD",
-      "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "title_en": "Partnership opportunity with training",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "title_ru": "Возможность партнёрства с обучением",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათ, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_ka": "პარტნიორობის შესაძლებლობა სწავლების თანხლებით",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "759261",
-      "source:path": "batumiarendachat/2025/06/759261.md",
-      "timestamp": "2025-06-20T10:14:39+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
   },
   {
     "lot": {
@@ -436,63 +236,24 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "покраска калитки",
-      "salary": 5000,
+      "salary": 15000,
       "salary:currency": "RUB",
-      "description_ru": "Помощь с покраской металлической калитки. Работа на свежем воздухе.",
-      "title_ru": "Работа по покраске калитки",
-      "description_en": "Assistance with painting a metal gate. Work outdoors.",
-      "title_en": "Job for painting a gate",
-      "description_ka": "მეტალის კარების შეღებვის დახმარება. სამუშაო ღია ცის ქვეშ.",
-      "title_ka": "კარების შეღებვის სამუშაო",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "758160",
-      "source:path": "batumiarendachat/2025/06/758160.md",
-      "timestamp": "2025-06-19T15:50:06+00:00"
-    },
-    "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "flexible work",
-      "salary": 1000,
-      "salary:currency": "USD",
       "schedule": "flexible",
       "contact:telegram": "@username",
-      "title_en": "Flexible Work Opportunity",
-      "description_en": "Start earning today! Discover a world of opportunities with a potential income of $1000 per month. Flexible working conditions, just a few hours a day. For 18+ only. Contact for details.",
-      "title_ru": "Гибкая работа",
-      "description_ru": "Начните зарабатывать уже сегодня! Откройте для себя мир возможностей с потенциалом заработка от 1000$ в месяц. Условия работы гибкие, всего несколько часов в день. Только для 18+. За подробностями обращайтесь.",
-      "title_ka": "გლამურული სამუშაო",
-      "description_ka": "დაიწყეთ დღესვე შემოსავლის მიღება! აღმოაჩინეთ შესაძლებლობების მსოფლიო, შემოსავლის პოტენციალი 1000$ თვეში. სამუშაო პირობები მოქნილი, მხოლოდ რამდენიმე საათი დღეში. მხოლოდ 18+.",
+      "title_ru": "Вакансия с заработком от 15 000 ₽ в день",
+      "description_ru": "Ищем сотрудников, которые ценят стабильность. Обучение от А до Я. Оставь заявку в Telegram!",
+      "title_en": "Job vacancy with earnings from 15,000 RUB per day",
+      "description_en": "Looking for employees who value stability. Training from A to Z. Leave an application in Telegram!",
+      "title_ka": "სამსახურის ვაკანსია 15 000 ₽ დღიური შემოსავლისთვის",
+      "description_ka": "ვ buscamos empleados, quienes აფასებენ სტაბილურობას. სწავლება A-დან Z-მდე. დატოვეთ განაცხადი Telegram-ში!",
       "source:chat": "batumiarendachat",
-      "source:message_id": "757567",
-      "source:path": "batumiarendachat/2025/06/757567.md",
+      "source:message_id": "770490",
+      "source:path": "batumiarendachat/2025/06/770490.md",
       "source:author:telegram": "Katirin_a_a",
       "source:author:name": "Карина Гордеева",
-      "timestamp": "2025-06-19T08:02:20+00:00"
+      "timestamp": "2025-06-27T12:14:31+00:00"
     },
-    "input": "Message text:\nНачните зарабатывать уже сегодня💰💰💰\n\n Откройте для себя мир возможностей\n💼 Потенциал заработка от 1000$ в месяц!\n📅 Условия работы гибкие, всего несколько часов в день.\n🔞Только для 18+.\nЗа подробностями обращайтесь в 📩"
-  },
-  {
-    "lot": {
-      "market:deal": "services_offer",
-      "occupation": "покраска калитки",
-      "salary": 5000,
-      "salary:currency": "RUB",
-      "description_ru": "Помощь с покраской металлической калитки. Работа на свежем воздухе.",
-      "title_ru": "Услуга покраски калитки",
-      "description_en": "Assistance with painting a metal gate. Work outdoors.",
-      "title_en": "Gate Painting Service",
-      "description_ka": "მეტალის კარების შეღებვის დახმარება. სამუშაო გარეთ.",
-      "title_ka": "კარების შეღებვის მომსახურება",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757694",
-      "source:path": "batumiarendachat/2025/06/757694.md",
-      "timestamp": "2025-06-19T10:03:51+00:00"
-    },
-    "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
+    "input": "Message text:\n💼 Вакансия для тех, кто ищет стабильность  \n💰 Заработок от 15 000 ₽ в день  \n📆 Гибкий график работы  \n🎓 Обучение от А до Я  \n📩 Оставь заявку в Telegram!"
   },
   {
     "lot": {
@@ -517,75 +278,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Help with painting a metal gate. Work outdoors. Payment - 5000 rubles.",
-      "title_en": "Job offer: Help with painting a metal gate",
-      "description_ru": "Помощь с покраской металлической калитки. Работа на свежем воздухе. Оплата — 5000₽",
-      "title_ru": "Предложение работы: Помощь с покраской металлической калитки",
-      "description_ka": "მეტალის კარების შეღებვაში დახმარება. სამუშაო ღია ცის ქვეშ. ანაზღაურება - 5000 რუბლი.",
-      "title_ka": "სამუშაოს შეთავაზება: მეტალის კარების შეღებვაში დახმარება",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757734",
-      "source:path": "batumiarendachat/2025/06/757734.md",
-      "timestamp": "2025-06-19T11:32:06+00:00"
-    },
-    "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "персонал",
-      "salary": 260,
-      "salary:currency": "EUR",
-      "schedule": "утро: 6:30-11:30",
-      "contact:phone": "+",
-      "urgency": "urgent",
-      "title_en": "Staff needed urgently, no experience required",
-      "description_en": "Looking for staff urgently, hiring without experience. Good salary. Morning shift: 6:30-11:30 — 260€ per day. Night shift: 17:30-22:30 — 310€ per day. Interested? Message me.",
-      "title_ru": "Срочно нужен персонал, без опыта",
-      "description_ru": "Ищу персонал срочно, набираем без опыта. Хорошая зарплата. Утренний график: 6:30-11:30 — 260€ в день. Ночной график: 17:30-22:30 — 310€ в день. Кому интересно, пишите в личные сообщения.",
-      "title_ka": "სასწრაფოდ მჭირდება პერსონალი, გამოცდილების გარეშე",
-      "description_ka": "სასწრაფოდ მჭირდება პერსონალი, ვიღებთ გამოცდილების გარეშე. კარგი ხელფასი. დილის ცვლა: 6:30-11:30 — 260€ დღეში. ღამის ცვლა: 17:30-22:30 — 310€ დღეში. დაინტერესებულებმა მომწერეთ.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757805",
-      "source:path": "batumiarendachat/2025/06/757805.md",
-      "timestamp": "2025-06-19T12:01:41+00:00"
-    },
-    "input": "Message text:\nВсем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата..\n-Утро: 6:30-11:30 — 260€ в день\n-Ночь: 17:30-22:30 310 €/в день\nКому интересно напишите + в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Help with painting a metal gate. Work outdoors. Payment - 5000 rubles.",
-      "title_en": "Job offer: Help with painting a metal gate",
-      "description_ru": "Помощь с покраской металлической калитки. Работа на свежем воздухе. Оплата — 5000₽",
-      "title_ru": "Предложение работы: Помощь с покраской металлической калитки",
-      "description_ka": "მეტალის კარების შეღებვაში დახმარება. მუშაობა ღია ცის ქვეშ. ანაზღაურება - 5000 რუბლი.",
-      "title_ka": "სამუშაოს შეთავაზება: მეტალის კარების შეღებვაში დახმარება",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757857",
-      "source:path": "batumiarendachat/2025/06/757857.md",
-      "timestamp": "2025-06-19T12:59:38+00:00"
-    },
-    "input": "Message text:\nПомощь с покраской металлической калитки.\nРабота на свежем воздухе. Оплата — 5000₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "распределение коробок",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "schedule": "до 3 часов",
-      "fraud": "sketchy_job",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "757611",
-      "source:path": "batumiarendachat/2025/06/757611.md",
-      "timestamp": "2025-06-19T08:33:37+00:00"
-    },
-    "input": "Message text:\nРасставить коробки по полкам в кладовке.\nБез груза, просто распределение. Время — до 3 часов. Оплата — 4700₽"
-  },
-  {
-    "lot": {
       "market:deal": "services_offer",
       "description_ru": "Оттереть ценники с баночек за 6.500₽.",
       "title_ru": "Услуга по оттиранию ценников",
@@ -599,70 +291,6 @@
       "timestamp": "2025-06-21T07:33:46+00:00"
     },
     "input": "Message text:\nОттереть ценники с баночек — 6.500₽."
-  },
-  {
-    "lot": {
-      "market:deal": "event_invite",
-      "event:type": "game",
-      "date": "2023-10-20T00:00:00+00:00",
-      "location": "online",
-      "fee": "free",
-      "contact:telegram": "@username",
-      "title_en": "Join our fun game for 15 stars!",
-      "description_en": "We will play a light game for 15 stars (a bear). Rules will be provided in 2 minutes. You need to score 5 points, and the first one to do so will get 15 stars (a bear). Subscription to this channel is mandatory for participants.",
-      "title_ru": "Присоединяйтесь к нашей веселой игре за 15 звезд!",
-      "description_ru": "Сейчас будем играть в легкую игру на 15 звезд (мишку). Правила появятся ниже через 2 минуты. Надо будет набрать 5 баллов, кто первый, тому 15 звезд (мишку). Подписка на этот канал обязательна для участников.",
-      "title_ka": "შემოგვიერთდით ჩვენს სახალისო თამაშში 15 ვარსკვლავისთვის!",
-      "description_ka": "ახლა ვაპირებთ თამაშის თამაშს 15 ვარსკვლავის (მიშკა)ათვის. წესები 2 წუთში გამოჩნდება. უნდა დააგროვოთ 5 ქულა, ვინც პირველი დააგროვებს, იმათ 15 ვარსკვლავი (მიშკა) ექნება. მონაწილეებისთვის არხზე გამოწერა სავალდებულოა.",
-      "source:chat": "baraholka_batumi_home",
-      "source:message_id": "1641805",
-      "source:path": "baraholka_batumi_home/2025/06/1641805.md",
-      "source:author:name": "нет",
-      "timestamp": "2025-06-20T11:56:42+00:00"
-    },
-    "input": "Message text:\nСейчас будем играть в легкую игру на 15 звезд (мишку) правила появються ниже через 2 минут \nНадо будет набрать 5 баллов кто первый тому 15 звезд (Мишку)\n\n+ кто участвует на этот канал подписка обезательна"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102130",
-      "source:path": "arenda_batumi/2025/06/2102130.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T09:16:24+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "переезд",
-      "salary": 5000,
-      "salary:currency": "GEL",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч",
-      "title_ru": "Помощь с переездом",
-      "description_en": "Who can quickly help move a couple of things in the yard, please write. I will reward five thousand.",
-      "title_en": "Help with moving",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში, დაწერეთ. მადლობას გადავუხდი ხუთ ათას ლარს.",
-      "title_ka": "პერეზიდის დახმარება",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105657",
-      "source:path": "arenda_batumi/2025/06/2105657.md",
-      "timestamp": "2025-06-19T23:20:20+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
   },
   {
     "lot": {
@@ -709,115 +337,6 @@
       "timestamp": "2025-06-24T18:29:10+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Part-time job available. From 6000 for a couple of hours, no experience needed.",
-      "title_en": "Part-time job opportunity",
-      "description_ru": "Есть подработка. От 6 тыс за пару часов, можно без опыта",
-      "title_ru": "Подработка",
-      "description_ka": "არის ნახევარი სამუშაო. 6000-დან რამდენიმე საათში, გამოცდილების გარეშე.",
-      "title_ka": "ნახევარი სამუშაო",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104191",
-      "source:path": "arenda_batumi/2025/06/2104191.md",
-      "timestamp": "2025-06-19T15:15:18+00:00"
-    },
-    "input": "Message text:\nЕсть подработка. От 6 тыс за пару часов, можно без опыта"
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_offer",
-      "occupation": "автомойка",
-      "salary": 8000,
-      "salary:currency": "RUB",
-      "title_en": "Car Wash is Hiring",
-      "description_en": "Car wash is looking for people. We will show and train everything. Daily earnings from 4,000 to 8,000.",
-      "title_ru": "Автомойка ищет людей",
-      "description_ru": "Автомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс.",
-      "title_ka": "ავტომობილის რეცხვის სამსახური ეძებს ადამიანებს",
-      "description_ka": "ავტომობილის რეცხვის სამსახური ეძებს ადამიანებს. ყველაფერს გაჩვენებთ და გაწვდით. დღეში 4,000-დან 8,000-მდე.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101705",
-      "source:path": "arenda_batumi/2025/06/2101705.md",
-      "timestamp": "2025-06-19T07:53:43+00:00"
-    },
-    "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
-  },
-  {
-    "lot": {
-      "title_en": "Part-time job offer for 5 people",
-      "description_en": "Looking for 5 people for part-time work. Paying 890 rubles per hour. Suitable for both girls and boys. Waiting for everyone.",
-      "title_ru": "Предложение подработки для 5 человек",
-      "description_ru": "Возьму 5 человек на подработку. Плачу 890 рублей в час. Подойдут девушки и парни. Жду всех.",
-      "title_ka": "5 ადამიანის ნახევარ განაკვეთზე სამუშაოს შეთავაზება",
-      "description_ka": "ვეძებ 5 ადამიანს ნახევარ განაკვეთზე სამუშაოდ. ვიხდი 890 რუბლს საათში. შესაფერისია როგორც გოგონებისთვის, ასევე ბიჭებისთვის. ველოდები ყველას.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102269",
-      "source:path": "arenda_batumi/2025/06/2102269.md",
-      "timestamp": "2025-06-19T09:45:38+00:00"
-    },
-    "input": "Message text:\nВозьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105010",
-      "source:path": "arenda_batumi/2025/06/2105010.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T18:42:17+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a couple of things in the yard. I will reward with five thousand.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в переносе вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი ხუთი ათასი.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102322",
-      "source:path": "arenda_batumi/2025/06/2102322.md",
-      "timestamp": "2025-06-19T09:52:20+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "партнёрство",
-      "salary": 400,
-      "salary:currency": "USD",
-      "description_en": "Our team offers partnership on mutually beneficial terms for those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათთვის, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_en": "Partnership opportunity with average earnings of 400+ dollars per week",
-      "title_ru": "Возможность партнёрства с средним заработком 400+ долларов в неделю",
-      "title_ka": "პარტნიორობის შესაძლებლობა საშუალო შემოსავალით 400+ დოლარი კვირაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2107856",
-      "source:path": "arenda_batumi/2025/06/2107856.md",
-      "timestamp": "2025-06-20T10:14:33+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
   },
   {
     "lot": {
@@ -878,29 +397,6 @@
       "title_ru": "Вакансия для удалённой работы",
       "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
       "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104092",
-      "source:path": "arenda_batumi/2025/06/2104092.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T14:54:38+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
       "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებებში.",
       "source:chat": "arenda_batumi",
       "source:message_id": "2129852",
@@ -910,106 +406,6 @@
       "timestamp": "2025-06-24T23:27:33+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2108528",
-      "source:path": "arenda_batumi/2025/06/2108528.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T12:11:28+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a few things around the yard. Will reward 5000.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в перемещении вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი 5000.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101907",
-      "source:path": "arenda_batumi/2025/06/2101907.md",
-      "timestamp": "2025-06-19T08:36:54+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105640",
-      "source:path": "arenda_batumi/2025/06/2105640.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T23:12:22+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "подработка",
-      "salary": 890,
-      "salary:currency": "RUB",
-      "title_en": "Part-time job offer",
-      "description_en": "Looking for 5 people for part-time work. Paying 890 rubles per hour. Both girls and guys are welcome. Waiting for everyone.",
-      "title_ru": "Предложение о подработке",
-      "description_ru": "Возьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех.",
-      "title_ka": "დამხმარე სამუშაოს შეთავაზება",
-      "description_ka": "მჭირდება 5 ადამიანი დამხმარე სამუშაოზე. ვიხდი 890 რუბლს საათში. გამოდგებიან გოგონები და ბიჭები. ველოდები ყველას.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101837",
-      "source:path": "arenda_batumi/2025/06/2101837.md",
-      "timestamp": "2025-06-19T08:26:19+00:00"
-    },
-    "input": "Message text:\nВозьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разбор сарая и бани",
-      "salary": 15000,
-      "salary:currency": "RUB",
-      "description_ru": "Нужно разобрать старый сарай и баню. Можно не одному. Плачу 15 тыс.",
-      "title_ru": "Работа: разбор сарая и бани",
-      "description_en": "Need to dismantle an old shed and bathhouse. Can be done with others. Paying 15,000.",
-      "title_en": "Job: dismantling shed and bathhouse",
-      "description_ka": "უნდა დაიშალოს ძველი სარაი და აბანო. შეიძლება არა მარტო. ვიხდი 15 ათასს.",
-      "title_ka": "სამსახური: სარაის და აბანოს დაშლა",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2107764",
-      "source:path": "arenda_batumi/2025/06/2107764.md",
-      "timestamp": "2025-06-20T09:52:51+00:00"
-    },
-    "input": "Message text:\nНужно разобрать старый сарай и баню. Можно не одному. Плачу 15 тыс"
   },
   {
     "lot": {
@@ -1118,45 +514,6 @@
       "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
       "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
       "source:chat": "arenda_batumi",
-      "source:message_id": "2105331",
-      "source:path": "arenda_batumi/2025/06/2105331.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T20:22:40+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "description_en": "Looking for people for part-time work.",
-      "title_en": "Part-time job seekers",
-      "description_ru": "Ищу людей на неполный рабочий день.",
-      "title_ru": "Ищу людей на неполный рабочий день.",
-      "description_ka": "მძიმე სამუშაოს მაძიებლები",
-      "title_ka": "მძიმე სამუშაოს მაძიებლები",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102422",
-      "source:path": "arenda_batumi/2025/06/2102422.md",
-      "timestamp": "2025-06-19T10:08:28+00:00"
-    },
-    "input": "Message text:\nИщу людей на неполный рабοчий день."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
       "source:message_id": "2124439",
       "source:path": "arenda_batumi/2025/06/2124439.md",
       "source:author:telegram": "ElizabetYdi",
@@ -1236,28 +593,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "персонал",
-      "salary": 260,
-      "salary:currency": "EUR",
-      "schedule": "утро: 6:30-11:30",
-      "contact:phone": "+",
-      "urgency": "urgent",
-      "title_en": "Staff needed urgently, no experience required",
-      "description_en": "Looking for staff urgently, hiring without experience. Good salary. Morning shift: 6:30-11:30 — 260€ per day. Night shift: 17:30-22:30 — 310€ per day. Interested? Message me.",
-      "title_ru": "Срочно нужен персонал, без опыта",
-      "description_ru": "Ищу персонал срочно, набираем без опыта. Хорошая зарплата. Утренний график: 6:30-11:30 — 260€ в день. Ночной график: 17:30-22:30 — 310€ в день. Кому интересно, пишите мне.",
-      "title_ka": "სასწრაფოდ მჭირდება პერსონალი, გამოცდილების გარეშე",
-      "description_ka": "სასწრაფოდ მჭირდება პერსონალი, ვიღებთ გამოცდილების გარეშე. კარგი ხელფასი. დილის ცვლა: 6:30-11:30 — 260€ დღეში. ღამის ცვლა: 17:30-22:30 — 310€ დღეში. დაინტერესებულებმა მომწერეთ.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103089",
-      "source:path": "arenda_batumi/2025/06/2103089.md",
-      "timestamp": "2025-06-19T12:01:35+00:00"
-    },
-    "input": "Message text:\nВсем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата..\n-Утро: 6:30-11:30 — 260€ в день\n-Ночь: 17:30-22:30 310 €/в день\nКому интересно напишите + в личные сообщения"
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
@@ -1278,39 +613,6 @@
       "timestamp": "2025-06-23T13:30:13+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a couple of things in the yard. I will reward with five thousand.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в переносе вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი ხუთი ათასი.",
-      "title_ka": "დახმარება საჭირო ნივთების გადატანაში ეზოში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103391",
-      "source:path": "arenda_batumi/2025/06/2103391.md",
-      "timestamp": "2025-06-19T12:48:25+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "промоутер",
-      "description_ru": "Нужны люди на раздачу листовок, либо промоутеры, всем обучим и расскажем. Вознаграждение неплохое",
-      "title_ru": "Работа промоутером",
-      "description_en": "Looking for people to distribute flyers, or promoters, we will train everyone and explain. The reward is good",
-      "title_en": "Job as a promoter",
-      "description_ka": "საჭიროა ადამიანები ფლაერების განაწილებისთვის, ან პრომოუტერები, ყველას ვასწავლით და ვეტყვით. ჯილდო კარგი არის",
-      "title_ka": "პრომოუტერის სამუშაო",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2108529",
-      "source:path": "arenda_batumi/2025/06/2108529.md",
-      "timestamp": "2025-06-20T12:11:33+00:00"
-    },
-    "input": "Message text:\nНужны люди на раздачу листовок, либо промоутеры, всем обучим и расскажем. Вознаграждение неплохое"
   },
   {
     "lot": {
@@ -1360,77 +662,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Car wash is looking for people. We will show and train everything. From 4000 to 8000 per day.",
-      "title_en": "Job offer at car wash",
-      "description_ru": "Автомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс.",
-      "title_ru": "Вакансия на автомойке",
-      "description_ka": "ავტომოიაკა ეძებს ადამიანებს. ყველაფერს გაწვდით და გაწვდით. დღეში 4000-8000.",
-      "title_ka": "ავტომოიაკაზე სამუშაო შეთავაზება",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102120",
-      "source:path": "arenda_batumi/2025/06/2102120.md",
-      "timestamp": "2025-06-19T09:09:18+00:00"
-    },
-    "input": "Message text:\nАвтомойка ищет людей. Все покажем и обучим. В день от 4 до 8 тыс."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Part-time job available. From 6000 for a couple of hours, no experience needed.",
-      "title_en": "Part-time job opportunity",
-      "description_ru": "Есть подработка. От 6 тыс за пару часов, можно без опыта",
-      "title_ru": "Подработка",
-      "description_ka": "არის ნახევარი სამუშაო. 6000-დან რამდენიმე საათში, გამოცდილება არ არის საჭირო",
-      "title_ka": "ნახევარი სამუშაო",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103245",
-      "source:path": "arenda_batumi/2025/06/2103245.md",
-      "timestamp": "2025-06-19T12:20:27+00:00"
-    },
-    "input": "Message text:\nЕсть подработка. От 6 тыс за пару часов, можно без опыта"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2106030",
-      "source:path": "arenda_batumi/2025/06/2106030.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T04:01:59+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "We are not looking for an employee. We are looking for a person who cares about what they do and with whom they work. Good salary, smart team, flexible schedule, a product to be proud of, official employment, and free training. Message us for honest details.",
-      "title_en": "Job offer with good salary and flexible schedule",
-      "description_ru": "Не ищем сотрудника. Ищем человека, которому важно, что он делает и с кем. Хорошая ЗП, умная команда, гибкий график, продукт, за который не стыдно, официальное трудоустройство, бесплатное обучение. Напиши в личку — расскажем всё по-честному.",
-      "title_ru": "Предложение о работе с хорошей зарплатой и гибким графиком",
-      "description_ka": "არ ვეძებთ თანამშრომელს. ვეძებთ ადამიანს, რომელსაც აინტერესებს, რას აკეთებს და ვისთან ერთად. კარგი ხელფასი, ჭკვიანი გუნდი, მოქნილი გრაფიკი, პროდუქტი, რომლის გამო არ უნდა შეგრცხვეს, ოფიციალური დასაქმება და უფასო სწავლება. მოგვწერეთ პირადში - ყველაფერს გულწრფელად გეტყვით.",
-      "title_ka": "სამუშაოს შეთავაზება კარგ ხელფასთან და მოქნილ გრაფიკთან ერთად",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103502",
-      "source:path": "arenda_batumi/2025/06/2103502.md",
-      "timestamp": "2025-06-19T13:13:21+00:00"
-    },
-    "input": "Message text:\n🚨 Работа, от которой не хочется уходить\n\nНе ищем сотрудника. Ищем человека, которому важно, что он делает и с кем.\n\n— 💰 Хорошая ЗП\n— 🧠 Умная команда\n— ⏱️ Гибкий график\n— 🔥 Продукт, за который не стыдно\n—✏️ Официальное трудоустройство\n—💼 Бесплатное обучение\n\n📩 Напиши в личку — расскажем всё по-честному."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "уборка гаража",
       "contact:telegram": "@username",
@@ -1448,44 +679,6 @@
       "timestamp": "2025-06-25T07:06:43+00:00"
     },
     "input": "Message text:\nНадо мне люди на завтра, убрать гараж ,писать мне"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "разбор старого сарая и бани",
-      "salary": 15000,
-      "salary:currency": "RUB",
-      "description_ru": "Нужно разобрать старый сарай и баню. Можно не одному. Плачу 15 тыс.",
-      "title_ru": "Работа: разбор сарая и бани",
-      "description_en": "Need to dismantle an old shed and bath. Can be done with others. Paying 15,000.",
-      "title_en": "Job: dismantling shed and bath",
-      "description_ka": "უნდა დაიშალოს ძველი სარაი და აბანო. შეიძლება არა მარტო. ვიხდი 15 ათასს.",
-      "title_ka": "სამსახური: სარაის და აბანოს დაშლა",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2107412",
-      "source:path": "arenda_batumi/2025/06/2107412.md",
-      "timestamp": "2025-06-20T08:52:50+00:00"
-    },
-    "input": "Message text:\nНужно разобрать старый сарай и баню. Можно не одному. Плачу 15 тыс"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "переезд",
-      "salary": 5000,
-      "salary:currency": "GEL",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч",
-      "title_ru": "Помощь с переездом",
-      "description_en": "Who can quickly help move a couple of things in the yard, please write. I will reward five thousand.",
-      "title_en": "Help with moving",
-      "description_ka": "ვინ შეიძლება სწრაფად დაეხმაროს რამდენიმე ნივთის გადატანაში ეზოში, დაწერეთ. მადლობას გადავუხდი ხუთ ათას ლარს.",
-      "title_ka": "დახმარება გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104921",
-      "source:path": "arenda_batumi/2025/06/2104921.md",
-      "timestamp": "2025-06-19T18:20:14+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
   },
   {
     "lot": {
@@ -1695,29 +888,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2109308",
-      "source:path": "arenda_batumi/2025/06/2109308.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T14:39:50+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "сотрудник",
       "salary": 120,
       "salary:currency": "EUR",
@@ -1736,29 +906,6 @@
       "source:author:telegram": "ElizabetYdi",
       "source:author:name": "Елизавета Юдина",
       "timestamp": "2025-06-23T16:45:33+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101779",
-      "source:path": "arenda_batumi/2025/06/2101779.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T08:06:27+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
@@ -1834,29 +981,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105744",
-      "source:path": "arenda_batumi/2025/06/2105744.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T00:48:54+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
       "salary:currency": "EUR",
@@ -1903,48 +1027,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "title_en": "Job offer for partnership with training",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "title_ru": "Предложение работы для партнёрства с обучением",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათთვის, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_ka": "სამუშაოს შეთავაზება პარტნიორობისთვის სწავლების თანხლებით",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2108390",
-      "source:path": "arenda_batumi/2025/06/2108390.md",
-      "timestamp": "2025-06-20T11:41:44+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a few things around the yard. I will reward with five thousand.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в перемещении вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დამეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი ხუთი ათასი.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2106042",
-      "source:path": "arenda_batumi/2025/06/2106042.md",
-      "timestamp": "2025-06-20T04:05:52+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2106042",
-      "source:path": "arenda_batumi/2025/06/2106042.md",
-      "timestamp": "2025-06-20T04:05:52+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "Доп. работа",
       "salary": 750,
       "salary:currency": "EUR",
@@ -1985,29 +1067,6 @@
       "source:author:telegram": "ElizabetYdi",
       "source:author:name": "Елизавета Юдина",
       "timestamp": "2025-06-23T18:25:07+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2107413",
-      "source:path": "arenda_batumi/2025/06/2107413.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T08:52:54+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
@@ -2174,22 +1233,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Part-time job available. From 6000 for a couple of hours, no experience required.",
-      "title_en": "Part-time job opportunity",
-      "description_ru": "Есть подработка. От 6 тыс за пару часов, можно без опыта",
-      "title_ru": "Подработка",
-      "description_ka": "არის ნახევარი სამუშაო. 6000-დან რამდენიმე საათში, გამოცდილება არ არის საჭირო.",
-      "title_ka": "ნახევარი სამუშაო",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103765",
-      "source:path": "arenda_batumi/2025/06/2103765.md",
-      "timestamp": "2025-06-19T13:48:19+00:00"
-    },
-    "input": "Message text:\nЕсть подработка. От 6 тыс за пару часов, можно без опыта"
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
@@ -2210,29 +1253,6 @@
       "timestamp": "2025-06-24T09:19:51+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103787",
-      "source:path": "arenda_batumi/2025/06/2103787.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T13:51:41+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
   {
     "lot": {
@@ -2293,68 +1313,6 @@
       "title_ru": "Вакансия для удалённой работы",
       "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
       "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105850",
-      "source:path": "arenda_batumi/2025/06/2105850.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-20T02:25:48+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "персонал",
-      "salary": 260,
-      "salary:currency": "EUR",
-      "schedule": "утро: 6:30-11:30",
-      "description_en": "Looking for staff urgently, no experience required. Good salary. Morning shift: 6:30-11:30 — 260€ per day. Night shift: 17:30-22:30 — 310€ per day. Interested? Message me.",
-      "title_en": "Urgent job offer for staff, no experience needed",
-      "description_ru": "Ищу персонал срочно, без опыта. Хорошая зарплата. Утренний график: 6:30-11:30 — 260€ в день. Ночной график: 17:30-22:30 — 310€ в день. Интересно? Напишите мне.",
-      "title_ru": "Срочное предложение работы для персонала, без опыта",
-      "description_ka": "მჭირდება პერსონალი სასწრაფოდ, გამოცდილება არ არის საჭირო. კარგი ხელფასი. დილის ცვლა: 6:30-11:30 — 260€ დღეში. ღამის ცვლა: 17:30-22:30 — 310€ დღეში. დაინტერესებულებმა მომწერეთ.",
-      "title_ka": "სასწრაფოდ მჭირდება პერსონალი, გამოცდილება არ არის საჭირო",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103822",
-      "source:path": "arenda_batumi/2025/06/2103822.md",
-      "timestamp": "2025-06-19T14:03:02+00:00"
-    },
-    "input": "Message text:\nВсем, кто ищет работу. Мне срочно нужен персонал, набираем без опыта. Хорошая зарплата..\n-Утро: 6:30-11:30 — 260€ в день\n-Ночь: 17:30-22:30 310 €/в день\nКому интересно напишите + в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "продавец и автокурьер",
-      "salary": 50000,
-      "salary:currency": "RUB",
-      "description_ru": "В цветочный магазин нужен продавец и автокурьер! От 50 тыс в неделю, зависит от заказов",
-      "title_ru": "Вакансия: продавец и автокурьер в цветочный магазин",
-      "description_en": "A flower shop needs a seller and a delivery driver! From 50,000 per week, depending on orders",
-      "title_en": "Job: seller and delivery driver at a flower shop",
-      "description_ka": "ყვავილების მაღაზიაში საჭიროა გამყიდველი და ავტომობილის მძღოლი! კვირაში 50,000 ლარიდან, დამოკიდებულია შეკვეთებზე",
-      "title_ka": "სამსახური: გამყიდველი და ავტომობილის მძღოლი ყვავილების მაღაზიაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104865",
-      "source:path": "arenda_batumi/2025/06/2104865.md",
-      "timestamp": "2025-06-19T18:09:48+00:00"
-    },
-    "input": "Message text:\nВ цветочный магазин нужен продавец и автокурьер! От 50 тыс в неделю, зависит от заказов"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
       "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, გთხოვთ, მომწეროთ პირად შეტყობინებაში.",
       "source:chat": "arenda_batumi",
       "source:message_id": "2130650",
@@ -2387,25 +1345,6 @@
       "timestamp": "2025-06-23T23:53:02+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "подработка",
-      "salary": 890,
-      "salary:currency": "RUB",
-      "title_en": "Part-time job offer for 5 people",
-      "description_en": "Looking for 5 people for part-time work. Paying 890 rubles per hour. Both girls and guys are welcome. Waiting for everyone.",
-      "title_ru": "Предложение подработки для 5 человек",
-      "description_ru": "Возьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех.",
-      "title_ka": "5 ადამიანის დროებითი სამუშაოს შეთავაზება",
-      "description_ka": "მჭირდება 5 ადამიანი დროებითი სამუშაოსთვის. ვიხდი 890 რუბლს საათში. გამოდგებიან გოგონები და ბიჭები. ველოდები ყველას.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102606",
-      "source:path": "arenda_batumi/2025/06/2102606.md",
-      "timestamp": "2025-06-19T10:46:56+00:00"
-    },
-    "input": "Message text:\nВозьму 5 человек на подработку. Плачу 890 рублей час. Подойдут девушки и парни. Жду всех"
   },
   {
     "lot": {
@@ -2452,50 +1391,6 @@
       "timestamp": "2025-06-23T11:49:52+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2105511",
-      "source:path": "arenda_batumi/2025/06/2105511.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T21:33:58+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "fraud": "sketchy_job",
-      "market:deal": "job_seek",
-      "occupation": "разные виды работ",
-      "salary": 700,
-      "salary:currency": "RUB",
-      "urgency": "urgent",
-      "title_en": "Urgent need for performers for various types of work",
-      "description_en": "Urgent need for performers for various types of work. Payment from 700 rubles per hour. Quick start, good conditions. Write and start earning tomorrow.",
-      "title_ru": "Срочно требуется исполнители на разные виды работ",
-      "description_ru": "Срочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра.",
-      "title_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე",
-      "description_ka": "სწრაფად საჭიროა შემსრულებლები სხვადასხვა სახის სამუშაოებზე. ანაზღაურება 700 რუბლიდან საათში. სწრაფი დაწყება, კარგი პირობები. დაწერეთ და დაიწყეთ ხვალიდან შემოსავლის მიღება.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2101768",
-      "source:path": "arenda_batumi/2025/06/2101768.md",
-      "timestamp": "2025-06-19T08:04:40+00:00"
-    },
-    "input": "Message text:\nСрочно требуется исполнители на разные виды работ. Оплата от 700 рублей в час. Быстрый старт, хорошие условия. Пишите и начинайте зарабатывать уже завтра."
   },
   {
     "lot": {
@@ -2592,61 +1487,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "title_en": "Job offer for partnership with training",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "title_ru": "Предложение работы для партнёрства с обучением",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათთვის, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_ka": "სამუშაოს შეთავაზება პარტნიორობისთვის სწავლებით",
-      "urgency": "none",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2107380",
-      "source:path": "arenda_batumi/2025/06/2107380.md",
-      "timestamp": "2025-06-20T08:47:22+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "продавец и автокурьер",
-      "salary": 50000,
-      "salary:currency": "RUB",
-      "description_ru": "В цветочный магазин нужен продавец и автокурьер! От 50 тыс в неделю, зависит от заказов",
-      "title_ru": "Вакансия: продавец и автокурьер в цветочный магазин",
-      "description_en": "A flower shop needs a seller and a delivery driver! From 50,000 per week, depending on orders",
-      "title_en": "Job vacancy: seller and delivery driver at a flower shop",
-      "description_ka": "ყვავილების მაღაზიაში საჭიროა გამყიდველი და ავტომობილი! კვირაში 50,000-დან, შეკვეთების მიხედვით",
-      "title_ka": "სამუშაო ვაკანსია: გამყიდველი და ავტომობილი ყვავილების მაღაზიაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104501",
-      "source:path": "arenda_batumi/2025/06/2104501.md",
-      "timestamp": "2025-06-19T16:45:38+00:00"
-    },
-    "input": "Message text:\nВ цветочный магазин нужен продавец и автокурьер! От 50 тыс в неделю, зависит от заказов"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "партнёрство",
-      "salary": 400,
-      "salary:currency": "USD",
-      "description_en": "Our team offers partnership on mutually beneficial terms to those looking for a new direction or activity! Training from scratch, average earnings of 400+ dollars per week (according to statistics for May). For details, write in private messages.",
-      "description_ru": "Наша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения.",
-      "description_ka": "ჩვენი გუნდი სთავაზობს პარტნიორობას ურთიერთსარგებლიან პირობებზე მათ, ვინც ახალი მიმართულების ან საქმიანობის ძიებაშია! სწავლება ნულიდან, საშუალო შემოსავალი 400+ დოლარი კვირაში (მაისის სტატისტიკის მიხედვით). დეტალებისთვის, დაწერეთ პირად შეტყობინებებში.",
-      "title_en": "Partnership opportunity with training",
-      "title_ru": "Возможность партнёрства с обучением",
-      "title_ka": "პარტნიორობის შესაძლებლობა სწავლებით",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104269",
-      "source:path": "arenda_batumi/2025/06/2104269.md",
-      "timestamp": "2025-06-19T15:49:20+00:00"
-    },
-    "input": "Message text:\nНаша команда предлагает партнёрство на взаимовыгодных условиях тем, кто в поиске нового направления или деятельности! Обучение с нуля, средний заработок 400+ долларов в неделю (по статистике за май). За подробностями, пишите в личные сообщения."
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "фрилансер",
       "salary": 65,
       "salary:currency": "EUR",
@@ -2690,61 +1530,6 @@
       "timestamp": "2025-06-24T10:55:30+00:00"
     },
     "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2103115",
-      "source:path": "arenda_batumi/2025/06/2103115.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-19T12:02:39+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a few things around the yard. Will reward 5000.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Нужна помощь в перемещении вещей по двору",
-      "description_ka": "ვინ შეიძლება სწრაფად დაეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი 5000.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2104703",
-      "source:path": "arenda_batumi/2025/06/2104703.md",
-      "timestamp": "2025-06-19T17:20:13+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "description_en": "Looking for someone to quickly help move a few things around the yard. Will reward 5000.",
-      "title_en": "Help needed to move items in the yard",
-      "description_ru": "Кто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч.",
-      "title_ru": "Помощь нужна для перемещения вещей во дворе",
-      "description_ka": "ვინ შეიძლება სწრაფად დაეხმაროს რამდენიმე ნივთის გადატანაში ეზოში. მადლობას გადავუხდი 5000.",
-      "title_ka": "დახმარება საჭირო ეზოში ნივთების გადატანაში",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2102949",
-      "source:path": "arenda_batumi/2025/06/2102949.md",
-      "timestamp": "2025-06-19T11:40:03+00:00"
-    },
-    "input": "Message text:\nКто может быстро помочь перекинуть пару вещей по двору пишите. Отблагодарю пять тысяч"
   },
   {
     "lot": {
