@@ -115,6 +115,8 @@ LOTS_DIR = Path("data/lots")
 CHOP_COOLDOWN = int(os.getenv("CHOP_COOLDOWN", "20"))
 # How often to check the queue for cooled down messages.
 CHOP_CHECK_INTERVAL = 5
+# Maximum seconds to wait for the chop queue to drain when exiting.
+CHOP_FLUSH_TIMEOUT = int(os.getenv("CHOP_FLUSH_TIMEOUT", "60"))
 
 # Queue of posts waiting for chopping.  Each entry maps the message path
 # to a dict with ``timestamp`` and ``pending`` fields tracking files that
@@ -390,11 +392,15 @@ async def _flush_chop_queue() -> None:
     if _chop_task is None:
         return
     log.debug("Flushing chop queue", queue=len(_CHOP_QUEUE))
-    while _CHOP_QUEUE:
+    start = time.monotonic()
+    while _CHOP_QUEUE and time.monotonic() - start < CHOP_FLUSH_TIMEOUT:
         _process_chop_queue()
         if not _CHOP_QUEUE:
             break
         await asyncio.sleep(CHOP_CHECK_INTERVAL)
+    if _CHOP_QUEUE:
+        paths = [str(p) for p in _CHOP_QUEUE.keys()]
+        log.warning("Chop queue not empty", pending=len(paths), paths=paths)
     if _chop_task:
         _chop_task.cancel()
         try:

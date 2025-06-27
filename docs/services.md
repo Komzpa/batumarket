@@ -102,6 +102,8 @@ twenty seconds so additional album messages can arrive. Once all captions are
 present (or there were no images) and the cooldown expires the client spawns
 `chop.py` in the background. This way lots appear quickly without waiting for
 the next `make chop` run and incomplete posts are avoided.
+When exiting the client waits up to a minute for this queue to drain. Any
+remaining paths are logged and processed the next time it runs.
 If some captions are missing you can run `make caption` to retry processing
 any uncaptured images. The command skips files that already have captions so
 the API isn't called unnecessarily.
