@@ -607,6 +607,7 @@ def test_category_stats_with_centroid(tmp_path):
     assert stat["price_typical"] == 100
     assert stat["price_min"] == 100
     assert stat["price_max"] == 100
+    assert stat["price_typical_usd"] == 100
     assert stat["last_dt"] == now
     assert stat["centroid"] == [1.0, 0.0]
 
