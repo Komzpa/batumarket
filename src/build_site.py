@@ -223,6 +223,7 @@ def _categorise(
                 "users": set(),
                 "recent_users": set(),
                 "prices": [],
+                "prices_usd": [],
                 "times": [],
                 "vecsum": None,
                 "count": 0,
@@ -247,6 +248,12 @@ def _categorise(
         if price not in ("", None):
             try:
                 stat["prices"].append(float(price))
+            except Exception:
+                pass
+        usd = lot.get("_usd_value")
+        if usd not in ("", None):
+            try:
+                stat["prices_usd"].append(float(usd))
             except Exception:
                 pass
         if dt:
@@ -294,6 +301,7 @@ def _categorise(
 
     for cat, stat in category_stats.items():
         prices = stat.pop("prices")
+        prices_usd = stat.pop("prices_usd")
         times = stat.pop("times")
         vecsum = stat.pop("vecsum")
         count = stat.pop("count")
@@ -310,6 +318,17 @@ def _categorise(
             stat["price_max"] = prices_sorted[-1]
         else:
             stat["price_typical"] = stat["price_min"] = stat["price_max"] = None
+        if prices_usd:
+            prices_sorted = sorted(prices_usd)
+            mid = len(prices_sorted) // 2
+            if len(prices_sorted) % 2:
+                stat["price_typical_usd"] = prices_sorted[mid]
+            else:
+                stat["price_typical_usd"] = (
+                    prices_sorted[mid - 1] + prices_sorted[mid]
+                ) / 2
+        else:
+            stat["price_typical_usd"] = None
         stat["last_dt"] = max(times) if times else None
         if vecsum is not None and count:
             stat["centroid"] = [v / count for v in vecsum]
@@ -390,6 +409,11 @@ def _render_site(
                             "name": sub.split(".", 1)[1],
                             "recent": stat.get("recent", 0),
                             "users": len(stat.get("recent_users", set())),
+                            "price": f"{stat['price_typical']:.2f} {display_cur}" if stat.get('price_typical') is not None else "",
+                            "price_value": stat.get("price_typical") or "",
+                            "price_usd": stat.get("price_typical_usd"),
+                            "dt": stat.get("last_dt"),
+                            "embed": _format_vector(stat.get("centroid")),
                         }
                     )
                 tpl = subcat_tpls[lang]
@@ -456,6 +480,11 @@ def _render_site(
                     "deal": deal,
                     "recent": stat["recent"],
                     "users": len(stat.get("recent_users", set())),
+                    "price": f"{stat['price_typical']:.2f} {display_cur}" if stat.get('price_typical') is not None else "",
+                    "price_value": stat.get("price_typical") or "",
+                    "price_usd": stat.get("price_typical_usd"),
+                    "dt": stat.get("last_dt"),
+                    "embed": _format_vector(stat.get("centroid")),
                 }
             )
         out = VIEWS_DIR / f"index_{lang}.html"

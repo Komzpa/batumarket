@@ -214,9 +214,10 @@ additionally broken down by `item:type` so
 phones, laptops and similar goods have their own pages. Clicking on the main
 `sell_item` link shows a table of those subcategories instead of the raw lot
 list. Each category tracks the median price with a min–max range, the time of
-the most recent post and a centroid of all available embeddings.
-Each subcategory link leads to a page listing every lot of that type while other
-categories link directly to their respective lot lists.
+the most recent post and a centroid of all available embeddings. Category lists
+display that summary so the table can be sorted by price, by age or by embedding
+similarity. Each subcategory link leads to a page listing every lot of that type
+while other categories link directly to their respective lot lists.
 Lot pages include a "more by this user" section which lists other lots from the
 same Telegram account ordered by embedding similarity. The list comes from the
 `data/more_user` cache.  If a lot has a timestamp that lies in the future it is
