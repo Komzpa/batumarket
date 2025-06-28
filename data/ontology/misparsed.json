@@ -259,22 +259,6 @@
   },
   {
     "lot": {
-      "market:deal": "services_offer",
-      "description_ru": "Оттереть ценники с баночек за 6.500₽.",
-      "title_ru": "Услуга по оттиранию ценников",
-      "description_en": "Remove price tags from jars for 6,500₽.",
-      "title_en": "Service for removing price tags",
-      "description_ka": "ბანკების ფასების ეტიკეტების მოცილება 6.500₽.",
-      "title_ka": "ფასების ეტიკეტების მოცილების მომსახურება",
-      "source:chat": "baraholka_batumi_home",
-      "source:message_id": "1642550",
-      "source:path": "baraholka_batumi_home/2025/06/1642550.md",
-      "timestamp": "2025-06-21T07:33:46+00:00"
-    },
-    "input": "Message text:\nОттереть ценники с баночек — 6.500₽."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
