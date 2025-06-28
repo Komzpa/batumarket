@@ -126,28 +126,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_seek",
-      "occupation": "работа на ша6ашкy",
-      "salary": 6000,
-      "salary:currency": "RUB",
-      "contact:telegram": "@username",
-      "title_en": "Job opportunity on ша6ашкy",
-      "description_en": "Looking for ребят on ша6ашкy! Payment from 6000₽ per day, payments without delays. Message me for more details.",
-      "title_ru": "Вакансия на ша6ашкy",
-      "description_ru": "Ищем ребят на ша6ашкy! Оплата от 6000₽ в сутки, выплаты без задержек. Напиши мне все расскажу.",
-      "title_ka": "შეძენა შა6აშკზე",
-      "description_ka": "ვეძებთ ბიჭებს შა6აშკზე! ანაზღაურება 6000₽ დღეში, გადახდები გარეშე დაგვიანების. მომწერეთ დეტალებზე.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "760760",
-      "source:path": "batumiarendachat/2025/06/760760.md",
-      "source:author:telegram": "RomaSemenov1",
-      "source:author:name": "Алисия Шеншина",
-      "timestamp": "2025-06-21T07:40:34+00:00"
-    },
-    "input": "Message text:\nИщем peбят на ша6ашкy! Oплата от 6 000₽ в cyтки, выплaты без зaдeржек. Haпиши мне всe рaccкaжy."
-  },
-  {
-    "lot": {
       "market:deal": "job_offer",
       "occupation": "не указано",
       "salary": 15000,
