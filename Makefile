@@ -48,7 +48,7 @@ prices: embed ## Train price model
 	python src/price_train.py
 
 # Render HTML pages from lots and templates.
-build: similar ontology ## Render HTML pages from lots and templates
+build: prices similar ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
 
