@@ -290,18 +290,23 @@ def _similar_by_user(
 
     more_user_map: dict[str, list[dict]] = {}
     for user, user_lots in user_map.items():
-        for lot in user_lots:
-            others = [o for o in user_lots if o is not lot]
-            scores = []
-            vec = id_to_vec.get(lot["_id"])
-            for other in others:
-                ov = id_to_vec.get(other["_id"])
-                if vec and ov:
-                    scores.append((_cos_sim(vec, ov), other))
-                else:
-                    scores.append((0.0, other))
-            scores.sort(key=lambda x: x[0], reverse=True)
-            items = [{"id": other["_id"]} for _, other in scores[:20]]
-            more_user_map[lot["_id"]] = items
+        ids = [lot["_id"] for lot in user_lots]
+        matrix = [id_to_vec[i] for i in ids if id_to_vec.get(i)]
+        if len(matrix) < 2:
+            for lid in ids:
+                more_user_map[lid] = []
+            continue
+
+        k = min(len(matrix), 21)
+        nn = NearestNeighbors(n_neighbors=k, metric="cosine")
+        nn.fit(matrix)
+        dist, neigh = nn.kneighbors(matrix, n_neighbors=k)
+
+        for i, lid in enumerate(ids[: len(matrix)]):
+            sims = []
+            for other_idx in neigh[i][1:]:
+                other_id = ids[other_idx]
+                sims.append({"id": other_id})
+            more_user_map[lid] = sims[:20]
     return more_user_map
 
