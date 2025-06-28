@@ -149,25 +149,6 @@
   {
     "lot": {
       "market:deal": "job_offer",
-      "occupation": "упаковка подарков и сувениров",
-      "salary": 4700,
-      "salary:currency": "RUB",
-      "title_ru": "Человек на упаковку подарков и сувениров",
-      "description_ru": "Ищу человека на упаковку подарков и сувениров — 4700 ₽",
-      "title_en": "Person for gift and souvenir packaging",
-      "description_en": "Looking for a person for gift and souvenir packaging — 4700 ₽",
-      "title_ka": "სათამაშოების და საჩუქრების შეფუთვის ადამიანი",
-      "description_ka": "მჭირდება ადამიანი საჩუქრების და სათამაშოების შეფუთვისთვის — 4700 ₽",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "760584",
-      "source:path": "batumiarendachat/2025/06/760584.md",
-      "timestamp": "2025-06-20T23:17:50+00:00"
-    },
-    "input": "Message text:\nЧеловек на упаковку подарков и сувениров — 4700 ₽"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
       "occupation": "не указано",
       "salary": 15000,
       "salary:currency": "RUB",
