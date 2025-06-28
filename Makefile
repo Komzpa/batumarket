@@ -41,16 +41,20 @@ embed: chop caption ## Store embeddings for each lot
 
 # Update cache of similar items based on embeddings.
 similar: embed ## Compute lot recommendations
-	python src/similar.py
+	        python src/similar.py
 
 # Train price regression model and save it under ``data/price_model.json``.
 prices: embed ## Train price model
-	python src/price_train.py
+	        python src/price_train.py
+
+# Cluster item categories from embeddings.
+clusters: embed ## Group item types into clusters
+	python src/cluster_items.py
 
 # Render HTML pages from lots and templates.
-build: prices similar ontology ## Render HTML pages from lots and templates
-	rm -rf data/views/*
-	python src/build_site.py
+build: prices similar clusters ontology ## Render HTML pages from lots and templates
+	        rm -rf data/views/*
+	        python src/build_site.py
 
 deploy: build ## Deploy built static website to the server
 	rsync --delete-before --size-only -zz --compress-choice=zstd --compress-level=3 --omit-dir-times --omit-link-times --info=stats2,progress2 -aH -e "ssh -T -c aes128-ctr -o Compression=no" data/views/ 178.62.209.164:/srv/www/batumarket/

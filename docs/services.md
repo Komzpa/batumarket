@@ -198,6 +198,9 @@ back to the predicted amount when no explicit price is available. Displayed
 prices are converted to ``DISPLAY_CURRENCY`` and aligned with a grey tint when
 coming from the model.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
+
+## cluster_items.py
+Groups all ``sell_item`` lots using their embeddings so similar offers end up on the same page. The script aims for roughly thirty posts per cluster. Each cluster name joins the original ``item:type`` labels ordered by how close their centroids are to the cluster centre. Results go to ``data/item_clusters.json`` and ``build_site.py`` uses them instead of plain ``item:type`` pages. Run ``make clusters`` after embedding lots.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
 all recognised fields and a link back to the Telegram post.  Pages are
