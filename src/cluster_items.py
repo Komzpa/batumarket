@@ -12,7 +12,6 @@ from notes_utils import write_json
 from sklearn.cluster import KMeans
 
 log = get_logger().bind(script=__file__)
-install_excepthook(log)
 
 LOTS_DIR = Path("data/lots")
 OUTPUT_FILE = Path("data/item_clusters.json")
@@ -98,6 +97,7 @@ def collect_clusters() -> dict[str, list[str]]:
 
 def main() -> None:
     """Cluster items and save the result."""
+    install_excepthook(log)
     log.info("Clustering items")
     clusters = collect_clusters()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
