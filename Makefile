@@ -47,8 +47,12 @@ similar: embed ## Compute lot recommendations
 prices: embed ## Train price model
 	python src/price_train.py
 
+# Cluster item categories from embeddings.
+clusters: embed ## Group item types into clusters
+	python src/cluster_items.py
+
 # Render HTML pages from lots and templates.
-build: prices similar ontology ## Render HTML pages from lots and templates
+build: prices similar clusters ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
 

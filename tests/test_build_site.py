@@ -575,13 +575,17 @@ def test_sell_item_subcategories(tmp_path, monkeypatch, build):
         ])
     )
 
+    clusters = {"smartphone laptop": ["1-0", "1-1"]}
+    monkeypatch.setattr(build_site, "CLUSTER_FILE", tmp_path / "clusters.json")
+    (tmp_path / "clusters.json").write_text(json.dumps(clusters))
+
     build()
 
-    assert (tmp_path / "views" / "deal" / "sell_item.smartphone_en.html").exists()
-    assert (tmp_path / "views" / "deal" / "sell_item.laptop_en.html").exists()
+    assert (
+        tmp_path / "views" / "deal" / "sell_item.smartphone laptop_en.html"
+    ).exists()
     root_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
-    assert "smartphone" in root_html
-    assert "laptop" in root_html
+    assert "smartphone laptop" in root_html
 
 
 def test_category_stats_with_centroid(tmp_path):
@@ -601,7 +605,7 @@ def test_category_stats_with_centroid(tmp_path):
     ]
     embeds = {"1-0": [1.0, 0.0]}
     price_utils.prepare_price_fields(lots, {"USD": 1.0}, "USD")
-    cats, stats, _ = build_site._categorise(lots, ["en"], 7, embeds)
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, embeds, {})
     assert "sell_item.smartphone" in cats
     stat = stats["sell_item.smartphone"]
     assert stat["price_typical"] == 100
@@ -634,7 +638,7 @@ def test_recent_user_count():
         },
     ]
 
-    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {})
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {}, {})
     assert "sell_item" in cats
     stat = stats["sell_item"]
     assert stat["recent"] == 1
@@ -656,6 +660,6 @@ def test_phone_sellers_allowed(monkeypatch):
         }
     ]
 
-    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {})
+    cats, stats, _ = build_site._categorise(lots, ["en"], 7, {}, {})
     assert "sell_item" in cats
     assert stats["sell_item"]["users"] == {"+12345"}

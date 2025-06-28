@@ -56,6 +56,7 @@ ONTOLOGY = Path("data/ontology/fields.json")
 LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
 MODEL_FILE = Path("data/price_model.json")
+CLUSTER_FILE = Path("data/item_clusters.json")
 
 
 
@@ -70,6 +71,23 @@ def _load_ontology() -> list[str]:
     fields = sorted(data.keys())
     log.info("Loaded ontology", count=len(fields))
     return fields
+
+
+def _load_clusters() -> dict[str, list[str]]:
+    """Return precomputed item clusters."""
+    if not CLUSTER_FILE.exists():
+        return {}
+    data = load_json(CLUSTER_FILE)
+    if not isinstance(data, dict):
+        log.error("Bad cluster file", path=str(CLUSTER_FILE))
+        return {}
+    result: dict[str, list[str]] = {}
+    for name, ids in data.items():
+        if isinstance(name, str) and isinstance(ids, list):
+            result[name] = [str(i) for i in ids if isinstance(i, str)]
+    if result:
+        log.info("Loaded clusters", count=len(result))
+    return result
 
 
 def _compile_locale(lang: str) -> None:
@@ -179,7 +197,14 @@ def _copy_static() -> None:
 
 
 
-def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[str, list[dict]], dict[str, list[dict]]]:
+def _load_state() -> tuple[
+    list[str],
+    dict[str, list[float]],
+    list[dict],
+    dict[str, list[dict]],
+    dict[str, list[dict]],
+    dict[str, list[str]],
+]:
     """Return ontology fields, embeddings, lots and similarity caches."""
     log.debug("Loading ontology")
     fields = _load_ontology()
@@ -192,7 +217,9 @@ def _load_state() -> tuple[list[str], dict[str, list[float]], list[dict], dict[s
     sim_map = _load_similar()
     log.debug("Loading user cache")
     more_user_map = _load_more_user()
-    return fields, embeddings, lots, sim_map, more_user_map
+    log.debug("Loading clusters")
+    clusters = _load_clusters()
+    return fields, embeddings, lots, sim_map, more_user_map, clusters
 
 
 
@@ -202,11 +229,12 @@ def _categorise(
     langs: list[str],
     keep_days: int,
     id_to_vec: dict[str, list[float]],
+    clusters: dict[str, list[str]] | None,
 ) -> tuple[dict[str, list[dict]], dict[str, dict], list[dict]]:
     """Return category info and recent lot list.
 
-    Categories are split by ``market:deal`` and ``sell_item`` lots are further
-    grouped by ``item:type``.
+    Categories are split by ``market:deal``. ``sell_item`` lots are further
+    grouped by ``clusters`` when available and fall back to ``item:type``.
     Stats include price range, last timestamp and embedding centroid so the
     sorting logic used on item pages also works for categories.
     """
@@ -215,6 +243,11 @@ def _categorise(
     recent: list[dict] = []
     categories: dict[str, list[dict]] = {}
     category_stats: dict[str, dict] = {}
+    lid_to_cluster: dict[str, str] = {}
+    if clusters:
+        for name, ids in clusters.items():
+            for lid in ids:
+                lid_to_cluster[lid] = name
     def update_stat(cat: str) -> dict:
         stat = category_stats.setdefault(
             cat,
@@ -279,11 +312,15 @@ def _categorise(
         add_lot(deal, lot, dt)
 
         if deal == "sell_item":
-            itype = lot.get("item:type")
-            if isinstance(itype, list):
-                itype = itype[0] if itype else None
-            if isinstance(itype, str) and itype:
-                add_lot(f"{deal}.{itype}", lot, dt)
+            cname = lid_to_cluster.get(lot["_id"])
+            if cname:
+                add_lot(f"{deal}.{cname}", lot, dt)
+            else:
+                itype = lot.get("item:type")
+                if isinstance(itype, list):
+                    itype = itype[0] if itype else None
+                if isinstance(itype, str) and itype:
+                    add_lot(f"{deal}.{itype}", lot, dt)
 
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
@@ -675,7 +712,7 @@ def main() -> None:
     VIEWS_DIR.mkdir(parents=True, exist_ok=True)
 
     _copy_static()
-    fields, embeddings, lots, sim_map, more_user_map = _load_state()
+    fields, embeddings, lots, sim_map, more_user_map, clusters = _load_state()
     lots, embeddings = _sync_embeddings(lots, embeddings)
 
     id_to_vec = {lot["_id"]: embeddings.get(lot["_id"]) for lot in lots}
@@ -699,7 +736,7 @@ def main() -> None:
     prepare_price_fields(lots, use_rates, display_cur)
 
     categories, category_stats, _recent = _categorise(
-        lots, langs, keep_days, id_to_vec
+        lots, langs, keep_days, id_to_vec, clusters
     )
 
     _render_site(
