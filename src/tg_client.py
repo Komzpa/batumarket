@@ -19,6 +19,7 @@ from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
 from notes_utils import load_json, write_json
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from post_io import raw_post_path
 from caption_io import (
     has_caption,
@@ -50,6 +51,7 @@ from config_utils import load_config
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 cfg = load_config()
 TG_API_ID = cfg.TG_API_ID

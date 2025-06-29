@@ -26,6 +26,7 @@ CHOP_MODELS = getattr(
     ],
 )
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from caption_io import read_caption, has_caption
 from post_io import read_post, raw_post_path, RAW_DIR
 from lot_io import valid_lots, needs_cleanup
@@ -40,6 +41,7 @@ from moderation import should_skip_message
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 openai.api_key = OPENAI_KEY
 OPENAI_TIMEOUT = 900  # maximum seconds to wait for GPT-4o

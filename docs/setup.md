@@ -19,6 +19,7 @@ sudo apt install python3-openai \
 ```
 
 Graphviz is required because `make precommit` renders the call graph.
+The `unflatten` tool from that package must be on your `PATH`.
 
 If you prefer isolated dependencies create a virtual environment and use the
 `requirements.txt` file instead:

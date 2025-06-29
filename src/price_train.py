@@ -3,12 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from similar_utils import _load_embeddings, _sync_embeddings
 from lot_io import iter_lot_files, read_lots
 from price_utils import train_price_regression, save_price_model
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 LOTS_DIR = Path("data/lots")
 MODEL_FILE = Path("data/price_model.json")

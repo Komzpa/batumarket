@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from lot_io import read_lots, embedding_path, iter_lot_files
 from notes_utils import load_json, write_json
 from log_utils import get_logger
+from oom_utils import prefer_oom_kill
 from moderation import message_skip_reason, lot_skip_reason
 from post_io import read_post, raw_post_path_from_lot
 
@@ -69,6 +70,7 @@ def _needs_embedding(path: Path, emb: Path, lots: list[dict]) -> bool:
 
 
 def main() -> None:
+    prefer_oom_kill()
     if not LOTS_DIR.exists():
         log.error("LOTS_DIR missing", dir=str(LOTS_DIR))
         return
