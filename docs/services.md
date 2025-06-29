@@ -209,6 +209,8 @@ generated separately for every language configured in `config.py`.  The
 navigation bar links to the same page in other languages instead of toggling via
 JavaScript. Static files from `templates/static` are copied to
 `data/views/static` so the site works without extra assets.
+Long lot identifiers or category names are truncated with a short hash when
+forming file names so generated paths never exceed OS limits.
 Every page now also includes a currency selector next to the language switcher.
 Prices are converted on the fly in the browser using the rates embedded into
 the page and the last choice is remembered.
