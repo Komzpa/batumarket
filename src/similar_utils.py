@@ -23,8 +23,9 @@ MORE_USER_DIR = Path("data/more_user")
 def _load_embeddings() -> dict[str, np.ndarray]:
     """Return mapping of lot id to embedding vector.
 
-    Vectors are stored as ``numpy.float32`` arrays which drastically
-    reduces memory usage compared to plain Python lists.
+    Vectors are stored as ``numpy.float16`` arrays which halves the
+    memory footprint compared to ``float32`` and drastically reduces
+    memory usage compared to plain Python lists.
     """
     if not EMBED_DIR.exists():
         log.info("Embedding directory missing", path=str(EMBED_DIR))
@@ -33,11 +34,11 @@ def _load_embeddings() -> dict[str, np.ndarray]:
     for path in EMBED_DIR.rglob("*.json"):
         obj = load_json(path)
         if isinstance(obj, dict) and "id" in obj and "vec" in obj:
-            data[obj["id"]] = np.asarray(obj["vec"], dtype=np.float32)
+            data[obj["id"]] = np.asarray(obj["vec"], dtype=np.float16)
         elif isinstance(obj, list):
             for item in obj:
                 if isinstance(item, dict) and "id" in item and "vec" in item:
-                    data[item["id"]] = np.asarray(item["vec"], dtype=np.float32)
+                    data[item["id"]] = np.asarray(item["vec"], dtype=np.float16)
                 else:
                     log.error("Bad embedding entry", file=str(path))
         else:
