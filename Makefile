@@ -72,10 +72,8 @@ install-dependencies: ## Install system packages and Python modules used in test
 	python3-sklearn python3-progressbar2 \
 	python3-html5lib \
 	python3-pytest python3-pytest-cov \
-	python3-graphviz graphviz gettext \
+	python3-graphviz graphviz gettext
 
-	python3-pip
-	pip install --break-system-packages -r requirements.txt
 
 precommit: ## Run pre-commit checks
 	make callgraph
