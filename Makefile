@@ -99,5 +99,8 @@ test: precommit ## Run linter and unit tests with coverage
 
 # Build project call graph at function level.
 callgraph: ## Generate call graph diagram
-	python scripts/function_callgraph.py | unflatten -l 3 -f -c 6 > docs/callgraph.dot
-	dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg
+	{ python scripts/function_callgraph.py | unflatten -l 3 -f -c 6 > docs/callgraph.dot && \
+	  dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg; } || { \
+	  echo "Callgraph failed. Run 'make install-dependencies' if system packages are missing."; \
+	  exit 1; \
+	}
