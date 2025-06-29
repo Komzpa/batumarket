@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 
 import progressbar
+import numpy as np
 
 from notes_utils import load_json, write_json
 from sklearn.neighbors import NearestNeighbors
@@ -19,20 +20,24 @@ SIMILAR_DIR = Path("data/similar")
 MORE_USER_DIR = Path("data/more_user")
 
 
-def _load_embeddings() -> dict[str, list[float]]:
-    """Return mapping of lot id to embedding vector."""
+def _load_embeddings() -> dict[str, np.ndarray]:
+    """Return mapping of lot id to embedding vector.
+
+    Vectors are stored as ``numpy.float32`` arrays which drastically
+    reduces memory usage compared to plain Python lists.
+    """
     if not EMBED_DIR.exists():
         log.info("Embedding directory missing", path=str(EMBED_DIR))
         return {}
-    data: dict[str, list[float]] = {}
+    data: dict[str, np.ndarray] = {}
     for path in EMBED_DIR.rglob("*.json"):
         obj = load_json(path)
         if isinstance(obj, dict) and "id" in obj and "vec" in obj:
-            data[obj["id"]] = obj["vec"]
+            data[obj["id"]] = np.asarray(obj["vec"], dtype=np.float32)
         elif isinstance(obj, list):
             for item in obj:
                 if isinstance(item, dict) and "id" in item and "vec" in item:
-                    data[item["id"]] = item["vec"]
+                    data[item["id"]] = np.asarray(item["vec"], dtype=np.float32)
                 else:
                     log.error("Bad embedding entry", file=str(path))
         else:
@@ -41,21 +46,27 @@ def _load_embeddings() -> dict[str, list[float]]:
     return data
 
 
-def _cos_sim(a: list[float], b: list[float]) -> float:
+def _cos_sim(a: "list[float] | np.ndarray", b: "list[float] | np.ndarray") -> float:
     """Return cosine similarity between two embeddings."""
-    dot = sum(x * y for x, y in zip(a, b))
-    na = math.sqrt(sum(x * x for x in a))
-    nb = math.sqrt(sum(y * y for y in b))
+    va = np.asarray(a, dtype=np.float32)
+    vb = np.asarray(b, dtype=np.float32)
+    na = np.linalg.norm(va)
+    nb = np.linalg.norm(vb)
     if na == 0 or nb == 0:
         return -1.0
+    dot = float(np.dot(va, vb))
     return dot / (na * nb)
 
 
-def _format_vector(vec: list[float] | None) -> str | None:
+def _format_vector(vec: "list[float] | np.ndarray | None") -> str | None:
     """Return compact JSON representation for ``vec``."""
     if vec is None:
         return None
-    parts = [f"{v:.4f}".rstrip("0").rstrip(".") for v in vec]
+    if isinstance(vec, np.ndarray):
+        values = vec.tolist()
+    else:
+        values = list(vec)
+    parts = [f"{v:.4f}".rstrip("0").rstrip(".") for v in values]
     return "[" + ",".join(parts) + "]"
 
 
