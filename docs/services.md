@@ -201,7 +201,7 @@ coming from the model.
 Embedding arrays are written as compact JSON with each number using no more than seven characters and no spaces.
 
 ## cluster_items.py
-Groups all ``sell_item`` lots using their embeddings so similar offers end up on the same page. The script aims for roughly thirty posts per cluster and streams embeddings through ``MiniBatchKMeans`` so only small chunks live in memory. Initial centroids are calculated from the most common ``item:type`` groups so big categories seed the algorithm. Each cluster name joins the original ``item:type`` labels ordered by how close their centroids are to the cluster centre. Results go to ``data/item_clusters.json`` and ``build_site.py`` uses them instead of plain ``item:type`` pages. Run ``make clusters`` after embedding lots.
+Groups ``item:type`` categories using averaged embeddings so related goods share the same page. Category centroids are computed first and ``KMeans`` groups those vectors using roughly the square root of the category count as the number of clusters. Cluster names combine the original ``item:type`` labels ordered by how close their vectors are to the cluster centre. Results go to ``data/item_clusters.json`` and ``build_site.py`` uses them instead of plain ``item:type`` pages. Run ``make clusters`` after embedding lots.
 Each lot page shows images in a small carousel,
 scaled to at most 40% of the viewport height, a table of
 all recognised fields and a link back to the Telegram post.  Pages are

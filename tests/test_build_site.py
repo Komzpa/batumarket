@@ -575,7 +575,7 @@ def test_sell_item_subcategories(tmp_path, monkeypatch, build):
         ])
     )
 
-    clusters = {"smartphone laptop": ["1-0", "1-1"]}
+    clusters = {"smartphone laptop": ["smartphone", "laptop"]}
     monkeypatch.setattr(build_site, "CLUSTER_FILE", tmp_path / "clusters.json")
     (tmp_path / "clusters.json").write_text(json.dumps(clusters))
 

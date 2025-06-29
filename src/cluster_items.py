@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 from collections import defaultdict
-from typing import Iterable
+from typing import Iterable, Dict
 
+import math
 import numpy as np
 
 from log_utils import get_logger, install_excepthook
@@ -12,7 +13,7 @@ from lot_io import iter_lot_files, read_lots, make_lot_id, embedding_path
 from similar_utils import _cos_sim
 from notes_utils import write_json, load_json
 
-from sklearn.cluster import MiniBatchKMeans
+from sklearn.cluster import KMeans
 
 log = get_logger().bind(script=__file__)
 
@@ -54,85 +55,67 @@ def _iter_items() -> Iterable[tuple[str, str, np.ndarray]]:
             yield lot_id, itype, vec
 
 
-def collect_clusters(batch_size: int = 256) -> dict[str, list[str]]:
-    """Return mapping of cluster name to lot ids.
+def _collect_category_vectors() -> Dict[str, np.ndarray]:
+    """Return mean embedding for every ``item:type``.
 
-    ``MiniBatchKMeans`` processes item embeddings in chunks so only a
-    small batch resides in memory at a time.  Initial centroids come from
-    the most common ``item:type`` values so existing categories guide the
-    clustering.
+    Embeddings are streamed from disk so memory use stays manageable.
+    """
+    sums: Dict[str, np.ndarray] = {}
+    counts: Dict[str, int] = defaultdict(int)
+    for _, itype, vec in _iter_items():
+        if itype not in sums:
+            sums[itype] = np.zeros(len(vec), dtype=np.float32)
+        sums[itype] += vec
+        counts[itype] += 1
+    return {t: sums[t] / counts[t] for t in sums}
+
+
+def collect_clusters() -> dict[str, list[str]]:
+    """Return mapping of cluster name to ``item:type`` values.
+
+    Category embeddings are averaged first so clustering deals with a
+    manageable number of vectors. The number of clusters follows the
+    square root heuristic.
     """
 
-    log.debug("Counting items")
-    counts: dict[str, int] = defaultdict(int)
-    total = 0
-    for _, itype, _ in _iter_items():
-        counts[itype] += 1
-        total += 1
-    if total == 0:
+    cat_vecs = _collect_category_vectors()
+    if not cat_vecs:
         return {}
 
-    n_clusters = max(1, round(total / 30))
-    n_clusters = min(n_clusters, total)
+    types = list(cat_vecs.keys())
+    vectors = np.stack([cat_vecs[t] for t in types])
+
+    n_clusters = max(1, round(math.sqrt(len(types))))
+
+    counts = {t: 0 for t in types}
+    for _, itype, _ in _iter_items():
+        counts[itype] += 1
 
     top_types = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:n_clusters]
-    top_set = {t for t, _ in top_types}
-    centers: list[np.ndarray] | None = None
-    if len(top_types) >= n_clusters:
-        dim = None
-        sums: dict[str, np.ndarray] = {}
-        for _, itype, vec in _iter_items():
-            if itype not in top_set:
-                continue
-            if dim is None:
-                dim = len(vec)
-                for t in top_set:
-                    sums[t] = np.zeros(dim, dtype=np.float32)
-            sums[itype] += vec
-        centers = [sums[t] / counts[t] for t, _ in top_types]
+    centers = np.stack([cat_vecs[t] for t, _ in top_types]) if len(top_types) >= n_clusters else None
 
     if centers is not None:
-        init = np.stack(centers)
-        km = MiniBatchKMeans(
-            n_clusters=n_clusters,
-            init=init,
-            n_init=1,
-            random_state=0,
-            batch_size=batch_size,
-        )
+        km = KMeans(n_clusters=n_clusters, init=centers, n_init=1, random_state=0)
     else:
-        km = MiniBatchKMeans(n_clusters=n_clusters, random_state=0, batch_size=batch_size)
+        km = KMeans(n_clusters=n_clusters, random_state=0)
 
-    log.debug("Fitting clusters", count=total, clusters=n_clusters)
-    batch: list[np.ndarray] = []
-    for _, _, vec in _iter_items():
-        batch.append(vec)
-        if len(batch) >= batch_size:
-            km.partial_fit(batch)
-            batch.clear()
-    if batch:
-        km.partial_fit(batch)
+    log.debug("Fitting category clusters", count=len(types), clusters=n_clusters)
+    km.fit(vectors)
 
-    log.debug("Assigning labels")
-    grouped: dict[int, dict[str, list]] = {}
-    for lid, itype, vec in _iter_items():
-        lab = int(km.predict([vec])[0])
-        info = grouped.setdefault(lab, {"ids": [], "sum": np.zeros(len(vec)), "type_vecs": defaultdict(list)})
-        info["ids"].append(lid)
-        info["sum"] += vec
-        info["type_vecs"][itype].append(vec)
+    grouped: Dict[int, list[str]] = defaultdict(list)
+    for t, lab in zip(types, km.labels_):
+        grouped[int(lab)].append(t)
 
     result: dict[str, list[str]] = {}
-    for info in grouped.values():
-        centroid = info["sum"] / len(info["ids"])
+    for lab, names in grouped.items():
+        centroid = km.cluster_centers_[lab]
         scores = []
-        for itype, vecs in info["type_vecs"].items():
-            mean = np.mean(vecs, axis=0)
-            sim = _cos_sim(mean, centroid)
-            scores.append((sim, itype))
+        for t in names:
+            sim = _cos_sim(cat_vecs[t], centroid)
+            scores.append((sim, t))
         scores.sort(reverse=True)
-        name = " ".join(t for _, t in scores)
-        result[name] = info["ids"]
+        cname = " ".join(t for _, t in scores)
+        result[cname] = names
 
     return result
 
