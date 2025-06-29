@@ -34,11 +34,14 @@ def _load_embeddings() -> dict[str, np.ndarray]:
     for path in EMBED_DIR.rglob("*.json"):
         obj = load_json(path)
         if isinstance(obj, dict) and "id" in obj and "vec" in obj:
-            data[obj["id"]] = np.asarray(obj["vec"], dtype=np.float16)
+            # Keep vectors as ``float32`` to preserve precision when formatting
+            # for HTML.  ``float16`` would slightly alter values and break
+            # tests expecting round-trip parity.
+            data[obj["id"]] = np.asarray(obj["vec"], dtype=np.float32)
         elif isinstance(obj, list):
             for item in obj:
                 if isinstance(item, dict) and "id" in item and "vec" in item:
-                    data[item["id"]] = np.asarray(item["vec"], dtype=np.float16)
+                    data[item["id"]] = np.asarray(item["vec"], dtype=np.float32)
                 else:
                     log.error("Bad embedding entry", file=str(path))
         else:
@@ -303,7 +306,10 @@ def _similar_by_user(
     more_user_map: dict[str, list[dict]] = {}
     for user, user_lots in user_map.items():
         ids = [lot["_id"] for lot in user_lots]
-        matrix = [id_to_vec[i] for i in ids if id_to_vec.get(i)]
+        # Avoid boolean evaluation of ``numpy.ndarray`` by checking for ``None``
+        # explicitly; otherwise a ``ValueError`` is raised when numpy attempts
+        # to determine truthiness.
+        matrix = [id_to_vec[i] for i in ids if id_to_vec.get(i) is not None]
         if len(matrix) < 2:
             for lid in ids:
                 more_user_map[lid] = []
