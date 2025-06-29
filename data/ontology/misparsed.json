@@ -128,29 +128,6 @@
     "lot": {
       "market:deal": "job_offer",
       "occupation": "не указано",
-      "salary": 15000,
-      "salary:currency": "RUB",
-      "schedule": "гибкий",
-      "contact:telegram": "@username",
-      "title_en": "Job vacancy for those seeking stability",
-      "description_en": "Earnings from 15,000 RUB per day. Flexible work schedule. Training from A to Z. Leave an application in Telegram!",
-      "title_ru": "Вакансия для тех, кто ищет стабильность",
-      "description_ru": "Заработок от 15 000 ₽ в день. Гибкий график работы. Обучение от А до Я. Оставь заявку в Telegram!",
-      "title_ka": "მუშაობის ვაკანსია იმათთვის, ვინც სტაბილურობას ეძებს",
-      "description_ka": "შემოსავალი 15 000 ₽ დღეში. მოქნილი სამუშაო გრაფიკი. სწავლება A-დან Z-მდე. დატოვეთ განაცხადი Telegram-ში!",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "762003",
-      "source:path": "batumiarendachat/2025/06/762003.md",
-      "source:author:telegram": "Katirin_a_a",
-      "source:author:name": "Карина Гордеева",
-      "timestamp": "2025-06-22T10:19:49+00:00"
-    },
-    "input": "Message text:\n💼 Вакансия для тех, кто ищет стабильность  \n💰 Заработок от 15 000 ₽ в день  \n📆 Гибкий график работы  \n🎓 Обучение от А до Я  \n📩 Оставь заявку в Telegram!"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "не указано",
       "salary": 70000,
       "salary:currency": "RUB",
       "schedule": "не указано",
