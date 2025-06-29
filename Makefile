@@ -66,13 +66,18 @@ clean: ## Delete all temporary files
 install-dependencies: ## Install system packages and Python modules used in tests
 	@sudo apt-get install -y \
 	python3-openai \
+        python3-sklearn \
 	python3-python-telegram-bot \
+	python3-telethon \
 	python3-jinja2 \
-	python3-structlog python3-telethon \
-        python3-sklearn python3-progressbar2 python3-progressbar \
+	python3-structlog \
+	python3-progressbar2 \
 	python3-html5lib \
-	python3-pytest python3-pytest-cov \
-	python3-graphviz graphviz gettext
+	python3-pytest \
+	python3-pytest-cov \
+	python3-graphviz \
+	graphviz \
+	gettext
 
 
 precommit: ## Run pre-commit checks
