@@ -35,23 +35,18 @@ chop: pull caption ## Split messages into lots using captions and message text.
 ontology: chop ## Summarize lots so it's easier see what exactly is there in the dataset.
 	python src/scan_ontology.py
 
-# Store embeddings for each lot in JSON files using GNU Parallel.
 embed: chop caption ## Store embeddings for each lot
 	python scripts/pending_embed.py | parallel --eta -j16 -0 python src/embed.py
 
-# Update cache of similar items based on embeddings.
 similar: embed ## Compute lot recommendations
 	python src/similar.py
 
-# Train price regression model and save it under ``data/price_model.json``.
-prices: embed ## Train price model
+prices: embed # Train price regression model and save it under ``data/price_model.json``.
 	python src/price_train.py
 
-# Cluster item categories from embeddings.
 clusters: embed ## Group item types into clusters
 	python src/cluster_items.py
 
-# Render HTML pages from lots and templates.
 build: prices similar clusters ontology ## Render HTML pages from lots and templates
 	rm -rf data/views/*
 	python src/build_site.py
@@ -59,11 +54,9 @@ build: prices similar clusters ontology ## Render HTML pages from lots and templ
 deploy: build ## Deploy built static website to the server
 	rsync --delete-before --size-only -zz --compress-choice=zstd --compress-level=3 --omit-dir-times --omit-link-times --info=stats2,progress2 -aH -e "ssh -T -c aes128-ctr -o Compression=no" data/views/ 178.62.209.164:/srv/www/batumarket/
 
-# Telegram bot for alerts and recommendations.
 alert: embed ## Notify about new lots
 	python src/telegram_bot.py
 
-# Gather logs and related files for one lot.
 debugdump: ## Dump logs for a single lot
 	python src/debug_dump.py "$(URL)"
 
@@ -80,27 +73,14 @@ install-dependencies: ## Install system packages and Python modules used in test
 	python3-html5lib \
 	python3-pytest python3-pytest-cov \
 	python3-graphviz graphviz gettext
-	pip install --user -r requirements.txt
-
 
 precommit: ## Run pre-commit checks
-	{ $(MAKE) callgraph && \
-	  find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh && \
-	  python scripts/check_translations.py; } || { \
-	  echo "Precommit failed. Run 'make install-dependencies' if system packages are missing."; \
-	  exit 1; \
-}
+	make callgraph
+	find src -name '*.py' -print0 | xargs -0 scripts/check_python.sh
+	python scripts/check_translations.py
 
-test: install-dependencies precommit ## Run linter and unit tests with coverage
-	pytest -v --cov=src --cov-report=term-missing --cov-report=xml || { \
-		echo "Tests failed. Run 'make install-dependencies' if system packages are missing."; \
-		exit 1; \
-		}
+test: precommit ## Run linter and unit tests with coverage
+	pytest -v --cov=src --cov-report=term-missing --cov-report=xml
 
-# Build project call graph at function level.
 callgraph: ## Generate call graph diagram
-	{ python scripts/function_callgraph.py | unflatten -l 3 -f -c 6 > docs/callgraph.dot && \
-	  dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg; } || { \
-	  echo "Callgraph failed. Run 'make install-dependencies' if system packages are missing."; \
-	  exit 1; \
-	}
+	python scripts/function_callgraph.py | unflatten -l 3 -f -c 6 > docs/callgraph.dot && dot -Tsvg docs/callgraph.dot -o docs/callgraph.svg
