@@ -128,28 +128,6 @@
     "lot": {
       "market:deal": "job_offer",
       "occupation": "не указано",
-      "salary": 70000,
-      "salary:currency": "RUB",
-      "schedule": "не указано",
-      "contact:telegram": "@username",
-      "description_en": "Earn from 70,000 a week without much effort. Payments twice a week. Details in private messages.",
-      "description_ru": "Зарабатывай от 70 000 в неделю сильно не напрягаясь. Выплаты 2 раза в неделю. Подробности в ЛС.",
-      "description_ka": "შეიძინე 70 000 კვირაში დიდი ძალისხმევის გარეშე. გადახდები კვირაში 2-ჯერ. დეტალები პირადში.",
-      "title_en": "Job Offer",
-      "title_ru": "Предложение о работе",
-      "title_ka": "სამუშაოს შეთავაზება",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "762934",
-      "source:path": "batumiarendachat/2025/06/762934.md",
-      "source:author:name": "Катя Пестова",
-      "timestamp": "2025-06-22T21:39:06+00:00"
-    },
-    "input": "Message text:\nЗAPПЛAТA\nB день oт 15.000₽\nзapaбaтывaй oт 70 000 в нeделю cильно нe нaпрягаясь\nвыплaты 2 paзa в недeлю\nПoдpοбнοcти в ЛC"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "не указано",
       "salary": 15000,
       "salary:currency": "RUB",
       "schedule": "гибкий",
