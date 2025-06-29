@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from lot_io import iter_lot_files, read_lots
 from post_io import RAW_DIR, read_post, raw_post_path
 from moderation import should_skip_message, should_skip_lot
@@ -22,6 +23,7 @@ from similar_utils import (
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 LOTS_DIR = Path("data/lots")
 

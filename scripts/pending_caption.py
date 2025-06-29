@@ -16,6 +16,7 @@ from image_io import read_image_meta
 from caption_io import has_caption
 from moderation import should_skip_message
 from log_utils import get_logger
+from oom_utils import prefer_oom_kill
 
 log = get_logger().bind(script=__file__)
 
@@ -28,6 +29,7 @@ def _get_message_path(chat: str, msg_id: int) -> Path | None:
 
 
 def main() -> None:
+    prefer_oom_kill()
     files = sorted(
         (
             p

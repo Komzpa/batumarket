@@ -28,6 +28,7 @@ from caption_io import (
 from notes_utils import read_text, load_json
 from lot_io import parse_lot_id as split_lot_id, lot_json_path
 from log_utils import get_logger
+from oom_utils import prefer_oom_kill
 from post_io import read_post, raw_post_path, RAW_DIR
 import ast
 import moderation
@@ -259,6 +260,7 @@ def moderation_summary(lot_id: str) -> str:
 
 def main(argv: list[str] | None = None) -> None:
     """Collect log and data files related to a single lot."""
+    prefer_oom_kill()
     parser = argparse.ArgumentParser(description="Dump debug info for a lot")
     parser.add_argument("url", help="link to the lot page")
     parser.add_argument(

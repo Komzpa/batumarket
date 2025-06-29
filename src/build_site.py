@@ -34,6 +34,7 @@ from similar_utils import (
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from moderation import should_skip_message, should_skip_lot
 from post_io import read_post, raw_post_path, RAW_DIR
 from caption_io import read_caption
@@ -47,6 +48,7 @@ from price_utils import (
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 LOTS_DIR = Path("data/lots")
 VIEWS_DIR = Path("data/views")

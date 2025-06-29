@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 
 from log_utils import get_logger
+from oom_utils import prefer_oom_kill
 from post_io import read_post
 from moderation import should_skip_message
 
@@ -23,6 +24,7 @@ LOTS_DIR = Path("data/lots")
 
 
 def main() -> None:
+    prefer_oom_kill()
     files = sorted(
         RAW_DIR.rglob("*.md"), key=lambda p: p.stat().st_mtime, reverse=True
     )

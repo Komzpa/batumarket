@@ -2,6 +2,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+from oom_utils import prefer_oom_kill
+
 LOCALE_DIR = Path('locale')
 LANGS = ['en', 'ru', 'ka']
 
@@ -66,4 +69,5 @@ def check_translations() -> int:
 
 
 if __name__ == '__main__':
+    prefer_oom_kill()
     sys.exit(check_translations())

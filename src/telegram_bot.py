@@ -11,6 +11,7 @@ from telegram.ext import (
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 import gettext
 import json
 from typing import Any
@@ -20,6 +21,7 @@ from similar_utils import _cos_sim, _load_embeddings
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 cfg = load_config()
 
