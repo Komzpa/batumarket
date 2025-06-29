@@ -26,6 +26,7 @@ Debugging:
  - When adding logs, add message before starting something as long as after finishing, as it will let you find what crashed in the middle.
  - Inject data assertions into IO abstraction libraries to catch any data that violates them.
  - Use docs/todo.md as to put issues, inconveniences and impediments that you noticed that you are not fixing on this iteration.
+ - Keep working until the tests pass, do not stop before that. 
 
 Style:
  - Add empty lines between logical blocks as in the rest of the codebase.
