@@ -581,9 +581,13 @@ def test_sell_item_subcategories(tmp_path, monkeypatch, build):
 
     build()
 
-    assert (
-        tmp_path / "views" / "deal" / "sell_item.smartphone laptop_en.html"
-    ).exists()
+    expect = (
+        tmp_path
+        / "views"
+        / "deal"
+        / f"{build_site._slug_component('sell_item.smartphone laptop')}_en.html"
+    )
+    assert expect.exists()
     root_html = (tmp_path / "views" / "deal" / "sell_item_en.html").read_text()
     assert "smartphone laptop" in root_html
 

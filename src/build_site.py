@@ -9,6 +9,8 @@ display table columns in a stable order.
 """
 
 import os
+import re
+import hashlib
 from pathlib import Path
 import shutil
 import subprocess
@@ -59,6 +61,32 @@ LOCALE_DIR = Path("locale")
 MEDIA_DIR = Path("data/media")
 MODEL_FILE = Path("data/price_model.json")
 CLUSTER_FILE = Path("data/item_clusters.json")
+
+# Limit file name length so OS path limits are not exceeded.
+_MAX_NAME = 120
+
+
+def _slug_component(text: str) -> str:
+    """Return ``text`` converted to an ASCII slug and truncated."""
+    safe = re.sub(r"[^a-zA-Z0-9._-]+", "-", text)
+    safe = safe.strip("-._")
+    if len(safe) <= _MAX_NAME:
+        return safe
+    digest = hashlib.sha256(text.encode()).hexdigest()[:8]
+    return f"{safe[: _MAX_NAME - 9]}-{digest}"
+
+
+def _lot_page_path(lot_id: str, lang: str) -> Path:
+    """Return HTML path for ``lot_id`` and ``lang``."""
+    p = Path(lot_id)
+    name = _slug_component(p.name)
+    return VIEWS_DIR / p.parent / f"{name}_{lang}.html"
+
+
+def _cat_page_path(deal: str, lang: str) -> Path:
+    """Return category HTML path."""
+    name = _slug_component(deal)
+    return VIEWS_DIR / "deal" / f"{name}_{lang}.html"
 
 
 
@@ -446,7 +474,7 @@ def _render_site(
                     stat = category_stats.get(sub, {})
                     items_lang.append(
                         {
-                            "link": os.path.relpath(cat_dir / f"{sub}_{lang}.html", cat_dir),
+                            "link": os.path.relpath(_cat_page_path(sub, lang), cat_dir),
                             "name": sub.split(".", 1)[1],
                             "recent": stat.get("recent", 0),
                             "users": len(stat.get("recent_users", set())),
@@ -470,7 +498,7 @@ def _render_site(
                     items_lang.append(
                         {
                             "link": os.path.relpath(
-                                VIEWS_DIR / f"{lot['_id']}_{lang}.html",
+                                _lot_page_path(lot["_id"], lang),
                                 cat_dir,
                             ),
                             "title": title,
@@ -487,7 +515,7 @@ def _render_site(
                 tpl = cat_tpls[lang]
                 render_args = {"deal": deal, "items": items_lang}
 
-            out = cat_dir / f"{deal}_{lang}.html"
+            out = _cat_page_path(deal, lang)
             breadcrumbs = [
                 {"title": "Home", "link": os.path.relpath(VIEWS_DIR / f"index_{lang}.html", cat_dir)},
                 {"title": deal, "link": None},
@@ -496,7 +524,7 @@ def _render_site(
                 {
                     "langs": langs,
                     "current_lang": lang,
-                    "page_basename": deal,
+                    "page_basename": _slug_component(deal),
                     "title": deal,
                     "static_prefix": os.path.relpath(VIEWS_DIR / "static", cat_dir),
                     "breadcrumbs": breadcrumbs,
@@ -517,7 +545,7 @@ def _render_site(
                 continue
             cats_lang.append(
                 {
-                    "link": os.path.relpath(cat_dir / f"{deal}_{lang}.html", VIEWS_DIR),
+                    "link": os.path.relpath(_cat_page_path(deal, lang), VIEWS_DIR),
                     "deal": deal,
                     "recent": stat["recent"],
                     "users": len(stat.get("recent_users", set())),
@@ -615,7 +643,7 @@ def build_page(
         tg_link = f"https://t.me/{chat}/{mid}" if chat and mid else ""
 
         template = env.get_template("lot.html")
-        out = VIEWS_DIR / f"{lot['_id']}_{lang}.html"
+        out = _lot_page_path(lot["_id"], lang)
         out.parent.mkdir(parents=True, exist_ok=True)
 
         page_similar = []
@@ -634,7 +662,7 @@ def build_page(
             page_similar.append(
                 {
                     "link": os.path.relpath(
-                        VIEWS_DIR / f"{item['id']}_{lang}.html",
+                        _lot_page_path(item["id"], lang),
                         out.parent,
                     ),
                     "title": title,
@@ -657,7 +685,7 @@ def build_page(
             page_user.append(
                 {
                     "link": os.path.relpath(
-                        VIEWS_DIR / f"{item['id']}_{lang}.html",
+                        _lot_page_path(item["id"], lang),
                         out.parent,
                     ),
                     "title": title,
@@ -667,14 +695,14 @@ def build_page(
         static_prefix = os.path.relpath(VIEWS_DIR / "static", out.parent)
         media_prefix = os.path.relpath(VIEWS_DIR / "media", out.parent)
         home_link = os.path.relpath(VIEWS_DIR / f"index_{lang}.html", out.parent)
-        page_basename = Path(lot['_id']).name
+        page_basename = _slug_component(Path(lot["_id"]).name)
         breadcrumbs = [{"title": "Home", "link": home_link}]
         deal = lot.get("market:deal")
         if isinstance(deal, list):
             deal = deal[0] if deal else None
         if deal:
             cat_link = os.path.relpath(
-                VIEWS_DIR / "deal" / f"{deal}_{lang}.html",
+                _cat_page_path(deal, lang),
                 out.parent,
             )
             breadcrumbs.append({"title": deal, "link": cat_link})
