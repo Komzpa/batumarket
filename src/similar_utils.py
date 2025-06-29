@@ -5,7 +5,10 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
-import progressbar
+try:
+    import progressbar
+except ModuleNotFoundError:  # Debian ships the module as ``progressbar2``
+    import progressbar2 as progressbar
 import numpy as np
 
 from notes_utils import load_json, write_json
@@ -250,7 +253,8 @@ def _calc_similar_nn(
     try:
         bar = progressbar.ProgressBar(max_value=len(q_ids), widgets=widgets)
     except TypeError as exc:
-        if "max_value" in str(exc) and "maxval" in str(exc):
+        # Older ``progressbar`` versions use ``maxval`` instead of ``max_value``.
+        if "max_value" in str(exc) or "maxval" in str(exc):
             bar = progressbar.ProgressBar(maxval=len(q_ids), widgets=widgets)
         else:
             raise
