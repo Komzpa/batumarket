@@ -237,19 +237,20 @@ def _categorise(
 
     Categories are split by ``market:deal``. ``sell_item`` lots are further
     grouped by ``clusters`` when available and fall back to ``item:type``.
-    Stats include price range, last timestamp and embedding centroid so the
-    sorting logic used on item pages also works for categories.
+    ``clusters`` maps ``item:type`` values to cluster names. Stats include price
+    range, last timestamp and embedding centroid so the sorting logic used on
+    item pages also works for categories.
     """
     now = datetime.now(timezone.utc)
     recent_cutoff = now - timedelta(days=keep_days)
     recent: list[dict] = []
     categories: dict[str, list[dict]] = {}
     category_stats: dict[str, dict] = {}
-    lid_to_cluster: dict[str, str] = {}
+    type_to_cluster: dict[str, str] = {}
     if clusters:
-        for name, ids in clusters.items():
-            for lid in ids:
-                lid_to_cluster[lid] = name
+        for name, types in clusters.items():
+            for t in types:
+                type_to_cluster[t] = name
     def update_stat(cat: str) -> dict:
         stat = category_stats.setdefault(
             cat,
@@ -316,15 +317,14 @@ def _categorise(
         add_lot(deal, lot, dt)
 
         if deal == "sell_item":
-            cname = lid_to_cluster.get(lot["_id"])
+            itype = lot.get("item:type")
+            if isinstance(itype, list):
+                itype = itype[0] if itype else None
+            cname = type_to_cluster.get(itype or "")
             if cname:
                 add_lot(f"{deal}.{cname}", lot, dt)
-            else:
-                itype = lot.get("item:type")
-                if isinstance(itype, list):
-                    itype = itype[0] if itype else None
-                if isinstance(itype, str) and itype:
-                    add_lot(f"{deal}.{itype}", lot, dt)
+            elif isinstance(itype, str) and itype:
+                add_lot(f"{deal}.{itype}", lot, dt)
 
         if dt and dt >= recent_cutoff:
             titles = {lang: lot.get(f"title_{lang}") for lang in langs}
