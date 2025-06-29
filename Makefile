@@ -69,7 +69,7 @@ install-dependencies: ## Install system packages and Python modules used in test
 	python3-python-telegram-bot \
 	python3-jinja2 \
 	python3-structlog python3-telethon \
-	python3-sklearn python3-progressbar2 \
+        python3-sklearn python3-progressbar2 python3-progressbar \
 	python3-html5lib \
 	python3-pytest python3-pytest-cov \
 	python3-graphviz graphviz gettext

@@ -13,7 +13,10 @@ from pathlib import Path
 from datetime import datetime, timedelta, timezone
 
 from telethon import TelegramClient, events
-import progressbar
+try:
+    import progressbar
+except ModuleNotFoundError:  # Debian names the package ``progressbar2``
+    import progressbar2 as progressbar
 from telethon.tl.custom import Message
 from telethon.tl.functions.channels import JoinChannelRequest
 from telethon.errors import UserAlreadyParticipantError
@@ -782,7 +785,8 @@ async def _download_messages(
     try:
         bar = progressbar.ProgressBar(max_value=len(messages), widgets=widgets)
     except TypeError as exc:
-        if "max_value" in str(exc) and "maxval" in str(exc):
+        # Old ``progressbar`` versions expect the ``maxval`` argument.
+        if "max_value" in str(exc) or "maxval" in str(exc):
             bar = progressbar.ProgressBar(maxval=len(messages), widgets=widgets)
         else:
             raise
