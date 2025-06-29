@@ -4,13 +4,15 @@ from pathlib import Path
 from collections import defaultdict
 from typing import Iterable
 
+import numpy as np
+
 from log_utils import get_logger, install_excepthook
 from oom_utils import prefer_oom_kill
-from lot_io import iter_lot_files, read_lots
-from similar_utils import _load_embeddings, _sync_embeddings, _cos_sim
-from notes_utils import write_json
+from lot_io import iter_lot_files, read_lots, make_lot_id, embedding_path
+from similar_utils import _cos_sim
+from notes_utils import write_json, load_json
 
-from sklearn.cluster import KMeans
+from sklearn.cluster import MiniBatchKMeans
 
 log = get_logger().bind(script=__file__)
 
@@ -18,80 +20,119 @@ LOTS_DIR = Path("data/lots")
 OUTPUT_FILE = Path("data/item_clusters.json")
 
 
-def _iter_lots() -> list[dict]:
-    """Return all lots with generated ids."""
-    lots: list[dict] = []
+def _iter_items() -> Iterable[tuple[str, str, np.ndarray]]:
+    """Yield ``(id, item:type, embedding)`` for ``sell_item`` lots.
+
+    Embeddings are loaded on demand so memory usage stays minimal.
+    """
     for path in iter_lot_files(LOTS_DIR):
-        data = read_lots(path)
-        if not data:
+        lots = read_lots(path)
+        if not lots:
             continue
-        rel = path.relative_to(LOTS_DIR).with_suffix("")
-        base = rel.name
-        prefix = rel.parent
-        for i, lot in enumerate(data):
-            lot["_id"] = str(prefix / f"{base}-{i}") if prefix.parts else f"{base}-{i}"
-            lots.append(lot)
-    log.info("Loaded lots", count=len(lots))
-    return lots
+        rel = path.relative_to(LOTS_DIR)
+        epath = embedding_path(path)
+        embeds = load_json(epath) or []
+        embed_map = {}
+        if isinstance(embeds, dict) and "id" in embeds and "vec" in embeds:
+            embed_map[str(embeds["id"])] = np.asarray(embeds["vec"], dtype=np.float32)
+        elif isinstance(embeds, list):
+            for item in embeds:
+                if isinstance(item, dict) and "id" in item and "vec" in item:
+                    embed_map[str(item["id"])] = np.asarray(item["vec"], dtype=np.float32)
+        for idx, lot in enumerate(lots):
+            if lot.get("market:deal") != "sell_item":
+                continue
+            itype = lot.get("item:type")
+            if isinstance(itype, list):
+                itype = itype[0] if itype else None
+            if not isinstance(itype, str) or not itype:
+                continue
+            lot_id = make_lot_id(rel, idx)
+            vec = embed_map.get(lot_id)
+            if vec is None:
+                continue
+            yield lot_id, itype, vec
 
 
-def collect_clusters() -> dict[str, list[str]]:
-    """Return mapping of cluster name to lot ids."""
-    log.debug("Loading embeddings")
-    embeds = _load_embeddings()
-    log.debug("Loading lots")
-    lots = _iter_lots()
-    lots, embeds = _sync_embeddings(lots, embeds)
-    id_to_vec = {lot["_id"]: embeds.get(lot["_id"]) for lot in lots}
+def collect_clusters(batch_size: int = 256) -> dict[str, list[str]]:
+    """Return mapping of cluster name to lot ids.
 
-    items: list[tuple[str, str, list[float]]] = []
-    for lot in lots:
-        if lot.get("market:deal") != "sell_item":
-            continue
-        itype = lot.get("item:type")
-        if isinstance(itype, list):
-            itype = itype[0] if itype else None
-        if not isinstance(itype, str) or not itype:
-            continue
-        vec = id_to_vec.get(lot["_id"])
-        if vec is None:
-            continue
-        items.append((lot["_id"], itype, vec))
+    ``MiniBatchKMeans`` processes item embeddings in chunks so only a
+    small batch resides in memory at a time.  Initial centroids come from
+    the most common ``item:type`` values so existing categories guide the
+    clustering.
+    """
 
-    if not items:
+    log.debug("Counting items")
+    counts: dict[str, int] = defaultdict(int)
+    total = 0
+    for _, itype, _ in _iter_items():
+        counts[itype] += 1
+        total += 1
+    if total == 0:
         return {}
 
-    vectors = [it[2] for it in items]
-    n_clusters = max(1, round(len(items) / 30))
-    n_clusters = min(n_clusters, len(items))
-    km = KMeans(n_clusters=n_clusters, n_init="auto", random_state=0)
-    labels = km.fit_predict(vectors)
+    n_clusters = max(1, round(total / 30))
+    n_clusters = min(n_clusters, total)
 
-    grouped: dict[int, list[tuple[str, str, list[float]]]] = defaultdict(list)
-    for lab, item in zip(labels, items):
-        grouped[int(lab)].append(item)
+    top_types = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:n_clusters]
+    top_set = {t for t, _ in top_types}
+    centers: list[np.ndarray] | None = None
+    if len(top_types) >= n_clusters:
+        dim = None
+        sums: dict[str, np.ndarray] = {}
+        for _, itype, vec in _iter_items():
+            if itype not in top_set:
+                continue
+            if dim is None:
+                dim = len(vec)
+                for t in top_set:
+                    sums[t] = np.zeros(dim, dtype=np.float32)
+            sums[itype] += vec
+        centers = [sums[t] / counts[t] for t, _ in top_types]
+
+    if centers is not None:
+        init = np.stack(centers)
+        km = MiniBatchKMeans(
+            n_clusters=n_clusters,
+            init=init,
+            n_init=1,
+            random_state=0,
+            batch_size=batch_size,
+        )
+    else:
+        km = MiniBatchKMeans(n_clusters=n_clusters, random_state=0, batch_size=batch_size)
+
+    log.debug("Fitting clusters", count=total, clusters=n_clusters)
+    batch: list[np.ndarray] = []
+    for _, _, vec in _iter_items():
+        batch.append(vec)
+        if len(batch) >= batch_size:
+            km.partial_fit(batch)
+            batch.clear()
+    if batch:
+        km.partial_fit(batch)
+
+    log.debug("Assigning labels")
+    grouped: dict[int, dict[str, list]] = {}
+    for lid, itype, vec in _iter_items():
+        lab = int(km.predict([vec])[0])
+        info = grouped.setdefault(lab, {"ids": [], "sum": np.zeros(len(vec)), "type_vecs": defaultdict(list)})
+        info["ids"].append(lid)
+        info["sum"] += vec
+        info["type_vecs"][itype].append(vec)
 
     result: dict[str, list[str]] = {}
-    for items in grouped.values():
-        dims = len(items[0][2])
-        centroid = [0.0] * dims
-        for _, _, vec in items:
-            for i, v in enumerate(vec):
-                centroid[i] += v
-        centroid = [v / len(items) for v in centroid]
-
-        type_vecs: dict[str, list[list[float]]] = defaultdict(list)
-        for lid, itype, vec in items:
-            type_vecs[itype].append(vec)
-
+    for info in grouped.values():
+        centroid = info["sum"] / len(info["ids"])
         scores = []
-        for itype, vecs in type_vecs.items():
-            mean = [sum(v[i] for v in vecs) / len(vecs) for i in range(dims)]
+        for itype, vecs in info["type_vecs"].items():
+            mean = np.mean(vecs, axis=0)
             sim = _cos_sim(mean, centroid)
             scores.append((sim, itype))
         scores.sort(reverse=True)
         name = " ".join(t for _, t in scores)
-        result[name] = [lid for lid, _, _ in items]
+        result[name] = info["ids"]
 
     return result
 
