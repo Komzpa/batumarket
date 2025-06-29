@@ -294,7 +294,9 @@ def _categorise(
         if dt:
             stat["times"].append(dt)
         vec = id_to_vec.get(lot.get("_id"))
-        if vec:
+        # ``numpy.ndarray`` does not support boolean evaluation.  Check for
+        # ``None`` instead of relying on truthiness.
+        if vec is not None:
             if stat["vecsum"] is None:
                 stat["vecsum"] = [0.0 for _ in vec]
             for i, v in enumerate(vec):

@@ -67,7 +67,9 @@ def main() -> None:
     lot_keys = {lot["_id"] for lot in lots}
     _prune_similar(sim_map, lot_keys)
     new_ids = [i for i in lot_keys if i not in sim_map]
-    vec_ids = [i for i in lot_keys if id_to_vec.get(i)]
+    # ``numpy.ndarray`` does not define boolean semantics, thus check explicitly
+    # for ``None`` instead of relying on truthiness which raises an error.
+    vec_ids = [i for i in lot_keys if id_to_vec.get(i) is not None]
     _calc_similar_nn(sim_map, new_ids, vec_ids, id_to_vec)
 
     more_user_map = _similar_by_user(lots, id_to_vec)
