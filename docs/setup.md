@@ -18,7 +18,8 @@ Run the pipeline:
 make -j all
 ```
 
-Run tests before committing:
+Run tests before committing. The command installs system packages if needed and
+mirrors the CI pipeline:
 ```bash
 make test
 ```

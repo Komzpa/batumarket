@@ -91,11 +91,11 @@ precommit: ## Run pre-commit checks
 	  exit 1; \
 }
 
-test: precommit ## Run linter and unit tests with coverage
-	pytest --cov=src --cov-report=term-missing || { \
-	echo "Tests failed. Run 'make install-dependencies' if system packages are missing."; \
-	exit 1; \
-	}
+test: install-dependencies precommit ## Run linter and unit tests with coverage
+	pytest -v --cov=src --cov-report=term-missing --cov-report=xml || { \
+		echo "Tests failed. Run 'make install-dependencies' if system packages are missing."; \
+		exit 1; \
+		}
 
 # Build project call graph at function level.
 callgraph: ## Generate call graph diagram
