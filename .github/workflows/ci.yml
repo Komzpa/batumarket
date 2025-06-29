@@ -14,10 +14,6 @@ jobs:
           python-version: '3.12'
       - name: Install system packages
         run: make install-dependencies
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pytest pytest-cov
       - name: Lint and compile
         run: make precommit
       - name: Run tests
