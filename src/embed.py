@@ -11,6 +11,7 @@ from config_utils import load_config
 cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from token_utils import estimate_tokens
 from notes_utils import write_json
 from lot_io import read_lots, make_lot_id
@@ -18,6 +19,7 @@ import json
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 openai.api_key = OPENAI_KEY
 

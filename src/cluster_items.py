@@ -5,6 +5,7 @@ from collections import defaultdict
 from typing import Iterable
 
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from lot_io import iter_lot_files, read_lots
 from similar_utils import _load_embeddings, _sync_embeddings, _cos_sim
 from notes_utils import write_json
@@ -98,6 +99,7 @@ def collect_clusters() -> dict[str, list[str]]:
 def main() -> None:
     """Cluster items and save the result."""
     install_excepthook(log)
+    prefer_oom_kill()
     log.info("Clustering items")
     clusters = collect_clusters()
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)

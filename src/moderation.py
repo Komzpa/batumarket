@@ -6,6 +6,7 @@ import json
 import ast
 
 from log_utils import get_logger
+from oom_utils import prefer_oom_kill
 from config_utils import load_config
 from post_io import (
     read_post,
@@ -155,6 +156,7 @@ def is_misparsed(lot: dict, meta: dict | None = None) -> bool:
 
 def apply_to_history() -> None:
     """Remove processed lots now failing moderation."""
+    prefer_oom_kill()
     removed = 0
     for path in LOTS_DIR.rglob("*.json"):
         items = read_lots(path)

@@ -1,8 +1,9 @@
 # Service Overview
 
-This repository powers a small Telegram marketplace.  Each Python script in
-`src/` acts as a stand-alone service invoked from the Makefile.  See
-[`setup.md`](setup.md) for installation instructions.
+This repository powers a small Telegram marketplace.
+Each Python script in `src/` acts as a stand-alone service invoked from the Makefile.
+All entry points call ``prefer_oom_kill()`` so the kernel prefers them as OOM victims.
+See [`setup.md`](setup.md) for installation instructions.
 
 ## tg_client.py
 Uses Telethon to mirror the target chats as a normal user account.

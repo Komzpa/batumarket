@@ -17,11 +17,13 @@ cfg = load_config()
 OPENAI_KEY = cfg.OPENAI_KEY
 LANGS = getattr(cfg, "LANGS", ["en"])
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from caption_io import caption_json_path, has_caption, write_caption
 from token_utils import estimate_tokens
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 openai.api_key = OPENAI_KEY
 

@@ -1,6 +1,6 @@
 # Setup
 
-This project uses Python 3.12.
+This project uses Python.
 
 Install dependencies:
 ```bash

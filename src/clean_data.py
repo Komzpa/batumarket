@@ -9,12 +9,14 @@ from datetime import datetime, timedelta, timezone
 
 from config_utils import load_config
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from lot_io import read_lots, needs_cleanup
 from post_io import raw_post_path, RAW_DIR
 from caption_io import has_caption
 
 log = get_logger().bind(script=__file__)
 install_excepthook(log)
+prefer_oom_kill()
 
 cfg = load_config()
 KEEP_DAYS = getattr(cfg, "KEEP_DAYS", 7)

@@ -9,6 +9,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from log_utils import get_logger, install_excepthook
+from oom_utils import prefer_oom_kill
 from lot_io import get_seller, get_timestamp
 from message_utils import gather_chop_input
 from post_io import (
@@ -135,6 +136,7 @@ def collect_ontology() -> tuple[
 
 def main() -> None:
     install_excepthook(log)
+    prefer_oom_kill()
     log.info("Scanning ontology", path=str(LOTS_DIR))
     if not LOTS_DIR.exists() or not any(LOTS_DIR.rglob("*.json")):
         log.warning("Lots directory missing or empty", path=str(LOTS_DIR))
