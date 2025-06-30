@@ -407,3 +407,46 @@ def test_similar_titles_use_language(tmp_path, monkeypatch, build):
     html_ru = (tmp_path / "views" / "1-0_ru.html").read_text()
     assert "world" in html_en
     assert "мир" in html_ru
+
+
+def test_similar_by_user_uses_phone(monkeypatch):
+    """Lots sharing a phone are grouped even without telegram handles."""
+    class DummyNN:
+        def __init__(self, n_neighbors=None, metric=None):
+            pass
+        def fit(self, matrix):
+            self.matrix = matrix
+        def kneighbors(self, matrix, n_neighbors=None):
+            # two items so each references the other
+            return [[0.0, 0.0], [0.0, 0.0]], [[0, 1], [1, 0]]
+
+    monkeypatch.setattr(similar_utils, "NearestNeighbors", DummyNN)
+
+    lots = [
+        {
+            "_id": "1",
+            "contact:phone": "+123",
+            "title_en": "a",
+            "description_en": "d",
+            "title_ru": "a",
+            "description_ru": "d",
+            "title_ka": "a",
+            "description_ka": "d",
+            "market:deal": "sell_item",
+        },
+        {
+            "_id": "2",
+            "contact:phone": "+123",
+            "title_en": "b",
+            "description_en": "d",
+            "title_ru": "b",
+            "description_ru": "d",
+            "title_ka": "b",
+            "description_ka": "d",
+            "market:deal": "sell_item",
+        },
+    ]
+
+    res = similar_utils._similar_by_user(lots, {"1": [1.0], "2": [0.9]})
+    assert res["1"][0]["id"] == "2"
+    assert res["2"][0]["id"] == "1"
