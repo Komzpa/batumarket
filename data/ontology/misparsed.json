@@ -104,29 +104,6 @@
     "lot": {
       "market:deal": "job_offer",
       "occupation": "unknown",
-      "salary": 400,
-      "salary:currency": "USD",
-      "schedule": "unknown",
-      "remote": "yes",
-      "contact:telegram": "@username",
-      "title_en": "Job opportunity for 16+",
-      "description_en": "There is an opportunity to earn. Minimum $400 per week. Write to us, we will tell everything and teach everyone.",
-      "title_ru": "Вакансия для 16+",
-      "description_ru": "Есть возможность зарабатывать. Минимум 400$ в неделю. Пишите, всё расскажем, всему научим.",
-      "title_ka": "სამუშაო შესაძლებლობა 16+",
-      "description_ka": "არის შესაძლებლობა გამოიმუშავოთ. მინიმუმ 400$ კვირაში. მოგვწერეთ, ყველაფერს მოგიყვებით და ყველაფერს გაწვდით.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "763903",
-      "source:path": "batumiarendachat/2025/06/763903.md",
-      "source:author:name": "Катя Пестова",
-      "timestamp": "2025-06-23T16:39:46+00:00"
-    },
-    "input": "Message text:\nEcть возмoжнoсть зapaбатывать  \nТолькo 16+\nМинимум 400$ в неделю\nПишите, вcё рaccкaжем, всeму нayчим"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "occupation": "unknown",
       "salary": 15000,
       "salary:currency": "RUB",
       "schedule": "flexible",
@@ -732,30 +709,6 @@
       "source:author:telegram": "ElizabetYdi",
       "source:author:name": "Елизавета Юдина",
       "timestamp": "2025-06-24T04:14:34+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "сотрудник",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "remote": "yes",
-      "contact:telegram": "@username",
-      "title_en": "Remote Employee Needed",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Ищем сотрудника для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "მუშაკი საჭიროებს დისტანციური მუშაობისთვის",
-      "description_ka": "მუშაკი საჭიროებს სტაბილური დისტანციური მუშაობისთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებებში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2123512",
-      "source:path": "arenda_batumi/2025/06/2123512.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-23T16:45:33+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
