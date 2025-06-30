@@ -147,27 +147,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "подработка",
-      "salary": 4000,
-      "salary:currency": "RUB",
-      "contact:telegram": "@username",
-      "title_en": "Part-time job for boys from 16 years old",
-      "description_en": "Part-time job available for boys from 16 years old. Flexible schedule, can work in the evenings. Payment is more than 4000 for completed work. If interested, please write.",
-      "title_ru": "Подработка для парней от 16 лет",
-      "description_ru": "Есть подработка для парней от 16 лет. Удобный график, можно по вечерам. Оплата более четырех тысяч за выполненную работу. Кого заинтересовало, пишите.",
-      "title_ka": "16 წლიდან ბიჭებისთვის დროებითი სამუშაო",
-      "description_ka": "16 წლიდან ბიჭებისთვის დროებითი სამუშაო. კომფორტული გრაფიკი, შესაძლებელია საღამოს მუშაობა. ანაზღაურება 4000-ზე მეტი შესრულებული სამუშაოსთვის. თუ დაინტერესდით, დაწერეთ.",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "764018",
-      "source:path": "batumiarendachat/2025/06/764018.md",
-      "source:author:name": "Катя Пестова",
-      "timestamp": "2025-06-23T17:57:33+00:00"
-    },
-    "input": "Message text:\nПaрни от 16 лeт ,eсть пoдрабoтка ,удoбный грaфик можно пo вeчeрам ,оплата бoлee Четыpе тыcячи за выпoлнeннyю работу ,кoго заинтeреcовaло пишитe ."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
