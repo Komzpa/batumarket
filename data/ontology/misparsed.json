@@ -306,29 +306,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "удалённая работа",
-      "salary": 20000,
-      "salary:currency": "RUB",
-      "schedule": "1-2 часа в день",
-      "contact:telegram": "@username",
-      "description_en": "Looking for active and adequate people to participate in a remote project. Work from home, just a smartphone is enough. Possible income is from 20,000 rubles per day. No spam or pressure. Full support at all stages. If interested, write '+' in private messages, I will tell you more.",
-      "description_ru": "Ищу активных-адекватных людей для участия в удалённом проекте. Работа из дома, достаточно смартфона. Возможный доход — от 20 000 рублей в день. Без спама и навязывания. Полное сопровождение на всех этапах. Если интересно — напиши «+» в личные сообщения, расскажу подробнее.",
-      "description_ka": "მინდა აქტიური და ადეკვატური ადამიანები, რომლებსაც სურთ მონაწილეობა remote პროექტში. მუშაობა სახლიდან, საკმარისია სმარტფონი. შესაძლო შემოსავალი — 20 000 რუბლიდან დღეში. არანაირი სპამი და ზეწოლა. სრული მხარდაჭერა ყველა ეტაპზე. თუ დაინტერესებული ხარ, დაწერე '+' პირად შეტყობინებებში, უფრო დეტალურად მოგიყვები.",
-      "title_en": "Remote Work Opportunity",
-      "title_ru": "Вакансия удалённой работы",
-      "title_ka": "Удалენური სამუშაოს შესაძლებლობა",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2127612",
-      "source:path": "arenda_batumi/2025/06/2127612.md",
-      "source:author:telegram": "VladislavBaranov0",
-      "source:author:name": "Владислав Баранов",
-      "timestamp": "2025-06-24T13:11:14+00:00"
-    },
-    "input": "Message text:\nВсем привет! \nИщу активных-адекватных людей для участия в удалённом проекте.\nРабота из дома, достаточно смартфона.\nЗанятость — 1–2 часа в день.\n\nВозможный доход — от 20 000 рублей в день.\nБез спама и навязывания. Полное сопровождение на всех этапах.\n\nЕсли интересно — напиши «+» в личные сообщения, расскажу подробнее."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
       "salary:currency": "EUR",
