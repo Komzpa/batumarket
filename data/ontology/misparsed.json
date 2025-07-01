@@ -3,29 +3,6 @@
     "lot": {
       "market:deal": "event_seek",
       "event:type": "concert",
-      "date": "2023-10-01",
-      "location": "Танцпол",
-      "fee": "на месте",
-      "contact:telegram": "@username",
-      "title_en": "2 tickets for Justin Timberlake concert",
-      "description_en": "Selling 2 electronic tickets for Justin Timberlake concert. Payment at the entrance, you will enter with our friends - no scams!",
-      "title_ru": "2 билета на концерт Тимберлейка",
-      "description_ru": "Продаю 2 электронных билета на концерт Тимберлейка. Оплата на месте, пройдете вместе с нашими друзьями - никакого обмана!",
-      "title_ka": "2 ბილეთი ტიმბერლეიკზე კონცერტზე",
-      "description_ka": "ვყიდი 2 ელექტრონულ ბილეთს ტიმბერლეიკის კონცერტზე. გადახდა შესასვლელში, თქვენ ჩვენი მეგობრებით ერთად შედიხართ - არანაირი თაღლითობა!",
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2504670",
-      "source:path": "baraholka_ge/2025/06/2504670.md",
-      "source:author:telegram": "DalnikinaViktoriya",
-      "source:author:name": "Viktoriya Dalnikina",
-      "timestamp": "2025-06-30T19:18:07+00:00"
-    },
-    "input": "Message text:\nЕсть 2 билета на Тимберлейка на танцпол (у нас к сожалению не получается пойти) кому интересно пишите в личку. Билеты электронные, поэтому оплата на месте у входа, пройдете вместе с нашими друзьями - никакого обмана!"
-  },
-  {
-    "lot": {
-      "market:deal": "event_seek",
-      "event:type": "concert",
       "date": "2023-07-23",
       "fee": "negotiable",
       "contact:telegram": "@username",
@@ -328,29 +305,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "assistant",
-      "salary": 100,
-      "salary:currency": "EUR",
-      "schedule": "09:00 to 15:00",
-      "contact:telegram": "@username",
-      "title_en": "Looking for a permanent assistant",
-      "description_en": "Seeking an assistant on a permanent basis. Knowledge of Russian or Ukrainian is required. Schedule: from 09:00 to 15:00. Payment from 100€ per day. Official employment. Training is provided for free. Please write in private messages — I would be happy to chat.",
-      "title_ru": "Ищу помощника на постоянную основу",
-      "description_ru": "Требуется помощник на постоянной основе. Знание русского или украинского языка обязательно. График: с 09:00 до 15:00. Оплата от 100€ в день. Официальное трудоустройство. Обучение предоставляется бесплатно. Пишите в личные сообщения — буду рад пообщаться.",
-      "title_ka": "მუდმივი ასისტენტის ძიება",
-      "description_ka": "მუდმივი ასისტენტის ძიება. საჭიროება რუსული ან უკრაინული ენის ცოდნა. გრაფიკი: 09:00-დან 15:00-მდე. ანაზღაურება დღეში 100€-დან. ოფიციალური დასაქმება. სწავლება უფასოა. დაწერეთ პირად შეტყობინებებში — სიამოვნებით ვისაუბრებ.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2129717",
-      "source:path": "arenda_batumi/2025/06/2129717.md",
-      "source:author:telegram": "VladKripl",
-      "source:author:name": "Владислав",
-      "timestamp": "2025-06-24T22:02:23+00:00"
-    },
-    "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
       "salary:currency": "EUR",
@@ -529,29 +483,6 @@
       "source:author:telegram": "ElizabetYdi",
       "source:author:name": "Елизавета Юдина",
       "timestamp": "2025-06-25T04:19:46+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120€-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებაში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2129715",
-      "source:path": "arenda_batumi/2025/06/2129715.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-24T21:49:26+00:00"
     },
     "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
   },
