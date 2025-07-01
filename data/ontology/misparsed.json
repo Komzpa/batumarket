@@ -671,29 +671,6 @@
   {
     "lot": {
       "market:deal": "job_seek",
-      "occupation": "помощник",
-      "salary": 100,
-      "salary:currency": "EUR",
-      "schedule": "с 09:00 до 15:00",
-      "contact:telegram": "@username",
-      "title_en": "Assistant needed on a permanent basis",
-      "description_en": "Looking for an assistant on a permanent basis. Knowledge of Russian or Ukrainian is required. Schedule: from 09:00 to 15:00. Payment from 100€ per day. Official employment. Training is provided for free. Please write in private messages — I would be happy to chat.",
-      "title_ru": "Ищу помощника на постоянную основу",
-      "description_ru": "Требуется помощник на постоянную основу. Знание русского или украинского языка обязательно. График: с 09:00 до 15:00. Оплата от 100€ в день. Официальное трудоустройство. Обучение предоставляется бесплатно. Пишите в личные сообщения — буду рад пообщаться.",
-      "title_ka": "მუდმივი ასისტენტის ძიება",
-      "description_ka": "მუდმივი ასისტენტის ძიება. საჭიროება რუსული ან უკრაინული ენის ცოდნა. გრაფიკი: 09:00-დან 15:00-მდე. ანაზღაურება დღეში 100€-დან. ოფიციალური დასაქმება. სწავლება უფასოა. დაწერეთ პირად შეტყობინებებში - სიამოვნებით ვისაუბრებ.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2126501",
-      "source:path": "arenda_batumi/2025/06/2126501.md",
-      "source:author:telegram": "VladKripl",
-      "source:author:name": "Владислав",
-      "timestamp": "2025-06-24T09:19:51+00:00"
-    },
-    "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
       "occupation": "assistant",
       "salary": 100,
       "salary:currency": "EUR",
