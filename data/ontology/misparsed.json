@@ -170,6 +170,28 @@
   },
   {
     "lot": {
+      "market:deal": "job_offer",
+      "salary": 15000,
+      "salary:currency": "RUB",
+      "schedule": "flexible",
+      "contact:telegram": "@username",
+      "title_ru": "Вакансия с заработком от 15 000 ₽ в день",
+      "description_ru": "Ищем людей, которые хотят стабильности. Гибкий график работы и обучение от А до Я. Оставь заявку в Telegram!",
+      "title_en": "Job vacancy with earnings from 15,000 RUB per day",
+      "description_en": "Looking for people who seek stability. Flexible work schedule and training from A to Z. Leave an application in Telegram!",
+      "title_ka": "სამსახურის ვაკანსია 15 000 ₽ დღიური შემოსავლისთვის",
+      "description_ka": "მოვლენები, რომლებიც სტაბილურობას ეძებენ. მოქნილი სამუშაო გრაფიკი და სწავლება A-დან Z-მდე. დატოვეთ განაცხადი Telegram-ში!",
+      "source:chat": "batumiarendachat",
+      "source:message_id": "778955",
+      "source:path": "batumiarendachat/2025/07/778955.md",
+      "source:author:telegram": "Katirin_a_a",
+      "source:author:name": "Карина Гордеева",
+      "timestamp": "2025-07-01T15:44:24+00:00"
+    },
+    "input": "Message text:\n💼 Вакансия для тех, кто ищет стабильность  \n💰 Заработок от 15 000 ₽ в день  \n📆 Гибкий график работы  \n🎓 Обучение от А до Я  \n📩 Оставь заявку в Telegram!"
+  },
+  {
+    "lot": {
       "market:deal": "job_seek",
       "occupation": "remote work",
       "salary": 120,
@@ -486,29 +508,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "Доп. работа",
-      "salary": 750,
-      "salary:currency": "EUR",
-      "schedule": "Понедельник - Пятница, 2 часа на день",
-      "contact:telegram": "@username",
-      "title_en": "Part-time job with training provided",
-      "description_en": "Offering additional work. No experience needed! Monday to Friday, 2 hours a day. Salary from 750 EUR per week. Tasks include following instructions on several services. Training provided before work (free). For detailed information, please write in private messages!",
-      "title_ru": "Дополнительная работа с обучением",
-      "description_ru": "Предлагаю Доп. работу. Можно без опыта! Понедельник - Пятница, 2 часа на день. Зарплата от 750 €/Неделя. В задачи входит выполнение инструкций на нескольких сервисах. Обучаем перед Работой (Бесплатно). За детальной информацией пишите в личные сообщения!",
-      "title_ka": "დამატებითი სამუშაო ტრენინგით",
-      "description_ka": "предлагаю Доп. работу. Можно без опыта! Понедельник - Пятница, 2 часа на день. Зарплата от 750 €/Неделя. В задачи входит выполнение инструкций на нескольких сервисах. Обучаем перед Работой (Бесплатно). За детальной информацией пишите в личные сообщения!",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2128324",
-      "source:path": "arenda_batumi/2025/06/2128324.md",
-      "source:author:telegram": "victoriaadoronnn",
-      "source:author:name": "Виктория Доронина",
-      "timestamp": "2025-06-24T15:24:41+00:00"
-    },
-    "input": "Message text:\nПредлагаю Доп. работу. Можно без опыта!\nПонедельник - Пятница, 2 часа на день.\nЗарплата от 750 €/Неделя.\nВ задачи входит выполнение инструкций на нескольких сервисах. Обучаем перед Работой (Бесплатно).\nЗа детальной информацией пишите в личные сообщения!"
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "occupation": "помощник",
       "salary": 100,
@@ -635,29 +634,6 @@
       "title_ru": "Вакансия для удалённой работы",
       "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
       "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა 1-დან 4 საათამდე ყოველდღიურად. ანაზღაურება 120€ დღეში. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებებში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2128305",
-      "source:path": "arenda_batumi/2025/06/2128305.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-24T15:21:40+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
       "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებებში.",
       "source:chat": "arenda_batumi",
       "source:message_id": "2130297",
@@ -714,28 +690,5 @@
       "timestamp": "2025-06-25T18:06:22+00:00"
     },
     "input": "Message text:\n**Удалённая** работа на Binance для фрилансеров из СНГ и Европы!\n\nБез опыта? Не проблема — обучим с нуля.\nВся работа выполняется с телефона — можно работать из любой точки.\nДоступны две смены на выбор:\nУтро (10:00–15:00) — до 65€ в день\nВечер (15:00–19:00) — до 50€ в день\n\nПиши «+» в личку — расскажу всё подробно."
-  },
-  {
-    "lot": {
-      "market:deal": "job_seek",
-      "occupation": "помощник",
-      "salary": 100,
-      "salary:currency": "EUR",
-      "schedule": "с 09:00 до 15:00",
-      "contact:telegram": "@username",
-      "title_en": "Assistant position available",
-      "description_en": "Looking for an assistant on a permanent basis. Knowledge of Russian or Ukrainian is required. Schedule: from 09:00 to 15:00. Payment from 100€ per day. Official employment. Training is provided for free. Please write in private messages — I would be happy to chat.",
-      "title_ru": "Ищу помощника на постоянную основу",
-      "description_ru": "Требуется помощник на постоянной основе. Знание русского или украинского языка обязательно. График: с 09:00 до 15:00. Оплата от 100€ в день. Официальное трудоустройство. Обучение предоставляется бесплатно. Пишите в личные сообщения — буду рад пообщаться.",
-      "title_ka": "მდედრობითი სქესის ასისტენტი",
-      "description_ka": "მდედრობითი სქესის ასისტენტი მუდმივი საფუძველზე. საჭიროება რუსული ან უკრაინული ენის ცოდნა. გრაფიკი: 09:00-დან 15:00-მდე. ანაზღაურება დღეში 100€-დან. ოფიციალური დასაქმება. სწავლება უფასოა. დაწერეთ პირად შეტყობინებებში - სიამოვნებით ვისაუბრებ.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2128390",
-      "source:path": "arenda_batumi/2025/06/2128390.md",
-      "source:author:telegram": "VladKripl",
-      "source:author:name": "Владислав",
-      "timestamp": "2025-06-24T15:40:54+00:00"
-    },
-    "input": "Message text:\nИщу помощника на постоянную основу\nТребуется знание русского или украинского языка\nГрафик: с 09:00 до 15:00\nОплата от 100€ в день\nОфициальное трудоустройство\nОбучение предоставляется бесплатно\n\nПишите в личные сообщения — буду рад пообщаться."
   }
 ]
