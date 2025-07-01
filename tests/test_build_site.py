@@ -650,6 +650,53 @@ def test_recent_user_count():
     assert len(stat["users"]) == 2
 
 
+def test_html_lang_attribute(tmp_path, monkeypatch, build):
+    class Cfg:
+        LANGS = ["en", "ru"]
+        KEEP_DAYS = 7
+        DISPLAY_CURRENCY = "USD"
+
+    monkeypatch.setattr(build_site, "LOTS_DIR", tmp_path / "lots")
+    monkeypatch.setattr(build_site, "VIEWS_DIR", tmp_path / "views")
+    monkeypatch.setattr(build_site, "TEMPLATES", Path("templates"))
+    monkeypatch.setattr(build_site, "EMBED_DIR", tmp_path / "vecs")
+    monkeypatch.setattr(build_site, "ONTOLOGY", tmp_path / "ont.json")
+    monkeypatch.setattr(build_site, "MEDIA_DIR", tmp_path / "media")
+    monkeypatch.setattr(build_site, "load_config", lambda: Cfg())
+
+    lots_dir = tmp_path / "lots"
+    lots_dir.mkdir()
+    (tmp_path / "media").mkdir()
+    (tmp_path / "vecs").mkdir()
+
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+    (lots_dir / "1.json").write_text(
+        json.dumps([
+            {
+                "timestamp": now,
+                "title_en": "a",
+                "description_en": "d",
+                "title_ru": "a",
+                "description_ru": "d",
+                "title_ka": "a",
+                "description_ka": "d",
+                "files": [],
+                "market:deal": "sell_item",
+            }
+        ])
+    )
+    (tmp_path / "vecs" / "1.json").write_text(json.dumps([{"id": "1-0", "vec": [1, 0]}]))
+
+    build()
+
+    html_en = (tmp_path / "views" / "1-0_en.html").read_text()
+    html_ru = (tmp_path / "views" / "1-0_ru.html").read_text()
+    assert '<html lang="en">' in html_en
+    assert '<html lang="ru">' in html_ru
+
+
 def test_phone_sellers_allowed(monkeypatch):
     from datetime import datetime, timezone
 
