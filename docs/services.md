@@ -168,7 +168,7 @@ Calculates nearest neighbour recommendations for each lot. Embeddings come from
 `data/embeddings` and lots from `data/lots`. Stale entries are pruned before
 running a cosine search via scikit‑learn. The top six neighbours for every lot
 are stored under `data/similar` mirroring the lot layout. A second cache under
-`data/more_user` lists other lots from the same Telegram user ordered by
+`data/more_user` lists other lots from the same seller ordered by
 embedding similarity. The per-user lists used to compare each pair of lots in a
 nested loop which scaled poorly. They now rely on `NearestNeighbors` so the
 lookups are vectorised. On a 40k lot benchmark this lowered runtime from around
@@ -230,7 +230,7 @@ display that summary so the table can be sorted by price, by age or by embedding
 similarity. Each subcategory link leads to a page listing every lot of that type
 while other categories link directly to their respective lot lists.
 Lot pages include a "more by this user" section which lists other lots from the
-same Telegram account ordered by embedding similarity. The list comes from the
+same seller ordered by embedding similarity. The list comes from the
 `data/more_user` cache.  If a lot has a timestamp that lies in the future it is
 ignored during rendering so the website never displays misleading dates.
 Each lot page also exposes "Like" and "Dislike" buttons. Votes are stored in the

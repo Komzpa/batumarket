@@ -14,7 +14,7 @@ import numpy as np
 from notes_utils import load_json, write_json
 from sklearn.neighbors import NearestNeighbors
 
-from lot_io import LOTS_DIR, EMBED_DIR, lot_json_path
+from lot_io import LOTS_DIR, EMBED_DIR, lot_json_path, get_seller
 from log_utils import get_logger
 
 log = get_logger().bind(module=__name__)
@@ -293,17 +293,13 @@ def _sync_embeddings(
 def _similar_by_user(
     lots: list[dict], id_to_vec: dict[str, list[float]]
 ) -> dict[str, list[dict]]:
-    """Return map of lot id to other lots from the same user."""
+    """Return map of lot id to other lots from the same user.
+
+    ``get_seller`` unifies multiple contact fields so the best option is
+    used consistently when grouping lots."""
     user_map: dict[str, list[dict]] = {}
     for lot in lots:
-        user = (
-            lot.get("contact:telegram")
-            or lot.get("source:author:telegram")
-            or lot.get("source:author:name")
-        )
-        if isinstance(user, list):
-            log.debug("Multiple telegram users", id=lot.get("_id"), value=user)
-            user = user[0] if user else None
+        user = get_seller(lot)
         if user is not None:
             user_map.setdefault(str(user), []).append(lot)
 
