@@ -89,30 +89,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_offer",
-      "occupation": "фрилансер",
-      "salary": 65,
-      "salary:currency": "EUR",
-      "schedule": "утро (10:00–15:00)",
-      "remote": "yes",
-      "contact:telegram": "@username",
-      "title_en": "Remote work for freelancers on Binance",
-      "description_en": "Remote work on Binance for freelancers from the CIS and Europe! No experience? No problem - we will train from scratch. All work is done from a phone - you can work from anywhere. Two shifts available: Morning (10:00–15:00) - up to 65€ per day Evening (15:00–19:00) - up to 50€ per day. Write '+' in private messages - I will tell you everything in detail.",
-      "title_ru": "Удалённая работа на Binance для фрилансеров",
-      "description_ru": "Удалённая работа на Binance для фрилансеров из СНГ и Европы! Без опыта? Не проблема — обучим с нуля. Вся работа выполняется с телефона — можно работать из любой точки. Доступны две смены на выбор: Утро (10:00–15:00) — до 65€ в день Вечер (15:00–19:00) — до 50€ в день. Пиши «+» в личку — расскажу всё подробно.",
-      "title_ka": "ბინანსზე ფრეილანსერებისათვის შორიდან მუშაობა",
-      "description_ka": "ბინანსზე ფრეილანსერებისათვის შორიდან მუშაობა სსრკ-სა და ევროპის ქვეყნებიდან! გამოცდილება არ გაქვთ? პრობლემა არაა - ჩვენ გაწვდით ყველაფერს თავიდან. მთელი სამუშაო ტელეფონით კეთდება - შეგიძლიათ მუშაობა ნებისმიერი ადგილიდან. ხელმისაწვდომია ორი ცვლა: დილა (10:00–15:00) - დღეში 65€ მდე საღამო (15:00–19:00) - დღეში 50€ მდე. დაწერეთ '+' პირადში - ყველაფერს დეტალურად გეტყვით.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2134086",
-      "source:path": "arenda_batumi/2025/06/2134086.md",
-      "source:author:telegram": "VladKripl",
-      "source:author:name": "Владислав",
-      "timestamp": "2025-06-25T18:06:22+00:00"
-    },
-    "input": "Message text:\n**Удалённая** работа на Binance для фрилансеров из СНГ и Европы!\n\nБез опыта? Не проблема — обучим с нуля.\nВся работа выполняется с телефона — можно работать из любой точки.\nДоступны две смены на выбор:\nУтро (10:00–15:00) — до 65€ в день\nВечер (15:00–19:00) — до 50€ в день\n\nПиши «+» в личку — расскажу всё подробно."
-  },
-  {
-    "lot": {
       "market:deal": "job_seek",
       "salary": 3500,
       "salary:currency": "RUB",
