@@ -89,6 +89,27 @@
   },
   {
     "lot": {
+      "market:deal": "job_offer",
+      "salary": 4000,
+      "salary:currency": "RUB",
+      "contact:telegram": "@username",
+      "title_ru": "Помощники на кратковременную работу",
+      "description_ru": "Ищу помощников на кратковременную работу. Оплата 4000₽, работа лёгкая, займёт 2 часа. Информация есть в профиле!",
+      "title_en": "Helpers for short-term work",
+      "description_en": "Looking for helpers for short-term work. Payment 4000 RUB, the job is easy and will take 2 hours. More information in the profile!",
+      "title_ka": "დახმარება მოკლევადიანი სამუშაოსთვის",
+      "description_ka": "მჭირდება დახმარება მოკლევადიანი სამუშაოსთვის. ანაზღაურება 4000₽, სამუშაო მარტივია და 2 საათი დასჭირდება. ინფორმაცია პროფილშია!",
+      "source:chat": "batumiarendachat",
+      "source:message_id": "781663",
+      "source:path": "batumiarendachat/2025/07/781663.md",
+      "source:author:telegram": "ChristineWhite85",
+      "source:author:name": "Christine White",
+      "timestamp": "2025-07-02T22:32:07+00:00"
+    },
+    "input": "Message text:\n**Здрaвcтвyйте! Ищy пoмoщникoв нa кpаткoвpeменную рaбoтy. Оплатa 4000₽, рaбoтa лёгкaя, зaймёт 2 чаca. Инфоpмaция есть в пpoфилe!\n8️⃣**"
+  },
+  {
+    "lot": {
       "market:deal": "job_seek",
       "salary": 3500,
       "salary:currency": "RUB",
