@@ -327,29 +327,6 @@
   },
   {
     "lot": {
-      "market:deal": "job_seek",
-      "occupation": "remote work",
-      "salary": 120,
-      "salary:currency": "EUR",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_en": "Remote Work Opportunity",
-      "description_en": "Looking for an employee for stable remote work. Knowledge of Russian or Ukrainian is mandatory. Flexible schedule - need to dedicate from 1 to 4 hours a day. Payment from 120€ per day. Official registration and training at the company's expense. If interested, please message me directly.",
-      "title_ru": "Вакансия для удалённой работы",
-      "description_ru": "Ищем сотрудника для стабильной удалённой работы. Знание русского или украинского обязательно. График свободный — нужно уделять от 1 до 4 часов в день. Оплата от 120 € в день. Официальное оформление и обучение за счёт компании. Если заинтересованы — напишите мне в личные сообщения.",
-      "title_ka": "დისტანციური სამუშაოს შესაძლებლობა",
-      "description_ka": "ვეძებთ თანამშრომელს სტაბილური დისტანციური სამუშაოსთვის. რუსული ან უკრაინული ენის ცოდნა აუცილებელია. გრაფიკი თავისუფალია - საჭიროა დღეში 1-დან 4 საათამდე დროის დათმობა. ანაზღაურება დღეში 120 €-დან. ოფიციალური რეგისტრაცია და სწავლება კომპანიის ხარჯზე. თუ დაინტერესებული ხართ, მომწერეთ პირად შეტყობინებებში.",
-      "source:chat": "arenda_batumi",
-      "source:message_id": "2130297",
-      "source:path": "arenda_batumi/2025/06/2130297.md",
-      "source:author:telegram": "ElizabetYdi",
-      "source:author:name": "Елизавета Юдина",
-      "timestamp": "2025-06-25T04:19:46+00:00"
-    },
-    "input": "Message text:\nИщем сотрудника для стабильной удалённой работы\nЗнание русского или украинского обязательно\nГрафик свободный — нужно уделять от 1 до 4 часов в день\nОплата от 120 € в день\nОфициальное оформление и обучение за счёт компании\n\nЕсли заинтересованы — напишите мне в личные сообщения"
-  },
-  {
-    "lot": {
       "market:deal": "job_offer",
       "occupation": "фрилансер",
       "salary": 65,
@@ -371,5 +348,27 @@
       "timestamp": "2025-06-25T18:06:22+00:00"
     },
     "input": "Message text:\n**Удалённая** работа на Binance для фрилансеров из СНГ и Европы!\n\nБез опыта? Не проблема — обучим с нуля.\nВся работа выполняется с телефона — можно работать из любой точки.\nДоступны две смены на выбор:\nУтро (10:00–15:00) — до 65€ в день\nВечер (15:00–19:00) — до 50€ в день\n\nПиши «+» в личку — расскажу всё подробно."
+  },
+  {
+    "lot": {
+      "market:deal": "job_seek",
+      "salary": 3500,
+      "salary:currency": "RUB",
+      "schedule": "4 hours",
+      "contact:telegram": "@username",
+      "title_ru": "Ищу людей для работы на 4 часа",
+      "description_ru": "Приветствую! Оплата 3500₽ сразу после выполнения. Ссылка уже в био – проверь!",
+      "title_en": "Looking for people for 4-hour work",
+      "description_en": "Hello! Payment of 3500 RUB immediately after completion. Link is already in bio - check it out!",
+      "title_ka": "მეძებს ადამიანებს 4 საათიანი სამუშაოსთვის",
+      "description_ka": "გამარჯობა! 3500₽ გადახდა შესრულების შემდეგ. ბმული უკვე ბიოშია - შეამოწმეთ!",
+      "source:chat": "arenda_batumi",
+      "source:message_id": "2163169",
+      "source:path": "arenda_batumi/2025/07/2163169.md",
+      "source:author:telegram": "ThomasParker_Wb",
+      "source:author:name": "Thomas Parker",
+      "timestamp": "2025-07-02T03:59:59+00:00"
+    },
+    "input": "Message text:\n**Приветствyю! Ищу людей для рaботы на 4 чacа. Oплатa 3500₽ cразy после выполнения. Ccылкa yжe в биo – прoвepь!\n👌🏾**"
   }
 ]
