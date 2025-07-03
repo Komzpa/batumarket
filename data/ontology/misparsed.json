@@ -1,28 +1,6 @@
 [
   {
     "lot": {
-      "market:deal": "event_seek",
-      "event:type": "concert",
-      "date": "2023-07-23",
-      "fee": "negotiable",
-      "contact:telegram": "@username",
-      "title_en": "Ticket request for Justin Timberlake concert on July 23",
-      "description_en": "Looking for an extra ticket to the Justin Timberlake concert on July 23. Will pay on the day of the concert. If I can't go, I guarantee to buy the ticket anyway.",
-      "title_ru": "Запрос на билет на концерт Justin Timberlake 23 июля",
-      "description_ru": "Ищу лишний билет на концерт Justin Timberlake 23 июля. Оплата в день концерта. Если не смогу пойти, гарантирую выкуп билета.",
-      "title_ka": "Justin Timberlake-ის კონცერტზე ბილეთის მოთხოვნა 23 ივლისს",
-      "description_ka": "მჭირდება დამატებითი ბილეთი Justin Timberlake-ის კონცერტზე 23 ივლისს. გადახდა კონცერტის დღეს. თუ ვერ წავიდოდი, ბილეთის ყიდვას გარანტიას გაწვდით.",
-      "source:chat": "baraholka_ge",
-      "source:message_id": "2502217",
-      "source:path": "baraholka_ge/2025/06/2502217.md",
-      "source:author:telegram": "maxfeel82",
-      "source:author:name": "Максим Филиппов C2-021",
-      "timestamp": "2025-06-30T04:22:13+00:00"
-    },
-    "input": "Message text:\nПривет 👋 \nЕсли у кого-то есть лишний билет на Justin Timberlake 23.07 - очень хочу пойти🙏\nГлавное пожелание - оплата про встрече в день концерта 😇\nЕсли договоримся и я не смогу вдруг пойти - выкуп билета все равно гарантирую естественно.\nПишите, буду рад знакомству ☺️"
-  },
-  {
-    "lot": {
       "market:deal": "job_offer",
       "salary": 15000,
       "salary:currency": "RUB",
