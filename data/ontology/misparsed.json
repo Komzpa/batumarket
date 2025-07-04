@@ -33,28 +33,6 @@
       "schedule": "flexible",
       "contact:telegram": "@username",
       "title_ru": "Вакансия с заработком от 15 000 ₽ в день",
-      "description_ru": "Ищем сотрудников, которые ценят стабильность. Обучение от А до Я. Оставь заявку в Telegram!",
-      "title_en": "Job vacancy with earnings from 15,000 RUB per day",
-      "description_en": "Looking for employees who value stability. Training from A to Z. Leave an application in Telegram!",
-      "title_ka": "სამსახურის ვაკანსია 15 000 ₽ დღიური შემოსავლისთვის",
-      "description_ka": "ვ buscamos empleados, quienes აფასებენ სტაბილურობას. სწავლება A-დან Z-მდე. დატოვეთ განაცხადი Telegram-ში!",
-      "source:chat": "batumiarendachat",
-      "source:message_id": "770490",
-      "source:path": "batumiarendachat/2025/06/770490.md",
-      "source:author:telegram": "Katirin_a_a",
-      "source:author:name": "Карина Гордеева",
-      "timestamp": "2025-06-27T12:14:31+00:00"
-    },
-    "input": "Message text:\n💼 Вакансия для тех, кто ищет стабильность  \n💰 Заработок от 15 000 ₽ в день  \n📆 Гибкий график работы  \n🎓 Обучение от А до Я  \n📩 Оставь заявку в Telegram!"
-  },
-  {
-    "lot": {
-      "market:deal": "job_offer",
-      "salary": 15000,
-      "salary:currency": "RUB",
-      "schedule": "flexible",
-      "contact:telegram": "@username",
-      "title_ru": "Вакансия с заработком от 15 000 ₽ в день",
       "description_ru": "Ищем людей, которые хотят стабильности. Гибкий график работы и обучение от А до Я. Оставь заявку в Telegram!",
       "title_en": "Job vacancy with earnings from 15,000 RUB per day",
       "description_en": "Looking for people who seek stability. Flexible work schedule and training from A to Z. Leave an application in Telegram!",
