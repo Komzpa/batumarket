@@ -1,6 +1,32 @@
 [
   {
     "lot": {
+      "market:deal": "event_invite",
+      "event:type": "giveaway",
+      "date": "2023-07-12",
+      "location": "Georgia",
+      "fee": "free",
+      "contact:telegram": "@username",
+      "title_en": "Giveaway of 3 Free Excursions",
+      "description_en": "Join the giveaway for a chance to win one of three free tours in Georgia! Choose from Kakheti, Kazbegi, or Mtskheta. To participate, subscribe to the channel, like the post, and comment your preferred tour. Winners will be announced on July 12!",
+      "title_ru": "РОЗЫГРЫШ — 3 БЕСПЛАТНЫХ ЭКСКУРСИИ!",
+      "description_ru": "Прими участие в розыгрыше и выиграй один из трех бесплатных туров по Грузии! Выбери из Кахетии, Казбеги или Мцхеты. Чтобы участвовать, подпишись на канал, поставь лайк посту и напиши в комментариях, какой тур ты хочешь. Победители будут объявлены 12 июля!",
+      "title_ka": "საჩუქარი — 3 უფასო ექსკურსია!",
+      "description_ka": "წარმოიდგინე, რომ შეგიძლია მოიგო ერთი სამი უფასო ტურიდან საქართველოში! აირჩიე კახეთი, ყაზბეგი ან მცხეთა. მონაწილეობისათვის, გამოიწერე არხი, დააწკაპე პოსტზე და კომენტარებში დაწერე, რომელი ტურით ხარ დაინტერესებული. გამარჯვებულები გამოცხადდებიან 12 ივლისს!",
+      "files": [
+        "arenda_batumiN1/2025/07/a701ed068e62bd49b4cc6b21d8a33e4cf5157264302e063e0765fdc3e1d4430c.jpg"
+      ],
+      "source:chat": "arenda_batumiN1",
+      "source:message_id": "2092224",
+      "source:path": "arenda_batumiN1/2025/07/2092224.md",
+      "source:author:telegram": "mariaa1po",
+      "source:author:name": "Мария",
+      "timestamp": "2025-07-04T10:56:43+00:00"
+    },
+    "input": "Message text:\n**🎉 РОЗЫГРЫШ — 3 БЕСПЛАТНЫХ ЭКСКУРСИИ! 🎁\n(Никакой лотереи за деньги — только подарки от души!)\n\n🌄 Мечтаешь о настоящем грузинском туре?\n12 июля я случайным образом выберу 3 победителей, которые поедут со мной абсолютно бесплатно!\n**\n⸻\n**\n🎯 Что можно выиграть:\n🏆 __Бесплатный тур на выбор для каждого победителя!__\n\nТы сам решаешь, куда поехать:\n🍷 Кахетия — винные погреба, чурчхела и душа Грузии\n⛰ Казбеги — горы, природа и храм на вершине\n🏛 Мцхета — древняя столица и энергия старинных улиц\n**\n⸻\n**\n📌 Условия участия:\n** 1. ✅ Подпишись на мой канал\n 2. 👍 Поставь лайк этому посту\n 3. 💬 Напиши в комментариях:\n**«Я в деле! Хочу тур в [Кахети / Казбеги / Мцхету]»\n\n(укажи только один тур — тот, который тебе реально интересен)\n**\n⸻\n**\n🌀 Выбор победителей — 12 июля\nС помощью рулетки-рандомайзера 🎯\n📍Результаты я опубликую в комментариях под этим постом — всё прозрачно и честно!\n**\n⸻\n**\n🧿 Пусть удача будет на твоей стороне!\nС любовью к путешествиям —\nНиколай 💛**\n\nImage arenda_batumiN1/2025/07/a701ed068e62bd49b4cc6b21d8a33e4cf5157264302e063e0765fdc3e1d4430c.jpg:\nAnnouncement for a giveaway of three free excursions! The text states: \"I'm in! I want a tour to Kazeti, Kazbegi, Mtskheta!\" The date mentioned is June 12. The background features a scenic view of rolling hills and mountains, suggesting a natural landscape. The overall vibe is inviting and adventurous, aimed at promoting tourism in the region."
+  },
+  {
+    "lot": {
       "market:deal": "job_offer",
       "salary": 15000,
       "salary:currency": "RUB",
@@ -85,6 +111,29 @@
       "timestamp": "2025-07-02T22:32:07+00:00"
     },
     "input": "Message text:\n**Здрaвcтвyйте! Ищy пoмoщникoв нa кpаткoвpeменную рaбoтy. Оплатa 4000₽, рaбoтa лёгкaя, зaймёт 2 чаca. Инфоpмaция есть в пpoфилe!\n8️⃣**"
+  },
+  {
+    "lot": {
+      "market:deal": "job_offer",
+      "fraud": "sketchy_job",
+      "salary": 1000,
+      "salary:currency": "USD",
+      "schedule": "flexible",
+      "contact:telegram": "@username",
+      "title_en": "Start earning today with flexible hours",
+      "description_en": "Discover a world of opportunities with earning potential from $1000 per month! Only for 18+. Contact for details.",
+      "title_ru": "Начните зарабатывать сегодня с гибким графиком",
+      "description_ru": "Откройте для себя мир возможностей с потенциалом заработка от 1000$ в месяц! Только для 18+. За подробностями обращайтесь.",
+      "title_ka": "დაიწყეთ დღეს შემოსავლის მიღება მოქნილი საათებით",
+      "description_ka": "აღმოაჩინეთ შესაძლებლობების მსოფლიო 1000$-დან დაწყებული შემოსავლის პოტენციალით! მხოლოდ 18+.",
+      "source:chat": "batumiarendachat",
+      "source:message_id": "783660",
+      "source:path": "batumiarendachat/2025/07/783660.md",
+      "source:author:telegram": "Katirin_a_a",
+      "source:author:name": "Карина Гордеева",
+      "timestamp": "2025-07-04T10:42:55+00:00"
+    },
+    "input": "Message text:\nНачните зарабатывать уже сегодня💰💰💰\n\n Откройте для себя мир возможностей\n💼 Потенциал заработка от 1000$ в месяц!\n📅 Условия работы гибкие, всего несколько часов в день.\n🔞Только для 18+.\nЗа подробностями обращайтесь в 📩"
   },
   {
     "lot": {
