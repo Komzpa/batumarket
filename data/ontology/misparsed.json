@@ -116,6 +116,28 @@
   {
     "lot": {
       "market:deal": "job_seek",
+      "salary": 2500,
+      "salary:currency": "RUB",
+      "schedule": "flexible",
+      "contact:telegram": "@username",
+      "title_ru": "Ищу людей на подработку",
+      "description_ru": "Срочно ищу людей на подработку! Кто сможет через пару часов выйти? Оплата 2500₽ наличными за 3-4 часа работы. Вся инструкция ждет тебя в профиле!",
+      "title_en": "Looking for people for part-time work",
+      "description_en": "Urgently looking for people for part-time work! Who can start in a couple of hours? Payment is 2500 RUB in cash for 3-4 hours of work. All instructions are waiting for you in the profile!",
+      "title_ka": "მუშაკები საჭირო არიან დროებითი სამუშაოსთვის",
+      "description_ka": "სწრაფად ვეძებ ადამიანებს დროებითი სამუშაოსთვის! ვინ შეძლებს რამდენიმე საათში გამოსვლას? ანაზღაურება 2500₽ ნაღდი ფულით 3-4 საათიანი მუშაობისთვის. ყველა ინსტრუქცია გელოდება პროფილში!",
+      "source:chat": "batumiarendachat",
+      "source:message_id": "784735",
+      "source:path": "batumiarendachat/2025/07/784735.md",
+      "source:author:telegram": "ChristineWhite85",
+      "source:author:name": "Christine White",
+      "timestamp": "2025-07-05T03:50:51+00:00"
+    },
+    "input": "Message text:\n**Привeт! Cрочно ищу людей на пoдрaботкy! Ктo cмoжeт чepез пapy чacов выйти? Oплата 2500₽ нaличными зa 3-4 чаcа paботы. Вcя инcтрyкция ждeт тeбя в прoфилe!\n💭**"
+  },
+  {
+    "lot": {
+      "market:deal": "job_seek",
       "salary": 3500,
       "salary:currency": "RUB",
       "schedule": "4 hours",
